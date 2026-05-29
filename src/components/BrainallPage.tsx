@@ -419,6 +419,38 @@ function ScrollComposeText({ text }: { text: string }) {
   );
 }
 
+function AnimatedLineText({ text, className = "" }: { text: string; className?: string }) {
+  let visibleIndex = 0;
+
+  return (
+    <span className={`line-reveal-text ${className}`.trim()} aria-label={text}>
+      {text.split("\n").map((line, lineIndex) => (
+        <span className="line-reveal-line" aria-hidden="true" key={`line-reveal-line-${lineIndex}`}>
+          {Array.from(line).map((char, charIndex) => {
+            const currentIndex = visibleIndex;
+            visibleIndex += 1;
+
+            return (
+              <span
+                className="line-reveal-char"
+                style={
+                  {
+                    "--line-reveal-index": currentIndex,
+                    "--line-reveal-delay": `${currentIndex * 18}ms`,
+                  } as CSSProperties
+                }
+                key={`line-reveal-char-${lineIndex}-${charIndex}-${char}`}
+              >
+                {char === " " ? "\u00A0" : char}
+              </span>
+            );
+          })}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 function HistoryAnimatedText({ text, className }: { text: string; className?: string }) {
   let visibleIndex = 0;
   const tokens = text.split(/(\n|\s+)/);
@@ -520,7 +552,7 @@ function Preloader({ copy }: { copy: SiteContent["preloader"] }) {
     if (reduceMotion) return;
 
     const startedAt = performance.now();
-    const duration = 7000;
+    const duration = 4000;
     let frame = 0;
     let isComplete = false;
     const timers = new Set<number>();
@@ -536,7 +568,7 @@ function Preloader({ copy }: { copy: SiteContent["preloader"] }) {
     const video = videoRef.current;
     if (video) {
       video.currentTime = 0;
-      video.playbackRate = 1;
+      video.playbackRate = 1.75;
       void video.play().catch(() => undefined);
     }
 
@@ -640,38 +672,6 @@ function Hero({ copy, language }: { copy: SiteContent["hero"]; language: Languag
     };
   }, [reduceMotion]);
 
-  useEffect(() => {
-    if (reduceMotion) return;
-    const section = sectionRef.current;
-    if (!section) return;
-
-    let frame = 0;
-    const updateHeadlights = () => {
-      frame = 0;
-      const scrolled = Math.max(0, -section.getBoundingClientRect().top);
-      const visible = scrolled < 2;
-
-      section.querySelectorAll<HTMLElement>(".hero-headlight").forEach((light) => {
-        light.style.opacity = visible ? "0.92" : "0";
-        light.style.visibility = visible ? "visible" : "hidden";
-      });
-    };
-    const schedule = () => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(updateHeadlights);
-    };
-
-    updateHeadlights();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-    };
-  }, [reduceMotion]);
-
   return (
     <section ref={sectionRef} className="brain-hero visual-sect" id="top" style={heroStyle}>
       <div className="brain-hero__sticky scroll-area">
@@ -715,15 +715,50 @@ function Hero({ copy, language }: { copy: SiteContent["hero"]; language: Languag
                 <source src={heroVisual.src} type="video/mp4" />
               </video>
             )}
-            <span className="hero-headlight hero-headlight--left" aria-hidden="true" />
-            <span className="hero-headlight hero-headlight--right" aria-hidden="true" />
           </div>
         </div>
 
         <HeroSolutionCopy language={language} />
 
         <p className="brain-hero__subtit">{copy.subtitle}</p>
+        <span className="brain-hero__veil" aria-hidden="true" />
 
+      </div>
+    </section>
+  );
+}
+
+function SeoulIndustryIntroSection() {
+  const seoul = "SEOUL";
+  const industry = "INDUSTRY";
+
+  const renderIntroWord = (word: string, lineIndex: number) =>
+    Array.from(word).map((char, charIndex) => (
+      <span
+        className="seoul-industry-intro__char"
+        style={{ "--intro-char-index": lineIndex * 12 + charIndex } as CSSProperties}
+        key={`seoul-intro-${word}-${charIndex}`}
+      >
+        {char}
+      </span>
+    ));
+
+  return (
+    <section className="seoul-industry-intro" data-scene="seoul-industry-intro" aria-label="SEOUL INDUSTRY">
+      <span className="seoul-industry-intro__glow" aria-hidden="true" />
+      <div className="seoul-industry-intro__inner">
+        <div className="seoul-industry-intro__monogram" aria-hidden="true">
+          <span className="seoul-industry-intro__si-letter seoul-industry-intro__si-letter--s">S</span>
+          <span className="seoul-industry-intro__si-letter seoul-industry-intro__si-letter--i">I</span>
+        </div>
+        <h2 className="seoul-industry-intro__title" aria-label="SEOUL INDUSTRY">
+          <span className="seoul-industry-intro__word seoul-industry-intro__word--seoul" aria-hidden="true">
+            {renderIntroWord(seoul, 0)}
+          </span>
+          <span className="seoul-industry-intro__word seoul-industry-intro__word--industry" aria-hidden="true">
+            {renderIntroWord(industry, 1)}
+          </span>
+        </h2>
       </div>
     </section>
   );
@@ -767,16 +802,20 @@ function HighlightSlider({
     >
       <span className="highlight-bg-dim" aria-hidden="true" />
       <div className="highlight-stage">
+        <div className="highlight-entry-visual" aria-hidden="true">
+          <HighlightMedia item={visibleHighlights[0]} active={active === 0} eager />
+        </div>
+
         <div className="highlight-copy">
           {visibleHighlights.map((item, index) => (
             <article className={`highlight-copy__item ${index === active ? "is-active" : ""}`} key={item.title}>
               <span className="highlight-copy__index">{String(index + 1).padStart(2, "0")}</span>
               <h2>
-                {item.title.split("\n").map((line) => (
-                  <span key={line}>{line}</span>
-                ))}
+                <AnimatedLineText text={item.title} className="line-reveal-text--headline" />
               </h2>
-              <p>{item.copy}</p>
+              <p>
+                <AnimatedLineText text={item.copy} className="line-reveal-text--body" />
+              </p>
               <a className="blue-button" href={`#/technology/${item.id}`}>
                 {buttonLabel}
                 <Icon name="plus" />
@@ -1657,6 +1696,13 @@ function ClientCollabSection({ statement, clients }: { statement: string; client
   );
 }
 
+const governanceAccent = "#7c3aed";
+
+function getEsgAccent(item?: Pick<EsgPillar, "keyword" | "accent">) {
+  if (!item) return "#e9631a";
+  return item.keyword === "GOVERNANCE" ? governanceAccent : item.accent;
+}
+
 function EsgSection({ copy, pillars }: { copy: SiteContent["esgHeading"]; pillars: EsgPillar[] }) {
   const ref = useRef<HTMLElement>(null);
   const scrollState = useScrollSteps(ref, Math.max(2, pillars.length + 1), 0.0001);
@@ -1664,6 +1710,8 @@ function EsgSection({ copy, pillars }: { copy: SiteContent["esgHeading"]; pillar
   const stepProgress = scrollState.index >= pillars.length ? 1 : scrollState.stepProgress;
   const activeItem = pillars[active] ?? pillars[0];
   const entryItem = pillars[0];
+  const activeAccent = getEsgAccent(activeItem);
+  const entryAccent = getEsgAccent(entryItem);
   const activeStepProgress = stepProgress;
   const esgProgress = pillars.length <= 1 ? 1 : scrollState.progress;
   const titleText = copy.title.replace("지속가능한 제조를 위한 서울산업의 책임", "지속가능한 제조를 위한\n서울산업의 책임");
@@ -1683,13 +1731,13 @@ function EsgSection({ copy, pillars }: { copy: SiteContent["esgHeading"]; pillar
           "--esg-progress-ratio": esgProgress,
           "--esg-bg-shift": `${(esgProgress - 0.5) * 46}px`,
           "--esg-step-progress": activeStepProgress,
-          "--pillar-accent": activeItem.accent,
+          "--pillar-accent": activeAccent,
         } as CSSProperties
       }
     >
       <div className="esg-sticky">
         {entryItem && (
-          <div className="esg-entry-visual" aria-hidden="true" style={{ "--pillar-accent": entryItem.accent } as CSSProperties}>
+          <div className="esg-entry-visual" aria-hidden="true" style={{ "--pillar-accent": entryAccent } as CSSProperties}>
             <img src={entryItem.image} alt="" loading="eager" />
             <span className="esg-entry-visual__shade" />
             <div className="esg-entry-visual__copy">
@@ -1710,7 +1758,7 @@ function EsgSection({ copy, pillars }: { copy: SiteContent["esgHeading"]; pillar
               <ScrollComposeText text={titleText} />
             </h2>
             <div className="esg-keywords" aria-label={copy.title}>
-              <strong className="esg-keyword is-active" key={activeItem.keyword} style={{ "--pillar-accent": activeItem.accent } as CSSProperties}>
+              <strong className="esg-keyword is-active" key={activeItem.keyword} style={{ "--pillar-accent": activeAccent } as CSSProperties}>
                 {activeItem.keyword}
               </strong>
             </div>
@@ -1740,6 +1788,7 @@ function EsgSection({ copy, pillars }: { copy: SiteContent["esgHeading"]; pillar
 
           <div className="esg-card-stage" aria-live="polite">
             {pillars.map((item, index) => {
+              const itemAccent = getEsgAccent(item);
               const isCurrent = index === active;
               const isFinalActive = active >= pillars.length - 1;
               const finalSettleProgress = isFinalActive ? stepProgress : 1;
@@ -1759,7 +1808,7 @@ function EsgSection({ copy, pillars }: { copy: SiteContent["esgHeading"]; pillar
                   aria-hidden={!isCurrent}
                   style={
                     {
-                      "--pillar-accent": item.accent,
+                      "--pillar-accent": itemAccent,
                       "--card-x": `${boundedOffset * 16}px`,
                       "--card-y": `${boundedOffset * 58}px`,
                       "--card-rotate": `${boundedOffset * -1.6}deg`,
@@ -2107,11 +2156,67 @@ export default function BrainallPage() {
       gsap.set(".hero-brand-word__inner", { yPercent: 112, autoAlpha: 0, filter: "blur(8px)" });
       gsap.set(".hero-auto-title", { autoAlpha: 0 });
       gsap.set(".hero-auto-title .ch, .hero-auto-title .hero-label span", { yPercent: 112, autoAlpha: 0 });
-      gsap.set(".brain-video-box", { autoAlpha: 0, y: 50, scale: 0.96 });
-      gsap.set(".brain-hero__subtit", { autoAlpha: 0, y: 28, x: 0, xPercent: 0 });
-      gsap.set(".hero-solution-copy", { autoAlpha: 0 });
+      gsap.set(".brain-video-box", { autoAlpha: 0, y: 38, scale: 0.88, filter: "blur(10px)" });
+      gsap.set(".brain-hero__subtit", { autoAlpha: 0, y: 24, x: 0, xPercent: 0, filter: "blur(6px)" });
+      gsap.set(".hero-solution-copy", { autoAlpha: 0, y: 18, filter: "blur(4px)" });
       gsap.set(".hero-solution-copy .ch", { y: "1.18em", autoAlpha: 0, filter: "blur(6px)" });
+      gsap.set(".brain-hero__veil", { autoAlpha: 0 });
+      gsap.set(".seoul-industry-intro", { autoAlpha: 0 });
+      gsap.set(".seoul-industry-intro__si-letter", { autoAlpha: 0, y: 28, scale: 0.96, filter: "blur(12px)" });
+      gsap.set(".seoul-industry-intro__char", {
+        autoAlpha: 0,
+        y: "0.94em",
+        color: "#fff4ea",
+        filter: "blur(10px)",
+      });
       gsap.set(".global-fill-line .fill-line", { backgroundSize: "0% 100%" });
+
+      const heroVideo = root.querySelector<HTMLVideoElement>(".brain-video-box video");
+      const seoulIntro = root.querySelector<HTMLElement>(".seoul-industry-intro");
+      const highlightIntroTarget = root.querySelector<HTMLElement>(".highlight-section");
+      const solutionCharCount = root.querySelectorAll(".hero-solution-copy .ch").length;
+      const solutionRevealStagger = solutionCharCount > 82 ? 0.0058 : 0.0085;
+      let pendingHeroVideoStart: (() => void) | null = null;
+
+      const playHeroVideo = () => {
+        if (!heroVideo) return;
+
+        const start = () => {
+          pendingHeroVideoStart = null;
+          heroVideo.loop = false;
+          heroVideo.playbackRate = 0.82;
+          heroVideo.currentTime = 0;
+          void heroVideo.play().catch(() => undefined);
+        };
+
+        if (heroVideo.readyState >= 1) start();
+        else {
+          pendingHeroVideoStart = start;
+          heroVideo.addEventListener("loadedmetadata", start, { once: true });
+        }
+      };
+
+      const pauseHeroVideo = () => {
+        heroVideo?.pause();
+      };
+
+      const jumpToElement = (target: HTMLElement | null) => {
+        if (!target) return;
+
+        const top = window.scrollY + target.getBoundingClientRect().top;
+        const lenis = (window as Window & {
+          __seoulindLenis?: {
+            scrollTo: (target: number, options?: { immediate?: boolean; force?: boolean; duration?: number }) => void;
+          };
+        }).__seoulindLenis;
+
+        if (lenis) lenis.scrollTo(top, { immediate: true, force: true, duration: 0 });
+        else window.scrollTo({ top, behavior: "auto" });
+        ScrollTrigger.refresh();
+      };
+
+      const scrollToSeoulIntro = () => jumpToElement(seoulIntro);
+      const scrollToHighlightIntro = () => jumpToElement(highlightIntroTarget);
 
       const intro = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
       intro
@@ -2119,11 +2224,116 @@ export default function BrainallPage() {
           yPercent: 0,
           autoAlpha: 1,
           filter: "blur(0px)",
-          duration: motionConfig.hero.introDuration + 0.18,
-          stagger: { each: 0.12, from: "start" },
+          duration: motionConfig.hero.introDuration + 0.24,
+          stagger: { each: 0.11, from: "start" },
           delay: 0.08,
         })
-        .to(".brain-video-box", { autoAlpha: 1, y: 0, scale: 1, duration: 1.08, ease: "power3.out" }, ">-0.42");
+        .to({}, { duration: 0.64 })
+        .to(
+          ".hero-brand-word__inner",
+          {
+            yPercent: -116,
+            autoAlpha: 0,
+            filter: "blur(10px)",
+            duration: 0.76,
+            stagger: { each: 0.048, from: "center" },
+            ease: "power3.inOut",
+          },
+          ">",
+        )
+        .to(".hero-brand-title", { autoAlpha: 0, scale: 0.965, filter: "blur(16px)", duration: 0.84, ease: "sine.inOut" }, "<0.06")
+        .call(playHeroVideo, [], ">-0.34")
+        .to(".brain-video-box", { autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 1.36, ease: "expo.out" }, "<")
+        .to(".hero-solution-copy", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.52, ease: "power2.out" }, ">-0.16")
+        .to(
+          ".hero-solution-copy .ch",
+          {
+            y: 0,
+            autoAlpha: 1,
+            filter: "blur(0px)",
+            duration: 0.76,
+            stagger: { each: solutionRevealStagger, from: "start" },
+            ease: "power4.out",
+          },
+          "<",
+        )
+        .to(".brain-hero__subtit", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.74, ease: "power3.out" }, "<0.46")
+        .to({}, { duration: 1.16 })
+        .to(
+          ".hero-solution-copy .ch",
+          {
+            y: "-1em",
+            autoAlpha: 0,
+            filter: "blur(7px)",
+            duration: 0.62,
+            stagger: { each: 0.0045, from: "end" },
+            ease: "power3.in",
+          },
+          ">",
+        )
+        .to(".hero-solution-copy", { autoAlpha: 0, y: -18, filter: "blur(8px)", duration: 0.56, ease: "sine.inOut" }, "<0.12")
+        .to(".brain-hero__subtit", { autoAlpha: 0, y: -18, filter: "blur(7px)", duration: 0.72, ease: "sine.inOut" }, "<0.16")
+        .to(".brain-video-box", { autoAlpha: 0, y: -8, scale: 1.035, filter: "blur(7px)", duration: 1.08, ease: "sine.inOut" }, "<0.16")
+        .to(".brain-hero__veil", { autoAlpha: 1, duration: 1.08, ease: "sine.inOut" }, "<")
+        .call(() => {
+          pauseHeroVideo();
+          scrollToSeoulIntro();
+        })
+        .to(".seoul-industry-intro", { autoAlpha: 1, duration: 0.52, ease: "sine.out" })
+        .to(
+          ".seoul-industry-intro__si-letter",
+          {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 0.58,
+            stagger: 0.08,
+            ease: "power3.out",
+          },
+          "<0.1",
+        )
+        .to(
+          ".seoul-industry-intro__si-letter--s",
+          { x: "-17vw", autoAlpha: 0.16, scale: 0.74, filter: "blur(4px)", duration: 0.86, ease: "power3.inOut" },
+          ">0.22",
+        )
+        .to(
+          ".seoul-industry-intro__si-letter--i",
+          { x: "17vw", autoAlpha: 0.16, scale: 0.74, filter: "blur(4px)", duration: 0.86, ease: "power3.inOut" },
+          "<",
+        )
+        .to(
+          ".seoul-industry-intro__char",
+          {
+            autoAlpha: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.72,
+            stagger: { each: 0.035, from: "start" },
+            ease: "power4.out",
+          },
+          "<0.08",
+        )
+        .to(
+          ".seoul-industry-intro__char",
+          {
+            color: "#f36f21",
+            textShadow: "0 0 30px rgba(243, 111, 33, 0.36)",
+            duration: 0.86,
+            stagger: { each: 0.024, from: "center" },
+            ease: "sine.inOut",
+          },
+          ">-0.12",
+        )
+        .to({}, { duration: 0.28 })
+        .to(
+          ".seoul-industry-intro__title, .seoul-industry-intro__monogram",
+          { autoAlpha: 0, y: -28, filter: "blur(12px)", duration: 0.6, ease: "sine.inOut" },
+          ">",
+        )
+        .to(".seoul-industry-intro", { autoAlpha: 0, duration: 0.44, ease: "sine.inOut" }, "<0.08")
+        .call(scrollToHighlightIntro);
 
       let heroIntroStarted = false;
       let heroIntroFallback = 0;
@@ -2140,216 +2350,6 @@ export default function BrainallPage() {
         playHeroIntro();
       }
 
-      const subtitleTravelX = (rightPaddingRatio: number) => {
-        const subtitle = root.querySelector<HTMLElement>(".brain-hero__subtit");
-        if (!subtitle) return 0;
-        const rect = subtitle.getBoundingClientRect();
-        const rightPadding = Math.max(16, window.innerWidth * rightPaddingRatio);
-        return Math.max(0, window.innerWidth - rect.left - rect.width - rightPadding);
-      };
-
-      const viewportPosition = (value: string, axis: "x" | "y") => {
-        const size = axis === "x" ? window.innerWidth : window.innerHeight;
-        const trimmed = value.trim();
-        if (trimmed.endsWith("%")) return (Number.parseFloat(trimmed) / 100) * size;
-        if (trimmed.endsWith("vw")) return (Number.parseFloat(trimmed) / 100) * window.innerWidth;
-        if (trimmed.endsWith("vh")) return (Number.parseFloat(trimmed) / 100) * window.innerHeight;
-        return Number.parseFloat(trimmed) || 0;
-      };
-
-      const brainTravelTo = (target: string, axis: "x" | "y") => {
-        const box = root.querySelector<HTMLElement>(".brain-video-box");
-        if (!box) return 0;
-        const style = window.getComputedStyle(box);
-        const current = Number.parseFloat(axis === "x" ? style.left : style.top) || 0;
-        return viewportPosition(target, axis) - current;
-      };
-
-      const createVisualTimeline = (options: {
-        subtitXPercent: number;
-        subtitRightPaddingRatio: number;
-        brainLeft: string;
-        brainTop: string;
-      }) => {
-        const heroAutoCharCount = root.querySelectorAll(".hero-auto-title .hero-auto-word .ch").length;
-        const subtitleMoveStart = 1.16;
-        const subtitleMoveDuration = 0.92;
-        const subtitleArriveAt = subtitleMoveStart + subtitleMoveDuration;
-        const brandColorDuration = 0.62;
-        const brandColorStagger = Math.max(
-          0,
-          (subtitleMoveDuration - brandColorDuration) / Math.max(1, heroAutoCharCount - 1),
-        );
-        const heroExitStart = subtitleArriveAt + 1.26;
-        const heroTravelDuration = 1.44;
-        const solutionCharCount = root.querySelectorAll(".hero-solution-copy .ch").length;
-        const solutionRevealStart = heroExitStart + 0.64;
-        const solutionRevealDuration = 0.42;
-        const solutionRevealStagger = solutionCharCount > 82 ? 0.0025 : 0.004;
-        const solutionFadeStart =
-          solutionRevealStart + solutionRevealDuration + Math.max(0, solutionCharCount - 1) * solutionRevealStagger + 0.78;
-
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: ".brain-hero",
-            start: "top+=100 top",
-            end: "bottom bottom",
-            scrub: motionConfig.hero.scrub,
-            invalidateOnRefresh: true,
-          },
-        });
-
-        tl.set(".hero-brand-word__inner, .hero-auto-title .ch", { transition: "none" })
-          .set(".hero-auto-title .ch", { backgroundPosition: "100% 50%", textShadow: "0 0 0 rgba(233, 99, 26, 0)" }, 0)
-          .set(".brain-video-box", { autoAlpha: 1 }, 0.01)
-          .to(".hero-brand-title", { yPercent: -112, autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 0.68)
-          .set(".hero-auto-title", { autoAlpha: 1 }, 0.78)
-          .to(
-            ".hero-auto-title .ch",
-            {
-              y: 0,
-              autoAlpha: 1,
-              duration: 0.58,
-              stagger: { each: 0.014, from: "start" },
-              ease: "power4.out",
-            },
-            0.78,
-          )
-          .to(
-            ".hero-auto-title .hero-label span",
-            {
-              yPercent: 0,
-              autoAlpha: 1,
-              duration: 0.44,
-              stagger: motionConfig.hero.labelStagger,
-              ease: "power3.out",
-            },
-            0.86,
-          )
-          .to(
-            ".hero-auto-title .ch",
-            {
-              backgroundPosition: "0% 50%",
-              textShadow: "0 18px 58px rgba(233, 99, 26, 0.22)",
-              duration: brandColorDuration,
-              stagger: { each: brandColorStagger, from: "start" },
-              ease: "none",
-            },
-            subtitleMoveStart,
-          )
-          .to(".brain-hero__subtit", { autoAlpha: 1, y: 0, duration: 0.28, ease: "power3.out" }, 0.92)
-          .fromTo(
-            ".brain-hero__subtit",
-            { x: 0, xPercent: 0 },
-            { x: () => subtitleTravelX(options.subtitRightPaddingRatio), xPercent: 0, duration: subtitleMoveDuration, ease: "none" },
-            subtitleMoveStart,
-          )
-          .to(".hero-auto-title", { y: "-100vh", opacity: 0, duration: heroTravelDuration, ease: "none" }, heroExitStart)
-          .to(
-            ".brain-video-box",
-            {
-              x: () => brainTravelTo(options.brainLeft, "x"),
-              y: () => brainTravelTo(options.brainTop, "y"),
-              scale: motionConfig.hero.brainTravelScale,
-              force3D: true,
-              autoRound: false,
-              duration: heroTravelDuration,
-              ease: "none",
-            },
-            heroExitStart,
-          )
-          .set(".hero-solution-copy", { autoAlpha: 1 }, solutionRevealStart - 0.08)
-          .to(
-            ".hero-solution-copy .ch",
-            {
-              y: 0,
-              autoAlpha: 1,
-              filter: "blur(0px)",
-              duration: solutionRevealDuration,
-              stagger: { each: solutionRevealStagger, from: "start" },
-              ease: "power4.out",
-            },
-            solutionRevealStart,
-          )
-          .to(".hero-solution-copy", { y: -28, autoAlpha: 0, duration: 0.52, ease: "power2.in" }, solutionFadeStart)
-          .to(".brain-video-box", { y: () => brainTravelTo("26%", "y"), force3D: true, autoRound: false, duration: 0.8, ease: "none" }, ">")
-          .to(".brain-hero__subtit", { y: "-100vh", opacity: 0, duration: 1.2 }, "<")
-          .to(".brain-hero__bg", { "--bg-overlay-opacity": 1, duration: 0.36, ease: "none" }, ">-0.36");
-
-        const heroVideo = root.querySelector<HTMLVideoElement>(".brain-video-box video");
-        let lastHeroVideoTime = -1;
-        let targetHeroVideoTime = 0;
-        let displayedHeroVideoTime = 0;
-        let videoFrame = 0;
-        const stopHeroVideoFrame = () => {
-          if (!videoFrame) return;
-          window.cancelAnimationFrame(videoFrame);
-          videoFrame = 0;
-        };
-        const renderHeroVideoFrame = () => {
-          videoFrame = 0;
-          if (!heroVideo || !Number.isFinite(heroVideo.duration) || heroVideo.duration <= 0.1) return;
-
-          const distance = targetHeroVideoTime - displayedHeroVideoTime;
-          displayedHeroVideoTime += distance * 0.34;
-          if (Math.abs(distance) < 0.018) {
-            displayedHeroVideoTime = targetHeroVideoTime;
-          }
-
-          heroVideo.pause();
-          if (Math.abs(displayedHeroVideoTime - lastHeroVideoTime) >= 0.045) {
-            lastHeroVideoTime = displayedHeroVideoTime;
-            heroVideo.currentTime = displayedHeroVideoTime;
-          }
-
-          if (Math.abs(targetHeroVideoTime - displayedHeroVideoTime) > 0.02) {
-            videoFrame = window.requestAnimationFrame(renderHeroVideoFrame);
-          }
-        };
-        const syncHeroVideo = () => {
-          if (!heroVideo || !Number.isFinite(heroVideo.duration) || heroVideo.duration <= 0.1) return;
-
-          const holdAt = 0;
-          const scrubStart = heroExitStart;
-          const scrubEnd = Math.max(scrubStart + 0.4, tl.duration() - 0.4);
-          const progress = Math.min(1, Math.max(0, (tl.time() - scrubStart) / Math.max(0.001, scrubEnd - scrubStart)));
-          targetHeroVideoTime = holdAt + progress * Math.max(0, heroVideo.duration - holdAt - 0.05);
-
-          if (!videoFrame) {
-            videoFrame = window.requestAnimationFrame(renderHeroVideoFrame);
-          }
-        };
-
-        tl.eventCallback("onUpdate", syncHeroVideo);
-        if (heroVideo) {
-          if (heroVideo.readyState >= 1) syncHeroVideo();
-          else heroVideo.addEventListener("loadedmetadata", syncHeroVideo, { once: true });
-        }
-
-        return () => {
-          stopHeroVideoFrame();
-          heroVideo?.removeEventListener("loadedmetadata", syncHeroVideo);
-        };
-      };
-
-      mm.add("(min-width: 861px)", () =>
-        createVisualTimeline({
-          subtitXPercent: motionConfig.hero.subtitXPercentDesktop,
-          subtitRightPaddingRatio: 0.045,
-          brainLeft: motionConfig.hero.brainDesktopLeft,
-          brainTop: motionConfig.hero.brainDesktopTop,
-        }),
-      );
-
-      mm.add("(max-width: 860px)", () =>
-        createVisualTimeline({
-          subtitXPercent: motionConfig.hero.subtitXPercentMobile,
-          subtitRightPaddingRatio: 0.04,
-          brainLeft: motionConfig.hero.brainMobileLeft,
-          brainTop: motionConfig.hero.brainMobileTop,
-        }),
-      );
-
       gsap.to(".highlight-bg-dim", {
         opacity: 0,
         ease: "none",
@@ -2361,6 +2361,78 @@ export default function BrainallPage() {
         ease: "none",
         scrollTrigger: { trigger: ".highlight-section", start: "top center", end: "top top", scrub: true },
       });
+
+      const highlightSection = root.querySelector<HTMLElement>(".highlight-section");
+      const highlightStage = root.querySelector<HTMLElement>(".highlight-stage");
+      const highlightImageStack = root.querySelector<HTMLElement>(".highlight-image-stack");
+      highlightSection?.classList.remove("is-copy-ready");
+
+      const getHighlightEntryClip = () => {
+        if (!highlightStage || !highlightImageStack) {
+          return window.innerWidth > 860 ? "inset(0px 0px 0px 42vw round 0px)" : "inset(36svh 0px 0px 0px round 0px)";
+        }
+
+        const stageRect = highlightStage.getBoundingClientRect();
+        const targetRect = highlightImageStack.getBoundingClientRect();
+        const top = Math.max(0, targetRect.top - stageRect.top);
+        const right = Math.max(0, stageRect.right - targetRect.right);
+        const bottom = Math.max(0, stageRect.bottom - targetRect.bottom);
+        const left = Math.max(0, targetRect.left - stageRect.left);
+
+        return `inset(${top}px ${right}px ${bottom}px ${left}px round 0px)`;
+      };
+
+      gsap.set(".highlight-entry-visual", {
+        autoAlpha: 1,
+        clipPath: "inset(0px 0px 0px 0px round 0px)",
+        filter: "blur(0px)",
+        scale: 1,
+      });
+      gsap.set(".highlight-entry-visual .highlight-image__media", { scale: 1.08, filter: "saturate(0.82) contrast(1.1) brightness(0.78) sepia(0.04)" });
+      gsap.set(".highlight-copy", { autoAlpha: 0, x: -56, filter: "blur(14px)" });
+      gsap.set(".highlight-image-stack", { autoAlpha: 0, x: 56, scale: 0.985, filter: "blur(12px)" });
+
+      ScrollTrigger.create({
+        trigger: ".highlight-section",
+        start: "top+=360 top",
+        once: true,
+        onEnter: () => highlightSection?.classList.add("is-copy-ready"),
+      });
+
+      const highlightIntro = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".highlight-section",
+          start: "top top",
+          end: "+=92%",
+          scrub: 0.92,
+          invalidateOnRefresh: true,
+        },
+        defaults: { ease: "sine.inOut" },
+      });
+
+      highlightIntro
+        .to(".highlight-entry-visual", { clipPath: getHighlightEntryClip, duration: 1 }, 0)
+        .to(".highlight-entry-visual .highlight-image__media", { scale: 1.015, duration: 1 }, 0)
+        .to(".highlight-copy", { autoAlpha: 1, x: 0, filter: "blur(0px)", duration: 0.46, ease: "power3.out" }, 0.3)
+        .call(() => highlightSection?.classList.add("is-copy-ready"), [], 0.52)
+        .to(".highlight-image-stack", { autoAlpha: 1, x: 0, scale: 1, filter: "blur(0px)", duration: 0.42, ease: "power3.out" }, 0.54)
+        .to(".highlight-entry-visual", { autoAlpha: 0, filter: "blur(7px)", duration: 0.24, ease: "sine.out" }, 0.8);
+
+      gsap.fromTo(
+        ".highlight-stage",
+        { autoAlpha: 0, filter: "blur(10px)" },
+        {
+          autoAlpha: 1,
+          filter: "blur(0px)",
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".highlight-section",
+            start: "top 94%",
+            end: "top 58%",
+            scrub: true,
+          },
+        },
+      );
 
       gsap.utils.toArray<HTMLElement>(".scroll-compose-text").forEach((block) => {
         const chars = gsap.utils.toArray<HTMLElement>(block.querySelectorAll(".scroll-compose-char"));
@@ -2591,6 +2663,10 @@ export default function BrainallPage() {
       return () => {
         window.clearTimeout(heroIntroFallback);
         window.removeEventListener("seoulind-preloader-reveal", playHeroIntro);
+        if (pendingHeroVideoStart) {
+          heroVideo?.removeEventListener("loadedmetadata", pendingHeroVideoStart);
+        }
+        pauseHeroVideo();
         mm.revert();
       };
     }, root);
@@ -2604,6 +2680,7 @@ export default function BrainallPage() {
       <Header content={content} language={language} onLanguageChange={setLanguage} />
       <main>
         <Hero copy={content.hero} language={language} />
+        <SeoulIndustryIntroSection />
         <HighlightSlider
           highlights={content.highlights}
           buttonLabel={content.highlightButton}

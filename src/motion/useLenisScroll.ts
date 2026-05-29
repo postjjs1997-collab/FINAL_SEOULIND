@@ -13,12 +13,12 @@ export function useLenisScroll(enabled: boolean) {
     const lenis = new Lenis({
       anchors: true,
       autoRaf: false,
-      duration: 1.28,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      lerp: 0.085,
+      duration: 1.48,
+      easing: (t: number) => 1 - Math.pow(1 - t, 4),
+      lerp: 0.072,
       smoothWheel: true,
-      wheelMultiplier: 0.62,
-      touchMultiplier: 0.9,
+      wheelMultiplier: 0.52,
+      touchMultiplier: 0.82,
     });
     const win = window as Window & { __seoulindLenis?: typeof lenis };
     win.__seoulindLenis = lenis;
@@ -26,7 +26,6 @@ export function useLenisScroll(enabled: boolean) {
     let frameId = 0;
     const raf = (time: number) => {
       lenis.raf(time);
-      ScrollTrigger.update();
       frameId = window.requestAnimationFrame(raf);
     };
 
