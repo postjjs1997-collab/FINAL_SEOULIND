@@ -4,6 +4,7 @@ import drivelineImage from "../../driveline.png";
 import electricVehicleImage from "../../electric vehicle.png";
 import steeringImage from "../../steering.png";
 import preloaderVideo from "../../start.mp4";
+import precisionInsideMobilityImage from "../../precision-inside-mobility.jpg";
 import BrainallLogo from "./BrainallLogo";
 import Header from "./Header";
 import Icon from "./Icons";
@@ -231,9 +232,10 @@ function useScrollSteps<T extends HTMLElement>(ref: { current: T | null }, count
 
       const rect = node.getBoundingClientRect();
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      const head = Math.max(0, Number(node.dataset.scrollHeadVh ?? 0)) * viewportHeight;
       const tail = Math.max(0, Number(node.dataset.scrollTailVh ?? 0)) * viewportHeight;
-      const scrollable = Math.max(1, node.offsetHeight - viewportHeight - tail);
-      const raw = Math.min(1, Math.max(0, -rect.top / scrollable));
+      const scrollable = Math.max(1, node.offsetHeight - viewportHeight - head - tail);
+      const raw = Math.min(1, Math.max(0, (-rect.top - head) / scrollable));
       const stepValue = raw * (count - 1);
       const index = Math.min(count - 1, Math.max(0, Math.floor(stepValue + bias)));
       const stepProgress = index >= count - 1 ? 1 : Math.min(1, Math.max(0, stepValue - index));
@@ -274,9 +276,10 @@ function scrollToStep<T extends HTMLElement>(ref: { current: T | null }, index: 
 
   const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
   const sectionTop = window.scrollY + node.getBoundingClientRect().top;
+  const head = Math.max(0, Number(node.dataset.scrollHeadVh ?? 0)) * viewportHeight;
   const tail = Math.max(0, Number(node.dataset.scrollTailVh ?? 0)) * viewportHeight;
-  const scrollable = Math.max(1, node.offsetHeight - viewportHeight - tail);
-  const target = sectionTop + (scrollable * index) / (count - 1);
+  const scrollable = Math.max(1, node.offsetHeight - viewportHeight - head - tail);
+  const target = sectionTop + head + (scrollable * index) / (count - 1);
 
   window.scrollTo({ top: target, behavior: "smooth" });
 }
@@ -530,6 +533,7 @@ function HighlightMedia({ item, active, eager }: { item: Highlight; active: bool
   );
 }
 
+const highlightIntroHoldVh = 1.55;
 const highlightEndHoldVh = 0.9;
 const esgEndHoldVh = 0.75;
 
@@ -729,36 +733,35 @@ function Hero({ copy, language }: { copy: SiteContent["hero"]; language: Languag
 }
 
 function SeoulIndustryIntroSection() {
-  const seoul = "SEOUL";
-  const industry = "INDUSTRY";
+  const primary = "Precision Inside Mobility.";
+  const secondary = "모빌리티를 완성하는 정밀함, 서울산업.";
+  const label = `${primary} ${secondary}`;
 
-  const renderIntroWord = (word: string, lineIndex: number) =>
-    Array.from(word).map((char, charIndex) => (
+  const renderIntroLine = (text: string, lineIndex: number) =>
+    Array.from(text).map((char, charIndex) => (
       <span
         className="seoul-industry-intro__char"
-        style={{ "--intro-char-index": lineIndex * 12 + charIndex } as CSSProperties}
-        key={`seoul-intro-${word}-${charIndex}`}
+        style={{ "--intro-char-index": lineIndex * 42 + charIndex } as CSSProperties}
+        key={`precision-intro-${lineIndex}-${charIndex}-${char}`}
       >
-        {char}
+        {char === " " ? "\u00A0" : char}
       </span>
     ));
 
   return (
-    <section className="seoul-industry-intro" data-scene="seoul-industry-intro" aria-label="SEOUL INDUSTRY">
+    <section className="seoul-industry-intro" data-scene="seoul-industry-intro" aria-label={label}>
+      <img className="seoul-industry-intro__media" src={precisionInsideMobilityImage} alt="" aria-hidden="true" loading="eager" />
       <span className="seoul-industry-intro__glow" aria-hidden="true" />
       <div className="seoul-industry-intro__inner">
-        <div className="seoul-industry-intro__monogram" aria-hidden="true">
-          <span className="seoul-industry-intro__si-letter seoul-industry-intro__si-letter--s">S</span>
-          <span className="seoul-industry-intro__si-letter seoul-industry-intro__si-letter--i">I</span>
-        </div>
-        <h2 className="seoul-industry-intro__title" aria-label="SEOUL INDUSTRY">
-          <span className="seoul-industry-intro__word seoul-industry-intro__word--seoul" aria-hidden="true">
-            {renderIntroWord(seoul, 0)}
+        <h2 className="seoul-industry-intro__title" aria-label={label}>
+          <span className="seoul-industry-intro__line seoul-industry-intro__line--primary" aria-hidden="true">
+            {renderIntroLine(primary, 0)}
           </span>
-          <span className="seoul-industry-intro__word seoul-industry-intro__word--industry" aria-hidden="true">
-            {renderIntroWord(industry, 1)}
+          <span className="seoul-industry-intro__line seoul-industry-intro__line--secondary" aria-hidden="true">
+            {renderIntroLine(secondary, 1)}
           </span>
         </h2>
+        <span className="seoul-industry-intro__rule" aria-hidden="true" />
       </div>
     </section>
   );
@@ -792,11 +795,12 @@ function HighlightSlider({
       id="brand"
       ref={ref}
       data-scene="pinned"
+      data-scroll-head-vh={highlightIntroHoldVh}
       data-scroll-tail-vh={highlightEndHoldVh}
       style={
         {
           "--highlight-count": visibleHighlights.length,
-          "--highlight-scroll-length": visibleHighlights.length + highlightEndHoldVh,
+          "--highlight-scroll-length": visibleHighlights.length + highlightIntroHoldVh + highlightEndHoldVh,
         } as CSSProperties
       }
     >
@@ -2162,12 +2166,14 @@ export default function BrainallPage() {
       gsap.set(".hero-solution-copy .ch", { y: "1.18em", autoAlpha: 0, filter: "blur(6px)" });
       gsap.set(".brain-hero__veil", { autoAlpha: 0 });
       gsap.set(".seoul-industry-intro", { autoAlpha: 0 });
-      gsap.set(".seoul-industry-intro__si-letter", { autoAlpha: 0, y: 28, scale: 0.96, filter: "blur(12px)" });
+      gsap.set(".seoul-industry-intro__media", { autoAlpha: 0, scale: 1.08, filter: "blur(28px) saturate(0.72) brightness(0.42)" });
+      gsap.set(".seoul-industry-intro__glow", { autoAlpha: 0, scaleX: 0.58 });
+      gsap.set(".seoul-industry-intro__rule", { scaleX: 0, autoAlpha: 0 });
       gsap.set(".seoul-industry-intro__char", {
         autoAlpha: 0,
-        y: "0.94em",
-        color: "#fff4ea",
-        filter: "blur(10px)",
+        y: "1.08em",
+        rotateX: -22,
+        filter: "blur(12px)",
       });
       gsap.set(".global-fill-line .fill-line", { backgroundSize: "0% 100%" });
 
@@ -2217,6 +2223,23 @@ export default function BrainallPage() {
 
       const scrollToSeoulIntro = () => jumpToElement(seoulIntro);
       const scrollToHighlightIntro = () => jumpToElement(highlightIntroTarget);
+      const playHighlightIntroTransition = () => {
+        if (!highlightIntroTarget) return;
+
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const targetTop = window.scrollY + highlightIntroTarget.getBoundingClientRect().top;
+        const destination = targetTop + viewportHeight * 1.2;
+        const lenis = (window as Window & {
+          __seoulindLenis?: {
+            scrollTo: (target: number, options?: { immediate?: boolean; force?: boolean; duration?: number }) => void;
+          };
+        }).__seoulindLenis;
+
+        window.requestAnimationFrame(() => {
+          if (lenis) lenis.scrollTo(destination, { force: true, duration: 2.25 });
+          else window.scrollTo({ top: destination, behavior: "smooth" });
+        });
+      };
 
       const intro = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
       intro
@@ -2281,59 +2304,64 @@ export default function BrainallPage() {
         })
         .to(".seoul-industry-intro", { autoAlpha: 1, duration: 0.52, ease: "sine.out" })
         .to(
-          ".seoul-industry-intro__si-letter",
+          ".seoul-industry-intro__media",
           {
-            autoAlpha: 1,
-            y: 0,
+            autoAlpha: 0.2,
             scale: 1,
-            filter: "blur(0px)",
-            duration: 0.58,
-            stagger: 0.08,
-            ease: "power3.out",
+            filter: "blur(18px) saturate(0.78) brightness(0.52)",
+            duration: 1.6,
+            ease: "sine.out",
           },
-          "<0.1",
-        )
-        .to(
-          ".seoul-industry-intro__si-letter--s",
-          { x: "-17vw", autoAlpha: 0.16, scale: 0.74, filter: "blur(4px)", duration: 0.86, ease: "power3.inOut" },
-          ">0.22",
-        )
-        .to(
-          ".seoul-industry-intro__si-letter--i",
-          { x: "17vw", autoAlpha: 0.16, scale: 0.74, filter: "blur(4px)", duration: 0.86, ease: "power3.inOut" },
           "<",
         )
         .to(
-          ".seoul-industry-intro__char",
+          ".seoul-industry-intro__glow",
+          { autoAlpha: 1, scaleX: 1, duration: 1.2, ease: "power3.out" },
+          "<0.14",
+        )
+        .to(
+          ".seoul-industry-intro__line--primary .seoul-industry-intro__char",
           {
             autoAlpha: 1,
             y: 0,
+            rotateX: 0,
             filter: "blur(0px)",
-            duration: 0.72,
-            stagger: { each: 0.035, from: "start" },
+            duration: 0.92,
+            stagger: { each: 0.026, from: "start" },
             ease: "power4.out",
           },
-          "<0.08",
+          "<0.2",
         )
         .to(
-          ".seoul-industry-intro__char",
+          ".seoul-industry-intro__line--secondary .seoul-industry-intro__char",
           {
-            color: "#f36f21",
-            textShadow: "0 0 30px rgba(243, 111, 33, 0.36)",
-            duration: 0.86,
-            stagger: { each: 0.024, from: "center" },
-            ease: "sine.inOut",
+            autoAlpha: 1,
+            y: 0,
+            rotateX: 0,
+            filter: "blur(0px)",
+            duration: 0.84,
+            stagger: { each: 0.018, from: "start" },
+            ease: "power4.out",
           },
-          ">-0.12",
+          "<0.42",
         )
-        .to({}, { duration: 0.28 })
         .to(
-          ".seoul-industry-intro__title, .seoul-industry-intro__monogram",
-          { autoAlpha: 0, y: -28, filter: "blur(12px)", duration: 0.6, ease: "sine.inOut" },
+          ".seoul-industry-intro__rule",
+          { autoAlpha: 1, scaleX: 1, duration: 0.92, ease: "expo.out" },
+          "<0.34",
+        )
+        .to({}, { duration: 1.06 })
+        .to(
+          ".seoul-industry-intro__title, .seoul-industry-intro__rule",
+          { autoAlpha: 0, y: -26, filter: "blur(12px)", duration: 0.72, ease: "sine.inOut" },
           ">",
         )
-        .to(".seoul-industry-intro", { autoAlpha: 0, duration: 0.44, ease: "sine.inOut" }, "<0.08")
-        .call(scrollToHighlightIntro);
+        .to(".seoul-industry-intro__media", { autoAlpha: 0, scale: 1.035, filter: "blur(24px) brightness(0.36)", duration: 0.72, ease: "sine.inOut" }, "<")
+        .to(".seoul-industry-intro", { autoAlpha: 0, duration: 0.56, ease: "sine.inOut" }, "<0.12")
+        .call(() => {
+          scrollToHighlightIntro();
+          playHighlightIntroTransition();
+        });
 
       let heroIntroStarted = false;
       let heroIntroFallback = 0;
@@ -2403,8 +2431,8 @@ export default function BrainallPage() {
         scrollTrigger: {
           trigger: ".highlight-section",
           start: "top top",
-          end: "+=92%",
-          scrub: 0.92,
+          end: "+=118%",
+          scrub: 1.08,
           invalidateOnRefresh: true,
         },
         defaults: { ease: "sine.inOut" },
