@@ -27,7 +27,7 @@ import {
   type SiteContent,
   type ShowcaseVideo,
   type EsgPillar,
-} from "../data/brainall";
+} from "../data/siteContent";
 import { getNoticePosts, noticePostsToMediaItems } from "../data/notices";
 import { gsap, ScrollTrigger } from "../motion/gsap";
 import { motionConfig } from "../motion/config";
@@ -158,7 +158,7 @@ function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px 0px
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setInView(entry.isIntersecting);
+        setInView((current) => (current === entry.isIntersecting ? current : entry.isIntersecting));
       },
       { rootMargin, threshold },
     );
@@ -191,7 +191,7 @@ function useSectionProgress<T extends HTMLElement>(
       const raw = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
       const next = raw > 0.985 ? 1 : raw < 0.015 ? 0 : raw;
 
-      setProgress((current) => (Math.abs(current - next) > 0.002 ? next : current));
+      setProgress((current) => (Math.abs(current - next) > 0.012 ? next : current));
     };
 
     const schedule = () => {
@@ -242,7 +242,7 @@ function useScrollSteps<T extends HTMLElement>(ref: { current: T | null }, count
       const next = { index, progress: raw, stepProgress };
 
       setState((current) =>
-        current.index !== next.index || Math.abs(current.progress - next.progress) > 0.003 || Math.abs(current.stepProgress - next.stepProgress) > 0.003
+        current.index !== next.index || Math.abs(current.progress - next.progress) > 0.012 || Math.abs(current.stepProgress - next.stepProgress) > 0.012
           ? next
           : current,
       );
@@ -455,7 +455,7 @@ function AnimatedLineText({ text, className = "" }: { text: string; className?: 
 }
 
 function HistoryAnimatedText({ text, className }: { text: string; className?: string }) {
-  let visibleIndex = 0;
+  let wordIndex = 0;
   const tokens = text.split(/(\n|\s+)/);
 
   return (
@@ -471,22 +471,17 @@ function HistoryAnimatedText({ text, className }: { text: string; className?: st
           return <span className="history-word history-word--space" aria-hidden="true" key={`history-space-${tokenIndex}`} />;
         }
 
-        return (
-          <span className="history-word" aria-hidden="true" key={`history-word-${token}-${tokenIndex}`}>
-            {Array.from(token).map((char, charIndexInToken) => {
-              const charIndex = visibleIndex;
-              visibleIndex += 1;
+        const currentIndex = wordIndex;
+        wordIndex += 1;
 
-              return (
-                <span
-                  className="history-char"
-                  style={{ "--history-char-index": charIndex, "--history-char-delay": `${charIndex * 10}ms` } as CSSProperties}
-                  key={`history-char-${tokenIndex}-${charIndexInToken}-${char}`}
-                >
-                  {char}
-                </span>
-              );
-            })}
+        return (
+          <span
+            className="history-word"
+            aria-hidden="true"
+            style={{ "--history-word-index": currentIndex, "--history-word-delay": `${currentIndex * 42}ms` } as CSSProperties}
+            key={`history-word-${token}-${tokenIndex}`}
+          >
+            {token}
           </span>
         );
       })}
@@ -497,6 +492,11 @@ function HistoryAnimatedText({ text, className }: { text: string; className?: st
 function HighlightMedia({ item, active, eager }: { item: Highlight; active: boolean; eager: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = usePrefersReducedMotion();
+  const playActiveVideo = () => {
+    const video = videoRef.current;
+    if (!video || !active || reduceMotion) return;
+    void video.play().catch(() => undefined);
+  };
 
   useEffect(() => {
     const video = videoRef.current;
@@ -507,7 +507,7 @@ function HighlightMedia({ item, active, eager }: { item: Highlight; active: bool
       return;
     }
 
-    void video.play().catch(() => undefined);
+    playActiveVideo();
   }, [active, reduceMotion]);
 
   if (!item.video || reduceMotion) {
@@ -527,6 +527,8 @@ function HighlightMedia({ item, active, eager }: { item: Highlight; active: bool
       preload={active || eager ? "auto" : "metadata"}
       poster={item.image}
       aria-hidden="true"
+      onCanPlay={playActiveVideo}
+      onLoadedMetadata={playActiveVideo}
     >
       <source src={item.video} type={videoType} />
     </video>
@@ -676,6 +678,23 @@ function Hero({ copy, language }: { copy: SiteContent["hero"]; language: Languag
     };
   }, [reduceMotion]);
 
+  useEffect(() => {
+    if (reduceMotion) return;
+    const section = sectionRef.current;
+    const video = heroVideoRef.current;
+    if (!section || !video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) video.pause();
+      },
+      { rootMargin: "220px 0px 220px 0px", threshold: 0.02 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [reduceMotion]);
+
   return (
     <section ref={sectionRef} className="brain-hero visual-sect" id="top" style={heroStyle}>
       <div className="brain-hero__sticky scroll-area">
@@ -782,6 +801,22 @@ function HighlightSlider({
   const visibleHighlights = highlights.filter((item) => item.id !== "development");
   const { index: active, stepProgress } = useScrollSteps(ref, visibleHighlights.length, motionConfig.highlight.scrollStepBias);
   const pointerStart = useRef<number | null>(null);
+  const [sectionActive, setSectionActive] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setSectionActive((current) => (current === entry.isIntersecting ? current : entry.isIntersecting));
+      },
+      { rootMargin: "260px 0px 260px 0px", threshold: 0.04 },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   if (visibleHighlights.length === 0) return null;
 
@@ -807,7 +842,7 @@ function HighlightSlider({
       <span className="highlight-bg-dim" aria-hidden="true" />
       <div className="highlight-stage">
         <div className="highlight-entry-visual" aria-hidden="true">
-          <HighlightMedia item={visibleHighlights[0]} active={active === 0} eager />
+          <HighlightMedia item={visibleHighlights[0]} active={sectionActive && active === 0} eager={sectionActive} />
         </div>
 
         <div className="highlight-copy">
@@ -863,7 +898,7 @@ function HighlightSlider({
         >
           {visibleHighlights.map((item, index) => (
             <figure className={`highlight-image ${index === active ? "is-active" : ""} highlight-image--${item.visual}`} key={item.title}>
-              <HighlightMedia item={item} active={index === active} eager={index <= 1} />
+              <HighlightMedia item={item} active={sectionActive && index === active} eager={sectionActive && index === 0} />
             </figure>
           ))}
         </div>
@@ -911,6 +946,11 @@ function LatestLineupVideo({
   const requestedVideoIndex = Math.min(safeVideos.length - 1, Math.max(0, scrollVideoIndex));
   const currentVideoIndex = ((videoIndex % safeVideos.length) + safeVideos.length) % safeVideos.length;
   const video = safeVideos[currentVideoIndex] ?? safeVideos[0];
+  const playActiveVideo = () => {
+    const node = videoRef.current;
+    if (!node || !active || reduceMotion) return;
+    void node.play().catch(() => undefined);
+  };
 
   useEffect(() => {
     if (active) setVideoIndex(requestedVideoIndex);
@@ -925,7 +965,7 @@ function LatestLineupVideo({
       return;
     }
 
-    void node.play().catch(() => undefined);
+    playActiveVideo();
   }, [active, reduceMotion, video.src]);
 
   const moveToNextVideo = () => {
@@ -949,6 +989,8 @@ function LatestLineupVideo({
         preload={active || eager ? "auto" : "metadata"}
         poster={video.poster}
         aria-hidden="true"
+        onCanPlay={playActiveVideo}
+        onLoadedMetadata={playActiveVideo}
         onEnded={moveToNextVideo}
       >
         {video.webm && <source src={video.webm} type="video/webm" />}
@@ -1101,7 +1143,7 @@ function LatestPartsSection({ copy, parts }: { copy: SiteContent["latest"]; part
                 return (
                   <article className={`latest-video-card ${getStateClass(index)}`} key={part.title} style={{ "--part-accent": part.accent } as CSSProperties}>
                     <div className="latest-video-card__media">
-                      <LatestLineupVideo videos={videos} active={index === active} eager={index <= 1} scrollVideoIndex={index === active ? activeClipIndex : 0} />
+                      <LatestLineupVideo videos={videos} active={inView && index === active} eager={inView && index === active} scrollVideoIndex={index === active ? activeClipIndex : 0} />
                     </div>
                     <div className="latest-video-card__copy">
                       <span>{part.category}</span>
@@ -1551,6 +1593,34 @@ function PartnerRows({ partners }: { partners: PartnerLogo[] }) {
   );
 }
 
+function GlobalInViewVideo() {
+  const reduceMotion = usePrefersReducedMotion();
+  const [ref, inView] = useInView<HTMLVideoElement>(0.18, "380px 0px 380px 0px");
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+
+    if (inView && !reduceMotion) {
+      void video.play().catch(() => undefined);
+      return;
+    }
+
+    video.pause();
+  }, [inView, reduceMotion, ref]);
+
+  if (reduceMotion) {
+    return <img src={globalVideo.poster} alt="" loading="lazy" />;
+  }
+
+  return (
+    <video ref={ref} muted playsInline loop preload="metadata" poster={globalVideo.poster}>
+      <source src={globalVideo.webm} type="video/webm" />
+      <source src={globalVideo.mov} type="video/quicktime" />
+    </video>
+  );
+}
+
 function GlobalSection({ copy, partners }: { copy: SiteContent["global"]; partners: PartnerLogo[] }) {
   return (
     <section className="global-section" id="partners" data-scene="network">
@@ -1565,10 +1635,7 @@ function GlobalSection({ copy, partners }: { copy: SiteContent["global"]; partne
         </h2>
       </div>
       <div className="global-video-wrap" aria-hidden="true">
-        <video autoPlay muted playsInline loop>
-          <source src={globalVideo.webm} type="video/webm" />
-          <source src={globalVideo.mov} type="video/quicktime" />
-        </video>
+        <GlobalInViewVideo />
       </div>
       <strong className="global-year">2026</strong>
       <h3>{copy.networkTitle}</h3>
@@ -2178,6 +2245,7 @@ export default function BrainallPage() {
       gsap.set(".global-fill-line .fill-line", { backgroundSize: "0% 100%" });
 
       const heroVideo = root.querySelector<HTMLVideoElement>(".brain-video-box video");
+      const heroSection = root.querySelector<HTMLElement>(".brain-hero");
       const seoulIntro = root.querySelector<HTMLElement>(".seoul-industry-intro");
       const highlightIntroTarget = root.querySelector<HTMLElement>(".highlight-section");
       const solutionCharCount = root.querySelectorAll(".hero-solution-copy .ch").length;
@@ -2189,6 +2257,12 @@ export default function BrainallPage() {
 
         const start = () => {
           pendingHeroVideoStart = null;
+          const rect = heroSection?.getBoundingClientRect();
+          const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+          if (rect && (rect.bottom < -220 || rect.top > viewportHeight + 220)) {
+            heroVideo.pause();
+            return;
+          }
           heroVideo.loop = false;
           heroVideo.playbackRate = 0.82;
           heroVideo.currentTime = 0;
@@ -2470,7 +2544,7 @@ export default function BrainallPage() {
 
         gsap.fromTo(
           block,
-          { scale: 1.08, xPercent: -1.6 },
+          { scale: 1.025, xPercent: -0.5 },
           {
             scale: 1,
             xPercent: 0,
@@ -2486,14 +2560,13 @@ export default function BrainallPage() {
 
         gsap.fromTo(
           chars,
-          { autoAlpha: 0, y: 0, yPercent: 112, rotateX: -24, filter: "blur(6px)" },
+          { autoAlpha: 0, y: 0, yPercent: 72, rotateX: -8 },
           {
             autoAlpha: 1,
             y: 0,
             yPercent: 0,
             rotateX: 0,
-            filter: "blur(0px)",
-            stagger: { each: 0.018, from: "start" },
+            stagger: { each: 0.012, from: "start" },
             ease: "power3.out",
             scrollTrigger: {
               trigger,
@@ -2508,11 +2581,10 @@ export default function BrainallPage() {
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
         gsap.fromTo(
           el,
-          { autoAlpha: 0, y: motionConfig.reveal.y, filter: `blur(${motionConfig.reveal.blur}px)` },
+          { autoAlpha: 0, y: motionConfig.reveal.y },
           {
             autoAlpha: 1,
             y: 0,
-            filter: "blur(0px)",
             duration: motionConfig.reveal.duration,
             ease: motionConfig.reveal.ease,
             scrollTrigger: {
@@ -2531,11 +2603,10 @@ export default function BrainallPage() {
           const trigger = target.closest<HTMLElement>("[data-scene]") ?? target;
           gsap.fromTo(
             target,
-            { autoAlpha: 0, y: motionConfig.scene.y, filter: `blur(${motionConfig.scene.blur}px)` },
+            { autoAlpha: 0, y: motionConfig.scene.y },
             {
               autoAlpha: 1,
               y: 0,
-              filter: "blur(0px)",
               ease: "none",
               scrollTrigger: {
                 trigger,
@@ -2563,10 +2634,10 @@ export default function BrainallPage() {
 
       gsap.fromTo(
         ".media-row",
-        { clipPath: "inset(0 0 100% 0)", filter: "blur(8px)" },
+        { autoAlpha: 0, y: 22 },
         {
-          clipPath: "inset(0 0 0% 0)",
-          filter: "blur(0px)",
+          autoAlpha: 1,
+          y: 0,
           stagger: motionConfig.scene.stagger,
           ease: "none",
           scrollTrigger: {

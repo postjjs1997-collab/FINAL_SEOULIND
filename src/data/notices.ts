@@ -95,13 +95,13 @@ export const defaultNoticePosts: NoticePost[] = [
       },
       en: {
         title: "Seoul Industry is preparing a renewed global website",
-        summary: "The renewed site will present our manufacturing capability and global OEM response more clearly.",
-        body: "Seoul Industry is preparing a renewed website for customers to review our precision automotive component manufacturing, product groups, process capability, quality response, and global OEM partnerships in one place.",
+        summary: "The renewed site will present our manufacturing capabilities and global OEM support more clearly.",
+        body: "Seoul Industry is preparing a renewed website where customers can review our precision automotive component manufacturing, product groups, process capabilities, quality systems, and global OEM partnerships in one place.",
       },
       ja: {
         title: "ソウル産業の新しいホームページを準備しています",
-        summary: "製造力とグローバルOEM対応体制をより分かりやすく伝えるため、サイトを改編しています。",
-        body: "ソウル産業は自動車部品の精密加工を基盤とするOEM製造パートナーとして、製品群、工程、品質対応、グローバル協力情報を分かりやすく確認できる新しいホームページを準備しています。",
+        summary: "製造力とグローバルOEM対応体制をより分かりやすくお伝えするため、サイトを改編しています。",
+        body: "ソウル産業は、自動車部品の精密加工を基盤とするOEM製造パートナーとして、製品群、工程、品質対応、グローバル協力情報を分かりやすく確認できる新しいホームページを準備しています。",
       },
     },
   },
@@ -118,13 +118,13 @@ export const defaultNoticePosts: NoticePost[] = [
       },
       en: {
         title: "Precision-machined BSM, EV, and steering parts lineup",
-        summary: "A short overview of Seoul Industry's core automotive component groups.",
-        body: "Seoul Industry manufactures precision components for BSM, EV platforms, steering, powertrain, and driveline systems. We review drawing conditions and production standards for stable OEM supply.",
+        summary: "An overview of Seoul Industry's core automotive component groups.",
+        body: "Seoul Industry manufactures precision components for BSM, EV platforms, steering, powertrain, and driveline systems. Drawing requirements and production standards are reviewed by product group to support stable OEM supply.",
       },
       ja: {
         title: "BSM、EV、ステアリング製品群の精密加工ラインアップ",
         summary: "ソウル産業の主要な自動車部品ラインアップをご紹介します。",
-        body: "ソウル産業はBSM、EV、ステアリング、パワートレイン、ドライブラインなど、自動車の主要システムに必要な精密加工部品をOEM方式で生産しています。",
+        body: "ソウル産業は、BSM、EV、ステアリング、パワートレイン、ドライブラインなど、自動車の主要システムに必要な精密加工部品をOEM方式で生産しています。",
       },
     },
   },
@@ -141,13 +141,13 @@ export const defaultNoticePosts: NoticePost[] = [
       },
       en: {
         title: "Drawing-based OEM development and inspection process",
-        summary: "From drawing review to sample production, inspection, and mass production.",
-        body: "We review customer drawings, verify samples and dimensions, manage LOT-level quality, and connect inspection data to mass-production standards for dependable delivery.",
+        summary: "From drawing review to sample production, inspection, and mass-production transfer.",
+        body: "Customer drawings are reviewed against development requirements, sample verification, dimensional inspection, LOT-level quality control, and mass-production standards to support dependable delivery.",
       },
       ja: {
         title: "図面ベースのOEM開発対応と品質検査プロセス",
         summary: "図面検討から試作、寸法検査、量産移行までの品質フローをご案内します。",
-        body: "お客様の図面を基準に開発条件を確認し、試作、寸法確認、LOT管理、量産品質基準まで連携して納品信頼性を高めます。",
+        body: "お客様の図面を基準に開発条件を確認し、試作、寸法確認、LOT管理、量産品質基準まで連携させることで、納品信頼性を高めます。",
       },
     },
   },
@@ -165,12 +165,12 @@ export const defaultNoticePosts: NoticePost[] = [
       en: {
         title: "Managing repeat accuracy in automotive component production",
         summary: "Manufacturing standards for dimensional consistency and surface quality.",
-        body: "Automotive OEM supply requires repeat accuracy, surface quality, and delivery stability. Seoul Industry records process conditions and connects them with inspection flow to stabilize mass production.",
+        body: "Automotive OEM supply requires repeat accuracy, surface quality, and delivery stability to be controlled together. Seoul Industry records process conditions and links them with inspection flow to stabilize mass-production quality.",
       },
       ja: {
         title: "自動車部品の量産工程における反復精度管理",
         summary: "寸法ばらつきと表面品質を安定して管理する製造基準について説明します。",
-        body: "自動車部品のOEM供給では、反復精度、表面品質、納期安定性を同時に管理する必要があります。ソウル産業は工程条件を記録し、検査フローと連携して量産品質を安定させます。",
+        body: "自動車部品のOEM供給では、反復精度、表面品質、納期安定性を一体で管理する必要があります。ソウル産業は工程条件を記録し、検査フローと連携して量産品質を安定させます。",
       },
     },
   },
@@ -188,12 +188,12 @@ export const defaultNoticePosts: NoticePost[] = [
       en: {
         title: "Driveline components and power-delivery machining guide",
         summary: "Key review points for machining stability and assembly quality.",
-        body: "Driveline components require coordinated review of power delivery, assembly conditions, surface quality, and repeat accuracy. Seoul Industry supports drawing-based machining and mass-production response.",
+        body: "Driveline components require coordinated review of power delivery, assembly conditions, surface quality, and repeat accuracy. Seoul Industry supports drawing-based machining and mass-production programs.",
       },
       ja: {
         title: "ドライブライン部品と動力伝達系加工ガイド",
         summary: "加工安定性と組立品質のための基本確認項目をまとめました。",
-        body: "ドライブライン部品では、動力伝達、組立条件、表面品質、反復精度を総合的に確認する必要があります。ソウル産業は図面ベースの加工と量産対応を支援します。",
+        body: "ドライブライン部品では、動力伝達、組立条件、表面品質、反復精度を総合的に確認する必要があります。ソウル産業は図面ベースの加工と量産プログラムを支援します。",
       },
     },
   },
@@ -214,13 +214,13 @@ export const curatedNoticePosts: NoticePost[] = [
       },
       en: {
         title: "Seoul Industry advances its precision manufacturing system",
-        summary: "We strengthened a connected operating flow from development response to mass-production quality.",
-        body: "Seoul Industry is connecting drawing review, process conditions, quality records, and delivery response more clearly for automotive OEM production.\n\nThe update helps customers review product groups, manufacturing capability, and quality response in one flow while reinforcing process stability and record management standards.",
+        summary: "We strengthened the operating flow from development support to mass-production quality.",
+        body: "Seoul Industry is linking drawing review, process conditions, quality records, and delivery response more clearly for automotive OEM production.\n\nThe update helps customers review product groups, manufacturing capabilities, and quality systems in one flow while reinforcing process stability and record management standards.",
       },
       ja: {
         title: "ソウル産業、精密加工の生産体制を高度化",
         summary: "開発対応から量産品質まで一つの流れで管理する製造基準を強化しました。",
-        body: "ソウル産業は、自動車部品OEM生産に必要な図面検討、工程条件、品質記録、納期対応をより明確につなげています。\n\n今回の更新により、製品群と製造力、品質対応の流れを確認しやすくし、反復生産に必要な工程安定性と記録管理基準を強化します。",
+        body: "ソウル産業は、自動車部品OEM生産に必要な図面検討、工程条件、品質記録、納期対応をより明確につなげています。\n\n今回の更新により、製品群、製造力、品質対応の流れを確認しやすくし、反復生産に必要な工程安定性と記録管理基準を強化します。",
       },
     },
   },
@@ -237,8 +237,8 @@ export const curatedNoticePosts: NoticePost[] = [
       },
       en: {
         title: "Expanded BSM and EV core component lineup",
-        summary: "Our response scope now covers more BSM, EV, steering, and powertrain precision parts.",
-        body: "Seoul Industry manufactures precision parts for BSM, EV platforms, steering, powertrain, and driveline systems under OEM requirements.\n\nWe review drawing conditions and production standards by product group to support stable repeat production and delivery.",
+        summary: "Our production scope now covers more BSM, EV, steering, and powertrain precision parts.",
+        body: "Seoul Industry manufactures precision parts for BSM, EV platforms, steering, powertrain, and driveline systems under OEM requirements.\n\nDrawing conditions and production standards are reviewed by product group to support stable repeat production and delivery.",
       },
       ja: {
         title: "BSM・EV主要部品ラインアップを拡大",
@@ -267,7 +267,7 @@ export const curatedNoticePosts: NoticePost[] = [
       ja: {
         title: "検査データ基盤の品質フローを強化",
         summary: "寸法、形状、組立品質をLOT別に確認し、工程条件と連携します。",
-        body: "ソウル産業は検査結果を単なる確認にとどめず、工程条件と連携して量産品質のばらつきを抑えます。\n\n顧客納入基準に合わせた寸法検査、形状確認、組立品質の検討により、出荷前の品質安定性を高めます。",
+        body: "ソウル産業は検査結果を単なる確認にとどめず、工程条件と連携させることで量産品質のばらつきを抑えます。\n\n顧客納入基準に合わせた寸法検査、形状確認、組立品質の確認により、出荷前の品質安定性を高めます。",
       },
     },
   },
@@ -309,12 +309,12 @@ export const curatedNoticePosts: NoticePost[] = [
       en: {
         title: "Global OEM response materials updated",
         summary: "Product, process, and quality information has been organized for customers and partners.",
-        body: "Seoul Industry organized product group, process flow, and quality response materials so global OEM customers and partners can review key information quickly.\n\nThe update clarifies our manufacturing partnership from development response to mass-production supply.",
+        body: "Seoul Industry organized product group, process flow, and quality materials so global OEM customers and partners can review key information quickly.\n\nThe update clarifies our manufacturing partnership from development support to mass-production supply.",
       },
       ja: {
         title: "グローバルOEM対応資料を更新",
         summary: "顧客と協力会社が確認できる製品群、工程、品質情報を整理しました。",
-        body: "ソウル産業は、グローバルOEM顧客と協力会社が必要な情報をすばやく確認できるよう、製品群、工程フロー、品質対応資料を整理しました。\n\n開発対応から量産供給までつながる製造パートナーシップの基準をより明確に提供します。",
+        body: "ソウル産業は、グローバルOEM顧客と協力会社が必要な情報をすばやく確認できるよう、製品群、工程フロー、品質資料を整理しました。\n\n開発対応から量産供給までつながる製造パートナーシップの基準をより明確に提供します。",
       },
     },
   },

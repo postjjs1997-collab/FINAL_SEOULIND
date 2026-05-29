@@ -293,6 +293,7 @@ export const heroVisual = {
 export const globalVideo = {
   webm: brainallAsset("/inc/img/main/global_video.webm"),
   mov: brainallAsset("/inc/img/main/global_video.mov"),
+  poster: globalSupplyClipPoster,
 };
 
 export const showcaseVideos = {

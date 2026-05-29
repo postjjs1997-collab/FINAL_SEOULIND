@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import BrainallLogo from "./BrainallLogo";
 import Icon from "./Icons";
-import { defaultLanguage, isLanguageCode, languages, siteContent, type Highlight, type LanguageCode, type Solution } from "../data/brainall";
+import { defaultLanguage, isLanguageCode, languages, siteContent, type Highlight, type LanguageCode, type Solution } from "../data/siteContent";
 
 type TechnologyPageProps = {
   route: string;
