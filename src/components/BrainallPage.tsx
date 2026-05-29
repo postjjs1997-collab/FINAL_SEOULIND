@@ -556,7 +556,7 @@ function Preloader({ copy }: { copy: SiteContent["preloader"] }) {
     if (reduceMotion) return;
 
     const startedAt = performance.now();
-    const duration = 4000;
+    const duration = 6000;
     let frame = 0;
     let isComplete = false;
     const timers = new Set<number>();
@@ -572,7 +572,7 @@ function Preloader({ copy }: { copy: SiteContent["preloader"] }) {
     const video = videoRef.current;
     if (video) {
       video.currentTime = 0;
-      video.playbackRate = 1.75;
+      video.playbackRate = 1.2;
       void video.play().catch(() => undefined);
     }
 
