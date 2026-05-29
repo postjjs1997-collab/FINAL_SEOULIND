@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" role="img" aria-label="Metaldyne">
+  <rect width="420" height="120" rx="18" fill="white"/>
+  <path d="M38 72h62l18-42 18 42h62" fill="none" stroke="#c84a12" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="214" y="72" fill="#1c1c1c" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="800" text-anchor="middle">METALDYNE</text>
+</svg>

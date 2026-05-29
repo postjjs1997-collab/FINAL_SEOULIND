@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" role="img" aria-label="Nexteer Automotive">
+  <rect width="420" height="120" rx="18" fill="white"/>
+  <path d="M46 84V36h34l44 48h-34L46 36" fill="none" stroke="#0b4f9c" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="264" y="74" fill="#0b4f9c" font-family="Arial, Helvetica, sans-serif" font-size="50" font-weight="900" text-anchor="middle">NEXTEER</text>
+</svg>

@@ -1,0 +1,41 @@
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+
+  .hero-statement .line,
+  .site-preloader,
+  .scroll-scene-vignette,
+  [data-scene],
+  [data-reveal],
+  .scroll-compose-text,
+  .scroll-compose-char,
+  .highlight-copy__item,
+  .highlight-image,
+  .latest-part-copy,
+  .latest-part-panel,
+  .client-card,
+  .client-collab__statement,
+  .esg-card,
+  .esg-detail,
+  .history-char,
+  .history-section__intro p,
+  .history-era__body li,
+  .history-era__marker,
+  .history-era__partners b,
+  .history-era__head p,
+  .rolling-digit {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  .history-timeline {
+    --history-line-scale: 1 !important;
+  }
+}

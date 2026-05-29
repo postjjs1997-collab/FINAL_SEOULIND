@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" role="img" aria-label="MPT Muncie">
+  <rect width="420" height="120" rx="18" fill="white"/>
+  <path d="M44 78V42h46l28 36 28-36h46v36" fill="none" stroke="#251812" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="290" y="76" fill="#c84312" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" text-anchor="middle">MPT</text>
+</svg>
