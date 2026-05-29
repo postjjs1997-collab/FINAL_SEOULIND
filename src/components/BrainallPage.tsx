@@ -602,6 +602,7 @@ function Preloader({ copy }: { copy: SiteContent["preloader"] }) {
 
 function Hero({ copy, language }: { copy: SiteContent["hero"]; language: LanguageCode }) {
   const reduceMotion = usePrefersReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const heroWords = { left: "SEOUL", right: "IND." };
   const heroStyle = {
@@ -639,8 +640,40 @@ function Hero({ copy, language }: { copy: SiteContent["hero"]; language: Languag
     };
   }, [reduceMotion]);
 
+  useEffect(() => {
+    if (reduceMotion) return;
+    const section = sectionRef.current;
+    if (!section) return;
+
+    let frame = 0;
+    const updateHeadlights = () => {
+      frame = 0;
+      const scrolled = Math.max(0, -section.getBoundingClientRect().top);
+      const visible = scrolled < 2;
+
+      section.querySelectorAll<HTMLElement>(".hero-headlight").forEach((light) => {
+        light.style.opacity = visible ? "0.92" : "0";
+        light.style.visibility = visible ? "visible" : "hidden";
+      });
+    };
+    const schedule = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateHeadlights);
+    };
+
+    updateHeadlights();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [reduceMotion]);
+
   return (
-    <section className="brain-hero visual-sect" id="top" style={heroStyle}>
+    <section ref={sectionRef} className="brain-hero visual-sect" id="top" style={heroStyle}>
       <div className="brain-hero__sticky scroll-area">
         <div className="brain-hero__bg" aria-hidden="true" />
 
@@ -2131,19 +2164,6 @@ export default function BrainallPage() {
         const current = Number.parseFloat(axis === "x" ? style.left : style.top) || 0;
         return viewportPosition(target, axis) - current;
       };
-
-      gsap.set(".hero-headlight", { autoAlpha: 0.92 });
-      gsap.to(".hero-headlight", {
-        autoAlpha: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".brain-hero",
-          start: "top top",
-          end: "+=28",
-          scrub: true,
-          invalidateOnRefresh: true,
-        },
-      });
 
       const createVisualTimeline = (options: {
         subtitXPercent: number;
