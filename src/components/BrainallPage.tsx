@@ -536,7 +536,7 @@ function HighlightMedia({ item, active, eager }: { item: Highlight; active: bool
 }
 
 const highlightIntroHoldVh = 1.55;
-const highlightEndHoldVh = 0.9;
+const highlightEndHoldVh = 1.7;
 const esgEndHoldVh = 0.75;
 
 function Preloader({ copy }: { copy: SiteContent["preloader"] }) {
@@ -756,16 +756,31 @@ function SeoulIndustryIntroSection() {
   const secondary = "모빌리티를 완성하는 정밀함, 서울산업.";
   const label = `${primary} ${secondary}`;
 
-  const renderIntroLine = (text: string, lineIndex: number) =>
-    Array.from(text).map((char, charIndex) => (
-      <span
-        className="seoul-industry-intro__char"
-        style={{ "--intro-char-index": lineIndex * 42 + charIndex } as CSSProperties}
-        key={`precision-intro-${lineIndex}-${charIndex}-${char}`}
-      >
-        {char === " " ? "\u00A0" : char}
-      </span>
-    ));
+  const renderIntroLine = (text: string, lineIndex: number) => {
+    const chars = Array.from(text);
+    const brandStart = chars.join("").indexOf("서울산업");
+
+    return chars.map((char, charIndex) => {
+      const isPrecision = lineIndex === 0 && charIndex < "Precision".length;
+      const isBrand = lineIndex === 1 && brandStart >= 0 && charIndex >= brandStart && charIndex < brandStart + "서울산업".length;
+
+      return (
+        <span
+          className={[
+            "seoul-industry-intro__char",
+            isPrecision ? "seoul-industry-intro__char--precision" : "",
+            isBrand ? "seoul-industry-intro__char--brand" : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+          style={{ "--intro-char-index": lineIndex * 42 + charIndex } as CSSProperties}
+          key={`precision-intro-${lineIndex}-${charIndex}-${char}`}
+        >
+          {char === " " ? "\u00A0" : char}
+        </span>
+      );
+    });
+  };
 
   return (
     <section className="seoul-industry-intro" data-scene="seoul-industry-intro" aria-label={label}>
@@ -2221,6 +2236,57 @@ export default function BrainallPage() {
     const root = rootRef.current;
     if (!root || reduceMotion) return;
 
+    const lockEventOptions: AddEventListenerOptions = { capture: true, passive: false };
+    const lockedKeyNames = new Set(["ArrowDown", "ArrowLeft", "ArrowRight", "ArrowUp", "End", "Enter", "Home", "PageDown", "PageUp", " ", "Spacebar"]);
+    const lockedEventNames: Array<keyof WindowEventMap> = [
+      "click",
+      "contextmenu",
+      "dblclick",
+      "keydown",
+      "mousedown",
+      "mouseup",
+      "pointerdown",
+      "pointerup",
+      "touchmove",
+      "touchstart",
+      "wheel",
+    ];
+    let introInteractionLocked = true;
+    let introUnlockTimer = 0;
+
+    const preventIntroInteraction = (event: Event) => {
+      if (!introInteractionLocked) return;
+      if (event instanceof KeyboardEvent && !lockedKeyNames.has(event.key)) return;
+
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      event.stopPropagation();
+    };
+
+    const removeIntroLockListeners = () => {
+      lockedEventNames.forEach((eventName) => {
+        window.removeEventListener(eventName, preventIntroInteraction, lockEventOptions);
+      });
+    };
+
+    const unlockIntroInteraction = () => {
+      window.clearTimeout(introUnlockTimer);
+      if (!introInteractionLocked) return;
+      introInteractionLocked = false;
+      document.documentElement.classList.remove("is-intro-locked");
+      removeIntroLockListeners();
+    };
+
+    const scheduleIntroUnlock = (delay: number) => {
+      window.clearTimeout(introUnlockTimer);
+      introUnlockTimer = window.setTimeout(unlockIntroInteraction, delay);
+    };
+
+    document.documentElement.classList.add("is-intro-locked");
+    lockedEventNames.forEach((eventName) => {
+      window.addEventListener(eventName, preventIntroInteraction, lockEventOptions);
+    });
+
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
@@ -2298,7 +2364,10 @@ export default function BrainallPage() {
       const scrollToSeoulIntro = () => jumpToElement(seoulIntro);
       const scrollToHighlightIntro = () => jumpToElement(highlightIntroTarget);
       const playHighlightIntroTransition = () => {
-        if (!highlightIntroTarget) return;
+        if (!highlightIntroTarget) {
+          unlockIntroInteraction();
+          return;
+        }
 
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
         const targetTop = window.scrollY + highlightIntroTarget.getBoundingClientRect().top;
@@ -2313,6 +2382,7 @@ export default function BrainallPage() {
           if (lenis) lenis.scrollTo(destination, { force: true, duration: 2.25 });
           else window.scrollTo({ top: destination, behavior: "smooth" });
         });
+        scheduleIntroUnlock(2850);
       };
 
       const intro = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
@@ -2770,7 +2840,11 @@ export default function BrainallPage() {
       };
     }, root);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      unlockIntroInteraction();
+      removeIntroLockListeners();
+    };
   }, [language, reduceMotion]);
 
   return (

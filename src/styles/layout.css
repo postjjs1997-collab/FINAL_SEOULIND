@@ -91,6 +91,18 @@
   overflow: hidden;
 }
 
+.is-intro-locked,
+.is-intro-locked body {
+  overscroll-behavior: none;
+}
+
+.is-intro-locked .site-header,
+.is-intro-locked .brainall-page > main,
+.is-intro-locked .brainall-footer {
+  pointer-events: none;
+  user-select: none;
+}
+
 .site-preloader {
   position: fixed;
   inset: 0;
@@ -1248,9 +1260,14 @@
   will-change: transform, opacity, filter;
 }
 
-.seoul-industry-intro__line--primary .seoul-industry-intro__char:nth-child(-n + 9) {
-  color: #f57a2b;
-  text-shadow: 0 0 28px rgba(243, 111, 33, 0.28);
+.seoul-industry-intro__char--precision {
+  color: #ffd35a;
+  text-shadow: 0 0 28px rgba(255, 211, 90, 0.28);
+}
+
+.seoul-industry-intro__char--brand {
+  color: var(--color-orange);
+  text-shadow: 0 0 28px rgba(243, 111, 33, 0.32);
 }
 
 .seoul-industry-intro__rule {
