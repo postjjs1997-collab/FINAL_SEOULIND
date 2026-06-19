@@ -103,7 +103,7 @@ const latestProductLineup: Record<LanguageCode, { title: string; parts: LatestPa
         index: "04",
         category: "PRODUCT",
         title: "Steering",
-        copy: "Steering components supporting response, alignment, and safety-critical quality requirements.",
+        copy: "Steering-line components built for crisp steering response, precise alignment, and safety-critical quality.",
         image: steeringImage,
         accent: "#f08a2a",
       },
@@ -751,18 +751,24 @@ function Hero({ copy, language }: { copy: SiteContent["hero"]; language: Languag
   );
 }
 
-function SeoulIndustryIntroSection() {
+const seoulIntroCopy: Record<LanguageCode, { secondary: string; brand: string }> = {
+  ko: { secondary: "모빌리티를 완성하는 정밀함, 서울산업.", brand: "서울산업" },
+  en: { secondary: "The precision that completes mobility — Seoul Industry.", brand: "Seoul Industry" },
+  ja: { secondary: "モビリティを完成させる精密さ、ソウル産業。", brand: "ソウル産業" },
+};
+
+function SeoulIndustryIntroSection({ language }: { language: LanguageCode }) {
   const primary = "Precision Inside Mobility.";
-  const secondary = "모빌리티를 완성하는 정밀함, 서울산업.";
+  const { secondary, brand } = seoulIntroCopy[language] ?? seoulIntroCopy.ko;
   const label = `${primary} ${secondary}`;
 
   const renderIntroLine = (text: string, lineIndex: number) => {
     const chars = Array.from(text);
-    const brandStart = chars.join("").indexOf("서울산업");
+    const brandStart = chars.join("").indexOf(brand);
 
     return chars.map((char, charIndex) => {
       const isPrecision = lineIndex === 0 && charIndex < "Precision".length;
-      const isBrand = lineIndex === 1 && brandStart >= 0 && charIndex >= brandStart && charIndex < brandStart + "서울산업".length;
+      const isBrand = lineIndex === 1 && brandStart >= 0 && charIndex >= brandStart && charIndex < brandStart + brand.length;
 
       return (
         <span
@@ -1348,7 +1354,7 @@ const corporateMenuCopy: Record<LanguageCode, CorporateMenuCopy> = {
       english: "Company",
       title: "Seoul Industry,\nBuilt on Precision",
       lead: "Since 1985, Seoul Industry has managed automotive OEM machining through one consistent manufacturing standard.",
-      body: "From development response to process stabilization, inspection, and delivery, the company moves at the pace of customer production plans.",
+      body: "From development through process control, inspection, and delivery, we move at the pace of our customers' production plans.",
       cards: [
         { label: "Founded", value: "1985", copy: "Precision machining base for automotive parts" },
         { label: "Product Groups", value: "5", copy: "BSM, EV, Steering, Powertrain, Driveline" },
@@ -1362,7 +1368,7 @@ const corporateMenuCopy: Record<LanguageCode, CorporateMenuCopy> = {
       lead: "Customer drawings and requirements are converted into process language, prototypes, and inspection standards.",
       body: "The R&D flow is connected to real machining conditions and repeat-production criteria.",
       steps: [
-        { eyebrow: "01 / Drawing Review", title: "Development Response", copy: "Drawing revisions and assembly conditions are organized before production validation." },
+        { eyebrow: "01 / Drawing Review", title: "Development Support", copy: "We lock in drawing revisions and assembly conditions before production sign-off." },
         { eyebrow: "02 / Process Lock", title: "Machining Conditions", copy: "Equipment, tools, and dimensional controls are standardized for repeat production." },
         { eyebrow: "03 / Quality Feedback", title: "Inspection Data", copy: "Dimensional and geometric data feed back into the next production condition." },
       ],
@@ -1375,7 +1381,7 @@ const corporateMenuCopy: Record<LanguageCode, CorporateMenuCopy> = {
       body: "For a precision machining company, sustainability means recording resource use, workplace safety, and quality decisions every day.",
       cards: [
         { eyebrow: "ENVIRONMENTAL", title: "Responsible Machining", copy: "Energy use, process efficiency, and environmental standards are managed within the manufacturing flow." },
-        { eyebrow: "SOCIAL", title: "Safe Workplace", copy: "Skilled operators and safety standards support stable quality response." },
+        { eyebrow: "SOCIAL", title: "Safe Workplace", copy: "Skilled operators and safety standards keep quality steady and reliable." },
         { eyebrow: "GOVERNANCE", title: "Transparent Records", copy: "Drawings, processes, inspection, and delivery are checked under one standard." },
       ],
     },
@@ -1449,22 +1455,22 @@ const dataStatOverrides: Record<LanguageCode, Partial<GlobalAchievement>[]> = {
     {},
     { value: "47" },
     {},
-    { value: "300,000+", label: "월간 양산 대응 부품 규모" },
-    { value: "30+", label: "개발부터 양산까지 연결된 누적 파트너십" },
+    { value: "300,000+", label: "월간 양산 부품 수" },
+    { value: "30+", label: "개발부터 양산까지 이어 온 누적 파트너십" },
   ],
   en: [
     {},
     { value: "47" },
     {},
-    { value: "300,000+", label: "Monthly mass-production response scale" },
-    { value: "30+", label: "Accumulated partnerships from development to production" },
+    { value: "300,000+", label: "Parts shipped per month" },
+    { value: "30+", label: "Partnerships from development to production" },
   ],
   ja: [
     {},
     { value: "47" },
     {},
-    { value: "300,000+", label: "月間量産対応部品規模" },
-    { value: "30+", label: "開発から量産までつながる累積パートナーシップ" },
+    { value: "300,000+", label: "月間の量産部品数" },
+    { value: "30+", label: "開発から量産まで続く累積パートナーシップ" },
   ],
 };
 
@@ -2853,7 +2859,7 @@ export default function BrainallPage() {
       <Header content={content} language={language} onLanguageChange={setLanguage} />
       <main>
         <Hero copy={content.hero} language={language} />
-        <SeoulIndustryIntroSection />
+        <SeoulIndustryIntroSection language={language} />
         <HighlightSlider
           highlights={content.highlights}
           buttonLabel={content.highlightButton}

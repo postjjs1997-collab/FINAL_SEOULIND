@@ -215,7 +215,7 @@ export const curatedNoticePosts: NoticePost[] = [
       en: {
         title: "Seoul Industry advances its precision manufacturing system",
         summary: "We strengthened the operating flow from development support to mass-production quality.",
-        body: "Seoul Industry is linking drawing review, process conditions, quality records, and delivery response more clearly for automotive OEM production.\n\nThe update helps customers review product groups, manufacturing capabilities, and quality systems in one flow while reinforcing process stability and record management standards.",
+        body: "Seoul Industry is tying drawing review, process conditions, quality records, and delivery together more tightly for automotive OEM production.\n\nThe update makes it easier for customers to see our product groups, manufacturing capabilities, and quality systems at a glance, while we reinforce process stability and record-keeping.",
       },
       ja: {
         title: "ソウル産業、精密加工の生産体制を高度化",
@@ -307,7 +307,7 @@ export const curatedNoticePosts: NoticePost[] = [
         body: "서울산업은 글로벌 OEM 고객과 협력사가 필요한 정보를 빠르게 확인할 수 있도록 제품군, 공정 흐름, 품질 대응 자료를 정리했습니다.\n\n개발 대응부터 양산 공급까지 이어지는 제조 파트너십의 기준을 더 명확하게 제공합니다.",
       },
       en: {
-        title: "Global OEM response materials updated",
+        title: "Updated reference materials for global OEM partners",
         summary: "Product, process, and quality information has been organized for customers and partners.",
         body: "Seoul Industry organized product group, process flow, and quality materials so global OEM customers and partners can review key information quickly.\n\nThe update clarifies our manufacturing partnership from development support to mass-production supply.",
       },
