@@ -729,10 +729,43 @@ function Hero({ copy, language }: { copy: SiteContent["hero"]; language: Languag
     return () => observer.disconnect();
   }, [reduceMotion]);
 
+  useEffect(() => {
+    if (reduceMotion) return;
+    const section = sectionRef.current;
+    if (!section || !window.matchMedia("(pointer: fine)").matches) return;
+
+    let frame = 0;
+    let x = 50;
+    let y = 38;
+    const apply = () => {
+      frame = 0;
+      section.style.setProperty("--hero-cursor-x", `${x}%`);
+      section.style.setProperty("--hero-cursor-y", `${y}%`);
+    };
+    const onMove = (event: PointerEvent) => {
+      x = (event.clientX / window.innerWidth) * 100;
+      y = (event.clientY / window.innerHeight) * 100;
+      if (!frame) frame = window.requestAnimationFrame(apply);
+    };
+    const onEnter = () => section.classList.add("is-cursor-active");
+    const onLeave = () => section.classList.remove("is-cursor-active");
+
+    section.addEventListener("pointermove", onMove);
+    section.addEventListener("pointerenter", onEnter);
+    section.addEventListener("pointerleave", onLeave);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      section.removeEventListener("pointermove", onMove);
+      section.removeEventListener("pointerenter", onEnter);
+      section.removeEventListener("pointerleave", onLeave);
+    };
+  }, [reduceMotion]);
+
   return (
     <section ref={sectionRef} className="brain-hero visual-sect" id="top" style={heroStyle}>
       <div className="brain-hero__sticky scroll-area">
         <div className="brain-hero__bg" aria-hidden="true" />
+        <span className="hero-cursor-glow" aria-hidden="true" />
 
         <div className="hero-title-stage">
           <HeroBrandTitle />
