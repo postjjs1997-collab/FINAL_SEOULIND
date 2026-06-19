@@ -2076,7 +2076,7 @@ const footerDetails: Record<
 > = {
   ko: {
     eyebrow: "SEOUL INDUSTRY",
-    statement: "도면 검토에서 양산 공급까지, 서울산업은 자동차 부품 OEM 생산의 마지막 기준까지 함께 관리합니다.",
+    statement: "도면 검토부터 양산 공급까지, 서울산업이 자동차 부품 OEM 생산을 끝까지 책임집니다.",
     inquiryLabel: "OEM 개발 및 양산 문의",
     phone: "031-366-1141",
     hours: "평일 08:30 - 17:30",
@@ -2108,7 +2108,7 @@ const footerDetails: Record<
   },
   en: {
     eyebrow: "SEOUL INDUSTRY",
-    statement: "From drawing review to mass production, Seoul Industry manages the final standards behind reliable automotive OEM supply.",
+    statement: "From the first drawing to full production, Seoul Industry stands behind every OEM part it ships.",
     inquiryLabel: "OEM development and production inquiry",
     phone: "+82-31-366-1141",
     hours: "Weekdays 08:30 - 17:30 KST",
@@ -2140,7 +2140,7 @@ const footerDetails: Record<
   },
   ja: {
     eyebrow: "SEOUL INDUSTRY",
-    statement: "図面検討から量産供給まで、ソウル産業は自動車部品OEM供給の最後の基準まで管理します。",
+    statement: "図面の検討から量産供給まで。ソウル産業は、自動車部品OEMの品質を最後まで造り込みます。",
     inquiryLabel: "OEM開発・量産のお問い合わせ",
     phone: "+82-31-366-1141",
     hours: "平日 08:30 - 17:30 KST",
