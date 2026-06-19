@@ -7097,3 +7097,80 @@
     top: 16px;
   }
 }
+
+/* ============================================================
+   Premium micro-interactions (additive polish layer)
+   Safe to remove as a block to revert.
+   ============================================================ */
+
+/* Primary CTA — tactile lift + warm glow + press + focus ring */
+.blue-button,
+.outline-button {
+  transition:
+    transform 0.34s var(--ease-out),
+    box-shadow 0.34s var(--ease-out),
+    filter 0.34s var(--ease-out);
+}
+
+.blue-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(233, 99, 26, 0.34);
+}
+
+.outline-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.22);
+}
+
+.blue-button:active,
+.outline-button:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 16px rgba(233, 99, 26, 0.26);
+}
+
+.blue-button:focus-visible,
+.outline-button:focus-visible {
+  outline: 2px solid var(--color-orange-soft, #ffb174);
+  outline-offset: 3px;
+}
+
+/* Language switcher — responsive hover + focus, smooth active swap */
+.language-switcher button {
+  transition:
+    opacity 0.24s var(--ease-out),
+    background 0.24s var(--ease-out),
+    color 0.24s var(--ease-out);
+}
+
+.language-switcher button:hover:not(.is-active) {
+  opacity: 1;
+  background: rgba(255, 250, 244, 0.12);
+}
+
+.language-switcher button:focus-visible,
+.mobile-language-switcher button:focus-visible {
+  outline: 2px solid var(--color-orange-soft, #ffb174);
+  outline-offset: 2px;
+}
+
+/* Consistent keyboard focus ring across interactive header/nav controls */
+.site-nav__item:focus-visible,
+.header-icon:focus-visible,
+.latest-parts__nav:focus-visible {
+  outline: 2px solid var(--color-orange-soft, #ffb174);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blue-button,
+  .outline-button,
+  .language-switcher button {
+    transition: none;
+  }
+
+  .blue-button:hover,
+  .outline-button:hover {
+    transform: none;
+  }
+}
