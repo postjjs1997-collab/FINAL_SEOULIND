@@ -7264,3 +7264,65 @@
 .brain-hero.is-cursor-active .hero-cursor-glow {
   opacity: 1;
 }
+
+/* Footer — turn the inquiry block into a clear closing CTA */
+.brainall-footer__inquiry {
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color 0.34s var(--ease-out),
+    background 0.34s var(--ease-out),
+    transform 0.34s var(--ease-out);
+}
+
+.brainall-footer__inquiry::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-orange, #e9631a), transparent);
+  opacity: 0.75;
+}
+
+.brainall-footer__inquiry:hover {
+  border-color: rgba(233, 99, 26, 0.5);
+  background: rgba(233, 99, 26, 0.1);
+  transform: translateY(-3px);
+}
+
+.brainall-footer__inquiry a {
+  width: fit-content;
+  transition: color 0.24s var(--ease-out);
+}
+
+.brainall-footer__inquiry a:hover {
+  color: var(--color-orange-soft, #ffb174);
+}
+
+.brainall-footer__top {
+  transition:
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
+}
+
+.brainall-footer__top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(233, 99, 26, 0.42);
+}
+
+.brainall-footer__top:focus-visible {
+  outline: 2px solid var(--color-orange-soft, #ffb174);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brainall-footer__inquiry,
+  .brainall-footer__top {
+    transition: none;
+  }
+  .brainall-footer__inquiry:hover,
+  .brainall-footer__top:hover {
+    transform: none;
+  }
+}
