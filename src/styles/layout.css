@@ -7196,3 +7196,50 @@
   box-shadow: 0 0 14px rgba(233, 99, 26, 0.55);
   will-change: transform;
 }
+
+/* Achievement numbers — editorial "spec-sheet" weight */
+.global-achievement-card {
+  position: relative;
+  gap: clamp(16px, 1.5vw, 22px);
+  padding-top: clamp(22px, 2.2vw, 34px);
+  border-top: 1px solid rgba(17, 16, 15, 0.12);
+  transition: transform 0.4s var(--ease-out);
+}
+
+.global-achievement-card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  width: 40px;
+  height: 2px;
+  transform: translateX(-50%);
+  background: var(--color-orange, #e9631a);
+  border-radius: 999px;
+}
+
+.global-achievement-card > span {
+  color: var(--color-muted, #746f69);
+  font-size: clamp(0.82rem, 0.95vw, 1.02rem);
+  letter-spacing: 0.01em;
+}
+
+.global-achievement-card small {
+  color: var(--color-blue-deep, #b74310);
+  letter-spacing: 0.06em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .global-achievement-card:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .global-achievement-card {
+    transition: none;
+  }
+  .global-achievement-card:hover {
+    transform: none;
+  }
+}
