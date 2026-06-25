@@ -5,6 +5,7 @@ import electricVehicleImage from "../../electric vehicle.png";
 import steeringImage from "../../steering.png";
 import preloaderVideo from "../../start.mp4";
 import precisionInsideMobilityImage from "../../precision-inside-mobility.jpg";
+import partnerMagnaLogo from "../../assets/partner-magna.svg";
 import BrainallLogo from "./BrainallLogo";
 import Header from "./Header";
 import Icon from "./Icons";
@@ -1661,6 +1662,16 @@ const partnerHomepageByMark: Record<string, string> = {
   MAGNA: "https://www.magna.com/",
 };
 
+const supplementalPartnerLogos: PartnerLogo[] = [
+  {
+    name: "Magna Powertrain",
+    mark: "MAGNA",
+    logoSrc: partnerMagnaLogo,
+    region: "Global",
+    role: "Powertrain / Driveline Program",
+  },
+];
+
 function getPartnerHomepage(partner: Pick<PartnerLogo, "mark" | "name"> | Pick<ClientPartner, "mark" | "name">) {
   const mark = partner.mark.toUpperCase();
   const name = partner.name.toUpperCase();
@@ -1682,7 +1693,15 @@ function getClientPartnerLogos(client: ClientPartner, partners: PartnerLogo[]) {
     return mark.includes(partnerMark) || name.includes(partnerMark) || name.includes(partnerName) || partnerName.includes(name);
   });
 
-  return direct ? [direct] : [];
+  if (direct) return [direct];
+
+  const supplemental = supplementalPartnerLogos.find((partner) => {
+    const partnerMark = partner.mark.toUpperCase();
+    const partnerName = partner.name.toUpperCase();
+    return mark.includes(partnerMark) || name.includes(partnerMark) || name.includes(partnerName) || partnerName.includes(name);
+  });
+
+  return supplemental ? [supplemental] : [];
 }
 
 function PartnerRows({ partners }: { partners: PartnerLogo[] }) {
@@ -1869,6 +1888,13 @@ function ClientCollabSection({ statement, clients, partners }: { statement: stri
             {clients.map((client, index) => {
               const relatedLogos = getClientPartnerLogos(client, partners);
               const href = getPartnerHomepage(client) ?? getPartnerHomepage(relatedLogos[0] ?? client);
+              const logoClassName = [
+                "client-card__logo",
+                relatedLogos.length > 1 ? "client-card__logo--stack" : "",
+                relatedLogos.some((partner) => partner.mark.toUpperCase() === "MAGNA") ? "client-card__logo--dark" : "",
+              ]
+                .filter(Boolean)
+                .join(" ");
 
               return (
                 <a className="client-card" href={href} target="_blank" rel="noreferrer" key={client.index} aria-label={`${client.name} 홈페이지 새 창으로 열기`}>
@@ -1878,7 +1904,7 @@ function ClientCollabSection({ statement, clients, partners }: { statement: stri
                   </div>
                   <div className="client-card__media">
                     <img src={client.image} alt="" loading={index <= 1 ? "eager" : "lazy"} />
-                    <div className={`client-card__logo${relatedLogos.length > 1 ? " client-card__logo--stack" : ""}`}>
+                    <div className={logoClassName}>
                       {relatedLogos.length > 0 ? (
                         relatedLogos.map((partner) =>
                           partner.logoSrc ? <img src={partner.logoSrc} alt={partner.name} key={partner.mark} /> : <strong key={partner.mark}>{partner.mark}</strong>,
