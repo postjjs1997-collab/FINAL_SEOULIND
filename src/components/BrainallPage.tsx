@@ -1651,7 +1651,7 @@ function HistoryEraRow({ era, index }: { era: HistoryEra; index: number }) {
 }
 
 const partnerHomepageByMark: Record<string, string> = {
-  METALDYNE: "https://www.aam.com/",
+  DAUCH: "https://www.dauch.com/",
   SPARTAN: "https://spartanlmp.com/",
   TRW: "https://aftermarket.zf.com/en/aftermarket-portal/our-brands/trw/",
   MOBIS: "https://www.mobis.com/",
