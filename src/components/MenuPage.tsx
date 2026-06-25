@@ -24,6 +24,25 @@ type PageConfig = {
   lead: string;
   heroCopy: string;
   image: string;
+  imagePosition?: string;
+};
+
+const menuHeroImage = (id: string, width = 1800) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=82`;
+
+const menuHeroImages = {
+  factory: menuHeroImage("photo-1504917595217-d4dc5ebe6122"),
+  precision: menuHeroImage("photo-1581092580497-e0d23cbdf1dc"),
+  metrology: menuHeroImage("photo-1581092580497-e0d23cbdf1dc"),
+  documents: menuHeroImage("photo-1450101499163-c8848c66ca85"),
+  solar: menuHeroImage("photo-1497435334941-8c899ee9e8e9"),
+  governance: menuHeroImage("photo-1517048676732-d65bc937f952"),
+  report: menuHeroImage("photo-1552664730-d307ca884978"),
+  industrial: menuHeroImage("photo-1581092580497-e0d23cbdf1dc"),
+  cad: menuHeroImage("photo-1581092580497-e0d23cbdf1dc"),
+  news: menuHeroImage("photo-1556761175-b413da4baf72"),
+  contact: menuHeroImage("photo-1517245386807-bb43f82c33c4"),
+  recruit: menuHeroImage("photo-1521737604893-d14cc237f11d"),
+  jobs: menuHeroImage("photo-1552664730-d307ca884978"),
 };
 
 const pageConfigs: Record<string, PageConfig> = {
@@ -33,7 +52,8 @@ const pageConfigs: Record<string, PageConfig> = {
     title: "인사말",
     lead: "정밀가공의 기본을 지키며 고객사의 개발 일정과 양산 계획을 함께 완성하는 제조 파트너가 되겠습니다.",
     heroCopy: "서울산업은 자동차 부품 OEM 생산에서 요구되는 반복 정밀도, 품질 기준, 납기 대응을 하나의 흐름으로 관리합니다.",
-    image: precisionHeroImage,
+    image: menuHeroImages.factory,
+    imagePosition: "center 56%",
   },
   "company/history": {
     route: "company/history",
@@ -41,7 +61,8 @@ const pageConfigs: Record<string, PageConfig> = {
     title: "회사연혁",
     lead: "1985년부터 쌓아온 정밀가공 경험을 바탕으로 국내외 자동차 부품 공급망 안에서 제조 기반을 확장해 왔습니다.",
     heroCopy: "조향부품 양산에서 시작해 품질 인증, 글로벌 고객 대응, 전동화 부품까지 서울산업의 시간은 제조 역량의 축적입니다.",
-    image: balanceModuleImage,
+    image: menuHeroImages.documents,
+    imagePosition: "center 48%",
   },
   "company/certificates": {
     route: "company/certificates",
@@ -49,7 +70,8 @@ const pageConfigs: Record<string, PageConfig> = {
     title: "인증서",
     lead: "품질, 환경, 기술 역량을 기준으로 관리하며 고객이 신뢰할 수 있는 제조 체계를 유지합니다.",
     heroCopy: "인증은 결과가 아니라 매일 같은 기준으로 공정을 움직이게 하는 서울산업의 운영 방식입니다.",
-    image: certificationImage,
+    image: menuHeroImages.metrology,
+    imagePosition: "center 45%",
   },
   "sustainability/environmental": {
     route: "sustainability/environmental",
@@ -57,7 +79,8 @@ const pageConfigs: Record<string, PageConfig> = {
     title: "Environmental",
     lead: "에너지와 자원 사용을 줄이고 공정 효율을 높여 지속가능한 정밀가공 현장을 만들어 갑니다.",
     heroCopy: "환경 관리 기준을 생산 현장 안에 두고, 효율적인 공정 운영으로 제조 과정의 부담을 낮춥니다.",
-    image: precisionHeroImage,
+    image: menuHeroImages.solar,
+    imagePosition: "center 50%",
   },
   "sustainability/governance": {
     route: "sustainability/governance",
@@ -65,7 +88,8 @@ const pageConfigs: Record<string, PageConfig> = {
     title: "Governance",
     lead: "도면, 품질, 납기, 거래 기준을 투명하게 관리해 장기적인 OEM 파트너십을 만듭니다.",
     heroCopy: "서울산업은 공정 이력과 품질 기록을 명확히 남기고 고객 요구사항을 책임 있게 관리합니다.",
-    image: drivelineImage,
+    image: menuHeroImages.governance,
+    imagePosition: "center 48%",
   },
   "sustainability/esg-report": {
     route: "sustainability/esg-report",
@@ -73,7 +97,8 @@ const pageConfigs: Record<string, PageConfig> = {
     title: "ESG보고서",
     lead: "정밀가공 기업으로서 환경, 안전, 투명한 기준을 중심으로 지속가능경영 활동을 정리합니다.",
     heroCopy: "서울산업의 ESG 방향은 현장에서 지켜지는 기준과 고객에게 전달되는 신뢰를 함께 높이는 데 있습니다.",
-    image: steeringImage,
+    image: menuHeroImages.report,
+    imagePosition: "center 48%",
   },
   "products/automotive": {
     route: "products/automotive",
@@ -81,7 +106,8 @@ const pageConfigs: Record<string, PageConfig> = {
     title: "자동차",
     lead: "BSM, EV, Steering, Powertrain, Driveline 등 자동차 주요 시스템에 필요한 정밀 가공 부품을 생산합니다.",
     heroCopy: "도면 검토부터 샘플, 양산, 검사, 출하까지 자동차 부품 OEM 생산의 흐름을 안정적으로 연결합니다.",
-    image: automotiveImage,
+    image: menuHeroImages.precision,
+    imagePosition: "center 45%",
   },
   "products/industrial": {
     route: "products/industrial",
@@ -89,7 +115,8 @@ const pageConfigs: Record<string, PageConfig> = {
     title: "산업기계",
     lead: "고객 도면과 사용 환경에 맞춘 정밀 가공 부품으로 산업 현장의 동력 전달과 설비 안정성을 지원합니다.",
     heroCopy: "반복 정밀도, 표면 품질, 내구 조건을 기준으로 산업기계 부품의 생산 흐름을 설계합니다.",
-    image: drivelineImage,
+    image: menuHeroImages.industrial,
+    imagePosition: "center 52%",
   },
   "support/news": {
     route: "support/news",
@@ -97,7 +124,8 @@ const pageConfigs: Record<string, PageConfig> = {
     title: "News",
     lead: "제품군, 제조 공정, 품질 대응과 관련된 서울산업의 새로운 소식을 확인하세요.",
     heroCopy: "서울산업의 제조 역량과 고객지원 정보를 빠르게 볼 수 있도록 주요 소식을 모았습니다.",
-    image: precisionHeroImage,
+    image: menuHeroImages.news,
+    imagePosition: "center 46%",
   },
   "support/contact": {
     route: "support/contact",
@@ -105,7 +133,8 @@ const pageConfigs: Record<string, PageConfig> = {
     title: "문의하기",
     lead: "제품 개발, 양산 검토, 견적, 품질 관련 문의를 남겨 주시면 담당자가 확인 후 연락드립니다.",
     heroCopy: "도면과 생산 조건을 함께 공유해 주시면 더 정확한 검토와 회신이 가능합니다.",
-    image: balanceModuleImage,
+    image: menuHeroImages.contact,
+    imagePosition: "center 52%",
   },
   "recruit/guide": {
     route: "recruit/guide",
@@ -113,7 +142,8 @@ const pageConfigs: Record<string, PageConfig> = {
     title: "채용안내",
     lead: "정밀가공 현장과 품질 기준을 함께 만들어 갈 동료를 기다립니다.",
     heroCopy: "서울산업은 오래 갈 수 있는 제조 역량을 사람의 숙련도와 책임감에서 시작한다고 믿습니다.",
-    image: steeringImage,
+    image: menuHeroImages.recruit,
+    imagePosition: "center 50%",
   },
   "recruit/jobs": {
     route: "recruit/jobs",
@@ -121,7 +151,8 @@ const pageConfigs: Record<string, PageConfig> = {
     title: "채용공고",
     lead: "현재 모집 중인 직무와 지원 정보를 확인하세요.",
     heroCopy: "생산, 품질, 개발, 관리 각 영역에서 서울산업의 다음 제조 기준을 함께 만들 인재를 찾습니다.",
-    image: drivelineImage,
+    image: menuHeroImages.jobs,
+    imagePosition: "center 50%",
   },
 };
 
@@ -230,8 +261,13 @@ function ScrollProgress() {
 }
 
 function PageHero({ config }: { config: PageConfig }) {
+  const heroStyle = {
+    "--menu-hero-image": `url(${config.image})`,
+    "--menu-hero-position": config.imagePosition ?? "center",
+  } as CSSProperties;
+
   return (
-    <section className="menu-hero" style={{ "--menu-hero-image": `url(${config.image})` } as CSSProperties}>
+    <section className="menu-hero" style={heroStyle}>
       <div className="menu-hero__image" aria-hidden="true" />
       <div className="menu-hero__inner">
         <span className="menu-hero__eyebrow">{config.eyebrow}</span>
