@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import BrainallPage from "./components/BrainallPage";
+import MenuPage from "./components/MenuPage";
 import NewsPage from "./components/NewsPage";
 import TechnologyPage from "./components/TechnologyPage";
+import { menuRoutes } from "./data/navigation";
 
 function getRoute() {
   if (typeof window === "undefined") return "";
@@ -23,6 +25,10 @@ export default function App() {
 
   if (route.startsWith("technology")) {
     return <TechnologyPage route={route} />;
+  }
+
+  if (menuRoutes.includes(route)) {
+    return <MenuPage route={route} />;
   }
 
   return <BrainallPage />;

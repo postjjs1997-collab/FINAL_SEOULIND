@@ -528,7 +528,7 @@ export default function NewsPage({ route }: NewsPageProps) {
                 <time>{post.date.replaceAll("-", ".")}.</time>
               </div>
               <figure className={image ? undefined : "is-logo"}>
-                {image ? <img src={image} alt="" loading="lazy" /> : <span className="news-logo-placeholder">SEOULIND</span>}
+                {image ? <img src={image} alt="" loading="lazy" /> : <BrainallLogo className="news-logo-placeholder" />}
               </figure>
             </a>
           );
@@ -570,7 +570,7 @@ export default function NewsPage({ route }: NewsPageProps) {
           <h1>{translation.title}</h1>
           <p className="notice-detail__summary">{translation.summary}</p>
           <figure className={`notice-detail__image${image ? "" : " is-logo"}`}>
-            {image ? <img src={image} alt="" /> : <span className="news-logo-placeholder">SEOULIND</span>}
+            {image ? <img src={image} alt="" /> : <BrainallLogo className="news-logo-placeholder" />}
           </figure>
           <div className="notice-detail__body">
             {translation.body.split(/\n+/).map((paragraph) => (

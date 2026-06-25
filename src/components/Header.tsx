@@ -2,126 +2,24 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import BrainallLogo from "./BrainallLogo";
 import Icon from "./Icons";
 import { languages, type LanguageCode, type SiteContent } from "../data/brainall";
+import { siteMenuGroups } from "../data/navigation";
 import { gsap } from "../motion/gsap";
 import { applyLanguageAndRestartHome } from "../utils/languageNavigation";
-
-type HeaderNavChild = {
-  label: string;
-  href: string;
-};
-
-type HeaderNavGroup = {
-  label: string;
-  href: string;
-  children: HeaderNavChild[];
-};
 
 type HeaderProps = {
   content: SiteContent;
   language: LanguageCode;
   onLanguageChange: (language: LanguageCode) => void;
+  variant?: "home" | "sub";
 };
 
-const headerNavGroups: Record<LanguageCode, HeaderNavGroup[]> = {
-  ko: [
-    {
-      label: "회사소개",
-      href: "#data",
-      children: [
-        { label: "제조 기반", href: "#data" },
-        { label: "회사연혁", href: "#history" },
-        { label: "글로벌 고객사", href: "#partners" },
-      ],
-    },
-    {
-      label: "지속가능경영",
-      href: "#esg-management",
-      children: [
-        { label: "ESG 방향", href: "#esg-management" },
-        { label: "환경", href: "#esg-management" },
-        { label: "사회", href: "#esg-management" },
-        { label: "거버넌스", href: "#esg-management" },
-      ],
-    },
-    {
-      label: "고객지원",
-      href: "#media",
-      children: [
-        { label: "공지사항", href: "#/news" },
-        { label: "News", href: "#media" },
-        { label: "관리자", href: "#/news/admin" },
-      ],
-    },
-  ],
-  en: [
-    {
-      label: "Company",
-      href: "#data",
-      children: [
-        { label: "Manufacturing Base", href: "#data" },
-        { label: "History", href: "#history" },
-        { label: "Global Customers", href: "#partners" },
-      ],
-    },
-    {
-      label: "Sustainability",
-      href: "#esg-management",
-      children: [
-        { label: "ESG Direction", href: "#esg-management" },
-        { label: "Environmental", href: "#esg-management" },
-        { label: "Social", href: "#esg-management" },
-        { label: "Governance", href: "#esg-management" },
-      ],
-    },
-    {
-      label: "Support",
-      href: "#media",
-      children: [
-        { label: "Notice", href: "#/news" },
-        { label: "News", href: "#media" },
-        { label: "Admin", href: "#/news/admin" },
-      ],
-    },
-  ],
-  ja: [
-    {
-      label: "会社紹介",
-      href: "#data",
-      children: [
-        { label: "製造基盤", href: "#data" },
-        { label: "沿革", href: "#history" },
-        { label: "グローバル顧客", href: "#partners" },
-      ],
-    },
-    {
-      label: "サステナビリティ",
-      href: "#esg-management",
-      children: [
-        { label: "ESG方針", href: "#esg-management" },
-        { label: "環境", href: "#esg-management" },
-        { label: "社会", href: "#esg-management" },
-        { label: "ガバナンス", href: "#esg-management" },
-      ],
-    },
-    {
-      label: "サポート",
-      href: "#media",
-      children: [
-        { label: "お知らせ", href: "#/news" },
-        { label: "ニュース", href: "#media" },
-        { label: "管理者", href: "#/news/admin" },
-      ],
-    },
-  ],
-};
-
-export default function Header({ content, language, onLanguageChange }: HeaderProps) {
-  const [solid, setSolid] = useState(false);
+export default function Header({ content, language, onLanguageChange, variant = "home" }: HeaderProps) {
+  const [solid, setSolid] = useState(variant === "sub");
   const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const { header, searchTags } = content;
-  const menuGroups = headerNavGroups[language] ?? headerNavGroups.ko;
+
   const handleLanguageChange = (nextLanguage: LanguageCode) => {
     setMobileOpen(false);
     setSearchOpen(false);
@@ -133,7 +31,7 @@ export default function Header({ content, language, onLanguageChange }: HeaderPr
 
     const update = () => {
       const nextY = window.scrollY;
-      setSolid(nextY > 100 || searchOpen);
+      setSolid(variant === "sub" || nextY > 100 || searchOpen);
       setHidden(nextY > 150 && nextY > lastY + 4 && !searchOpen && !mobileOpen);
       lastY = nextY;
     };
@@ -141,7 +39,7 @@ export default function Header({ content, language, onLanguageChange }: HeaderPr
     update();
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
-  }, [mobileOpen, searchOpen]);
+  }, [mobileOpen, searchOpen, variant]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -168,15 +66,13 @@ export default function Header({ content, language, onLanguageChange }: HeaderPr
 
   return (
     <>
-      <header
-        className={`site-header ${solid ? "site-header--solid" : ""} ${hidden ? "site-header--hidden" : ""}`}
-      >
+      <header className={`site-header ${variant === "sub" ? "site-header--sub" : ""} ${solid ? "site-header--solid" : ""} ${hidden ? "site-header--hidden" : ""}`}>
         <a className="site-header__brand" href="#/" aria-label={header.homeLabel}>
           <BrainallLogo />
         </a>
 
         <nav className="site-nav" aria-label={header.navLabel}>
-          {menuGroups.map((group) => (
+          {siteMenuGroups.map((group) => (
             <div className="site-nav__group" key={group.label}>
               <a className="site-nav__item" href={group.href}>
                 {group.label}
@@ -216,7 +112,6 @@ export default function Header({ content, language, onLanguageChange }: HeaderPr
             <Icon name="menu" />
           </button>
         </div>
-
       </header>
 
       <div className={`mobile-drawer ${mobileOpen ? "is-open" : ""}`} aria-hidden={!mobileOpen}>
@@ -226,19 +121,13 @@ export default function Header({ content, language, onLanguageChange }: HeaderPr
         <BrainallLogo className="mobile-drawer__logo" />
         <div className="mobile-language-switcher" role="group" aria-label={header.languageLabel}>
           {languages.map((item) => (
-            <button
-              className={language === item.code ? "is-active" : ""}
-              type="button"
-              key={item.code}
-              onClick={() => handleLanguageChange(item.code)}
-              aria-pressed={language === item.code}
-            >
+            <button className={language === item.code ? "is-active" : ""} type="button" key={item.code} onClick={() => handleLanguageChange(item.code)} aria-pressed={language === item.code}>
               {item.label}
             </button>
           ))}
         </div>
         <nav className="mobile-drawer__nav" aria-label={header.mobileNavLabel}>
-          {menuGroups.map((group) => (
+          {siteMenuGroups.map((group) => (
             <div className="mobile-drawer__group" key={group.label}>
               <a href={group.href} onClick={() => setMobileOpen(false)}>
                 <span>{group.label}</span>

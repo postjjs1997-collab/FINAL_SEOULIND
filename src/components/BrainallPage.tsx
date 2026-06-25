@@ -1649,32 +1649,56 @@ function HistoryEraRow({ era, index }: { era: HistoryEra; index: number }) {
   );
 }
 
+const partnerHomepageByMark: Record<string, string> = {
+  METALDYNE: "https://www.aam.com/",
+  SPARTAN: "https://spartanlmp.com/",
+  TRW: "https://aftermarket.zf.com/en/aftermarket-portal/our-brands/trw/",
+  MOBIS: "https://www.mobis.com/",
+  NEXTEER: "https://www.nexteer.com/",
+  KDAC: "https://www.hansaemobility.com/",
+  GKN: "https://www.gknautomotive.com/",
+  MPT: "https://www.munciepower.com/",
+  MAGNA: "https://www.magna.com/",
+};
+
+function getPartnerHomepage(partner: Pick<PartnerLogo, "mark" | "name"> | Pick<ClientPartner, "mark" | "name">) {
+  const mark = partner.mark.toUpperCase();
+  const name = partner.name.toUpperCase();
+  const key = Object.keys(partnerHomepageByMark).find((candidate) => mark.includes(candidate) || name.includes(candidate));
+  return key ? partnerHomepageByMark[key] : undefined;
+}
+
+function getClientPartnerLogos(client: ClientPartner, partners: PartnerLogo[]) {
+  const mark = client.mark.toUpperCase();
+  const name = client.name.toUpperCase();
+
+  if (mark.includes("TRW") && mark.includes("MOBIS")) {
+    return partners.filter((partner) => ["TRW", "MOBIS"].includes(partner.mark.toUpperCase()));
+  }
+
+  const direct = partners.find((partner) => {
+    const partnerMark = partner.mark.toUpperCase();
+    const partnerName = partner.name.toUpperCase();
+    return mark.includes(partnerMark) || name.includes(partnerMark) || name.includes(partnerName) || partnerName.includes(name);
+  });
+
+  return direct ? [direct] : [];
+}
+
 function PartnerRows({ partners }: { partners: PartnerLogo[] }) {
   const row = [...partners, ...partners];
   return (
     <div className="partner-rail">
       <div className="partner-rail__track">
         {row.map((partner, index) => (
-          <span className="partner-logo" key={`${partner.name}-a-${index}`}>
+          <a className="partner-logo" href={getPartnerHomepage(partner)} target="_blank" rel="noreferrer" key={`${partner.name}-${index}`} aria-label={`${partner.name} 홈페이지 새 창으로 열기`}>
             {partner.logoSrc ? (
               <img className="partner-logo__image" src={partner.logoSrc} alt={partner.name} loading="lazy" />
             ) : (
               <strong>{partner.mark}</strong>
             )}
             <small>{partner.role}</small>
-          </span>
-        ))}
-      </div>
-      <div className="partner-rail__track partner-rail__track--reverse">
-        {row.map((partner, index) => (
-          <span className="partner-logo" key={`${partner.name}-b-${index}`}>
-            {partner.logoSrc ? (
-              <img className="partner-logo__image" src={partner.logoSrc} alt={partner.name} loading="lazy" />
-            ) : (
-              <strong>{partner.mark}</strong>
-            )}
-            <small>{partner.region}</small>
-          </span>
+          </a>
         ))}
       </div>
     </div>
@@ -1819,35 +1843,58 @@ function ClientCollabStatement({ statement, progress }: { statement: string; pro
   );
 }
 
-function ClientCollabSection({ statement, clients }: { statement: string; clients: ClientPartner[] }) {
+function ClientCollabSection({ statement, clients, partners }: { statement: string; clients: ClientPartner[]; partners: PartnerLogo[] }) {
   const sectionRef = useRef<HTMLElement>(null);
   const { progress: statementProgress } = useScrollSteps(sectionRef, Math.max(2, clients.length), 0.0001);
+  const featuredPartners = partners.slice(0, 8);
 
   return (
     <section className="client-collab" id="client-collab" data-scene="dark" ref={sectionRef}>
       <div className="client-collab__split">
         <div className="client-collab__text">
+          <span className="client-collab__kicker">Global OEM Partner Network</span>
+          <div className="client-collab__logo-wall" aria-label="서울산업 주요 협력사">
+            {featuredPartners.map((partner) => (
+              <a href={getPartnerHomepage(partner)} target="_blank" rel="noreferrer" key={partner.name} aria-label={`${partner.name} 홈페이지 새 창으로 열기`}>
+                {partner.logoSrc ? <img src={partner.logoSrc} alt={partner.name} loading="lazy" /> : <strong>{partner.mark}</strong>}
+                <span>{partner.region}</span>
+              </a>
+            ))}
+          </div>
           <ClientCollabStatement statement={statement} progress={statementProgress} />
         </div>
 
         <div className="client-collab__stage">
           <div className="client-collab__rail">
-            {clients.map((client, index) => (
-              <article className="client-card" key={client.index}>
-                <div className="client-card__bar">
-                  <span>{client.index}</span>
-                  <span>{client.year}</span>
-                </div>
-                <div className="client-card__media">
-                  <img src={client.image} alt="" loading={index <= 1 ? "eager" : "lazy"} />
-                  <strong className="client-card__logo">{client.mark}</strong>
-                </div>
-                <div className="client-card__meta">
-                  <strong>{client.name}</strong>
-                  <span>{client.role}</span>
-                </div>
-              </article>
-            ))}
+            {clients.map((client, index) => {
+              const relatedLogos = getClientPartnerLogos(client, partners);
+              const href = getPartnerHomepage(client) ?? getPartnerHomepage(relatedLogos[0] ?? client);
+
+              return (
+                <a className="client-card" href={href} target="_blank" rel="noreferrer" key={client.index} aria-label={`${client.name} 홈페이지 새 창으로 열기`}>
+                  <div className="client-card__bar">
+                    <span>{client.index}</span>
+                    <span>{client.year}</span>
+                  </div>
+                  <div className="client-card__media">
+                    <img src={client.image} alt="" loading={index <= 1 ? "eager" : "lazy"} />
+                    <div className={`client-card__logo${relatedLogos.length > 1 ? " client-card__logo--stack" : ""}`}>
+                      {relatedLogos.length > 0 ? (
+                        relatedLogos.map((partner) =>
+                          partner.logoSrc ? <img src={partner.logoSrc} alt={partner.name} key={partner.mark} /> : <strong key={partner.mark}>{partner.mark}</strong>,
+                        )
+                      ) : (
+                        <strong>{client.mark}</strong>
+                      )}
+                    </div>
+                  </div>
+                  <div className="client-card__meta">
+                    <strong>{client.name}</strong>
+                    <span>{client.role}</span>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -2043,7 +2090,7 @@ function MediaSection({ copy, items }: { copy: SiteContent["mediaHeading"]; item
               <time>{item.date.replaceAll("-", ".")}.</time>
             </div>
             <figure className={item.image ? undefined : "is-logo"}>
-              {item.image ? <img src={item.image} alt="" loading="lazy" /> : <span className="news-logo-placeholder">SEOULIND</span>}
+              {item.image ? <img src={item.image} alt="" loading="lazy" /> : <BrainallLogo className="news-logo-placeholder" />}
             </figure>
           </a>
         ))}
@@ -2940,7 +2987,7 @@ export default function BrainallPage() {
         <HistorySection copy={content.historyHeading} eras={content.historyEras} />
         <GlobalSection copy={content.global} partners={content.partnerLogos} />
         <GlobalAchievementSection copy={content.achievementsHeading} achievements={content.globalAchievements} />
-        <ClientCollabSection statement={content.clientCollabStatement} clients={content.clientPartners} />
+        <ClientCollabSection statement={content.clientCollabStatement} clients={content.clientPartners} partners={content.partnerLogos} />
         <EsgSection copy={content.esgHeading} pillars={content.esgPillars} />
         <MediaSection copy={content.mediaHeading} items={mediaItems} />
       </main>
