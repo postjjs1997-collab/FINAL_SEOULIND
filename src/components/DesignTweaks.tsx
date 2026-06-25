@@ -52,13 +52,22 @@ const editableSelector = [
 function shouldEnableTweaks() {
   if (typeof window === "undefined") return false;
 
-  const params = new URLSearchParams(window.location.search);
-  if (params.get("tweak") === "0") {
+  const hashQueryIndex = window.location.hash.indexOf("?");
+  const queryStrings = [
+    window.location.search,
+    hashQueryIndex >= 0 ? window.location.hash.slice(hashQueryIndex) : "",
+  ].filter(Boolean);
+  const flag = queryStrings
+    .map((queryString) => new URLSearchParams(queryString))
+    .map((params) => params.get("tweak") ?? params.get("tweaks") ?? params.get("edit"))
+    .find((value): value is string => value !== null);
+
+  if (flag === "0" || flag === "false" || flag === "off") {
     window.localStorage.removeItem(TWEAK_ENABLED_KEY);
     return false;
   }
 
-  if (params.has("tweak")) {
+  if (flag) {
     window.localStorage.setItem(TWEAK_ENABLED_KEY, "1");
     return true;
   }
