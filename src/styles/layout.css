@@ -7505,6 +7505,63 @@
   color: var(--color-ink-strong);
 }
 
+.menu-category-nav {
+  border-bottom: 1px solid #e8e1da;
+  background: #fff;
+}
+
+.menu-category-nav__inner {
+  display: grid;
+  width: min(1240px, calc(100% - 44px));
+  min-height: 62px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0 auto;
+}
+
+.menu-category-nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #ece5de;
+  color: #6d6761;
+  font-size: 0.94rem;
+  font-weight: 950;
+  transition:
+    color 0.28s var(--ease-out),
+    background-color 0.28s var(--ease-out);
+}
+
+.menu-category-nav a:last-child {
+  border-right: 1px solid #ece5de;
+}
+
+.menu-category-nav a::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: -1px;
+  height: 3px;
+  background: var(--color-orange);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.28s var(--ease-out);
+}
+
+.menu-category-nav a:hover,
+.menu-category-nav a:focus-visible,
+.menu-category-nav a.is-active {
+  color: var(--color-ink-strong);
+  background: rgba(233, 99, 26, 0.055);
+}
+
+.menu-category-nav a:hover::after,
+.menu-category-nav a:focus-visible::after,
+.menu-category-nav a.is-active::after {
+  transform: scaleX(1);
+}
+
 .menu-depth-nav {
   position: sticky;
   top: 80px;
@@ -7623,11 +7680,19 @@
 
 .menu-reveal:is(
     .menu-grid-2,
+    .menu-greeting,
+    .menu-business,
+    .menu-history-daedong,
     .menu-card-grid,
     .menu-product-grid,
     .menu-industrial,
+    .menu-policy__steps,
+    .menu-data-table,
     .menu-report-list,
     .menu-news-list,
+    .menu-board,
+    .menu-recruit-values,
+    .menu-benefit,
     .menu-job-list,
     .menu-recruit-steps,
     .menu-contact
@@ -7639,11 +7704,19 @@
 
 .menu-reveal.is-visible:is(
     .menu-grid-2,
+    .menu-greeting,
+    .menu-business,
+    .menu-history-daedong,
     .menu-card-grid,
     .menu-product-grid,
     .menu-industrial,
+    .menu-policy__steps,
+    .menu-data-table,
     .menu-report-list,
     .menu-news-list,
+    .menu-board,
+    .menu-recruit-values,
+    .menu-benefit,
     .menu-job-list,
     .menu-recruit-steps,
     .menu-contact
@@ -7722,6 +7795,162 @@
 .menu-statement p {
   color: rgba(255, 250, 244, 0.72);
   font-weight: 650;
+}
+
+.menu-greeting {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(320px, 0.78fr);
+  gap: clamp(28px, 4vw, 58px);
+  align-items: start;
+}
+
+.menu-greeting__headline {
+  grid-column: 1 / -1;
+  padding-bottom: clamp(18px, 2.5vw, 30px);
+  border-bottom: 1px solid #e8e1da;
+}
+
+.menu-greeting__headline span,
+.menu-business > span,
+.menu-esg-intro > span,
+.menu-policy .menu-small-label,
+.menu-history-daedong > span,
+.menu-board__head > span,
+.menu-recruit-values > span,
+.menu-benefit > span,
+.menu-process > span {
+  color: var(--color-orange);
+  font-size: 0.9rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.menu-greeting__headline h3 {
+  margin: 14px 0 0;
+  color: var(--color-ink-strong);
+  font-size: clamp(2rem, 4vw, 4.2rem);
+  font-weight: 950;
+  line-height: 1.12;
+}
+
+.menu-greeting__photo {
+  min-height: 520px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #171513;
+}
+
+.menu-greeting__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.88) contrast(1.05);
+  transition: transform 0.7s var(--ease-out);
+}
+
+.menu-greeting__photo:hover img {
+  transform: scale(1.05);
+}
+
+.menu-greeting__copy {
+  display: grid;
+  align-content: center;
+  min-height: 520px;
+  border-top: 2px solid var(--color-ink-strong);
+  padding: clamp(24px, 3vw, 42px) 0;
+}
+
+.menu-greeting__copy strong {
+  color: var(--color-orange);
+  font-size: 0.92rem;
+  font-weight: 950;
+}
+
+.menu-greeting__copy h4 {
+  margin: 24px 0 12px;
+  color: var(--color-ink-strong);
+  font-size: clamp(1.28rem, 1.8vw, 1.75rem);
+  font-weight: 950;
+  line-height: 1.28;
+}
+
+.menu-greeting__copy p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: clamp(0.98rem, 1.08vw, 1.08rem);
+  font-weight: 720;
+  line-height: 1.86;
+}
+
+.menu-business {
+  margin-top: clamp(64px, 7vw, 108px);
+}
+
+.menu-business h3,
+.menu-history-daedong h3,
+.menu-esg-intro h3,
+.menu-policy h3,
+.menu-data-table h3,
+.menu-board__head h3,
+.menu-recruit-values h3,
+.menu-benefit h3,
+.menu-process h3 {
+  margin: 12px 0 0;
+  color: var(--color-ink-strong);
+  font-size: clamp(2.2rem, 4vw, 4.7rem);
+  font-weight: 950;
+  line-height: 1.08;
+}
+
+.menu-business > div {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 34px;
+  border: 1px solid #e8e1da;
+  background: #e8e1da;
+}
+
+.menu-business article {
+  display: grid;
+  min-height: 230px;
+  align-content: end;
+  gap: 9px;
+  padding: clamp(22px, 2.2vw, 34px);
+  background: #fff;
+  transition:
+    background-color 0.28s var(--ease-out),
+    transform 0.28s var(--ease-out);
+}
+
+.menu-business article:hover {
+  background: #fff8f0;
+  transform: translateY(-4px);
+}
+
+.menu-business b {
+  color: var(--color-orange);
+  font-size: 0.86rem;
+  font-weight: 950;
+}
+
+.menu-business article span {
+  color: #a59c93;
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.menu-business strong {
+  color: var(--color-ink-strong);
+  font-size: clamp(1.36rem, 1.65vw, 1.86rem);
+  font-weight: 950;
+}
+
+.menu-business p {
+  margin: 0;
+  color: var(--color-muted);
+  font-weight: 760;
+  line-height: 1.65;
 }
 
 .menu-photo-card,
@@ -7935,6 +8164,81 @@
   background: var(--color-orange);
 }
 
+.menu-history-daedong {
+  display: grid;
+}
+
+.menu-history-daedong > h3 {
+  margin-bottom: clamp(34px, 4vw, 56px);
+}
+
+.menu-history-daedong article {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.46fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 72px);
+  padding: clamp(34px, 4.2vw, 62px) 0;
+  border-top: 1px solid #e8e1da;
+}
+
+.menu-history-daedong article:last-child {
+  border-bottom: 1px solid #e8e1da;
+}
+
+.menu-history-daedong__media {
+  overflow: hidden;
+  min-height: 240px;
+  border-radius: 8px;
+  background: #171513;
+}
+
+.menu-history-daedong__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.84) contrast(1.04);
+  transition: transform 0.72s var(--ease-out);
+}
+
+.menu-history-daedong article:hover img {
+  transform: scale(1.05);
+}
+
+.menu-history-daedong__body strong {
+  display: block;
+  color: var(--color-orange);
+  font-size: clamp(2.4rem, 5vw, 5.8rem);
+  font-weight: 950;
+  line-height: 1;
+}
+
+.menu-history-daedong__body ul {
+  display: grid;
+  gap: 14px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu-history-daedong__body li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--color-ink);
+  font-size: clamp(1rem, 1.15vw, 1.18rem);
+  font-weight: 780;
+  line-height: 1.7;
+}
+
+.menu-history-daedong__body li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-orange);
+}
+
 .menu-cert-layout {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
@@ -7947,6 +8251,279 @@
 
 .menu-cert-layout img {
   min-height: 320px;
+}
+
+.menu-esg-intro {
+  display: grid;
+  gap: 16px;
+  padding: clamp(32px, 4vw, 58px);
+  margin-bottom: 22px;
+  border-left: 4px solid var(--color-orange);
+  background: #f8f4ef;
+}
+
+.menu-esg-intro p {
+  width: min(900px, 100%);
+  margin: 0;
+  color: var(--color-muted);
+  font-size: clamp(1rem, 1.12vw, 1.16rem);
+  font-weight: 750;
+  line-height: 1.82;
+}
+
+.menu-policy {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.58fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 58px);
+  align-items: start;
+  margin-top: clamp(36px, 5vw, 74px);
+}
+
+.menu-policy > div:first-child {
+  position: sticky;
+  top: 176px;
+}
+
+.menu-policy p {
+  margin: 22px 0 0;
+  color: var(--color-muted);
+  font-weight: 760;
+  line-height: 1.82;
+}
+
+.menu-policy__steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.menu-policy__steps article {
+  min-height: 150px;
+  padding: 24px;
+  border: 1px solid #e8e1da;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.menu-policy__steps span {
+  color: var(--color-orange);
+  font-size: 0.78rem;
+  font-weight: 950;
+}
+
+.menu-policy__steps strong {
+  display: block;
+  margin-top: 18px;
+  color: var(--color-ink-strong);
+  font-size: clamp(1.08rem, 1.25vw, 1.28rem);
+  font-weight: 950;
+  line-height: 1.34;
+}
+
+.menu-data-table {
+  margin-top: clamp(48px, 6vw, 88px);
+}
+
+.menu-data-table h3 {
+  margin-bottom: 26px;
+}
+
+.menu-data-table article {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) 180px minmax(220px, 0.9fr);
+  gap: 18px;
+  align-items: center;
+  min-height: 78px;
+  padding: 18px 22px;
+  border-top: 1px solid #e8e1da;
+}
+
+.menu-data-table article:last-child {
+  border-bottom: 1px solid #e8e1da;
+}
+
+.menu-data-table span {
+  color: var(--color-orange);
+  font-weight: 950;
+}
+
+.menu-data-table strong {
+  color: var(--color-ink-strong);
+  font-size: 1.06rem;
+  font-weight: 920;
+}
+
+.menu-data-table b {
+  color: #171513;
+  font-weight: 950;
+}
+
+.menu-data-table p {
+  margin: 0;
+  color: var(--color-muted);
+  font-weight: 720;
+  line-height: 1.55;
+}
+
+.menu-product-filter {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.menu-product-filter a,
+.menu-back-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e8e1da;
+  border-radius: 999px;
+  padding: 0 24px;
+  background: #fff;
+  color: var(--color-ink-strong);
+  font-size: 0.88rem;
+  font-weight: 950;
+}
+
+.menu-product-filter a.is-active,
+.menu-product-filter a:hover,
+.menu-back-link:hover {
+  border-color: var(--color-orange);
+  background: var(--color-orange);
+  color: #fff;
+}
+
+.menu-back-link {
+  margin: 30px auto 0;
+}
+
+.menu-board {
+  display: grid;
+  gap: 28px;
+}
+
+.menu-board__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  gap: 20px;
+  align-items: end;
+}
+
+.menu-board__head > span,
+.menu-board__head h3 {
+  grid-column: 1;
+}
+
+.menu-board__head label {
+  display: grid;
+  gap: 8px;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  color: var(--color-muted);
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.menu-board__head input {
+  min-height: 48px;
+  border: 1px solid #e8e1da;
+  border-radius: 6px;
+  padding: 0 14px;
+  background: #fff;
+  color: var(--color-ink-strong);
+}
+
+.menu-recruit-values,
+.menu-benefit,
+.menu-process {
+  display: grid;
+  gap: 26px;
+}
+
+.menu-recruit-values > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.menu-recruit-values article {
+  display: grid;
+  align-content: start;
+  min-height: 340px;
+  gap: 12px;
+  padding: 28px;
+  border: 1px solid #e8e1da;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.menu-recruit-values svg {
+  width: 34px;
+  height: 34px;
+  color: var(--color-orange);
+}
+
+.menu-recruit-values article > span {
+  margin-top: 16px;
+  color: #a59c93;
+  font-size: 0.86rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.menu-recruit-values strong {
+  color: var(--color-ink-strong);
+  font-size: clamp(1.25rem, 1.7vw, 1.7rem);
+  font-weight: 950;
+}
+
+.menu-recruit-values p {
+  margin: 0;
+  color: var(--color-muted);
+  font-weight: 740;
+  line-height: 1.65;
+}
+
+.menu-recruit-values ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 18px 0 0;
+  list-style: none;
+}
+
+.menu-recruit-values li {
+  border-radius: 999px;
+  padding: 7px 11px;
+  background: #fff0e6;
+  color: var(--color-orange);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.menu-benefit,
+.menu-process {
+  margin-top: clamp(48px, 6vw, 88px);
+}
+
+.menu-benefit > div {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.menu-benefit article {
+  display: grid;
+  min-height: 96px;
+  place-items: center;
+  border: 1px solid #e8e1da;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--color-ink-strong);
+  font-weight: 950;
 }
 
 .menu-report-list,
@@ -8577,16 +9154,54 @@
   }
 
   .menu-grid-2,
+  .menu-greeting,
   .menu-cert-layout,
+  .menu-policy,
+  .menu-board__head,
   .menu-industrial,
   .menu-contact {
     grid-template-columns: 1fr;
   }
 
   .menu-card-grid,
+  .menu-business > div,
+  .menu-benefit > div,
   .menu-job-list,
   .menu-recruit-steps {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .menu-greeting__headline {
+    grid-column: auto;
+  }
+
+  .menu-greeting__photo,
+  .menu-greeting__copy {
+    min-height: 360px;
+  }
+
+  .menu-history-daedong article {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-policy > div:first-child {
+    position: static;
+  }
+
+  .menu-policy__steps,
+  .menu-recruit-values > div {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-data-table article {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .menu-board__head > span,
+  .menu-board__head h3,
+  .menu-board__head label {
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .menu-report-list a,
@@ -8639,6 +9254,7 @@
   }
 
   .menu-location__inner,
+  .menu-category-nav__inner,
   .menu-depth-nav__inner,
   .menu-content-section {
     width: calc(100% - 32px);
@@ -8651,6 +9267,15 @@
   .menu-depth-nav {
     top: 60px;
     overflow-x: auto;
+  }
+
+  .menu-category-nav {
+    overflow-x: auto;
+  }
+
+  .menu-category-nav__inner {
+    grid-template-columns: repeat(5, minmax(132px, 1fr));
+    min-width: max-content;
   }
 
   .menu-depth-nav__inner {
@@ -8683,10 +9308,16 @@
   }
 
   .menu-card-grid,
+  .menu-business > div,
+  .menu-benefit > div,
   .menu-product-grid,
   .menu-job-list,
   .menu-recruit-steps,
   .menu-contact form {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-data-table article {
     grid-template-columns: 1fr;
   }
 
@@ -8722,10 +9353,17 @@
 @media (max-width: 560px) {
   .menu-content-section,
   .menu-location__inner,
+  .menu-category-nav__inner,
   .menu-depth-nav__inner {
     width: calc(100% - 24px);
   }
 
+  .menu-greeting__copy,
+  .menu-business article,
+  .menu-policy__steps article,
+  .menu-data-table article,
+  .menu-recruit-values article,
+  .menu-benefit article,
   .menu-statement,
   .menu-value-card,
   .menu-info-card,
