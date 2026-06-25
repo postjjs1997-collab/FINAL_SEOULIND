@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import BrainallPage from "./components/BrainallPage";
+import DesignTweaks from "./components/DesignTweaks";
 import MenuPage from "./components/MenuPage";
 import NewsPage from "./components/NewsPage";
 import TechnologyPage from "./components/TechnologyPage";
@@ -19,17 +20,22 @@ export default function App() {
     return () => window.removeEventListener("hashchange", syncRoute);
   }, []);
 
+  let page;
+
   if (route.startsWith("news")) {
-    return <NewsPage route={route} />;
+    page = <NewsPage route={route} />;
+  } else if (route.startsWith("technology")) {
+    page = <TechnologyPage route={route} />;
+  } else if (menuRoutes.includes(route)) {
+    page = <MenuPage route={route} />;
+  } else {
+    page = <BrainallPage />;
   }
 
-  if (route.startsWith("technology")) {
-    return <TechnologyPage route={route} />;
-  }
-
-  if (menuRoutes.includes(route)) {
-    return <MenuPage route={route} />;
-  }
-
-  return <BrainallPage />;
+  return (
+    <>
+      {page}
+      <DesignTweaks />
+    </>
+  );
 }

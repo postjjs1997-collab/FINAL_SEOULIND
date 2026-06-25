@@ -14,6 +14,12 @@
   --color-line: #e4ddd5;
   --color-soft: #f7f3ee;
   --color-paper: #fffaf4;
+  --tweak-font-family: "Pretendard", sans-serif;
+  --tweak-font-scale: 1;
+  --tweak-font-size: 16px;
+  --tweak-heading-scale: 1;
+  --tweak-menu-hero-height-scale: 1;
+  --tweak-section-spacing-scale: 1;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   color-scheme: light;
@@ -26,6 +32,8 @@
 html {
   min-height: 100%;
   background: var(--color-paper);
+  font-size: 16px;
+  font-size: var(--tweak-font-size);
   scroll-padding-top: 80px;
   scroll-behavior: smooth;
 }
@@ -37,7 +45,7 @@ body {
   overflow-x: hidden;
   background: var(--color-paper);
   color: var(--color-ink);
-  font-family: "Pretendard", sans-serif;
+  font-family: var(--tweak-font-family);
   font-feature-settings: "kern";
   text-rendering: geometricPrecision;
 }
