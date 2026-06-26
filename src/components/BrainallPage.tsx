@@ -1169,7 +1169,7 @@ function LatestPartsSection({ copy, parts }: { copy: SiteContent["latest"]; part
       ref={ref}
       style={
         {
-          "--latest-scroll-height": `${Math.max(totalClipCount, partCount, 1) * 56}svh`,
+          "--latest-scroll-height": `${Math.max(totalClipCount, partCount, 1) * 48}svh`,
           "--latest-progress": `${progressPercent}%`,
           "--latest-step-progress": activePartProgress,
           "--active-accent": activePart?.accent ?? "#e9631a",
@@ -1184,6 +1184,18 @@ function LatestPartsSection({ copy, parts }: { copy: SiteContent["latest"]; part
               <h2 aria-label={copy.title.replace(/\n/g, " ")}>
                 <ScrollComposeText text={titleText} />
               </h2>
+            </div>
+
+            <div className="latest-parts__controls" aria-label="Product lineup controls">
+              <div className="latest-parts__progress" aria-hidden="true">
+                <i style={{ width: `${progressPercent}%` }} />
+              </div>
+              <button className="latest-parts__nav latest-parts__nav--prev" type="button" onClick={() => moveSlide(-1)} aria-label="Previous product" disabled={active === 0}>
+                <Icon name="arrow" />
+              </button>
+              <button className="latest-parts__nav" type="button" onClick={() => moveSlide(1)} aria-label="Next product" disabled={active === partCount - 1}>
+                <Icon name="arrow" />
+              </button>
             </div>
 
             <div className="latest-parts__image-board">
@@ -1208,18 +1220,6 @@ function LatestPartsSection({ copy, parts }: { copy: SiteContent["latest"]; part
                 <span>{String(active + 1).padStart(2, "0")}</span>
                 <strong>{activePart.title}</strong>
               </div>
-            </div>
-
-            <div className="latest-parts__controls" aria-label="Product lineup controls">
-              <div className="latest-parts__progress" aria-hidden="true">
-                <i style={{ width: `${progressPercent}%` }} />
-              </div>
-              <button className="latest-parts__nav latest-parts__nav--prev" type="button" onClick={() => moveSlide(-1)} aria-label="Previous product" disabled={active === 0}>
-                <Icon name="arrow" />
-              </button>
-              <button className="latest-parts__nav" type="button" onClick={() => moveSlide(1)} aria-label="Next product" disabled={active === partCount - 1}>
-                <Icon name="arrow" />
-              </button>
             </div>
           </aside>
 

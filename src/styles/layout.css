@@ -1968,7 +1968,7 @@
   display: grid;
   width: 100%;
   min-height: 100svh;
-  padding: clamp(96px, 9.4svh, 124px) clamp(22px, 3.2vw, 54px) clamp(44px, 5.6svh, 74px);
+  padding: clamp(64px, 7svh, 88px) clamp(22px, 3.2vw, 54px) clamp(24px, 4svh, 48px);
   place-items: center;
 }
 
@@ -2088,7 +2088,7 @@
 
 .latest-parts__head {
   width: min(760px, 100%);
-  margin: 0 0 clamp(28px, 4svh, 46px);
+  margin: 0 0 clamp(18px, 2.8svh, 30px);
 }
 
 .latest-parts__head > span {
@@ -2103,7 +2103,7 @@
 .latest-parts__head h2 {
   margin: 0;
   color: #fffaf4;
-  font-size: clamp(3.1rem, 5.15vw, 7rem);
+  font-size: clamp(2.55rem, 4.35vw, 5.65rem);
   font-weight: 900;
   line-height: 0.94;
   letter-spacing: 0;
@@ -2114,7 +2114,7 @@
 .latest-parts__image-board {
   position: relative;
   width: min(560px, 100%);
-  height: clamp(390px, 52svh, 580px);
+  height: clamp(210px, 30svh, 360px);
   overflow: hidden;
   border: 1px solid rgba(255, 250, 244, 0.13);
   border-radius: 8px;
@@ -2309,7 +2309,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: clamp(22px, 3svh, 32px);
+  margin: 0 0 clamp(14px, 2.2svh, 22px);
 }
 
 .latest-parts__progress {
@@ -2331,8 +2331,8 @@
 
 .latest-parts__nav {
   display: grid;
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   place-items: center;
   cursor: pointer;
   border: 1px solid rgba(255, 250, 244, 0.17);
@@ -2383,7 +2383,7 @@
 
 .latest-parts__video-stage {
   position: relative;
-  min-height: clamp(500px, 62svh, 680px);
+  min-height: clamp(380px, 50svh, 520px);
   overflow: hidden;
 }
 
