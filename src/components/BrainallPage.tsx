@@ -1854,7 +1854,27 @@ function GlobalAchievementSection({ copy, achievements }: { copy: SiteContent["a
   );
 }
 
-const clientStatementAccentWords = new Set(["SEOUL", "INDUSTRY", "PARTNERSHIPS"]);
+const clientStatementAccentWords = new Set(["SEOUL", "INDUSTRY", "OEM", "PARTNERSHIPS"]);
+const clientStatementAccentTerms = ["서울산업", "파트너십", "ソウル産業", "パートナーシップ"];
+
+const clientCollabCopy: Record<LanguageCode, { kicker: string; logoWallLabel: string }> = {
+  ko: {
+    kicker: "글로벌 OEM 파트너 네트워크",
+    logoWallLabel: "서울산업 주요 협력사",
+  },
+  en: {
+    kicker: "Global OEM Partner Network",
+    logoWallLabel: "Seoul Industry key partners",
+  },
+  ja: {
+    kicker: "グローバルOEMパートナーネットワーク",
+    logoWallLabel: "ソウル産業の主要パートナー",
+  },
+};
+
+function isClientStatementAccent(token: string, normalized: string) {
+  return clientStatementAccentWords.has(normalized) || clientStatementAccentTerms.some((term) => token.includes(term));
+}
 
 function ClientCollabStatement({ statement, progress }: { statement: string; progress: number }) {
   const tokens = statement.split(/(\s+)/);
@@ -1870,7 +1890,7 @@ function ClientCollabStatement({ statement, progress }: { statement: string; pro
 
         wordIndex += 1;
         const normalized = token.replace(/[^a-z0-9]/gi, "").toUpperCase();
-        const accented = clientStatementAccentWords.has(normalized);
+        const accented = isClientStatementAccent(token, normalized);
         const introWord = wordIndex < introWordCount;
         const revealOrder = introWord ? 0 : (wordIndex - introWordCount) / revealableCount;
         const revealStart = 0.08 + revealOrder * 0.58;
@@ -1914,17 +1934,18 @@ function ClientCollabStatement({ statement, progress }: { statement: string; pro
   );
 }
 
-function ClientCollabSection({ statement, clients, partners }: { statement: string; clients: ClientPartner[]; partners: PartnerLogo[] }) {
+function ClientCollabSection({ statement, clients, partners, language }: { statement: string; clients: ClientPartner[]; partners: PartnerLogo[]; language: LanguageCode }) {
   const sectionRef = useRef<HTMLElement>(null);
   const { progress: statementProgress } = useScrollSteps(sectionRef, Math.max(2, clients.length), 0.0001);
   const featuredPartners = partners.slice(0, 8);
+  const copy = clientCollabCopy[language] ?? clientCollabCopy.ko;
 
   return (
-    <section className="client-collab" id="client-collab" data-scene="dark" ref={sectionRef}>
+    <section className="client-collab" id="client-collab" data-scene="dark" data-language={language} ref={sectionRef}>
       <div className="client-collab__split">
         <div className="client-collab__text">
-          <span className="client-collab__kicker">Global OEM Partner Network</span>
-          <div className="client-collab__logo-wall" aria-label="서울산업 주요 협력사">
+          <span className="client-collab__kicker">{copy.kicker}</span>
+          <div className="client-collab__logo-wall" aria-label={copy.logoWallLabel}>
             {featuredPartners.map((partner) => (
               <a href={getPartnerHomepage(partner)} target="_blank" rel="noreferrer" key={partner.name} aria-label={`${partner.name} 홈페이지 새 창으로 열기`}>
                 {partner.logoSrc ? <img src={partner.logoSrc} alt={partner.name} loading="lazy" /> : <strong>{partner.mark}</strong>}
@@ -3064,7 +3085,7 @@ export default function BrainallPage() {
         <HistorySection copy={content.historyHeading} eras={content.historyEras} language={language} />
         <GlobalSection copy={content.global} partners={content.partnerLogos} language={language} />
         <GlobalAchievementSection copy={content.achievementsHeading} achievements={content.globalAchievements} />
-        <ClientCollabSection statement={content.clientCollabStatement} clients={content.clientPartners} partners={content.partnerLogos} />
+        <ClientCollabSection statement={content.clientCollabStatement} clients={content.clientPartners} partners={content.partnerLogos} language={language} />
         <EsgSection copy={content.esgHeading} pillars={content.esgPillars} />
         <MediaSection copy={content.mediaHeading} items={mediaItems} />
       </main>

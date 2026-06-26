@@ -1,9 +1,11 @@
 import {
   siteContent as baseSiteContent,
+  type ClientPartner,
   type EsgPillar,
   type Highlight,
   type HistoryEra,
   type LanguageCode,
+  type PartnerLogo,
   type SiteContent,
   type Solution,
 } from "./brainall";
@@ -47,7 +49,55 @@ const historyStartYear = (era: HistoryEra) => Number(era.period.match(/\d{4}/)?.
 const chronologicalHistoryEras = (eras: HistoryEra[]) =>
   [...eras].sort((first, second) => historyStartYear(first) - historyStartYear(second));
 
-const clientStatement = "SEOUL INDUSTRY BUILDS OEM PARTNERSHIPS THROUGH PRECISION MACHINING, QUALITY CONTROL, AND RELIABLE DELIVERY.";
+const clientStatements: Record<LanguageCode, string> = {
+  ko: "서울산업은 정밀가공, 품질관리, 안정적인 납기로 OEM 파트너십을 만들어갑니다.",
+  en: "SEOUL INDUSTRY BUILDS OEM PARTNERSHIPS THROUGH PRECISION MACHINING, QUALITY CONTROL, AND RELIABLE DELIVERY.",
+  ja: "ソウル産業は精密加工、品質管理、安定供給でOEMパートナーシップを築きます。",
+};
+
+const partnerRegionPatches: Record<LanguageCode, Array<Partial<PartnerLogo>>> = {
+  ko: [
+    { region: "미국" },
+    { region: "미국" },
+    { region: "한국 / 글로벌" },
+    { region: "한국" },
+    { region: "글로벌" },
+    { region: "한국" },
+    { region: "미국 / 멕시코" },
+    { region: "미국" },
+  ],
+  en: [],
+  ja: [
+    { region: "米国" },
+    { region: "米国" },
+    { region: "韓国 / グローバル" },
+    { region: "韓国" },
+    { region: "グローバル" },
+    { region: "韓国" },
+    { region: "米国 / メキシコ" },
+    { region: "米国" },
+  ],
+};
+
+const clientPartnerPatches: Record<LanguageCode, Array<Partial<ClientPartner>>> = {
+  ko: [
+    { role: "변속기 / 샤프트 프로그램", year: "미국" },
+    { role: "다이캐스팅 / 가공 부품", year: "미국" },
+    { role: "파워트레인 / 드라이브라인 프로그램", year: "글로벌" },
+    { role: "조향 / 모듈 프로그램", year: "한국" },
+    { role: "드라이브라인 수출 프로그램", year: "글로벌" },
+    { role: "북미 파워트레인 공급", year: "미국" },
+  ],
+  en: [],
+  ja: [
+    { role: "トランスミッション / シャフトプログラム", year: "米国" },
+    { role: "ダイカスト / 加工部品", year: "米国" },
+    { role: "パワートレイン / ドライブラインプログラム", year: "グローバル" },
+    { role: "ステアリング / モジュールプログラム", year: "韓国" },
+    { role: "ドライブライン輸出プログラム", year: "グローバル" },
+    { role: "北米パワートレイン供給", year: "米国" },
+  ],
+};
 
 function applyKoreanCopy(content: SiteContent) {
   Object.assign(content.hero, {
@@ -125,7 +175,9 @@ function applyKoreanCopy(content: SiteContent) {
     lines: ["1μm 단위의 정밀함으로,", "완성차의 신뢰를 뒷받침합니다."],
   });
   content.achievementsHeading.titleLines = ["도면 검토부터 양산 공급까지", "서울산업의 제조 기반"];
-  content.clientCollabStatement = clientStatement;
+  content.partnerLogos = patchByIndex<PartnerLogo>(content.partnerLogos, partnerRegionPatches.ko);
+  content.clientCollabStatement = clientStatements.ko;
+  content.clientPartners = patchByIndex<ClientPartner>(content.clientPartners, clientPartnerPatches.ko);
   Object.assign(content.esgHeading, {
     copy: "정밀가공 기업으로서 환경 부담을 줄이고 안전한 현장과 투명한 기준을 지키며, 오래 가는 OEM 파트너십을 만들어 갑니다.",
   });
@@ -230,7 +282,7 @@ function applyEnglishCopy(content: SiteContent) {
     lines: ["Precise to the micron,", "we stand behind every vehicle we help build."],
   });
   content.achievementsHeading.titleLines = ["From first drawing to full production —", "the base Seoul Industry is built on"];
-  content.clientCollabStatement = clientStatement;
+  content.clientCollabStatement = clientStatements.en;
   Object.assign(content.esgHeading, {
     copy: "As a precision machining company, we keep our footprint light, our shop floor safe, and our standards clear — the foundation for OEM partnerships that last.",
   });
@@ -332,7 +384,9 @@ function applyJapaneseCopy(content: SiteContent) {
     lines: ["1ミクロン単位の精度で、", "完成車の信頼を", "支え続けます。"],
   });
   content.achievementsHeading.titleLines = ["図面の検討から量産供給まで——", "ソウル産業の製造基盤"];
-  content.clientCollabStatement = clientStatement;
+  content.partnerLogos = patchByIndex<PartnerLogo>(content.partnerLogos, partnerRegionPatches.ja);
+  content.clientCollabStatement = clientStatements.ja;
+  content.clientPartners = patchByIndex<ClientPartner>(content.clientPartners, clientPartnerPatches.ja);
   Object.assign(content.esgHeading, {
     copy: "精密加工企業として環境負荷を抑え、安全な現場と透明な基準を守りながら、長く続くOEMパートナーシップを築きます。",
   });
