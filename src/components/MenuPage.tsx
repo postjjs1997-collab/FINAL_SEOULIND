@@ -739,27 +739,270 @@ const industrialProcesses = [
   { title: "검사·출하 관리", copy: "LOT 관리, 검사 기록, 포장 기준을 함께 확인해 산업기계 부품의 안정 공급을 지원합니다." },
 ];
 
-const recruitValues = [
-  { title: "Challenge", label: "도전", copy: "현장의 문제를 피하지 않고 더 나은 공정 기준을 찾는 사람", keywords: ["도전", "열정", "의지"] },
-  { title: "Creativity", label: "창의", copy: "정해진 방식에 머무르지 않고 개선 아이디어를 실행하는 사람", keywords: ["아이디어", "개선", "자율"] },
-  { title: "Communication", label: "소통", copy: "품질과 납기 목표를 위해 동료와 정확하게 협업하는 사람", keywords: ["존중", "정직", "책임"] },
-];
+type RecruitValue = {
+  title: string;
+  label: string;
+  copy: string;
+  keywords: string[];
+};
 
-const benefits = ["4대보험", "건강검진", "통근 지원", "경조 지원", "휴가 제도", "교육 지원", "장기근속 포상", "기념일 선물"];
+type RecruitStep = {
+  title: string;
+  copy: string;
+};
 
-const recruitSteps = [
-  { title: "모집공고", copy: "홈페이지와 채용 채널을 통해 모집 직무를 공지합니다." },
-  { title: "원서접수", copy: "지원서와 자기소개서를 접수하고 기본 요건을 확인합니다." },
-  { title: "서류전형", copy: "직무 적합성, 경력, 성장 가능성을 종합적으로 검토합니다." },
-  { title: "면접전형", copy: "기본 역량과 현장 적응력, 협업 방식을 확인합니다." },
-  { title: "최종합격", copy: "최종 합격자에게 근무 조건과 입사 일정을 안내합니다." },
-];
+type RecruitSystem = {
+  title: string;
+  copy: string;
+  note: string;
+};
 
-const jobPosts = [
-  { field: "생산기술", title: "정밀가공 생산기술 담당", status: "상시채용", work: "공정 조건 관리, 설비 셋업, 생산성 개선" },
-  { field: "품질관리", title: "자동차 부품 품질관리 담당", status: "접수중", work: "치수 검사, LOT 관리, 고객 품질 대응" },
-  { field: "생산관리", title: "OEM 양산 납기관리 담당", status: "상시채용", work: "생산계획, 출하 일정, 협력사 커뮤니케이션" },
-];
+type RecruitBenefitGroup = {
+  title: string;
+  items: string[];
+};
+
+type RecruitJob = {
+  field: string;
+  title: string;
+  status: string;
+  work: string;
+  meta: string;
+};
+
+type RecruitPageCopy = {
+  heroEyebrow: string;
+  heroTitle: string[];
+  heroCopy: string;
+  heroCta: string;
+  heroCtaHref: string;
+  heroStatLabel: string;
+  heroStats: Array<[string, string]>;
+  processEyebrow: string;
+  processTitle: string;
+  processCopy: string;
+  steps: RecruitStep[];
+  valuesEyebrow: string;
+  valuesTitle: string;
+  valuesCopy: string;
+  values: RecruitValue[];
+  peopleEyebrow: string;
+  peopleTitle: string;
+  peopleCopy: string;
+  peopleBullets: string[];
+  systemEyebrow: string;
+  systemTitle: string;
+  systems: RecruitSystem[];
+  benefitEyebrow: string;
+  benefitTitle: string;
+  benefitCopy: string;
+  benefitGroups: RecruitBenefitGroup[];
+  jobsEyebrow: string;
+  jobsTitle: string;
+  jobsCopy: string;
+  jobsCta: string;
+  jobs: RecruitJob[];
+  jobsGuideTitle: string;
+  jobsGuideItems: string[];
+};
+
+const recruitPageCopy: Record<LanguageCode, RecruitPageCopy> = {
+  ko: {
+    heroEyebrow: "SEOUL INDUSTRY RECRUITMENT",
+    heroTitle: ["정밀가공의 현장에서", "미래의 움직임을 함께 만듭니다."],
+    heroCopy:
+      "서울산업은 자동차 부품 정밀가공 현장에서 품질, 납기, 개선을 함께 만들어 갈 사람을 기다립니다. 좋은 제조는 좋은 장비만으로 완성되지 않고, 현장을 이해하는 사람의 태도에서 시작됩니다.",
+    heroCta: "채용공고 보기",
+    heroCtaHref: "#/recruit/jobs",
+    heroStatLabel: "PEOPLE FIRST",
+    heroStats: [
+      ["1985", "제조 기반"],
+      ["OEM", "글로벌 고객 대응"],
+      ["1 TEAM", "생산·품질·기술 협업"],
+    ],
+    processEyebrow: "PROCESS",
+    processTitle: "채용 프로세스",
+    processCopy: "직무 적합성과 현장 협업 역량을 함께 확인하며, 지원자에게 필요한 안내를 단계별로 제공합니다.",
+    steps: [
+      { title: "지원 접수", copy: "채용공고 확인 후 이력서와 자기소개서를 제출합니다." },
+      { title: "서류 검토", copy: "직무 경험, 기본 역량, 성장 가능성을 종합적으로 검토합니다." },
+      { title: "면접 전형", copy: "담당 부서와 함께 현장 이해도, 책임감, 협업 방식을 확인합니다." },
+      { title: "입사 안내", copy: "처우, 필요 서류, 입사 일정과 배치 부서를 안내합니다." },
+    ],
+    valuesEyebrow: "EMPLOYMENT INFORMATION",
+    valuesTitle: "서울산업 인재상",
+    valuesCopy: "현장 문제를 정확히 보고, 기준을 세우며, 동료와 함께 더 나은 제조 흐름을 만드는 사람을 찾습니다.",
+    values: [
+      { title: "Challenging", label: "도전", copy: "새로운 공정 조건과 고객 요구를 피하지 않고 개선안을 찾는 사람", keywords: ["도전", "실행", "개선"] },
+      { title: "Professional", label: "전문성", copy: "맡은 직무의 기준을 깊게 이해하고 꾸준히 숙련도를 높이는 사람", keywords: ["숙련", "책임", "학습"] },
+      { title: "Integrity", label: "정직", copy: "품질 기록과 현장 기준을 투명하게 지키며 신뢰를 만드는 사람", keywords: ["기록", "기준", "신뢰"] },
+      { title: "Collaboration", label: "소통", copy: "생산, 품질, 기술 부서와 정확히 소통하며 납기 목표를 맞추는 사람", keywords: ["협업", "존중", "공유"] },
+    ],
+    peopleEyebrow: "PEOPLE AND SHOP FLOOR",
+    peopleTitle: "사람과 현장을 중시하는 서울산업",
+    peopleCopy:
+      "서울산업은 축적된 제조 경험을 다음 세대의 숙련으로 연결하기 위해 현장 교육, 품질 의식, 안전한 작업 문화를 중요하게 봅니다. 빠르게 변하는 자동차 부품 시장에서 가장 오래 남는 경쟁력은 사람입니다.",
+    peopleBullets: ["현장 중심 직무 교육", "품질 기준과 기록 습관", "안전하고 책임 있는 작업 문화", "고객 납기 대응을 위한 부서 간 협업"],
+    systemEyebrow: "HR SYSTEM",
+    systemTitle: "인사제도",
+    systems: [
+      { title: "급여제도", copy: "직무와 역량, 회사 운영 기준에 맞춰 합리적인 보상 체계를 운영합니다.", note: "월 급여 / 수당 / 성과 기준" },
+      { title: "평가제도", copy: "업무 태도, 직무 숙련, 품질 개선 기여도를 함께 반영합니다.", note: "직무 역량 / 협업 / 개선" },
+      { title: "승격제도", copy: "근속 기간뿐 아니라 실질적인 역할 수행과 성과를 함께 검토합니다.", note: "역량 기반 성장" },
+      { title: "교육훈련", copy: "신규 입사자와 직무 담당자가 현장 기준을 빠르게 익힐 수 있도록 지원합니다.", note: "현장 교육 / 품질 교육" },
+    ],
+    benefitEyebrow: "BENEFIT",
+    benefitTitle: "복리후생제도",
+    benefitCopy: "임직원이 안정적으로 업무에 집중하고 생활의 균형을 유지할 수 있도록 기본 복지와 현장 지원 제도를 운영합니다.",
+    benefitGroups: [
+      { title: "법정 복리후생", items: ["국민연금", "건강보험", "고용보험", "산재보험", "퇴직연금"] },
+      { title: "생활 지원", items: ["건강검진", "경조 지원", "휴가 제도", "기념일 선물"] },
+      { title: "근무 지원", items: ["통근 지원", "식사 지원", "근무복 지급", "현장 안전용품"] },
+      { title: "성장 지원", items: ["직무 교육", "품질 교육", "장기근속 포상", "자격 역량 지원"] },
+    ],
+    jobsEyebrow: "JOB OPENINGS",
+    jobsTitle: "현재 모집 직무",
+    jobsCopy: "생산, 품질, 생산관리 영역에서 서울산업의 제조 기준을 함께 만들 인재를 찾습니다.",
+    jobsCta: "문의하기",
+    jobs: [
+      { field: "생산기술", title: "정밀가공 생산기술 담당", status: "상시채용", work: "공정 조건 관리, 설비 셋업, 생산성 개선", meta: "경력/신입 협의" },
+      { field: "품질관리", title: "자동차 부품 품질관리 담당", status: "접수중", work: "치수 검사, LOT 관리, 고객 품질 대응", meta: "품질 문서 이해 우대" },
+      { field: "생산관리", title: "OEM 양산 납기관리 담당", status: "상시채용", work: "생산계획, 출하 일정, 협력사 커뮤니케이션", meta: "제조업 경험 우대" },
+    ],
+    jobsGuideTitle: "지원 안내",
+    jobsGuideItems: ["채용공고 확인", "이력서와 자기소개서 준비", "담당자 검토 후 개별 연락", "면접 및 입사 일정 협의"],
+  },
+  en: {
+    heroEyebrow: "SEOUL INDUSTRY RECRUITMENT",
+    heroTitle: ["On the precision machining floor", "we build tomorrow's movement together."],
+    heroCopy:
+      "Seoul Industry is looking for people who will build quality, delivery, and improvement together on the precision machining floor. Strong manufacturing starts with people who understand the site.",
+    heroCta: "View Openings",
+    heroCtaHref: "#/recruit/jobs",
+    heroStatLabel: "PEOPLE FIRST",
+    heroStats: [
+      ["1985", "Manufacturing base"],
+      ["OEM", "Global customer response"],
+      ["1 TEAM", "Production, quality, and engineering"],
+    ],
+    processEyebrow: "PROCESS",
+    processTitle: "Recruitment Process",
+    processCopy: "We review job fit and collaboration capability together, with clear guidance at each stage.",
+    steps: [
+      { title: "Apply", copy: "Submit your resume and introduction after checking the opening." },
+      { title: "Document Review", copy: "We review experience, core capability, and growth potential." },
+      { title: "Interview", copy: "The team checks site understanding, responsibility, and collaboration style." },
+      { title: "Onboarding", copy: "Compensation, required documents, start date, and placement are guided." },
+    ],
+    valuesEyebrow: "EMPLOYMENT INFORMATION",
+    valuesTitle: "Talent Profile",
+    valuesCopy: "We look for people who understand site issues, set standards, and build better manufacturing flow with colleagues.",
+    values: [
+      { title: "Challenging", label: "Challenge", copy: "Finds improvement paths instead of avoiding new process or customer requirements.", keywords: ["Challenge", "Action", "Improve"] },
+      { title: "Professional", label: "Professionalism", copy: "Understands the role deeply and keeps building practical skill.", keywords: ["Skill", "Ownership", "Learning"] },
+      { title: "Integrity", label: "Integrity", copy: "Maintains quality records and site standards transparently.", keywords: ["Record", "Standard", "Trust"] },
+      { title: "Collaboration", label: "Communication", copy: "Works accurately across production, quality, and engineering to meet delivery goals.", keywords: ["Teamwork", "Respect", "Share"] },
+    ],
+    peopleEyebrow: "PEOPLE AND SHOP FLOOR",
+    peopleTitle: "A company that values people and the site",
+    peopleCopy:
+      "Seoul Industry connects accumulated manufacturing experience to the next generation of skills through site training, quality awareness, and safe work culture.",
+    peopleBullets: ["Site-centered job training", "Quality standards and record habits", "Safe and responsible work culture", "Cross-team delivery response"],
+    systemEyebrow: "HR SYSTEM",
+    systemTitle: "HR System",
+    systems: [
+      { title: "Compensation", copy: "A rational compensation system aligned with role, capability, and company standards.", note: "Salary / allowance / performance" },
+      { title: "Evaluation", copy: "Work attitude, role skill, and contribution to quality improvement are reviewed together.", note: "Capability / collaboration / improvement" },
+      { title: "Promotion", copy: "Actual role performance and results are considered together with tenure.", note: "Capability-based growth" },
+      { title: "Training", copy: "New hires and role owners are supported to learn site standards quickly.", note: "Site training / quality training" },
+    ],
+    benefitEyebrow: "BENEFIT",
+    benefitTitle: "Benefits",
+    benefitCopy: "We operate basic welfare and site support programs so employees can focus steadily and maintain balance.",
+    benefitGroups: [
+      { title: "Statutory Benefits", items: ["National pension", "Health insurance", "Employment insurance", "Industrial accident insurance", "Retirement pension"] },
+      { title: "Life Support", items: ["Health checkup", "Family event support", "Leave programs", "Anniversary gifts"] },
+      { title: "Work Support", items: ["Commuting support", "Meal support", "Uniforms", "Safety supplies"] },
+      { title: "Growth Support", items: ["Job training", "Quality training", "Long-service awards", "Certification support"] },
+    ],
+    jobsEyebrow: "JOB OPENINGS",
+    jobsTitle: "Current Openings",
+    jobsCopy: "We are looking for people who will build Seoul Industry's manufacturing standards across production, quality, and production control.",
+    jobsCta: "Contact Us",
+    jobs: [
+      { field: "Production Engineering", title: "Precision Machining Production Engineer", status: "Always Open", work: "Process conditions, equipment setup, productivity improvement", meta: "New/experienced candidates" },
+      { field: "Quality Control", title: "Automotive Parts Quality Specialist", status: "Open", work: "Dimensional inspection, LOT management, customer quality response", meta: "Quality documentation preferred" },
+      { field: "Production Control", title: "OEM Production Schedule Coordinator", status: "Always Open", work: "Production planning, shipment schedule, partner communication", meta: "Manufacturing experience preferred" },
+    ],
+    jobsGuideTitle: "Application Guide",
+    jobsGuideItems: ["Check openings", "Prepare resume and introduction", "Individual contact after review", "Interview and start-date discussion"],
+  },
+  ja: {
+    heroEyebrow: "SEOUL INDUSTRY RECRUITMENT",
+    heroTitle: ["精密加工の現場から", "未来の動きをともにつくります。"],
+    heroCopy:
+      "ソウル産業は、自動車部品の精密加工現場で品質、納期、改善をともにつくる仲間を待っています。良い製造は設備だけでなく、現場を理解する人の姿勢から始まります。",
+    heroCta: "採用公告を見る",
+    heroCtaHref: "#/recruit/jobs",
+    heroStatLabel: "PEOPLE FIRST",
+    heroStats: [
+      ["1985", "製造基盤"],
+      ["OEM", "グローバル顧客対応"],
+      ["1 TEAM", "生産・品質・技術協業"],
+    ],
+    processEyebrow: "PROCESS",
+    processTitle: "採用プロセス",
+    processCopy: "職務適合性と現場での協業力をともに確認し、段階別に必要な案内を行います。",
+    steps: [
+      { title: "応募受付", copy: "採用公告を確認し、履歴書と自己紹介書を提出します。" },
+      { title: "書類検討", copy: "職務経験、基本能力、成長可能性を総合的に検討します。" },
+      { title: "面接選考", copy: "担当部署とともに現場理解、責任感、協業方式を確認します。" },
+      { title: "入社案内", copy: "処遇、必要書類、入社日程、配属部署を案内します。" },
+    ],
+    valuesEyebrow: "EMPLOYMENT INFORMATION",
+    valuesTitle: "ソウル産業の人材像",
+    valuesCopy: "現場課題を正確に見て、基準を立て、仲間とより良い製造フローをつくる人を求めています。",
+    values: [
+      { title: "Challenging", label: "挑戦", copy: "新しい工程条件と顧客要求を避けず、改善案を探す人", keywords: ["挑戦", "実行", "改善"] },
+      { title: "Professional", label: "専門性", copy: "担当職務の基準を深く理解し、熟練度を高め続ける人", keywords: ["熟練", "責任", "学習"] },
+      { title: "Integrity", label: "誠実", copy: "品質記録と現場基準を透明に守り、信頼をつくる人", keywords: ["記録", "基準", "信頼"] },
+      { title: "Collaboration", label: "疎通", copy: "生産、品質、技術部署と正確に連携し、納期目標を合わせる人", keywords: ["協業", "尊重", "共有"] },
+    ],
+    peopleEyebrow: "PEOPLE AND SHOP FLOOR",
+    peopleTitle: "人と現場を重視するソウル産業",
+    peopleCopy:
+      "ソウル産業は、積み重ねた製造経験を次世代の熟練へつなげるため、現場教育、品質意識、安全な作業文化を重視します。",
+    peopleBullets: ["現場中心の職務教育", "品質基準と記録習慣", "安全で責任ある作業文化", "顧客納期対応のための部署間協業"],
+    systemEyebrow: "HR SYSTEM",
+    systemTitle: "人事制度",
+    systems: [
+      { title: "給与制度", copy: "職務と能力、会社運営基準に合わせた合理的な報酬体系を運営します。", note: "月給 / 手当 / 成果基準" },
+      { title: "評価制度", copy: "業務姿勢、職務熟練、品質改善への貢献度をともに反映します。", note: "職務能力 / 協業 / 改善" },
+      { title: "昇格制度", copy: "勤続期間だけでなく、実質的な役割遂行と成果をともに検討します。", note: "能力基盤の成長" },
+      { title: "教育訓練", copy: "新入社員と職務担当者が現場基準を早く習得できるよう支援します。", note: "現場教育 / 品質教育" },
+    ],
+    benefitEyebrow: "BENEFIT",
+    benefitTitle: "福利厚生制度",
+    benefitCopy: "社員が安定して業務に集中し、生活のバランスを保てるよう基本福利と現場支援制度を運営します。",
+    benefitGroups: [
+      { title: "法定福利厚生", items: ["国民年金", "健康保険", "雇用保険", "産災保険", "退職年金"] },
+      { title: "生活支援", items: ["健康診断", "慶弔支援", "休暇制度", "記念日ギフト"] },
+      { title: "勤務支援", items: ["通勤支援", "食事支援", "作業服支給", "安全用品"] },
+      { title: "成長支援", items: ["職務教育", "品質教育", "長期勤続褒賞", "資格能力支援"] },
+    ],
+    jobsEyebrow: "JOB OPENINGS",
+    jobsTitle: "現在募集職務",
+    jobsCopy: "生産、品質、生産管理領域でソウル産業の製造基準をともにつくる人材を探しています。",
+    jobsCta: "お問い合わせ",
+    jobs: [
+      { field: "生産技術", title: "精密加工 生産技術担当", status: "常時採用", work: "工程条件管理、設備セットアップ、生産性改善", meta: "経験者/新入 協議" },
+      { field: "品質管理", title: "自動車部品 品質管理担当", status: "受付中", work: "寸法検査、LOT管理、顧客品質対応", meta: "品質文書理解 優遇" },
+      { field: "生産管理", title: "OEM量産 納期管理担当", status: "常時採用", work: "生産計画、出荷日程、協力会社コミュニケーション", meta: "製造業経験 優遇" },
+    ],
+    jobsGuideTitle: "応募案内",
+    jobsGuideItems: ["採用公告確認", "履歴書と自己紹介書準備", "担当者検討後に個別連絡", "面接および入社日程協議"],
+  },
+};
 
 function normalizeRoute(route: string) {
   return route.replace(/^#\/?/, "").replace(/\/$/, "") || "company/greeting";
@@ -1361,14 +1604,65 @@ function ContactContent() {
   );
 }
 
-function RecruitGuideContent() {
+function RecruitGuideContent({ language }: { language: LanguageCode }) {
+  const copy = recruitPageCopy[language] ?? recruitPageCopy.ko;
+
   return (
     <>
-      <section className="menu-recruit-values menu-reveal">
-        <span className="menu-small-label">Core Value</span>
-        <h3>서울산업 인재상</h3>
+      <section className="menu-recruit-visual menu-reveal">
+        <div className="menu-recruit-visual__copy">
+          <span className="menu-small-label">{copy.heroEyebrow}</span>
+          <h3>
+            {copy.heroTitle.map((line, index) => (
+              <Fragment key={line}>
+                {index > 0 && <br />}
+                {line}
+              </Fragment>
+            ))}
+          </h3>
+          <p>{copy.heroCopy}</p>
+          <a href={copy.heroCtaHref}>
+            {copy.heroCta}
+            <Icon name="arrow" />
+          </a>
+        </div>
+        <div className="menu-recruit-visual__image" aria-hidden="true">
+          <img src={menuHeroImages.recruit} alt="" />
+          <div>
+            <span>{copy.heroStatLabel}</span>
+            {copy.heroStats.map(([value, label]) => (
+              <article key={value}>
+                <strong>{value}</strong>
+                <p>{label}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="menu-recruit-flow menu-reveal">
         <div>
-          {recruitValues.map((value) => (
+          <span className="menu-small-label">{copy.processEyebrow}</span>
+          <h3>{copy.processTitle}</h3>
+          <p>{copy.processCopy}</p>
+        </div>
+        <div className="menu-recruit-steps">
+          {copy.steps.map((step, index) => (
+            <article key={step.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{step.title}</strong>
+              <p>{step.copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="menu-recruit-values menu-reveal">
+        <span className="menu-small-label">{copy.valuesEyebrow}</span>
+        <h3>{copy.valuesTitle}</h3>
+        <p className="menu-section-lead">{copy.valuesCopy}</p>
+        <div>
+          {copy.values.map((value) => (
             <article key={value.title}>
               <Icon name="chart" />
               <span>{value.title}</span>
@@ -1383,24 +1677,52 @@ function RecruitGuideContent() {
           ))}
         </div>
       </section>
-      <section className="menu-benefit menu-reveal">
-        <span className="menu-small-label">Benefit</span>
-        <h3>복리후생</h3>
+
+      <section className="menu-recruit-people menu-reveal">
+        <div className="menu-recruit-people__media" aria-hidden="true">
+          <img src={menuHeroImages.precision} alt="" />
+          <strong>SEOUL INDUSTRY</strong>
+        </div>
+        <div className="menu-recruit-people__copy">
+          <span className="menu-small-label">{copy.peopleEyebrow}</span>
+          <h3>{copy.peopleTitle}</h3>
+          <p>{copy.peopleCopy}</p>
+          <ul>
+            {copy.peopleBullets.map((bullet) => (
+              <li key={bullet}>{bullet}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="menu-recruit-system menu-reveal">
+        <span className="menu-small-label">{copy.systemEyebrow}</span>
+        <h3>{copy.systemTitle}</h3>
         <div>
-          {benefits.map((benefit) => (
-            <article key={benefit}>{benefit}</article>
+          {copy.systems.map((system, index) => (
+            <article key={system.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{system.title}</strong>
+              <p>{system.copy}</p>
+              <b>{system.note}</b>
+            </article>
           ))}
         </div>
       </section>
-      <section className="menu-process menu-reveal">
-        <span className="menu-small-label">PROCESS</span>
-        <h3>채용 프로세스</h3>
-        <div className="menu-recruit-steps">
-          {recruitSteps.map((step, index) => (
-            <article key={step.title}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{step.title}</strong>
-              <p>{step.copy}</p>
+
+      <section className="menu-benefit menu-reveal">
+        <span className="menu-small-label">{copy.benefitEyebrow}</span>
+        <h3>{copy.benefitTitle}</h3>
+        <p className="menu-section-lead">{copy.benefitCopy}</p>
+        <div>
+          {copy.benefitGroups.map((group) => (
+            <article key={group.title}>
+              <strong>{group.title}</strong>
+              <ul>
+                {group.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
             </article>
           ))}
         </div>
@@ -1409,18 +1731,47 @@ function RecruitGuideContent() {
   );
 }
 
-function JobsContent() {
+function JobsContent({ language }: { language: LanguageCode }) {
+  const copy = recruitPageCopy[language] ?? recruitPageCopy.ko;
+
   return (
-    <div className="menu-job-list menu-reveal">
-      {jobPosts.map((job) => (
-        <article key={job.title}>
-          <span>{job.field}</span>
-          <strong>{job.title}</strong>
-          <p>{job.work}</p>
-          <b>{job.status}</b>
-        </article>
-      ))}
-    </div>
+    <>
+      <section className="menu-jobs-hero menu-reveal">
+        <div>
+          <span className="menu-small-label">{copy.jobsEyebrow}</span>
+          <h3>{copy.jobsTitle}</h3>
+          <p>{copy.jobsCopy}</p>
+        </div>
+        <a href="#/support/contact">
+          {copy.jobsCta}
+          <Icon name="arrow" />
+        </a>
+      </section>
+
+      <section className="menu-job-list menu-reveal">
+        {copy.jobs.map((job) => (
+          <article key={job.title}>
+            <span>{job.field}</span>
+            <strong>{job.title}</strong>
+            <p>{job.work}</p>
+            <small>{job.meta}</small>
+            <b>{job.status}</b>
+          </article>
+        ))}
+      </section>
+
+      <section className="menu-jobs-guide menu-reveal">
+        <h3>{copy.jobsGuideTitle}</h3>
+        <ol>
+          {copy.jobsGuideItems.map((item, index) => (
+            <li key={item}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{item}</strong>
+            </li>
+          ))}
+        </ol>
+      </section>
+    </>
   );
 }
 
@@ -1434,8 +1785,8 @@ function PageBody({ route, language }: { route: string; language: LanguageCode }
   if (route.startsWith("products/")) return <ProductsContent route={route} />;
   if (route.startsWith("support/news")) return <NewsContent />;
   if (route.startsWith("support/contact")) return <ContactContent />;
-  if (route.startsWith("recruit/guide")) return <RecruitGuideContent />;
-  if (route.startsWith("recruit/jobs")) return <JobsContent />;
+  if (route.startsWith("recruit/guide")) return <RecruitGuideContent language={language} />;
+  if (route.startsWith("recruit/jobs")) return <JobsContent language={language} />;
   return <GreetingContent />;
 }
 
@@ -1569,10 +1920,10 @@ export default function MenuPage({ route }: MenuPageProps) {
         );
 
       gsap.utils
-        .toArray<HTMLElement>(".menu-photo-card img, .menu-cert-layout > img, .menu-product-card img, .menu-industrial__visual img, .menu-history-daedong__media img, .menu-esg-landing__visual img, .menu-esg-pillar-card img")
+        .toArray<HTMLElement>(".menu-photo-card img, .menu-cert-layout > img, .menu-product-card img, .menu-industrial__visual img, .menu-history-daedong__media img, .menu-esg-landing__visual img, .menu-esg-pillar-card img, .menu-recruit-visual__image img, .menu-recruit-people__media img")
         .forEach((image) => {
           const trigger =
-            image.closest<HTMLElement>(".menu-photo-card, .menu-cert-layout, .menu-product-card, .menu-industrial__visual, .menu-history-daedong__media, .menu-esg-landing__visual, .menu-esg-pillar-card") ?? image;
+            image.closest<HTMLElement>(".menu-photo-card, .menu-cert-layout, .menu-product-card, .menu-industrial__visual, .menu-history-daedong__media, .menu-esg-landing__visual, .menu-esg-pillar-card, .menu-recruit-visual__image, .menu-recruit-people__media") ?? image;
 
           gsap.fromTo(
             image,
