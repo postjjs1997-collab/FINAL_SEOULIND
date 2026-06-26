@@ -390,10 +390,14 @@ const historyBlocks = [
 ];
 
 const certificateCards = [
-  { title: "IATF 16949", copy: "자동차 산업 품질경영 시스템 기준에 맞춘 제조 품질 관리 체계" },
-  { title: "ISO 14001", copy: "환경영향과 자원 사용을 관리하기 위한 환경경영 시스템" },
-  { title: "SQ 인증", copy: "고객 품질 기준에 맞춘 자동차 부품 협력사 품질 인증" },
+  { title: "IATF 16949:2016", copy: "자동차 산업 품질경영 시스템 기준에 맞춘 제조 품질 관리 체계" },
+  { title: "ISO 14001:2015", copy: "환경영향과 자원 사용을 관리하기 위한 환경경영 시스템" },
+  { title: "ISO 9001", copy: "원본 품질시스템 기준에 포함된 기본 품질경영 시스템 인증" },
+  { title: "SQ 인증", copy: "현대모비스 열처리·고주파열처리 협력사 품질 인증" },
   { title: "INNOBIZ", copy: "기술 혁신형 중소기업으로서의 제조 기술 역량 인증" },
+  { title: "VDA 6.3", copy: "자동차 부품 제조 공정의 프로세스 감사 대응 기준" },
+  { title: "CQI-9", copy: "Induction Hardening 열처리 특수공정 품질 평가 기준" },
+  { title: "CQI-15", copy: "Laser Welding 용접 특수공정 품질 평가 기준" },
 ];
 
 const environmentalSteps = [
