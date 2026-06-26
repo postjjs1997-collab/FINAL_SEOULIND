@@ -5,7 +5,7 @@ import partnerKdacLogo from "../../assets/partner-kdac.svg";
 import partnerDauchLogo from "../../assets/partner-dauch.svg";
 import partnerMobisLogo from "../../assets/partner-mobis.svg";
 import partnerMptLogo from "../../assets/partner-mpt.svg";
-import partnerNexteerLogo from "../../assets/partner-nexteer.svg";
+import partnerNexteerLogo from "../../assets/partner-nexteer.png";
 import partnerSpartanLogo from "../../assets/partner-spartan.svg";
 import partnerTrwLogo from "../../assets/partner-trw.svg";
 import clientGknImage from "../../assets/clients/client-gkn.jpg";
