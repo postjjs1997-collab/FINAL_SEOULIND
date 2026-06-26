@@ -2885,6 +2885,202 @@ export default function BrainallPage() {
         );
       });
 
+      gsap.utils.toArray<HTMLElement>(".latest-parts").forEach((section) => {
+        const gallery = section.querySelector<HTMLElement>(".latest-parts__gallery");
+        const board = section.querySelector<HTMLElement>(".latest-parts__image-board");
+        const controls = section.querySelector<HTMLElement>(".latest-parts__controls");
+        const stage = section.querySelector<HTMLElement>(".latest-parts__video-stage");
+        const stack = section.querySelector<HTMLElement>(".latest-parts__video-stack");
+        const glow = section.querySelector<HTMLElement>(".latest-parts__stage-glow");
+
+        if (board) {
+          gsap.fromTo(
+            board,
+            {
+              clipPath: "inset(0 100% 0 0)",
+              x: -48,
+              filter: "blur(16px) saturate(0.62)",
+            },
+            {
+              clipPath: "inset(0 0% 0 0)",
+              x: 0,
+              filter: "blur(0px) saturate(1)",
+              duration: 1.08,
+              ease: "expo.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 72%",
+                once: true,
+              },
+            },
+          );
+        }
+
+        if (stack) {
+          gsap.fromTo(
+            stack,
+            {
+              clipPath: "inset(0 0 0 100%)",
+              x: 78,
+              rotateY: -6,
+              filter: "blur(16px) saturate(0.68)",
+            },
+            {
+              clipPath: "inset(0 0 0 0%)",
+              x: 0,
+              rotateY: 0,
+              filter: "blur(0px) saturate(1)",
+              duration: 1.12,
+              ease: "expo.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 66%",
+                once: true,
+              },
+            },
+          );
+        }
+
+        if (controls) {
+          gsap.fromTo(
+            controls,
+            { autoAlpha: 0, x: -24, filter: "blur(8px)" },
+            {
+              autoAlpha: 1,
+              x: 0,
+              filter: "blur(0px)",
+              duration: 0.72,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 70%",
+                once: true,
+              },
+            },
+          );
+        }
+
+        if (glow) {
+          gsap.fromTo(
+            glow,
+            { autoAlpha: 0, scale: 0.52 },
+            {
+              autoAlpha: 1,
+              scale: 1,
+              duration: 1.18,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 66%",
+                once: true,
+              },
+            },
+          );
+        }
+
+        if (gallery && stage) {
+          gsap.to(gallery, {
+            y: 34,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+          gsap.to(stage, {
+            y: -44,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        }
+      });
+
+      gsap.utils.toArray<HTMLElement>(".client-collab").forEach((section) => {
+        const logoCards = gsap.utils.toArray<HTMLElement>(section.querySelectorAll(".client-collab__logo-wall a"));
+        const stage = section.querySelector<HTMLElement>(".client-collab__stage");
+        const clientCards = gsap.utils.toArray<HTMLElement>(section.querySelectorAll(".client-card"));
+
+        if (logoCards.length) {
+          gsap.fromTo(
+            logoCards,
+            {
+              autoAlpha: 0,
+              x: -34,
+              clipPath: "inset(0 100% 0 0)",
+              filter: "blur(10px)",
+            },
+            {
+              autoAlpha: 1,
+              x: 0,
+              clipPath: "inset(0 0% 0 0)",
+              filter: "blur(0px)",
+              duration: 0.72,
+              stagger: 0.055,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 76%",
+                once: true,
+              },
+            },
+          );
+        }
+
+        if (stage) {
+          gsap.fromTo(
+            stage,
+            {
+              autoAlpha: 0,
+              x: 70,
+              clipPath: "inset(0 0 0 18%)",
+              filter: "blur(18px)",
+            },
+            {
+              autoAlpha: 1,
+              x: 0,
+              clipPath: "inset(0 0 0 0%)",
+              filter: "blur(0px)",
+              duration: 1.04,
+              ease: "expo.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 72%",
+                once: true,
+              },
+            },
+          );
+        }
+
+        if (clientCards.length) {
+          gsap.fromTo(
+            clientCards,
+            {
+              clipPath: "inset(0 0 100% 0)",
+              filter: "blur(10px) saturate(0.58)",
+            },
+            {
+              clipPath: "inset(0 0 0% 0)",
+              filter: "blur(0px) saturate(1)",
+              duration: 0.82,
+              stagger: 0.06,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 58%",
+                once: true,
+              },
+            },
+          );
+        }
+      });
+
       gsap.utils
         .toArray<HTMLElement>(".global-section__copy, .client-collab__text")
         .forEach((target) => {

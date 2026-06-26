@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties, FormEvent } from "react";
 import certificationImage from "../../certification.png";
 import drivelineImage from "../../driveline.png";
@@ -12,6 +12,7 @@ import Icon from "./Icons";
 import { defaultLanguage, isLanguageCode, siteContent, type LanguageCode } from "../data/siteContent";
 import { getNoticePosts, newsCategoryLabels, noticeCategoryKickers } from "../data/notices";
 import { findMenuByRoute, getSiteMenuGroups } from "../data/navigation";
+import { gsap, ScrollTrigger } from "../motion/gsap";
 
 type MenuPageProps = {
   route: string;
@@ -1144,6 +1145,124 @@ export default function MenuPage({ route }: MenuPageProps) {
     document.documentElement.lang = languageOption;
     window.localStorage.setItem("seoulind-language", currentLanguage);
   }, [language]);
+
+  useLayoutEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      root.classList.add("menu-page--reduced-motion");
+      return;
+    }
+
+    root.classList.remove("menu-page--reduced-motion");
+
+    const ctx = gsap.context(() => {
+      gsap.set(".menu-hero", { clipPath: "inset(0 0 100% 0)" });
+      gsap.set(".menu-hero__image", {
+        scale: 1.15,
+        yPercent: -3,
+        filter: "saturate(0.58) contrast(1.08) brightness(0.52) blur(10px)",
+      });
+      gsap.set(".menu-hero__eyebrow, .menu-hero h1, .menu-hero p", {
+        autoAlpha: 0,
+        y: 34,
+        filter: "blur(9px)",
+      });
+      gsap.set(".menu-location, .menu-category-nav, .menu-depth-nav", {
+        autoAlpha: 0,
+        y: -18,
+        filter: "blur(7px)",
+      });
+      gsap.set(".menu-category-nav a, .menu-depth-nav a", {
+        autoAlpha: 0,
+        yPercent: 82,
+      });
+
+      const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
+      intro
+        .to(".menu-hero", {
+          clipPath: "inset(0 0 0% 0)",
+          duration: 0.9,
+          ease: "expo.out",
+        })
+        .to(
+          ".menu-hero__image",
+          {
+            scale: 1.055,
+            yPercent: 0,
+            filter: "saturate(0.84) contrast(1.06) brightness(0.78) blur(0px)",
+            duration: 1.18,
+            ease: "power3.out",
+          },
+          "<",
+        )
+        .to(
+          ".menu-hero__eyebrow, .menu-hero h1, .menu-hero p",
+          {
+            autoAlpha: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.76,
+            stagger: 0.08,
+          },
+          "<0.2",
+        )
+        .to(
+          ".menu-location, .menu-category-nav, .menu-depth-nav",
+          {
+            autoAlpha: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.62,
+            stagger: 0.06,
+          },
+          "<0.38",
+        )
+        .to(
+          ".menu-category-nav a, .menu-depth-nav a",
+          {
+            autoAlpha: 1,
+            yPercent: 0,
+            duration: 0.58,
+            stagger: 0.025,
+            ease: "power4.out",
+          },
+          "<0.12",
+        );
+
+      gsap.utils
+        .toArray<HTMLElement>(".menu-photo-card img, .menu-cert-layout > img, .menu-product-card img, .menu-industrial__visual img, .menu-history-daedong__media img")
+        .forEach((image) => {
+          const trigger =
+            image.closest<HTMLElement>(".menu-photo-card, .menu-cert-layout, .menu-product-card, .menu-industrial__visual, .menu-history-daedong__media") ?? image;
+
+          gsap.fromTo(
+            image,
+            { yPercent: -4, scale: 1.12 },
+            {
+              yPercent: 4,
+              scale: 1.04,
+              ease: "none",
+              scrollTrigger: {
+                trigger,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            },
+          );
+        });
+    }, root);
+
+    const refreshFrame = window.requestAnimationFrame(() => ScrollTrigger.refresh());
+
+    return () => {
+      window.cancelAnimationFrame(refreshFrame);
+      ctx.revert();
+    };
+  }, [cleanRoute, language]);
 
   useEffect(() => {
     const root = rootRef.current;
