@@ -416,16 +416,52 @@ const environmentalMetrics = [
   ["화학물질", "MSDS·소분용기", "현장 비치", "교육 및 표지 관리"],
 ];
 
+const environmentalPrograms = [
+  { title: "조직체계", copy: "생산, 품질, 관리 담당자가 환경 이슈를 함께 확인하고 개선 항목을 현장 기준으로 반영합니다.", note: "정기 점검 / 개선 이력 관리" },
+  { title: "리스크 완화", copy: "가공, 세척, 포장, 출하 과정에서 발생 가능한 환경 영향을 단계별로 확인하고 우선순위를 정합니다.", note: "공정별 위험요인 관리" },
+  { title: "화학물질 관리", copy: "MSDS, 소분용기 표기, 작업공정별 관리요령을 현장에 비치해 취급 기준을 명확히 합니다.", note: "교육 / 표지 / 보관 기준" },
+];
+
 const governanceCards = [
-  { title: "품질 기록", copy: "도면 변경, 검사 결과, 공정 이력을 체계적으로 남겨 고객 요구사항에 대응합니다." },
-  { title: "투명한 거래", copy: "협력사와 고객 사이의 납기, 품질, 거래 기준을 명확히 공유합니다." },
-  { title: "책임 있는 운영", copy: "현장 안전과 윤리 기준을 함께 관리하며 오래 가는 제조 파트너십을 만듭니다." },
+  { title: "윤리헌장", copy: "임직원이 고객, 협력사, 지역사회와의 관계에서 지켜야 할 기본 원칙을 명확히 합니다." },
+  { title: "윤리규범", copy: "품질 기록, 납기, 거래, 정보보안, 이해상충 방지 기준을 일상 업무의 판단 기준으로 삼습니다." },
+  { title: "실천지침", copy: "현장에서 바로 확인할 수 있는 보고, 승인, 기록, 개선 절차를 기준화해 실행력을 높입니다." },
+];
+
+const governanceStakeholders = [
+  { label: "01", title: "국가와 사회", copy: "법규를 준수하고 책임 있는 제조 활동으로 지역사회와 신뢰를 쌓습니다." },
+  { label: "02", title: "고객", copy: "도면, 품질, 납기, 변경 이력을 투명하게 관리해 안정적인 OEM 공급을 이어갑니다." },
+  { label: "03", title: "협력사", copy: "공정한 거래 기준과 명확한 품질 기준을 공유해 장기 파트너십을 만듭니다." },
+  { label: "04", title: "임직원", copy: "안전한 현장, 책임 있는 의사결정, 부당한 차별 없는 조직 문화를 지향합니다." },
+  { label: "05", title: "정보와 기록", copy: "고객 도면, 검사 결과, LOT 이력 등 핵심 정보를 정해진 권한과 절차로 관리합니다." },
+];
+
+const governanceRiskSteps = [
+  { title: "리스크 식별", copy: "고객 요구사항, 도면 변경, 품질 이슈, 납기 변동, 협력사 이슈를 업무 단계별로 확인합니다." },
+  { title: "리스크 대응", copy: "이슈 발생 시 유관 담당자가 원인, 영향 범위, 임시 조치, 재발 방지 대책을 함께 정리합니다." },
+  { title: "사후관리", copy: "조치 결과와 개선 이력을 기록하고 동일 문제가 반복되지 않도록 기준서와 현장 교육에 반영합니다." },
+];
+
+const governanceIndicators = [
+  ["윤리/반부패 신고 현황", "신고 및 확인 체계", "상시 운영", "접수, 조사, 조치 이력을 분리해 관리"],
+  ["공정거래 교육 현황", "협력사 거래 기준", "정기 점검", "발주, 납기, 품질 기준의 명확한 공유"],
+  ["컴플라이언스", "법규·인증 기준", "정기 확인", "IATF, ISO, SQ 등 인증 기준과 연결"],
+  ["정보보안경영", "도면·고객자료 권한", "권한 관리", "자료 접근과 전달 경로를 제한"],
+  ["품질기록", "검사·LOT 이력", "공정별 관리", "고객 요구사항과 변경 이력 추적"],
+  ["리스크관리", "이슈 대응 및 재발방지", "기록 유지", "원인 분석, 조치, 사후 검증까지 관리"],
 ];
 
 const esgReports = [
-  { year: "2026", title: "ESG 경영 방향", copy: "환경, 안전, 품질 기록, 투명한 거래 기준을 중심으로 서울산업의 운영 방향을 정리합니다." },
-  { year: "2025", title: "현장 개선 활동", copy: "에너지 절감, 불량 감소, 작업자 안전 개선 활동을 항목별로 관리합니다." },
-  { year: "2024", title: "품질·윤리 기준", copy: "고객 요구사항과 공정 이력을 명확하게 남기는 품질 운영 기준을 정리합니다." },
+  { year: "2026", title: "서울산업 ESG 운영 방향", copy: "환경경영, 안전한 현장, 품질 기록, 준법 거래 기준을 한 문서 흐름으로 정리합니다." },
+  { year: "2025", title: "현장 개선 활동", copy: "에너지 사용, 폐기물 관리, 불량 감소, 작업 안전 개선 활동을 항목별로 관리합니다." },
+  { year: "2024", title: "품질·윤리 기준", copy: "고객 요구사항, 공정 이력, 협력사 거래 기준을 명확하게 남기는 운영 기준을 정리합니다." },
+];
+
+const esgDisclosureRows = [
+  ["환경", "에너지·폐기물·화학물질", "운영 기준", "ISO 14001 기반 관리 항목"],
+  ["사회", "안전·인권·협력사", "관리 항목", "현장 안전과 협력사 커뮤니케이션"],
+  ["지배구조", "윤리·준법·리스크", "운영 기준", "품질 기록과 공정거래 기준"],
+  ["품질", "인증·고객 요구사항", "연계 관리", "IATF, SQ, ISO 인증 체계와 연결"],
 ];
 
 const automotiveProducts = [
@@ -703,6 +739,16 @@ function EnvironmentalContent() {
           ))}
         </div>
       </section>
+      <section className="menu-card-grid menu-reveal" aria-label="환경경영 운영 체계">
+        {environmentalPrograms.map((program) => (
+          <article className="menu-icon-card" key={program.title}>
+            <Icon name="leaf" />
+            <strong>{program.title}</strong>
+            <p>{program.copy}</p>
+            <span className="menu-card-note">{program.note}</span>
+          </article>
+        ))}
+      </section>
       <section className="menu-data-table menu-reveal" aria-label="환경 관리 지표">
         <h3>환경 관리 항목</h3>
         {environmentalMetrics.map(([category, indicator, status, memo]) => (
@@ -720,30 +766,122 @@ function EnvironmentalContent() {
 
 function GovernanceContent() {
   return (
-    <div className="menu-card-grid menu-reveal">
-      {governanceCards.map((card) => (
-        <article className="menu-icon-card" key={card.title}>
-          <Icon name="shield" />
-          <strong>{card.title}</strong>
-          <p>{card.copy}</p>
-        </article>
-      ))}
-    </div>
+    <>
+      <section className="menu-esg-intro menu-reveal">
+        <span className="menu-small-label">GOVERNANCE SYSTEM</span>
+        <h3>인권·윤리 경영</h3>
+        <p>
+          서울산업은 윤리경영, 준법 거래, 품질 기록, 리스크 관리를 하나의 운영 기준으로 연결합니다.
+          고객 도면과 공정 이력, 협력사 거래 기준, 현장 안전 기준을 투명하게 관리해 장기적인 OEM 파트너십을 만듭니다.
+        </p>
+      </section>
+
+      <section className="menu-policy menu-reveal">
+        <div>
+          <span className="menu-small-label">ETHICAL MANAGEMENT</span>
+          <h3>이해관계자 책임</h3>
+          <p>
+            모든 의사결정은 고객 품질, 협력사 신뢰, 임직원 안전, 법규 준수, 정보 보호를 기준으로 검토합니다.
+            현장의 작은 기록까지 남기는 것이 투명한 운영의 시작입니다.
+          </p>
+        </div>
+        <div className="menu-policy__steps">
+          {governanceStakeholders.map((item) => (
+            <article key={item.title}>
+              <span>{item.label}</span>
+              <strong>{item.title}</strong>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="menu-section-heading menu-reveal">
+        <span className="menu-small-label">CODE OF ETHICS</span>
+        <h3>윤리 강령</h3>
+        <p>
+          윤리강령은 임직원의 판단 기준을 문서화하고, 고객·협력사·현장 사이에서 발생할 수 있는 이해상충과 불공정 거래를 예방하기 위한 운영 기준입니다.
+        </p>
+      </section>
+
+      <section className="menu-card-grid menu-reveal" aria-label="윤리 강령">
+        {governanceCards.map((card) => (
+          <article className="menu-icon-card" key={card.title}>
+            <Icon name="shield" />
+            <strong>{card.title}</strong>
+            <p>{card.copy}</p>
+          </article>
+        ))}
+      </section>
+
+      <section className="menu-policy menu-reveal">
+        <div>
+          <span className="menu-small-label">RISK MANAGEMENT</span>
+          <h3>준법경영체계와 리스크 관리</h3>
+          <p>
+            품질, 납기, 공정 변경, 안전, 거래 기준에서 발생할 수 있는 리스크를 선제적으로 확인하고
+            조치 결과를 남겨 같은 문제가 반복되지 않도록 관리합니다.
+          </p>
+        </div>
+        <div className="menu-policy__steps">
+          {governanceRiskSteps.map((step, index) => (
+            <article key={step.title}>
+              <span>STEP {String(index + 1).padStart(2, "0")}</span>
+              <strong>{step.title}</strong>
+              <p>{step.copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="menu-data-table menu-reveal" aria-label="Governance 관리 지표">
+        <h3>윤리·준법 관리 현황</h3>
+        {governanceIndicators.map(([category, indicator, status, memo]) => (
+          <article key={`${category}-${indicator}`}>
+            <span>{category}</span>
+            <strong>{indicator}</strong>
+            <b>{status}</b>
+            <p>{memo}</p>
+          </article>
+        ))}
+      </section>
+    </>
   );
 }
 
 function EsgReportContent() {
   return (
-    <div className="menu-report-list menu-reveal">
-      {esgReports.map((report) => (
-        <a href="#/sustainability/esg-report" key={report.year}>
-          <span>{report.year}</span>
-          <strong>{report.title}</strong>
-          <p>{report.copy}</p>
-          <Icon name="arrow" />
-        </a>
-      ))}
-    </div>
+    <>
+      <section className="menu-esg-intro menu-reveal">
+        <span className="menu-small-label">ESG REPORT</span>
+        <h3>지속가능경영 공개 항목</h3>
+        <p>
+          서울산업의 ESG 보고서는 제조 현장에서 실제로 관리되는 환경, 안전, 품질, 윤리, 준법 항목을 중심으로 구성합니다.
+          보고서 형식은 다운로드형 자료와 연도별 개선 항목을 함께 보여주는 방식으로 확장할 수 있습니다.
+        </p>
+      </section>
+      <div className="menu-report-list menu-reveal">
+        {esgReports.map((report) => (
+          <a href="#/sustainability/esg-report" key={report.year}>
+            <span>{report.year}</span>
+            <strong>{report.title}</strong>
+            <p>{report.copy}</p>
+            <Icon name="arrow" />
+          </a>
+        ))}
+      </div>
+      <section className="menu-data-table menu-reveal" aria-label="ESG 공개 항목">
+        <h3>ESG 공개 항목</h3>
+        {esgDisclosureRows.map(([category, indicator, status, memo]) => (
+          <article key={`${category}-${indicator}`}>
+            <span>{category}</span>
+            <strong>{indicator}</strong>
+            <b>{status}</b>
+            <p>{memo}</p>
+          </article>
+        ))}
+      </section>
+    </>
   );
 }
 

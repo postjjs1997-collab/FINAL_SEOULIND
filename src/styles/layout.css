@@ -7950,6 +7950,7 @@
 .menu-history-daedong h3,
 .menu-esg-intro h3,
 .menu-policy h3,
+.menu-section-heading h3,
 .menu-data-table h3,
 .menu-board__head h3,
 .menu-recruit-values h3,
@@ -8131,6 +8132,33 @@
   font-size: clamp(1.28rem, 1.8vw, 1.7rem);
   font-weight: 950;
   line-height: 1.24;
+}
+
+.menu-icon-card .menu-card-note {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 30px;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0 12px;
+  background: #fff4ea;
+  color: var(--color-orange);
+  font-size: 0.78rem;
+  font-weight: 950;
+}
+
+.menu-section-heading {
+  margin-top: clamp(46px, 6vw, 86px);
+  margin-bottom: 24px;
+}
+
+.menu-section-heading p {
+  width: min(820px, 100%);
+  margin: 16px 0 0;
+  color: var(--color-muted);
+  font-size: clamp(0.98rem, 1.08vw, 1.08rem);
+  font-weight: 740;
+  line-height: 1.78;
 }
 
 .menu-history {
@@ -8378,6 +8406,20 @@
   font-size: clamp(1.08rem, 1.25vw, 1.28rem);
   font-weight: 950;
   line-height: 1.34;
+}
+
+.menu-policy__steps p {
+  margin: 14px 0 0;
+  color: var(--color-muted);
+  font-size: 0.94rem;
+  font-weight: 720;
+  line-height: 1.68;
+}
+
+.menu-policy + .menu-card-grid,
+.menu-card-grid + .menu-policy,
+.menu-report-list + .menu-data-table {
+  margin-top: clamp(46px, 6vw, 86px);
 }
 
 .menu-data-table {
