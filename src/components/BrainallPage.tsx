@@ -1570,12 +1570,13 @@ function DataSection({ copy, stats, language }: { copy: SiteContent["dataHeading
   );
 }
 
-function HistorySection({ copy, eras }: { copy: SiteContent["historyHeading"]; eras: HistoryEra[] }) {
+function HistorySection({ copy, eras, language }: { copy: SiteContent["historyHeading"]; eras: HistoryEra[]; language: LanguageCode }) {
   const [ref, inView] = useInView<HTMLElement>(0.12, "0px 0px -18% 0px");
   const chronologicalEras = [...eras].sort((a, b) => getEraStartYear(a.period) - getEraStartYear(b.period));
+  const titleText = language === "ja" ? copy.title.replace("製造基盤", "製造基盤\n") : copy.title;
 
   return (
-    <section className={`history-section${inView ? " is-inview" : ""}`} id="history" data-scene="timeline" ref={ref}>
+    <section className={`history-section${inView ? " is-inview" : ""}`} id="history" data-scene="timeline" data-language={language} ref={ref}>
       <div className="history-section__inner">
         <div className="history-section__intro">
           <span>{copy.eyebrow}</span>
@@ -1583,7 +1584,7 @@ function HistorySection({ copy, eras }: { copy: SiteContent["historyHeading"]; e
             <HistoryAnimatedText text={copy.since} className="history-animated-text--since" />
           </strong>
           <h2>
-            <HistoryAnimatedText text={copy.title} />
+            <HistoryAnimatedText text={titleText} />
           </h2>
           <p>{copy.copy}</p>
         </div>
@@ -3010,7 +3011,7 @@ export default function BrainallPage() {
         <BrandMarquee text={content.brandMarquee} />
         <LatestPartsSection copy={{ ...content.latest, title: latestLineup.title }} parts={latestLineup.parts} />
         <DataSection copy={content.dataHeading} stats={content.stats} language={language} />
-        <HistorySection copy={content.historyHeading} eras={content.historyEras} />
+        <HistorySection copy={content.historyHeading} eras={content.historyEras} language={language} />
         <GlobalSection copy={content.global} partners={content.partnerLogos} />
         <GlobalAchievementSection copy={content.achievementsHeading} achievements={content.globalAchievements} />
         <ClientCollabSection statement={content.clientCollabStatement} clients={content.clientPartners} partners={content.partnerLogos} />

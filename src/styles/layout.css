@@ -3139,6 +3139,8 @@
   top: 112px;
   display: grid;
   align-self: start;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .history-section__intro > span {
@@ -3162,18 +3164,21 @@
 
 .history-section__intro h2 {
   width: 100%;
+  max-width: 100%;
   margin: 36px 0 22px;
   color: #303344;
   font-size: clamp(2rem, 3.25vw, 4.25rem);
   font-weight: 920;
   line-height: 1.16;
+  line-break: strict;
   word-break: keep-all;
-  overflow-wrap: normal;
+  overflow-wrap: anywhere;
   text-wrap: balance;
 }
 
 .history-section__intro p {
   width: min(520px, 100%);
+  max-width: 100%;
   margin: 0;
   color: #54596b;
   font-size: clamp(1rem, 1.05vw, 1.16rem);
@@ -3354,6 +3359,21 @@
 
 .history-section__intro h2 .history-word {
   white-space: normal;
+}
+
+.history-section[data-language="ja"] .history-section__intro h2 {
+  font-size: clamp(2rem, 2.7vw, 3.45rem);
+  line-height: 1.22;
+}
+
+.history-section[data-language="ja"] .history-section__intro h2 .history-word {
+  line-break: strict;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.history-section[data-language="ja"] .history-section__intro p {
+  font-size: clamp(0.98rem, 0.98vw, 1.08rem);
 }
 
 .history-era__head p {
