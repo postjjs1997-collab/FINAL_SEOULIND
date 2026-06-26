@@ -3495,6 +3495,16 @@
   white-space: pre-line;
 }
 
+.global-section[data-language="ja"] .global-section__copy {
+  width: min(720px, 38vw);
+}
+
+.global-section[data-language="ja"] .global-section__copy p {
+  line-break: strict;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
 .global-fill-line {
   margin: 0;
 }
@@ -3505,6 +3515,11 @@
   background-image: linear-gradient(90deg, #5b5149, #5b5149);
   font-size: clamp(2rem, 2.75vw, 3.7rem);
   line-height: 1.24;
+}
+
+.global-section[data-language="ja"] .global-fill-line .fill-line {
+  max-width: 100%;
+  white-space: nowrap;
 }
 
 .global-video-wrap {
@@ -6580,6 +6595,14 @@
   .global-section__copy {
     width: 100%;
     margin-top: 220px;
+  }
+
+  .global-section[data-language="ja"] .global-section__copy {
+    width: 100%;
+  }
+
+  .global-section[data-language="ja"] .global-fill-line .fill-line {
+    white-space: normal;
   }
 
   .global-video-wrap {

@@ -1754,9 +1754,9 @@ function GlobalInViewVideo() {
   );
 }
 
-function GlobalSection({ copy, partners }: { copy: SiteContent["global"]; partners: PartnerLogo[] }) {
+function GlobalSection({ copy, partners, language }: { copy: SiteContent["global"]; partners: PartnerLogo[]; language: LanguageCode }) {
   return (
-    <section className="global-section" id="partners" data-scene="network">
+    <section className="global-section" id="partners" data-scene="network" data-language={language}>
       <div className="global-section__copy">
         <p>{copy.copy}</p>
         <h2 className="global-fill-line">
@@ -3012,7 +3012,7 @@ export default function BrainallPage() {
         <LatestPartsSection copy={{ ...content.latest, title: latestLineup.title }} parts={latestLineup.parts} />
         <DataSection copy={content.dataHeading} stats={content.stats} language={language} />
         <HistorySection copy={content.historyHeading} eras={content.historyEras} language={language} />
-        <GlobalSection copy={content.global} partners={content.partnerLogos} />
+        <GlobalSection copy={content.global} partners={content.partnerLogos} language={language} />
         <GlobalAchievementSection copy={content.achievementsHeading} achievements={content.globalAchievements} />
         <ClientCollabSection statement={content.clientCollabStatement} clients={content.clientPartners} partners={content.partnerLogos} />
         <EsgSection copy={content.esgHeading} pillars={content.esgPillars} />

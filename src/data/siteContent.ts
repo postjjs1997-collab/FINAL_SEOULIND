@@ -321,8 +321,8 @@ function applyJapaneseCopy(content: SiteContent) {
   ]);
 
   Object.assign(content.global, {
-    copy: "自動車部品のサプライチェーンは、正確な日程とぶれない品質があってこそ成り立ちます。\nソウル産業は、顧客の開発日程と量産計画に合わせて精密加工部品を安定供給します。",
-    lines: ["1ミクロン単位の精度で、", "完成車の信頼を支え続けます。"],
+    copy: "自動車部品のサプライチェーンは、\n正確な日程とぶれない品質で成り立ちます。\nソウル産業は、顧客の開発日程と量産計画に合わせ、\n精密加工部品を安定供給します。",
+    lines: ["1ミクロン単位の精度で、", "完成車の信頼を", "支え続けます。"],
   });
   content.achievementsHeading.titleLines = ["図面の検討から量産供給まで——", "ソウル産業の製造基盤"];
   content.clientCollabStatement = clientStatement;
