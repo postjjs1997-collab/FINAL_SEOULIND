@@ -1981,7 +1981,6 @@ function EsgSection({ copy, pillars }: { copy: SiteContent["esgHeading"]; pillar
 
         <div className="esg-topline" data-reveal>
           <span>{copy.eyebrow}</span>
-          <p>{copy.copy}</p>
         </div>
 
         <div className="esg-layout">
