@@ -11,7 +11,7 @@ import Header from "./Header";
 import Icon from "./Icons";
 import { defaultLanguage, isLanguageCode, siteContent, type LanguageCode } from "../data/siteContent";
 import { getNoticePosts, newsCategoryLabels, noticeCategoryKickers } from "../data/notices";
-import { findMenuByRoute, siteMenuGroups } from "../data/navigation";
+import { findMenuByRoute, getSiteMenuGroups } from "../data/navigation";
 
 type MenuPageProps = {
   route: string;
@@ -181,6 +181,184 @@ const pageConfigs: Record<string, PageConfig> = {
   },
 };
 
+const pageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record<string, Partial<PageConfig>>> = {
+  en: {
+    "company/greeting": {
+      groupTitle: "Company",
+      title: "Greeting",
+      lead: "We aim to be a trusted manufacturing partner in the automotive OEM market through quality and precision machining.",
+      heroCopy: "From drawing review to mass-production supply, we build a reliable manufacturing flow aligned with customer production plans.",
+    },
+    "company/history": {
+      groupTitle: "Company",
+      title: "History",
+      lead: "Since 1985, Seoul Industry has built precision machining and OEM supply capability for automotive components.",
+      heroCopy: "Starting with steering component production, Seoul Industry has expanded through quality certification, global customer response, and advanced production technology.",
+    },
+    "company/certificates": {
+      groupTitle: "Company",
+      title: "Certificates",
+      lead: "We maintain manufacturing reliability based on quality, environmental, and technology standards.",
+      heroCopy: "Certification is not a result alone; it is the operating discipline that keeps each process moving by the same standard every day.",
+    },
+    "sustainability/environmental": {
+      groupTitle: "Sustainability",
+      title: "Environmental",
+      lead: "We reduce energy and resource use while improving process efficiency for sustainable precision machining.",
+      heroCopy: "Environmental standards are built into the production floor, lowering manufacturing burden through efficient process operation.",
+    },
+    "sustainability/governance": {
+      groupTitle: "Sustainability",
+      title: "Governance",
+      lead: "We manage drawings, quality, delivery, and transaction standards transparently to build long-term OEM partnerships.",
+      heroCopy: "Process history and quality records are kept clearly, and customer requirements are managed responsibly.",
+    },
+    "sustainability/esg-report": {
+      groupTitle: "Sustainability",
+      title: "ESG Report",
+      lead: "Our ESG direction is organized around environment, safety, quality records, and transparent transaction standards.",
+      heroCopy: "We manage ESG activities to strengthen standards practiced on site and the trust delivered to customers.",
+    },
+    "products/automotive": {
+      groupTitle: "Products",
+      title: "Automotive",
+      lead: "We manufacture precision-machined parts for core automotive systems including BSM, EV, Steering, Powertrain, and Driveline.",
+      heroCopy: "From drawing review, samples, mass production, inspection, and shipment, we connect the full OEM production flow for automotive components.",
+    },
+    "products/industrial": {
+      groupTitle: "Products",
+      title: "Industrial Machinery",
+      lead: "We support power transmission and equipment stability with precision-machined parts matched to customer drawings and use conditions.",
+      heroCopy: "Production flows for industrial machinery parts are designed around repeat accuracy, surface quality, and durability requirements.",
+    },
+    "support/news": {
+      groupTitle: "Support",
+      title: "News",
+      lead: "Find the latest Seoul Industry updates on product groups, manufacturing processes, and quality response.",
+      heroCopy: "Key news is organized so customers can quickly review Seoul Industry's manufacturing capability and support information.",
+    },
+    "support/contact": {
+      groupTitle: "Support",
+      title: "Contact",
+      lead: "Send inquiries about product development, mass-production review, quotations, and quality topics.",
+      heroCopy: "Share drawings and production conditions together so we can review the scope more accurately.",
+    },
+    "recruit/guide": {
+      groupTitle: "Recruitment",
+      title: "Careers",
+      lead: "We are looking for colleagues who will build precision machining sites and quality standards together.",
+      heroCopy: "Seoul Industry believes manufacturing capability begins with people, training, and responsibility.",
+    },
+    "recruit/jobs": {
+      groupTitle: "Recruitment",
+      title: "Job Openings",
+      lead: "Check current open roles and application information.",
+      heroCopy: "We are looking for people who will build Seoul Industry's next manufacturing foundation across production, quality, development, and management.",
+    },
+  },
+  ja: {
+    "company/greeting": {
+      groupTitle: "会社紹介",
+      title: "ご挨拶",
+      lead: "最高の品質と精密加工技術で、自動車部品OEM市場において信頼される製造パートナーを目指します。",
+      heroCopy: "図面検討から量産供給まで、顧客の生産計画に合わせた安定した製造フローをつくります。",
+    },
+    "company/history": {
+      groupTitle: "会社紹介",
+      title: "会社沿革",
+      lead: "1985年の設立以来、自動車部品の精密加工とOEM量産供給の力を積み重ねてきました。",
+      heroCopy: "ステアリング部品の量産を起点に、品質認証、グローバル顧客対応、生産技術の高度化まで製造基盤を広げてきました。",
+    },
+    "company/certificates": {
+      groupTitle: "会社紹介",
+      title: "認証書",
+      lead: "品質・環境・技術基準をもとに、顧客が求める製造信頼性を維持します。",
+      heroCopy: "認証は結果だけではなく、毎日同じ基準で工程を動かすソウル産業の運営方式です。",
+    },
+    "sustainability/environmental": {
+      groupTitle: "持続可能経営",
+      title: "Environmental",
+      lead: "エネルギーと資源の使用を減らし、工程効率を高めながら持続可能な精密加工現場をつくります。",
+      heroCopy: "環境管理基準を生産現場の中に置き、効率的な工程運営で製造過程の負担を下げます。",
+    },
+    "sustainability/governance": {
+      groupTitle: "持続可能経営",
+      title: "Governance",
+      lead: "図面、品質、納期、取引基準を透明に管理し、長期的なOEMパートナーシップを築きます。",
+      heroCopy: "工程履歴と品質記録を明確に残し、顧客要求事項を責任を持って管理します。",
+    },
+    "sustainability/esg-report": {
+      groupTitle: "持続可能経営",
+      title: "ESGレポート",
+      lead: "環境、安全、品質記録、透明な取引基準を中心に、ソウル産業の持続可能経営の方向を整理します。",
+      heroCopy: "現場で守られる基準と顧客へ伝わる信頼をともに高めるため、ESG活動を管理します。",
+    },
+    "products/automotive": {
+      groupTitle: "製品紹介",
+      title: "自動車",
+      lead: "BSM、EV、Steering、Powertrain、Drivelineなど、自動車主要システムに必要な精密加工部品を生産します。",
+      heroCopy: "図面検討からサンプル、量産、検査、出荷まで、自動車部品OEM生産の流れを安定してつなぎます。",
+    },
+    "products/industrial": {
+      groupTitle: "製品紹介",
+      title: "産業機械",
+      lead: "顧客図面と使用環境に合わせた精密加工部品で、産業現場の動力伝達と設備安定性を支えます。",
+      heroCopy: "反復精度、表面品質、耐久条件を基準に、産業機械部品の生産フローを設計します。",
+    },
+    "support/news": {
+      groupTitle: "お客様サポート",
+      title: "News",
+      lead: "製品群、製造工程、品質対応に関するソウル産業の最新情報をご確認ください。",
+      heroCopy: "ソウル産業の製造力とサポート情報をすばやく確認できるよう、主要ニュースをまとめています。",
+    },
+    "support/contact": {
+      groupTitle: "お客様サポート",
+      title: "お問い合わせ",
+      lead: "製品開発、量産検討、見積り、品質関連のお問い合わせをお送りください。",
+      heroCopy: "図面と生産条件を一緒に共有いただくと、より正確な検討と返信が可能です。",
+    },
+    "recruit/guide": {
+      groupTitle: "採用情報",
+      title: "採用案内",
+      lead: "精密加工の現場と品質基準をともにつくる仲間をお待ちしています。",
+      heroCopy: "ソウル産業は、製造力は人の熟練と責任感から始まると考えています。",
+    },
+    "recruit/jobs": {
+      groupTitle: "採用情報",
+      title: "採用公告",
+      lead: "現在募集している職務と応募情報をご確認ください。",
+      heroCopy: "生産、品質、開発、管理領域でソウル産業の次の製造基盤をともにつくる人材を探しています。",
+    },
+  },
+};
+
+function getPageConfig(route: string, language: LanguageCode): PageConfig {
+  const base = pageConfigs[route] ?? pageConfigs["company/greeting"];
+  const translation = language === "ko" ? undefined : pageConfigTranslations[language]?.[base.route];
+  return { ...base, ...translation };
+}
+
+const menuUiCopy: Record<LanguageCode, { home: string; categoryNav: string; depthNavSuffix: string; footerNav: string }> = {
+  ko: {
+    home: "홈으로 이동",
+    categoryNav: "대분류 메뉴",
+    depthNavSuffix: "하위 메뉴",
+    footerNav: "하단 메뉴",
+  },
+  en: {
+    home: "Go to home",
+    categoryNav: "Category menu",
+    depthNavSuffix: "submenu",
+    footerNav: "Footer menu",
+  },
+  ja: {
+    home: "ホームへ移動",
+    categoryNav: "カテゴリーメニュー",
+    depthNavSuffix: "下位メニュー",
+    footerNav: "フッターメニュー",
+  },
+};
+
 const businessFields = [
   { index: "01", en: "Automotive", ko: "자동차", copy: "조향, 동력전달, 전동화 플랫폼에 적용되는 자동차 부품 정밀가공" },
   { index: "02", en: "Industrial", ko: "산업기계", copy: "고객 도면과 사용 조건에 맞춘 산업기계용 가공 부품" },
@@ -335,13 +513,14 @@ function PageHero({ config }: { config: PageConfig }) {
   );
 }
 
-function PageLocation({ route }: { route: string }) {
-  const { group, child } = findMenuByRoute(route);
+function PageLocation({ route, language }: { route: string; language: LanguageCode }) {
+  const { group, child } = findMenuByRoute(route, language);
+  const ui = menuUiCopy[language];
 
   return (
     <div className="menu-location">
       <div className="menu-location__inner">
-        <a className="menu-location__home" href="#/" aria-label="홈으로 이동">
+        <a className="menu-location__home" href="#/" aria-label={ui.home}>
           <BrainallLogo />
         </a>
         <span>{group.label}</span>
@@ -351,14 +530,15 @@ function PageLocation({ route }: { route: string }) {
   );
 }
 
-function CategoryNavigation({ route }: { route: string }) {
-  const { group } = findMenuByRoute(route);
+function CategoryNavigation({ route, language }: { route: string; language: LanguageCode }) {
+  const { group } = findMenuByRoute(route, language);
+  const menuGroups = getSiteMenuGroups(language);
 
   return (
-    <nav className="menu-category-nav" aria-label="대분류 메뉴">
+    <nav className="menu-category-nav" aria-label={menuUiCopy[language].categoryNav}>
       <div className="menu-category-nav__inner">
-        {siteMenuGroups.map((item) => (
-          <a className={item.label === group.label ? "is-active" : ""} href={item.href} key={item.href}>
+        {menuGroups.map((item) => (
+          <a className={item.href === group.href ? "is-active" : ""} href={item.href} key={item.href}>
             {item.label}
           </a>
         ))}
@@ -367,11 +547,11 @@ function CategoryNavigation({ route }: { route: string }) {
   );
 }
 
-function DepthNavigation({ route }: { route: string }) {
-  const { group } = findMenuByRoute(route);
+function DepthNavigation({ route, language }: { route: string; language: LanguageCode }) {
+  const { group } = findMenuByRoute(route, language);
 
   return (
-    <nav className="menu-depth-nav" aria-label={`${group.label} 하위 메뉴`}>
+    <nav className="menu-depth-nav" aria-label={`${group.label} ${menuUiCopy[language].depthNavSuffix}`}>
       <div className="menu-depth-nav__inner">
         {group.children.map((item) => {
           const cleanHref = item.href.replace(/^#\//, "");
@@ -780,7 +960,9 @@ function PageBody({ route }: { route: string }) {
   return <GreetingContent />;
 }
 
-function MenuFooter() {
+function MenuFooter({ language }: { language: LanguageCode }) {
+  const menuGroups = getSiteMenuGroups(language);
+
   return (
     <footer className="menu-footer">
       <div>
@@ -788,9 +970,9 @@ function MenuFooter() {
         <strong>SEOUL INDUSTRY</strong>
       </div>
       <p>Precision Automotive Components OEM · Since 1985</p>
-      <nav aria-label="하단 메뉴">
-        {siteMenuGroups.map((group) => (
-          <a href={group.href} key={group.label}>
+      <nav aria-label={menuUiCopy[language].footerNav}>
+        {menuGroups.map((group) => (
+          <a href={group.href} key={group.href}>
             {group.label}
           </a>
         ))}
@@ -802,13 +984,13 @@ function MenuFooter() {
 export default function MenuPage({ route }: MenuPageProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const cleanRoute = normalizeRoute(route);
-  const config = pageConfigs[cleanRoute] ?? pageConfigs["company/greeting"];
   const [language, setLanguage] = useState<LanguageCode>(() => {
     if (typeof window === "undefined") return defaultLanguage;
     const stored = window.localStorage.getItem("seoulind-language");
     return isLanguageCode(stored) ? stored : defaultLanguage;
   });
   const content = siteContent[language];
+  const config = getPageConfig(cleanRoute, language);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -856,15 +1038,15 @@ export default function MenuPage({ route }: MenuPageProps) {
       <Header content={content} language={language} onLanguageChange={setLanguage} variant="sub" />
       <main>
         <PageHero config={config} />
-        <PageLocation route={cleanRoute} />
-        <CategoryNavigation route={cleanRoute} />
-        <DepthNavigation route={cleanRoute} />
+        <PageLocation route={cleanRoute} language={language} />
+        <CategoryNavigation route={cleanRoute} language={language} />
+        <DepthNavigation route={cleanRoute} language={language} />
         <section className="menu-content-section">
           <PageTitle config={config} />
           <PageBody route={cleanRoute} />
         </section>
       </main>
-      <MenuFooter />
+      <MenuFooter language={language} />
     </div>
   );
 }

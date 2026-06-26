@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import BrainallLogo from "./BrainallLogo";
 import Icon from "./Icons";
 import { languages, type LanguageCode, type SiteContent } from "../data/brainall";
-import { siteMenuGroups } from "../data/navigation";
+import { getSiteMenuGroups } from "../data/navigation";
 import { gsap } from "../motion/gsap";
 import { applyLanguageAndRestartHome } from "../utils/languageNavigation";
 
@@ -19,6 +19,7 @@ export default function Header({ content, language, onLanguageChange, variant = 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const { header, searchTags } = content;
+  const menuGroups = getSiteMenuGroups(language);
 
   const handleLanguageChange = (nextLanguage: LanguageCode) => {
     setMobileOpen(false);
@@ -72,14 +73,14 @@ export default function Header({ content, language, onLanguageChange, variant = 
         </a>
 
         <nav className="site-nav" aria-label={header.navLabel}>
-          {siteMenuGroups.map((group) => (
-            <div className="site-nav__group" key={group.label}>
+          {menuGroups.map((group) => (
+            <div className="site-nav__group" key={group.href}>
               <a className="site-nav__item" href={group.href}>
                 {group.label}
               </a>
               <div className="site-nav__dropdown">
                 {group.children.map((child) => (
-                  <a href={child.href} key={child.label}>
+                  <a href={child.href} key={child.href}>
                     {child.label}
                   </a>
                 ))}
@@ -127,14 +128,14 @@ export default function Header({ content, language, onLanguageChange, variant = 
           ))}
         </div>
         <nav className="mobile-drawer__nav" aria-label={header.mobileNavLabel}>
-          {siteMenuGroups.map((group) => (
-            <div className="mobile-drawer__group" key={group.label}>
+          {menuGroups.map((group) => (
+            <div className="mobile-drawer__group" key={group.href}>
               <a href={group.href} onClick={() => setMobileOpen(false)}>
                 <span>{group.label}</span>
               </a>
               <div className="mobile-drawer__subnav">
                 {group.children.map((child) => (
-                  <a href={child.href} key={child.label} onClick={() => setMobileOpen(false)}>
+                  <a href={child.href} key={child.href} onClick={() => setMobileOpen(false)}>
                     {child.label}
                   </a>
                 ))}
