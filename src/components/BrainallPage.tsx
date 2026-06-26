@@ -1928,7 +1928,7 @@ function ClientCollabSection({ statement, clients, partners }: { statement: stri
   );
 }
 
-const governanceAccent = "#7c3aed";
+const governanceAccent = "#b85a24";
 
 function getEsgAccent(item?: Pick<EsgPillar, "keyword" | "accent">) {
   if (!item) return "#e9631a";
