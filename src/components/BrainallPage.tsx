@@ -1542,10 +1542,47 @@ const dataStatOverrides: Record<LanguageCode, Partial<GlobalAchievement>[]> = {
   ],
 };
 
+type DataCapabilityItem = {
+  index: string;
+  title: string;
+  copy: string;
+};
+
+const dataCapabilityPanel: Record<LanguageCode, { label: string; flow: string; items: DataCapabilityItem[] }> = {
+  ko: {
+    label: "MANUFACTURING BASE",
+    flow: "도면 검토 / 공정 세팅 / 품질 확인 / 양산 공급",
+    items: [
+      { index: "01", title: "개발 대응", copy: "도면 조건과 고객 요구사항을 먼저 정리해 양산 전 기준을 고정합니다." },
+      { index: "02", title: "공정 안정화", copy: "가공 조건, 검사 기준, 설비 이력을 연결해 반복 생산의 흔들림을 줄입니다." },
+      { index: "03", title: "양산 공급", copy: "납기, 포장, 출하 흐름을 고객 생산 계획에 맞춰 관리합니다." },
+    ],
+  },
+  en: {
+    label: "MANUFACTURING BASE",
+    flow: "Drawing Review / Process Lock / Quality Check / Mass Production",
+    items: [
+      { index: "01", title: "Development Response", copy: "We align drawing conditions and customer requirements before mass production." },
+      { index: "02", title: "Process Stability", copy: "Machining conditions, inspection standards, and equipment history are managed together." },
+      { index: "03", title: "Mass Supply", copy: "Delivery, packaging, and shipment flow follow each customer's production plan." },
+    ],
+  },
+  ja: {
+    label: "MANUFACTURING BASE",
+    flow: "図面検討 / 工程設定 / 品質確認 / 量産供給",
+    items: [
+      { index: "01", title: "開発対応", copy: "図面条件と顧客要求を先に整理し、量産前の基準を固定します。" },
+      { index: "02", title: "工程安定化", copy: "加工条件、検査基準、設備履歴をつなげて反復生産のぶれを抑えます。" },
+      { index: "03", title: "量産供給", copy: "納期、梱包、出荷の流れを顧客の生産計画に合わせて管理します。" },
+    ],
+  },
+};
+
 function DataSection({ copy, stats, language }: { copy: SiteContent["dataHeading"]; stats: GlobalAchievement[]; language: LanguageCode }) {
   const ref = useRef<HTMLElement>(null);
   const progress = useSectionProgress(ref);
   const displayStats = stats.map((stat, index) => ({ ...stat, ...(dataStatOverrides[language]?.[index] ?? {}) }));
+  const capability = dataCapabilityPanel[language];
   const titleText = language === "ja" ? copy.title.replace("を軸にした", "を軸にした\n") : copy.title;
 
   return (
@@ -1555,6 +1592,19 @@ function DataSection({ copy, stats, language }: { copy: SiteContent["dataHeading
           <ScrollComposeText text={titleText} />
         </h2>
         <p>{copy.copy}</p>
+        <div className="data-section__capability" aria-label={capability.label}>
+          <span className="data-section__capability-label">{capability.label}</span>
+          <strong>{capability.flow}</strong>
+          <div>
+            {capability.items.map((item) => (
+              <article key={item.index}>
+                <b>{item.index}</b>
+                <span>{item.title}</span>
+                <p>{item.copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </div>
       <div className="data-orbit" aria-hidden="true">
         {Array.from({ length: 5 }).map((_, index) => (

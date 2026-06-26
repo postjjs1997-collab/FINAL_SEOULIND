@@ -2935,6 +2935,93 @@
   line-height: 1.75;
 }
 
+.data-section__capability {
+  position: relative;
+  margin-top: clamp(30px, 4vw, 52px);
+  padding: clamp(22px, 2.5vw, 34px);
+  border: 1px solid rgba(233, 99, 26, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 24px 58px rgba(54, 32, 18, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.data-section__capability::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 22px;
+  width: 92px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-orange), rgba(233, 99, 26, 0));
+}
+
+.data-section__capability-label {
+  display: block;
+  color: var(--color-orange);
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.data-section__capability > strong {
+  display: block;
+  margin-top: 12px;
+  color: #2f3342;
+  font-size: clamp(1rem, 1.15vw, 1.22rem);
+  font-weight: 950;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.data-section__capability > div {
+  display: grid;
+  gap: 0;
+  margin-top: 20px;
+}
+
+.data-section__capability article {
+  display: grid;
+  grid-template-columns: 42px minmax(100px, 0.34fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 14px 0;
+  border-top: 1px solid rgba(23, 21, 19, 0.08);
+}
+
+.data-section__capability b {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(233, 99, 26, 0.1);
+  color: var(--color-orange);
+  font-size: 0.76rem;
+  font-weight: 950;
+}
+
+.data-section__capability article span {
+  color: #171513;
+  font-size: 0.98rem;
+  font-weight: 950;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.data-section__capability article p {
+  max-width: none;
+  margin: 0;
+  color: #626777;
+  font-size: 0.9rem;
+  font-weight: 760;
+  line-height: 1.62;
+  word-break: keep-all;
+}
+
 .data-section[data-language="ja"] .data-section__copy {
   max-width: min(720px, 100%);
 }
@@ -6540,6 +6627,21 @@
   .data-section {
     grid-template-columns: 1fr;
     padding: 84px 16px;
+  }
+
+  .data-section__capability {
+    margin-top: 30px;
+    padding: 22px;
+  }
+
+  .data-section__capability article {
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 6px 10px;
+  }
+
+  .data-section__capability article p {
+    grid-column: 2;
+    font-size: 0.86rem;
   }
 
   .data-orbit {
