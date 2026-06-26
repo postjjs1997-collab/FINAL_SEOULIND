@@ -145,7 +145,7 @@ const latestProductLineup: Record<LanguageCode, { title: string; parts: LatestPa
     ],
   },
   ja: {
-    title: "最新製品\nラインアップ",
+    title: "LATEST PRODUCT\nLINE UP",
     parts: [
       {
         index: "01",
