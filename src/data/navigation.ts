@@ -24,8 +24,8 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
       label: "지속가능경영",
       href: "#/sustainability/environmental",
       children: [
-        { label: "Environmental", href: "#/sustainability/environmental" },
-        { label: "Governance", href: "#/sustainability/governance" },
+        { label: "ESG 경영", href: "#/sustainability/environmental" },
+        { label: "윤리경영", href: "#/sustainability/governance" },
         { label: "ESG보고서", href: "#/sustainability/esg-report" },
       ],
     },
@@ -68,7 +68,7 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
       label: "Sustainability",
       href: "#/sustainability/environmental",
       children: [
-        { label: "Environmental", href: "#/sustainability/environmental" },
+        { label: "ESG Management", href: "#/sustainability/environmental" },
         { label: "Governance", href: "#/sustainability/governance" },
         { label: "ESG Report", href: "#/sustainability/esg-report" },
       ],
@@ -112,8 +112,8 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
       label: "持続可能経営",
       href: "#/sustainability/environmental",
       children: [
-        { label: "Environmental", href: "#/sustainability/environmental" },
-        { label: "Governance", href: "#/sustainability/governance" },
+        { label: "ESG経営", href: "#/sustainability/environmental" },
+        { label: "ガバナンス", href: "#/sustainability/governance" },
         { label: "ESGレポート", href: "#/sustainability/esg-report" },
       ],
     },

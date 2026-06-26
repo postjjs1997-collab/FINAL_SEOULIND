@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties, FormEvent } from "react";
 import certificationImage from "../../certification.png";
 import drivelineImage from "../../driveline.png";
@@ -85,10 +85,10 @@ const pageConfigs: Record<string, PageConfig> = {
     route: "sustainability/environmental",
     category: "ESG",
     groupTitle: "지속가능 경영",
-    eyebrow: "Environmental",
-    title: "Environmental",
-    lead: "에너지와 자원 사용을 줄이고 공정 효율을 높여 지속 가능한 정밀가공 현장을 만들어 갑니다.",
-    heroCopy: "환경 관리 기준을 생산 현장 안에 두고, 효율적인 공정 운영으로 제조 과정의 부담을 낮춥니다.",
+    eyebrow: "Sustainability",
+    title: "ESG 경영",
+    lead: "환경, 안전, 품질, 윤리, 협력사 기준을 하나의 운영 체계로 연결해 지속 가능한 OEM 제조 흐름을 만듭니다.",
+    heroCopy: "서울산업은 현장의 기록과 개선 활동을 기반으로 고객이 오래 신뢰할 수 있는 정밀가공 파트너십을 만들어 갑니다.",
     image: menuHeroImages.solar,
     imagePosition: "center 50%",
   },
@@ -204,9 +204,9 @@ const pageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record<string,
     },
     "sustainability/environmental": {
       groupTitle: "Sustainability",
-      title: "Environmental",
-      lead: "We reduce energy and resource use while improving process efficiency for sustainable precision machining.",
-      heroCopy: "Environmental standards are built into the production floor, lowering manufacturing burden through efficient process operation.",
+      title: "ESG Management",
+      lead: "We connect environment, safety, quality, ethics, and partner standards into one operating system for sustainable OEM manufacturing.",
+      heroCopy: "Seoul Industry builds lasting precision-machining partnerships through site records, improvement actions, and responsible production standards.",
     },
     "sustainability/governance": {
       groupTitle: "Sustainability",
@@ -278,9 +278,9 @@ const pageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record<string,
     },
     "sustainability/environmental": {
       groupTitle: "持続可能経営",
-      title: "Environmental",
-      lead: "エネルギーと資源の使用を減らし、工程効率を高めながら持続可能な精密加工現場をつくります。",
-      heroCopy: "環境管理基準を生産現場の中に置き、効率的な工程運営で製造過程の負担を下げます。",
+      title: "ESG経営",
+      lead: "環境、安全、品質、倫理、協力会社基準を一つの運営体系につなげ、持続可能なOEM製造フローを構築します。",
+      heroCopy: "ソウル産業は現場記録と改善活動を基盤に、長く信頼される精密加工パートナーシップをつくります。",
     },
     "sustainability/governance": {
       groupTitle: "持続可能経営",
@@ -422,6 +422,267 @@ const environmentalPrograms = [
   { title: "리스크 완화", copy: "가공, 세척, 포장, 출하 과정에서 발생 가능한 환경 영향을 단계별로 확인하고 우선순위를 정합니다.", note: "공정별 위험요인 관리" },
   { title: "화학물질 관리", copy: "MSDS, 소분용기 표기, 작업공정별 관리요령을 현장에 비치해 취급 기준을 명확히 합니다.", note: "교육 / 표지 / 보관 기준" },
 ];
+
+const esgPillars = [
+  {
+    letter: "E",
+    title: "Environmental",
+    label: "환경안전보건",
+    copy: "에너지, 자원, 폐기물, 화학물질 사용 흐름을 공정 안에서 점검하고 환경 부담을 줄입니다.",
+    image: menuHeroImages.solar,
+    points: ["ISO 14001 기반 환경경영", "공정별 환경영향 점검", "작업장 안전 기준 운영"],
+  },
+  {
+    letter: "S",
+    title: "Social",
+    label: "동반성장과 현장 책임",
+    copy: "임직원 안전, 협력사 소통, 고객 납기 대응을 지속 가능한 제조 파트너십의 기준으로 둡니다.",
+    image: menuHeroImages.factory,
+    points: ["안전한 작업 환경", "협력사 커뮤니케이션", "고객 공급 안정성"],
+  },
+  {
+    letter: "G",
+    title: "Governance",
+    label: "윤리·투명경영",
+    copy: "도면, 품질, 납기, 거래 기준을 투명하게 기록하고 책임 있는 의사결정 체계를 유지합니다.",
+    image: menuHeroImages.governance,
+    points: ["윤리헌장과 실천지침", "품질·LOT 기록 관리", "리스크 예방과 조치 이력"],
+  },
+];
+
+const esgManagementCards = [
+  {
+    index: "01",
+    title: "윤리경영",
+    en: "Ethical Management",
+    copy: "고객, 협력사, 임직원, 지역사회와의 관계에서 지켜야 할 윤리 기준을 문서화하고 업무 판단 기준으로 적용합니다.",
+  },
+  {
+    index: "02",
+    title: "품질경영",
+    en: "Quality Management",
+    copy: "IATF 16949, SQ, VDA 6.3 등 고객 품질 기준과 연계해 검사 기록, LOT 이력, 변경 관리를 체계화합니다.",
+  },
+  {
+    index: "03",
+    title: "환경안전보건",
+    en: "EHS",
+    copy: "환경 영향과 작업 위험 요소를 함께 점검하고 설비, 공정, 작업 기준을 개선 항목으로 연결합니다.",
+  },
+  {
+    index: "04",
+    title: "동반성장·사회책임",
+    en: "Partnership",
+    copy: "명확한 품질·납기 기준을 공유하며 협력사와 고객사가 같은 생산 흐름 안에서 움직일 수 있게 관리합니다.",
+  },
+  {
+    index: "05",
+    title: "투명한 소통",
+    en: "Reporting Channel",
+    copy: "품질, 윤리, 안전, 거래 기준에서 발생하는 이슈를 접수하고 원인, 조치, 재발방지까지 기록합니다.",
+  },
+];
+
+const esgFlowSteps = [
+  { label: "Identify", title: "이슈 식별", copy: "공정, 품질, 안전, 환경, 거래 기준에서 발생 가능한 리스크를 업무 단계별로 확인합니다." },
+  { label: "Assess", title: "영향 평가", copy: "고객 납기, 품질 신뢰, 현장 안전, 환경 부담에 미치는 영향을 기준으로 우선순위를 정합니다." },
+  { label: "Improve", title: "개선 실행", copy: "담당 부서가 원인, 임시 조치, 개선 기준, 재발 방지 대책을 정리하고 실행합니다." },
+  { label: "Record", title: "기록과 공유", copy: "조치 결과와 개선 이력을 남기고 고객 요구사항, 인증 기준, 내부 교육과 연결합니다." },
+];
+
+const esgStandardBadges = ["ISO 14001", "IATF 16949", "ISO 9001", "SQ", "INNOBIZ", "VDA 6.3", "CQI-9", "CQI-15"];
+
+type EsgPageCopy = {
+  landingEyebrow: string;
+  landingTitle: string[];
+  landingCopy: string;
+  badgeLabel: string;
+  visualLabel: string;
+  systemEyebrow: string;
+  systemTitle: string;
+  systemCopy: string;
+  flowEyebrow: string;
+  flowTitle: string;
+  practiceEyebrow: string;
+  practiceTitle: string;
+  practiceCopy: string;
+  metricsTitle: string;
+  pillars: typeof esgPillars;
+  managementCards: typeof esgManagementCards;
+  flowSteps: typeof esgFlowSteps;
+  environmentalSteps: typeof environmentalSteps;
+  environmentalPrograms: typeof environmentalPrograms;
+  environmentalMetrics: typeof environmentalMetrics;
+  badges: string[];
+};
+
+const esgPageCopy: Record<LanguageCode, EsgPageCopy> = {
+  ko: {
+    landingEyebrow: "SUSTAINABILITY MANAGEMENT",
+    landingTitle: ["정밀가공의 기준을", "지속가능한 제조로 연결합니다."],
+    landingCopy:
+      "서울산업은 환경, 안전, 품질, 윤리, 협력사 기준을 하나의 운영 체계로 묶어 고객이 신뢰할 수 있는 OEM 생산 흐름을 만듭니다. 현장에서 지켜지는 작은 기록이 장기 파트너십의 기준이 되도록 관리합니다.",
+    badgeLabel: "서울산업 ESG 연계 인증",
+    visualLabel: "SEOUL INDUSTRY ESG",
+    systemEyebrow: "ESG MANAGEMENT SYSTEM",
+    systemTitle: "서울산업 ESG 운영 체계",
+    systemCopy: "세부 항목은 보여주기 위한 문구가 아니라, 고객 도면 검토부터 양산, 검사, 출하까지 이어지는 제조 흐름 안에서 매일 확인되는 기준입니다.",
+    flowEyebrow: "PROCESS",
+    flowTitle: "이슈를 기록하고 개선까지 연결합니다.",
+    practiceEyebrow: "ENVIRONMENTAL PRACTICE",
+    practiceTitle: "환경안전보건 실행 항목",
+    practiceCopy:
+      "제조 현장에서 확인되는 에너지 사용, 화학물질 취급, 폐기물 발생, 작업 안전 요소를 정기적으로 점검하고 법규 준수와 공정 효율 개선을 함께 추진합니다.",
+    metricsTitle: "환경 관리 항목",
+    pillars: esgPillars,
+    managementCards: esgManagementCards,
+    flowSteps: esgFlowSteps,
+    environmentalSteps,
+    environmentalPrograms,
+    environmentalMetrics,
+    badges: esgStandardBadges,
+  },
+  en: {
+    landingEyebrow: "SUSTAINABILITY MANAGEMENT",
+    landingTitle: ["Precision standards", "connected to sustainable manufacturing."],
+    landingCopy:
+      "Seoul Industry connects environment, safety, quality, ethics, and partner standards into one operating system, building OEM production flows customers can trust over time.",
+    badgeLabel: "Seoul Industry ESG-linked standards",
+    visualLabel: "SEOUL INDUSTRY ESG",
+    systemEyebrow: "ESG MANAGEMENT SYSTEM",
+    systemTitle: "Seoul Industry ESG Operating System",
+    systemCopy: "These are not presentation-only messages. They are daily operating standards across drawing review, mass production, inspection, and shipment.",
+    flowEyebrow: "PROCESS",
+    flowTitle: "We record issues and connect them to improvement.",
+    practiceEyebrow: "ENVIRONMENTAL PRACTICE",
+    practiceTitle: "EHS Action Items",
+    practiceCopy:
+      "We regularly check energy use, chemical handling, waste generation, and workplace safety factors while improving compliance and process efficiency.",
+    metricsTitle: "Environmental Management Items",
+    pillars: [
+      {
+        letter: "E",
+        title: "Environmental",
+        label: "EHS",
+        copy: "We monitor energy, resource, waste, and chemical flows in each process to reduce environmental burden.",
+        image: menuHeroImages.solar,
+        points: ["ISO 14001-based operation", "Process-level impact checks", "Workplace safety standards"],
+      },
+      {
+        letter: "S",
+        title: "Social",
+        label: "Responsible Partnership",
+        copy: "Employee safety, supplier communication, and stable customer delivery are treated as core partnership standards.",
+        image: menuHeroImages.factory,
+        points: ["Safe workplace", "Supplier communication", "Stable customer supply"],
+      },
+      {
+        letter: "G",
+        title: "Governance",
+        label: "Ethics and Transparency",
+        copy: "We record drawings, quality, delivery, and transaction standards transparently and maintain accountable decisions.",
+        image: menuHeroImages.governance,
+        points: ["Ethics charter and guidelines", "Quality and LOT records", "Risk prevention history"],
+      },
+    ],
+    managementCards: [
+      { index: "01", title: "Ethical Management", en: "Ethical Management", copy: "We document ethical standards for customers, suppliers, employees, and communities and apply them in daily decisions." },
+      { index: "02", title: "Quality Management", en: "Quality Management", copy: "Inspection records, LOT history, and change control are connected to customer standards such as IATF 16949, SQ, and VDA 6.3." },
+      { index: "03", title: "EHS", en: "EHS", copy: "Environmental impacts and workplace risks are checked together and linked to facility, process, and work-standard improvements." },
+      { index: "04", title: "Shared Growth", en: "Partnership", copy: "Clear quality and delivery standards are shared so suppliers and customers can move within one production flow." },
+      { index: "05", title: "Transparent Communication", en: "Reporting Channel", copy: "Quality, ethics, safety, and transaction issues are received, investigated, corrected, and recorded through follow-up actions." },
+    ],
+    flowSteps: [
+      { label: "Identify", title: "Issue Identification", copy: "We identify risks by work stage across process, quality, safety, environment, and transaction standards." },
+      { label: "Assess", title: "Impact Assessment", copy: "Priorities are set by impact on delivery, quality trust, workplace safety, and environmental burden." },
+      { label: "Improve", title: "Improvement Action", copy: "Responsible teams define causes, temporary actions, improvement standards, and recurrence prevention." },
+      { label: "Record", title: "Record and Share", copy: "Results and improvement history are connected to customer requirements, certification standards, and training." },
+    ],
+    environmentalSteps: ["Select scope and prepare", "Identify environmental impact and risk by process", "Estimate impact by hazard factor", "Set acceptability and priority", "Plan and execute improvements", "Record results and inspect regularly"],
+    environmentalPrograms: [
+      { title: "Organization", copy: "Production, quality, and administration teams review environmental issues together and reflect improvements in site standards.", note: "Regular checks / improvement history" },
+      { title: "Risk Mitigation", copy: "Environmental impacts in machining, washing, packing, and shipment are checked step by step and prioritized.", note: "Process-level risk control" },
+      { title: "Chemical Management", copy: "MSDS, container labeling, and work process handling rules are kept on site to clarify handling standards.", note: "Training / labeling / storage" },
+    ],
+    environmentalMetrics: [
+      ["Environmental Law", "Violation Count", "0 cases", "Regular site standard checks"],
+      ["Energy", "Power and fuel use", "Monthly tracking", "Equipment efficiency improvement"],
+      ["Waste", "Recycling and discharge flow", "Process-level control", "Sorting and record standards"],
+      ["Chemicals", "MSDS and containers", "On-site availability", "Training and labeling control"],
+    ],
+    badges: esgStandardBadges,
+  },
+  ja: {
+    landingEyebrow: "SUSTAINABILITY MANAGEMENT",
+    landingTitle: ["精密加工の基準を", "持続可能な製造へつなげます。"],
+    landingCopy:
+      "ソウル産業は環境、安全、品質、倫理、協力会社基準を一つの運営体系にまとめ、顧客が長く信頼できるOEM生産フローを構築します。",
+    badgeLabel: "ソウル産業 ESG関連基準",
+    visualLabel: "SEOUL INDUSTRY ESG",
+    systemEyebrow: "ESG MANAGEMENT SYSTEM",
+    systemTitle: "ソウル産業 ESG運営体系",
+    systemCopy: "各項目は見せるための文章ではなく、図面検討から量産、検査、出荷まで毎日確認される製造基準です。",
+    flowEyebrow: "PROCESS",
+    flowTitle: "課題を記録し、改善までつなげます。",
+    practiceEyebrow: "ENVIRONMENTAL PRACTICE",
+    practiceTitle: "環境安全衛生の実行項目",
+    practiceCopy:
+      "製造現場で確認されるエネルギー使用、化学物質取扱い、廃棄物発生、作業安全要素を定期的に点検し、法規遵守と工程効率改善を進めます。",
+    metricsTitle: "環境管理項目",
+    pillars: [
+      {
+        letter: "E",
+        title: "Environmental",
+        label: "環境安全衛生",
+        copy: "エネルギー、資源、廃棄物、化学物質の流れを工程内で点検し、環境負担を低減します。",
+        image: menuHeroImages.solar,
+        points: ["ISO 14001基盤の環境経営", "工程別環境影響点検", "作業場安全基準運営"],
+      },
+      {
+        letter: "S",
+        title: "Social",
+        label: "共生と現場責任",
+        copy: "従業員安全、協力会社との意思疎通、顧客納期対応を持続可能な製造パートナーシップの基準にします。",
+        image: menuHeroImages.factory,
+        points: ["安全な作業環境", "協力会社コミュニケーション", "安定した顧客供給"],
+      },
+      {
+        letter: "G",
+        title: "Governance",
+        label: "倫理・透明経営",
+        copy: "図面、品質、納期、取引基準を透明に記録し、責任ある意思決定体系を維持します。",
+        image: menuHeroImages.governance,
+        points: ["倫理憲章と実践指針", "品質・LOT記録管理", "リスク予防と措置履歴"],
+      },
+    ],
+    managementCards: [
+      { index: "01", title: "倫理経営", en: "Ethical Management", copy: "顧客、協力会社、従業員、地域社会との関係で守る倫理基準を文書化し、業務判断に適用します。" },
+      { index: "02", title: "品質経営", en: "Quality Management", copy: "IATF 16949、SQ、VDA 6.3など顧客品質基準と連携し、検査記録、LOT履歴、変更管理を体系化します。" },
+      { index: "03", title: "環境安全衛生", en: "EHS", copy: "環境影響と作業リスクを一緒に点検し、設備、工程、作業基準の改善項目へつなげます。" },
+      { index: "04", title: "共生・社会責任", en: "Partnership", copy: "明確な品質・納期基準を共有し、協力会社と顧客が同じ生産フローで動けるよう管理します。" },
+      { index: "05", title: "透明な疎通", en: "Reporting Channel", copy: "品質、倫理、安全、取引基準の課題を受け付け、原因、措置、再発防止まで記録します。" },
+    ],
+    flowSteps: [
+      { label: "Identify", title: "課題識別", copy: "工程、品質、安全、環境、取引基準で発生し得るリスクを業務段階別に確認します。" },
+      { label: "Assess", title: "影響評価", copy: "顧客納期、品質信頼、現場安全、環境負担への影響を基準に優先順位を決めます。" },
+      { label: "Improve", title: "改善実行", copy: "担当部門が原因、暫定措置、改善基準、再発防止策を整理して実行します。" },
+      { label: "Record", title: "記録と共有", copy: "措置結果と改善履歴を残し、顧客要求、認証基準、社内教育へつなげます。" },
+    ],
+    environmentalSteps: ["対象選定と事前準備", "工程別環境影響とリスク把握", "有害・危険要因別の影響度推定", "許容可否と優先順位決定", "改善対策の策定と実行", "実行結果記録と定期点検"],
+    environmentalPrograms: [
+      { title: "組織体系", copy: "生産、品質、管理担当者が環境課題を一緒に確認し、改善項目を現場基準へ反映します。", note: "定期点検 / 改善履歴管理" },
+      { title: "リスク低減", copy: "加工、洗浄、包装、出荷過程で発生し得る環境影響を段階別に確認し、優先順位を定めます。", note: "工程別危険要因管理" },
+      { title: "化学物質管理", copy: "MSDS、小分け容器表示、作業工程別管理要領を現場に備え、取扱基準を明確にします。", note: "教育 / 表示 / 保管基準" },
+    ],
+    environmentalMetrics: [
+      ["環境法規", "違反件数", "0件", "現場基準の定期点検"],
+      ["エネルギー", "電力・燃料使用量", "月別管理", "設備稼働効率改善"],
+      ["廃棄物", "リサイクル・排出フロー", "工程別管理", "分別・記録基準維持"],
+      ["化学物質", "MSDS・小分け容器", "現場備置", "教育と表示管理"],
+    ],
+    badges: esgStandardBadges,
+  },
+};
 
 const governanceCards = [
   { title: "윤리헌장", copy: "임직원이 고객, 협력사, 지역사회와의 관계에서 지켜야 할 기본 원칙을 명확히 합니다." },
@@ -711,28 +972,102 @@ function CertificatesContent() {
   );
 }
 
-function EnvironmentalContent() {
+function EnvironmentalContent({ language }: { language: LanguageCode }) {
+  const copy = esgPageCopy[language] ?? esgPageCopy.ko;
+
   return (
     <>
-      <section className="menu-esg-intro menu-reveal">
-        <span className="menu-small-label">ESG</span>
-        <h3>ESG 경영</h3>
-        <p>
-          서울산업은 원재료 입고부터 가공, 검사, 출하까지의 제조 흐름에서 발생할 수 있는 환경 영향을 관리하고
-          에너지 사용과 폐기물 배출을 줄이기 위한 현장 기준을 운영합니다.
-        </p>
+      <section className="menu-esg-landing menu-reveal">
+        <div className="menu-esg-landing__copy">
+          <span className="menu-small-label">{copy.landingEyebrow}</span>
+          <h3>
+            {copy.landingTitle.map((line, index) => (
+              <Fragment key={line}>
+                {index > 0 && <br />}
+                {line}
+              </Fragment>
+            ))}
+          </h3>
+          <p>{copy.landingCopy}</p>
+          <div className="menu-esg-landing__badges" aria-label={copy.badgeLabel}>
+            {copy.badges.map((badge) => (
+              <span key={badge}>{badge}</span>
+            ))}
+          </div>
+        </div>
+        <div className="menu-esg-landing__visual" aria-hidden="true">
+          <img src={menuHeroImages.solar} alt="" />
+          <div className="menu-esg-landing__letters">
+            {copy.pillars.map((pillar) => (
+              <b key={pillar.letter}>{pillar.letter}</b>
+            ))}
+          </div>
+          <strong>{copy.visualLabel}</strong>
+        </div>
       </section>
+
+      <section className="menu-esg-pillars menu-reveal" aria-label={copy.badgeLabel}>
+        {copy.pillars.map((pillar) => (
+          <article className="menu-esg-pillar-card" key={pillar.letter}>
+            <div>
+              <img src={pillar.image} alt="" />
+              <b>{pillar.letter}</b>
+            </div>
+            <span>{pillar.title}</span>
+            <strong>{pillar.label}</strong>
+            <p>{pillar.copy}</p>
+            <ul>
+              {pillar.points.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </section>
+
+      <section className="menu-esg-system menu-reveal">
+        <div className="menu-esg-system__head">
+          <span className="menu-small-label">{copy.systemEyebrow}</span>
+          <h3>{copy.systemTitle}</h3>
+          <p>{copy.systemCopy}</p>
+        </div>
+        <div className="menu-esg-system__grid">
+          {copy.managementCards.map((card) => (
+            <article key={card.index}>
+              <span>{card.index}</span>
+              <small>{card.en}</small>
+              <strong>{card.title}</strong>
+              <p>{card.copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="menu-esg-flow menu-reveal" aria-label={copy.flowTitle}>
+        <div>
+          <span className="menu-small-label">{copy.flowEyebrow}</span>
+          <h3>{copy.flowTitle}</h3>
+        </div>
+        <ol>
+          {copy.flowSteps.map((step, index) => (
+            <li key={step.label}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <b>{step.label}</b>
+              <strong>{step.title}</strong>
+              <p>{step.copy}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
       <section className="menu-policy menu-reveal">
         <div>
-          <span className="menu-small-label">ENVIRONMENTAL</span>
-          <h3>환경경영 정책</h3>
-          <p>
-            제조 현장에서 확인되는 에너지 사용, 화학물질 취급, 폐기물 발생, 자원 사용 흐름을 정기적으로 점검하고
-            법규 준수와 공정 효율 개선을 함께 추진합니다.
-          </p>
+          <span className="menu-small-label">{copy.practiceEyebrow}</span>
+          <h3>{copy.practiceTitle}</h3>
+          <p>{copy.practiceCopy}</p>
         </div>
         <div className="menu-policy__steps">
-          {environmentalSteps.map((step, index) => (
+          {copy.environmentalSteps.map((step, index) => (
             <article key={step}>
               <span>STEP {String(index + 1).padStart(2, "0")}</span>
               <strong>{step}</strong>
@@ -740,8 +1075,9 @@ function EnvironmentalContent() {
           ))}
         </div>
       </section>
-      <section className="menu-card-grid menu-reveal" aria-label="환경경영 운영 체계">
-        {environmentalPrograms.map((program) => (
+
+      <section className="menu-card-grid menu-reveal" aria-label={copy.systemTitle}>
+        {copy.environmentalPrograms.map((program) => (
           <article className="menu-icon-card" key={program.title}>
             <Icon name="leaf" />
             <strong>{program.title}</strong>
@@ -750,9 +1086,9 @@ function EnvironmentalContent() {
           </article>
         ))}
       </section>
-      <section className="menu-data-table menu-reveal" aria-label="환경 관리 지표">
-        <h3>환경 관리 항목</h3>
-        {environmentalMetrics.map(([category, indicator, status, memo]) => (
+      <section className="menu-data-table menu-reveal" aria-label={copy.metricsTitle}>
+        <h3>{copy.metricsTitle}</h3>
+        {copy.environmentalMetrics.map(([category, indicator, status, memo]) => (
           <article key={`${category}-${indicator}`}>
             <span>{category}</span>
             <strong>{indicator}</strong>
@@ -1088,11 +1424,11 @@ function JobsContent() {
   );
 }
 
-function PageBody({ route }: { route: string }) {
+function PageBody({ route, language }: { route: string; language: LanguageCode }) {
   if (route.startsWith("company/greeting")) return <GreetingContent />;
   if (route.startsWith("company/history")) return <HistoryContent />;
   if (route.startsWith("company/certificates")) return <CertificatesContent />;
-  if (route.startsWith("sustainability/environmental")) return <EnvironmentalContent />;
+  if (route.startsWith("sustainability/environmental")) return <EnvironmentalContent language={language} />;
   if (route.startsWith("sustainability/governance")) return <GovernanceContent />;
   if (route.startsWith("sustainability/esg-report")) return <EsgReportContent />;
   if (route.startsWith("products/")) return <ProductsContent route={route} />;
@@ -1233,10 +1569,10 @@ export default function MenuPage({ route }: MenuPageProps) {
         );
 
       gsap.utils
-        .toArray<HTMLElement>(".menu-photo-card img, .menu-cert-layout > img, .menu-product-card img, .menu-industrial__visual img, .menu-history-daedong__media img")
+        .toArray<HTMLElement>(".menu-photo-card img, .menu-cert-layout > img, .menu-product-card img, .menu-industrial__visual img, .menu-history-daedong__media img, .menu-esg-landing__visual img, .menu-esg-pillar-card img")
         .forEach((image) => {
           const trigger =
-            image.closest<HTMLElement>(".menu-photo-card, .menu-cert-layout, .menu-product-card, .menu-industrial__visual, .menu-history-daedong__media") ?? image;
+            image.closest<HTMLElement>(".menu-photo-card, .menu-cert-layout, .menu-product-card, .menu-industrial__visual, .menu-history-daedong__media, .menu-esg-landing__visual, .menu-esg-pillar-card") ?? image;
 
           gsap.fromTo(
             image,
@@ -1304,7 +1640,7 @@ export default function MenuPage({ route }: MenuPageProps) {
         <DepthNavigation route={cleanRoute} language={language} />
         <section className="menu-content-section">
           <PageTitle config={config} />
-          <PageBody route={cleanRoute} />
+          <PageBody route={cleanRoute} language={language} />
         </section>
       </main>
       <MenuFooter language={language} />
