@@ -1546,12 +1546,13 @@ function DataSection({ copy, stats, language }: { copy: SiteContent["dataHeading
   const ref = useRef<HTMLElement>(null);
   const progress = useSectionProgress(ref);
   const displayStats = stats.map((stat, index) => ({ ...stat, ...(dataStatOverrides[language]?.[index] ?? {}) }));
+  const titleText = language === "ja" ? copy.title.replace("を軸にした", "を軸にした\n") : copy.title;
 
   return (
-    <section className="data-section" id="data" ref={ref} data-scene="metrics">
+    <section className="data-section" id="data" ref={ref} data-scene="metrics" data-language={language}>
       <div className="data-section__copy" data-reveal>
         <h2 aria-label={copy.title}>
-          <ScrollComposeText text={copy.title} />
+          <ScrollComposeText text={titleText} />
         </h2>
         <p>{copy.copy}</p>
       </div>

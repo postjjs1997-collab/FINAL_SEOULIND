@@ -2899,27 +2899,54 @@
 .data-section {
   display: grid;
   min-height: 820px;
-  grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.2fr);
-  gap: 54px;
-  align-items: end;
+  grid-template-columns: minmax(460px, 0.95fr) minmax(640px, 1.05fr);
+  gap: clamp(38px, 5vw, 86px);
+  align-items: start;
   overflow: hidden;
   padding: 130px clamp(24px, 6vw, 92px);
   background: var(--color-paper);
 }
 
+.data-section__copy {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: min(760px, 100%);
+  min-width: 0;
+}
+
 .data-section__copy h2 {
+  max-width: 100%;
   margin: 0 0 28px;
   color: #303344;
   font-size: clamp(2.4rem, 4.2vw, 5.3rem);
   line-height: 1.12;
+  line-break: strict;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
 }
 
 .data-section__copy p {
+  max-width: 720px;
   margin: 0;
   color: #54596b;
   font-size: 1.16rem;
   font-weight: 800;
   line-height: 1.75;
+}
+
+.data-section[data-language="ja"] .data-section__copy {
+  max-width: min(720px, 100%);
+}
+
+.data-section[data-language="ja"] .data-section__copy h2 {
+  font-size: clamp(2.35rem, 3.45vw, 4.35rem);
+  line-height: 1.16;
+}
+
+.data-section[data-language="ja"] .data-section__copy p {
+  max-width: 700px;
+  font-size: 1.08rem;
 }
 
 .data-orbit {
@@ -2976,6 +3003,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
+  min-width: 0;
 }
 
 .stat-card {
@@ -3070,6 +3098,8 @@
   font-size: 0.98rem;
   font-weight: 800;
   line-height: 1.55;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
 }
 
 .history-section {
