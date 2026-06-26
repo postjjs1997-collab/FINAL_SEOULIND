@@ -822,8 +822,8 @@
 .brain-video-box {
   position: absolute;
   left: calc(50% + 8px);
-  top: 46.5%;
-  width: min(72.8vw, 1170px);
+  top: 36.5%;
+  width: min(68vw, 1080px);
   aspect-ratio: 16 / 9;
   animation: none;
   transform: translate3d(-50%, -50%, 0);
@@ -949,7 +949,7 @@
 .hero-solution-copy {
   position: absolute;
   right: clamp(28px, 4.4vw, 86px);
-  top: 38.5vh;
+  top: clamp(118px, 23vh, 260px);
   z-index: 4;
   display: grid;
   width: min(820px, 43vw);
@@ -1059,7 +1059,7 @@
 .brain-hero__subtit {
   position: absolute;
   left: clamp(42px, 5.3vw, 78px);
-  bottom: 17vh;
+  bottom: 28vh;
   z-index: 4;
   width: min(420px, 34vw);
   margin: 0;
@@ -6188,14 +6188,14 @@
 
   .brain-video-box {
     left: 50%;
-    top: 42%;
+    top: 34%;
     width: min(86vw, 374px);
   }
 
   .hero-solution-copy {
     left: 18px;
     right: 18px;
-    top: 58vh;
+    top: 44vh;
     width: auto;
     gap: 14px;
   }
@@ -6213,7 +6213,7 @@
 
   .brain-hero__subtit {
     left: 16px;
-    bottom: 20vh;
+    bottom: 30vh;
     width: min(310px, calc(100vw - 32px));
     font-size: 1.28rem;
   }
