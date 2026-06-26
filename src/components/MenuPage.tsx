@@ -368,14 +368,9 @@ const businessFields = [
 
 const historyBlocks = [
   {
-    period: "2020 ~ 현재",
-    image: menuHeroImages.factory,
-    items: ["INNOBIZ 인증 취득", "글로벌 고객사 신규 거래 확대", "자동차 부품 정밀가공 양산 체계 고도화"],
-  },
-  {
-    period: "2010 ~ 2019",
-    image: menuHeroImages.precision,
-    items: ["현대모비스 SQ 인증 취득", "3천만불 수출의 탑 수상", "AL 다이캐스팅 사업 진출", "GKN Driveline, Spartan 등 고객 네트워크 확대"],
+    period: "1985 ~ 1999",
+    image: menuHeroImages.documents,
+    items: ["서울산업 설립", "자동차 조향부품 양산 시작", "정밀가공 기반 제조 설비 구축"],
   },
   {
     period: "2000 ~ 2009",
@@ -383,9 +378,14 @@ const historyBlocks = [
     items: ["ISO 14001 인증 취득", "IATF/TS 16949 인증 취득", "기업부설연구소 설립", "ZF, AAM, Nexteer, Hyundai Mobis 등 거래 기반 확대"],
   },
   {
-    period: "1985 ~ 1999",
-    image: menuHeroImages.documents,
-    items: ["서울산업 설립", "자동차 조향부품 양산 시작", "정밀가공 기반 제조 설비 구축"],
+    period: "2010 ~ 2019",
+    image: menuHeroImages.precision,
+    items: ["현대모비스 SQ 인증 취득", "3천만불 수출의 탑 수상", "AL 다이캐스팅 사업 진출", "GKN Driveline, Spartan 등 고객 네트워크 확대"],
+  },
+  {
+    period: "2020 ~ 현재",
+    image: menuHeroImages.factory,
+    items: ["INNOBIZ 인증 취득", "글로벌 고객사 신규 거래 확대", "자동차 부품 정밀가공 양산 체계 고도화"],
   },
 ];
 

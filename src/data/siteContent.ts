@@ -43,6 +43,10 @@ const patchById = <T extends { id: string }>(items: T[], patches: Array<IdPatch<
 const patchByIndex = <T extends object>(items: T[], patches: Array<Partial<T>>) =>
   items.map((item, index) => ({ ...item, ...(patches[index] ?? {}) }));
 
+const historyStartYear = (era: HistoryEra) => Number(era.period.match(/\d{4}/)?.[0] ?? 0);
+const chronologicalHistoryEras = (eras: HistoryEra[]) =>
+  [...eras].sort((first, second) => historyStartYear(first) - historyStartYear(second));
+
 const clientStatement = "SEOUL INDUSTRY BUILDS OEM PARTNERSHIPS THROUGH PRECISION MACHINING, QUALITY CONTROL, AND RELIABLE DELIVERY.";
 
 function applyKoreanCopy(content: SiteContent) {
@@ -114,6 +118,7 @@ function applyKoreanCopy(content: SiteContent) {
       summary: "서울산업을 설립하고 자동차 조향부품 양산을 시작하며 정밀가공 제조 기반을 만들었습니다.",
     },
   ]);
+  content.historyEras = chronologicalHistoryEras(content.historyEras);
 
   Object.assign(content.global, {
     copy: "정확한 일정과 흔들리지 않는 품질은 자동차 부품 공급망의 기본입니다.\n서울산업은 고객의 개발 일정과 양산 계획에 맞춰 정밀가공 부품을 안정적으로 공급합니다.",
@@ -218,6 +223,7 @@ function applyEnglishCopy(content: SiteContent) {
       summary: "Seoul Industry was founded and began volume production of automotive steering parts — the start of our precision machining base.",
     },
   ]);
+  content.historyEras = chronologicalHistoryEras(content.historyEras);
 
   Object.assign(content.global, {
     copy: "In automotive supply, the schedule has to hold and the quality can't drift.\nSeoul Industry machines to exactly that standard — in step with your development and production plans.",
@@ -319,6 +325,7 @@ function applyJapaneseCopy(content: SiteContent) {
       summary: "ソウル産業を設立し、自動車操舵部品の量産を開始して精密加工の基盤を築きました。",
     },
   ]);
+  content.historyEras = chronologicalHistoryEras(content.historyEras);
 
   Object.assign(content.global, {
     copy: "自動車部品のサプライチェーンは、\n正確な日程とぶれない品質で成り立ちます。\nソウル産業は、顧客の開発日程と量産計画に合わせ、\n精密加工部品を安定供給します。",
