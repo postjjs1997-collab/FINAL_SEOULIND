@@ -2397,7 +2397,7 @@
 
 .latest-parts__video-stage {
   position: relative;
-  min-height: clamp(380px, 50svh, 520px);
+  min-height: clamp(540px, 66svh, 740px);
   overflow: hidden;
 }
 
@@ -2427,7 +2427,7 @@
 
 .latest-video-card {
   position: absolute;
-  inset: clamp(12px, 2vw, 24px);
+  inset: clamp(10px, 1.7vw, 20px);
   z-index: 1;
   display: grid;
   overflow: hidden;
@@ -2443,6 +2443,8 @@
   transform-origin: 50% 90%;
   box-shadow: 0 42px 120px rgba(0, 0, 0, 0.26);
   transition:
+    border-color 0.48s var(--ease-out),
+    box-shadow 0.48s var(--ease-out),
     opacity 0.48s var(--ease-out),
     transform 0.82s cubic-bezier(0.19, 1, 0.22, 1),
     filter 0.48s var(--ease-out);
@@ -2482,10 +2484,31 @@
 
 .latest-video-card.is-active {
   z-index: 8;
+  border-color: color-mix(in srgb, var(--part-accent) 42%, rgba(255, 250, 244, 0.24));
   opacity: 1;
   pointer-events: auto;
   filter: none;
   transform: translate3d(0, calc(var(--latest-step-progress, 0) * -18px), 0) rotateX(0deg) scale(1);
+  box-shadow:
+    0 54px 150px rgba(0, 0, 0, 0.38),
+    0 0 0 1px color-mix(in srgb, var(--part-accent) 18%, transparent);
+  animation: latestCardEnter 0.72s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes latestCardEnter {
+  0% {
+    filter: blur(9px) saturate(0.72);
+    transform: translate3d(5%, calc(34px + var(--latest-step-progress, 0) * -18px), 0) rotateX(-5deg) scale(0.965);
+  }
+
+  62% {
+    filter: blur(0) saturate(1.08);
+  }
+
+  100% {
+    filter: none;
+    transform: translate3d(0, calc(var(--latest-step-progress, 0) * -18px), 0) rotateX(0deg) scale(1);
+  }
 }
 
 .latest-parts:not(.is-inview) .latest-video-card.is-active {
@@ -2522,6 +2545,42 @@
   background: #090706;
 }
 
+.latest-video-card__media::before {
+  content: "";
+  position: absolute;
+  left: -18%;
+  right: -18%;
+  top: 0;
+  z-index: 3;
+  height: 3px;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 250, 244, 0.9), var(--part-accent), transparent);
+  box-shadow: 0 0 32px color-mix(in srgb, var(--part-accent) 55%, transparent);
+  opacity: 0;
+  transform: translate3d(-12%, -20px, 0);
+}
+
+.latest-video-card.is-active .latest-video-card__media::before {
+  animation: latestMediaScan 0.88s 0.08s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes latestMediaScan {
+  0% {
+    opacity: 0;
+    transform: translate3d(-16%, -20px, 0);
+  }
+
+  18% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(16%, calc(100% + 20px), 0);
+  }
+}
+
 .latest-video-card__media::after {
   content: "";
   position: absolute;
@@ -2539,6 +2598,30 @@
   object-fit: cover;
   filter: saturate(0.94) contrast(1.05);
   animation: latestVideoSwap 0.62s var(--ease-out) both;
+}
+
+.latest-video-card.is-active .latest-video-card__media video,
+.latest-video-card.is-active .latest-video-card__media img {
+  animation: latestMediaFocus 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes latestMediaFocus {
+  0% {
+    opacity: 0.74;
+    filter: saturate(0.72) contrast(1.02) brightness(0.72);
+    transform: scale(1.075);
+  }
+
+  48% {
+    opacity: 1;
+    filter: saturate(1.08) contrast(1.08) brightness(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    filter: saturate(0.94) contrast(1.05) brightness(1);
+    transform: scale(1);
+  }
 }
 
 .latest-lineup-clips {
@@ -2575,9 +2658,30 @@
   box-shadow: 0 0 18px color-mix(in srgb, var(--part-accent) 58%, transparent);
 }
 
+.latest-video-card.is-active .latest-lineup-clips i.is-active {
+  animation: latestClipPulse 0.98s 0.16s ease-out both;
+}
+
+@keyframes latestClipPulse {
+  0% {
+    transform: scaleX(0.48);
+  }
+
+  52% {
+    transform: scaleX(1.38);
+    box-shadow: 0 0 26px color-mix(in srgb, var(--part-accent) 78%, transparent);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}
+
 .latest-video-card__copy {
   display: grid;
   gap: 12px;
+  min-height: clamp(190px, 22svh, 260px);
+  align-content: center;
   padding: clamp(24px, 3vw, 38px);
   transition: opacity 0.34s var(--ease-out);
 }
@@ -2607,6 +2711,32 @@
   letter-spacing: 0.12em;
 }
 
+.latest-video-card.is-active .latest-video-card__copy span,
+.latest-video-card.is-active .latest-video-card__copy strong,
+.latest-video-card.is-active .latest-video-card__copy p {
+  animation: latestCopyReveal 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.latest-video-card.is-active .latest-video-card__copy strong {
+  animation-delay: 0.08s;
+}
+
+.latest-video-card.is-active .latest-video-card__copy p {
+  animation-delay: 0.16s;
+}
+
+@keyframes latestCopyReveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .latest-video-card__copy strong {
   color: #11100f;
   font-size: clamp(2.1rem, 3.3vw, 4.6rem);
@@ -2633,6 +2763,22 @@
   font-size: 0.82rem;
   font-weight: 950;
   mix-blend-mode: difference;
+}
+
+.latest-video-card.is-active > small {
+  animation: latestIndexPop 0.62s 0.12s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes latestIndexPop {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0) scale(0.86);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
 }
 
 .solution-section,
@@ -7222,7 +7368,7 @@
   }
 
   .latest-parts__video-stage {
-    min-height: 540px;
+    min-height: min(620px, 70svh);
   }
 }
 
@@ -7327,7 +7473,7 @@
   }
 
   .latest-parts__video-stage {
-    min-height: min(480px, 52svh);
+    min-height: min(560px, 64svh);
   }
 
   .latest-video-card {
@@ -7337,6 +7483,7 @@
 
   .latest-video-card__copy {
     gap: 9px;
+    min-height: 176px;
     padding: 20px;
   }
 
@@ -11039,6 +11186,15 @@
   .menu-recruit-visual__image::before,
   .latest-parts__image-board::before,
   .latest-video-card.is-active::before,
+  .latest-video-card.is-active,
+  .latest-video-card.is-active .latest-video-card__media::before,
+  .latest-video-card.is-active .latest-video-card__media video,
+  .latest-video-card.is-active .latest-video-card__media img,
+  .latest-video-card.is-active .latest-lineup-clips i.is-active,
+  .latest-video-card.is-active .latest-video-card__copy span,
+  .latest-video-card.is-active .latest-video-card__copy strong,
+  .latest-video-card.is-active .latest-video-card__copy p,
+  .latest-video-card.is-active > small,
   .client-collab__stage {
     animation: none;
   }
