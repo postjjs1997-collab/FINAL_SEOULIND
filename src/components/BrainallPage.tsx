@@ -3,8 +3,6 @@ import balanceModuleImage from "../../housing.png";
 import drivelineImage from "../../driveline.png";
 import electricVehicleImage from "../../electric vehicle.png";
 import steeringImage from "../../steering.png";
-import preloaderVideo from "../../start.mp4";
-import precisionInsideMobilityImage from "../../precision-inside-mobility.jpg";
 import partnerMagnaLogo from "../../assets/partner-magna.svg";
 import BrainallLogo from "./BrainallLogo";
 import Header from "./Header";
@@ -12,7 +10,6 @@ import Icon from "./Icons";
 import {
   defaultLanguage,
   globalVideo,
-  heroVisual,
   isLanguageCode,
   languages,
   showcaseVideos,
@@ -319,105 +316,6 @@ function scrollToStep<T extends HTMLElement>(ref: { current: T | null }, index: 
   window.scrollTo({ top: target, behavior: "smooth" });
 }
 
-function SplitChars({ text }: { text: string }) {
-  return (
-    <>
-      {text.split("").map((char, index) => (
-        <span className="ch" key={`${char}-${index}`} style={{ "--ch-index": index } as CSSProperties}>
-          {char === " " ? "\u00A0" : char}
-        </span>
-      ))}
-    </>
-  );
-}
-
-type HeroSolutionCopyContent = {
-  line1: Array<{ text: string; accent?: "start" | "solution" }>;
-  line2: Array<{ text: string; accent?: "start" | "solution" }>;
-  body: Array<{ text: string; accent?: "partner" }>;
-};
-
-const heroSolutionCopy: Record<LanguageCode, HeroSolutionCopyContent> = {
-  ko: {
-    line1: [{ text: "모든 움직임의 " }, { text: "시작", accent: "start" }, { text: "," }],
-    line2: [{ text: "미래를 향한 " }, { text: "솔루션", accent: "solution" }],
-    body: [{ text: "정밀 기술로 완성도를 높이는 자동차 부품의 " }, { text: "BEST PARTNER", accent: "partner" }],
-  },
-  en: {
-    line1: [{ text: "Where Every Motion " }, { text: "Starts", accent: "start" }, { text: "," }],
-    line2: [{ text: "Future-Ready " }, { text: "Solutions", accent: "solution" }],
-    body: [{ text: "Your " }, { text: "BEST PARTNER", accent: "partner" }, { text: " in precision automotive component manufacturing." }],
-  },
-  ja: {
-    line1: [{ text: "すべての動きが" }, { text: "始まる", accent: "start" }, { text: "場所、" }],
-    line2: [{ text: "未来へ向かう" }, { text: "ソリューション", accent: "solution" }],
-    body: [{ text: "精密技術で自動車部品の完成度を高める " }, { text: "BEST PARTNER", accent: "partner" }, { text: "。" }],
-  },
-};
-
-function HeroSolutionSegment({ segment }: { segment: HeroSolutionCopyContent["line1"][number] | HeroSolutionCopyContent["body"][number] }) {
-  if (!segment.accent) return <SplitChars text={segment.text} />;
-
-  return (
-    <span className={`hero-solution-copy__accent hero-solution-copy__accent--${segment.accent}`}>
-      <SplitChars text={segment.text} />
-    </span>
-  );
-}
-
-function HeroBrandTitle() {
-  const lines = [
-    [
-      { text: "Your" },
-      { text: "Trusted", accent: true },
-      { text: "Partner", accent: true },
-    ],
-    [{ text: "In" }, { text: "Automotive" }, { text: "OEM" }, { text: "Parts." }],
-  ];
-
-  return (
-    <h1 className="hero-brand-title" aria-label="Your Trusted Partner in Automotive OEM Parts.">
-      {lines.map((line, lineIndex) => (
-        <span className="hero-brand-line" key={`hero-brand-line-${lineIndex}`}>
-          {line.map((word) => (
-            <span className={`hero-brand-word ${word.accent ? "hero-brand-word--accent" : ""}`} key={`${lineIndex}-${word.text}`}>
-              <span className="hero-brand-word__inner">{word.text}</span>
-            </span>
-          ))}
-        </span>
-      ))}
-    </h1>
-  );
-}
-
-function HeroSolutionCopy({ language }: { language: LanguageCode }) {
-  const copy = heroSolutionCopy[language] ?? heroSolutionCopy.ko;
-  const headline = `${copy.line1.map((segment) => segment.text).join("")} ${copy.line2.map((segment) => segment.text).join("")}`;
-  const body = copy.body.map((segment) => segment.text).join("");
-
-  return (
-    <div className="hero-solution-copy" data-language={language} aria-label={`${headline} ${body}`}>
-      <p className="hero-solution-copy__headline" aria-hidden="true">
-        <span className="hero-solution-copy__line">
-          {copy.line1.map((segment, index) => (
-            <HeroSolutionSegment segment={segment} key={`line1-${index}`} />
-          ))}
-        </span>
-        <span className="hero-solution-copy__line hero-solution-copy__line--second">
-          {copy.line2.map((segment, index) => (
-            <HeroSolutionSegment segment={segment} key={`line2-${index}`} />
-          ))}
-        </span>
-      </p>
-      <p className="hero-solution-copy__body" aria-hidden="true">
-        {copy.body.map((segment, index) => (
-          <HeroSolutionSegment segment={segment} key={`body-${index}`} />
-        ))}
-      </p>
-    </div>
-  );
-}
-
 function ScrollComposeText({ text }: { text: string }) {
   let visibleIndex = 0;
 
@@ -570,306 +468,75 @@ function HighlightMedia({ item, active, eager }: { item: Highlight; active: bool
   );
 }
 
-const highlightIntroHoldVh = 1.55;
+const highlightIntroHoldVh = 0.25;
 const highlightEndHoldVh = 1.7;
 const esgEndHoldVh = 0.75;
 
-function Preloader({ copy }: { copy: SiteContent["preloader"] }) {
+const logoIntroCopy: Record<LanguageCode, { wordmark: string; ariaLabel: string }> = {
+  ko: { wordmark: "서울산업", ariaLabel: "서울산업 CI 인트로" },
+  en: { wordmark: "Seoul Industry", ariaLabel: "Seoul Industry CI intro" },
+  ja: { wordmark: "ソウル産業", ariaLabel: "ソウル産業 CIイントロ" },
+};
+
+function LogoIntro({ language }: { language: LanguageCode }) {
   const reduceMotion = usePrefersReducedMotion();
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [progress, setProgress] = useState(reduceMotion ? 100 : 0);
-  const [exiting, setExiting] = useState(reduceMotion);
   const [hidden, setHidden] = useState(reduceMotion);
+  const [exiting, setExiting] = useState(false);
+  const copy = logoIntroCopy[language] ?? logoIntroCopy.ko;
 
   useEffect(() => {
-    if (hidden) return;
-    document.documentElement.classList.add("is-preloading");
-    return () => {
-      document.documentElement.classList.remove("is-preloading");
-    };
-  }, [hidden]);
+    if (reduceMotion || hidden) return;
 
-  useEffect(() => {
-    if (reduceMotion) return;
+    document.documentElement.classList.add("is-ci-intro-active");
+    document.documentElement.classList.remove("is-ci-intro-revealed");
 
-    const startedAt = performance.now();
-    const duration = 6000;
-    let frame = 0;
-    let isComplete = false;
-    const timers = new Set<number>();
-
-    const schedule = (callback: () => void, delay: number) => {
-      const timer = window.setTimeout(() => {
-        timers.delete(timer);
-        callback();
-      }, delay);
-      timers.add(timer);
-    };
-
-    const video = videoRef.current;
-    if (video) {
-      video.currentTime = 0;
-      video.playbackRate = 1.2;
-      void video.play().catch(() => undefined);
-    }
-
-    const revealHome = () => {
-      document.documentElement.classList.remove("is-preloading");
-      window.dispatchEvent(new CustomEvent("seoulind-preloader-reveal"));
-    };
-
-    const complete = () => {
-      if (isComplete) return;
-      isComplete = true;
-      setProgress(100);
+    const revealTimer = window.setTimeout(() => {
       setExiting(true);
-      if (video) video.pause();
-      schedule(revealHome, 360);
-      schedule(() => setHidden(true), 1450);
-    };
+      document.documentElement.classList.remove("is-ci-intro-active");
+      document.documentElement.classList.add("is-ci-intro-revealed");
+      window.dispatchEvent(new CustomEvent("seoulind-ci-intro-complete"));
+    }, 3000);
 
-    const tick = () => {
-      const elapsed = Math.max(0, performance.now() - startedAt);
-      const ratio = Math.min(1, elapsed / duration);
-      const next = Math.min(100, Math.floor(ratio * 100));
-      setProgress(next);
+    const hideTimer = window.setTimeout(() => {
+      setHidden(true);
+      document.documentElement.classList.remove("is-ci-intro-revealed");
+    }, 3780);
 
-      if (ratio < 1) {
-        frame = window.requestAnimationFrame(tick);
-        return;
-      }
-
-      complete();
-    };
-
-    frame = window.requestAnimationFrame(tick);
     return () => {
-      window.cancelAnimationFrame(frame);
-      timers.forEach((timer) => window.clearTimeout(timer));
-      timers.clear();
+      window.clearTimeout(revealTimer);
+      window.clearTimeout(hideTimer);
+      document.documentElement.classList.remove("is-ci-intro-active", "is-ci-intro-revealed");
     };
-  }, [reduceMotion]);
+  }, [hidden, reduceMotion]);
 
   if (hidden) return null;
 
-  const activeWord = copy.words[Math.min(copy.words.length - 1, Math.floor((progress / 101) * copy.words.length))];
-
   return (
-    <div className={`site-preloader ${exiting ? "is-exiting" : ""}`} style={{ "--preloader-progress": `${progress}%` } as CSSProperties} aria-hidden="true">
-      {!reduceMotion && (
-        <video ref={videoRef} className="site-preloader__video" muted playsInline preload="auto">
-          <source src={preloaderVideo} type="video/mp4" />
-        </video>
-      )}
-      <div className="site-preloader__percent">{progress}%</div>
-      <div className="site-preloader__copy">
-        <span>{copy.prefix}</span>
-        <strong key={activeWord}>{activeWord}</strong>
-      </div>
-      <div className="site-preloader__bar" aria-hidden="true">
-        <span />
-      </div>
-    </div>
-  );
-}
-
-function Hero({ copy, language }: { copy: SiteContent["hero"]; language: LanguageCode }) {
-  const reduceMotion = usePrefersReducedMotion();
-  const sectionRef = useRef<HTMLElement>(null);
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
-  const heroWords = { left: "SEOUL", right: "IND." };
-  const heroStyle = {
-    "--hero-scroll-height": `${motionConfig.hero.scrollLengthVh}svh`,
-    "--hero-mobile-scroll-height": `${motionConfig.hero.mobileScrollLengthVh}svh`,
-  } as CSSProperties;
-
-  useEffect(() => {
-    if (reduceMotion) return;
-    const video = heroVideoRef.current;
-    if (!video) return;
-
-    const holdFrameAt = 0;
-    const setHoldFrame = () => {
-      video.pause();
-      video.loop = false;
-      video.playbackRate = 1;
-      if (Number.isFinite(video.duration) && video.duration > holdFrameAt && Math.abs(video.currentTime - holdFrameAt) > 0.02) {
-        video.currentTime = holdFrameAt;
-      }
-    };
-
-    const handleVisibility = () => {
-      if (document.hidden) video.pause();
-    };
-
-    if (video.readyState >= 1) setHoldFrame();
-    else video.addEventListener("loadedmetadata", setHoldFrame, { once: true });
-
-    document.addEventListener("visibilitychange", handleVisibility);
-
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibility);
-      video.removeEventListener("loadedmetadata", setHoldFrame);
-    };
-  }, [reduceMotion]);
-
-  useEffect(() => {
-    if (reduceMotion) return;
-    const section = sectionRef.current;
-    const video = heroVideoRef.current;
-    if (!section || !video) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) video.pause();
-      },
-      { rootMargin: "220px 0px 220px 0px", threshold: 0.02 },
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, [reduceMotion]);
-
-  useEffect(() => {
-    if (reduceMotion) return;
-    const section = sectionRef.current;
-    if (!section || !window.matchMedia("(pointer: fine)").matches) return;
-
-    let frame = 0;
-    let x = 50;
-    let y = 38;
-    const apply = () => {
-      frame = 0;
-      section.style.setProperty("--hero-cursor-x", `${x}%`);
-      section.style.setProperty("--hero-cursor-y", `${y}%`);
-    };
-    const onMove = (event: PointerEvent) => {
-      x = (event.clientX / window.innerWidth) * 100;
-      y = (event.clientY / window.innerHeight) * 100;
-      if (!frame) frame = window.requestAnimationFrame(apply);
-    };
-    const onEnter = () => section.classList.add("is-cursor-active");
-    const onLeave = () => section.classList.remove("is-cursor-active");
-
-    section.addEventListener("pointermove", onMove);
-    section.addEventListener("pointerenter", onEnter);
-    section.addEventListener("pointerleave", onLeave);
-    return () => {
-      window.cancelAnimationFrame(frame);
-      section.removeEventListener("pointermove", onMove);
-      section.removeEventListener("pointerenter", onEnter);
-      section.removeEventListener("pointerleave", onLeave);
-    };
-  }, [reduceMotion]);
-
-  return (
-    <section ref={sectionRef} className="brain-hero visual-sect" id="top" style={heroStyle}>
-      <div className="brain-hero__sticky scroll-area">
-        <div className="brain-hero__bg" aria-hidden="true" />
-        <span className="hero-cursor-glow" aria-hidden="true" />
-
-        <div className="hero-title-stage">
-          <HeroBrandTitle />
-
-          <div className="hero-auto-title">
-            <p className="hero-label hero-label--top">
-              <span>{copy.leftLabel}</span>
-            </p>
-            <h1 className="hero-auto-line" aria-label={`${heroWords.left} ${heroWords.right}`}>
-              <span className="hero-auto-word hero-auto-word--auto" aria-hidden="true">
-                <SplitChars text={heroWords.left} />
-              </span>
-              <span className="hero-auto-word hero-auto-word--parts" aria-hidden="true">
-                <SplitChars text={heroWords.right} />
-              </span>
-            </h1>
-            <p className="hero-label hero-label--bottom">
-              <span>{copy.rightLabel}</span>
-            </p>
-          </div>
-        </div>
-
-        <div className="brain-box" aria-hidden="true">
-          <div className="brain-video-box">
-            {reduceMotion ? (
-              <img className="brain-video" src={heroVisual.poster} alt={heroVisual.label} loading="eager" />
-            ) : (
-              <video
-                ref={heroVideoRef}
-                className="brain-video"
-                muted
-                playsInline
-                preload="auto"
-                poster={heroVisual.poster}
-              >
-                <source src={heroVisual.webm} type="video/webm" />
-                <source src={heroVisual.src} type="video/mp4" />
-              </video>
-            )}
-          </div>
-        </div>
-
-        <HeroSolutionCopy language={language} />
-
-        <p className="brain-hero__subtit">{copy.subtitle}</p>
-        <span className="brain-hero__veil" aria-hidden="true" />
-
-      </div>
-    </section>
-  );
-}
-
-const seoulIntroCopy: Record<LanguageCode, { secondary: string; brand: string }> = {
-  ko: { secondary: "모빌리티를 완성하는 정밀함, 서울산업.", brand: "서울산업" },
-  en: { secondary: "The precision that completes mobility — Seoul Industry.", brand: "Seoul Industry" },
-  ja: { secondary: "モビリティを完成させる精密さ、ソウル産業。", brand: "ソウル産業" },
-};
-
-function SeoulIndustryIntroSection({ language }: { language: LanguageCode }) {
-  const primary = "Precision Inside Mobility.";
-  const { secondary, brand } = seoulIntroCopy[language] ?? seoulIntroCopy.ko;
-  const label = `${primary} ${secondary}`;
-
-  const renderIntroLine = (text: string, lineIndex: number) => {
-    const chars = Array.from(text);
-    const brandStart = chars.join("").indexOf(brand);
-
-    return chars.map((char, charIndex) => {
-      const isPrecision = lineIndex === 0 && charIndex < "Precision".length;
-      const isBrand = lineIndex === 1 && brandStart >= 0 && charIndex >= brandStart && charIndex < brandStart + brand.length;
-
-      return (
-        <span
-          className={[
-            "seoul-industry-intro__char",
-            isPrecision ? "seoul-industry-intro__char--precision" : "",
-            isBrand ? "seoul-industry-intro__char--brand" : "",
-          ]
-            .filter(Boolean)
-            .join(" ")}
-          style={{ "--intro-char-index": lineIndex * 42 + charIndex } as CSSProperties}
-          key={`precision-intro-${lineIndex}-${charIndex}-${char}`}
-        >
-          {char === " " ? "\u00A0" : char}
-        </span>
-      );
-    });
-  };
-
-  return (
-    <section className="seoul-industry-intro" data-scene="seoul-industry-intro" aria-label={label}>
-      <img className="seoul-industry-intro__media" src={precisionInsideMobilityImage} alt="" aria-hidden="true" loading="eager" />
-      <span className="seoul-industry-intro__glow" aria-hidden="true" />
-      <div className="seoul-industry-intro__inner">
-        <h2 className="seoul-industry-intro__title" aria-label={label}>
-          <span className="seoul-industry-intro__line seoul-industry-intro__line--primary" aria-hidden="true">
-            {renderIntroLine(primary, 0)}
-          </span>
-          <span className="seoul-industry-intro__line seoul-industry-intro__line--secondary" aria-hidden="true">
-            {renderIntroLine(secondary, 1)}
-          </span>
-        </h2>
-        <span className="seoul-industry-intro__rule" aria-hidden="true" />
+    <section className={`ci-logo-intro ${exiting ? "is-exiting" : ""}`} aria-label={copy.ariaLabel} aria-hidden="true" data-language={language}>
+      <div className="ci-logo-intro__brand">
+        <svg className="ci-logo-intro__mark" viewBox="0 0 113.6 100" role="img" aria-label="Seoul Industry symbol">
+          <defs>
+            <clipPath id="seoul-ci-top-half">
+              <rect x="0" y="0" width="113.6" height="50.4" />
+            </clipPath>
+            <clipPath id="seoul-ci-bottom-half">
+              <rect x="0" y="49.6" width="113.6" height="50.4" />
+            </clipPath>
+          </defs>
+          <circle className="ci-logo-intro__origin-circle" cx="56.8" cy="50" r="50" />
+          <g className="ci-logo-intro__split-mark">
+            <circle className="ci-logo-intro__half ci-logo-intro__half--top" cx="63.6" cy="50" r="50" clipPath="url(#seoul-ci-top-half)" />
+            <circle className="ci-logo-intro__half ci-logo-intro__half--bottom" cx="50" cy="50" r="50" clipPath="url(#seoul-ci-bottom-half)" />
+          </g>
+          <g className="ci-logo-intro__slashes" transform="rotate(25 56.8 50)">
+            <rect x="24.8" y="-16" width="4.8" height="132" rx="1.2" />
+            <rect x="36.2" y="-16" width="4.8" height="132" rx="1.2" />
+            <rect x="47.6" y="-16" width="4.8" height="132" rx="1.2" />
+            <rect x="59" y="-16" width="4.8" height="132" rx="1.2" />
+            <rect x="70.4" y="-16" width="4.8" height="132" rx="1.2" />
+          </g>
+        </svg>
+        <strong className="ci-logo-intro__wordmark">{copy.wordmark}</strong>
       </div>
     </section>
   );
@@ -895,6 +562,8 @@ function HighlightSlider({
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+
+    node.classList.add("is-copy-ready");
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -2454,291 +2123,10 @@ export default function BrainallPage() {
     const root = rootRef.current;
     if (!root || reduceMotion) return;
 
-    const lockEventOptions: AddEventListenerOptions = { capture: true, passive: false };
-    const lockedKeyNames = new Set(["ArrowDown", "ArrowLeft", "ArrowRight", "ArrowUp", "End", "Enter", "Home", "PageDown", "PageUp", " ", "Spacebar"]);
-    const lockedEventNames: Array<keyof WindowEventMap> = [
-      "click",
-      "contextmenu",
-      "dblclick",
-      "keydown",
-      "mousedown",
-      "mouseup",
-      "pointerdown",
-      "pointerup",
-      "touchmove",
-      "touchstart",
-      "wheel",
-    ];
-    let introInteractionLocked = true;
-    let introUnlockTimer = 0;
-
-    const preventIntroInteraction = (event: Event) => {
-      if (!introInteractionLocked) return;
-      if (event instanceof KeyboardEvent && !lockedKeyNames.has(event.key)) return;
-
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      event.stopPropagation();
-    };
-
-    const removeIntroLockListeners = () => {
-      lockedEventNames.forEach((eventName) => {
-        window.removeEventListener(eventName, preventIntroInteraction, lockEventOptions);
-      });
-    };
-
-    const unlockIntroInteraction = () => {
-      window.clearTimeout(introUnlockTimer);
-      if (!introInteractionLocked) return;
-      introInteractionLocked = false;
-      document.documentElement.classList.remove("is-intro-locked");
-      removeIntroLockListeners();
-    };
-
-    const scheduleIntroUnlock = (delay: number) => {
-      window.clearTimeout(introUnlockTimer);
-      introUnlockTimer = window.setTimeout(unlockIntroInteraction, delay);
-    };
-
-    document.documentElement.classList.add("is-intro-locked");
-    lockedEventNames.forEach((eventName) => {
-      window.addEventListener(eventName, preventIntroInteraction, lockEventOptions);
-    });
-
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
-      gsap.set(".hero-brand-word__inner", { yPercent: 112, autoAlpha: 0, filter: "blur(8px)" });
-      gsap.set(".hero-auto-title", { autoAlpha: 0 });
-      gsap.set(".hero-auto-title .ch, .hero-auto-title .hero-label span", { yPercent: 112, autoAlpha: 0 });
-      gsap.set(".brain-video-box", { autoAlpha: 0, y: 38, scale: 0.88, filter: "blur(10px)" });
-      gsap.set(".brain-hero__subtit", { autoAlpha: 0, y: 24, x: 0, xPercent: 0, filter: "blur(6px)" });
-      gsap.set(".hero-solution-copy", { autoAlpha: 0, y: 18, filter: "blur(4px)" });
-      gsap.set(".hero-solution-copy .ch", { y: "1.18em", autoAlpha: 0, filter: "blur(6px)" });
-      gsap.set(".brain-hero__veil", { autoAlpha: 0 });
-      gsap.set(".seoul-industry-intro", { autoAlpha: 0 });
-      gsap.set(".seoul-industry-intro__media", { autoAlpha: 0, scale: 1.08, filter: "blur(28px) saturate(0.72) brightness(0.42)" });
-      gsap.set(".seoul-industry-intro__glow", { autoAlpha: 0, scaleX: 0.58 });
-      gsap.set(".seoul-industry-intro__rule", { scaleX: 0, autoAlpha: 0 });
-      gsap.set(".seoul-industry-intro__char", {
-        autoAlpha: 0,
-        y: "1.08em",
-        rotateX: -22,
-        filter: "blur(12px)",
-      });
       gsap.set(".global-fill-line .fill-line", { backgroundSize: "0% 100%" });
-
-      const heroVideo = root.querySelector<HTMLVideoElement>(".brain-video-box video");
-      const heroSection = root.querySelector<HTMLElement>(".brain-hero");
-      const seoulIntro = root.querySelector<HTMLElement>(".seoul-industry-intro");
-      const highlightIntroTarget = root.querySelector<HTMLElement>(".highlight-section");
-      const solutionCharCount = root.querySelectorAll(".hero-solution-copy .ch").length;
-      const solutionRevealStagger = solutionCharCount > 82 ? 0.0058 : 0.0085;
-      let pendingHeroVideoStart: (() => void) | null = null;
-
-      const playHeroVideo = () => {
-        if (!heroVideo) return;
-
-        const start = () => {
-          pendingHeroVideoStart = null;
-          const rect = heroSection?.getBoundingClientRect();
-          const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-          if (rect && (rect.bottom < -220 || rect.top > viewportHeight + 220)) {
-            heroVideo.pause();
-            return;
-          }
-          heroVideo.loop = false;
-          heroVideo.playbackRate = 0.82;
-          heroVideo.currentTime = 0;
-          void heroVideo.play().catch(() => undefined);
-        };
-
-        if (heroVideo.readyState >= 1) start();
-        else {
-          pendingHeroVideoStart = start;
-          heroVideo.addEventListener("loadedmetadata", start, { once: true });
-        }
-      };
-
-      const pauseHeroVideo = () => {
-        heroVideo?.pause();
-      };
-
-      const jumpToElement = (target: HTMLElement | null) => {
-        if (!target) return;
-
-        const top = window.scrollY + target.getBoundingClientRect().top;
-        const lenis = (window as Window & {
-          __seoulindLenis?: {
-            scrollTo: (target: number, options?: { immediate?: boolean; force?: boolean; duration?: number }) => void;
-          };
-        }).__seoulindLenis;
-
-        if (lenis) lenis.scrollTo(top, { immediate: true, force: true, duration: 0 });
-        else window.scrollTo({ top, behavior: "auto" });
-        ScrollTrigger.refresh();
-      };
-
-      const scrollToSeoulIntro = () => jumpToElement(seoulIntro);
-      const scrollToHighlightIntro = () => jumpToElement(highlightIntroTarget);
-      const playHighlightIntroTransition = () => {
-        if (!highlightIntroTarget) {
-          unlockIntroInteraction();
-          return;
-        }
-
-        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-        const targetTop = window.scrollY + highlightIntroTarget.getBoundingClientRect().top;
-        const destination = targetTop + viewportHeight * 1.2;
-        const lenis = (window as Window & {
-          __seoulindLenis?: {
-            scrollTo: (target: number, options?: { immediate?: boolean; force?: boolean; duration?: number }) => void;
-          };
-        }).__seoulindLenis;
-
-        window.requestAnimationFrame(() => {
-          if (lenis) lenis.scrollTo(destination, { force: true, duration: 2.25 });
-          else window.scrollTo({ top: destination, behavior: "smooth" });
-        });
-        scheduleIntroUnlock(2850);
-      };
-
-      const intro = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
-      intro
-        .to(".hero-brand-word__inner", {
-          yPercent: 0,
-          autoAlpha: 1,
-          filter: "blur(0px)",
-          duration: motionConfig.hero.introDuration + 0.24,
-          stagger: { each: 0.11, from: "start" },
-          delay: 0.08,
-        })
-        .to({}, { duration: 0.64 })
-        .to(
-          ".hero-brand-word__inner",
-          {
-            yPercent: -116,
-            autoAlpha: 0,
-            filter: "blur(10px)",
-            duration: 0.76,
-            stagger: { each: 0.048, from: "center" },
-            ease: "power3.inOut",
-          },
-          ">",
-        )
-        .to(".hero-brand-title", { autoAlpha: 0, scale: 0.965, filter: "blur(16px)", duration: 0.84, ease: "sine.inOut" }, "<0.06")
-        .call(playHeroVideo, [], ">-0.34")
-        .to(".brain-video-box", { autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 1.36, ease: "expo.out" }, "<")
-        .to(".hero-solution-copy", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.52, ease: "power2.out" }, ">-0.16")
-        .to(
-          ".hero-solution-copy .ch",
-          {
-            y: 0,
-            autoAlpha: 1,
-            filter: "blur(0px)",
-            duration: 0.76,
-            stagger: { each: solutionRevealStagger, from: "start" },
-            ease: "power4.out",
-          },
-          "<",
-        )
-        .to(".brain-hero__subtit", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.74, ease: "power3.out" }, "<0.46")
-        .to({}, { duration: 1.16 })
-        .to(
-          ".hero-solution-copy .ch",
-          {
-            y: "-1em",
-            autoAlpha: 0,
-            filter: "blur(7px)",
-            duration: 0.62,
-            stagger: { each: 0.0045, from: "end" },
-            ease: "power3.in",
-          },
-          ">",
-        )
-        .to(".hero-solution-copy", { autoAlpha: 0, y: -18, filter: "blur(8px)", duration: 0.56, ease: "sine.inOut" }, "<0.12")
-        .to(".brain-hero__subtit", { autoAlpha: 0, y: -18, filter: "blur(7px)", duration: 0.72, ease: "sine.inOut" }, "<0.16")
-        .to(".brain-video-box", { autoAlpha: 0, y: -8, scale: 1.035, filter: "blur(7px)", duration: 1.08, ease: "sine.inOut" }, "<0.16")
-        .to(".brain-hero__veil", { autoAlpha: 1, duration: 1.08, ease: "sine.inOut" }, "<")
-        .call(() => {
-          pauseHeroVideo();
-          scrollToSeoulIntro();
-        })
-        .to(".seoul-industry-intro", { autoAlpha: 1, duration: 0.52, ease: "sine.out" })
-        .to(
-          ".seoul-industry-intro__media",
-          {
-            autoAlpha: 0.2,
-            scale: 1,
-            filter: "blur(18px) saturate(0.78) brightness(0.52)",
-            duration: 1.6,
-            ease: "sine.out",
-          },
-          "<",
-        )
-        .to(
-          ".seoul-industry-intro__glow",
-          { autoAlpha: 1, scaleX: 1, duration: 1.2, ease: "power3.out" },
-          "<0.14",
-        )
-        .to(
-          ".seoul-industry-intro__line--primary .seoul-industry-intro__char",
-          {
-            autoAlpha: 1,
-            y: 0,
-            rotateX: 0,
-            filter: "blur(0px)",
-            duration: 0.92,
-            stagger: { each: 0.026, from: "start" },
-            ease: "power4.out",
-          },
-          "<0.2",
-        )
-        .to(
-          ".seoul-industry-intro__line--secondary .seoul-industry-intro__char",
-          {
-            autoAlpha: 1,
-            y: 0,
-            rotateX: 0,
-            filter: "blur(0px)",
-            duration: 0.84,
-            stagger: { each: 0.018, from: "start" },
-            ease: "power4.out",
-          },
-          "<0.42",
-        )
-        .to(
-          ".seoul-industry-intro__rule",
-          { autoAlpha: 1, scaleX: 1, duration: 0.92, ease: "expo.out" },
-          "<0.34",
-        )
-        .to({}, { duration: 1.06 })
-        .to(
-          ".seoul-industry-intro__title, .seoul-industry-intro__rule",
-          { autoAlpha: 0, y: -26, filter: "blur(12px)", duration: 0.72, ease: "sine.inOut" },
-          ">",
-        )
-        .to(".seoul-industry-intro__media", { autoAlpha: 0, scale: 1.035, filter: "blur(24px) brightness(0.36)", duration: 0.72, ease: "sine.inOut" }, "<")
-        .to(".seoul-industry-intro", { autoAlpha: 0, duration: 0.56, ease: "sine.inOut" }, "<0.12")
-        .call(() => {
-          scrollToHighlightIntro();
-          playHighlightIntroTransition();
-        });
-
-      let heroIntroStarted = false;
-      let heroIntroFallback = 0;
-      const playHeroIntro = () => {
-        if (heroIntroStarted) return;
-        heroIntroStarted = true;
-        window.clearTimeout(heroIntroFallback);
-        intro.play(0);
-      };
-      if (document.documentElement.classList.contains("is-preloading") || root.querySelector(".site-preloader")) {
-        window.addEventListener("seoulind-preloader-reveal", playHeroIntro, { once: true });
-        heroIntroFallback = window.setTimeout(playHeroIntro, 8400);
-      } else {
-        playHeroIntro();
-      }
 
       gsap.to(".highlight-bg-dim", {
         opacity: 0,
@@ -2753,60 +2141,16 @@ export default function BrainallPage() {
       });
 
       const highlightSection = root.querySelector<HTMLElement>(".highlight-section");
-      const highlightStage = root.querySelector<HTMLElement>(".highlight-stage");
-      const highlightImageStack = root.querySelector<HTMLElement>(".highlight-image-stack");
-      highlightSection?.classList.remove("is-copy-ready");
-
-      const getHighlightEntryClip = () => {
-        if (!highlightStage || !highlightImageStack) {
-          return window.innerWidth > 860 ? "inset(0px 0px 0px 42vw round 0px)" : "inset(36svh 0px 0px 0px round 0px)";
-        }
-
-        const stageRect = highlightStage.getBoundingClientRect();
-        const targetRect = highlightImageStack.getBoundingClientRect();
-        const top = Math.max(0, targetRect.top - stageRect.top);
-        const right = Math.max(0, stageRect.right - targetRect.right);
-        const bottom = Math.max(0, stageRect.bottom - targetRect.bottom);
-        const left = Math.max(0, targetRect.left - stageRect.left);
-
-        return `inset(${top}px ${right}px ${bottom}px ${left}px round 0px)`;
-      };
+      highlightSection?.classList.add("is-copy-ready");
 
       gsap.set(".highlight-entry-visual", {
-        autoAlpha: 1,
+        autoAlpha: 0,
         clipPath: "inset(0px 0px 0px 0px round 0px)",
         filter: "blur(0px)",
         scale: 1,
       });
-      gsap.set(".highlight-entry-visual .highlight-image__media", { scale: 1.08, filter: "saturate(0.82) contrast(1.1) brightness(0.78) sepia(0.04)" });
-      gsap.set(".highlight-copy", { autoAlpha: 0, x: -56, filter: "blur(14px)" });
-      gsap.set(".highlight-image-stack", { autoAlpha: 0, x: 56, scale: 0.985, filter: "blur(12px)" });
-
-      ScrollTrigger.create({
-        trigger: ".highlight-section",
-        start: "top+=360 top",
-        once: true,
-        onEnter: () => highlightSection?.classList.add("is-copy-ready"),
-      });
-
-      const highlightIntro = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".highlight-section",
-          start: "top top",
-          end: "+=118%",
-          scrub: 1.08,
-          invalidateOnRefresh: true,
-        },
-        defaults: { ease: "sine.inOut" },
-      });
-
-      highlightIntro
-        .to(".highlight-entry-visual", { clipPath: getHighlightEntryClip, duration: 1 }, 0)
-        .to(".highlight-entry-visual .highlight-image__media", { scale: 1.015, duration: 1 }, 0)
-        .to(".highlight-copy", { autoAlpha: 1, x: 0, filter: "blur(0px)", duration: 0.46, ease: "power3.out" }, 0.3)
-        .call(() => highlightSection?.classList.add("is-copy-ready"), [], 0.52)
-        .to(".highlight-image-stack", { autoAlpha: 1, x: 0, scale: 1, filter: "blur(0px)", duration: 0.42, ease: "power3.out" }, 0.54)
-        .to(".highlight-entry-visual", { autoAlpha: 0, filter: "blur(7px)", duration: 0.24, ease: "sine.out" }, 0.8);
+      gsap.set(".highlight-copy", { autoAlpha: 1, x: 0, filter: "blur(0px)" });
+      gsap.set(".highlight-image-stack", { autoAlpha: 1, x: 0, scale: 1, filter: "blur(0px)" });
 
       gsap.fromTo(
         ".highlight-stage",
@@ -3244,31 +2588,21 @@ export default function BrainallPage() {
       }
 
       return () => {
-        window.clearTimeout(heroIntroFallback);
-        window.removeEventListener("seoulind-preloader-reveal", playHeroIntro);
-        if (pendingHeroVideoStart) {
-          heroVideo?.removeEventListener("loadedmetadata", pendingHeroVideoStart);
-        }
-        pauseHeroVideo();
         mm.revert();
       };
     }, root);
 
     return () => {
       ctx.revert();
-      unlockIntroInteraction();
-      removeIntroLockListeners();
     };
   }, [language, reduceMotion]);
 
   return (
     <div className="brainall-page" ref={rootRef}>
-      <Preloader copy={content.preloader} />
+      <LogoIntro language={language} />
       <Header content={content} language={language} onLanguageChange={setLanguage} />
       <ScrollProgress />
       <main>
-        <Hero copy={content.hero} language={language} />
-        <SeoulIndustryIntroSection language={language} />
         <HighlightSlider
           highlights={content.highlights}
           buttonLabel={content.highlightButton}
