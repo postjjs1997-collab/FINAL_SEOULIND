@@ -577,14 +577,17 @@
 
 .brainall-logo {
   --seoul-mark-size: 42px;
+  --seoul-mark-ratio: 1.136;
+  --seoul-logo-color: var(--color-orange);
   display: inline-grid;
-  width: var(--seoul-mark-size);
+  width: calc(var(--seoul-mark-size) * var(--seoul-mark-ratio));
   height: var(--seoul-mark-size);
-  min-width: var(--seoul-mark-size);
+  min-width: calc(var(--seoul-mark-size) * var(--seoul-mark-ratio));
   min-height: var(--seoul-mark-size);
   place-items: center;
   flex: 0 0 auto;
   padding: 0;
+  color: var(--seoul-logo-color);
   line-height: 1;
 }
 
@@ -592,11 +595,12 @@
   --seoul-mark-size: 42px;
 }
 
+.brainall-logo__symbol,
 .brainall-logo__image {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  overflow: visible;
   user-select: none;
 }
 
