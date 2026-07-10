@@ -3,7 +3,6 @@ import balanceModuleImage from "../../housing.png";
 import drivelineImage from "../../driveline.png";
 import electricVehicleImage from "../../electric vehicle.png";
 import steeringImage from "../../steering.png";
-import partnerMagnaLogo from "../../assets/partner-magna.svg";
 import BrainallLogo from "./BrainallLogo";
 import Header from "./Header";
 import Icon from "./Icons";
@@ -14,7 +13,6 @@ import {
   languages,
   showcaseVideos,
   siteContent,
-  type ClientPartner,
   type GlobalAchievement,
   type HistoryEra,
   type Highlight,
@@ -1383,46 +1381,11 @@ const partnerHomepageByMark: Record<string, string> = {
   MAGNA: "https://www.magna.com/",
 };
 
-const supplementalPartnerLogos: PartnerLogo[] = [
-  {
-    name: "Magna Powertrain",
-    mark: "MAGNA",
-    logoSrc: partnerMagnaLogo,
-    region: "Global",
-    role: "Powertrain / Driveline Program",
-  },
-];
-
-function getPartnerHomepage(partner: Pick<PartnerLogo, "mark" | "name"> | Pick<ClientPartner, "mark" | "name">) {
+function getPartnerHomepage(partner: Pick<PartnerLogo, "mark" | "name">) {
   const mark = partner.mark.toUpperCase();
   const name = partner.name.toUpperCase();
   const key = Object.keys(partnerHomepageByMark).find((candidate) => mark.includes(candidate) || name.includes(candidate));
   return key ? partnerHomepageByMark[key] : undefined;
-}
-
-function getClientPartnerLogos(client: ClientPartner, partners: PartnerLogo[]) {
-  const mark = client.mark.toUpperCase();
-  const name = client.name.toUpperCase();
-
-  if (mark.includes("TRW") && mark.includes("MOBIS")) {
-    return partners.filter((partner) => ["TRW", "MOBIS"].includes(partner.mark.toUpperCase()));
-  }
-
-  const direct = partners.find((partner) => {
-    const partnerMark = partner.mark.toUpperCase();
-    const partnerName = partner.name.toUpperCase();
-    return mark.includes(partnerMark) || name.includes(partnerMark) || name.includes(partnerName) || partnerName.includes(name);
-  });
-
-  if (direct) return [direct];
-
-  const supplemental = supplementalPartnerLogos.find((partner) => {
-    const partnerMark = partner.mark.toUpperCase();
-    const partnerName = partner.name.toUpperCase();
-    return mark.includes(partnerMark) || name.includes(partnerMark) || name.includes(partnerName) || partnerName.includes(name);
-  });
-
-  return supplemental ? [supplemental] : [];
 }
 
 function PartnerRows({ partners }: { partners: PartnerLogo[] }) {
@@ -1492,180 +1455,6 @@ function GlobalSection({ copy, partners, language }: { copy: SiteContent["global
       <strong className="global-year">2026</strong>
       <h3>{copy.networkTitle}</h3>
       <PartnerRows partners={partners} />
-    </section>
-  );
-}
-
-function GlobalAchievementSection({ copy, achievements }: { copy: SiteContent["achievementsHeading"]; achievements: GlobalAchievement[] }) {
-  const ref = useRef<HTMLElement>(null);
-  const progress = useSectionProgress(ref, { startVh: 0.92, endVh: 0.08 });
-
-  return (
-    <section className="global-achievement-section" ref={ref} data-scene="metrics">
-      <div className="global-achievement__head" data-reveal>
-        <h2 aria-label={copy.titleLines.join(" ")}>
-          <ScrollComposeText text={copy.titleLines.join("\n")} />
-        </h2>
-      </div>
-
-      <div className="global-achievement__grid">
-        {achievements.map((item) => (
-          <article className="global-achievement-card" data-reveal key={item.label}>
-            <span>{item.label}</span>
-            <strong>
-              <RollingStatNumber progress={progress} value={item.value} />
-            </strong>
-            <small>{item.unit}</small>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-const clientStatementAccentWords = new Set(["SEOUL", "INDUSTRY", "OEM", "PARTNERSHIPS"]);
-const clientStatementAccentTerms = ["서울산업", "파트너십", "ソウル産業", "パートナーシップ"];
-
-const clientCollabCopy: Record<LanguageCode, { kicker: string; logoWallLabel: string }> = {
-  ko: {
-    kicker: "글로벌 OEM 파트너 네트워크",
-    logoWallLabel: "서울산업 주요 협력사",
-  },
-  en: {
-    kicker: "Global OEM Partner Network",
-    logoWallLabel: "Seoul Industry key partners",
-  },
-  ja: {
-    kicker: "グローバルOEMパートナーネットワーク",
-    logoWallLabel: "ソウル産業の主要パートナー",
-  },
-};
-
-function isClientStatementAccent(token: string, normalized: string) {
-  return clientStatementAccentWords.has(normalized) || clientStatementAccentTerms.some((term) => token.includes(term));
-}
-
-function ClientCollabStatement({ statement, progress }: { statement: string; progress: number }) {
-  const tokens = statement.split(/(\s+)/);
-  const wordCount = tokens.filter((token) => !/^\s+$/.test(token)).length;
-  const introWordCount = 2;
-  const revealableCount = Math.max(1, wordCount - introWordCount);
-  let wordIndex = -1;
-
-  return (
-    <p className="client-collab__statement">
-      {tokens.map((token, index) => {
-        if (/^\s+$/.test(token)) return token;
-
-        wordIndex += 1;
-        const normalized = token.replace(/[^a-z0-9]/gi, "").toUpperCase();
-        const accented = isClientStatementAccent(token, normalized);
-        const introWord = wordIndex < introWordCount;
-        const revealOrder = introWord ? 0 : (wordIndex - introWordCount) / revealableCount;
-        const revealStart = 0.08 + revealOrder * 0.58;
-        const revealProgress = introWord ? 1 : clamp01((progress - revealStart) / 0.2);
-        const fillProgress = accented ? (introWord ? 1 : clamp01((progress - revealStart - 0.04) / 0.2)) : 0;
-        const wordStyle = {
-          "--client-word-opacity": revealProgress,
-          "--client-word-y": `${(1 - revealProgress) * 112}%`,
-          "--client-word-blur": `${(1 - revealProgress) * 5}px`,
-          "--client-word-fill": `${(1 - fillProgress) * 100}%`,
-        } as CSSProperties;
-        const wordClassName = [
-          "client-collab__word",
-          accented ? "client-collab__word--accent" : "",
-        ]
-          .filter(Boolean)
-          .join(" ");
-
-        if (!accented) {
-          return (
-            <span className={wordClassName} data-word={normalized} key={`${token}-${index}`}>
-              <span className="client-collab__word-inner" style={wordStyle}>
-                {token}
-              </span>
-            </span>
-          );
-        }
-
-        return (
-          <span className={wordClassName} data-word={normalized} key={`${token}-${index}`}>
-            <span className="client-collab__word-inner" style={wordStyle}>
-              <span className="client-collab__word-base">{token}</span>
-              <span className="client-collab__word-fill" aria-hidden="true">
-                {token}
-              </span>
-            </span>
-          </span>
-        );
-      })}
-    </p>
-  );
-}
-
-function ClientCollabSection({ statement, clients, partners, language }: { statement: string; clients: ClientPartner[]; partners: PartnerLogo[]; language: LanguageCode }) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { progress: statementProgress } = useScrollSteps(sectionRef, Math.max(2, clients.length), 0.0001);
-  const featuredPartners = partners.slice(0, 8);
-  const copy = clientCollabCopy[language] ?? clientCollabCopy.ko;
-
-  return (
-    <section className="client-collab" id="client-collab" data-scene="dark" data-language={language} ref={sectionRef}>
-      <div className="client-collab__split">
-        <div className="client-collab__text">
-          <span className="client-collab__kicker">{copy.kicker}</span>
-          <div className="client-collab__logo-wall" aria-label={copy.logoWallLabel}>
-            {featuredPartners.map((partner) => (
-              <a href={getPartnerHomepage(partner)} target="_blank" rel="noreferrer" key={partner.name} aria-label={`${partner.name} 홈페이지 새 창으로 열기`}>
-                {partner.logoSrc ? <img src={partner.logoSrc} alt={partner.name} loading="lazy" /> : <strong>{partner.mark}</strong>}
-                <span>{partner.region}</span>
-              </a>
-            ))}
-          </div>
-          <ClientCollabStatement statement={statement} progress={statementProgress} />
-        </div>
-
-        <div className="client-collab__stage">
-          <div className="client-collab__rail">
-            {clients.map((client, index) => {
-              const relatedLogos = getClientPartnerLogos(client, partners);
-              const href = getPartnerHomepage(client) ?? getPartnerHomepage(relatedLogos[0] ?? client);
-              const logoClassName = [
-                "client-card__logo",
-                relatedLogos.length > 1 ? "client-card__logo--stack" : "",
-                relatedLogos.some((partner) => partner.mark.toUpperCase() === "MAGNA") ? "client-card__logo--dark" : "",
-              ]
-                .filter(Boolean)
-                .join(" ");
-
-              return (
-                <a className="client-card" href={href} target="_blank" rel="noreferrer" key={client.index} aria-label={`${client.name} 홈페이지 새 창으로 열기`}>
-                  <div className="client-card__bar">
-                    <span>{client.index}</span>
-                    <span>{client.year}</span>
-                  </div>
-                  <div className="client-card__media">
-                    <img src={client.image} alt="" loading={index <= 1 ? "eager" : "lazy"} />
-                    <div className={logoClassName}>
-                      {relatedLogos.length > 0 ? (
-                        relatedLogos.map((partner) =>
-                          partner.logoSrc ? <img src={partner.logoSrc} alt={partner.name} key={partner.mark} /> : <strong key={partner.mark}>{partner.mark}</strong>,
-                        )
-                      ) : (
-                        <strong>{client.mark}</strong>
-                      )}
-                    </div>
-                  </div>
-                  <div className="client-card__meta">
-                    <strong>{client.name}</strong>
-                    <span>{client.role}</span>
-                  </div>
-                </a>
-              );
-            })}
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
@@ -1898,7 +1687,6 @@ const footerDetails: Record<
     quickLinks: [
       { label: "제조 기반", href: "#solution" },
       { label: "제품 라인업", href: "#lineup" },
-      { label: "글로벌 고객사", href: "#client-collab" },
       { label: "ESG 기준", href: "#esg-management" },
     ],
     infoTitle: "회사 정보",
@@ -1930,7 +1718,6 @@ const footerDetails: Record<
     quickLinks: [
       { label: "Manufacturing", href: "#solution" },
       { label: "Products", href: "#lineup" },
-      { label: "Global Customers", href: "#client-collab" },
       { label: "ESG Standards", href: "#esg-management" },
     ],
     infoTitle: "Company",
@@ -1962,7 +1749,6 @@ const footerDetails: Record<
     quickLinks: [
       { label: "製造基盤", href: "#solution" },
       { label: "製品ラインアップ", href: "#lineup" },
-      { label: "グローバル顧客", href: "#client-collab" },
       { label: "ESG基準", href: "#esg-management" },
     ],
     infoTitle: "会社情報",
@@ -2346,87 +2132,8 @@ export default function BrainallPage() {
         }
       });
 
-      gsap.utils.toArray<HTMLElement>(".client-collab").forEach((section) => {
-        const logoCards = gsap.utils.toArray<HTMLElement>(section.querySelectorAll(".client-collab__logo-wall a"));
-        const stage = section.querySelector<HTMLElement>(".client-collab__stage");
-        const clientCards = gsap.utils.toArray<HTMLElement>(section.querySelectorAll(".client-card"));
-
-        if (logoCards.length) {
-          gsap.fromTo(
-            logoCards,
-            {
-              autoAlpha: 0,
-              x: -34,
-              clipPath: "inset(0 100% 0 0)",
-              filter: "blur(10px)",
-            },
-            {
-              autoAlpha: 1,
-              x: 0,
-              clipPath: "inset(0 0% 0 0)",
-              filter: "blur(0px)",
-              duration: 0.72,
-              stagger: 0.055,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: section,
-                start: "top 76%",
-                once: true,
-              },
-            },
-          );
-        }
-
-        if (stage) {
-          gsap.fromTo(
-            stage,
-            {
-              autoAlpha: 0,
-              x: 70,
-              clipPath: "inset(0 0 0 18%)",
-              filter: "blur(18px)",
-            },
-            {
-              autoAlpha: 1,
-              x: 0,
-              clipPath: "inset(0 0 0 0%)",
-              filter: "blur(0px)",
-              duration: 1.04,
-              ease: "expo.out",
-              scrollTrigger: {
-                trigger: section,
-                start: "top 72%",
-                once: true,
-              },
-            },
-          );
-        }
-
-        if (clientCards.length) {
-          gsap.fromTo(
-            clientCards,
-            {
-              clipPath: "inset(0 0 100% 0)",
-              filter: "blur(10px) saturate(0.58)",
-            },
-            {
-              clipPath: "inset(0 0 0% 0)",
-              filter: "blur(0px) saturate(1)",
-              duration: 0.82,
-              stagger: 0.06,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: section,
-                start: "top 58%",
-                once: true,
-              },
-            },
-          );
-        }
-      });
-
       gsap.utils
-        .toArray<HTMLElement>(".global-section__copy, .client-collab__text")
+        .toArray<HTMLElement>(".global-section__copy")
         .forEach((target) => {
           const trigger = target.closest<HTMLElement>("[data-scene]") ?? target;
           gsap.fromTo(
@@ -2539,27 +2246,6 @@ export default function BrainallPage() {
             .to(esgEntry, { autoAlpha: 0, duration: 0.14, ease: "none" }, 0.96);
         }
 
-        const clientRail = root.querySelector<HTMLElement>(".client-collab__rail");
-        const clientStage = root.querySelector<HTMLElement>(".client-collab__stage");
-        if (clientRail && clientStage) {
-          gsap.set(clientRail, { x: 0 });
-          gsap.to(clientRail, {
-            x: () => {
-              const distance = clientRail.scrollWidth - clientStage.clientWidth;
-              return -Math.max(0, distance);
-            },
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".client-collab",
-              start: "top top",
-              end: "bottom bottom",
-              scrub: true,
-              invalidateOnRefresh: true,
-            },
-          });
-        }
-
-        gsap.set(".client-collab__statement", { xPercent: 0 });
       });
 
       gsap.to(".global-fill-line .fill-line", {
@@ -2614,8 +2300,6 @@ export default function BrainallPage() {
         <DataSection copy={content.dataHeading} stats={content.stats} language={language} />
         <HistorySection copy={content.historyHeading} eras={content.historyEras} language={language} />
         <GlobalSection copy={content.global} partners={content.partnerLogos} language={language} />
-        <GlobalAchievementSection copy={content.achievementsHeading} achievements={content.globalAchievements} />
-        <ClientCollabSection statement={content.clientCollabStatement} clients={content.clientPartners} partners={content.partnerLogos} language={language} />
         <EsgSection copy={content.esgHeading} pillars={content.esgPillars} />
         <MediaSection copy={content.mediaHeading} items={mediaItems} />
       </main>
