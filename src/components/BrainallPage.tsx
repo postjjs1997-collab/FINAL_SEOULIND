@@ -3,7 +3,7 @@ import balanceModuleImage from "../../housing.png";
 import drivelineImage from "../../driveline.png";
 import electricVehicleImage from "../../electric vehicle.png";
 import steeringImage from "../../steering.png";
-import BrainallLogo from "./BrainallLogo";
+import BrainallLogo, { SeoulIndustrySymbol } from "./BrainallLogo";
 import Header from "./Header";
 import Icon from "./Icons";
 import {
@@ -512,28 +512,7 @@ function LogoIntro({ language }: { language: LanguageCode }) {
   return (
     <section className={`ci-logo-intro ${exiting ? "is-exiting" : ""}`} aria-label={copy.ariaLabel} aria-hidden="true" data-language={language}>
       <div className="ci-logo-intro__brand">
-        <svg className="ci-logo-intro__mark" viewBox="0 0 113.6 100" role="img" aria-label="Seoul Industry symbol">
-          <defs>
-            <clipPath id="seoul-ci-top-half">
-              <rect x="0" y="0" width="113.6" height="50.4" />
-            </clipPath>
-            <clipPath id="seoul-ci-bottom-half">
-              <rect x="0" y="49.6" width="113.6" height="50.4" />
-            </clipPath>
-          </defs>
-          <circle className="ci-logo-intro__origin-circle" cx="56.8" cy="50" r="50" />
-          <g className="ci-logo-intro__split-mark">
-            <circle className="ci-logo-intro__half ci-logo-intro__half--top" cx="63.6" cy="50" r="50" clipPath="url(#seoul-ci-top-half)" />
-            <circle className="ci-logo-intro__half ci-logo-intro__half--bottom" cx="50" cy="50" r="50" clipPath="url(#seoul-ci-bottom-half)" />
-          </g>
-          <g className="ci-logo-intro__slashes" transform="rotate(25 56.8 50)">
-            <rect x="24.8" y="-16" width="4.8" height="132" rx="1.2" />
-            <rect x="36.2" y="-16" width="4.8" height="132" rx="1.2" />
-            <rect x="47.6" y="-16" width="4.8" height="132" rx="1.2" />
-            <rect x="59" y="-16" width="4.8" height="132" rx="1.2" />
-            <rect x="70.4" y="-16" width="4.8" height="132" rx="1.2" />
-          </g>
-        </svg>
+        <SeoulIndustrySymbol className="ci-logo-intro__mark" animated role="img" ariaLabel="Seoul Industry symbol" />
         <strong className="ci-logo-intro__wordmark">{copy.wordmark}</strong>
       </div>
     </section>
