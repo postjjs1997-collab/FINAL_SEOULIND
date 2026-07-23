@@ -398,6 +398,10 @@
   animation-delay: 1.52s;
 }
 
+.ci-logo-intro__slashes rect:nth-child(6) {
+  animation-delay: 1.6s;
+}
+
 .ci-logo-intro__wordmark {
   display: block;
   min-width: max-content;
