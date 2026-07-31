@@ -16,7 +16,6 @@ const shellCopy: Record<
   {
     menuLabel: string;
     closeLabel: string;
-    contact: string;
     languageLabel: string;
     footerNav: string;
     office: string;
@@ -27,31 +26,28 @@ const shellCopy: Record<
   ko: {
     menuLabel: "메뉴 열기",
     closeLabel: "메뉴 닫기",
-    contact: "문의하기",
     languageLabel: "언어 선택",
     footerNav: "하단 메뉴",
     office: "본사·공장",
-    address: "경기도 화성시 팔탄면",
+    address: "경기도 화성시 양감면 요당길 320번길 51",
     copyright: "© SEOUL INDUSTRY CO., LTD.",
   },
   en: {
     menuLabel: "Open menu",
     closeLabel: "Close menu",
-    contact: "Contact",
     languageLabel: "Language",
     footerNav: "Footer navigation",
     office: "Head Office · Factory",
-    address: "Paltan-myeon, Hwaseong-si, Gyeonggi-do, Korea",
+    address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Korea",
     copyright: "© SEOUL INDUSTRY CO., LTD.",
   },
   ja: {
     menuLabel: "メニューを開く",
     closeLabel: "メニューを閉じる",
-    contact: "お問い合わせ",
     languageLabel: "言語選択",
     footerNav: "フッターメニュー",
     office: "本社・工場",
-    address: "韓国 京畿道 華城市",
+    address: "韓国 京畿道 華城市 楊甘面 ヨダンギル320番ギル51",
     copyright: "© SEOUL INDUSTRY CO., LTD.",
   },
 };
@@ -114,26 +110,25 @@ export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "
         <nav className="renewal-nav" aria-label="Renewal navigation">
           {menuGroups.map((group, index) => {
             const active = routeBelongsToGroup(currentRoute, sourceGroups[index]);
+            const directGroup = group.children.length === 1 && group.children[0].href === group.href;
             return (
               <div className={`renewal-nav__group ${active ? "is-active" : ""}`} key={group.label}>
                 <a href={group.href}>{group.label}</a>
-                <div className="renewal-nav__dropdown">
-                  {group.children.map((child) => (
-                    <a href={child.href} key={child.label}>
-                      {child.label}
-                    </a>
-                  ))}
-                </div>
+                {!directGroup && (
+                  <div className="renewal-nav__dropdown">
+                    {group.children.map((child) => (
+                      <a href={child.href} key={child.label}>
+                        {child.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
             );
           })}
         </nav>
 
         <div className="renewal-header__actions">
-          <a className="renewal-contact-button" href="#/support/contact">
-            <span>{copy.contact}</span>
-            <Icon name="arrow" />
-          </a>
           <div className="renewal-language" role="group" aria-label={copy.languageLabel}>
             {(["ko", "en", "ja"] as RenewalLanguage[]).map((code) => (
               <button type="button" className={language === code ? "is-active" : ""} onClick={() => onLanguageChange(code)} key={code}>
@@ -157,21 +152,26 @@ export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "
           </button>
         </div>
         <nav>
-          {menuGroups.map((group, index) => (
-            <div className="renewal-drawer__group" key={group.label}>
-              <a href={group.href} onClick={() => setOpen(false)}>
-                <span>0{index + 1}</span>
-                <strong>{group.label}</strong>
-              </a>
-              <div>
-                {group.children.map((child) => (
-                  <a href={child.href} onClick={() => setOpen(false)} key={child.label}>
-                    {child.label}
-                  </a>
-                ))}
+          {menuGroups.map((group, index) => {
+            const directGroup = group.children.length === 1 && group.children[0].href === group.href;
+            return (
+              <div className={`renewal-drawer__group ${directGroup ? "is-direct" : ""}`} key={group.label}>
+                <a href={group.href} onClick={() => setOpen(false)}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{group.label}</strong>
+                </a>
+                {!directGroup && (
+                  <div>
+                    {group.children.map((child) => (
+                      <a href={child.href} onClick={() => setOpen(false)} key={child.label}>
+                        {child.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </nav>
         <div className="renewal-drawer__languages">
           {(["ko", "en", "ja"] as RenewalLanguage[]).map((code) => (

@@ -149,23 +149,24 @@ function applyKoreanCopy(content: SiteContent) {
   });
   content.historyEras = patchByIndex<HistoryEra>(content.historyEras, [
     {
-      title: "인증 기반 강화와 신규 고객 확대",
-      summary: "인증 체계와 고객 포트폴리오를 넓히며 다음 성장 단계를 준비하고 있습니다.",
-      items: ["INNOBIZ 인증 획득", "BorgWarner, GMB, BOCAR, Namyang Nexmo 등 신규 고객사 확대"],
+      title: "전동화 대응과 신규 고객 확대",
+      summary: "내연기관부터 HEV, PHEV, BEV까지 대응 범위를 넓히며 다음 성장 단계를 준비하고 있습니다.",
+      items: ["2021년 AAM 미국·한국 협력업체 등록", "2022년 PHEV Gear Box용 Link Shaft 양산 론칭", "2025년 ICE·HEV·PHEV·BEV 신규 고객 개발"],
     },
     {
-      title: "글로벌 시장 대응력 확대",
-      summary: "품질 인증, 수출 성과, 생산 기술 특허를 바탕으로 글로벌 자동차 시장 대응 범위를 넓혔습니다.",
-      items: ["현대모비스 SQ 인증 획득", "3천만불 수출의 탑 수상", "AL 다이캐스팅 사업 진출", "자동차 부품 생산 관련 기술 특허 다수 등록", "영화공업, GKN Driveline, Spartan 신규 거래"],
+      title: "글로벌 사업영역 확대",
+      summary: "유럽과 북미 고객 프로그램을 확대하고 수출 성과를 축적했습니다.",
+      items: ["2012년 GKN Driveline 유럽·미국 협력업체 등록", "2014년 Spartan LTM 미국 협력업체 등록", "2018년 3천만불 수출의 탑 수상"],
     },
     {
-      title: "글로벌 OEM 대응 체계 구축",
-      summary: "환경·품질 인증과 기업부설 연구소 설립을 통해 글로벌 고객 대응 기반을 마련했습니다.",
-      items: ["ISO 14001 인증 획득", "IATF/TS 16949 인증 획득", "기업부설 연구소 설립", "ZF, AAM, Nexteer, ThyssenKrupp, Magna Powertrain, Hyundai Mobis, ERAE AMS 등 고객 네트워크 확대"],
+      title: "글로벌 OEM 대응 기반 구축",
+      summary: "품질·환경 인증과 공장 확장, 글로벌 고객 등록을 통해 양산 대응 기반을 강화했습니다.",
+      items: ["2001년 QS9000·ISO 9002 인증", "2002년 Delphi Korea 협력업체 등록", "2003년 TRW 미국·일본·말레이시아 협력업체 등록", "2004년 Metaldyne 미국·한국 협력업체 등록 및 ISO/TS 16949·ISO 14001 인증", "2006년 공장 확장 이전", "2007년 Nexteer, ThyssenKrupp Presta, Magna Powertrain 협력업체 등록"],
     },
     {
       title: "정밀가공 제조 기반 구축",
-      summary: "서울산업을 설립하고 자동차 조향부품 양산을 시작하며 정밀가공 제조 기반을 만들었습니다.",
+      summary: "서울산업을 설립하고 조향부품과 헬리컬 기어 샤프트 양산 기반을 구축했습니다.",
+      items: ["1985년 서울산업 설립", "1987년 TRW Korea 협력업체 등록", "1990년 조향부품 산업군 진입", "1999년 Pinion Shaft, Piston, Torsion Bar 및 헬리컬 기어 샤프트 제조"],
     },
   ]);
   content.historyEras = chronologicalHistoryEras(content.historyEras);
@@ -256,23 +257,24 @@ function applyEnglishCopy(content: SiteContent) {
   });
   content.historyEras = patchByIndex<HistoryEra>(content.historyEras, [
     {
-      title: "Stronger certifications, new customers",
-      summary: "We're deepening our certifications and opening programs with new global customers as we set up the next stage of growth.",
-      items: ["Earned INNOBIZ certification", "Opened new programs with BorgWarner, GMB, BOCAR, and Namyang Nexmo"],
+      title: "Electrification and new customer programs",
+      summary: "The product range now covers ICE, HEV, PHEV, and BEV programs.",
+      items: ["Registered as an AAM supplier in the US and Korea in 2021", "Launched PHEV gearbox Link Shaft production in 2022", "Developing new ICE, HEV, PHEV, and BEV customers from 2025"],
     },
     {
-      title: "Going global",
-      summary: "Quality certifications, export milestones, and production patents widened our reach across the global automotive market.",
-      items: ["Earned Hyundai Mobis SQ certification", "Won the USD 30 Million Export Tower award", "Entered the aluminum die-casting business", "Registered multiple automotive production patents", "Began work with Younghwa, GKN Driveline, and Spartan"],
+      title: "Global business expansion",
+      summary: "European and North American customer programs expanded alongside export performance.",
+      items: ["Registered with GKN Driveline Europe and USA in 2012", "Registered with Spartan LTM USA in 2014", "Received the USD 30 Million Export Tower award in 2018"],
     },
     {
-      title: "Into global OEM programs",
-      summary: "Environmental and quality certifications, plus our own research institute, laid the groundwork for global OEM work.",
-      items: ["Earned ISO 14001 certification", "Earned IATF/TS 16949 certification", "Founded the corporate research institute", "Grew the customer network with ZF, AAM, Nexteer, ThyssenKrupp, Magna Powertrain, Hyundai Mobis, and ERAE AMS"],
+      title: "Global OEM operating base",
+      summary: "Certifications, plant expansion, and global customer registrations strengthened mass-production capability.",
+      items: ["QS9000 and ISO 9002 certification in 2001", "Registered with Delphi Korea in 2002", "Registered with TRW US, Japan, and Malaysia in 2003", "Registered with Metaldyne US and Korea and earned ISO/TS 16949 and ISO 14001 in 2004", "Expanded and relocated the plant in 2006", "Registered with Nexteer, ThyssenKrupp Presta, and Magna Powertrain in 2007"],
     },
     {
       title: "Where precision machining began",
-      summary: "Seoul Industry was founded and began volume production of automotive steering parts — the start of our precision machining base.",
+      summary: "Seoul Industry established its steering component and helical gear shaft manufacturing base.",
+      items: ["Seoul Industry founded in 1985", "Registered with TRW Korea in 1987", "Entered the steering component sector in 1990", "Manufactured pinion shafts, pistons, torsion bars, and helical gear shafts from 1999"],
     },
   ]);
   content.historyEras = chronologicalHistoryEras(content.historyEras);
@@ -358,23 +360,24 @@ function applyJapaneseCopy(content: SiteContent) {
   });
   content.historyEras = patchByIndex<HistoryEra>(content.historyEras, [
     {
-      title: "認証基盤の強化と新規顧客の拡大",
-      summary: "認証体制と顧客ポートフォリオを広げ、次の成長段階に向けた基盤を整えています。",
-      items: ["INNOBIZ認証を取得", "BorgWarner、GMB、BOCAR、Namyang Nexmoなど新規顧客を拡大"],
+      title: "電動化対応と新規顧客拡大",
+      summary: "ICE、HEV、PHEV、BEVまで対応範囲を広げています。",
+      items: ["2021年 AAM米国・韓国の協力会社に登録", "2022年 PHEV Gear Box用Link Shaftの量産開始", "2025年 ICE・HEV・PHEV・BEVの新規顧客開発"],
     },
     {
-      title: "グローバル市場への展開",
-      summary: "品質認証、輸出実績、生産技術特許を土台に、グローバル自動車市場での対応範囲を広げました。",
-      items: ["現代モービスSQ認証を取得", "3千万ドル輸出の塔を受賞", "アルミダイカスト事業に進出", "自動車部品生産に関する技術特許を多数登録", "ヨンファ工業、GKN Driveline、Spartanとの取引を開始"],
+      title: "グローバル事業領域の拡大",
+      summary: "欧州と北米の顧客プログラムを拡大し、輸出実績を積み重ねました。",
+      items: ["2012年 GKN Driveline欧州・米国の協力会社に登録", "2014年 Spartan LTM米国の協力会社に登録", "2018年 3千万ドル輸出の塔を受賞"],
     },
     {
-      title: "グローバルOEM対応体制の構築",
-      summary: "環境・品質認証と企業付設研究所の設立により、グローバル顧客への対応基盤を整えました。",
-      items: ["ISO 14001認証を取得", "IATF/TS 16949認証を取得", "企業付設研究所を設立", "ZF、AAM、Nexteer、ThyssenKrupp、Magna Powertrain、Hyundai Mobis、ERAE AMSなど顧客ネットワークを拡大"],
+      title: "グローバルOEM対応基盤の構築",
+      summary: "品質・環境認証、工場拡張、グローバル顧客登録で量産対応力を強化しました。",
+      items: ["2001年 QS9000・ISO 9002認証", "2002年 Delphi Korea協力会社登録", "2003年 TRW米国・日本・マレーシア協力会社登録", "2004年 Metaldyne米国・韓国協力会社登録およびISO/TS 16949・ISO 14001認証", "2006年 工場拡張移転", "2007年 Nexteer、ThyssenKrupp Presta、Magna Powertrain協力会社登録"],
     },
     {
       title: "精密加工の製造基盤を構築",
-      summary: "ソウル産業を設立し、自動車操舵部品の量産を開始して精密加工の基盤を築きました。",
+      summary: "操舵部品とヘリカルギヤシャフトの製造基盤を構築しました。",
+      items: ["1985年 ソウル産業設立", "1987年 TRW Korea協力会社登録", "1990年 操舵部品事業へ進出", "1999年 Pinion Shaft、Piston、Torsion Bar、ヘリカルギヤシャフトを製造"],
     },
   ]);
   content.historyEras = chronologicalHistoryEras(content.historyEras);

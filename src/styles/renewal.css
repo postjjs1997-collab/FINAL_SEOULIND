@@ -45,7 +45,7 @@ body.renewal-active {
   right: 0;
   left: 0;
   display: grid;
-  grid-template-columns: 190px minmax(520px, 1fr) auto;
+  grid-template-columns: 110px minmax(680px, 1fr) auto;
   align-items: center;
   min-height: 86px;
   padding: 0 42px;
@@ -92,7 +92,7 @@ body.renewal-active {
   display: flex;
   justify-content: center;
   align-self: stretch;
-  gap: 40px;
+  gap: clamp(18px, 2vw, 34px);
 }
 
 .renewal-nav__group {
@@ -110,7 +110,7 @@ body.renewal-active {
   padding: 0 4px;
   background: transparent;
   color: #fff;
-  font-size: 0.91rem;
+  font-size: 0.84rem;
   font-weight: 700;
 }
 
@@ -142,7 +142,7 @@ body.renewal-active {
   top: calc(100% + 1px);
   left: 50%;
   display: grid;
-  width: 190px;
+  width: 232px;
   padding: 16px;
   border-top: 2px solid var(--renewal-orange);
   background: rgba(16, 16, 16, 0.96);
@@ -356,6 +356,10 @@ body.renewal-active {
 .renewal-drawer__group > div {
   display: grid;
   gap: 10px;
+}
+
+.renewal-drawer__group.is-direct {
+  grid-template-columns: 1fr;
 }
 
 .renewal-drawer__group > div button,

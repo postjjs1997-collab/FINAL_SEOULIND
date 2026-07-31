@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import DesignTweaks from "./components/DesignTweaks";
 import NewsPage from "./components/NewsPage";
 import TechnologyPage from "./components/TechnologyPage";
-import { menuRoutes } from "./data/navigation";
+import { menuRoutes, resolveMenuRoute } from "./data/navigation";
 
 const RenewalPage = lazy(() => import("./components/RenewalPage"));
 const RenewalSubPage = lazy(() => import("./components/RenewalSubPage"));
@@ -32,13 +32,13 @@ export default function App() {
   } else if (route.startsWith("renewal/")) {
     page = (
       <Suspense fallback={<div style={{ minHeight: "100svh", background: "#151515" }} />}>
-        <RenewalSubPage route={route} />
+        <RenewalSubPage route={resolveMenuRoute(route)} />
       </Suspense>
     );
   } else if (menuRoutes.includes(route)) {
     page = (
       <Suspense fallback={<div style={{ minHeight: "100svh", background: "#151515" }} />}>
-        <RenewalSubPage route={route} />
+        <RenewalSubPage route={resolveMenuRoute(route)} />
       </Suspense>
     );
   } else if (route.startsWith("news")) {

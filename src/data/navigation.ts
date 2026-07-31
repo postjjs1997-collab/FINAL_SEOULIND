@@ -12,136 +12,186 @@ export type NavigationLanguage = "ko" | "en" | "ja";
 export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[]> = {
   ko: [
     {
-      label: "회사소개",
-      href: "#/company/greeting",
+      label: "기업정보",
+      href: "#/company/ceo",
       children: [
-        { label: "인사말", href: "#/company/greeting" },
+        { label: "CEO인사말", href: "#/company/ceo" },
         { label: "회사연혁", href: "#/company/history" },
-        { label: "인증서", href: "#/company/certificates" },
+        { label: "찾아오시는길", href: "#/company/location" },
+        { label: "공지사항", href: "#/company/notices" },
       ],
     },
     {
-      label: "지속가능경영",
-      href: "#/sustainability/environmental",
+      label: "제품정보",
+      href: "#/products/electric-vehicle",
       children: [
-        { label: "ESG 경영", href: "#/sustainability/environmental" },
-        { label: "윤리경영", href: "#/sustainability/governance" },
-        { label: "ESG보고서", href: "#/sustainability/esg-report" },
+        { label: "ELECTRIC VEHICLE", href: "#/products/electric-vehicle" },
+        { label: "POWERTRAIN", href: "#/products/powertrain" },
+        { label: "DRIVELINE", href: "#/products/driveline" },
+        { label: "BALANCE SHAFT MODULE", href: "#/products/balance-shaft-module" },
+        { label: "STEERING", href: "#/products/steering" },
+        { label: "ETC", href: "#/products/etc" },
       ],
     },
     {
-      label: "제품소개",
-      href: "#/products/automotive",
+      label: "품질보증",
+      href: "#/quality/policy",
       children: [
-        { label: "자동차", href: "#/products/automotive" },
-        { label: "산업기계", href: "#/products/industrial" },
+        { label: "품질방침", href: "#/quality/policy" },
+        { label: "품질시스템", href: "#/quality/system" },
+        { label: "예방품질활동", href: "#/quality/preventive" },
       ],
     },
     {
-      label: "고객지원",
-      href: "#/support/news",
+      label: "연구개발",
+      href: "#/rnd/parts-development",
+      children: [{ label: "부품개발", href: "#/rnd/parts-development" }],
+    },
+    {
+      label: "채용정보",
+      href: "#/recruit/information",
       children: [
-        { label: "News", href: "#/support/news" },
-        { label: "문의하기", href: "#/support/contact" },
+        { label: "채용정보", href: "#/recruit/information" },
+        { label: "복지제도", href: "#/recruit/benefits" },
       ],
     },
     {
-      label: "인재채용",
-      href: "#/recruit/guide",
-      children: [
-        { label: "채용안내", href: "#/recruit/guide" },
-        { label: "채용공고", href: "#/recruit/jobs" },
-      ],
+      label: "ESG 정보",
+      href: "#/esg/information",
+      children: [{ label: "ESG 정보", href: "#/esg/information" }],
+    },
+    {
+      label: "지속가능경영정책",
+      href: "#/sustainability/policy",
+      children: [{ label: "지속가능경영정책", href: "#/sustainability/policy" }],
     },
   ],
   en: [
     {
       label: "Company",
-      href: "#/company/greeting",
+      href: "#/company/ceo",
       children: [
-        { label: "Greeting", href: "#/company/greeting" },
+        { label: "CEO Message", href: "#/company/ceo" },
         { label: "History", href: "#/company/history" },
-        { label: "Certificates", href: "#/company/certificates" },
-      ],
-    },
-    {
-      label: "Sustainability",
-      href: "#/sustainability/environmental",
-      children: [
-        { label: "ESG Management", href: "#/sustainability/environmental" },
-        { label: "Governance", href: "#/sustainability/governance" },
-        { label: "ESG Report", href: "#/sustainability/esg-report" },
+        { label: "Location", href: "#/company/location" },
+        { label: "Notices", href: "#/company/notices" },
       ],
     },
     {
       label: "Products",
-      href: "#/products/automotive",
+      href: "#/products/electric-vehicle",
       children: [
-        { label: "Automotive", href: "#/products/automotive" },
-        { label: "Industrial Machinery", href: "#/products/industrial" },
+        { label: "ELECTRIC VEHICLE", href: "#/products/electric-vehicle" },
+        { label: "POWERTRAIN", href: "#/products/powertrain" },
+        { label: "DRIVELINE", href: "#/products/driveline" },
+        { label: "BALANCE SHAFT MODULE", href: "#/products/balance-shaft-module" },
+        { label: "STEERING", href: "#/products/steering" },
+        { label: "ETC", href: "#/products/etc" },
       ],
     },
     {
-      label: "Support",
-      href: "#/support/news",
+      label: "Quality",
+      href: "#/quality/policy",
       children: [
-        { label: "News", href: "#/support/news" },
-        { label: "Contact", href: "#/support/contact" },
+        { label: "Quality Policy", href: "#/quality/policy" },
+        { label: "Quality System", href: "#/quality/system" },
+        { label: "Preventive Quality", href: "#/quality/preventive" },
       ],
     },
     {
-      label: "Recruitment",
-      href: "#/recruit/guide",
+      label: "R&D",
+      href: "#/rnd/parts-development",
+      children: [{ label: "Parts Development", href: "#/rnd/parts-development" }],
+    },
+    {
+      label: "Careers",
+      href: "#/recruit/information",
       children: [
-        { label: "Careers", href: "#/recruit/guide" },
-        { label: "Job Openings", href: "#/recruit/jobs" },
+        { label: "Recruitment", href: "#/recruit/information" },
+        { label: "Benefits", href: "#/recruit/benefits" },
       ],
+    },
+    {
+      label: "ESG",
+      href: "#/esg/information",
+      children: [{ label: "ESG Information", href: "#/esg/information" }],
+    },
+    {
+      label: "Sustainability Policy",
+      href: "#/sustainability/policy",
+      children: [{ label: "Sustainability Policy", href: "#/sustainability/policy" }],
     },
   ],
   ja: [
     {
-      label: "会社紹介",
-      href: "#/company/greeting",
+      label: "企業情報",
+      href: "#/company/ceo",
       children: [
-        { label: "ご挨拶", href: "#/company/greeting" },
+        { label: "CEOメッセージ", href: "#/company/ceo" },
         { label: "会社沿革", href: "#/company/history" },
-        { label: "認証書", href: "#/company/certificates" },
+        { label: "アクセス", href: "#/company/location" },
+        { label: "お知らせ", href: "#/company/notices" },
       ],
     },
     {
-      label: "持続可能経営",
-      href: "#/sustainability/environmental",
+      label: "製品情報",
+      href: "#/products/electric-vehicle",
       children: [
-        { label: "ESG経営", href: "#/sustainability/environmental" },
-        { label: "ガバナンス", href: "#/sustainability/governance" },
-        { label: "ESGレポート", href: "#/sustainability/esg-report" },
+        { label: "ELECTRIC VEHICLE", href: "#/products/electric-vehicle" },
+        { label: "POWERTRAIN", href: "#/products/powertrain" },
+        { label: "DRIVELINE", href: "#/products/driveline" },
+        { label: "BALANCE SHAFT MODULE", href: "#/products/balance-shaft-module" },
+        { label: "STEERING", href: "#/products/steering" },
+        { label: "ETC", href: "#/products/etc" },
       ],
     },
     {
-      label: "製品紹介",
-      href: "#/products/automotive",
+      label: "品質保証",
+      href: "#/quality/policy",
       children: [
-        { label: "自動車", href: "#/products/automotive" },
-        { label: "産業機械", href: "#/products/industrial" },
+        { label: "品質方針", href: "#/quality/policy" },
+        { label: "品質システム", href: "#/quality/system" },
+        { label: "予防品質活動", href: "#/quality/preventive" },
       ],
     },
     {
-      label: "お客様サポート",
-      href: "#/support/news",
-      children: [
-        { label: "News", href: "#/support/news" },
-        { label: "お問い合わせ", href: "#/support/contact" },
-      ],
+      label: "研究開発",
+      href: "#/rnd/parts-development",
+      children: [{ label: "部品開発", href: "#/rnd/parts-development" }],
     },
     {
       label: "採用情報",
-      href: "#/recruit/guide",
+      href: "#/recruit/information",
       children: [
-        { label: "採用案内", href: "#/recruit/guide" },
-        { label: "採用公告", href: "#/recruit/jobs" },
+        { label: "採用情報", href: "#/recruit/information" },
+        { label: "福利厚生", href: "#/recruit/benefits" },
       ],
     },
+    {
+      label: "ESG情報",
+      href: "#/esg/information",
+      children: [{ label: "ESG情報", href: "#/esg/information" }],
+    },
+    {
+      label: "持続可能経営方針",
+      href: "#/sustainability/policy",
+      children: [{ label: "持続可能経営方針", href: "#/sustainability/policy" }],
+    },
   ],
+};
+
+export const routeAliases: Record<string, string> = {
+  "company/greeting": "company/ceo",
+  "company/certificates": "quality/system",
+  "sustainability/environmental": "esg/information",
+  "sustainability/governance": "sustainability/policy",
+  "sustainability/esg-report": "sustainability/policy",
+  "products/automotive": "products/electric-vehicle",
+  "products/industrial": "products/etc",
+  "support/news": "company/notices",
+  "support/contact": "company/location",
+  "recruit/guide": "recruit/information",
+  "recruit/jobs": "recruit/information",
 };
 
 export const siteMenuGroups = siteMenuGroupsByLanguage.ko;
@@ -150,12 +200,19 @@ export function getSiteMenuGroups(language: NavigationLanguage = "ko") {
   return siteMenuGroupsByLanguage[language] ?? siteMenuGroupsByLanguage.ko;
 }
 
-export const menuRoutes = siteMenuGroups.flatMap((group) =>
+export function resolveMenuRoute(route: string) {
+  const cleanRoute = route.replace(/^#\/?/, "").replace(/^renewal\/?/, "").replace(/\/$/, "");
+  return routeAliases[cleanRoute] ?? cleanRoute;
+}
+
+const canonicalMenuRoutes = siteMenuGroups.flatMap((group) =>
   group.children.map((child) => child.href.replace(/^#\//, "")),
 );
 
+export const menuRoutes = [...new Set([...canonicalMenuRoutes, ...Object.keys(routeAliases)])];
+
 export function findMenuByRoute(route: string, language: NavigationLanguage = "ko") {
-  const cleanRoute = route.replace(/^#\/?/, "");
+  const cleanRoute = resolveMenuRoute(route);
   const groups = getSiteMenuGroups(language);
 
   for (const group of groups) {

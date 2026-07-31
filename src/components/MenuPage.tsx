@@ -333,9 +333,249 @@ const pageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record<string,
   },
 };
 
+const expandedPageConfigs: Record<string, PageConfig> = {
+  "company/ceo": {
+    route: "company/ceo",
+    category: "COMPANY",
+    groupTitle: "기업정보",
+    eyebrow: "CEO Message",
+    title: "CEO인사말",
+    lead: "화합으로 창조하며, 고객이 요구하는 품질을 정밀가공의 기준으로 완성하겠습니다.",
+    heroCopy: "1985년 설립 이후 축적한 제조 경험을 바탕으로 국내외 자동차 부품 고객과 신뢰를 이어가고 있습니다.",
+    image: menuHeroImages.factory,
+    imagePosition: "center 56%",
+  },
+  "company/history": {
+    ...pageConfigs["company/history"],
+    groupTitle: "기업정보",
+  },
+  "company/location": {
+    route: "company/location",
+    category: "COMPANY",
+    groupTitle: "기업정보",
+    eyebrow: "Location",
+    title: "찾아오시는길",
+    lead: "서울산업 본사와 정밀가공 생산공장은 경기도 화성시 양감면에 위치합니다.",
+    heroCopy: "방문 전 담당자와 일정을 협의해 주시면 출입과 미팅을 원활하게 안내해 드립니다.",
+    image: menuHeroImages.industrial,
+    imagePosition: "center 58%",
+  },
+  "company/notices": {
+    route: "company/notices",
+    category: "COMPANY",
+    groupTitle: "기업정보",
+    eyebrow: "Notice",
+    title: "공지사항",
+    lead: "서울산업의 주요 소식과 제품·품질·채용 관련 안내를 확인할 수 있습니다.",
+    heroCopy: "고객과 협력사에 필요한 회사 정보를 정확하고 신속하게 전달합니다.",
+    image: menuHeroImages.news,
+    imagePosition: "center 46%",
+  },
+  "products/electric-vehicle": {
+    route: "products/electric-vehicle",
+    category: "PRODUCT",
+    groupTitle: "제품정보",
+    eyebrow: "Electric Vehicle",
+    title: "ELECTRIC VEHICLE",
+    lead: "전동화 플랫폼의 감속기, e-Drive, EV 구동축에 적용되는 정밀가공 부품을 생산합니다.",
+    heroCopy: "조립 정합성, 반복 정밀도, 내구 조건을 고려해 전기차 구동계의 안정적인 양산 품질을 확보합니다.",
+    image: automotiveImage,
+    imagePosition: "center",
+  },
+  "products/powertrain": {
+    route: "products/powertrain",
+    category: "PRODUCT",
+    groupTitle: "제품정보",
+    eyebrow: "Powertrain",
+    title: "POWERTRAIN",
+    lead: "엔진과 동력전달계의 열·진동 조건을 견디는 하우징, 기어, 샤프트 계열 부품을 생산합니다.",
+    heroCopy: "가공 조건과 검사 데이터를 연결해 장기 양산에서도 흔들리지 않는 동력계 부품 품질을 유지합니다.",
+    image: precisionHeroImage,
+    imagePosition: "center 56%",
+  },
+  "products/driveline": {
+    route: "products/driveline",
+    category: "PRODUCT",
+    groupTitle: "제품정보",
+    eyebrow: "Driveline",
+    title: "DRIVELINE",
+    lead: "변속기 샤프트, 하프·스텁 액슬 등 바퀴까지 동력을 전달하는 구동계 부품을 정밀가공합니다.",
+    heroCopy: "동심도, 런아웃, 스플라인과 표면 품질을 관리해 구동계 조립 신뢰성을 높입니다.",
+    image: drivelineImage,
+    imagePosition: "center",
+  },
+  "products/balance-shaft-module": {
+    route: "products/balance-shaft-module",
+    category: "PRODUCT",
+    groupTitle: "제품정보",
+    eyebrow: "Balance Shaft Module",
+    title: "BALANCE SHAFT MODULE",
+    lead: "엔진 진동과 소음을 줄이는 밸런스 샤프트 모듈용 알루미늄 하우징과 정밀가공 부품을 생산합니다.",
+    heroCopy: "복합 형상, 조립면, 베어링부의 치수 정합성을 관리해 모듈의 회전 안정성과 내구성을 확보합니다.",
+    image: balanceModuleImage,
+    imagePosition: "center",
+  },
+  "products/steering": {
+    route: "products/steering",
+    category: "PRODUCT",
+    groupTitle: "제품정보",
+    eyebrow: "Steering",
+    title: "STEERING",
+    lead: "Pinion Shaft, Torsion Bar 등 조향 응답성과 안전 품질을 좌우하는 핵심 부품을 생산합니다.",
+    heroCopy: "기어·스플라인 가공, 열처리, 런아웃 검사를 연결해 조향 입력이 정확하게 전달되도록 관리합니다.",
+    image: steeringImage,
+    imagePosition: "center",
+  },
+  "products/etc": {
+    route: "products/etc",
+    category: "PRODUCT",
+    groupTitle: "제품정보",
+    eyebrow: "Custom OEM",
+    title: "ETC",
+    lead: "고객 도면과 적용 환경에 맞춰 기어, 스플라인, 샤프트, 하우징 계열의 맞춤 정밀가공을 수행합니다.",
+    heroCopy: "개발 검토부터 시제품, 공정 설계, 양산 이관까지 프로젝트 조건에 맞춘 생산 방식을 제안합니다.",
+    image: menuHeroImages.precision,
+    imagePosition: "center 48%",
+  },
+  "quality/policy": {
+    route: "quality/policy",
+    category: "QUALITY",
+    groupTitle: "품질보증",
+    eyebrow: "Quality Policy",
+    title: "품질방침",
+    lead: "고객 요구사항을 정확히 이해하고, 공정에서 품질을 만들며, 데이터로 신뢰를 증명합니다.",
+    heroCopy: "예방 중심의 품질관리와 지속적인 공정 개선으로 고객의 양산 계획을 안정적으로 지원합니다.",
+    image: menuHeroImages.measurement,
+    imagePosition: "center 45%",
+  },
+  "quality/system": {
+    route: "quality/system",
+    category: "QUALITY",
+    groupTitle: "품질보증",
+    eyebrow: "Quality System",
+    title: "품질시스템",
+    lead: "도면 검토, 수입검사, 공정검사, 최종검사, LOT 추적을 하나의 품질 흐름으로 운영합니다.",
+    heroCopy: "IATF 16949, ISO 14001, SQ와 고객별 품질 기준을 제조 공정의 일상적인 관리 항목으로 연결합니다.",
+    image: menuHeroImages.measurement,
+    imagePosition: "center 45%",
+  },
+  "quality/preventive": {
+    route: "quality/preventive",
+    category: "QUALITY",
+    groupTitle: "품질보증",
+    eyebrow: "Preventive Quality",
+    title: "예방품질활동",
+    lead: "문제가 발생한 뒤 대응하는 품질을 넘어, 개발과 양산 준비 단계에서 위험요인을 먼저 제거합니다.",
+    heroCopy: "공정 FMEA, 관리계획, 초도품 검증, SPC, 변경점 관리를 통해 재발과 유출 가능성을 낮춥니다.",
+    image: menuHeroImages.documents,
+    imagePosition: "center 48%",
+  },
+  "rnd/parts-development": {
+    route: "rnd/parts-development",
+    category: "R&D",
+    groupTitle: "연구개발",
+    eyebrow: "Parts Development",
+    title: "부품개발",
+    lead: "고객 도면과 요구 사양을 제조 가능한 공정으로 전환하고 시제품부터 양산까지 연결합니다.",
+    heroCopy: "가공성 검토, 치공구·검사구 설계, 시제품 검증, 공정 능력 확인을 통해 개발 리스크를 줄입니다.",
+    image: menuHeroImages.precision,
+    imagePosition: "center 50%",
+  },
+  "recruit/information": {
+    route: "recruit/information",
+    category: "CAREERS",
+    groupTitle: "채용정보",
+    eyebrow: "Recruitment",
+    title: "채용정보",
+    lead: "생산, 품질, 개발, 관리가 함께 움직이는 서울산업에서 제조의 다음 기준을 만들 인재를 찾습니다.",
+    heroCopy: "기준을 지키고 개선을 이어가며 동료와 함께 결과를 완성하는 사람을 기다립니다.",
+    image: menuHeroImages.recruit,
+    imagePosition: "center 50%",
+  },
+  "recruit/benefits": {
+    route: "recruit/benefits",
+    category: "CAREERS",
+    groupTitle: "채용정보",
+    eyebrow: "Benefits",
+    title: "복지제도",
+    lead: "임직원이 안정적으로 일하고 기술과 경험을 오래 축적할 수 있도록 실질적인 복지를 운영합니다.",
+    heroCopy: "건강, 성장, 생활, 장기근속을 지원해 사람과 제조 역량이 함께 성장하는 환경을 만듭니다.",
+    image: menuHeroImages.jobs,
+    imagePosition: "center 50%",
+  },
+  "esg/information": {
+    route: "esg/information",
+    category: "ESG",
+    groupTitle: "ESG 정보",
+    eyebrow: "ESG Information",
+    title: "ESG 정보",
+    lead: "환경, 안전, 품질, 윤리, 협력사 기준을 제조 현장의 운영 체계 안에서 함께 관리합니다.",
+    heroCopy: "정밀가공 과정의 환경 부담을 줄이고 안전한 작업환경과 투명한 거래 기준을 지속적으로 강화합니다.",
+    image: menuHeroImages.solar,
+    imagePosition: "center 50%",
+  },
+  "sustainability/policy": {
+    route: "sustainability/policy",
+    category: "SUSTAINABILITY",
+    groupTitle: "지속가능경영정책",
+    eyebrow: "Sustainability Policy",
+    title: "지속가능경영정책",
+    lead: "책임 있는 제조, 안전한 현장, 공정한 거래, 투명한 기록을 지속 가능한 성장의 기준으로 삼습니다.",
+    heroCopy: "고객, 임직원, 협력사, 지역사회와 함께 오래 성장할 수 있도록 원칙을 정하고 실행 이력을 관리합니다.",
+    image: menuHeroImages.governance,
+    imagePosition: "center 48%",
+  },
+};
+
+const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record<string, Partial<PageConfig>>> = {
+  en: {
+    "company/ceo": { groupTitle: "Company", title: "CEO Message", lead: "We create through cooperation and turn customer expectations into precision-machining standards.", heroCopy: "Since 1985, our manufacturing experience has supported trusted relationships with automotive customers around the world." },
+    "company/history": { groupTitle: "Company" },
+    "company/location": { groupTitle: "Company", title: "Location", lead: "Seoul Industry's head office and precision-machining plant are located in Yanggam-myeon, Hwaseong.", heroCopy: "Please coordinate your visit in advance so we can arrange site access and meetings smoothly." },
+    "company/notices": { groupTitle: "Company", title: "Notices", lead: "Review Seoul Industry updates on products, quality, recruitment, and company operations.", heroCopy: "We provide customers and partners with accurate company information in a timely manner." },
+    "products/electric-vehicle": { groupTitle: "Products", lead: "Precision-machined parts for reduction gears, e-Drive systems, and EV axles.", heroCopy: "Assembly fit, repeat accuracy, and durability are controlled for stable EV drivetrain production." },
+    "products/powertrain": { groupTitle: "Products", lead: "Housings, gears, and shafts engineered for powertrain heat and vibration conditions.", heroCopy: "Process settings and inspection data are connected to hold quality over long production runs." },
+    "products/driveline": { groupTitle: "Products", lead: "Precision transmission shafts, half shafts, and stub axles that carry power to the wheels.", heroCopy: "Concentricity, runout, splines, and surface quality are controlled for reliable driveline assembly." },
+    "products/balance-shaft-module": { groupTitle: "Products", lead: "Aluminum housings and machined parts for balance shaft modules that reduce engine vibration and noise.", heroCopy: "Complex geometry, assembly faces, and bearing areas are controlled for rotational stability and durability." },
+    "products/steering": { groupTitle: "Products", lead: "Critical steering parts including pinion shafts and torsion bars.", heroCopy: "Gear and spline machining, heat treatment, and runout inspection keep steering input precise." },
+    "products/etc": { groupTitle: "Products", lead: "Custom machining for gears, splines, shafts, and housings based on customer drawings.", heroCopy: "We propose production methods from feasibility review and prototypes through process design and mass production." },
+    "quality/policy": { groupTitle: "Quality", title: "Quality Policy", lead: "Understand customer requirements, build quality into the process, and prove reliability with data.", heroCopy: "Preventive quality control and continuous process improvement support stable customer production." },
+    "quality/system": { groupTitle: "Quality", title: "Quality System", lead: "Drawing review, incoming inspection, process checks, final inspection, and LOT traceability operate as one system.", heroCopy: "IATF 16949, ISO 14001, SQ, and customer requirements are connected to everyday manufacturing controls." },
+    "quality/preventive": { groupTitle: "Quality", title: "Preventive Quality", lead: "We remove risks during development and production preparation before defects occur.", heroCopy: "Process FMEA, control plans, first-article validation, SPC, and change control reduce recurrence and escape risk." },
+    "rnd/parts-development": { groupTitle: "R&D", title: "Parts Development", lead: "Customer drawings and specifications are translated into manufacturable processes from prototype to production.", heroCopy: "Feasibility, tooling, gauges, prototype validation, and process capability checks reduce development risk." },
+    "recruit/information": { groupTitle: "Careers", title: "Recruitment", lead: "We are looking for people who will build the next manufacturing standard across production, quality, development, and administration.", heroCopy: "Join colleagues who keep standards, continue improving, and finish results together." },
+    "recruit/benefits": { groupTitle: "Careers", title: "Benefits", lead: "Practical benefits help employees work with stability and build skills over time.", heroCopy: "Health, growth, daily life, and long-service programs support people and manufacturing capability together." },
+    "esg/information": { groupTitle: "ESG Information", title: "ESG Information", lead: "Environment, safety, quality, ethics, and supplier standards are managed within one operating system.", heroCopy: "We reduce machining impacts while strengthening workplace safety and transparent business standards." },
+    "sustainability/policy": { groupTitle: "Sustainability Policy", title: "Sustainability Policy", lead: "Responsible manufacturing, safe workplaces, fair transactions, and transparent records guide sustainable growth.", heroCopy: "We define principles and track actions so customers, employees, partners, and communities can grow together." },
+  },
+  ja: {
+    "company/ceo": { groupTitle: "企業情報", title: "CEOメッセージ", lead: "協調による創造を大切にし、お客様が求める品質を精密加工の基準として実現します。", heroCopy: "1985年の設立以来、蓄積した製造経験をもとに世界の自動車部品顧客との信頼を築いています。" },
+    "company/history": { groupTitle: "企業情報" },
+    "company/location": { groupTitle: "企業情報", title: "アクセス", lead: "ソウル産業の本社と精密加工工場は京畿道華城市楊甘面にあります。", heroCopy: "ご訪問前に担当者と日程をご調整いただくと、入場と打ち合わせを円滑にご案内できます。" },
+    "company/notices": { groupTitle: "企業情報", title: "お知らせ", lead: "製品、品質、採用、会社運営に関するソウル産業の主要情報をご覧いただけます。", heroCopy: "お客様と協力会社に必要な会社情報を正確かつ迅速にお伝えします。" },
+    "products/electric-vehicle": { groupTitle: "製品情報", lead: "減速機、e-Drive、EV駆動軸に適用される精密加工部品を生産します。", heroCopy: "組立整合性、反復精度、耐久条件を管理し、EV駆動系の安定した量産品質を確保します。" },
+    "products/powertrain": { groupTitle: "製品情報", lead: "パワートレインの熱・振動条件に対応するハウジング、ギヤ、シャフト部品を生産します。", heroCopy: "加工条件と検査データをつなぎ、長期量産でも安定した品質を維持します。" },
+    "products/driveline": { groupTitle: "製品情報", lead: "トランスミッションシャフト、ハーフ・スタブアクスルなどの駆動系部品を精密加工します。", heroCopy: "同心度、振れ、スプライン、表面品質を管理し、駆動系の組立信頼性を高めます。" },
+    "products/balance-shaft-module": { groupTitle: "製品情報", lead: "エンジンの振動と騒音を低減するバランスシャフトモジュール部品を生産します。", heroCopy: "複合形状、組立面、ベアリング部の寸法を管理し、回転安定性と耐久性を確保します。" },
+    "products/steering": { groupTitle: "製品情報", lead: "Pinion Shaft、Torsion Barなど操舵応答と安全性を左右する部品を生産します。", heroCopy: "ギヤ・スプライン加工、熱処理、振れ検査をつなぎ、操舵入力を正確に伝えます。" },
+    "products/etc": { groupTitle: "製品情報", lead: "顧客図面に合わせてギヤ、スプライン、シャフト、ハウジングをカスタム加工します。", heroCopy: "開発検討、試作、工程設計、量産移管までプロジェクトに合う生産方式を提案します。" },
+    "quality/policy": { groupTitle: "品質保証", title: "品質方針", lead: "顧客要求を正確に理解し、工程で品質を造り込み、データで信頼を証明します。", heroCopy: "予防中心の品質管理と継続的な工程改善で安定した量産を支えます。" },
+    "quality/system": { groupTitle: "品質保証", title: "品質システム", lead: "図面検討、受入検査、工程検査、最終検査、LOT追跡を一つの品質フローで運営します。", heroCopy: "IATF 16949、ISO 14001、SQと顧客品質基準を日常の工程管理につなげます。" },
+    "quality/preventive": { groupTitle: "品質保証", title: "予防品質活動", lead: "問題発生後の対応を超え、開発と量産準備段階でリスクを先に取り除きます。", heroCopy: "工程FMEA、管理計画、初品検証、SPC、変更点管理で再発と流出を抑えます。" },
+    "rnd/parts-development": { groupTitle: "研究開発", title: "部品開発", lead: "顧客図面と要求仕様を製造可能な工程へ変換し、試作から量産までつなぎます。", heroCopy: "加工性、治工具、検査具、試作検証、工程能力の確認で開発リスクを低減します。" },
+    "recruit/information": { groupTitle: "採用情報", title: "採用情報", lead: "生産、品質、開発、管理が連携するソウル産業で次の製造基準をつくる人材を募集します。", heroCopy: "基準を守り、改善を続け、仲間と結果を完成させる方をお待ちしています。" },
+    "recruit/benefits": { groupTitle: "採用情報", title: "福利厚生", lead: "従業員が安定して働き、技術と経験を長く蓄積できる実質的な福利厚生を運営します。", heroCopy: "健康、成長、生活、長期勤続を支援し、人と製造力がともに成長する環境をつくります。" },
+    "esg/information": { groupTitle: "ESG情報", title: "ESG情報", lead: "環境、安全、品質、倫理、協力会社基準を製造現場の運営体系で管理します。", heroCopy: "精密加工の環境負荷を抑え、安全な職場と透明な取引基準を強化します。" },
+    "sustainability/policy": { groupTitle: "持続可能経営方針", title: "持続可能経営方針", lead: "責任ある製造、安全な現場、公正な取引、透明な記録を持続可能な成長の基準とします。", heroCopy: "顧客、従業員、協力会社、地域社会と長く成長できるよう原則と実行履歴を管理します。" },
+  },
+};
+
 export function getPageConfig(route: string, language: LanguageCode): PageConfig {
-  const base = pageConfigs[route] ?? pageConfigs["company/greeting"];
-  const translation = language === "ko" ? undefined : pageConfigTranslations[language]?.[base.route];
+  const base = expandedPageConfigs[route] ?? pageConfigs[route] ?? expandedPageConfigs["company/ceo"];
+  const translation =
+    language === "ko"
+      ? undefined
+      : expandedPageConfigTranslations[language]?.[base.route] ?? pageConfigTranslations[language]?.[base.route];
   return { ...base, ...translation };
 }
 
@@ -813,7 +1053,7 @@ const recruitPageCopy: Record<LanguageCode, RecruitPageCopy> = {
     heroCopy:
       "서울산업은 자동차 부품 정밀가공 현장에서 품질, 납기, 개선을 함께 만들어 갈 사람을 기다립니다. 좋은 제조는 좋은 장비만으로 완성되지 않고, 현장을 이해하는 사람의 태도에서 시작됩니다.",
     heroCta: "채용공고 보기",
-    heroCtaHref: "#/recruit/jobs",
+    heroCtaHref: "#/recruit/information",
     heroStatLabel: "PEOPLE FIRST",
     heroStats: [
       ["1985", "제조 기반"],
@@ -878,7 +1118,7 @@ const recruitPageCopy: Record<LanguageCode, RecruitPageCopy> = {
     heroCopy:
       "Seoul Industry is looking for people who will build quality, delivery, and improvement together on the precision machining floor. Strong manufacturing starts with people who understand the site.",
     heroCta: "View Openings",
-    heroCtaHref: "#/recruit/jobs",
+    heroCtaHref: "#/recruit/information",
     heroStatLabel: "PEOPLE FIRST",
     heroStats: [
       ["1985", "Manufacturing base"],
@@ -943,7 +1183,7 @@ const recruitPageCopy: Record<LanguageCode, RecruitPageCopy> = {
     heroCopy:
       "ソウル産業は、自動車部品の精密加工現場で品質、納期、改善をともにつくる仲間を待っています。良い製造は設備だけでなく、現場を理解する人の姿勢から始まります。",
     heroCta: "採用公告を見る",
-    heroCtaHref: "#/recruit/jobs",
+    heroCtaHref: "#/recruit/information",
     heroStatLabel: "PEOPLE FIRST",
     heroStats: [
       ["1985", "製造基盤"],
@@ -1442,7 +1682,7 @@ function EsgReportContent() {
       </section>
       <div className="menu-report-list menu-reveal">
         {esgReports.map((report) => (
-          <a href="#/sustainability/esg-report" key={report.year}>
+          <a href="#/sustainability/policy" key={report.year}>
             <span>{report.year}</span>
             <strong>{report.title}</strong>
             <p>{report.copy}</p>
@@ -1488,10 +1728,10 @@ function ProductsContent({ route }: { route: string }) {
   return (
     <>
       <div className="menu-product-filter menu-reveal" aria-label="제품 구분">
-        <a className="is-active" href="#/products/automotive">
+        <a className="is-active" href="#/products/electric-vehicle">
           전기차
         </a>
-        <a href="#/products/automotive">내연기관차</a>
+        <a href="#/products/electric-vehicle">내연기관차</a>
       </div>
       <div className="menu-product-grid menu-reveal">
         {automotiveProducts.map((product) => (
@@ -1505,7 +1745,7 @@ function ProductsContent({ route }: { route: string }) {
           </article>
         ))}
       </div>
-      <a className="menu-back-link menu-reveal" href="#/products/automotive">
+      <a className="menu-back-link menu-reveal" href="#/products/electric-vehicle">
         목록으로
       </a>
     </>
@@ -1742,7 +1982,7 @@ function JobsContent({ language }: { language: LanguageCode }) {
           <h3>{copy.jobsTitle}</h3>
           <p>{copy.jobsCopy}</p>
         </div>
-        <a href="#/support/contact">
+        <a href="#/company/location">
           {copy.jobsCta}
           <Icon name="arrow" />
         </a>

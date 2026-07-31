@@ -11,7 +11,7 @@ import { getPageConfig } from "./MenuPage";
 import { RenewalSiteFooter, RenewalSiteHeader, toRenewalHref, type RenewalLanguage } from "./RenewalShell";
 import { defaultLanguage, isLanguageCode, siteContent, type SiteContent } from "../data/siteContent";
 import { getNoticePosts } from "../data/notices";
-import { findMenuByRoute, getSiteMenuGroups } from "../data/navigation";
+import { findMenuByRoute, getSiteMenuGroups, resolveMenuRoute } from "../data/navigation";
 import { useLenisScroll } from "../motion/useLenisScroll";
 import { usePrefersReducedMotion } from "../motion/usePrefersReducedMotion";
 import "../styles/renewal.css";
@@ -211,6 +211,230 @@ const recruitCopy: Record<
 
 const productImages = [balanceModuleImage, automotiveImage, steeringImage, drivelineImage];
 
+const ceoCopy: Record<RenewalLanguage, { quote: string; paragraphs: string[]; sign: string }> = {
+  ko: {
+    quote: "화합으로 창조하며, 정밀가공의 기준으로 고객의 신뢰에 답하겠습니다.",
+    paragraphs: [
+      "서울산업 홈페이지를 찾아주신 여러분께 감사드립니다. 서울산업은 1985년 자동차 부품 정밀가공 기업으로 출발했습니다.",
+      "축적된 가공 노하우를 바탕으로 국내 완성차 산업은 물론 유럽, 북·남미, 아시아의 글로벌 자동차 부품 고객과 견고한 파트너십을 이어오고 있습니다.",
+      "고객의 품질 요구를 정확히 이해하고 연구개발과 공정 개선을 지속해, 세계 시장에서 신뢰받는 자동차 부품 제조기업으로 성장하겠습니다.",
+    ],
+    sign: "서울산업 임직원 일동",
+  },
+  en: {
+    quote: "We create through cooperation and answer customer trust with precision.",
+    paragraphs: [
+      "Thank you for visiting Seoul Industry. We began in 1985 as a precision machining company for automotive components.",
+      "Our accumulated machining experience supports strong partnerships with automotive customers in Korea, Europe, North and South America, and Asia.",
+      "By understanding quality requirements precisely and continuing R&D and process improvement, we will grow as a trusted global automotive component manufacturer.",
+    ],
+    sign: "Everyone at Seoul Industry",
+  },
+  ja: {
+    quote: "協調による創造と精密加工の基準で、お客様の信頼に応えます。",
+    paragraphs: [
+      "ソウル産業のウェブサイトをご覧いただき、ありがとうございます。1985年に自動車部品の精密加工企業として出発しました。",
+      "蓄積した加工ノウハウをもとに、韓国をはじめ欧州、北・南米、アジアの自動車部品顧客と強固なパートナーシップを築いています。",
+      "品質要求を正確に理解し、研究開発と工程改善を続け、世界で信頼される自動車部品メーカーを目指します。",
+    ],
+    sign: "ソウル産業 従業員一同",
+  },
+};
+
+const productRouteIndex: Record<string, number> = {
+  "products/balance-shaft-module": 0,
+  "products/electric-vehicle": 1,
+  "products/steering": 2,
+  "products/powertrain": 3,
+  "products/driveline": 4,
+  "products/etc": 5,
+};
+
+const productRouteImages: Record<string, string> = {
+  "products/balance-shaft-module": balanceModuleImage,
+  "products/electric-vehicle": automotiveImage,
+  "products/steering": steeringImage,
+  "products/powertrain": precisionImage,
+  "products/driveline": drivelineImage,
+  "products/etc": precisionImage,
+};
+
+const productStandards: Record<string, string[]> = {
+  "products/electric-vehicle": ["e-DRIVE HOUSING", "REDUCTION GEAR", "EV HALF SHAFT", "ASSEMBLY FIT"],
+  "products/powertrain": ["HOUSING", "SHAFT", "GEAR / SPLINE", "HEAT & VIBRATION"],
+  "products/driveline": ["OUTPUT SHAFT", "HALF / STUB AXLE", "RUNOUT", "SPLINE QUALITY"],
+  "products/balance-shaft-module": ["AL HOUSING", "BEARING BORE", "ASSEMBLY FACE", "VIBRATION CONTROL"],
+  "products/steering": ["PINION SHAFT", "TORSION BAR", "GEAR PROFILE", "SAFETY CHARACTERISTIC"],
+  "products/etc": ["DRAWING REVIEW", "PROTOTYPE", "PROCESS DESIGN", "CUSTOM OEM"],
+};
+
+const bodyLabels: Record<
+  RenewalLanguage,
+  {
+    application: string;
+    manufacturing: string;
+    qualityFlow: string;
+    policyStatement: string;
+    developmentFlow: string;
+    office: string;
+    directions: string;
+    map: string;
+    recruitmentOpenings: string;
+    welfare: string;
+  }
+> = {
+  ko: {
+    application: "적용·관리 기준",
+    manufacturing: "제품별 제조 대응",
+    qualityFlow: "품질 운영 흐름",
+    policyStatement: "서울산업 품질방침",
+    developmentFlow: "부품개발 프로세스",
+    office: "본사·공장",
+    directions: "방문 안내",
+    map: "지도에서 보기",
+    recruitmentOpenings: "모집 직무",
+    welfare: "복지 지원",
+  },
+  en: {
+    application: "Application & Controls",
+    manufacturing: "Manufacturing Response",
+    qualityFlow: "Quality Operating Flow",
+    policyStatement: "Seoul Industry Quality Policy",
+    developmentFlow: "Parts Development Process",
+    office: "Head Office & Factory",
+    directions: "Visit Information",
+    map: "Open Map",
+    recruitmentOpenings: "Open Roles",
+    welfare: "Employee Support",
+  },
+  ja: {
+    application: "適用・管理基準",
+    manufacturing: "製品別製造対応",
+    qualityFlow: "品質運営フロー",
+    policyStatement: "ソウル産業 品質方針",
+    developmentFlow: "部品開発プロセス",
+    office: "本社・工場",
+    directions: "訪問案内",
+    map: "地図で見る",
+    recruitmentOpenings: "募集職種",
+    welfare: "福利厚生",
+  },
+};
+
+const qualityPrinciples: Record<RenewalLanguage, Array<{ title: string; copy: string }>> = {
+  ko: [
+    { title: "고객 요구 우선", copy: "도면, 사양, 특별특성, 납품 기준을 개발 단계에서 명확히 확인합니다." },
+    { title: "공정에서 완성", copy: "검사에만 의존하지 않고 표준화된 조건과 작업 기준으로 품질을 만듭니다." },
+    { title: "데이터로 검증", copy: "주요 치수와 형상, 설비 조건, LOT 이력을 연결해 결과를 추적합니다." },
+    { title: "지속적인 개선", copy: "불량 원인과 변경점을 기록하고 재발방지 활동을 표준에 반영합니다." },
+  ],
+  en: [
+    { title: "Customer Requirements", copy: "Drawings, specifications, special characteristics, and delivery standards are confirmed early." },
+    { title: "Built in Process", copy: "Quality is created through standardized conditions and work rules, not inspection alone." },
+    { title: "Verified by Data", copy: "Key dimensions, geometry, equipment conditions, and LOT history remain traceable." },
+    { title: "Continuous Improvement", copy: "Defect causes and changes are recorded, and prevention actions update the standard." },
+  ],
+  ja: [
+    { title: "顧客要求優先", copy: "図面、仕様、特殊特性、納入基準を開発段階で明確に確認します。" },
+    { title: "工程で完成", copy: "検査だけに頼らず、標準化した条件と作業基準で品質を造り込みます。" },
+    { title: "データで検証", copy: "主要寸法、形状、設備条件、LOT履歴をつなぎ、結果を追跡します。" },
+    { title: "継続的改善", copy: "不良原因と変更点を記録し、再発防止を標準へ反映します。" },
+  ],
+};
+
+const qualityFlow: Record<RenewalLanguage, Array<{ title: string; copy: string }>> = {
+  ko: [
+    { title: "도면·사양 검토", copy: "고객 요구와 특별특성, 검사 기준을 개발 단계에서 확인합니다." },
+    { title: "수입·초도 검사", copy: "소재와 외주 공정, 초도품이 승인 기준에 맞는지 검증합니다." },
+    { title: "공정 품질 관리", copy: "Air Gauge, 비전, 치수 측정과 SPC로 공정 상태를 확인합니다." },
+    { title: "최종·출하 검사", copy: "최종 치수와 외관, 포장, 식별표를 확인한 뒤 출하합니다." },
+    { title: "LOT 추적", copy: "검사 결과와 설비 조건, 작업 이력을 LOT 단위로 연결합니다." },
+  ],
+  en: [
+    { title: "Drawing Review", copy: "Customer requirements, special characteristics, and inspection criteria are confirmed." },
+    { title: "Incoming & First Article", copy: "Materials, outsourced processes, and first articles are validated against approval criteria." },
+    { title: "Process Quality", copy: "Air gauges, vision systems, dimensional checks, and SPC monitor process conditions." },
+    { title: "Final & Shipment", copy: "Final dimensions, appearance, packing, and identification are checked before shipment." },
+    { title: "LOT Traceability", copy: "Inspection, equipment, and work history are connected by production lot." },
+  ],
+  ja: [
+    { title: "図面・仕様検討", copy: "顧客要求、特殊特性、検査基準を開発段階で確認します。" },
+    { title: "受入・初品検査", copy: "素材、外注工程、初品を承認基準に照らして検証します。" },
+    { title: "工程品質管理", copy: "Air Gauge、画像、寸法測定、SPCで工程状態を確認します。" },
+    { title: "最終・出荷検査", copy: "最終寸法、外観、梱包、識別票を確認して出荷します。" },
+    { title: "LOT追跡", copy: "検査結果、設備条件、作業履歴をLOT単位でつなぎます。" },
+  ],
+};
+
+const preventiveFlow: Record<RenewalLanguage, Array<{ title: string; copy: string }>> = {
+  ko: [
+    { title: "위험요인 식별", copy: "공정 FMEA와 과거 불량 이력을 바탕으로 잠재 위험을 먼저 찾습니다." },
+    { title: "관리계획 수립", copy: "특별특성, 검사 주기, 반응 계획, 담당자를 관리계획에 명확히 둡니다." },
+    { title: "초도품 검증", copy: "설비·치공구 조건과 측정 결과를 확인해 양산 승인 전에 문제를 제거합니다." },
+    { title: "SPC·자동 보정", copy: "측정 데이터를 기록하고 필요 시 자동 오프셋으로 공정 변동을 줄입니다." },
+    { title: "변경점·재발방지", copy: "4M 변경과 이상 발생 시 원인, 조치, 효과 확인을 하나의 이력으로 관리합니다." },
+  ],
+  en: [
+    { title: "Identify Risk", copy: "Process FMEA and prior defect history reveal potential risks before launch." },
+    { title: "Control Plan", copy: "Special characteristics, inspection frequency, reaction plans, and owners are defined." },
+    { title: "First-Article Validation", copy: "Equipment, tooling, and measurement results are verified before production approval." },
+    { title: "SPC & Auto Offset", copy: "Measurement data and automatic offset control reduce process variation." },
+    { title: "Change & Prevention", copy: "4M changes and abnormalities are managed from cause through effectiveness review." },
+  ],
+  ja: [
+    { title: "リスク特定", copy: "工程FMEAと過去不良履歴から潜在リスクを先に見つけます。" },
+    { title: "管理計画", copy: "特殊特性、検査周期、反応計画、担当者を明確にします。" },
+    { title: "初品検証", copy: "設備・治工具条件と測定結果を確認し、量産承認前に問題を除去します。" },
+    { title: "SPC・自動補正", copy: "測定データと自動オフセットで工程変動を抑えます。" },
+    { title: "変更・再発防止", copy: "4M変更と異常を原因、措置、効果確認まで一つの履歴で管理します。" },
+  ],
+};
+
+const developmentFlow: Record<RenewalLanguage, Array<{ title: string; copy: string }>> = {
+  ko: [
+    { title: "요구사항 분석", copy: "도면, 소재, 특별특성, 목표 물량과 납기를 검토합니다." },
+    { title: "가공성 검토", copy: "공정 순서, 설비, 공구, 치공구와 검사 방법을 설계합니다." },
+    { title: "시제품 제작", copy: "초도 가공과 측정으로 형상, 조립성, 핵심 치수를 검증합니다." },
+    { title: "공정 설계", copy: "PFMEA, 관리계획, 작업표준과 LOT 추적 기준을 확정합니다." },
+    { title: "양산 검증", copy: "공정 능력과 반복 생산성, 포장·출하 조건을 확인합니다." },
+    { title: "양산 이관", copy: "승인 조건을 현장 표준으로 연결하고 변경점을 지속 관리합니다." },
+  ],
+  en: [
+    { title: "Requirement Analysis", copy: "Drawings, material, special characteristics, volume, and timing are reviewed." },
+    { title: "Feasibility", copy: "Process sequence, equipment, tools, fixtures, and inspection methods are designed." },
+    { title: "Prototype", copy: "Initial machining and measurement validate geometry, assembly, and key dimensions." },
+    { title: "Process Design", copy: "PFMEA, control plans, work standards, and LOT traceability are finalized." },
+    { title: "Production Validation", copy: "Capability, repeat output, packing, and shipment conditions are confirmed." },
+    { title: "Launch", copy: "Approved conditions become site standards, and changes remain controlled." },
+  ],
+  ja: [
+    { title: "要求分析", copy: "図面、素材、特殊特性、目標数量、納期を検討します。" },
+    { title: "加工性検討", copy: "工程順序、設備、工具、治工具、検査方法を設計します。" },
+    { title: "試作", copy: "初品加工と測定で形状、組立性、主要寸法を検証します。" },
+    { title: "工程設計", copy: "PFMEA、管理計画、作業標準、LOT追跡基準を確定します。" },
+    { title: "量産検証", copy: "工程能力、反復生産性、梱包・出荷条件を確認します。" },
+    { title: "量産移管", copy: "承認条件を現場標準につなぎ、変更点を継続管理します。" },
+  ],
+};
+
+const locationCopy: Record<RenewalLanguage, { address: string; visit: string; email: string }> = {
+  ko: {
+    address: "경기도 화성시 양감면 요당길 320번길 51 서울산업(주)",
+    visit: "공장 방문은 사전 협의가 필요합니다. 도착 전 담당자에게 연락해 주십시오.",
+    email: "admin@seoulind.co.kr",
+  },
+  en: {
+    address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Korea",
+    visit: "Factory visits require advance coordination. Please contact your representative before arrival.",
+    email: "admin@seoulind.co.kr",
+  },
+  ja: {
+    address: "韓国 京畿道 華城市 楊甘面 ヨダンギル320番ギル51 ソウル産業",
+    visit: "工場訪問は事前調整が必要です。到着前に担当者へご連絡ください。",
+    email: "admin@seoulind.co.kr",
+  },
+};
+
 function useSubpageReveal(route: string, language: RenewalLanguage) {
   useEffect(() => {
     const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-sub-reveal]"));
@@ -255,6 +479,29 @@ function CapabilityGrid({ content }: { content: SiteContent }) {
   );
 }
 
+function CeoBody({ language }: { language: RenewalLanguage }) {
+  const copy = ceoCopy[language];
+
+  return (
+    <section className="renewal-sub-ceo">
+      <div className="renewal-sub-ceo__visual" data-sub-reveal>
+        <img src={precisionImage} alt="" />
+        <span>SINCE 1985 · SEOUL INDUSTRY</span>
+      </div>
+      <div className="renewal-sub-ceo__message" data-sub-reveal>
+        <span>CEO MESSAGE</span>
+        <h2>{copy.quote}</h2>
+        <div>
+          {copy.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+        <strong>{copy.sign}</strong>
+      </div>
+    </section>
+  );
+}
+
 function GreetingBody({ content }: { content: SiteContent }) {
   return (
     <>
@@ -271,6 +518,47 @@ function GreetingBody({ content }: { content: SiteContent }) {
       </section>
       <CapabilityGrid content={content} />
     </>
+  );
+}
+
+function LocationBody({ language }: { language: RenewalLanguage }) {
+  const copy = locationCopy[language];
+  const labels = bodyLabels[language];
+  const mapUrl = `https://map.naver.com/p/search/${encodeURIComponent("경기도 화성시 양감면 요당길 320번길 51")}`;
+
+  return (
+    <section className="renewal-sub-location">
+      <div className="renewal-sub-location__map" data-sub-reveal>
+        <div aria-hidden="true">
+          <span>37.1178 N</span>
+          <strong>SEOUL<br />INDUSTRY</strong>
+          <span>126.9447 E</span>
+        </div>
+        <a href={mapUrl} target="_blank" rel="noreferrer">
+          <span>{labels.map}</span>
+          <Icon name="arrow" />
+        </a>
+      </div>
+      <div className="renewal-sub-location__details">
+        <article data-sub-reveal>
+          <span>01 · {labels.office}</span>
+          <h3>{copy.address}</h3>
+        </article>
+        <article data-sub-reveal>
+          <span>02 · TEL / FAX</span>
+          <a href="tel:+82313661141">+82 31 366 1141</a>
+          <p>FAX +82 31 366 1150</p>
+        </article>
+        <article data-sub-reveal>
+          <span>03 · E-MAIL</span>
+          <a href={`mailto:${copy.email}`}>{copy.email}</a>
+        </article>
+        <article data-sub-reveal>
+          <span>04 · {labels.directions}</span>
+          <p>{copy.visit}</p>
+        </article>
+      </div>
+    </section>
   );
 }
 
@@ -322,6 +610,164 @@ function CertificatesBody({ language }: { language: RenewalLanguage }) {
           </article>
         ))}
       </section>
+    </>
+  );
+}
+
+function ProductDetailBody({
+  route,
+  content,
+  language,
+}: {
+  route: string;
+  content: SiteContent;
+  language: RenewalLanguage;
+}) {
+  const productIndex = productRouteIndex[route] ?? 0;
+  const product = content.products[productIndex];
+  const image = productRouteImages[route] ?? product.image;
+  const standards = productStandards[route] ?? [];
+  const labels = bodyLabels[language];
+
+  return (
+    <>
+      <section className="renewal-sub-product-detail">
+        <figure data-sub-reveal>
+          <span>{String(productIndex + 1).padStart(2, "0")}</span>
+          <img src={image} alt={product.title} />
+        </figure>
+        <div data-sub-reveal>
+          <small>{product.category}</small>
+          <h2>{product.title}</h2>
+          <p>{product.copy}</p>
+          <h3>{labels.application}</h3>
+          <div className="renewal-sub-product-detail__tags">
+            {standards.map((standard) => (
+              <span key={standard}>{standard}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="renewal-sub-section-heading" data-sub-reveal>
+        <span>PROCESS STANDARD</span>
+        <h2>{labels.manufacturing}</h2>
+      </section>
+      <CapabilityGrid content={content} />
+    </>
+  );
+}
+
+function QualityPolicyBody({ language }: { language: RenewalLanguage }) {
+  const labels = bodyLabels[language];
+  const principles = qualityPrinciples[language];
+
+  return (
+    <>
+      <section className="renewal-sub-policy-statement" data-sub-reveal>
+        <span>QUALITY FIRST</span>
+        <h2>{labels.policyStatement}</h2>
+        <p>
+          {language === "ko"
+            ? "고객이 요구하는 품질을 정확히 이해하고 모든 공정에서 표준을 준수하며, 예방과 개선을 통해 무결점 품질을 지향합니다."
+            : language === "ja"
+              ? "顧客が求める品質を正確に理解し、すべての工程で標準を守り、予防と改善を通じてゼロディフェクトを目指します。"
+              : "We understand customer quality requirements, follow standards in every process, and pursue zero defects through prevention and improvement."}
+        </p>
+      </section>
+      <section className="renewal-sub-governance">
+        {principles.map((item, index) => (
+          <article data-sub-reveal key={item.title}>
+            <span>QUALITY PRINCIPLE</span>
+            <strong>{String(index + 1).padStart(2, "0")}</strong>
+            <h3>{item.title}</h3>
+            <p>{item.copy}</p>
+          </article>
+        ))}
+      </section>
+    </>
+  );
+}
+
+function ProcessFlow({
+  items,
+  label,
+}: {
+  items: Array<{ title: string; copy: string }>;
+  label: string;
+}) {
+  return (
+    <section className="renewal-sub-process-flow" aria-label={label}>
+      {items.map((item, index) => (
+        <article data-sub-reveal key={item.title}>
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <h3>{item.title}</h3>
+            <p>{item.copy}</p>
+          </div>
+        </article>
+      ))}
+    </section>
+  );
+}
+
+function QualitySystemBody({ language }: { language: RenewalLanguage }) {
+  const labels = bodyLabels[language];
+
+  return (
+    <>
+      <section className="renewal-sub-section-heading" data-sub-reveal>
+        <span>QUALITY ASSURANCE SYSTEM</span>
+        <h2>{labels.qualityFlow}</h2>
+      </section>
+      <ProcessFlow items={qualityFlow[language]} label={labels.qualityFlow} />
+      <CertificatesBody language={language} />
+    </>
+  );
+}
+
+function PreventiveQualityBody({ language }: { language: RenewalLanguage }) {
+  const labels = bodyLabels[language];
+
+  return (
+    <>
+      <section className="renewal-sub-preventive-visual" data-sub-reveal>
+        <img src={certificationImage} alt="" />
+        <div>
+          <span>ZERO DEFECT APPROACH</span>
+          <strong>PLAN · VERIFY · CONTROL · IMPROVE</strong>
+        </div>
+      </section>
+      <section className="renewal-sub-section-heading" data-sub-reveal>
+        <span>PREVENTIVE QUALITY</span>
+        <h2>{labels.qualityFlow}</h2>
+      </section>
+      <ProcessFlow items={preventiveFlow[language]} label={labels.qualityFlow} />
+    </>
+  );
+}
+
+function PartsDevelopmentBody({ content, language }: { content: SiteContent; language: RenewalLanguage }) {
+  const labels = bodyLabels[language];
+
+  return (
+    <>
+      <section className="renewal-sub-development">
+        <figure data-sub-reveal>
+          <img src={precisionImage} alt="" />
+          <figcaption>DRAWING TO MASS PRODUCTION</figcaption>
+        </figure>
+        <div data-sub-reveal>
+          <span>R&D CAPABILITY</span>
+          <h2>{labels.developmentFlow}</h2>
+          <p>{content.solutionHeading.copy}</p>
+          <div>
+            {["GEAR / SPLINE", "CNC MACHINING", "HEAT TREATMENT", "LASER WELDING", "AUTO INSPECTION"].map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+      <ProcessFlow items={developmentFlow[language]} label={labels.developmentFlow} />
     </>
   );
 }
@@ -554,12 +1000,72 @@ function JobsBody({ language }: { language: RenewalLanguage }) {
             <p>{job.copy}</p>
           </div>
           <strong>{job.status}</strong>
-          <a href="#/support/contact">
+          <a href="mailto:admin@seoulind.co.kr">
             <Icon name="arrow" />
           </a>
         </article>
       ))}
     </section>
+  );
+}
+
+function RecruitmentBody({ language }: { language: RenewalLanguage }) {
+  return (
+    <>
+      <RecruitGuideBody language={language} />
+      <section className="renewal-sub-section-heading" data-sub-reveal>
+        <span>OPEN POSITION</span>
+        <h2>{bodyLabels[language].recruitmentOpenings}</h2>
+      </section>
+      <JobsBody language={language} />
+    </>
+  );
+}
+
+function BenefitsBody({ language }: { language: RenewalLanguage }) {
+  const copy = recruitCopy[language];
+
+  return (
+    <>
+      <section className="renewal-sub-benefit-lead" data-sub-reveal>
+        <span>WORK & GROWTH</span>
+        <h2>{bodyLabels[language].welfare}</h2>
+        <p>
+          {language === "ko"
+            ? "현장의 경험이 개인의 성장으로 이어지고, 개인의 성장이 다시 제조 경쟁력이 되도록 지원합니다."
+            : language === "ja"
+              ? "現場での経験が個人の成長につながり、その成長が製造競争力へ戻る環境を支援します。"
+              : "We help shop-floor experience become personal growth, and personal growth become stronger manufacturing capability."}
+        </p>
+      </section>
+      <section className="renewal-sub-benefits renewal-sub-benefits--large">
+        {copy.benefits.map((benefit, index) => (
+          <span data-sub-reveal key={benefit}>
+            <small>{String(index + 1).padStart(2, "0")}</small>
+            <strong>{benefit}</strong>
+          </span>
+        ))}
+      </section>
+    </>
+  );
+}
+
+function SustainabilityPolicyBody({ language }: { language: RenewalLanguage }) {
+  return (
+    <>
+      <section className="renewal-sub-policy-statement renewal-sub-policy-statement--dark" data-sub-reveal>
+        <span>RESPONSIBLE MANUFACTURING</span>
+        <h2>
+          {language === "ko"
+            ? "제조의 모든 결정에 환경·안전·품질·윤리 기준을 함께 둡니다."
+            : language === "ja"
+              ? "製造のすべての判断に、環境・安全・品質・倫理の基準を置きます。"
+              : "Every manufacturing decision considers environment, safety, quality, and ethics."}
+        </h2>
+      </section>
+      <GovernanceBody language={language} />
+      <ReportBody language={language} />
+    </>
   );
 }
 
@@ -572,23 +1078,38 @@ function RouteBody({
   language: RenewalLanguage;
   content: SiteContent;
 }) {
-  if (route === "company/greeting") return <GreetingBody content={content} />;
+  if (route === "company/ceo") return <CeoBody language={language} />;
   if (route === "company/history") return <HistoryBody content={content} />;
-  if (route === "company/certificates") return <CertificatesBody language={language} />;
-  if (route === "sustainability/environmental") return <EnvironmentalBody content={content} />;
-  if (route === "sustainability/governance") return <GovernanceBody language={language} />;
-  if (route === "sustainability/esg-report") return <ReportBody language={language} />;
-  if (route === "products/automotive") return <AutomotiveBody content={content} />;
-  if (route === "products/industrial") return <IndustrialBody content={content} />;
-  if (route === "support/news") return <NewsBody language={language} content={content} />;
-  if (route === "support/contact") return <ContactBody language={language} />;
-  if (route === "recruit/guide") return <RecruitGuideBody language={language} />;
-  if (route === "recruit/jobs") return <JobsBody language={language} />;
+  if (route === "company/location") return <LocationBody language={language} />;
+  if (route === "company/notices") return <NewsBody language={language} content={content} />;
+  if (route in productRouteIndex) return <ProductDetailBody route={route} content={content} language={language} />;
+  if (route === "quality/policy") return <QualityPolicyBody language={language} />;
+  if (route === "quality/system") return <QualitySystemBody language={language} />;
+  if (route === "quality/preventive") return <PreventiveQualityBody language={language} />;
+  if (route === "rnd/parts-development") return <PartsDevelopmentBody content={content} language={language} />;
+  if (route === "recruit/information") return <RecruitmentBody language={language} />;
+  if (route === "recruit/benefits") return <BenefitsBody language={language} />;
+  if (route === "esg/information") return <EnvironmentalBody content={content} />;
+  if (route === "sustainability/policy") return <SustainabilityPolicyBody language={language} />;
   return <GreetingBody content={content} />;
 }
 
 function RenewalSubNavigation({ route, language }: { route: string; language: RenewalLanguage }) {
   const { group, child } = findMenuByRoute(route, language);
+  const directGroup = group.children.length === 1 && group.children[0].href === group.href;
+  const activeItemRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    const activeItem = activeItemRef.current;
+    const container = activeItem?.parentElement;
+    if (!activeItem || !container) return;
+    container.scrollTo({
+      left: activeItem.offsetLeft - (container.clientWidth - activeItem.clientWidth) / 2,
+      behavior: "auto",
+    });
+  }, [route, language]);
+
+  if (directGroup) return null;
 
   return (
     <div className="renewal-sub-navigation">
@@ -598,7 +1119,12 @@ function RenewalSubNavigation({ route, language }: { route: string; language: Re
         style={{ "--renewal-sub-depth-count": group.children.length } as React.CSSProperties}
       >
         {group.children.map((item) => (
-          <a className={item.label === child.label ? "is-active" : ""} href={toRenewalHref(item.href)} key={item.label}>
+          <a
+            className={item.label === child.label ? "is-active" : ""}
+            href={toRenewalHref(item.href)}
+            ref={item.label === child.label ? activeItemRef : undefined}
+            key={item.label}
+          >
             {item.label}
           </a>
         ))}
@@ -625,7 +1151,7 @@ function NextPage({ route, language }: { route: string; language: RenewalLanguag
 }
 
 export default function RenewalSubPage({ route }: RenewalSubPageProps) {
-  const cleanRoute = route.replace(/^renewal\/?/, "").replace(/\/$/, "") || "company/greeting";
+  const cleanRoute = resolveMenuRoute(route) || "company/ceo";
   const reducedMotion = usePrefersReducedMotion();
   const [language, setLanguage] = useState<RenewalLanguage>(() => {
     if (typeof window === "undefined") return defaultLanguage;
@@ -634,13 +1160,7 @@ export default function RenewalSubPage({ route }: RenewalSubPageProps) {
   });
   const content = siteContent[language];
   const config = useMemo(() => {
-    const pageConfig = getPageConfig(cleanRoute, language);
-    if (cleanRoute !== "sustainability/governance") return pageConfig;
-
-    return {
-      ...pageConfig,
-      title: language === "ko" ? "윤리경영" : language === "ja" ? "ガバナンス" : pageConfig.title,
-    };
+    return getPageConfig(cleanRoute, language);
   }, [cleanRoute, language]);
   const rootRef = useRef<HTMLDivElement>(null);
 

@@ -530,6 +530,12 @@ const processMedia = [
 ];
 
 const productImages = [balanceModuleImage, electricVehicleImage, steeringImage, drivelineImage];
+const productRoutes = [
+  "#/products/balance-shaft-module",
+  "#/products/electric-vehicle",
+  "#/products/steering",
+  "#/products/driveline",
+];
 const principleImages = [housingPoster, steeringPoster, evPoster, heroPoster];
 const newsImages = [machiningPoster, qualityPoster, evPoster, supplyPoster];
 
@@ -766,14 +772,14 @@ function ProductsSection({ copy }: { copy: RenewalCopy }) {
           <span>{copy.products.eyebrow}</span>
           <h2>{copy.products.title}</h2>
         </div>
-        <a href="#/products/automotive" className="renewal-arrow-link">
+        <a href="#/products/electric-vehicle" className="renewal-arrow-link">
           <span>{copy.products.link}</span>
           <Icon name="arrow" />
         </a>
       </div>
       <div className="renewal-products__grid">
         {copy.products.items.map((item, index) => (
-          <a href="#/products/automotive" className="renewal-product-card" data-renewal-reveal key={item.title}>
+          <a href={productRoutes[index]} className="renewal-product-card" data-renewal-reveal key={item.title}>
             <div className="renewal-product-card__top">
               <span>{String(index + 1).padStart(2, "0")}</span>
               <strong>{item.category}</strong>
@@ -809,7 +815,7 @@ function PrinciplesSection({ copy }: { copy: RenewalCopy }) {
             <span key={line}>{line}</span>
           ))}
         </h2>
-        <a href="#/company/certificates" className="renewal-arrow-link">
+        <a href="#/quality/system" className="renewal-arrow-link">
           <span>{copy.principles.link}</span>
           <Icon name="arrow" />
         </a>
@@ -858,7 +864,7 @@ function NewsSection({ copy }: { copy: RenewalCopy }) {
       </div>
       <div className="renewal-news__rail" ref={railRef}>
         {copy.news.items.map((item, index) => (
-          <a href="#/support/news" className="renewal-news-card" key={item.title}>
+          <a href="#/company/notices" className="renewal-news-card" key={item.title}>
             <div className="renewal-news-card__image">
               <img src={newsImages[index]} alt="" />
               <span>{item.category}</span>
@@ -870,7 +876,7 @@ function NewsSection({ copy }: { copy: RenewalCopy }) {
           </a>
         ))}
       </div>
-      <a href="#/support/news" className="renewal-news__all">
+      <a href="#/company/notices" className="renewal-news__all">
         <span>{copy.news.link}</span>
         <Icon name="arrow" />
       </a>
@@ -891,7 +897,7 @@ function ContactSection({ copy }: { copy: RenewalCopy }) {
           ))}
         </h2>
         <p>{copy.closing.copy}</p>
-        <a href="#/support/contact">
+        <a href="#/company/location">
           <span>{copy.closing.link}</span>
           <Icon name="arrow" />
         </a>
