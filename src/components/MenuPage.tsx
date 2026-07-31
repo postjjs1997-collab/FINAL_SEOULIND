@@ -4,6 +4,7 @@ import certificationImage from "../../certification.png";
 import drivelineImage from "../../driveline.png";
 import automotiveImage from "../../electric vehicle.png";
 import balanceModuleImage from "../../housing.png";
+import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
 import precisionHeroImage from "../../precision-inside-mobility.jpg";
 import steeringImage from "../../steering.png";
 import BrainallLogo from "./BrainallLogo";
@@ -390,8 +391,8 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     title: "POWERTRAIN",
     lead: "엔진과 동력전달계의 열·진동 조건을 견디는 하우징, 기어, 샤프트 계열 부품을 생산합니다.",
     heroCopy: "가공 조건과 검사 데이터를 연결해 장기 양산에서도 흔들리지 않는 동력계 부품 품질을 유지합니다.",
-    image: precisionHeroImage,
-    imagePosition: "center 56%",
+    image: powertrainImage,
+    imagePosition: "center 70%",
   },
   "products/driveline": {
     route: "products/driveline",

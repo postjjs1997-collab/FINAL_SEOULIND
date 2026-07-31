@@ -5,6 +5,7 @@ import balanceModuleImage from "../../housing.png";
 import automotiveImage from "../../electric vehicle.png";
 import steeringImage from "../../steering.png";
 import drivelineImage from "../../driveline.png";
+import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
 import precisionImage from "../../precision-inside-mobility.jpg";
 import Icon from "./Icons";
 import { getPageConfig } from "./MenuPage";
@@ -254,7 +255,7 @@ const productRouteImages: Record<string, string> = {
   "products/balance-shaft-module": balanceModuleImage,
   "products/electric-vehicle": automotiveImage,
   "products/steering": steeringImage,
-  "products/powertrain": precisionImage,
+  "products/powertrain": powertrainImage,
   "products/driveline": drivelineImage,
   "products/etc": precisionImage,
 };
