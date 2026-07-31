@@ -255,18 +255,19 @@ function CapabilityGrid({ content }: { content: SiteContent }) {
   );
 }
 
-function GreetingBody({ content, config }: { content: SiteContent; config: ReturnType<typeof getPageConfig> }) {
+function GreetingBody({ content }: { content: SiteContent }) {
   return (
     <>
       <section className="renewal-sub-statement">
-        <div data-sub-reveal>
-          <span>SEOUL INDUSTRY · SINCE 1985</span>
-          <h2>{config.lead}</h2>
-        </div>
         <figure data-sub-reveal>
           <img src={precisionImage} alt="" />
+          <figcaption>PRECISION AUTOMOTIVE COMPONENTS · SINCE 1985</figcaption>
         </figure>
-        <p data-sub-reveal>{config.heroCopy}</p>
+        <div className="renewal-sub-statement__copy" data-sub-reveal>
+          <span>SEOUL INDUSTRY · COMPANY OVERVIEW</span>
+          <h2>{content.dataHeading.title}</h2>
+          <p>{content.dataHeading.copy}</p>
+        </div>
       </section>
       <CapabilityGrid content={content} />
     </>
@@ -566,14 +567,12 @@ function RouteBody({
   route,
   language,
   content,
-  config,
 }: {
   route: string;
   language: RenewalLanguage;
   content: SiteContent;
-  config: ReturnType<typeof getPageConfig>;
 }) {
-  if (route === "company/greeting") return <GreetingBody content={content} config={config} />;
+  if (route === "company/greeting") return <GreetingBody content={content} />;
   if (route === "company/history") return <HistoryBody content={content} />;
   if (route === "company/certificates") return <CertificatesBody language={language} />;
   if (route === "sustainability/environmental") return <EnvironmentalBody content={content} />;
@@ -585,28 +584,19 @@ function RouteBody({
   if (route === "support/contact") return <ContactBody language={language} />;
   if (route === "recruit/guide") return <RecruitGuideBody language={language} />;
   if (route === "recruit/jobs") return <JobsBody language={language} />;
-  return <GreetingBody content={content} config={config} />;
+  return <GreetingBody content={content} />;
 }
 
 function RenewalSubNavigation({ route, language }: { route: string; language: RenewalLanguage }) {
-  const groups = getSiteMenuGroups(language);
   const { group, child } = findMenuByRoute(route, language);
 
   return (
     <div className="renewal-sub-navigation">
-      <div className="renewal-sub-breadcrumb">
-        <a href="#/">{uiCopy[language].home}</a>
-        <span>{group.label}</span>
-        <strong>{child.label}</strong>
-      </div>
-      <nav className="renewal-sub-categories" aria-label="Renewal categories">
-        {groups.map((item) => (
-          <a className={item.label === group.label ? "is-active" : ""} href={toRenewalHref(item.href)} key={item.label}>
-            {item.label}
-          </a>
-        ))}
-      </nav>
-      <nav className="renewal-sub-depth" aria-label={`${group.label} submenu`}>
+      <nav
+        className="renewal-sub-depth"
+        aria-label={`${group.label} submenu`}
+        style={{ "--renewal-sub-depth-count": group.children.length } as React.CSSProperties}
+      >
         {group.children.map((item) => (
           <a className={item.label === child.label ? "is-active" : ""} href={toRenewalHref(item.href)} key={item.label}>
             {item.label}
@@ -669,16 +659,24 @@ export default function RenewalSubPage({ route }: RenewalSubPageProps) {
     <div className="renewal-page renewal-subpage" data-language={language} ref={rootRef}>
       <RenewalSiteHeader language={language} onLanguageChange={setLanguage} currentRoute={cleanRoute} />
       <main key={`${cleanRoute}-${language}`}>
-        <section className="renewal-sub-hero" style={{ "--renewal-sub-image": `url(${config.image})` } as React.CSSProperties}>
+        <section
+          className="renewal-sub-hero"
+          style={
+            {
+              "--renewal-sub-image": `url(${config.image})`,
+              "--renewal-sub-position": config.imagePosition ?? "center",
+            } as React.CSSProperties
+          }
+        >
           <div className="renewal-sub-hero__image" />
           <div className="renewal-sub-hero__shade" />
           <div className="renewal-sub-hero__index">
             <span>{config.category}</span>
-            <strong>{config.groupTitle}</strong>
+            <strong>{config.title}</strong>
           </div>
           <div className="renewal-sub-hero__content">
             <span>{config.eyebrow}</span>
-            <h1>{config.title}</h1>
+            <h1>{config.groupTitle}</h1>
             <p>{config.heroCopy}</p>
           </div>
           <div className="renewal-sub-hero__line" aria-hidden="true">
@@ -689,13 +687,18 @@ export default function RenewalSubPage({ route }: RenewalSubPageProps) {
         <RenewalSubNavigation route={cleanRoute} language={language} />
 
         <section className="renewal-sub-intro">
-          <span data-sub-reveal>{uiCopy[language].overview}</span>
-          <h2 data-sub-reveal>{config.lead}</h2>
-          <p data-sub-reveal>{config.heroCopy}</p>
+          <div className="renewal-sub-intro__title" data-sub-reveal>
+            <span>{config.eyebrow}</span>
+            <h2>{config.title}</h2>
+          </div>
+          <div className="renewal-sub-intro__copy" data-sub-reveal>
+            <strong>{config.lead}</strong>
+            <p>{config.heroCopy}</p>
+          </div>
         </section>
 
         <div className="renewal-sub-body">
-          <RouteBody route={cleanRoute} language={language} content={content} config={config} />
+          <RouteBody route={cleanRoute} language={language} content={content} />
         </div>
 
         <NextPage route={cleanRoute} language={language} />
