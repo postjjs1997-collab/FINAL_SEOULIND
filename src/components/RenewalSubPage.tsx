@@ -214,31 +214,36 @@ const productImages = [balanceModuleImage, automotiveImage, steeringImage, drive
 
 const ceoCopy: Record<RenewalLanguage, { quote: string; paragraphs: string[]; sign: string }> = {
   ko: {
-    quote: "화합으로 창조하며, 정밀가공의 기준으로 고객의 신뢰에 답하겠습니다.",
+    quote: "고객의 신뢰를 바탕으로 지속가능한 성장을 추구합니다.",
     paragraphs: [
-      "서울산업 홈페이지를 찾아주신 여러분께 감사드립니다. 서울산업은 1985년 자동차 부품 정밀가공 기업으로 출발했습니다.",
-      "축적된 가공 노하우를 바탕으로 국내 완성차 산업은 물론 유럽, 북·남미, 아시아의 글로벌 자동차 부품 고객과 견고한 파트너십을 이어오고 있습니다.",
-      "고객의 품질 요구를 정확히 이해하고 연구개발과 공정 개선을 지속해, 세계 시장에서 신뢰받는 자동차 부품 제조기업으로 성장하겠습니다.",
+      "안녕하십니까! 저희 서울산업 홈페이지를 찾아주셔서 감사합니다.",
+      "서울산업㈜는 1985년 자동차 부품 정밀 가공 업체로 설립되었습니다.",
+      "30년간의 정밀 가공 노하우로 국내 완성차 Maker와 유럽(독일, 이태리), 북·남미(미국, 캐나다, 멕시코), 아시아(일본, 중국) 등 Global Maker와의 견고한 파트너십 형성으로 지속적인 수출 향상 기업으로 성장하고 있습니다.",
+      "전 임직원의 끊임없는 연구개발과 신기술 축적으로 고객이 원하는 품질 요구 사양을 명확히 이해하고 최적의 품질 수준을 유지하여, 대한민국을 넘어 세계 속의 자동차 부품 회사로 발돋움하기 위해 전 임직원이 창의적인 사고와 고객 중심적인 품질 수준으로 보답하도록 하겠습니다.",
+      "화합으로 창조하는 기업이라는 경영 철학으로 고객이 원하는 최고의 품질과 사회에 공헌하는 Global Leader 기업이 될 수 있도록 최선을 다하겠습니다.",
     ],
-    sign: "서울산업 임직원 일동",
+    sign: "서울산업(주) 대표이사 김을식",
   },
   en: {
-    quote: "We create through cooperation and answer customer trust with precision.",
+    quote: "We aim for continuous growth based on our customers' trust.",
     paragraphs: [
-      "Thank you for visiting Seoul Industry. We began in 1985 as a precision machining company for automotive components.",
-      "Our accumulated machining experience supports strong partnerships with automotive customers in Korea, Europe, North and South America, and Asia.",
-      "By understanding quality requirements precisely and continuing R&D and process improvement, we will grow as a trusted global automotive component manufacturer.",
+      "Dear Customer, Seoul Industry is a company which creates in harmony.",
+      "Seoul Industry has been in the automotive industry for about 30 years, serving our valued customers across the world. This has only been possible because we have worked to meet our customers' requirements and expectations for quality and reliability.",
+      "Doing so has been my goal, and it will remain the goal of all our employees. For you, we will continue to improve our quality so that your products are safe and reliable.",
+      "Thank you.",
     ],
-    sign: "Everyone at Seoul Industry",
+    sign: "Best Regards, Eulsik Kim",
   },
   ja: {
-    quote: "協調による創造と精密加工の基準で、お客様の信頼に応えます。",
+    quote: "お客様の信頼を基盤に、持続可能な成長を追求します。",
     paragraphs: [
-      "ソウル産業のウェブサイトをご覧いただき、ありがとうございます。1985年に自動車部品の精密加工企業として出発しました。",
-      "蓄積した加工ノウハウをもとに、韓国をはじめ欧州、北・南米、アジアの自動車部品顧客と強固なパートナーシップを築いています。",
-      "品質要求を正確に理解し、研究開発と工程改善を続け、世界で信頼される自動車部品メーカーを目指します。",
+      "こんにちは。ソウル産業のウェブサイトをご訪問いただき、ありがとうございます。",
+      "ソウル産業株式会社は1985年、自動車部品の精密加工会社として設立されました。",
+      "30年にわたり蓄積した精密加工ノウハウをもとに、韓国の完成車メーカーをはじめ、欧州（ドイツ、イタリア）、北・南米（米国、カナダ、メキシコ）、アジア（日本、中国）などのグローバルメーカーと強固なパートナーシップを築き、輸出を持続的に拡大する企業へ成長しています。",
+      "全社員の絶え間ない研究開発と新技術の蓄積により、お客様が求める品質仕様を明確に理解し、最適な品質水準を維持します。韓国を越えて世界の自動車部品企業へと飛躍するため、創造的な発想とお客様中心の品質でお応えしてまいります。",
+      "「調和から創造する企業」という経営哲学のもと、お客様が求める最高の品質を実現し、社会に貢献するGlobal Leaderとなれるよう最善を尽くします。",
     ],
-    sign: "ソウル産業 従業員一同",
+    sign: "ソウル産業株式会社 代表取締役 キム・ウルシク",
   },
 };
 
@@ -525,16 +530,21 @@ function GreetingBody({ content }: { content: SiteContent }) {
 function LocationBody({ language }: { language: RenewalLanguage }) {
   const copy = locationCopy[language];
   const labels = bodyLabels[language];
-  const mapUrl = `https://map.naver.com/p/search/${encodeURIComponent("경기도 화성시 양감면 요당길 320번길 51")}`;
+  const mapQuery = "서울산업(주), 경기도 화성시 양감면 요당길 320번길 51";
+  const mapLanguage = language === "ja" ? "ja" : language === "en" ? "en" : "ko";
+  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
+  const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=16&output=embed&hl=${mapLanguage}`;
 
   return (
     <section className="renewal-sub-location">
       <div className="renewal-sub-location__map" data-sub-reveal>
-        <div aria-hidden="true">
-          <span>37.1178 N</span>
-          <strong>SEOUL<br />INDUSTRY</strong>
-          <span>126.9447 E</span>
-        </div>
+        <iframe
+          src={mapEmbedUrl}
+          title={`${copy.address} ${labels.map}`}
+          loading="lazy"
+          allowFullScreen
+          referrerPolicy="no-referrer-when-downgrade"
+        />
         <a href={mapUrl} target="_blank" rel="noreferrer">
           <span>{labels.map}</span>
           <Icon name="arrow" />
@@ -543,7 +553,7 @@ function LocationBody({ language }: { language: RenewalLanguage }) {
       <div className="renewal-sub-location__details">
         <article data-sub-reveal>
           <span>01 · {labels.office}</span>
-          <h3>{copy.address}</h3>
+          <a href={mapUrl} target="_blank" rel="noreferrer">{copy.address}</a>
         </article>
         <article data-sub-reveal>
           <span>02 · TEL / FAX</span>

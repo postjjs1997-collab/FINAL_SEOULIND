@@ -341,8 +341,8 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     groupTitle: "기업정보",
     eyebrow: "CEO Message",
     title: "CEO인사말",
-    lead: "화합으로 창조하며, 고객이 요구하는 품질을 정밀가공의 기준으로 완성하겠습니다.",
-    heroCopy: "1985년 설립 이후 축적한 제조 경험을 바탕으로 국내외 자동차 부품 고객과 신뢰를 이어가고 있습니다.",
+    lead: "고객의 신뢰를 바탕으로 지속가능한 성장을 추구합니다.",
+    heroCopy: "화합으로 창조하는 기업이라는 경영 철학으로 최고의 품질과 사회에 공헌하는 Global Leader가 되겠습니다.",
     image: menuHeroImages.factory,
     imagePosition: "center 56%",
   },
@@ -530,7 +530,7 @@ const expandedPageConfigs: Record<string, PageConfig> = {
 
 const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record<string, Partial<PageConfig>>> = {
   en: {
-    "company/ceo": { groupTitle: "Company", title: "CEO Message", lead: "We create through cooperation and turn customer expectations into precision-machining standards.", heroCopy: "Since 1985, our manufacturing experience has supported trusted relationships with automotive customers around the world." },
+    "company/ceo": { groupTitle: "Company", title: "CEO Message", lead: "We pursue continuous growth based on our customers' trust.", heroCopy: "Creating through harmony, we strive to deliver the highest quality and become a Global Leader that contributes to society." },
     "company/history": { groupTitle: "Company" },
     "company/location": { groupTitle: "Company", title: "Location", lead: "Seoul Industry's head office and precision-machining plant are located in Yanggam-myeon, Hwaseong.", heroCopy: "Please coordinate your visit in advance so we can arrange site access and meetings smoothly." },
     "company/notices": { groupTitle: "Company", title: "Notices", lead: "Review Seoul Industry updates on products, quality, recruitment, and company operations.", heroCopy: "We provide customers and partners with accurate company information in a timely manner." },
@@ -550,7 +550,7 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
     "sustainability/policy": { groupTitle: "Sustainability Policy", title: "Sustainability Policy", lead: "Responsible manufacturing, safe workplaces, fair transactions, and transparent records guide sustainable growth.", heroCopy: "We define principles and track actions so customers, employees, partners, and communities can grow together." },
   },
   ja: {
-    "company/ceo": { groupTitle: "企業情報", title: "CEOメッセージ", lead: "協調による創造を大切にし、お客様が求める品質を精密加工の基準として実現します。", heroCopy: "1985年の設立以来、蓄積した製造経験をもとに世界の自動車部品顧客との信頼を築いています。" },
+    "company/ceo": { groupTitle: "企業情報", title: "CEOメッセージ", lead: "お客様の信頼を基盤に、持続可能な成長を追求します。", heroCopy: "調和から創造するという経営哲学のもと、最高の品質を実現し、社会に貢献するGlobal Leaderを目指します。" },
     "company/history": { groupTitle: "企業情報" },
     "company/location": { groupTitle: "企業情報", title: "アクセス", lead: "ソウル産業の本社と精密加工工場は京畿道華城市楊甘面にあります。", heroCopy: "ご訪問前に担当者と日程をご調整いただくと、入場と打ち合わせを円滑にご案内できます。" },
     "company/notices": { groupTitle: "企業情報", title: "お知らせ", lead: "製品、品質、採用、会社運営に関するソウル産業の主要情報をご覧いただけます。", heroCopy: "お客様と協力会社に必要な会社情報を正確かつ迅速にお伝えします。" },
