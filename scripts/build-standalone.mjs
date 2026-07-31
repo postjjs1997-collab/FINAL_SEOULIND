@@ -16,6 +16,7 @@ await build({
     ".css": "css",
     ".gif": "dataurl",
     ".jpg": "dataurl",
+    ".pdf": "file",
     ".png": "dataurl",
     ".mp4": "file",
     ".mov": "file",

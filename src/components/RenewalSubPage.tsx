@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import certificationImage from "../../certification.png";
+import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
+import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
+import msqCertificateImage from "../../assets/certificates/msq-seoul-industry-2025.png";
 import balanceModuleImage from "../../housing.png";
 import automotiveImage from "../../electric vehicle.png";
 import steeringImage from "../../steering.png";
@@ -85,38 +88,89 @@ const uiCopy: Record<RenewalLanguage, LocalizedUi> = {
   },
 };
 
-const certificateDetails: Record<RenewalLanguage, Array<{ title: string; copy: string }>> = {
-  ko: [
-    { title: "IATF 16949:2016", copy: "자동차 산업 품질경영 시스템 기준에 맞춘 제조 품질 관리 체계" },
-    { title: "ISO 14001:2015", copy: "환경영향과 자원 사용을 관리하기 위한 환경경영 시스템" },
-    { title: "ISO 9001", copy: "제품과 공정 품질을 일관되게 유지하기 위한 품질경영 기준" },
-    { title: "SQ 인증", copy: "현대모비스 협력사 품질 기준에 맞춘 특수공정 관리 체계" },
-    { title: "INNOBIZ", copy: "기술혁신형 중소기업으로서의 제조 기술 역량 인증" },
-    { title: "VDA 6.3", copy: "자동차 부품 제조 공정의 프로세스 감사 대응 기준" },
-    { title: "CQI-9", copy: "고주파 열처리 특수공정의 품질 평가 및 관리 기준" },
-    { title: "CQI-15", copy: "레이저 용접 특수공정의 품질 평가 및 관리 기준" },
-  ],
-  en: [
-    { title: "IATF 16949:2016", copy: "Automotive quality management system for controlled manufacturing operations" },
-    { title: "ISO 14001:2015", copy: "Environmental management system for impacts, resources, and compliance" },
-    { title: "ISO 9001", copy: "Quality management standard for consistent products and processes" },
-    { title: "SQ Certification", copy: "Special-process quality system aligned with Hyundai Mobis supplier standards" },
-    { title: "INNOBIZ", copy: "Technology innovation certification for manufacturing capability" },
-    { title: "VDA 6.3", copy: "Process audit standard for automotive component manufacturing" },
-    { title: "CQI-9", copy: "Special-process assessment standard for induction heat treatment" },
-    { title: "CQI-15", copy: "Special-process assessment standard for laser welding" },
-  ],
-  ja: [
-    { title: "IATF 16949:2016", copy: "自動車産業の品質マネジメントシステムに基づく製造品質管理体系" },
-    { title: "ISO 14001:2015", copy: "環境影響と資源使用を管理する環境マネジメントシステム" },
-    { title: "ISO 9001", copy: "製品と工程品質を一貫して維持するための品質基準" },
-    { title: "SQ認証", copy: "現代モービスの協力会社品質基準に合わせた特殊工程管理体系" },
-    { title: "INNOBIZ", copy: "技術革新型中小企業としての製造技術力認証" },
-    { title: "VDA 6.3", copy: "自動車部品製造工程のプロセス監査基準" },
-    { title: "CQI-9", copy: "高周波熱処理の特殊工程品質評価基準" },
-    { title: "CQI-15", copy: "レーザー溶接の特殊工程品質評価基準" },
-  ],
+type CertificateShowcaseCopy = {
+  heading: string;
+  intro: string;
+  originalLabel: string;
+  items: Array<{
+    eyebrow: string;
+    title: string;
+    copy: string;
+    metadata: string[];
+    alt: string;
+  }>;
 };
+
+const certificateShowcaseCopy: Record<RenewalLanguage, CertificateShowcaseCopy> = {
+  ko: {
+    heading: "원본으로 확인하는 서울산업 품질 인증",
+    intro: "자동차 부품 양산에 필요한 품질경영 체계와 고객사 공급 품질 기준을 실제 인증서로 확인할 수 있습니다.",
+    originalLabel: "인증서 원본 보기",
+    items: [
+      {
+        eyebrow: "AUTOMOTIVE QUALITY MANAGEMENT",
+        title: "IATF 16949:2016",
+        copy: "Intertek가 서울산업의 조향·엔진·변속기 부품 제조 및 가공 품질경영시스템을 인증했습니다.",
+        metadata: ["인증번호 2022-0205", "유효기간 2027.05.23"],
+        alt: "서울산업 IATF 16949:2016 인증서",
+      },
+      {
+        eyebrow: "MOBIS SUPPLIER QUALITY",
+        title: "MSQ 인증",
+        copy: "현대모비스 협력사 품질 인증평가에서 가공 분야 G등급을 취득한 서울산업의 MSQ 인증서입니다.",
+        metadata: ["인증번호 MWK0276", "발급일 2025.01.08"],
+        alt: "서울산업 MSQ 인증서",
+      },
+    ],
+  },
+  en: {
+    heading: "Verified quality certifications",
+    intro: "Review the original certificates covering Seoul Industry's automotive quality management system and supplier quality capability.",
+    originalLabel: "View original certificate",
+    items: [
+      {
+        eyebrow: "AUTOMOTIVE QUALITY MANAGEMENT",
+        title: "IATF 16949:2016",
+        copy: "Intertek certified Seoul Industry's quality management system for the manufacture and machining of steering, engine, and transmission parts.",
+        metadata: ["Certificate 2022-0205", "Valid through 23 May 2027"],
+        alt: "Seoul Industry IATF 16949:2016 certificate",
+      },
+      {
+        eyebrow: "MOBIS SUPPLIER QUALITY",
+        title: "MSQ Certification",
+        copy: "Seoul Industry achieved Grade G for machining in the Hyundai Mobis supplier quality certification assessment.",
+        metadata: ["Certificate MWK0276", "Issued 8 January 2025"],
+        alt: "Seoul Industry MSQ certificate",
+      },
+    ],
+  },
+  ja: {
+    heading: "原本で確認する品質認証",
+    intro: "自動車部品量産に必要な品質マネジメントシステムと顧客の供給品質基準を、実際の認証書で確認できます。",
+    originalLabel: "認証書の原本を見る",
+    items: [
+      {
+        eyebrow: "AUTOMOTIVE QUALITY MANAGEMENT",
+        title: "IATF 16949:2016",
+        copy: "Intertekが、操舵・エンジン・トランスミッション部品の製造および加工に関するソウル産業の品質マネジメントシステムを認証しました。",
+        metadata: ["認証番号 2022-0205", "有効期限 2027.05.23"],
+        alt: "ソウル産業 IATF 16949:2016認証書",
+      },
+      {
+        eyebrow: "MOBIS SUPPLIER QUALITY",
+        title: "MSQ認証",
+        copy: "現代モービスの協力会社品質認証評価において、加工分野G等級を取得したソウル産業のMSQ認証書です。",
+        metadata: ["認証番号 MWK0276", "発行日 2025.01.08"],
+        alt: "ソウル産業 MSQ認証書",
+      },
+    ],
+  },
+};
+
+const certificateAssets = [
+  { image: iatfCertificateImage, href: iatfCertificatePdf },
+  { image: msqCertificateImage, href: msqCertificateImage },
+];
 
 const governanceCopy: Record<RenewalLanguage, Array<{ title: string; copy: string; tag: string }>> = {
   ko: [
@@ -603,25 +657,44 @@ function HistoryBody({ content }: { content: SiteContent }) {
 }
 
 function CertificatesBody({ language }: { language: RenewalLanguage }) {
+  const copy = certificateShowcaseCopy[language];
+
   return (
-    <>
-      <section className="renewal-sub-cert-visual" data-sub-reveal>
+    <section className="renewal-sub-cert-showcase">
+      <header className="renewal-sub-cert-showcase__header" data-sub-reveal>
+        <span>CERTIFIED QUALITY SYSTEM</span>
         <div>
-          <span>QUALITY SYSTEM</span>
-          <h2>Certified manufacturing standards</h2>
+          <h2>{copy.heading}</h2>
+          <p>{copy.intro}</p>
         </div>
-        <img src={certificationImage} alt="Seoul Industry certification overview" />
-      </section>
-      <section className="renewal-sub-cert-grid">
-        {certificateDetails[language].map((certificate, index) => (
+      </header>
+      <div className="renewal-sub-certificates">
+        {copy.items.map((certificate, index) => (
           <article data-sub-reveal key={certificate.title}>
-            <span>{String(index + 1).padStart(2, "0")}</span>
-            <h3>{certificate.title}</h3>
-            <p>{certificate.copy}</p>
+            <a href={certificateAssets[index].href} target="_blank" rel="noreferrer">
+              <figure>
+                <img src={certificateAssets[index].image} alt={certificate.alt} />
+                <span>{String(index + 1).padStart(2, "0")}</span>
+              </figure>
+              <div>
+                <small>{certificate.eyebrow}</small>
+                <h3>{certificate.title}</h3>
+                <p>{certificate.copy}</p>
+                <ul>
+                  {certificate.metadata.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <span className="renewal-sub-certificates__link">
+                  {copy.originalLabel}
+                  <Icon name="arrow" />
+                </span>
+              </div>
+            </a>
           </article>
         ))}
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
 
