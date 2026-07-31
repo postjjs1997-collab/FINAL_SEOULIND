@@ -47,6 +47,12 @@ const editableSelector = [
   ".menu-page p",
   ".menu-page strong",
   ".menu-page span",
+  ".renewal-page h1",
+  ".renewal-page h2",
+  ".renewal-page h3",
+  ".renewal-page p",
+  ".renewal-page strong",
+  ".renewal-page span",
 ].join(",");
 
 function shouldEnableTweaks() {

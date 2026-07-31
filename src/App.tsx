@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import BrainallPage from "./components/BrainallPage";
+import { lazy, Suspense, useEffect, useState } from "react";
 import DesignTweaks from "./components/DesignTweaks";
-import MenuPage from "./components/MenuPage";
 import NewsPage from "./components/NewsPage";
 import TechnologyPage from "./components/TechnologyPage";
 import { menuRoutes } from "./data/navigation";
+
+const RenewalPage = lazy(() => import("./components/RenewalPage"));
+const RenewalSubPage = lazy(() => import("./components/RenewalSubPage"));
 
 function getRoute() {
   if (typeof window === "undefined") return "";
@@ -22,14 +23,34 @@ export default function App() {
 
   let page;
 
-  if (route.startsWith("news")) {
+  if (route === "" || route === "renewal") {
+    page = (
+      <Suspense fallback={<div style={{ minHeight: "100svh", background: "#151515" }} />}>
+        <RenewalPage />
+      </Suspense>
+    );
+  } else if (route.startsWith("renewal/")) {
+    page = (
+      <Suspense fallback={<div style={{ minHeight: "100svh", background: "#151515" }} />}>
+        <RenewalSubPage route={route} />
+      </Suspense>
+    );
+  } else if (menuRoutes.includes(route)) {
+    page = (
+      <Suspense fallback={<div style={{ minHeight: "100svh", background: "#151515" }} />}>
+        <RenewalSubPage route={route} />
+      </Suspense>
+    );
+  } else if (route.startsWith("news")) {
     page = <NewsPage route={route} />;
   } else if (route.startsWith("technology")) {
     page = <TechnologyPage route={route} />;
-  } else if (menuRoutes.includes(route)) {
-    page = <MenuPage route={route} />;
   } else {
-    page = <BrainallPage />;
+    page = (
+      <Suspense fallback={<div style={{ minHeight: "100svh", background: "#151515" }} />}>
+        <RenewalPage />
+      </Suspense>
+    );
   }
 
   return (

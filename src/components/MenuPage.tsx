@@ -18,7 +18,7 @@ type MenuPageProps = {
   route: string;
 };
 
-type PageConfig = {
+export type PageConfig = {
   route: string;
   category: string;
   groupTitle: string;
@@ -333,7 +333,7 @@ const pageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record<string,
   },
 };
 
-function getPageConfig(route: string, language: LanguageCode): PageConfig {
+export function getPageConfig(route: string, language: LanguageCode): PageConfig {
   const base = pageConfigs[route] ?? pageConfigs["company/greeting"];
   const translation = language === "ko" ? undefined : pageConfigTranslations[language]?.[base.route];
   return { ...base, ...translation };

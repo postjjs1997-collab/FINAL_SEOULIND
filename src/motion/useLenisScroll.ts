@@ -11,7 +11,7 @@ export function useLenisScroll(enabled: boolean) {
     if (prefersReduced || !isFinePointer) return;
 
     const lenis = new Lenis({
-      anchors: true,
+      anchors: false,
       autoRaf: false,
       duration: 1.48,
       easing: (t: number) => 1 - Math.pow(1 - t, 4),
