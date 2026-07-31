@@ -572,11 +572,9 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
 
 export function getPageConfig(route: string, language: LanguageCode): PageConfig {
   const base = expandedPageConfigs[route] ?? pageConfigs[route] ?? expandedPageConfigs["company/ceo"];
-  const translation =
-    language === "ko"
-      ? undefined
-      : expandedPageConfigTranslations[language]?.[base.route] ?? pageConfigTranslations[language]?.[base.route];
-  return { ...base, ...translation };
+  const legacyTranslation = language === "ko" ? undefined : pageConfigTranslations[language]?.[base.route];
+  const expandedTranslation = language === "ko" ? undefined : expandedPageConfigTranslations[language]?.[base.route];
+  return { ...base, ...legacyTranslation, ...expandedTranslation };
 }
 
 const menuUiCopy: Record<LanguageCode, { home: string; categoryNav: string; depthNavSuffix: string; footerNav: string }> = {

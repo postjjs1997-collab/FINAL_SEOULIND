@@ -8,6 +8,29 @@
   background: #f3f1ed;
 }
 
+.renewal-subpage h1,
+.renewal-subpage h2,
+.renewal-subpage h3 {
+  overflow-wrap: normal;
+  text-wrap: balance;
+  word-break: keep-all;
+}
+
+.renewal-subpage p,
+.renewal-subpage li {
+  text-wrap: pretty;
+  word-break: keep-all;
+}
+
+.renewal-subpage[data-language="ja"] h1,
+.renewal-subpage[data-language="ja"] h2,
+.renewal-subpage[data-language="ja"] h3,
+.renewal-subpage[data-language="ja"] p,
+.renewal-subpage[data-language="ja"] li {
+  line-break: strict;
+  word-break: normal;
+}
+
 .renewal-subpage [data-sub-reveal] {
   opacity: 0;
   transform: translate3d(0, 42px, 0);
@@ -52,6 +75,7 @@
   top: 126px;
   left: clamp(28px, 5vw, 84px);
   display: grid;
+  max-width: min(44vw, 720px);
   gap: 6px;
   animation: renewal-sub-copy-in 0.75s 0.22s var(--ease-out) both;
 }
@@ -86,9 +110,10 @@
 }
 
 .renewal-sub-hero__content h1 {
+  max-width: 1500px;
   margin: 0;
-  font-size: clamp(3.8rem, 6.4vw, 7.2rem);
-  line-height: 0.96;
+  font-size: clamp(3.4rem, 5.6vw, 6.4rem);
+  line-height: 1;
 }
 
 .renewal-sub-hero__content p {
@@ -175,11 +200,15 @@
 
 .renewal-sub-intro {
   display: grid;
-  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
-  width: min(100%, 1600px);
-  gap: clamp(48px, 8vw, 150px);
+  grid-template-columns: minmax(360px, 0.95fr) minmax(0, 1.05fr);
+  width: min(100%, 1760px);
+  gap: clamp(40px, 5vw, 96px);
   margin: 0 auto;
   padding: 112px clamp(28px, 4vw, 68px) 104px;
+}
+
+.renewal-sub-intro__title {
+  min-width: 0;
 }
 
 .renewal-sub-intro__title > span {
@@ -192,9 +221,10 @@
 }
 
 .renewal-sub-intro__title h2 {
+  max-width: 100%;
   margin: 0;
-  font-size: clamp(3.5rem, 5.6vw, 6.8rem);
-  line-height: 0.98;
+  font-size: clamp(3.25rem, 4.8vw, 5.8rem);
+  line-height: 1.04;
 }
 
 .renewal-sub-intro__copy {
@@ -206,7 +236,7 @@
 .renewal-sub-intro__copy strong {
   display: block;
   max-width: 980px;
-  font-size: clamp(1.65rem, 2.55vw, 3rem);
+  font-size: clamp(1.55rem, 2.25vw, 2.75rem);
   line-height: 1.42;
 }
 
@@ -1346,7 +1376,9 @@
   margin: 22px 0 30px;
   font-size: clamp(3.2rem, 5.8vw, 7rem);
   line-height: 0.95;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  text-wrap: balance;
+  word-break: keep-all;
 }
 
 .renewal-sub-product-detail p {
@@ -1682,7 +1714,7 @@
 
 @media (max-width: 1100px) {
   .renewal-sub-intro {
-    grid-template-columns: minmax(220px, 0.68fr) minmax(0, 1.32fr);
+    grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
     gap: 54px;
   }
 
@@ -1745,7 +1777,7 @@
   }
 
   .renewal-sub-hero__content h1 {
-    font-size: 3.5rem;
+    font-size: clamp(3rem, 7vw, 3.8rem);
   }
 
   .renewal-sub-depth {
@@ -2007,7 +2039,7 @@
   }
 
   .renewal-sub-hero__content h1 {
-    font-size: 2.8rem;
+    font-size: clamp(2.25rem, 11vw, 3rem);
   }
 
   .renewal-sub-hero__content p {
@@ -2026,7 +2058,7 @@
   }
 
   .renewal-sub-intro__title h2 {
-    font-size: 3rem;
+    font-size: clamp(2.5rem, 12vw, 3.2rem);
   }
 
   .renewal-sub-intro__copy strong {

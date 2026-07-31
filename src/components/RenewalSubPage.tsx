@@ -1192,11 +1192,11 @@ export default function RenewalSubPage({ route }: RenewalSubPageProps) {
           <div className="renewal-sub-hero__shade" />
           <div className="renewal-sub-hero__index">
             <span>{config.category}</span>
-            <strong>{config.title}</strong>
+            <strong>{config.eyebrow}</strong>
           </div>
           <div className="renewal-sub-hero__content">
-            <span>{config.eyebrow}</span>
-            <h1>{config.groupTitle}</h1>
+            <span>{config.groupTitle}</span>
+            <h1>{config.title}</h1>
             <p>{config.heroCopy}</p>
           </div>
           <div className="renewal-sub-hero__line" aria-hidden="true">
