@@ -521,6 +521,8 @@ const heroMedia = [
   { video: supplyVideo, poster: supplyPoster },
 ];
 
+const HERO_SLIDE_DURATION_MS = 3000;
+
 const processMedia = [
   { video: machiningVideo, poster: machiningPoster },
   { video: qualityVideo, poster: qualityPoster },
@@ -632,7 +634,7 @@ function RenewalHero({ copy, reducedMotion }: { copy: RenewalCopy; reducedMotion
 
   useEffect(() => {
     if (reducedMotion) return;
-    const timeout = window.setTimeout(() => setActive((current) => (current + 1) % slideCount), 4000);
+    const timeout = window.setTimeout(() => setActive((current) => (current + 1) % slideCount), HERO_SLIDE_DURATION_MS);
     return () => window.clearTimeout(timeout);
   }, [active, reducedMotion, slideCount]);
 
