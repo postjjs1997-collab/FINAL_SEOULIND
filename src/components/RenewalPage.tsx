@@ -6,8 +6,8 @@ import steeringImage from "../../steering.png";
 import heroVideo from "../../assets/hero3.mp4";
 import heroPoster from "../../assets/hero3-poster.jpg";
 import machiningVideo from "../../machining.mp4";
-import qualityVideo from "../../assets/process-videos/quality-flow-15-18.mp4";
-import qualityPoster from "../../assets/process-videos/quality-flow-15-18.jpg";
+import qualityVideo from "../../assets/process-videos/inspection-00-04.mp4";
+import qualityPoster from "../../assets/process-videos/inspection-00-04.jpg";
 import supplyVideo from "../../assets/process-videos/global-supply-08-14.mp4";
 import supplyPoster from "../../assets/process-videos/global-supply-08-14.jpg";
 import machiningPoster from "../../assets/clients/client-dauch.jpg";
@@ -632,9 +632,9 @@ function RenewalHero({ copy, reducedMotion }: { copy: RenewalCopy; reducedMotion
 
   useEffect(() => {
     if (reducedMotion) return;
-    const interval = window.setInterval(() => setActive((current) => (current + 1) % slideCount), 7200);
-    return () => window.clearInterval(interval);
-  }, [reducedMotion, slideCount]);
+    const timeout = window.setTimeout(() => setActive((current) => (current + 1) % slideCount), 4000);
+    return () => window.clearTimeout(timeout);
+  }, [active, reducedMotion, slideCount]);
 
   const go = (direction: number) => {
     setActive((current) => (current + direction + slideCount) % slideCount);
