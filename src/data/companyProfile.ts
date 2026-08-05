@@ -37,6 +37,13 @@ export type ManufacturingProcess = {
   video?: string;
 };
 
+export type EquipmentInventoryGroup = {
+  id: string;
+  title: LocalizedText;
+  copy: LocalizedText;
+  items: Array<{ name: string; count: number }>;
+};
+
 export const companyProfileAssets = {
   factoryImage,
   autoInspectionImage,
@@ -128,8 +135,8 @@ export const manufacturingPageCopy = {
     eyebrow: "MANUFACTURING CAPABILITY",
     title: "가공부터 검사까지 연결된 생산기술",
     copy: "선삭, 기어·스플라인, 연삭, 열처리, 자동 교정과 전용 검사를 한 흐름으로 연결해 반복 양산의 정밀도를 관리합니다.",
-    equipmentTitle: "공정 목적에 맞춘 전용 설비",
-    equipmentCopy: "장비 대수보다 중요한 것은 부품 형상과 품질 기준에 맞게 공정을 설계하고, 다음 공정의 검사 결과까지 연결하는 운영 능력입니다.",
+    equipmentTitle: "실제 양산을 뒷받침하는 보유설비",
+    equipmentCopy: "회사소개서의 설비 목록을 기준으로 절삭, 기어·스플라인, 연삭·열처리, 자동화·검사 장비를 역할별로 구분했습니다. 공정 소개와 중복하지 않고 설비 종류와 보유 규모를 바로 확인할 수 있습니다.",
     inspectionTitle: "측정 결과가 다시 공정으로 돌아가는 검사 기술",
     inspectionCopy: "치수와 기하공차, 기어 형상, 런아웃, 균열 여부를 전용 검사와 정밀 측정 장비로 확인합니다.",
   },
@@ -137,8 +144,8 @@ export const manufacturingPageCopy = {
     eyebrow: "MANUFACTURING CAPABILITY",
     title: "Production technology connected from machining to inspection",
     copy: "Turning, gear and spline machining, grinding, heat treatment, automatic straightening, and dedicated inspection operate as one controlled production flow.",
-    equipmentTitle: "Dedicated equipment for each process objective",
-    equipmentCopy: "Capability comes from matching each process to part geometry and quality criteria, then feeding inspection results into the next production decision.",
+    equipmentTitle: "Equipment supporting repeat production",
+    equipmentCopy: "Based on the company equipment inventory, machines are grouped by machining, gear and spline, finishing and heat treatment, and automation and inspection so the actual equipment scale is clear.",
     inspectionTitle: "Inspection technology that feeds results back into production",
     inspectionCopy: "Dimensions, GD&T, gear geometry, runout, and crack conditions are verified through dedicated inspection and precision measuring equipment.",
   },
@@ -146,12 +153,91 @@ export const manufacturingPageCopy = {
     eyebrow: "MANUFACTURING CAPABILITY",
     title: "加工から検査までつながる生産技術",
     copy: "旋削、ギヤ・スプライン加工、研削、熱処理、自動矯正、専用検査を一つの流れにつなぎ、量産精度を管理します。",
-    equipmentTitle: "工程目的に合わせた専用設備",
-    equipmentCopy: "設備台数だけでなく、部品形状と品質基準に合わせて工程を設計し、検査結果を次の判断につなげる運用力を重視します。",
+    equipmentTitle: "量産を支える保有設備",
+    equipmentCopy: "会社案内の設備一覧を基準に、切削、ギヤ・スプライン、研削・熱処理、自動化・検査設備を役割別に整理し、設備の種類と保有規模を明確に示します。",
     inspectionTitle: "測定結果を工程へ戻す検査技術",
     inspectionCopy: "寸法、幾何公差、ギヤ形状、振れ、亀裂を専用検査と精密測定設備で確認します。",
   },
 } satisfies Record<CompanyProfileLanguage, object>;
+
+export const manufacturingFlowIds = [
+  "cnc-lathe",
+  "machining-center",
+  "hobbing",
+  "grinding",
+  "induction",
+  "auto-inspection",
+] as const;
+
+export const inspectionProcessIds = [
+  "straightening",
+  "auto-inspection",
+  "crack-inspection",
+  "precision-measurement",
+] as const;
+
+export const equipmentInventory: EquipmentInventoryGroup[] = [
+  {
+    id: "machining",
+    title: { ko: "절삭가공", en: "Machining", ja: "切削加工" },
+    copy: {
+      ko: "외경·단차·기준면과 하우징의 홀·장착면을 가공하는 기반 설비",
+      en: "Core equipment for diameters, datum faces, holes, and mounting surfaces",
+      ja: "外径、基準面、穴、取付面を加工する基盤設備",
+    },
+    items: [
+      { name: "CNC LATHE", count: 41 },
+      { name: "CNC MCT", count: 79 },
+    ],
+  },
+  {
+    id: "gear-spline",
+    title: { ko: "기어·스플라인", en: "Gear & Spline", ja: "ギヤ・スプライン" },
+    copy: {
+      ko: "기어 치형과 내·외측 스플라인을 부품 형상에 맞춰 가공하는 전용 설비",
+      en: "Dedicated equipment for gear profiles and internal or external splines",
+      ja: "歯形と内外スプラインを部品形状に合わせて加工する専用設備",
+    },
+    items: [
+      { name: "CNC HOBBING", count: 17 },
+      { name: "SHAPING", count: 2 },
+      { name: "BROACHING", count: 2 },
+      { name: "RACK ROLLING", count: 6 },
+      { name: "TR ROLLING", count: 2 },
+    ],
+  },
+  {
+    id: "finishing",
+    title: { ko: "연삭·열처리·표면", en: "Finishing & Heat Treatment", ja: "研削・熱処理・表面" },
+    copy: {
+      ko: "회전부 정밀도와 내마모성, 피로강도를 완성하는 후공정 설비",
+      en: "Finishing equipment for rotating accuracy, wear resistance, and fatigue strength",
+      ja: "回転精度、耐摩耗性、疲労強度を仕上げる後工程設備",
+    },
+    items: [
+      { name: "CNC GRINDING", count: 26 },
+      { name: "SUPER FINISHING", count: 5 },
+      { name: "HARDENING", count: 3 },
+      { name: "TEMPERING", count: 2 },
+      { name: "SHOT PEENING", count: 2 },
+    ],
+  },
+  {
+    id: "automation-inspection",
+    title: { ko: "자동화·검사", en: "Automation & Inspection", ja: "自動化・検査" },
+    copy: {
+      ko: "조립, 런아웃 교정, 전용 치수검사와 비파괴 균열검사를 연결하는 설비",
+      en: "Equipment connecting assembly, runout correction, dimensional inspection, and crack detection",
+      ja: "組立、振れ矯正、専用寸法検査、非破壊亀裂検査をつなぐ設備",
+    },
+    items: [
+      { name: "LASER WELDING", count: 1 },
+      { name: "STRAIGHTENER", count: 3 },
+      { name: "AUTO INSPECTION", count: 12 },
+      { name: "CRACK INSPECTION", count: 2 },
+    ],
+  },
+];
 
 export const manufacturingProcesses: ManufacturingProcess[] = [
   {
@@ -417,14 +503,14 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
       ja: "エンジンと減速機の回転系精密部品",
     },
     copy: {
-      ko: "Powertrain Shaft, Engine·Decelerator·Clutch Hub와 캠샤프트·밸브 타이밍 영역의 정밀부품을 가공합니다.",
-      en: "Machining covers powertrain shafts, engine, decelerator and clutch hubs, and parts around camshaft and valve-timing systems.",
-      ja: "Powertrain Shaft、Engine・Decelerator・Clutch Hub、カムシャフト・バルブタイミング部品を加工します。",
+      ko: "회사소개서에 명시된 Powertrain Shaft와 Engine·Decelerator·Clutch Hub, Disc Carrier 계열을 정밀가공합니다.",
+      en: "Machining covers the powertrain shafts, engine, decelerator and clutch hubs, and disc-carrier families documented in the company profile.",
+      ja: "会社案内に記載されたPowertrain Shaft、Engine・Decelerator・Clutch Hub、Disc Carrier系列を精密加工します。",
     },
     items: {
-      ko: ["Powertrain Shaft", "Engine / Decelerator Hub", "Clutch Hub", "Camshaft / Valve Timing"],
-      en: ["Powertrain shaft", "Engine / decelerator hub", "Clutch hub", "Camshaft / valve timing"],
-      ja: ["Powertrain Shaft", "Engine / Decelerator Hub", "Clutch Hub", "Camshaft / Valve Timing"],
+      ko: ["Powertrain Shaft", "Sun Gear Output Shaft", "Engine / Decelerator / Clutch Hub", "Disc Carrier Assembly"],
+      en: ["Powertrain shaft", "Sun gear output shaft", "Engine / decelerator / clutch hub", "Disc carrier assembly"],
+      ja: ["Powertrain Shaft", "Sun Gear Output Shaft", "Engine / Decelerator / Clutch Hub", "Disc Carrier Assembly"],
     },
     image: powertrainComponentImage,
   },

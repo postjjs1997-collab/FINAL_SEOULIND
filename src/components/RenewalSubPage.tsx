@@ -21,14 +21,16 @@ import { findMenuByRoute, getSiteMenuGroups, resolveMenuRoute } from "../data/na
 import {
   companyOverviewCopy,
   companyProfileAssets,
+  equipmentInventory,
   globalRegions,
+  inspectionProcessIds,
+  manufacturingFlowIds,
   manufacturingGroupLabels,
   manufacturingPageCopy,
   manufacturingProcesses,
   productEvidenceByRoute,
   qualityEvidenceCopy,
   qualityEvidenceProcesses,
-  type ManufacturingGroup,
 } from "../data/companyProfile";
 import { productPartCatalogByRoute } from "../data/productCatalog";
 import { useLenisScroll } from "../motion/useLenisScroll";
@@ -558,7 +560,7 @@ const productRouteImages: Record<string, string> = {
 
 const productStandards: Record<string, string[]> = {
   "products/electric-vehicle": ["e-DRIVE HOUSING", "REDUCTION GEAR", "EV HALF SHAFT", "ASSEMBLY FIT"],
-  "products/powertrain": ["HOUSING", "SHAFT", "GEAR / SPLINE", "HEAT & VIBRATION"],
+  "products/powertrain": ["POWERTRAIN SHAFT", "HUB", "DISC CARRIER", "LASER WELDING"],
   "products/driveline": ["OUTPUT SHAFT", "HALF / STUB AXLE", "RUNOUT", "SPLINE QUALITY"],
   "products/balance-shaft-module": ["AL HOUSING", "BEARING BORE", "ASSEMBLY FACE", "VIBRATION CONTROL"],
   "products/steering": ["PINION SHAFT", "TORSION BAR", "GEAR PROFILE", "SAFETY CHARACTERISTIC"],
@@ -1048,9 +1050,13 @@ function ActualProductLineup({
         {catalog.parts.map((part, index) => (
           <article data-sub-reveal key={part.title.en}>
             <figure>
-              <video autoPlay muted loop playsInline preload="metadata" poster={part.poster} aria-label={part.title[language]}>
-                <source src={part.video} type="video/webm" />
-              </video>
+              {part.video ? (
+                <video autoPlay muted loop playsInline preload="metadata" poster={part.poster} aria-label={part.title[language]}>
+                  <source src={part.video} type="video/webm" />
+                </video>
+              ) : (
+                <img src={part.poster} alt={part.title[language]} />
+              )}
               <figcaption>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <small>{labels.motion}</small>
@@ -1138,13 +1144,17 @@ function ManufacturingBody({
   route: string;
   language: RenewalLanguage;
 }) {
-  const fixedInspection = route === "manufacturing/inspection";
-  const [filter, setFilter] = useState<ManufacturingGroup | "all">(fixedInspection ? "inspection" : "all");
   const copy = manufacturingPageCopy[language];
   const labels = manufacturingGroupLabels[language];
-  const visibleProcesses = fixedInspection
-    ? manufacturingProcesses.filter((process) => process.group === "inspection")
-    : manufacturingProcesses.filter((process) => filter === "all" || process.group === filter);
+  const processById = new Map(manufacturingProcesses.map((process) => [process.id, process]));
+  const flowProcesses = manufacturingFlowIds.flatMap((id) => {
+    const process = processById.get(id);
+    return process ? [process] : [];
+  });
+  const inspectionProcesses = inspectionProcessIds.flatMap((id) => {
+    const process = processById.get(id);
+    return process ? [process] : [];
+  });
   const heading =
     route === "manufacturing/equipment"
       ? copy.equipmentTitle
@@ -1158,6 +1168,9 @@ function ManufacturingBody({
         ? copy.inspectionCopy
         : copy.copy;
 
+  const unitLabel = { ko: "대", en: "units", ja: "台" }[language];
+  const inventoryLabel = { ko: "보유 대수", en: "Inventory", ja: "保有台数" }[language];
+
   return (
     <>
       <section className="profile-manufacturing-intro" data-sub-reveal>
@@ -1166,38 +1179,73 @@ function ManufacturingBody({
         <p>{intro}</p>
       </section>
 
-      {!fixedInspection && (
-        <div className="profile-process-filter" role="group" aria-label={copy.title}>
-          {(Object.keys(labels) as Array<ManufacturingGroup | "all">).map((group) => (
-            <button
-              type="button"
-              className={filter === group ? "is-active" : ""}
-              onClick={() => setFilter(group)}
-              key={group}
-            >
-              {labels[group]}
-            </button>
+      {route === "manufacturing/process" && (
+        <section className="profile-process-flow" aria-label={copy.title}>
+          {flowProcesses.map((process, index) => (
+            <article data-sub-reveal key={process.id}>
+              <div className="profile-process-flow__number">
+                <span>STEP</span>
+                <strong>{String(index + 1).padStart(2, "0")}</strong>
+              </div>
+              <figure>
+                <ProcessMedia image={process.image} video={process.video} title={process.title} />
+              </figure>
+              <div className="profile-process-flow__content">
+                <small>{labels[process.group]}</small>
+                <h3>{process.title}</h3>
+                <p>{process.copy[language]}</p>
+                <strong>{process.capability[language]}</strong>
+              </div>
+            </article>
           ))}
-        </div>
+        </section>
       )}
 
-      <section className="profile-process-grid" aria-live="polite">
-        {visibleProcesses.map((process, index) => (
-          <article data-sub-reveal key={process.id}>
-            <figure>
-              <ProcessMedia image={process.image} video={process.video} title={process.title} />
-              <span>{String(index + 1).padStart(2, "0")}</span>
-            </figure>
-            <div>
-              <small>{labels[process.group]}</small>
-              <h3>{process.title}</h3>
-              <p>{process.copy[language]}</p>
-              <strong>{process.capability[language]}</strong>
-              <span>{process.makers}</span>
-            </div>
-          </article>
-        ))}
-      </section>
+      {route === "manufacturing/equipment" && (
+        <section className="profile-equipment-inventory" aria-label={copy.equipmentTitle}>
+          {equipmentInventory.map((group, groupIndex) => (
+            <article data-sub-reveal key={group.id}>
+              <header>
+                <span>{String(groupIndex + 1).padStart(2, "0")}</span>
+                <h3>{group.title[language]}</h3>
+                <p>{group.copy[language]}</p>
+              </header>
+              <dl>
+                {group.items.map((item) => (
+                  <div key={item.name}>
+                    <dt>{item.name}</dt>
+                    <dd>
+                      <small>{inventoryLabel}</small>
+                      <strong>{item.count}</strong>
+                      <span>{unitLabel}</span>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </article>
+          ))}
+        </section>
+      )}
+
+      {route === "manufacturing/inspection" && (
+        <section className="profile-process-grid is-inspection" aria-label={copy.inspectionTitle}>
+          {inspectionProcesses.map((process, index) => (
+            <article data-sub-reveal key={process.id}>
+              <figure>
+                <ProcessMedia image={process.image} video={process.video} title={process.title} />
+                <span>{String(index + 1).padStart(2, "0")}</span>
+              </figure>
+              <div>
+                <small>{labels[process.group]}</small>
+                <h3>{process.title}</h3>
+                <p>{process.copy[language]}</p>
+                <strong>{process.capability[language]}</strong>
+                <span>{process.makers}</span>
+              </div>
+            </article>
+          ))}
+        </section>
+      )}
     </>
   );
 }

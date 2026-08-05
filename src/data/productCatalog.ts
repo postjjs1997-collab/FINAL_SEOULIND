@@ -3,7 +3,6 @@ import drivelineVideo2 from "../../assets/product-alpha/driveline2.webm";
 import drivelineVideo3 from "../../assets/product-alpha/driveline3.webm";
 import electricVehicleVideo1 from "../../assets/product-alpha/electric-vehicle1.webm";
 import electricVehicleVideo2 from "../../assets/product-alpha/electric-vehicle2.webm";
-import housingVideo1 from "../../assets/product-alpha/housing1.webm";
 import housingVideo2 from "../../assets/product-alpha/housing2.webm";
 import housingVideo3 from "../../assets/product-alpha/housing3.webm";
 import housingVideo4 from "../../assets/product-alpha/housing4.webm";
@@ -16,12 +15,14 @@ import drivelinePoster3 from "../../assets/video-posters/driveline3.jpg";
 import electricVehiclePoster1 from "../../assets/video-posters/electric-vehicle1.jpg";
 import electricVehiclePoster2 from "../../assets/video-posters/electric-vehicle2.jpg";
 import heroHousingPoster from "../../assets/video-posters/hero-housing.jpg";
-import housingPoster1 from "../../assets/video-posters/housing1.jpg";
 import housingPoster3 from "../../assets/video-posters/housing3.jpg";
 import housingPoster4 from "../../assets/video-posters/housing4.jpg";
 import housingPoster5 from "../../assets/video-posters/housing5.jpg";
 import steeringPoster1 from "../../assets/video-posters/steering1.jpg";
 import steeringPoster2 from "../../assets/video-posters/steering2.jpg";
+import powertrainActuatorShafts from "../../assets/company-profile/products/powertrain-actuator-shafts.png";
+import powertrainDiscCarrierComponents from "../../assets/company-profile/products/powertrain-disc-carrier-components.png";
+import powertrainSunGearOutputShafts from "../../assets/company-profile/products/powertrain-sun-gear-output-shafts.png";
 
 export type ProductCatalogLanguage = "ko" | "en" | "ja";
 
@@ -31,7 +32,7 @@ export type ProductPart = {
   title: LocalizedText;
   application: LocalizedText;
   poster: string;
-  video: string;
+  video?: string;
 };
 
 export type ProductPartCatalog = {
@@ -117,28 +118,25 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     eyebrow: "POWERTRAIN PARTS",
     title: localized("파워트레인 실제 생산 부품", "Production parts for powertrain systems", "パワートレインの生産部品"),
     copy: localized(
-      "엔진과 감속기 주변의 열·진동 조건을 고려해 하우징, 허브, 샤프트 조립부를 정밀가공합니다.",
-      "Housings, hubs, and shaft interfaces are precision-machined for engine and reduction-system heat and vibration conditions.",
-      "エンジンと減速機周辺の熱・振動条件を考慮し、ハウジング、ハブ、シャフト組立部を精密加工します。",
+      "회사소개서에 수록된 샤프트와 허브 계열을 기준으로 구성했습니다. 하우징 영상을 임의로 연결하지 않고 실제 부품 명칭과 이미지를 사용합니다.",
+      "This lineup is based on the shaft and hub families documented in the company profile, using verified part names and images rather than inferred housing footage.",
+      "会社案内に掲載されたシャフトとハブ系列を基準に、推定したハウジング映像ではなく確認済みの部品名と画像を使用しています。",
     ),
     parts: [
       {
-        title: localized("파워트레인 하우징", "Powertrain Housing", "パワートレインハウジング"),
-        application: localized("엔진·감속기 조립부", "Engine and reducer interface", "エンジン・減速機組立部"),
-        poster: housingPoster1,
-        video: housingVideo1,
+        title: localized("선 기어 출력 샤프트", "Sun Gear Output Shaft", "サンギヤ出力シャフト"),
+        application: localized("동력 전달용 Powertrain Shaft", "Powertrain shaft for torque delivery", "動力伝達用Powertrain Shaft"),
+        poster: powertrainSunGearOutputShafts,
       },
       {
-        title: localized("클러치·기어 하우징", "Clutch and Gear Housing", "クラッチ・ギヤハウジング"),
-        application: localized("허브·기어 조립 영역", "Hub and gear assembly area", "ハブ・ギヤ組立領域"),
-        poster: housingPoster3,
-        video: housingVideo3,
+        title: localized("액추에이터 샤프트", "Actuator Shaft", "アクチュエータシャフト"),
+        application: localized("스플라인·오일홀 정밀가공 샤프트", "Precision shaft with spline and oil-hole features", "スプライン・オイル穴精密加工シャフト"),
+        poster: powertrainActuatorShafts,
       },
       {
-        title: localized("정밀 가공 하우징", "Precision Machined Housing", "精密加工ハウジング"),
-        application: localized("도면 기반 전용 공정", "Drawing-based dedicated process", "図面ベースの専用工程"),
-        poster: housingPoster4,
-        video: housingVideo4,
+        title: localized("디스크 캐리어·허브", "Disc Carrier and Hub", "ディスクキャリア・ハブ"),
+        application: localized("Inner/Outer Carrier와 레이저 용접 조립부", "Inner and outer carriers with laser-welded assembly parts", "Inner/Outer Carrierとレーザー溶接組立部品"),
+        poster: powertrainDiscCarrierComponents,
       },
     ],
   },
