@@ -1357,19 +1357,97 @@ function QualityPolicyBody({ language }: { language: RenewalLanguage }) {
   );
 }
 
+function QualityFlowIcon({ stage }: { stage: number }) {
+  if (stage === 0) {
+    return (
+      <svg viewBox="0 0 96 96" aria-hidden="true">
+        <path d="M25 14h31l15 15v53H25z" />
+        <path d="M56 14v15h15M35 39h25M35 49h16" />
+        <circle cx="58" cy="62" r="11" />
+        <path d="m66 70 8 8M53 62h10M58 57v10" />
+      </svg>
+    );
+  }
+
+  if (stage === 1) {
+    return (
+      <svg viewBox="0 0 96 96" aria-hidden="true">
+        <path d="m19 31 29-15 29 15v35L48 81 19 66z" />
+        <path d="m19 31 29 15 29-15M48 46v35M37 25l29 15" />
+        <path d="m34 59 9 9 19-21" />
+      </svg>
+    );
+  }
+
+  if (stage === 2) {
+    return (
+      <svg viewBox="0 0 96 96" aria-hidden="true">
+        <path d="M18 74h60M23 66V51M34 66V39M45 66V46M56 66V29M67 66V36" />
+        <path d="M25 34a24 24 0 0 1 46 0" />
+        <circle cx="48" cy="34" r="4" />
+        <path d="m48 34 15-11" />
+      </svg>
+    );
+  }
+
+  if (stage === 3) {
+    return (
+      <svg viewBox="0 0 96 96" aria-hidden="true">
+        <path d="M24 36h48v39H24zM24 36l24-14 24 14M48 22v14" />
+        <path d="m36 55 8 8 17-19" />
+        <path d="M17 29V18h11M79 29V18H68M17 68v11h11M79 68v11H68" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 96 96" aria-hidden="true">
+      <ellipse cx="34" cy="25" rx="17" ry="8" />
+      <path d="M17 25v27c0 4 8 8 17 8s17-4 17-8V25M17 38c0 4 8 8 17 8s17-4 17-8" />
+      <circle cx="67" cy="42" r="8" />
+      <circle cx="67" cy="69" r="8" />
+      <path d="M51 34h8M51 53l9 10M67 50v11" />
+    </svg>
+  );
+}
+
+const qualityFlowCodes = ["SPEC", "IQC", "SPC", "OQC", "TRACE"];
+
 function ProcessFlow({
   items,
   label,
+  visual = false,
 }: {
   items: Array<{ title: string; copy: string }>;
   label: string;
+  visual?: boolean;
 }) {
   return (
-    <section className="renewal-sub-process-flow" aria-label={label}>
+    <section
+      className={`renewal-sub-process-flow${visual ? " renewal-sub-process-flow--quality" : ""}`}
+      aria-label={label}
+      data-sub-reveal={visual ? "" : undefined}
+    >
+      {visual ? (
+        <div className="renewal-sub-process-flow__rail" aria-hidden="true">
+          <span />
+        </div>
+      ) : null}
       {items.map((item, index) => (
-        <article data-sub-reveal key={item.title}>
-          <span>{String(index + 1).padStart(2, "0")}</span>
-          <div>
+        <article data-sub-reveal={visual ? undefined : ""} key={item.title}>
+          {visual ? (
+            <div className="renewal-sub-process-flow__station" aria-hidden="true">
+              <span className="renewal-sub-process-flow__index">{String(index + 1).padStart(2, "0")}</span>
+              <div className="renewal-sub-process-flow__icon">
+                <QualityFlowIcon stage={index} />
+              </div>
+              <i className="renewal-sub-process-flow__node" />
+            </div>
+          ) : (
+            <span>{String(index + 1).padStart(2, "0")}</span>
+          )}
+          <div className="renewal-sub-process-flow__copy">
+            {visual ? <small>{qualityFlowCodes[index]}</small> : null}
             <h3>{item.title}</h3>
             <p>{item.copy}</p>
           </div>
@@ -1388,7 +1466,7 @@ function QualitySystemBody({ language }: { language: RenewalLanguage }) {
         <span>QUALITY ASSURANCE SYSTEM</span>
         <h2>{labels.qualityFlow}</h2>
       </section>
-      <ProcessFlow items={qualityFlow[language]} label={labels.qualityFlow} />
+      <ProcessFlow items={qualityFlow[language]} label={labels.qualityFlow} visual />
       <QualityEvidence language={language} />
       <CertificatesBody language={language} />
     </>
