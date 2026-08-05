@@ -9,9 +9,9 @@ import precisionHeroImage from "../../precision-inside-mobility.jpg";
 import steeringImage from "../../assets/product-lineup/steering.jpg";
 import factoryOverviewImage from "../../assets/company-profile/factory.webp";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
-import hobbingProcessImage from "../../assets/company-profile/process/hobbing.webp";
-import autoInspectionProcessImage from "../../assets/company-profile/process/auto-inspection.webp";
-import inductionProcessImage from "../../assets/company-profile/process/induction-hardening.webp";
+import manufacturingProcessHeroImage from "../../assets/manufacturing/hero/production-process-cnc.jpg";
+import manufacturingEquipmentHeroImage from "../../assets/manufacturing/hero/equipment-automation.jpg";
+import manufacturingInspectionHeroImage from "../../assets/manufacturing/hero/inspection-technology.jpg";
 import BrainallLogo from "./BrainallLogo";
 import Header from "./Header";
 import Icon from "./Icons";
@@ -462,8 +462,8 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     title: "생산공정",
     lead: "선삭에서 기어·스플라인, 연삭, 열처리, 교정과 검사까지 부품별 공정을 연속된 품질 흐름으로 설계합니다.",
     heroCopy: "각 공정의 결과를 다음 공정의 기준과 연결해 장기 양산에서도 반복 정밀도와 표면 품질을 유지합니다.",
-    image: hobbingProcessImage,
-    imagePosition: "center",
+    image: manufacturingProcessHeroImage,
+    imagePosition: "center 50%",
   },
   "manufacturing/equipment": {
     route: "manufacturing/equipment",
@@ -473,8 +473,8 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     title: "보유설비·자동화",
     lead: "부품 형상과 품질 기준에 맞춘 CNC, 기어가공, 연삭, 열처리, 자동화 설비를 공정 목적별로 운영합니다.",
     heroCopy: "설비 조건과 전용 치공구, 자동 이송과 측정을 연결해 공정 편차와 작업 의존도를 줄입니다.",
-    image: inductionProcessImage,
-    imagePosition: "center",
+    image: manufacturingEquipmentHeroImage,
+    imagePosition: "center 48%",
   },
   "manufacturing/inspection": {
     route: "manufacturing/inspection",
@@ -484,8 +484,8 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     title: "검사기술",
     lead: "치수와 기하공차, 기어 형상, 런아웃과 균열을 자동검사·CMM·전용 측정 장비로 확인합니다.",
     heroCopy: "측정 데이터를 교정과 공정조건, 출하 판정에 다시 연결해 예방 중심의 품질 흐름을 운영합니다.",
-    image: autoInspectionProcessImage,
-    imagePosition: "center",
+    image: manufacturingInspectionHeroImage,
+    imagePosition: "center 52%",
   },
   "quality/policy": {
     route: "quality/policy",
