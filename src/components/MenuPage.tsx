@@ -4,7 +4,7 @@ import certificationImage from "../../certification.png";
 import drivelineImage from "../../assets/product-lineup/driveline.jpg";
 import automotiveImage from "../../assets/product-lineup/electric-vehicle.jpg";
 import balanceModuleImage from "../../assets/product-lineup/balance-module.jpg";
-import powertrainImage from "../../assets/video-posters/powertrain/8l90-output-shafts.jpg";
+import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
 import precisionHeroImage from "../../precision-inside-mobility.jpg";
 import steeringImage from "../../assets/product-lineup/steering.jpg";
 import factoryOverviewImage from "../../assets/company-profile/factory.webp";
