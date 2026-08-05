@@ -1,16 +1,5 @@
 import { languages, type LanguageCode } from "../data/brainall";
-
-type LenisController = {
-  scrollTo?: (target: number, options?: { duration?: number; force?: boolean; immediate?: boolean }) => void;
-};
-
-function jumpToPageTop() {
-  const win = window as Window & { __seoulindLenis?: LenisController };
-  win.__seoulindLenis?.scrollTo?.(0, { duration: 0, force: true, immediate: true });
-  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  document.documentElement.scrollTop = 0;
-  document.body.scrollTop = 0;
-}
+import { jumpToPageTop } from "./pageScroll";
 
 export function applyLanguageAndRestartHome(language: LanguageCode, onLanguageChange: (language: LanguageCode) => void) {
   if (typeof window === "undefined") {

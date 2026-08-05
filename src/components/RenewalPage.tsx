@@ -28,6 +28,7 @@ import trwLogo from "../../assets/partner-trw.svg";
 import Icon from "./Icons";
 import { RenewalSiteFooter, RenewalSiteHeader } from "./RenewalShell";
 import { useLenisScroll } from "../motion/useLenisScroll";
+import { jumpToPageTop } from "../utils/pageScroll";
 import { usePrefersReducedMotion } from "../motion/usePrefersReducedMotion";
 import {
   companyOverviewCopy,
@@ -1104,7 +1105,7 @@ export default function RenewalPage() {
     document.body.classList.add("renewal-active");
     document.documentElement.lang = language === "ko" ? "ko-KR" : language === "ja" ? "ja-JP" : "en";
     window.localStorage.setItem("seoulind-language", language);
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    jumpToPageTop();
 
     return () => {
       document.body.classList.remove("renewal-active");

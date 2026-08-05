@@ -34,6 +34,7 @@ import {
 } from "../data/companyProfile";
 import { productPartCatalogByRoute } from "../data/productCatalog";
 import { useLenisScroll } from "../motion/useLenisScroll";
+import { jumpToPageTop } from "../utils/pageScroll";
 import { usePrefersReducedMotion } from "../motion/usePrefersReducedMotion";
 import "../styles/renewal.css";
 import "../styles/renewal-subpage.css";
@@ -1865,7 +1866,7 @@ export default function RenewalSubPage({ route }: RenewalSubPageProps) {
     document.body.classList.add("renewal-active");
     document.documentElement.lang = language === "ko" ? "ko-KR" : language === "ja" ? "ja-JP" : "en";
     window.localStorage.setItem("seoulind-language", language);
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    jumpToPageTop();
     return () => document.body.classList.remove("renewal-active");
   }, [cleanRoute, language]);
 

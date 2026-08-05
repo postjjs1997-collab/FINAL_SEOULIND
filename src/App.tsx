@@ -1,8 +1,9 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useLayoutEffect, useState } from "react";
 import DesignTweaks from "./components/DesignTweaks";
 import NewsPage from "./components/NewsPage";
 import TechnologyPage from "./components/TechnologyPage";
 import { menuRoutes, resolveMenuRoute } from "./data/navigation";
+import { jumpToPageTop, keepPageAtTopAfterRouteChange } from "./utils/pageScroll";
 
 const RenewalPage = lazy(() => import("./components/RenewalPage"));
 const RenewalSubPage = lazy(() => import("./components/RenewalSubPage"));
@@ -16,10 +17,30 @@ export default function App() {
   const [route, setRoute] = useState(getRoute);
 
   useEffect(() => {
-    const syncRoute = () => setRoute(getRoute());
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+
+    const syncRoute = () => {
+      jumpToPageTop();
+      setRoute(getRoute());
+    };
+    const resetInternalLink = (event: MouseEvent) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const target = event.target;
+      const link = target instanceof Element ? target.closest<HTMLAnchorElement>('a[href^="#/"]') : null;
+      if (link) jumpToPageTop();
+    };
+
     window.addEventListener("hashchange", syncRoute);
-    return () => window.removeEventListener("hashchange", syncRoute);
+    document.addEventListener("click", resetInternalLink, true);
+    return () => {
+      window.history.scrollRestoration = previousScrollRestoration;
+      window.removeEventListener("hashchange", syncRoute);
+      document.removeEventListener("click", resetInternalLink, true);
+    };
   }, []);
+
+  useLayoutEffect(() => keepPageAtTopAfterRouteChange(), [route]);
 
   let page;
 
