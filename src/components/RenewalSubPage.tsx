@@ -620,25 +620,187 @@ const bodyLabels: Record<
   },
 };
 
-const qualityPrinciples: Record<RenewalLanguage, Array<{ title: string; copy: string }>> = {
-  ko: [
-    { title: "고객 요구 우선", copy: "도면, 사양, 특별특성, 납품 기준을 개발 단계에서 명확히 확인합니다." },
-    { title: "공정에서 완성", copy: "검사에만 의존하지 않고 표준화된 조건과 작업 기준으로 품질을 만듭니다." },
-    { title: "데이터로 검증", copy: "주요 치수와 형상, 설비 조건, LOT 이력을 연결해 결과를 추적합니다." },
-    { title: "지속적인 개선", copy: "불량 원인과 변경점을 기록하고 재발방지 활동을 표준에 반영합니다." },
-  ],
-  en: [
-    { title: "Customer Requirements", copy: "Drawings, specifications, special characteristics, and delivery standards are confirmed early." },
-    { title: "Built in Process", copy: "Quality is created through standardized conditions and work rules, not inspection alone." },
-    { title: "Verified by Data", copy: "Key dimensions, geometry, equipment conditions, and LOT history remain traceable." },
-    { title: "Continuous Improvement", copy: "Defect causes and changes are recorded, and prevention actions update the standard." },
-  ],
-  ja: [
-    { title: "顧客要求優先", copy: "図面、仕様、特殊特性、納入基準を開発段階で明確に確認します。" },
-    { title: "工程で完成", copy: "検査だけに頼らず、標準化した条件と作業基準で品質を造り込みます。" },
-    { title: "データで検証", copy: "主要寸法、形状、設備条件、LOT履歴をつなぎ、結果を追跡します。" },
-    { title: "継続的改善", copy: "不良原因と変更点を記録し、再発防止を標準へ反映します。" },
-  ],
+type QualityPrinciple = {
+  title: string;
+  english: string;
+  statement: string;
+  actions: string[];
+  outcome: string;
+};
+
+const qualityPolicyCopy: Record<
+  RenewalLanguage,
+  {
+    headline: string;
+    introduction: string;
+    sectionTitle: string;
+    sectionCopy: string;
+    outcomeLabel: string;
+    principles: QualityPrinciple[];
+  }
+> = {
+  ko: {
+    headline: "품질은 검사로 선별하는 것이 아니라 공정에서 완성합니다.",
+    introduction:
+      "서울산업은 고객 요구사항을 개발 단계에서 공정 기준으로 전환하고, 양산 조건과 측정 데이터를 연결해 모든 LOT의 품질을 증명합니다. 발견된 문제는 원인 분석과 효과 검증을 거쳐 표준에 반영하며 재발을 방지합니다.",
+    sectionTitle: "무결점 품질을 만드는 네 가지 약속",
+    sectionCopy: "고객 요구의 확인부터 공정 예방, 데이터 검증, 재발 방지까지 하나의 관리 체계로 운영합니다.",
+    outcomeLabel: "관리 목표",
+    principles: [
+      {
+        title: "고객 요구 우선",
+        english: "CUSTOMER REQUIREMENTS",
+        statement: "고객의 언어를 정확한 공정 기준으로 바꿉니다.",
+        actions: [
+          "도면·사양·특별특성의 개발 단계 사전 검토",
+          "고객별 검사·포장·납품 기준의 문서화",
+          "설계 및 4M 변경점의 승인 이력 관리",
+        ],
+        outcome: "요구사항 누락 방지",
+      },
+      {
+        title: "공정에서 완성",
+        english: "BUILT INTO PROCESS",
+        statement: "검사보다 예방 중심의 공정 설계로 품질을 만듭니다.",
+        actions: [
+          "PFMEA·관리계획·작업표준의 일관된 연계",
+          "가공 조건·공구·치공구·설비 상태의 표준화",
+          "소재·외주 공정·초도품의 승인 기준 검증",
+        ],
+        outcome: "반복 생산 안정화",
+      },
+      {
+        title: "데이터로 검증",
+        english: "VERIFIED BY DATA",
+        statement: "측정 결과와 생산 이력을 하나의 LOT로 연결합니다.",
+        actions: [
+          "Air Gauge·비전·CMM·치수 측정 결과 관리",
+          "SPC와 공정능력 지표를 통한 변동 감시",
+          "설비 조건·검사 결과·작업 이력의 LOT 추적",
+        ],
+        outcome: "판단 근거와 추적성 확보",
+      },
+      {
+        title: "지속적인 개선",
+        english: "CONTINUAL IMPROVEMENT",
+        statement: "문제의 조치에서 끝내지 않고 재발 방지까지 확인합니다.",
+        actions: [
+          "불량 원인과 4M 변경점의 체계적 분석",
+          "시정·예방조치의 실행 및 효과 검증",
+          "개선 결과를 PFMEA·관리계획·표준에 반영",
+        ],
+        outcome: "재발 방지와 고객 신뢰",
+      },
+    ],
+  },
+  en: {
+    headline: "Quality is not sorted at inspection. It is built into every process.",
+    introduction:
+      "Seoul Industry translates customer requirements into process standards during development and connects production conditions with measurement data to demonstrate the quality of every lot. Each issue is analyzed, verified, and incorporated into the standard to prevent recurrence.",
+    sectionTitle: "Four commitments behind zero-defect quality",
+    sectionCopy: "Customer requirements, process prevention, data verification, and recurrence prevention operate as one quality system.",
+    outcomeLabel: "CONTROL OBJECTIVE",
+    principles: [
+      {
+        title: "Customer Requirements",
+        english: "CUSTOMER REQUIREMENTS",
+        statement: "We translate the customer's language into precise process criteria.",
+        actions: [
+          "Early review of drawings, specifications, and special characteristics",
+          "Documented customer-specific inspection, packing, and delivery criteria",
+          "Controlled approval history for design and 4M changes",
+        ],
+        outcome: "Prevent requirement gaps",
+      },
+      {
+        title: "Built into Process",
+        english: "BUILT INTO PROCESS",
+        statement: "Prevention-focused process design creates quality before inspection.",
+        actions: [
+          "Alignment of PFMEA, control plans, and work standards",
+          "Standardized machining conditions, tools, fixtures, and equipment",
+          "Validation of material, outsourced processes, and first articles",
+        ],
+        outcome: "Stable repeat production",
+      },
+      {
+        title: "Verified by Data",
+        english: "VERIFIED BY DATA",
+        statement: "Measurement results and production history are connected by lot.",
+        actions: [
+          "Air gauge, vision, CMM, and dimensional measurement records",
+          "SPC and process capability monitoring for variation control",
+          "Lot traceability across equipment, inspection, and work history",
+        ],
+        outcome: "Evidence and traceability",
+      },
+      {
+        title: "Continual Improvement",
+        english: "CONTINUAL IMPROVEMENT",
+        statement: "Corrective action continues until recurrence is prevented.",
+        actions: [
+          "Systematic analysis of defect causes and 4M changes",
+          "Implementation and effectiveness review of corrective actions",
+          "Updates to PFMEA, control plans, and standards from lessons learned",
+        ],
+        outcome: "Prevention and customer trust",
+      },
+    ],
+  },
+  ja: {
+    headline: "品質は検査で選別するものではなく、工程で造り込むものです。",
+    introduction:
+      "ソウル産業は、開発段階で顧客要求を工程基準へ変換し、量産条件と測定データをつなげてすべてのLOTの品質を証明します。発生した問題は原因分析と効果確認を経て標準へ反映し、再発を防止します。",
+    sectionTitle: "ゼロディフェクト品質を支える4つの約束",
+    sectionCopy: "顧客要求の確認、工程での予防、データ検証、再発防止を一つの品質システムとして運用します。",
+    outcomeLabel: "管理目標",
+    principles: [
+      {
+        title: "顧客要求優先",
+        english: "CUSTOMER REQUIREMENTS",
+        statement: "顧客の言葉を明確な工程基準へ変換します。",
+        actions: [
+          "図面・仕様・特殊特性の開発段階での事前検討",
+          "顧客別の検査・梱包・納入基準の文書化",
+          "設計および4M変更の承認履歴管理",
+        ],
+        outcome: "要求事項の抜け漏れ防止",
+      },
+      {
+        title: "工程で完成",
+        english: "BUILT INTO PROCESS",
+        statement: "検査より予防を重視した工程設計で品質を造り込みます。",
+        actions: [
+          "PFMEA・管理計画・作業標準の一貫した連携",
+          "加工条件・工具・治具・設備状態の標準化",
+          "素材・外注工程・初品の承認基準検証",
+        ],
+        outcome: "量産の安定化",
+      },
+      {
+        title: "データで検証",
+        english: "VERIFIED BY DATA",
+        statement: "測定結果と生産履歴を一つのLOTでつなぎます。",
+        actions: [
+          "Air Gauge・画像・CMM・寸法測定結果の管理",
+          "SPCと工程能力指標による変動監視",
+          "設備条件・検査結果・作業履歴のLOT追跡",
+        ],
+        outcome: "判断根拠と追跡性の確保",
+      },
+      {
+        title: "継続的改善",
+        english: "CONTINUAL IMPROVEMENT",
+        statement: "問題処置で終わらせず、再発防止まで確認します。",
+        actions: [
+          "不良原因と4M変更点の体系的な分析",
+          "是正・予防処置の実行と効果確認",
+          "改善結果をPFMEA・管理計画・標準へ反映",
+        ],
+        outcome: "再発防止と顧客信頼",
+      },
+    ],
+  },
 };
 
 const qualityFlow: Record<RenewalLanguage, Array<{ title: string; copy: string }>> = {
@@ -1326,32 +1488,110 @@ function QualityEvidence({ language }: { language: RenewalLanguage }) {
   );
 }
 
+function QualityPolicyIcon({ stage }: { stage: number }) {
+  if (stage === 0) {
+    return (
+      <svg viewBox="0 0 72 72" aria-hidden="true">
+        <path d="M17 9h27l12 12v42H17zM44 9v12h12M25 31h22M25 40h14" />
+        <path d="m29 52 5 5 12-13" />
+      </svg>
+    );
+  }
+
+  if (stage === 1) {
+    return (
+      <svg viewBox="0 0 72 72" aria-hidden="true">
+        <circle cx="36" cy="36" r="11" />
+        <path d="M36 8v8M36 56v8M8 36h8M56 36h8M16 16l6 6M50 50l6 6M56 16l-6 6M22 50l-6 6" />
+        <path d="M36 24a12 12 0 1 1-8.5 3.5" />
+      </svg>
+    );
+  }
+
+  if (stage === 2) {
+    return (
+      <svg viewBox="0 0 72 72" aria-hidden="true">
+        <ellipse cx="24" cy="17" rx="12" ry="6" />
+        <path d="M12 17v20c0 3 5 6 12 6s12-3 12-6V17M12 27c0 3 5 6 12 6s12-3 12-6" />
+        <path d="M43 51h17M46 43v8M52 35v16M58 28v23" />
+        <path d="m42 31 7-7 6 4 7-9" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 72 72" aria-hidden="true">
+      <path d="M18 25a21 21 0 0 1 35-7l5 6M58 14v10H48" />
+      <path d="M54 47a21 21 0 0 1-35 7l-5-6M14 58V48h10" />
+      <path d="m29 37 5 5 11-13" />
+      <circle cx="36" cy="36" r="13" />
+    </svg>
+  );
+}
+
 function QualityPolicyBody({ language }: { language: RenewalLanguage }) {
-  const labels = bodyLabels[language];
-  const principles = qualityPrinciples[language];
+  const copy = qualityPolicyCopy[language];
 
   return (
     <>
-      <section className="renewal-sub-policy-statement" data-sub-reveal>
-        <span>QUALITY FIRST</span>
-        <h2>{labels.policyStatement}</h2>
-        <p>
-          {language === "ko"
-            ? "고객이 요구하는 품질을 정확히 이해하고 모든 공정에서 표준을 준수하며, 예방과 개선을 통해 무결점 품질을 지향합니다."
-            : language === "ja"
-              ? "顧客が求める品質を正確に理解し、すべての工程で標準を守り、予防と改善を通じてゼロディフェクトを目指します。"
-              : "We understand customer quality requirements, follow standards in every process, and pursue zero defects through prevention and improvement."}
-        </p>
+      <section className="renewal-sub-quality-policy-hero" data-sub-reveal>
+        <div className="renewal-sub-quality-policy-hero__heading">
+          <span>SEOUL INDUSTRY QUALITY POLICY</span>
+          <h2>{copy.headline}</h2>
+        </div>
+        <div className="renewal-sub-quality-policy-hero__statement">
+          <strong>QUALITY<br />FIRST</strong>
+          <p>{copy.introduction}</p>
+        </div>
+        <div className="renewal-sub-quality-policy-hero__standards" aria-label="Quality standards">
+          <div>
+            <small>AUTOMOTIVE QMS</small>
+            <strong>IATF 16949</strong>
+          </div>
+          <div>
+            <small>CUSTOMER QUALITY</small>
+            <strong>MSQ</strong>
+          </div>
+          <div>
+            <small>TRACEABILITY</small>
+            <strong>LOT UNIT</strong>
+          </div>
+        </div>
       </section>
-      <section className="renewal-sub-governance">
-        {principles.map((item, index) => (
-          <article data-sub-reveal key={item.title}>
-            <span>QUALITY PRINCIPLE</span>
-            <strong>{String(index + 1).padStart(2, "0")}</strong>
-            <h3>{item.title}</h3>
-            <p>{item.copy}</p>
-          </article>
-        ))}
+
+      <section className="renewal-sub-quality-principles">
+        <header data-sub-reveal>
+          <span>FOUR QUALITY COMMITMENTS</span>
+          <h2>{copy.sectionTitle}</h2>
+          <p>{copy.sectionCopy}</p>
+        </header>
+        <div className="renewal-sub-quality-principles__grid">
+          <div className="renewal-sub-quality-principles__goal" aria-hidden="true">
+            <small>GOAL</small>
+            <strong>ZERO</strong>
+            <span>DEFECT</span>
+          </div>
+          {copy.principles.map((item, index) => (
+            <article data-sub-reveal key={item.title}>
+              <div className="renewal-sub-quality-principles__icon">
+                <QualityPolicyIcon stage={index} />
+              </div>
+              <span>{item.english}</span>
+              <strong>{String(index + 1).padStart(2, "0")}</strong>
+              <h3>{item.title}</h3>
+              <p>{item.statement}</p>
+              <ul>
+                {item.actions.map((action) => (
+                  <li key={action}>{action}</li>
+                ))}
+              </ul>
+              <footer>
+                <small>{copy.outcomeLabel}</small>
+                <b>{item.outcome}</b>
+              </footer>
+            </article>
+          ))}
+        </div>
       </section>
     </>
   );
