@@ -30,6 +30,7 @@ import {
   qualityEvidenceProcesses,
   type ManufacturingGroup,
 } from "../data/companyProfile";
+import { productPartCatalogByRoute } from "../data/productCatalog";
 import { useLenisScroll } from "../motion/useLenisScroll";
 import { usePrefersReducedMotion } from "../motion/usePrefersReducedMotion";
 import "../styles/renewal.css";
@@ -1020,6 +1021,53 @@ function ProductEvidenceSection({
   );
 }
 
+function ActualProductLineup({
+  route,
+  language,
+}: {
+  route: string;
+  language: RenewalLanguage;
+}) {
+  const catalog = productPartCatalogByRoute[route];
+  if (!catalog) return null;
+
+  const labels = {
+    ko: { eyebrow: "ACTUAL PRODUCTION PARTS", item: "실제 생산 부품", motion: "제품 보기" },
+    en: { eyebrow: "ACTUAL PRODUCTION PARTS", item: "Production part", motion: "View product" },
+    ja: { eyebrow: "ACTUAL PRODUCTION PARTS", item: "実際の生産部品", motion: "製品を見る" },
+  }[language];
+
+  return (
+    <section className="renewal-sub-product-lineup">
+      <header data-sub-reveal>
+        <span>{labels.eyebrow}</span>
+        <h2>{catalog.title[language]}</h2>
+        <p>{catalog.copy[language]}</p>
+      </header>
+      <div className={`renewal-sub-product-lineup__grid is-count-${catalog.parts.length}`}>
+        {catalog.parts.map((part, index) => (
+          <article data-sub-reveal key={part.title.en}>
+            <figure>
+              <video autoPlay muted loop playsInline preload="metadata" poster={part.poster} aria-label={part.title[language]}>
+                <source src={part.video} type="video/webm" />
+              </video>
+              <figcaption>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <small>{labels.motion}</small>
+              </figcaption>
+            </figure>
+            <div>
+              <span>{labels.item}</span>
+              <h3>{part.title[language]}</h3>
+              <p>{part.application[language]}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function ProductDetailBody({
   route,
   content,
@@ -1054,12 +1102,13 @@ function ProductDetailBody({
           </div>
         </div>
       </section>
+      <ActualProductLineup route={route} language={language} />
+      <ProductEvidenceSection route={route} language={language} />
       <section className="renewal-sub-section-heading" data-sub-reveal>
         <span>PROCESS STANDARD</span>
         <h2>{labels.manufacturing}</h2>
       </section>
       <CapabilityGrid content={content} />
-      <ProductEvidenceSection route={route} language={language} />
     </>
   );
 }

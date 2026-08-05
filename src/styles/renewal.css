@@ -2424,3 +2424,786 @@ body.renewal-active {
     transform: none;
   }
 }
+
+/* 2026 information architecture refresh */
+.renewal-company {
+  min-height: 0;
+  padding: clamp(92px, 9vw, 150px) 4%;
+  background: #f3f0ea;
+}
+
+.renewal-company__inner {
+  display: grid;
+  min-height: 0;
+  max-width: 1500px;
+  grid-template-columns: minmax(0, 1.04fr) minmax(440px, 0.96fr);
+  align-items: center;
+  gap: clamp(64px, 7vw, 126px);
+  margin: 0 auto;
+  padding: 0;
+}
+
+.renewal-company__visual {
+  position: relative;
+  aspect-ratio: 16 / 12;
+  margin: 0;
+  overflow: hidden;
+  background: #d8d5cf;
+}
+
+.renewal-company__visual::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 54%, rgba(0, 0, 0, 0.58));
+  content: "";
+}
+
+.renewal-company__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--ease-out);
+}
+
+.renewal-company__visual.is-visible:hover img {
+  transform: scale(1.035);
+}
+
+.renewal-company__visual figcaption {
+  position: absolute;
+  z-index: 1;
+  right: 34px;
+  bottom: 26px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  color: #fff;
+}
+
+.renewal-company__visual figcaption span {
+  color: var(--renewal-orange);
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.renewal-company__visual figcaption strong {
+  font-size: clamp(2.4rem, 4vw, 4.8rem);
+  line-height: 0.9;
+}
+
+.renewal-company__content > span {
+  color: var(--renewal-orange);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.renewal-company__content h2 {
+  max-width: 760px;
+  margin: 24px 0 28px;
+  font-size: clamp(2.6rem, 4.3vw, 5.2rem);
+  line-height: 1.05;
+  word-break: keep-all;
+}
+
+.renewal-company__content > p {
+  max-width: 680px;
+  margin: 0;
+  color: #595853;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.9;
+  word-break: keep-all;
+}
+
+.renewal-company__facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 46px 0 0;
+  border-top: 1px solid #c9c4bc;
+  border-left: 1px solid #c9c4bc;
+}
+
+.renewal-company__facts > div {
+  min-height: 104px;
+  padding: 20px 22px;
+  border-right: 1px solid #c9c4bc;
+  border-bottom: 1px solid #c9c4bc;
+}
+
+.renewal-company__facts dt {
+  color: #88847c;
+  font-size: 0.64rem;
+  font-weight: 800;
+}
+
+.renewal-company__facts dd {
+  margin: 12px 0 0;
+  color: #171717;
+  font-size: 1.08rem;
+  font-weight: 900;
+}
+
+.renewal-company__systems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.renewal-company__systems span {
+  padding: 8px 10px;
+  border: 1px solid #cbc6be;
+  color: #53514c;
+  font-size: 0.61rem;
+  font-weight: 900;
+}
+
+.renewal-company__content .renewal-arrow-link {
+  margin-top: 36px;
+}
+
+.renewal-portfolio {
+  padding: clamp(104px, 9vw, 148px) 3.5%;
+  background: #191919;
+}
+
+.renewal-portfolio .renewal-section-heading {
+  max-width: 1500px;
+}
+
+.renewal-portfolio .renewal-products__grid {
+  max-width: 1500px;
+}
+
+.renewal-portfolio .renewal-product-card {
+  min-height: 650px;
+  grid-template-rows: auto 260px 96px minmax(174px, auto);
+  background: #ebe9e5;
+}
+
+.renewal-portfolio .renewal-product-card:nth-child(even) {
+  margin-top: 36px;
+}
+
+.renewal-portfolio .renewal-product-card__image {
+  position: relative;
+  min-height: 0;
+  background: #f6f5f2;
+}
+
+.renewal-portfolio .renewal-product-card__image img {
+  object-fit: contain;
+  object-position: center;
+}
+
+.renewal-portfolio .renewal-product-card__image > span {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  padding: 5px 7px;
+  background: rgba(15, 15, 15, 0.82);
+  color: #fff;
+  font-size: 0.52rem;
+  font-weight: 900;
+}
+
+.renewal-product-card__actual {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border-top: 1px solid #d1cec8;
+  border-bottom: 1px solid #d1cec8;
+  background: #111;
+  color: #fff;
+}
+
+.renewal-product-card__actual img {
+  width: 96px;
+  height: 74px;
+  object-fit: contain;
+  background: #050505;
+}
+
+.renewal-product-card__actual > span {
+  display: grid;
+  min-width: 0;
+  gap: 7px;
+}
+
+.renewal-product-card__actual small {
+  color: var(--renewal-orange);
+  font-size: 0.54rem;
+  font-weight: 900;
+}
+
+.renewal-product-card__actual strong {
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.renewal-portfolio .renewal-product-card__copy {
+  min-height: 0;
+  padding: 24px 22px 28px;
+  border-top: 0;
+}
+
+.renewal-portfolio .renewal-product-card__copy h3 {
+  font-size: clamp(1.35rem, 1.55vw, 1.8rem);
+  line-height: 1.15;
+}
+
+.renewal-capability {
+  padding: clamp(104px, 9vw, 150px) 4%;
+  background: #f2efe9;
+  color: #181818;
+}
+
+.renewal-capability__heading {
+  display: grid;
+  max-width: 1500px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 70px;
+  margin: 0 auto 64px;
+}
+
+.renewal-capability__heading > div > span {
+  color: var(--renewal-orange);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.renewal-capability__heading h2 {
+  max-width: 980px;
+  margin: 20px 0 24px;
+  font-size: clamp(2.7rem, 4.3vw, 5.4rem);
+  line-height: 1.04;
+  word-break: keep-all;
+}
+
+.renewal-capability__heading p {
+  max-width: 760px;
+  margin: 0;
+  color: #63615b;
+  font-size: 0.97rem;
+  font-weight: 600;
+  line-height: 1.85;
+  word-break: keep-all;
+}
+
+.renewal-capability__grid {
+  display: grid;
+  max-width: 1500px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(420px, 0.85fr);
+  gap: 16px;
+  margin: 0 auto;
+}
+
+.renewal-capability__grid article {
+  display: grid;
+  min-height: 230px;
+  grid-column: 2;
+  grid-template-columns: minmax(180px, 0.82fr) minmax(230px, 1.18fr);
+  overflow: hidden;
+  border-top: 1px solid #c7c2ba;
+  background: #e6e2dc;
+}
+
+.renewal-capability__grid article.is-featured {
+  min-height: 724px;
+  grid-row: 1 / span 3;
+  grid-column: 1;
+  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-columns: 1fr;
+  border-top: 0;
+  background: #171717;
+  color: #fff;
+}
+
+.renewal-capability__grid figure {
+  position: relative;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  background: #111;
+}
+
+.renewal-capability__grid img,
+.renewal-capability__grid video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-out);
+}
+
+.renewal-capability__grid article:hover img,
+.renewal-capability__grid article:hover video {
+  transform: scale(1.035);
+}
+
+.renewal-capability__grid figcaption {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  color: var(--renewal-orange);
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.renewal-capability__grid article > div {
+  align-content: center;
+  padding: 28px 30px;
+}
+
+.renewal-capability__grid article > div > span {
+  color: var(--renewal-orange);
+  font-size: 0.59rem;
+  font-weight: 900;
+}
+
+.renewal-capability__grid h3 {
+  margin: 10px 0 12px;
+  font-size: clamp(1.35rem, 1.8vw, 2rem);
+}
+
+.renewal-capability__grid p {
+  margin: 0;
+  color: #5f5c56;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.renewal-capability__grid strong {
+  display: block;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #c5c0b8;
+  color: #827e76;
+  font-size: 0.62rem;
+  line-height: 1.55;
+}
+
+.renewal-capability__grid .is-featured > div {
+  padding: 34px 38px 38px;
+}
+
+.renewal-capability__grid .is-featured h3 {
+  font-size: clamp(2.2rem, 3.4vw, 4.3rem);
+}
+
+.renewal-capability__grid .is-featured p {
+  max-width: 720px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.92rem;
+}
+
+.renewal-capability__grid .is-featured strong {
+  border-color: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.renewal-quality {
+  padding: clamp(104px, 9vw, 150px) 4%;
+  background: #111;
+}
+
+.renewal-quality__heading {
+  display: grid;
+  max-width: 1500px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 60px;
+  margin: 0 auto 64px;
+}
+
+.renewal-quality__heading > div > span,
+.renewal-quality__certificates header > span {
+  color: var(--renewal-orange);
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.renewal-quality__heading h2 {
+  max-width: 990px;
+  margin: 18px 0 22px;
+  font-size: clamp(2.7rem, 4.2vw, 5.2rem);
+  line-height: 1.04;
+  word-break: keep-all;
+}
+
+.renewal-quality__heading p {
+  max-width: 760px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 0.96rem;
+  font-weight: 600;
+  line-height: 1.85;
+  word-break: keep-all;
+}
+
+.renewal-quality__heading .renewal-arrow-link {
+  color: #fff;
+}
+
+.renewal-quality__body {
+  display: grid;
+  max-width: 1500px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(460px, 0.9fr);
+  gap: clamp(42px, 5vw, 86px);
+  margin: 0 auto;
+}
+
+.renewal-quality__inspection {
+  position: relative;
+  min-height: 690px;
+  margin: 0;
+  overflow: hidden;
+  background: #050505;
+}
+
+.renewal-quality__inspection::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 62%, rgba(0, 0, 0, 0.78));
+  content: "";
+}
+
+.renewal-quality__inspection video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.renewal-quality__inspection figcaption {
+  position: absolute;
+  z-index: 1;
+  right: 28px;
+  bottom: 24px;
+  left: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.renewal-quality__inspection figcaption span {
+  color: var(--renewal-orange);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.renewal-quality__inspection figcaption strong {
+  font-size: 0.72rem;
+}
+
+.renewal-quality__certificates {
+  align-self: center;
+}
+
+.renewal-quality__certificates header h3 {
+  max-width: 620px;
+  margin: 18px 0 22px;
+  font-size: clamp(2rem, 3vw, 3.6rem);
+  line-height: 1.12;
+  word-break: keep-all;
+}
+
+.renewal-quality__certificates header p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+
+.renewal-quality__certificates > div {
+  display: grid;
+  gap: 12px;
+  margin-top: 38px;
+}
+
+.renewal-quality__certificates > div > a {
+  display: grid;
+  min-height: 142px;
+  grid-template-columns: 94px minmax(0, 1fr) 24px;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #1a1a1a;
+  transition: border-color 0.3s ease, transform 0.3s var(--ease-out);
+}
+
+.renewal-quality__certificates > div > a:hover {
+  border-color: var(--renewal-orange);
+  transform: translateX(6px);
+}
+
+.renewal-quality__certificates a figure {
+  width: 94px;
+  height: 106px;
+  margin: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.renewal-quality__certificates a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.renewal-quality__certificates a > span {
+  display: grid;
+  gap: 10px;
+}
+
+.renewal-quality__certificates a strong {
+  font-size: 0.94rem;
+  line-height: 1.45;
+}
+
+.renewal-quality__certificates a small {
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.renewal-quality__certificates a svg {
+  width: 22px;
+  color: var(--renewal-orange);
+}
+
+.renewal-sustainability {
+  display: grid;
+  min-height: 520px;
+  place-content: center;
+  justify-items: center;
+  padding: 100px 5%;
+  background: #29352d;
+  text-align: center;
+}
+
+.renewal-sustainability > span {
+  color: #ed8a4b;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.renewal-sustainability h2 {
+  max-width: 1100px;
+  margin: 24px 0 26px;
+  font-size: clamp(2.5rem, 4.2vw, 5.1rem);
+  line-height: 1.08;
+  word-break: keep-all;
+}
+
+.renewal-sustainability p {
+  max-width: 760px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.94rem;
+  font-weight: 600;
+  line-height: 1.85;
+  word-break: keep-all;
+}
+
+.renewal-sustainability .renewal-arrow-link {
+  margin-top: 42px;
+  color: #fff;
+}
+
+@media (max-width: 1280px) {
+  .renewal-company__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .renewal-company__visual {
+    aspect-ratio: 16 / 8;
+  }
+
+  .renewal-portfolio .renewal-products__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: visible;
+    padding: 0;
+  }
+
+  .renewal-portfolio .renewal-product-card {
+    min-height: 620px;
+  }
+
+  .renewal-portfolio .renewal-product-card:nth-child(even) {
+    margin-top: 0;
+  }
+
+  .renewal-capability__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .renewal-capability__grid article,
+  .renewal-capability__grid article.is-featured {
+    min-height: 320px;
+    grid-row: auto;
+    grid-column: 1;
+    grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
+    grid-template-rows: 1fr;
+  }
+
+  .renewal-quality__body {
+    grid-template-columns: 1fr;
+  }
+
+  .renewal-quality__inspection {
+    min-height: 560px;
+  }
+}
+
+@media (max-width: 860px) {
+  .renewal-company,
+  .renewal-portfolio,
+  .renewal-capability,
+  .renewal-quality {
+    padding: 88px 22px;
+  }
+
+  .renewal-company__inner {
+    gap: 48px;
+  }
+
+  .renewal-company__visual {
+    aspect-ratio: 4 / 3;
+  }
+
+  .renewal-company__content h2,
+  .renewal-capability__heading h2,
+  .renewal-quality__heading h2 {
+    font-size: 2.55rem;
+  }
+
+  .renewal-company__facts {
+    grid-template-columns: 1fr;
+  }
+
+  .renewal-capability__heading,
+  .renewal-quality__heading {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .renewal-capability__heading > div,
+  .renewal-quality__heading > div,
+  .renewal-capability__grid,
+  .renewal-capability__grid article,
+  .renewal-quality__body,
+  .renewal-quality__inspection,
+  .renewal-quality__certificates {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .renewal-capability__grid,
+  .renewal-quality__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  :lang(ja) .renewal-capability__heading h2,
+  :lang(ja) .renewal-capability__heading p,
+  :lang(ja) .renewal-quality__heading h2,
+  :lang(ja) .renewal-quality__heading p,
+  :lang(ja) .renewal-quality__certificates h3,
+  :lang(ja) .renewal-quality__certificates p,
+  :lang(ja) .renewal-quality__certificates strong {
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .renewal-portfolio .renewal-section-heading {
+    padding: 0;
+  }
+
+  .renewal-portfolio .renewal-products__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .renewal-portfolio .renewal-product-card {
+    min-height: 0;
+    grid-template-rows: auto 280px 96px auto;
+  }
+
+  .renewal-capability__grid article,
+  .renewal-capability__grid article.is-featured {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: 260px auto;
+  }
+
+  .renewal-capability__grid .is-featured h3 {
+    font-size: 2.2rem;
+  }
+
+  .renewal-quality__inspection {
+    min-height: 420px;
+  }
+
+  .renewal-quality__certificates > div > a {
+    grid-template-columns: 74px minmax(0, 1fr) 22px;
+    gap: 15px;
+    padding: 14px;
+  }
+
+  .renewal-quality__certificates a figure {
+    width: 74px;
+    height: 92px;
+  }
+
+  .renewal-sustainability {
+    min-height: 480px;
+    padding: 88px 22px;
+  }
+
+  .renewal-sustainability h2 {
+    font-size: 2.45rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .renewal-company__visual figcaption {
+    right: 18px;
+    bottom: 16px;
+  }
+
+  .renewal-company__content h2,
+  .renewal-capability__heading h2,
+  .renewal-quality__heading h2,
+  .renewal-sustainability h2 {
+    font-size: 2.08rem;
+  }
+
+  .renewal-portfolio .renewal-product-card {
+    grid-template-rows: auto 230px 90px auto;
+  }
+
+  .renewal-product-card__actual {
+    grid-template-columns: 82px minmax(0, 1fr);
+  }
+
+  .renewal-product-card__actual img {
+    width: 82px;
+    height: 68px;
+  }
+
+  .renewal-quality__inspection {
+    min-height: 330px;
+  }
+}

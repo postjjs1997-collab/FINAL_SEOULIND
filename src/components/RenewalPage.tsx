@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import balanceModuleImage from "../../assets/product-lineup/balance-module.jpg";
 import drivelineImage from "../../assets/product-lineup/driveline.jpg";
 import electricVehicleImage from "../../assets/product-lineup/electric-vehicle.jpg";
@@ -12,10 +12,10 @@ import qualityPoster from "../../assets/process-videos/inspection-00-04.jpg";
 import supplyVideo from "../../assets/process-videos/global-supply-08-14.mp4";
 import supplyPoster from "../../assets/process-videos/global-supply-08-14.jpg";
 import machiningPoster from "../../assets/clients/client-dauch.jpg";
-import machiningCenterImage from "../../assets/company-profile/process/machining-center.webp";
-import cmmImage from "../../assets/company-profile/process/cmm.webp";
-import autoInspectionImage from "../../assets/company-profile/process/auto-inspection.webp";
-import evPoster from "../../assets/video-posters/electric-vehicle2.jpg";
+import facadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
+import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
+import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
+import msqCertificateImage from "../../assets/certificates/msq-seoul-industry-2025.png";
 import dauchLogo from "../../assets/partner-dauch.svg";
 import gknLogo from "../../assets/partner-gkn.svg";
 import hanseaLogo from "../../assets/partner-kdac.svg";
@@ -29,6 +29,13 @@ import Icon from "./Icons";
 import { RenewalSiteFooter, RenewalSiteHeader } from "./RenewalShell";
 import { useLenisScroll } from "../motion/useLenisScroll";
 import { usePrefersReducedMotion } from "../motion/usePrefersReducedMotion";
+import {
+  companyOverviewCopy,
+  manufacturingPageCopy,
+  manufacturingProcesses,
+  qualityEvidenceCopy,
+} from "../data/companyProfile";
+import { productPartCatalogByRoute } from "../data/productCatalog";
 import "../styles/renewal.css";
 
 type RenewalLanguage = "ko" | "en" | "ja";
@@ -606,14 +613,6 @@ const heroMedia = [
 
 const HERO_SLIDE_DURATION_MS = 3000;
 
-const processMedia = [
-  { video: machiningVideo, poster: machiningPoster },
-  { video: qualityVideo, poster: qualityPoster },
-  { video: supplyVideo, poster: supplyPoster },
-  { video: qualityVideo, poster: qualityPoster },
-  { video: supplyVideo, poster: supplyPoster },
-];
-
 const productImages = [electricVehicleImage, powertrainImage, drivelineImage, balanceModuleImage, steeringImage];
 const productRoutes = [
   "#/products/electric-vehicle",
@@ -622,11 +621,68 @@ const productRoutes = [
   "#/products/balance-shaft-module",
   "#/products/steering",
 ];
-const principleImages = [machiningCenterImage, cmmImage, autoInspectionImage];
-const newsImages = [machiningPoster, qualityPoster, evPoster, supplyPoster];
+const productRouteKeys = [
+  "products/electric-vehicle",
+  "products/powertrain",
+  "products/driveline",
+  "products/balance-shaft-module",
+  "products/steering",
+];
+
+const featuredProcesses = ["cnc-lathe", "hobbing", "induction", "auto-inspection"]
+  .map((id) => manufacturingProcesses.find((process) => process.id === id))
+  .filter((process): process is (typeof manufacturingProcesses)[number] => Boolean(process));
+
+const homeUiCopy = {
+  ko: {
+    companyLink: "회사 정보 자세히 보기",
+    productActual: "실제 생산 부품",
+    productSystem: "적용 시스템",
+    manufacturingLink: "전체 생산기술 보기",
+    processStep: "핵심 공정",
+    qualityEyebrow: "QUALITY ASSURANCE",
+    qualityLink: "품질 시스템 자세히 보기",
+    certificateEyebrow: "CERTIFIED QUALITY SYSTEM",
+    certificateTitle: "문서가 아니라 생산 현장에서 작동하는 품질 기준",
+    certificateCopy: "전용 검사와 정밀 측정 결과를 공정 조건, 교정, 출하 판정에 연결합니다. IATF 16949와 현대모비스 MSQ 인증은 이 운영 체계를 고객 기준으로 검증한 결과입니다.",
+    certificateView: "원본 인증서 보기",
+    iatf: "IATF 16949 품질경영시스템",
+    msq: "현대모비스 MSQ 공급사 품질 인증",
+  },
+  en: {
+    companyLink: "View company profile",
+    productActual: "Production part",
+    productSystem: "Application system",
+    manufacturingLink: "View all capabilities",
+    processStep: "Core process",
+    qualityEyebrow: "QUALITY ASSURANCE",
+    qualityLink: "View quality system",
+    certificateEyebrow: "CERTIFIED QUALITY SYSTEM",
+    certificateTitle: "Quality standards that operate on the production floor",
+    certificateCopy: "Dedicated inspection and precision measurement feed back into process settings, straightening, and shipment decisions. IATF 16949 and Hyundai Mobis MSQ certify this operating system against customer requirements.",
+    certificateView: "View original certificate",
+    iatf: "IATF 16949 Quality Management System",
+    msq: "Hyundai Mobis MSQ Supplier Quality",
+  },
+  ja: {
+    companyLink: "会社情報を見る",
+    productActual: "実際の生産部品",
+    productSystem: "適用システム",
+    manufacturingLink: "生産技術一覧を見る",
+    processStep: "主要工程",
+    qualityEyebrow: "QUALITY ASSURANCE",
+    qualityLink: "品質システムを見る",
+    certificateEyebrow: "CERTIFIED QUALITY SYSTEM",
+    certificateTitle: "生産現場で機能する品質基準",
+    certificateCopy: "専用検査と精密測定の結果を工程条件、矯正、出荷判定へつなぎます。IATF 16949と現代モービスMSQ認証は、この運用体制を顧客基準で検証した結果です。",
+    certificateView: "認証書原本を見る",
+    iatf: "IATF 16949 品質マネジメントシステム",
+    msq: "現代モービスMSQサプライヤー品質認証",
+  },
+} satisfies Record<RenewalLanguage, Record<string, string>>;
 
 const renewalPartners = [
-  { name: "Dauch Corporation", market: "USA", logo: dauchLogo, href: "https://www.dauch.com/" },
+  { name: "Dauch Corporation (AAM)", market: "USA", logo: dauchLogo, href: "https://www.aam.com/" },
   { name: "Spartan Light Metal Products", market: "USA", logo: spartanLogo, href: "https://spartanlmp.com/" },
   {
     name: "ZF TRW",
@@ -664,69 +720,6 @@ function useRevealObserver() {
     nodes.forEach((node) => observer.observe(node));
     return () => observer.disconnect();
   }, []);
-}
-
-function useStickyScene(ref: React.RefObject<HTMLElement | null>, itemCount: number) {
-  const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const node = ref.current;
-      if (!node) return;
-      const rect = node.getBoundingClientRect();
-      const travel = Math.max(1, rect.height - window.innerHeight);
-      const progress = Math.min(1, Math.max(0, -rect.top / travel));
-      const next = Math.min(itemCount - 1, Math.floor(progress * itemCount));
-      setActive((current) => (current === next ? current : next));
-    };
-    const onScroll = () => {
-      if (!frame) frame = window.requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [itemCount, ref]);
-
-  return active;
-}
-
-function useSectionProgress(ref: React.RefObject<HTMLElement | null>) {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const node = ref.current;
-      if (!node) return;
-      const rect = node.getBoundingClientRect();
-      const viewport = window.innerHeight || 1;
-      const next = Math.min(1, Math.max(0, (viewport - rect.top) / (rect.height + viewport * 0.35)));
-      setProgress((current) => (Math.abs(current - next) < 0.004 ? current : next));
-    };
-    const onScroll = () => {
-      if (!frame) frame = window.requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [ref]);
-
-  return progress;
 }
 
 function RenewalHero({ copy, reducedMotion }: { copy: RenewalCopy; reducedMotion: boolean }) {
@@ -775,7 +768,7 @@ function RenewalHero({ copy, reducedMotion }: { copy: RenewalCopy; reducedMotion
         </button>
       </div>
 
-      <button className="renewal-scroll-cue" type="button" onClick={() => scrollToSection("renewal-process")}>
+      <button className="renewal-scroll-cue" type="button" onClick={() => scrollToSection("renewal-company")}>
         <span>SCROLL</span>
         <i />
       </button>
@@ -783,82 +776,39 @@ function RenewalHero({ copy, reducedMotion }: { copy: RenewalCopy; reducedMotion
   );
 }
 
-function ProcessSection({ copy, reducedMotion }: { copy: RenewalCopy; reducedMotion: boolean }) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const active = useStickyScene(sectionRef, copy.process.items.length);
-  const item = copy.process.items[active];
+function CompanySection({ language }: { language: RenewalLanguage }) {
+  const profile = companyOverviewCopy[language];
+  const ui = homeUiCopy[language];
 
-  return (
-    <section className="renewal-process" id="renewal-process" ref={sectionRef}>
-      <div className="renewal-process__sticky">
-        <div className="renewal-process__background" aria-hidden="true">
-          <span>PRECISION</span>
-          <span>PROCESS</span>
-        </div>
-        <div className="renewal-process__heading">
-          <span>{copy.process.eyebrow}</span>
-          <h2>
-            {copy.process.title.map((line) => (
-              <span key={line}>{line}</span>
-            ))}
-          </h2>
-        </div>
-        <div className="renewal-process__stage">
-          <div className="renewal-process__card" key={`${active}-${item.title}`}>
-            <div className="renewal-process__media">
-              <video
-                src={processMedia[active].video}
-                poster={processMedia[active].poster}
-                autoPlay={!reducedMotion}
-                muted
-                loop
-                playsInline
-                preload="metadata"
-              />
-              <div className="renewal-process__media-meta">
-                <span>{String(active + 1).padStart(2, "0")}</span>
-                <div>
-                  {copy.process.items.map((processItem, index) => (
-                    <i className={active === index ? "is-active" : ""} key={processItem.title} />
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="renewal-process__copy">
-              <span>{item.kicker}</span>
-              <h3>{item.title}</h3>
-              <p>{item.copy}</p>
-              <strong>{item.detail}</strong>
-            </div>
-          </div>
-          <div className="renewal-process__counter" aria-hidden="true">
-            <strong>{String(active + 1).padStart(2, "0")}</strong>
-            <span />
-            <small>{String(copy.process.items.length).padStart(2, "0")}</small>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CompanySection({ copy }: { copy: RenewalCopy }) {
   return (
     <section className="renewal-company" id="renewal-company">
-      <div className="renewal-company__line" aria-hidden="true">
-        <span>SEOUL INDUSTRY</span>
-      </div>
       <div className="renewal-company__inner">
-        <span data-renewal-reveal>{copy.company.eyebrow}</span>
-        <h2 data-renewal-reveal>
-          {copy.company.title.map((line) => (
-            <span key={line}>{line}</span>
-          ))}
-        </h2>
-        <div className="renewal-company__bottom" data-renewal-reveal>
-          <p>{copy.company.copy}</p>
-          <a href="#/company/history" className="renewal-arrow-link">
-            <span>{copy.company.link}</span>
+        <figure className="renewal-company__visual" data-renewal-reveal>
+          <img src={facadeImage} alt="Seoul Industry" />
+          <figcaption>
+            <span>SINCE</span>
+            <strong>1985</strong>
+          </figcaption>
+        </figure>
+        <div className="renewal-company__content">
+          <span data-renewal-reveal>{profile.eyebrow}</span>
+          <h2 data-renewal-reveal>{profile.title}</h2>
+          <p data-renewal-reveal>{profile.copy}</p>
+          <dl className="renewal-company__facts" data-renewal-reveal>
+            {profile.facts.map((fact) => (
+              <div key={fact.label}>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="renewal-company__systems" data-renewal-reveal>
+            {profile.systems.map((system) => (
+              <span key={system}>{system}</span>
+            ))}
+          </div>
+          <a href="#/company/overview" className="renewal-arrow-link" data-renewal-reveal>
+            <span>{ui.companyLink}</span>
             <Icon name="arrow" />
           </a>
         </div>
@@ -867,9 +817,11 @@ function CompanySection({ copy }: { copy: RenewalCopy }) {
   );
 }
 
-function ProductsSection({ copy }: { copy: RenewalCopy }) {
+function ProductsSection({ copy, language }: { copy: RenewalCopy; language: RenewalLanguage }) {
+  const ui = homeUiCopy[language];
+
   return (
-    <section className="renewal-products" id="renewal-products">
+    <section className="renewal-products renewal-portfolio" id="renewal-products">
       <div className="renewal-section-heading" data-renewal-reveal>
         <div>
           <span>{copy.products.eyebrow}</span>
@@ -881,66 +833,84 @@ function ProductsSection({ copy }: { copy: RenewalCopy }) {
         </a>
       </div>
       <div className="renewal-products__grid">
-        {copy.products.items.map((item, index) => (
-          <a href={productRoutes[index]} className="renewal-product-card" data-renewal-reveal key={item.title}>
-            <div className="renewal-product-card__top">
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{item.category}</strong>
-            </div>
-            <div className="renewal-product-card__image">
-              <img src={productImages[index]} alt="" />
-            </div>
-            <div className="renewal-product-card__copy">
-              <h3>{item.title}</h3>
-              <p>{item.copy}</p>
-              <Icon name="arrow" />
-            </div>
-          </a>
-        ))}
+        {copy.products.items.map((item, index) => {
+          const catalog = productPartCatalogByRoute[productRouteKeys[index]];
+          const actualPart = catalog.parts[0];
+
+          return (
+            <a href={productRoutes[index]} className="renewal-product-card" data-renewal-reveal key={item.title}>
+              <div className="renewal-product-card__top">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{item.category}</strong>
+              </div>
+              <div className="renewal-product-card__image">
+                <img src={productImages[index]} alt={`${item.title} ${ui.productSystem}`} />
+                <span>{ui.productSystem}</span>
+              </div>
+              <div className="renewal-product-card__actual">
+                <img src={actualPart.poster} alt={actualPart.title[language]} loading="lazy" />
+                <span>
+                  <small>{ui.productActual}</small>
+                  <strong>{actualPart.title[language]}</strong>
+                </span>
+              </div>
+              <div className="renewal-product-card__copy">
+                <h3>{item.title}</h3>
+                <p>{item.copy}</p>
+                <Icon name="arrow" />
+              </div>
+            </a>
+          );
+        })}
       </div>
     </section>
   );
 }
 
-function PrinciplesSection({ copy }: { copy: RenewalCopy }) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const progress = useSectionProgress(sectionRef);
+function ManufacturingSection({ language, reducedMotion }: { language: RenewalLanguage; reducedMotion: boolean }) {
+  const copy = manufacturingPageCopy[language];
+  const ui = homeUiCopy[language];
 
   return (
-    <section className="renewal-principles" id="renewal-principles" ref={sectionRef}>
-      <div className="renewal-principles__word" aria-hidden="true">
-        SEOUL INDUSTRY
-      </div>
-      <div className="renewal-principles__heading" data-renewal-reveal>
-        <span>{copy.principles.eyebrow}</span>
-        <h2>
-          {copy.principles.title.map((line) => (
-            <span key={line}>{line}</span>
-          ))}
-        </h2>
-        <p>{copy.principles.copy}</p>
+    <section className="renewal-capability" id="renewal-process">
+      <div className="renewal-capability__heading" data-renewal-reveal>
+        <div>
+          <span>{copy.eyebrow}</span>
+          <h2>{copy.title}</h2>
+          <p>{copy.copy}</p>
+        </div>
         <a href="#/manufacturing/process" className="renewal-arrow-link">
-          <span>{copy.principles.link}</span>
+          <span>{ui.manufacturingLink}</span>
           <Icon name="arrow" />
         </a>
       </div>
-      <div className="renewal-principles__cards">
-        {copy.principles.items.map((item, index) => {
-          const offset = Math.max(0, 1 - progress) * (index % 2 === 0 ? 110 : 165);
-          return (
-            <article className="renewal-principle-card" style={{ transform: `translate3d(0, ${offset}px, 0)` }} key={item.title}>
-              <div className="renewal-principle-card__media">
-                <img src={principleImages[index]} alt={item.title} loading="lazy" />
-                <span>{String(index + 1).padStart(2, "0")}</span>
-              </div>
-              <div className="renewal-principle-card__copy">
-                <h3>{item.title}</h3>
-                <p>{item.copy}</p>
-                <strong>{item.detail}</strong>
-              </div>
-            </article>
-          );
-        })}
+      <div className="renewal-capability__grid">
+        {featuredProcesses.map((process, index) => (
+          <article className={index === 0 ? "is-featured" : ""} data-renewal-reveal key={process.id}>
+            <figure>
+              {process.video ? (
+                <video
+                  src={process.video}
+                  poster={process.image}
+                  autoPlay={!reducedMotion}
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                />
+              ) : (
+                <img src={process.image} alt={process.title} loading="lazy" />
+              )}
+              <figcaption>{String(index + 1).padStart(2, "0")}</figcaption>
+            </figure>
+            <div>
+              <span>{ui.processStep}</span>
+              <h3>{process.title}</h3>
+              <p>{process.copy[language]}</p>
+              <strong>{process.capability[language]}</strong>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -994,45 +964,102 @@ function PartnersSection({ copy }: { copy: RenewalCopy }) {
   );
 }
 
-function NewsSection({ copy }: { copy: RenewalCopy }) {
-  const railRef = useRef<HTMLDivElement>(null);
-
-  const move = (direction: number) => {
-    railRef.current?.scrollBy({ left: direction * railRef.current.clientWidth * 0.82, behavior: "smooth" });
-  };
+function QualitySection({ language, reducedMotion }: { language: RenewalLanguage; reducedMotion: boolean }) {
+  const evidence = qualityEvidenceCopy[language];
+  const ui = homeUiCopy[language];
 
   return (
-    <section className="renewal-news" id="renewal-news">
-      <div className="renewal-section-heading" data-renewal-reveal>
+    <section className="renewal-quality" id="renewal-principles">
+      <div className="renewal-quality__heading" data-renewal-reveal>
         <div>
-          <span>{copy.news.eyebrow}</span>
-          <h2>{copy.news.title}</h2>
+          <span>{ui.qualityEyebrow}</span>
+          <h2>{evidence.title}</h2>
+          <p>{evidence.copy}</p>
         </div>
-        <div className="renewal-news__controls">
-          <button type="button" onClick={() => move(-1)} aria-label={copy.prev}>
-            <Icon name="arrow" className="is-reversed" />
-          </button>
-          <button type="button" onClick={() => move(1)} aria-label={copy.next}>
-            <Icon name="arrow" />
-          </button>
+        <a href="#/quality/system" className="renewal-arrow-link">
+          <span>{ui.qualityLink}</span>
+          <Icon name="arrow" />
+        </a>
+      </div>
+      <div className="renewal-quality__body">
+        <figure className="renewal-quality__inspection" data-renewal-reveal>
+          <video
+            src={qualityVideo}
+            poster={qualityPoster}
+            autoPlay={!reducedMotion}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+          <figcaption>
+            <span>01</span>
+            <strong>PRECISION INSPECTION</strong>
+          </figcaption>
+        </figure>
+        <div className="renewal-quality__certificates">
+          <header data-renewal-reveal>
+            <span>{ui.certificateEyebrow}</span>
+            <h3>{ui.certificateTitle}</h3>
+            <p>{ui.certificateCopy}</p>
+          </header>
+          <div>
+            <a href={iatfCertificatePdf} target="_blank" rel="noreferrer" data-renewal-reveal>
+              <figure>
+                <img src={iatfCertificateImage} alt={ui.iatf} loading="lazy" />
+              </figure>
+              <span>
+                <strong>{ui.iatf}</strong>
+                <small>{ui.certificateView}</small>
+              </span>
+              <Icon name="arrow" />
+            </a>
+            <a href={msqCertificateImage} target="_blank" rel="noreferrer" data-renewal-reveal>
+              <figure>
+                <img src={msqCertificateImage} alt={ui.msq} loading="lazy" />
+              </figure>
+              <span>
+                <strong>{ui.msq}</strong>
+                <small>{ui.certificateView}</small>
+              </span>
+              <Icon name="arrow" />
+            </a>
+          </div>
         </div>
       </div>
-      <div className="renewal-news__rail" ref={railRef}>
-        {copy.news.items.map((item, index) => (
-          <a href="#/company/notices" className="renewal-news-card" key={item.title}>
-            <div className="renewal-news-card__image">
-              <img src={newsImages[index]} alt="" />
-              <span>{item.category}</span>
-            </div>
-            <div>
-              <h3>{item.title}</h3>
-              <time>{item.date}</time>
-            </div>
-          </a>
-        ))}
-      </div>
-      <a href="#/company/notices" className="renewal-news__all">
-        <span>{copy.news.link}</span>
+    </section>
+  );
+}
+
+function SustainabilityBridge({ language }: { language: RenewalLanguage }) {
+  const copy = {
+    ko: {
+      eyebrow: "SUSTAINABLE MANUFACTURING",
+      title: "정밀가공의 책임을 환경·안전·윤리 기준으로 이어갑니다.",
+      text: "에너지와 자원 사용을 줄이고, 안전한 작업환경과 투명한 거래 기준을 지키며 지속 가능한 제조 파트너십을 구축합니다.",
+      link: "지속가능경영 정책 보기",
+    },
+    en: {
+      eyebrow: "SUSTAINABLE MANUFACTURING",
+      title: "Extending precision manufacturing into environmental, safety, and ethical standards.",
+      text: "We reduce energy and resource use, protect workplace safety, and maintain transparent business standards for long-term manufacturing partnerships.",
+      link: "View sustainability policy",
+    },
+    ja: {
+      eyebrow: "SUSTAINABLE MANUFACTURING",
+      title: "精密加工の責任を環境・安全・倫理基準へつなげます。",
+      text: "エネルギーと資源使用を減らし、安全な職場と透明な取引基準を守り、持続可能な製造パートナーシップを築きます。",
+      link: "持続可能経営方針を見る",
+    },
+  }[language];
+
+  return (
+    <section className="renewal-sustainability" data-renewal-reveal>
+      <span>{copy.eyebrow}</span>
+      <h2>{copy.title}</h2>
+      <p>{copy.text}</p>
+      <a href="#/sustainability/policy" className="renewal-arrow-link">
+        <span>{copy.link}</span>
         <Icon name="arrow" />
       </a>
     </section>
@@ -1089,12 +1116,12 @@ export default function RenewalPage() {
       <RenewalSiteHeader language={language} onLanguageChange={setLanguage} />
       <main>
         <RenewalHero copy={copy} reducedMotion={reducedMotion} />
-        <ProcessSection copy={copy} reducedMotion={reducedMotion} />
-        <CompanySection copy={copy} />
-        <ProductsSection copy={copy} />
-        <PrinciplesSection copy={copy} />
+        <CompanySection language={language} />
+        <ProductsSection copy={copy} language={language} />
+        <ManufacturingSection language={language} reducedMotion={reducedMotion} />
+        <QualitySection language={language} reducedMotion={reducedMotion} />
         <PartnersSection copy={copy} />
-        <NewsSection copy={copy} />
+        <SustainabilityBridge language={language} />
         <ContactSection copy={copy} />
       </main>
       <RenewalSiteFooter language={language} />

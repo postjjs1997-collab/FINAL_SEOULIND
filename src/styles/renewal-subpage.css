@@ -3049,6 +3049,215 @@
   }
 }
 
+/* Actual product lineup: application image first, manufactured parts second */
+.renewal-sub-product-detail,
+.renewal-sub-product-detail figure {
+  min-height: 680px;
+}
+
+.renewal-sub-product-lineup {
+  padding: clamp(96px, 9vw, 148px) 5vw;
+  background: #f3f0ea;
+  color: #171717;
+}
+
+.renewal-sub-product-lineup > header {
+  display: grid;
+  max-width: 1500px;
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.65fr);
+  gap: 30px 90px;
+  margin: 0 auto 58px;
+}
+
+.renewal-sub-product-lineup > header > span {
+  grid-column: 1 / -1;
+  color: var(--renewal-orange);
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.renewal-sub-product-lineup > header h2 {
+  margin: 0;
+  font-size: clamp(2.8rem, 4.6vw, 5.6rem);
+  line-height: 1.04;
+  word-break: keep-all;
+}
+
+.renewal-sub-product-lineup > header p {
+  align-self: end;
+  margin: 0;
+  color: #65615a;
+  font-size: 0.96rem;
+  font-weight: 600;
+  line-height: 1.85;
+  word-break: keep-all;
+}
+
+.renewal-sub-product-lineup__grid {
+  display: grid;
+  max-width: 1500px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0 auto;
+}
+
+.renewal-sub-product-lineup__grid.is-count-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.renewal-sub-product-lineup__grid article {
+  display: grid;
+  min-width: 0;
+  overflow: hidden;
+  background: #151515;
+  color: #fff;
+}
+
+.renewal-sub-product-lineup__grid figure {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  margin: 0;
+  overflow: hidden;
+  background: #030303;
+}
+
+.renewal-sub-product-lineup__grid video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.7s var(--ease-out);
+}
+
+.renewal-sub-product-lineup__grid article:hover video {
+  transform: scale(1.035);
+}
+
+.renewal-sub-product-lineup__grid figure::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 62%, rgba(0, 0, 0, 0.62));
+  content: "";
+  pointer-events: none;
+}
+
+.renewal-sub-product-lineup__grid figcaption {
+  position: absolute;
+  z-index: 1;
+  right: 20px;
+  bottom: 16px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.renewal-sub-product-lineup__grid figcaption span {
+  color: var(--renewal-orange);
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.renewal-sub-product-lineup__grid figcaption small {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.58rem;
+  font-weight: 800;
+}
+
+.renewal-sub-product-lineup__grid article > div {
+  min-height: 184px;
+  padding: 28px 30px 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.renewal-sub-product-lineup__grid article > div > span {
+  color: var(--renewal-orange);
+  font-size: 0.6rem;
+  font-weight: 900;
+}
+
+.renewal-sub-product-lineup__grid h3 {
+  margin: 12px 0 14px;
+  font-size: clamp(1.55rem, 2.2vw, 2.6rem);
+  line-height: 1.14;
+  word-break: keep-all;
+}
+
+.renewal-sub-product-lineup__grid p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+@media (max-width: 1080px) {
+  .renewal-sub-product-lineup > header {
+    grid-template-columns: 1fr;
+  }
+
+  .renewal-sub-product-lineup__grid.is-count-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .renewal-sub-product-lineup__grid.is-count-3 article:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .renewal-sub-product-lineup__grid.is-count-3 article:first-child figure {
+    aspect-ratio: 16 / 8;
+  }
+}
+
+@media (max-width: 720px) {
+  .renewal-sub-product-detail,
+  .renewal-sub-product-detail figure {
+    min-height: 0;
+  }
+
+  .renewal-sub-product-lineup {
+    padding: 82px 22px;
+  }
+
+  .renewal-sub-product-lineup > header {
+    margin-bottom: 38px;
+  }
+
+  .renewal-sub-product-lineup > header h2 {
+    font-size: 1.95rem;
+  }
+
+  .renewal-sub-product-lineup > header,
+  .renewal-sub-product-lineup > header > *,
+  .renewal-sub-product-lineup__grid,
+  .renewal-sub-product-lineup__grid article {
+    width: 100%;
+    min-width: 0;
+  }
+
+  :lang(ja) .renewal-sub-product-lineup > header h2,
+  :lang(ja) .renewal-sub-product-lineup > header p,
+  :lang(ja) .renewal-sub-product-lineup__grid h3,
+  :lang(ja) .renewal-sub-product-lineup__grid p {
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .renewal-sub-product-lineup__grid,
+  .renewal-sub-product-lineup__grid.is-count-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .renewal-sub-product-lineup__grid.is-count-3 article:first-child {
+    grid-column: auto;
+  }
+
+  .renewal-sub-product-lineup__grid.is-count-3 article:first-child figure,
+  .renewal-sub-product-lineup__grid figure {
+    aspect-ratio: 4 / 3;
+  }
+}
+
 /* Company profile and manufacturing content sourced from the company deck */
 .profile-overview {
   display: grid;
