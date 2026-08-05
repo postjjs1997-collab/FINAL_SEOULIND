@@ -4,7 +4,7 @@ import certificationImage from "../../certification.png";
 import drivelineImage from "../../assets/product-lineup/driveline.jpg";
 import automotiveImage from "../../assets/product-lineup/electric-vehicle.jpg";
 import balanceModuleImage from "../../assets/product-lineup/balance-module.jpg";
-import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
+import powertrainImage from "../../assets/video-posters/powertrain/8l90-output-shafts.jpg";
 import precisionHeroImage from "../../precision-inside-mobility.jpg";
 import steeringImage from "../../assets/product-lineup/steering.jpg";
 import factoryOverviewImage from "../../assets/company-profile/factory.webp";
@@ -405,8 +405,8 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     groupTitle: "제품정보",
     eyebrow: "Powertrain",
     title: "POWERTRAIN",
-    lead: "엔진과 동력전달계의 열·진동 조건을 견디는 하우징, 기어, 샤프트 계열 부품을 생산합니다.",
-    heroCopy: "가공 조건과 검사 데이터를 연결해 장기 양산에서도 흔들리지 않는 동력계 부품 품질을 유지합니다.",
+    lead: "Powertrain Shaft와 Sun Gear Output Shaft, 엔진·감속기용 Clutch Hub와 Disc Carrier 계열을 생산합니다.",
+    heroCopy: "샤프트 정밀도와 허브 조립면, 레이저 용접 조건을 연결해 회전계 부품의 반복 품질을 관리합니다.",
     image: powertrainImage,
     imagePosition: "center 70%",
   },
@@ -416,8 +416,8 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     groupTitle: "제품정보",
     eyebrow: "Driveline",
     title: "DRIVELINE",
-    lead: "변속기 샤프트, 하프·스텁 액슬 등 바퀴까지 동력을 전달하는 구동계 부품을 정밀가공합니다.",
-    heroCopy: "동심도, 런아웃, 스플라인과 표면 품질을 관리해 구동계 조립 신뢰성을 높입니다.",
+    lead: "8L90 Input Shaft, Transfer Case Actuator Shaft와 10R TRS Stator Shaft 계열을 생산합니다.",
+    heroCopy: "스플라인과 크로스홀, 동심도, 런아웃을 관리해 변속기·트랜스퍼 케이스 조립 신뢰성을 높입니다.",
     image: drivelineImage,
     imagePosition: "center",
   },
@@ -585,8 +585,8 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
     "company/location": { groupTitle: "Company", title: "Location", lead: "Seoul Industry's head office and precision-machining plant are located in Yanggam-myeon, Hwaseong.", heroCopy: "Please coordinate your visit in advance so we can arrange site access and meetings smoothly." },
     "company/notices": { groupTitle: "Company", title: "Notices", lead: "Review Seoul Industry updates on products, quality, recruitment, and company operations.", heroCopy: "We provide customers and partners with accurate company information in a timely manner." },
     "products/electric-vehicle": { groupTitle: "Products", lead: "Precision-machined parts for reduction gears, e-Drive systems, and EV axles.", heroCopy: "Assembly fit, repeat accuracy, and durability are controlled for stable EV drivetrain production." },
-    "products/powertrain": { groupTitle: "Products", lead: "Housings, gears, and shafts engineered for powertrain heat and vibration conditions.", heroCopy: "Process settings and inspection data are connected to hold quality over long production runs." },
-    "products/driveline": { groupTitle: "Products", lead: "Precision transmission shafts, half shafts, and stub axles that carry power to the wheels.", heroCopy: "Concentricity, runout, splines, and surface quality are controlled for reliable driveline assembly." },
+    "products/powertrain": { groupTitle: "Products", lead: "Powertrain shafts, sun-gear output shafts, clutch hubs, and disc carriers for engine and reduction systems.", heroCopy: "Shaft accuracy, hub interfaces, and laser-welded assemblies are controlled for repeatable rotating-part quality." },
+    "products/driveline": { groupTitle: "Products", lead: "8L90 input shafts, transfer-case actuator shafts, and 10R TRS stator shafts.", heroCopy: "Splines, cross holes, concentricity, and runout are controlled for reliable transmission and transfer-case assembly." },
     "products/balance-shaft-module": { groupTitle: "Products", lead: "Aluminum housings and machined parts for balance shaft modules that reduce engine vibration and noise.", heroCopy: "Complex geometry, assembly faces, and bearing areas are controlled for rotational stability and durability." },
     "products/steering": { groupTitle: "Products", lead: "Critical steering parts including pinion shafts and torsion bars.", heroCopy: "Gear and spline machining, heat treatment, and runout inspection keep steering input precise." },
     "products/etc": { groupTitle: "Products", lead: "Custom machining for gears, splines, shafts, and housings based on customer drawings.", heroCopy: "We propose production methods from feasibility review and prototypes through process design and mass production." },
@@ -609,8 +609,8 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
     "company/location": { groupTitle: "企業情報", title: "アクセス", lead: "ソウル産業の本社と精密加工工場は京畿道華城市楊甘面にあります。", heroCopy: "ご訪問前に担当者と日程をご調整いただくと、入場と打ち合わせを円滑にご案内できます。" },
     "company/notices": { groupTitle: "企業情報", title: "お知らせ", lead: "製品、品質、採用、会社運営に関するソウル産業の主要情報をご覧いただけます。", heroCopy: "お客様と協力会社に必要な会社情報を正確かつ迅速にお伝えします。" },
     "products/electric-vehicle": { groupTitle: "製品情報", lead: "減速機、e-Drive、EV駆動軸に適用される精密加工部品を生産します。", heroCopy: "組立整合性、反復精度、耐久条件を管理し、EV駆動系の安定した量産品質を確保します。" },
-    "products/powertrain": { groupTitle: "製品情報", lead: "パワートレインの熱・振動条件に対応するハウジング、ギヤ、シャフト部品を生産します。", heroCopy: "加工条件と検査データをつなぎ、長期量産でも安定した品質を維持します。" },
-    "products/driveline": { groupTitle: "製品情報", lead: "トランスミッションシャフト、ハーフ・スタブアクスルなどの駆動系部品を精密加工します。", heroCopy: "同心度、振れ、スプライン、表面品質を管理し、駆動系の組立信頼性を高めます。" },
+    "products/powertrain": { groupTitle: "製品情報", lead: "Powertrain Shaft、Sun Gear Output Shaft、エンジン・減速機向けClutch Hub、Disc Carrierを生産します。", heroCopy: "シャフト精度、ハブ組立面、レーザー溶接条件を管理し、回転系部品の反復品質を維持します。" },
+    "products/driveline": { groupTitle: "製品情報", lead: "8L90 Input Shaft、Transfer Case Actuator Shaft、10R TRS Stator Shaft系列を生産します。", heroCopy: "スプライン、クロスホール、同心度、振れを管理し、トランスミッションとTransfer Caseの組立信頼性を高めます。" },
     "products/balance-shaft-module": { groupTitle: "製品情報", lead: "エンジンの振動と騒音を低減するバランスシャフトモジュール部品を生産します。", heroCopy: "複合形状、組立面、ベアリング部の寸法を管理し、回転安定性と耐久性を確保します。" },
     "products/steering": { groupTitle: "製品情報", lead: "Pinion Shaft、Torsion Barなど操舵応答と安全性を左右する部品を生産します。", heroCopy: "ギヤ・スプライン加工、熱処理、振れ検査をつなぎ、操舵入力を正確に伝えます。" },
     "products/etc": { groupTitle: "製品情報", lead: "顧客図面に合わせてギヤ、スプライン、シャフト、ハウジングをカスタム加工します。", heroCopy: "開発検討、試作、工程設計、量産移管までプロジェクトに合う生産方式を提案します。" },

@@ -8,7 +8,7 @@ import balanceModuleImage from "../../assets/product-lineup/balance-module.jpg";
 import automotiveImage from "../../assets/product-lineup/electric-vehicle.jpg";
 import steeringImage from "../../assets/product-lineup/steering.jpg";
 import drivelineImage from "../../assets/product-lineup/driveline.jpg";
-import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
+import powertrainImage from "../../assets/video-posters/powertrain/8l90-output-shafts.jpg";
 import precisionImage from "../../precision-inside-mobility.jpg";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import sustainabilityPolicyDocument from "../../assets/documents/sustainability-management-policy-seoul-industry.docx?url";
@@ -561,8 +561,8 @@ const productRouteImages: Record<string, string> = {
 
 const productStandards: Record<string, string[]> = {
   "products/electric-vehicle": ["e-DRIVE HOUSING", "REDUCTION GEAR", "EV HALF SHAFT", "ASSEMBLY FIT"],
-  "products/powertrain": ["POWERTRAIN SHAFT", "HUB", "DISC CARRIER", "LASER WELDING"],
-  "products/driveline": ["OUTPUT SHAFT", "HALF / STUB AXLE", "RUNOUT", "SPLINE QUALITY"],
+  "products/powertrain": ["SUN GEAR OUTPUT SHAFT", "CLUTCH HUB", "DISC CARRIER", "LASER WELDING"],
+  "products/driveline": ["8L90 INPUT SHAFT", "TRANSFER CASE ACTUATOR", "10R TRS STATOR", "SPLINE / CROSS HOLE"],
   "products/balance-shaft-module": ["AL HOUSING", "BEARING BORE", "ASSEMBLY FACE", "VIBRATION CONTROL"],
   "products/steering": ["PINION SHAFT", "TORSION BAR", "GEAR PROFILE", "SAFETY CHARACTERISTIC"],
   "products/etc": ["DRAWING REVIEW", "PROTOTYPE", "PROCESS DESIGN", "CUSTOM OEM"],

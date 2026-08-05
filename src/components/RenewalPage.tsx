@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import balanceModuleImage from "../../assets/product-lineup/balance-module.jpg";
 import drivelineImage from "../../assets/product-lineup/driveline.jpg";
 import electricVehicleImage from "../../assets/product-lineup/electric-vehicle.jpg";
-import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
+import powertrainImage from "../../assets/video-posters/powertrain/8l90-output-shafts.jpg";
 import steeringImage from "../../assets/product-lineup/steering.jpg";
 import heroVideo from "../../assets/hero3.mp4";
 import heroPoster from "../../assets/hero3-poster.jpg";
@@ -208,8 +208,8 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       link: "제품 전체 보기",
       items: [
         { title: "Electric Vehicle", category: "EV", copy: "전동화 플랫폼의 조립성과 내구 조건을 고려한 정밀 부품" },
-        { title: "Powertrain", category: "POWERTRAIN", copy: "엔진의 캠샤프트와 밸브 타이밍 영역에 적용되는 정밀가공 부품" },
-        { title: "Driveline", category: "DRIVELINE", copy: "동력 전달과 조립 안정성을 위한 핵심 구동계 부품" },
+        { title: "Powertrain", category: "POWERTRAIN", copy: "Powertrain Shaft와 Sun Gear Output Shaft, Clutch Hub·Disc Carrier 계열" },
+        { title: "Driveline", category: "DRIVELINE", copy: "8L90 Input Shaft와 Transfer Case Actuator·10R TRS Stator Shaft 계열" },
         { title: "Balance Shaft Module", category: "BSM", copy: "진동 저감과 동력 효율을 위한 밸런스 샤프트 모듈 가공 부품" },
         { title: "Steering", category: "STEERING", copy: "조향 응답성과 안전 품질을 지지하는 피니언 샤프트 계열" },
       ],
@@ -375,8 +375,8 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       link: "View all products",
       items: [
         { title: "Electric Vehicle", category: "EV", copy: "Precision parts engineered for EV platform assembly and durability." },
-        { title: "Powertrain", category: "POWERTRAIN", copy: "Precision components for engine camshaft and valve-timing systems." },
-        { title: "Driveline", category: "DRIVELINE", copy: "Core driveline components for reliable power delivery and assembly." },
+        { title: "Powertrain", category: "POWERTRAIN", copy: "Powertrain shafts, sun-gear output shafts, clutch hubs, and disc carriers." },
+        { title: "Driveline", category: "DRIVELINE", copy: "8L90 input, transfer-case actuator, and 10R TRS stator shafts." },
         { title: "Balance Shaft Module", category: "BSM", copy: "Machined balance shaft module parts for vibration control and power efficiency." },
         { title: "Steering", category: "STEERING", copy: "Pinion shaft components supporting steering response and safety." },
       ],
@@ -542,8 +542,8 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       link: "全製品を見る",
       items: [
         { title: "Electric Vehicle", category: "EV", copy: "EVプラットフォームの組立性と耐久性を考慮した精密部品" },
-        { title: "Powertrain", category: "POWERTRAIN", copy: "エンジンのカムシャフトとバルブタイミング領域に適用される精密加工部品" },
-        { title: "Driveline", category: "DRIVELINE", copy: "動力伝達と組立安定性を支える主要駆動系部品" },
+        { title: "Powertrain", category: "POWERTRAIN", copy: "Powertrain Shaft、Sun Gear Output Shaft、Clutch Hub、Disc Carrier系列" },
+        { title: "Driveline", category: "DRIVELINE", copy: "8L90 Input、Transfer Case Actuator、10R TRS Stator Shaft系列" },
         { title: "Balance Shaft Module", category: "BSM", copy: "振動低減と動力効率を支えるバランスシャフトモジュール加工部品" },
         { title: "Steering", category: "STEERING", copy: "操舵応答性と安全品質を支えるピニオンシャフト系部品" },
       ],

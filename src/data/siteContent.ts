@@ -103,6 +103,18 @@ function applyKoreanCopy(content: SiteContent) {
   Object.assign(content.hero, {
     fillLines: ["도면 검토부터 양산 공급까지,", "자동차 부품 OEM 생산을 끝까지 책임집니다."],
   });
+  Object.assign(content.products[3], {
+    copy: "Powertrain Shaft와 Sun Gear Output Shaft, Clutch Hub·Disc Carrier 계열 부품",
+  });
+  Object.assign(content.products[4], {
+    copy: "8L90 Input Shaft, Transfer Case Actuator Shaft, 10R TRS Stator Shaft 계열 부품",
+  });
+  Object.assign(content.latestParts[3], {
+    copy: "엔진·감속기용 Powertrain Shaft와 Clutch Hub·Disc Carrier 계열 부품",
+  });
+  Object.assign(content.latestParts[4], {
+    copy: "변속기·Transfer Case용 Input·Actuator·Stator Shaft 계열 부품",
+  });
 
   content.highlights = patchById<Highlight>(content.highlights, [
     {
@@ -213,6 +225,18 @@ function applyKoreanCopy(content: SiteContent) {
 function applyEnglishCopy(content: SiteContent) {
   Object.assign(content.hero, {
     fillLines: ["From the first drawing to full production,", "we engineer the precision behind every OEM part."],
+  });
+  Object.assign(content.products[3], {
+    copy: "Powertrain shafts, sun-gear output shafts, clutch hubs, and disc carriers.",
+  });
+  Object.assign(content.products[4], {
+    copy: "8L90 input shafts, transfer-case actuator shafts, and 10R TRS stator shafts.",
+  });
+  Object.assign(content.latestParts[3], {
+    copy: "Powertrain shafts, clutch hubs, and disc carriers for engines and reduction systems.",
+  });
+  Object.assign(content.latestParts[4], {
+    copy: "Input, actuator, and stator shafts for transmissions and transfer cases.",
   });
 
   content.highlights = patchById<Highlight>(content.highlights, [
@@ -325,6 +349,18 @@ function applyEnglishCopy(content: SiteContent) {
 function applyJapaneseCopy(content: SiteContent) {
   Object.assign(content.hero, {
     fillLines: ["図面の検討から量産供給まで。", "OEM部品の精度を、工程で造り込みます。"],
+  });
+  Object.assign(content.products[3], {
+    copy: "Powertrain Shaft、Sun Gear Output Shaft、Clutch Hub、Disc Carrier系列部品",
+  });
+  Object.assign(content.products[4], {
+    copy: "8L90 Input Shaft、Transfer Case Actuator Shaft、10R TRS Stator Shaft系列部品",
+  });
+  Object.assign(content.latestParts[3], {
+    copy: "エンジン・減速機向けPowertrain Shaft、Clutch Hub、Disc Carrier系列部品",
+  });
+  Object.assign(content.latestParts[4], {
+    copy: "トランスミッション・Transfer Case向けInput・Actuator・Stator Shaft系列部品",
   });
 
   content.highlights = patchById<Highlight>(content.highlights, [

@@ -1,6 +1,6 @@
-import drivelineVideo1 from "../../assets/product-alpha/driveline1.webm";
-import drivelineVideo2 from "../../assets/product-alpha/driveline2.webm";
-import drivelineVideo3 from "../../assets/product-alpha/driveline3.webm";
+import drivelineInputShaftVideo from "../../assets/product-alpha/driveline/8l90-input-shafts.webm";
+import drivelineActuatorShaftVideo from "../../assets/product-alpha/driveline/transfer-case-actuator-shafts.webm";
+import drivelineStatorShaftVideo from "../../assets/product-alpha/driveline/10r-trs-stator-shaft.webm";
 import electricVehicleVideo1 from "../../assets/product-alpha/electric-vehicle1.webm";
 import electricVehicleVideo2 from "../../assets/product-alpha/electric-vehicle2.webm";
 import housingVideo2 from "../../assets/product-alpha/housing2.webm";
@@ -9,9 +9,9 @@ import housingVideo4 from "../../assets/product-alpha/housing4.webm";
 import housingVideo5 from "../../assets/product-alpha/housing5.webm";
 import steeringVideo1 from "../../assets/product-alpha/steering1.webm";
 import steeringVideo2 from "../../assets/product-alpha/steering2.webm";
-import drivelinePoster1 from "../../assets/video-posters/driveline1.jpg";
-import drivelinePoster2 from "../../assets/video-posters/driveline2.jpg";
-import drivelinePoster3 from "../../assets/video-posters/driveline3.jpg";
+import drivelineInputShaftPoster from "../../assets/video-posters/driveline/8l90-input-shafts.jpg";
+import drivelineActuatorShaftPoster from "../../assets/video-posters/driveline/transfer-case-actuator-shafts.jpg";
+import drivelineStatorShaftPoster from "../../assets/video-posters/driveline/10r-trs-stator-shaft.jpg";
 import electricVehiclePoster1 from "../../assets/video-posters/electric-vehicle1.jpg";
 import electricVehiclePoster2 from "../../assets/video-posters/electric-vehicle2.jpg";
 import heroHousingPoster from "../../assets/video-posters/hero-housing.jpg";
@@ -20,9 +20,10 @@ import housingPoster4 from "../../assets/video-posters/housing4.jpg";
 import housingPoster5 from "../../assets/video-posters/housing5.jpg";
 import steeringPoster1 from "../../assets/video-posters/steering1.jpg";
 import steeringPoster2 from "../../assets/video-posters/steering2.jpg";
-import powertrainActuatorShafts from "../../assets/company-profile/products/powertrain-actuator-shafts.png";
-import powertrainDiscCarrierComponents from "../../assets/company-profile/products/powertrain-disc-carrier-components.png";
-import powertrainSunGearOutputShafts from "../../assets/company-profile/products/powertrain-sun-gear-output-shafts.png";
+import powertrainOutputShaftPoster from "../../assets/video-posters/powertrain/8l90-output-shafts.jpg";
+import powertrainDiscCarrierPoster from "../../assets/video-posters/powertrain/clutch-hub-disc-carrier.jpg";
+import powertrainOutputShaftVideo from "../../assets/product-alpha/powertrain/8l90-output-shafts.webm";
+import powertrainDiscCarrierVideo from "../../assets/product-alpha/powertrain/clutch-hub-disc-carrier.webm";
 
 export type ProductCatalogLanguage = "ko" | "en" | "ja";
 
@@ -55,14 +56,14 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     ),
     parts: [
       {
-        title: localized("BSM 하우징", "BSM Housing", "BSMハウジング"),
+        title: localized("BSM 정밀 하우징 01", "BSM Precision Housing 01", "BSM精密ハウジング 01"),
         application: localized("밸런스 샤프트 모듈", "Balance shaft module", "バランスシャフトモジュール"),
         poster: heroHousingPoster,
         video: housingVideo2,
       },
       {
-        title: localized("모듈 베어링 하우징", "Module Bearing Housing", "モジュールベアリングハウジング"),
-        application: localized("베어링 보어·조립면", "Bearing bore and assembly face", "ベアリングボア・組立面"),
+        title: localized("BSM 정밀 하우징 02", "BSM Precision Housing 02", "BSM精密ハウジング 02"),
+        application: localized("밸런스 샤프트 모듈 하우징 계열", "Balance shaft module housing family", "バランスシャフトモジュール・ハウジング系列"),
         poster: housingPoster5,
         video: housingVideo5,
       },
@@ -78,14 +79,14 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     ),
     parts: [
       {
-        title: localized("E-drive 정밀 하우징", "E-drive Precision Housing", "E-drive精密ハウジング"),
-        application: localized("EV 감속기 윤활 시스템", "EV reducer lubrication system", "EV減速機潤滑システム"),
+        title: localized("EV 정밀 부품 01", "EV Precision Component 01", "EV精密部品 01"),
+        application: localized("EV 감속기·E-drive 계열", "EV reducer and e-drive family", "EV減速機・E-drive系列"),
         poster: electricVehiclePoster1,
         video: electricVehicleVideo1,
       },
       {
-        title: localized("EV 구동 부품", "EV Drive Component", "EV駆動部品"),
-        application: localized("E-drive·하이브리드 기어박스", "E-drive and hybrid gearbox", "E-drive・ハイブリッドギヤボックス"),
+        title: localized("EV 정밀 부품 02", "EV Precision Component 02", "EV精密部品 02"),
+        application: localized("E-drive·하이브리드 기어박스 계열", "E-drive and hybrid gearbox family", "E-drive・ハイブリッドギヤボックス系列"),
         poster: electricVehiclePoster2,
         video: electricVehicleVideo2,
       },
@@ -118,25 +119,22 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     eyebrow: "POWERTRAIN PARTS",
     title: localized("파워트레인 실제 생산 부품", "Production parts for powertrain systems", "パワートレインの生産部品"),
     copy: localized(
-      "회사소개서에 수록된 샤프트와 허브 계열을 기준으로 구성했습니다. 하우징 영상을 임의로 연결하지 않고 실제 부품 명칭과 이미지를 사용합니다.",
-      "This lineup is based on the shaft and hub families documented in the company profile, using verified part names and images rather than inferred housing footage.",
-      "会社案内に掲載されたシャフトとハブ系列を基準に、推定したハウジング映像ではなく確認済みの部品名と画像を使用しています。",
+      "Powertrain Shaft와 Sun Gear Output Shaft, Engine·Decelerator용 Clutch Hub와 Disc Carrier 계열입니다.",
+      "Powertrain shafts, sun-gear output shafts, and clutch-hub and disc-carrier families for engine and reduction systems.",
+      "Powertrain Shaft、Sun Gear Output Shaft、エンジン・減速機向けClutch Hub、Disc Carrier系列です。",
     ),
     parts: [
       {
-        title: localized("선 기어 출력 샤프트", "Sun Gear Output Shaft", "サンギヤ出力シャフト"),
-        application: localized("동력 전달용 Powertrain Shaft", "Powertrain shaft for torque delivery", "動力伝達用Powertrain Shaft"),
-        poster: powertrainSunGearOutputShafts,
+        title: localized("8L90 선 기어 출력 샤프트", "8L90 Sun Gear Output Shaft", "8L90サンギヤ出力シャフト"),
+        application: localized("8L90 변속기 출력 샤프트 계열", "8L90 transmission output-shaft family", "8L90トランスミッション出力シャフト系列"),
+        poster: powertrainOutputShaftPoster,
+        video: powertrainOutputShaftVideo,
       },
       {
-        title: localized("액추에이터 샤프트", "Actuator Shaft", "アクチュエータシャフト"),
-        application: localized("스플라인·오일홀 정밀가공 샤프트", "Precision shaft with spline and oil-hole features", "スプライン・オイル穴精密加工シャフト"),
-        poster: powertrainActuatorShafts,
-      },
-      {
-        title: localized("디스크 캐리어·허브", "Disc Carrier and Hub", "ディスクキャリア・ハブ"),
-        application: localized("Inner/Outer Carrier와 레이저 용접 조립부", "Inner and outer carriers with laser-welded assembly parts", "Inner/Outer Carrierとレーザー溶接組立部品"),
-        poster: powertrainDiscCarrierComponents,
+        title: localized("클러치 허브·디스크 캐리어", "Clutch Hub and Disc Carrier", "クラッチハブ・ディスクキャリア"),
+        application: localized("내·외측 캐리어와 레이저 용접 조립부", "Inner and outer carriers with laser-welded assemblies", "内・外側キャリアとレーザー溶接組立部品"),
+        poster: powertrainDiscCarrierPoster,
+        video: powertrainDiscCarrierVideo,
       },
     ],
   },
@@ -144,28 +142,28 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     eyebrow: "DRIVELINE PARTS",
     title: localized("드라이브라인 실제 생산 부품", "Production parts for driveline systems", "ドライブラインの生産部品"),
     copy: localized(
-      "변속기와 Transfer Case에서 동력을 전달하는 기어·샤프트 계열의 스플라인과 런아웃을 관리합니다.",
-      "Spline geometry and runout are controlled for gears and shafts that transfer power through transmissions and transfer cases.",
-      "トランスミッションとTransfer Caseで動力を伝えるギヤ・シャフトのスプラインと振れを管理します。",
+      "8L90·10R 변속기와 Transfer Case에 적용되는 Input Shaft, Actuator Shaft, TRS Stator Shaft 계열입니다.",
+      "Input shafts, actuator shafts, and TRS stator shafts for 8L90 and 10R transmissions and transfer cases.",
+      "8L90・10RトランスミッションとTransfer Case向けのInput Shaft、Actuator Shaft、TRS Stator Shaft系列です。",
     ),
     parts: [
       {
-        title: localized("내측 기어 링", "Internal Gear Ring", "内歯ギヤリング"),
-        application: localized("변속기·Transfer Case", "Transmission and transfer case", "トランスミッション・Transfer Case"),
-        poster: drivelinePoster1,
-        video: drivelineVideo1,
+        title: localized("8L90 인풋 샤프트", "8L90 Input Shaft", "8L90インプットシャフト"),
+        application: localized("8L90 변속기 입력 샤프트 계열", "8L90 transmission input-shaft family", "8L90トランスミッション入力シャフト系列"),
+        poster: drivelineInputShaftPoster,
+        video: drivelineInputShaftVideo,
       },
       {
-        title: localized("트랜스미션 샤프트", "Transmission Shaft", "トランスミッションシャフト"),
-        application: localized("8L90·10R 샤프트 계열", "8L90 and 10R shaft family", "8L90・10Rシャフト系列"),
-        poster: drivelinePoster2,
-        video: drivelineVideo2,
+        title: localized("트랜스퍼 케이스 액추에이터 샤프트", "Transfer Case Actuator Shaft", "トランスファーケース・アクチュエータシャフト"),
+        application: localized("스플라인·크로스홀 정밀가공 샤프트", "Precision shaft with spline and cross-hole features", "スプライン・クロスホール精密加工シャフト"),
+        poster: drivelineActuatorShaftPoster,
+        video: drivelineActuatorShaftVideo,
       },
       {
-        title: localized("드라이브라인 정밀부품", "Driveline Precision Component", "ドライブライン精密部品"),
-        application: localized("액추에이터·스테이터 샤프트", "Actuator and stator shaft", "アクチュエータ・ステータシャフト"),
-        poster: drivelinePoster3,
-        video: drivelineVideo3,
+        title: localized("10R TRS 스테이터 샤프트", "10R TRS Stator Shaft", "10R TRSステーターシャフト"),
+        application: localized("10R 변속기 스테이터 샤프트 계열", "10R transmission stator-shaft family", "10Rトランスミッション・ステーターシャフト系列"),
+        poster: drivelineStatorShaftPoster,
+        video: drivelineStatorShaftVideo,
       },
     ],
   },

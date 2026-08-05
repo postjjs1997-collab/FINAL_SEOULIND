@@ -42,6 +42,7 @@ import housingAlphaVideo4 from "../../assets/product-alpha/housing4.webm";
 import housingAlphaVideo5 from "../../assets/product-alpha/housing5.webm";
 import steeringAlphaVideo1 from "../../assets/product-alpha/steering1.webm";
 import steeringAlphaVideo2 from "../../assets/product-alpha/steering2.webm";
+import powertrainOutputShaftVideo from "../../assets/product-alpha/powertrain/8l90-output-shafts.webm";
 import drivelinePoster1 from "../../assets/video-posters/driveline1.jpg";
 import drivelinePoster2 from "../../assets/video-posters/driveline2.jpg";
 import drivelinePoster3 from "../../assets/video-posters/driveline3.jpg";
@@ -54,6 +55,7 @@ import housingPoster4 from "../../assets/video-posters/housing4.jpg";
 import housingPoster5 from "../../assets/video-posters/housing5.jpg";
 import steeringPoster1 from "../../assets/video-posters/steering1.jpg";
 import steeringPoster2 from "../../assets/video-posters/steering2.jpg";
+import powertrainOutputShaftPoster from "../../assets/video-posters/powertrain/8l90-output-shafts.jpg";
 import globalSupplyClipPoster from "../../assets/process-videos/global-supply-08-14.jpg";
 import globalSupplyClipVideo from "../../assets/process-videos/global-supply-08-14.mp4";
 import qualityFlowClipPoster from "../../assets/process-videos/quality-flow-15-18.jpg";
@@ -303,15 +305,15 @@ export const showcaseVideos = {
     { src: housingVideo5, webm: housingAlphaVideo5, poster: housingPoster5, label: "BSM housing machining view" },
     { src: electricVehicleVideo2, webm: electricVehicleAlphaVideo2, poster: electricVehiclePoster2, label: "EV precision machined component" },
     { src: steeringVideo1, webm: steeringAlphaVideo1, poster: steeringPoster1, label: "Steering shaft component" },
-    { src: drivelineVideo1, webm: drivelineAlphaVideo1, poster: drivelinePoster1, label: "Driveline ring component" },
+    { src: powertrainOutputShaftVideo, webm: powertrainOutputShaftVideo, poster: powertrainOutputShaftPoster, label: "Powertrain output shaft" },
     { src: housingVideo3, webm: housingAlphaVideo3, poster: housingPoster3, label: "Drawing based housing component" },
-    { src: drivelineVideo2, webm: drivelineAlphaVideo2, poster: drivelinePoster2, label: "Powertrain shaft component" },
+    { src: drivelineVideo2, webm: drivelineAlphaVideo2, poster: drivelinePoster2, label: "Drawing-based precision shaft" },
   ],
   products: [
     { src: housingVideo2, webm: housingAlphaVideo2, poster: heroHousingPoster, label: "Balance shaft module housing" },
     { src: electricVehicleVideo1, webm: electricVehicleAlphaVideo1, poster: electricVehiclePoster1, label: "Electric vehicle precision part" },
     { src: steeringVideo2, webm: steeringAlphaVideo2, poster: steeringPoster2, label: "Steering shaft long component" },
-    { src: drivelineVideo1, webm: drivelineAlphaVideo1, poster: drivelinePoster1, label: "Powertrain ring component" },
+    { src: powertrainOutputShaftVideo, webm: powertrainOutputShaftVideo, poster: powertrainOutputShaftPoster, label: "Powertrain output shaft" },
     { src: drivelineVideo3, webm: drivelineAlphaVideo3, poster: drivelinePoster3, label: "Driveline precision component" },
     { src: housingVideo4, webm: housingAlphaVideo4, poster: housingPoster4, label: "Custom OEM housing component" },
   ],
