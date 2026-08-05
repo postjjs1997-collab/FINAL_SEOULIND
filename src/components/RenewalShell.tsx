@@ -104,7 +104,10 @@ export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "
     <>
       <header className={`renewal-header ${solid ? "is-solid" : ""}`}>
         <a className="renewal-header__brand" href="#/" aria-label="Seoul Industry home">
-          <BrainallLogo markOnly />
+          <span className="renewal-header__brand-symbol" aria-hidden="true">
+            <BrainallLogo markOnly />
+          </span>
+          <span className="renewal-header__wordmark">Seoul Industry Co., Ltd.</span>
         </a>
 
         <nav className="renewal-nav" aria-label="Renewal navigation">
@@ -138,6 +141,7 @@ export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "
           </div>
           <button className="renewal-menu-button" type="button" onClick={() => setOpen(true)} aria-label={copy.menuLabel}>
             <Icon name="menu" />
+            <span className="renewal-menu-button__label">MENU</span>
           </button>
         </div>
       </header>

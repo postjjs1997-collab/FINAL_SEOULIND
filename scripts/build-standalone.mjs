@@ -14,6 +14,7 @@ await build({
   outfile: resolve(outdir, "app.js"),
   loader: {
     ".css": "css",
+    ".docx": "file",
     ".gif": "dataurl",
     ".jpg": "dataurl",
     ".pdf": "file",
@@ -24,6 +25,7 @@ await build({
     ".ts": "ts",
     ".tsx": "tsx",
     ".webm": "file",
+    ".webp": "dataurl",
   },
   define: {
     "import.meta.env.BASE_URL": '"../assets/"',

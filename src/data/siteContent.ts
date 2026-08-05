@@ -176,6 +176,12 @@ function applyKoreanCopy(content: SiteContent) {
     lines: ["1μm 단위의 정밀함으로,", "완성차의 신뢰를 뒷받침합니다."],
   });
   content.achievementsHeading.titleLines = ["도면 검토부터 양산 공급까지", "서울산업의 제조 기반"];
+  content.globalAchievements = [
+    { label: "설립", value: "1985", unit: "SINCE" },
+    { label: "주요 적용 시스템", value: "5", unit: "AUTOMOTIVE SYSTEMS" },
+    { label: "연계 생산·검사 공정", value: "13", unit: "PROCESSES" },
+    { label: "글로벌 프로그램 대응", value: "5", unit: "REGIONS" },
+  ];
   content.partnerLogos = patchByIndex<PartnerLogo>(content.partnerLogos, partnerRegionPatches.ko);
   content.clientCollabStatement = clientStatements.ko;
   content.clientPartners = patchByIndex<ClientPartner>(content.clientPartners, clientPartnerPatches.ko);
@@ -284,6 +290,12 @@ function applyEnglishCopy(content: SiteContent) {
     lines: ["Precise to the micron,", "we stand behind every vehicle we help build."],
   });
   content.achievementsHeading.titleLines = ["From first drawing to full production —", "the base Seoul Industry is built on"];
+  content.globalAchievements = [
+    { label: "Founded", value: "1985", unit: "SINCE" },
+    { label: "Core Applications", value: "5", unit: "AUTOMOTIVE SYSTEMS" },
+    { label: "Connected Operations", value: "13", unit: "PROCESSES" },
+    { label: "Global Program Reach", value: "5", unit: "REGIONS" },
+  ];
   content.clientCollabStatement = clientStatements.en;
   Object.assign(content.esgHeading, {
     copy: "As a precision machining company, we keep our footprint light, our shop floor safe, and our standards clear — the foundation for OEM partnerships that last.",
@@ -387,6 +399,12 @@ function applyJapaneseCopy(content: SiteContent) {
     lines: ["1ミクロン単位の精度で、", "完成車の信頼を", "支え続けます。"],
   });
   content.achievementsHeading.titleLines = ["図面の検討から量産供給まで——", "ソウル産業の製造基盤"];
+  content.globalAchievements = [
+    { label: "設立", value: "1985", unit: "SINCE" },
+    { label: "主要適用システム", value: "5", unit: "AUTOMOTIVE SYSTEMS" },
+    { label: "連携する生産・検査工程", value: "13", unit: "PROCESSES" },
+    { label: "グローバル対応地域", value: "5", unit: "REGIONS" },
+  ];
   content.partnerLogos = patchByIndex<PartnerLogo>(content.partnerLogos, partnerRegionPatches.ja);
   content.clientCollabStatement = clientStatements.ja;
   content.clientPartners = patchByIndex<ClientPartner>(content.clientPartners, clientPartnerPatches.ja);

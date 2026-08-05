@@ -1,12 +1,17 @@
 import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties, FormEvent } from "react";
 import certificationImage from "../../certification.png";
-import drivelineImage from "../../driveline.png";
-import automotiveImage from "../../electric vehicle.png";
-import balanceModuleImage from "../../housing.png";
+import drivelineImage from "../../assets/product-lineup/driveline.jpg";
+import automotiveImage from "../../assets/product-lineup/electric-vehicle.jpg";
+import balanceModuleImage from "../../assets/product-lineup/balance-module.jpg";
 import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
 import precisionHeroImage from "../../precision-inside-mobility.jpg";
-import steeringImage from "../../steering.png";
+import steeringImage from "../../assets/product-lineup/steering.jpg";
+import factoryOverviewImage from "../../assets/company-profile/factory.webp";
+import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
+import hobbingProcessImage from "../../assets/company-profile/process/hobbing.webp";
+import autoInspectionProcessImage from "../../assets/company-profile/process/auto-inspection.webp";
+import inductionProcessImage from "../../assets/company-profile/process/induction-hardening.webp";
 import BrainallLogo from "./BrainallLogo";
 import Header from "./Header";
 import Icon from "./Icons";
@@ -335,6 +340,17 @@ const pageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record<string,
 };
 
 const expandedPageConfigs: Record<string, PageConfig> = {
+  "company/overview": {
+    route: "company/overview",
+    category: "COMPANY",
+    groupTitle: "기업정보",
+    eyebrow: "Company Overview",
+    title: "회사개요",
+    lead: "서울산업은 엔진과 모터의 동력을 전달하는 샤프트, 기어, 스플라인, 하우징을 생산하는 자동차 부품 정밀가공 기업입니다.",
+    heroCopy: "1985년부터 개발 검토, 정밀가공, 열처리, 자동검사와 양산 공급을 하나의 제조 흐름으로 연결해 왔습니다.",
+    image: factoryOverviewImage,
+    imagePosition: "center",
+  },
   "company/ceo": {
     route: "company/ceo",
     category: "COMPANY",
@@ -343,8 +359,8 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     title: "CEO인사말",
     lead: "고객의 신뢰를 바탕으로 지속가능한 성장을 추구합니다.",
     heroCopy: "화합으로 창조하는 기업이라는 경영 철학으로 최고의 품질과 사회에 공헌하는 Global Leader가 되겠습니다.",
-    image: menuHeroImages.factory,
-    imagePosition: "center 56%",
+    image: seoulIndustryFacadeImage,
+    imagePosition: "center 38%",
   },
   "company/history": {
     ...pageConfigs["company/history"],
@@ -438,6 +454,39 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     image: menuHeroImages.precision,
     imagePosition: "center 48%",
   },
+  "manufacturing/process": {
+    route: "manufacturing/process",
+    category: "MANUFACTURING",
+    groupTitle: "생산기술",
+    eyebrow: "Production Process",
+    title: "생산공정",
+    lead: "선삭에서 기어·스플라인, 연삭, 열처리, 교정과 검사까지 부품별 공정을 연속된 품질 흐름으로 설계합니다.",
+    heroCopy: "각 공정의 결과를 다음 공정의 기준과 연결해 장기 양산에서도 반복 정밀도와 표면 품질을 유지합니다.",
+    image: hobbingProcessImage,
+    imagePosition: "center",
+  },
+  "manufacturing/equipment": {
+    route: "manufacturing/equipment",
+    category: "MANUFACTURING",
+    groupTitle: "생산기술",
+    eyebrow: "Equipment & Automation",
+    title: "보유설비·자동화",
+    lead: "부품 형상과 품질 기준에 맞춘 CNC, 기어가공, 연삭, 열처리, 자동화 설비를 공정 목적별로 운영합니다.",
+    heroCopy: "설비 조건과 전용 치공구, 자동 이송과 측정을 연결해 공정 편차와 작업 의존도를 줄입니다.",
+    image: inductionProcessImage,
+    imagePosition: "center",
+  },
+  "manufacturing/inspection": {
+    route: "manufacturing/inspection",
+    category: "MANUFACTURING",
+    groupTitle: "생산기술",
+    eyebrow: "Inspection Technology",
+    title: "검사기술",
+    lead: "치수와 기하공차, 기어 형상, 런아웃과 균열을 자동검사·CMM·전용 측정 장비로 확인합니다.",
+    heroCopy: "측정 데이터를 교정과 공정조건, 출하 판정에 다시 연결해 예방 중심의 품질 흐름을 운영합니다.",
+    image: autoInspectionProcessImage,
+    imagePosition: "center",
+  },
   "quality/policy": {
     route: "quality/policy",
     category: "QUALITY",
@@ -521,8 +570,8 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     groupTitle: "지속가능경영정책",
     eyebrow: "Sustainability Policy",
     title: "지속가능경영정책",
-    lead: "책임 있는 제조, 안전한 현장, 공정한 거래, 투명한 기록을 지속 가능한 성장의 기준으로 삼습니다.",
-    heroCopy: "고객, 임직원, 협력사, 지역사회와 함께 오래 성장할 수 있도록 원칙을 정하고 실행 이력을 관리합니다.",
+    lead: "환경·사회·지배구조와 SAQ 5.0 요구사항을 사업 운영과 공급망 전반에 반영합니다.",
+    heroCopy: "전 임직원과 사업장, 운영 활동, 협력사가 함께 준수하는 지속가능경영 원칙을 수립하고 지속적으로 개선합니다.",
     image: menuHeroImages.governance,
     imagePosition: "center 48%",
   },
@@ -530,6 +579,7 @@ const expandedPageConfigs: Record<string, PageConfig> = {
 
 const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record<string, Partial<PageConfig>>> = {
   en: {
+    "company/overview": { groupTitle: "Company", title: "Company Overview", lead: "Seoul Industry precision-machines automotive shafts, gears, splines, and housings that transfer power from engines and motors.", heroCopy: "Since 1985, feasibility review, machining, heat treatment, automatic inspection, and volume supply have operated as one connected manufacturing flow." },
     "company/ceo": { groupTitle: "Company", title: "CEO Message", lead: "We pursue continuous growth based on our customers' trust.", heroCopy: "Creating through harmony, we strive to deliver the highest quality and become a Global Leader that contributes to society." },
     "company/history": { groupTitle: "Company" },
     "company/location": { groupTitle: "Company", title: "Location", lead: "Seoul Industry's head office and precision-machining plant are located in Yanggam-myeon, Hwaseong.", heroCopy: "Please coordinate your visit in advance so we can arrange site access and meetings smoothly." },
@@ -540,6 +590,9 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
     "products/balance-shaft-module": { groupTitle: "Products", lead: "Aluminum housings and machined parts for balance shaft modules that reduce engine vibration and noise.", heroCopy: "Complex geometry, assembly faces, and bearing areas are controlled for rotational stability and durability." },
     "products/steering": { groupTitle: "Products", lead: "Critical steering parts including pinion shafts and torsion bars.", heroCopy: "Gear and spline machining, heat treatment, and runout inspection keep steering input precise." },
     "products/etc": { groupTitle: "Products", lead: "Custom machining for gears, splines, shafts, and housings based on customer drawings.", heroCopy: "We propose production methods from feasibility review and prototypes through process design and mass production." },
+    "manufacturing/process": { groupTitle: "Manufacturing", title: "Production Process", lead: "Turning, gear and spline machining, grinding, heat treatment, straightening, and inspection are designed as one connected quality flow.", heroCopy: "The output of each operation becomes the standard for the next, maintaining repeat accuracy and surface quality over long production runs." },
+    "manufacturing/equipment": { groupTitle: "Manufacturing", title: "Equipment & Automation", lead: "CNC, gear machining, grinding, heat treatment, and automation equipment are configured around part geometry and quality criteria.", heroCopy: "Equipment settings, dedicated fixtures, transfer automation, and measurement reduce process variation and operator dependency." },
+    "manufacturing/inspection": { groupTitle: "Manufacturing", title: "Inspection Technology", lead: "Dimensions, GD&T, gear geometry, runout, and cracks are checked through automated inspection, CMM, and dedicated metrology.", heroCopy: "Measurement data feeds back into correction, process conditions, and shipment decisions for preventive quality control." },
     "quality/policy": { groupTitle: "Quality", title: "Quality Policy", lead: "Understand customer requirements, build quality into the process, and prove reliability with data.", heroCopy: "Preventive quality control and continuous process improvement support stable customer production." },
     "quality/system": { groupTitle: "Quality", title: "Quality System", lead: "Drawing review, incoming inspection, process checks, final inspection, and LOT traceability operate as one system.", heroCopy: "IATF 16949, ISO 14001, SQ, and customer requirements are connected to everyday manufacturing controls." },
     "quality/preventive": { groupTitle: "Quality", title: "Preventive Quality", lead: "We remove risks during development and production preparation before defects occur.", heroCopy: "Process FMEA, control plans, first-article validation, SPC, and change control reduce recurrence and escape risk." },
@@ -547,9 +600,10 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
     "recruit/information": { groupTitle: "Careers", title: "Recruitment", lead: "We are looking for people who will build the next manufacturing standard across production, quality, development, and administration.", heroCopy: "Join colleagues who keep standards, continue improving, and finish results together." },
     "recruit/benefits": { groupTitle: "Careers", title: "Benefits", lead: "Practical benefits help employees work with stability and build skills over time.", heroCopy: "Health, growth, daily life, and long-service programs support people and manufacturing capability together." },
     "esg/information": { groupTitle: "ESG Information", title: "ESG Information", lead: "Environment, safety, quality, ethics, and supplier standards are managed within one operating system.", heroCopy: "We reduce machining impacts while strengthening workplace safety and transparent business standards." },
-    "sustainability/policy": { groupTitle: "Sustainability Policy", title: "Sustainability Policy", lead: "Responsible manufacturing, safe workplaces, fair transactions, and transparent records guide sustainable growth.", heroCopy: "We define principles and track actions so customers, employees, partners, and communities can grow together." },
+    "sustainability/policy": { groupTitle: "Sustainability Policy", title: "Sustainability Policy", lead: "Environmental, social, governance, and SAQ 5.0 requirements are integrated across our operations and supply chain.", heroCopy: "The policy applies to every employee, business site, operation, and supplier and is strengthened through continuous improvement." },
   },
   ja: {
+    "company/overview": { groupTitle: "企業情報", title: "会社概要", lead: "ソウル産業は、エンジンとモーターの動力を伝えるシャフト、ギヤ、スプライン、ハウジングを精密加工する自動車部品メーカーです。", heroCopy: "1985年から、製造検討、精密加工、熱処理、自動検査、量産供給を一つの製造フローにつなげています。" },
     "company/ceo": { groupTitle: "企業情報", title: "CEOメッセージ", lead: "お客様の信頼を基盤に、持続可能な成長を追求します。", heroCopy: "調和から創造するという経営哲学のもと、最高の品質を実現し、社会に貢献するGlobal Leaderを目指します。" },
     "company/history": { groupTitle: "企業情報" },
     "company/location": { groupTitle: "企業情報", title: "アクセス", lead: "ソウル産業の本社と精密加工工場は京畿道華城市楊甘面にあります。", heroCopy: "ご訪問前に担当者と日程をご調整いただくと、入場と打ち合わせを円滑にご案内できます。" },
@@ -560,6 +614,9 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
     "products/balance-shaft-module": { groupTitle: "製品情報", lead: "エンジンの振動と騒音を低減するバランスシャフトモジュール部品を生産します。", heroCopy: "複合形状、組立面、ベアリング部の寸法を管理し、回転安定性と耐久性を確保します。" },
     "products/steering": { groupTitle: "製品情報", lead: "Pinion Shaft、Torsion Barなど操舵応答と安全性を左右する部品を生産します。", heroCopy: "ギヤ・スプライン加工、熱処理、振れ検査をつなぎ、操舵入力を正確に伝えます。" },
     "products/etc": { groupTitle: "製品情報", lead: "顧客図面に合わせてギヤ、スプライン、シャフト、ハウジングをカスタム加工します。", heroCopy: "開発検討、試作、工程設計、量産移管までプロジェクトに合う生産方式を提案します。" },
+    "manufacturing/process": { groupTitle: "生産技術", title: "生産工程", lead: "旋削、ギヤ・スプライン加工、研削、熱処理、矯正、検査を一つの品質フローとして設計します。", heroCopy: "各工程の結果を次工程の基準につなげ、長期量産でも反復精度と表面品質を維持します。" },
+    "manufacturing/equipment": { groupTitle: "生産技術", title: "保有設備・自動化", lead: "部品形状と品質基準に合わせ、CNC、ギヤ加工、研削、熱処理、自動化設備を運用します。", heroCopy: "設備条件、専用治具、自動搬送、測定をつなげて工程ばらつきと作業依存を抑えます。" },
+    "manufacturing/inspection": { groupTitle: "生産技術", title: "検査技術", lead: "寸法、幾何公差、ギヤ形状、振れ、亀裂を自動検査、CMM、専用測定設備で確認します。", heroCopy: "測定データを矯正、工程条件、出荷判定に戻し、予防中心の品質フローを運用します。" },
     "quality/policy": { groupTitle: "品質保証", title: "品質方針", lead: "顧客要求を正確に理解し、工程で品質を造り込み、データで信頼を証明します。", heroCopy: "予防中心の品質管理と継続的な工程改善で安定した量産を支えます。" },
     "quality/system": { groupTitle: "品質保証", title: "品質システム", lead: "図面検討、受入検査、工程検査、最終検査、LOT追跡を一つの品質フローで運営します。", heroCopy: "IATF 16949、ISO 14001、SQと顧客品質基準を日常の工程管理につなげます。" },
     "quality/preventive": { groupTitle: "品質保証", title: "予防品質活動", lead: "問題発生後の対応を超え、開発と量産準備段階でリスクを先に取り除きます。", heroCopy: "工程FMEA、管理計画、初品検証、SPC、変更点管理で再発と流出を抑えます。" },
@@ -567,7 +624,7 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
     "recruit/information": { groupTitle: "採用情報", title: "採用情報", lead: "生産、品質、開発、管理が連携するソウル産業で次の製造基準をつくる人材を募集します。", heroCopy: "基準を守り、改善を続け、仲間と結果を完成させる方をお待ちしています。" },
     "recruit/benefits": { groupTitle: "採用情報", title: "福利厚生", lead: "従業員が安定して働き、技術と経験を長く蓄積できる実質的な福利厚生を運営します。", heroCopy: "健康、成長、生活、長期勤続を支援し、人と製造力がともに成長する環境をつくります。" },
     "esg/information": { groupTitle: "ESG情報", title: "ESG情報", lead: "環境、安全、品質、倫理、協力会社基準を製造現場の運営体系で管理します。", heroCopy: "精密加工の環境負荷を抑え、安全な職場と透明な取引基準を強化します。" },
-    "sustainability/policy": { groupTitle: "持続可能経営方針", title: "持続可能経営方針", lead: "責任ある製造、安全な現場、公正な取引、透明な記録を持続可能な成長の基準とします。", heroCopy: "顧客、従業員、協力会社、地域社会と長く成長できるよう原則と実行履歴を管理します。" },
+    "sustainability/policy": { groupTitle: "持続可能経営方針", title: "持続可能経営方針", lead: "環境・社会・ガバナンスおよびSAQ 5.0の要件を事業運営とサプライチェーン全体に反映します。", heroCopy: "全従業員、事業所、事業活動、協力会社がともに遵守する原則を定め、継続的に改善します。" },
   },
 };
 

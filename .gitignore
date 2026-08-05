@@ -27,6 +27,8 @@ assets/process-videos/quality.webm
 assets/process-videos/supply.png
 assets/process-videos/supply.webm
 assets/product-lineup/
+!assets/product-lineup/
+!assets/product-lineup/*.jpg
 assets/seoulind-copylogo.gif
 assets/seoulind-logo.gif
 KakaoTalk_*.mp4

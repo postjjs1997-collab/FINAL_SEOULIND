@@ -4,18 +4,32 @@ import certificationImage from "../../certification.png";
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
 import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
 import msqCertificateImage from "../../assets/certificates/msq-seoul-industry-2025.png";
-import balanceModuleImage from "../../housing.png";
-import automotiveImage from "../../electric vehicle.png";
-import steeringImage from "../../steering.png";
-import drivelineImage from "../../driveline.png";
+import balanceModuleImage from "../../assets/product-lineup/balance-module.jpg";
+import automotiveImage from "../../assets/product-lineup/electric-vehicle.jpg";
+import steeringImage from "../../assets/product-lineup/steering.jpg";
+import drivelineImage from "../../assets/product-lineup/driveline.jpg";
 import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
 import precisionImage from "../../precision-inside-mobility.jpg";
+import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
+import sustainabilityPolicyDocument from "../../assets/documents/sustainability-management-policy-seoul-industry.docx?url";
 import Icon from "./Icons";
 import { getPageConfig } from "./MenuPage";
 import { RenewalSiteFooter, RenewalSiteHeader, toRenewalHref, type RenewalLanguage } from "./RenewalShell";
 import { defaultLanguage, isLanguageCode, siteContent, type SiteContent } from "../data/siteContent";
 import { getNoticePosts } from "../data/notices";
 import { findMenuByRoute, getSiteMenuGroups, resolveMenuRoute } from "../data/navigation";
+import {
+  companyOverviewCopy,
+  companyProfileAssets,
+  globalRegions,
+  manufacturingGroupLabels,
+  manufacturingPageCopy,
+  manufacturingProcesses,
+  productEvidenceByRoute,
+  qualityEvidenceCopy,
+  qualityEvidenceProcesses,
+  type ManufacturingGroup,
+} from "../data/companyProfile";
 import { useLenisScroll } from "../motion/useLenisScroll";
 import { usePrefersReducedMotion } from "../motion/usePrefersReducedMotion";
 import "../styles/renewal.css";
@@ -172,43 +186,265 @@ const certificateAssets = [
   { image: msqCertificateImage, href: msqCertificateImage },
 ];
 
-const governanceCopy: Record<RenewalLanguage, Array<{ title: string; copy: string; tag: string }>> = {
-  ko: [
-    { title: "윤리헌장", copy: "고객, 협력사, 임직원과의 관계에서 지켜야 할 기본 원칙을 명확히 합니다.", tag: "ETHICS" },
-    { title: "투명한 기록", copy: "도면 변경, 검사 결과, LOT 이력, 납기 정보를 정해진 절차로 관리합니다.", tag: "RECORD" },
-    { title: "공정한 거래", copy: "발주, 품질, 납기 기준을 명확히 공유하고 책임 있는 거래 관계를 유지합니다.", tag: "FAIRNESS" },
-    { title: "리스크 대응", copy: "원인, 임시 조치, 개선 기준, 재발 방지까지 하나의 이력으로 연결합니다.", tag: "RISK" },
-  ],
-  en: [
-    { title: "Ethics Charter", copy: "We clarify the principles governing relationships with customers, suppliers, and employees.", tag: "ETHICS" },
-    { title: "Transparent Records", copy: "Drawing changes, inspection results, LOT history, and delivery data follow defined procedures.", tag: "RECORD" },
-    { title: "Fair Transactions", copy: "Purchase, quality, and delivery standards are shared clearly and managed responsibly.", tag: "FAIRNESS" },
-    { title: "Risk Response", copy: "Causes, temporary actions, improvements, and recurrence prevention remain in one history.", tag: "RISK" },
-  ],
-  ja: [
-    { title: "倫理憲章", copy: "顧客、協力会社、従業員との関係で守る基本原則を明確にします。", tag: "ETHICS" },
-    { title: "透明な記録", copy: "図面変更、検査結果、LOT履歴、納期情報を定められた手順で管理します。", tag: "RECORD" },
-    { title: "公正な取引", copy: "発注、品質、納期基準を明確に共有し、責任ある取引関係を維持します。", tag: "FAIRNESS" },
-    { title: "リスク対応", copy: "原因、暫定措置、改善、再発防止までを一つの履歴につなげます。", tag: "RISK" },
-  ],
+type SustainabilityPolicyCopy = {
+  statement: { eyebrow: string; title: string; copy: string };
+  meta: Array<{ label: string; value: string }>;
+  governance: {
+    eyebrow: string;
+    title: string;
+    copy: string;
+    items: Array<{ title: string; copy: string }>;
+  };
+  pillars: Array<{ letter: string; title: string; label: string; copy: string; items: string[] }>;
+  domains: {
+    eyebrow: string;
+    title: string;
+    copy: string;
+    items: Array<{ tag: string; title: string; copy: string }>;
+  };
+  execution: {
+    eyebrow: string;
+    title: string;
+    items: Array<{ title: string; copy: string }>;
+  };
+  document: { eyebrow: string; title: string; copy: string; dateLabel: string; date: string; download: string };
 };
 
-const reportCopy: Record<RenewalLanguage, Array<{ year: string; title: string; copy: string }>> = {
-  ko: [
-    { year: "2026", title: "서울산업 ESG 운영 방향", copy: "환경경영, 안전한 현장, 품질 기록, 준법 거래 기준을 하나의 운영 흐름으로 정리합니다." },
-    { year: "2025", title: "현장 개선 활동", copy: "에너지 사용, 폐기물 관리, 불량 감소, 작업 안전 개선 활동을 항목별로 관리합니다." },
-    { year: "2024", title: "품질·윤리 기준", copy: "고객 요구사항, 공정 이력, 협력사 거래 기준을 명확하게 남기는 기준을 정리합니다." },
-  ],
-  en: [
-    { year: "2026", title: "Seoul Industry ESG Direction", copy: "Environment, workplace safety, quality records, and compliance are organized into one operating flow." },
-    { year: "2025", title: "Site Improvement Activities", copy: "Energy, waste, defect reduction, and workplace safety actions are managed by category." },
-    { year: "2024", title: "Quality and Ethics Standards", copy: "Customer requirements, process history, and supplier transaction standards are documented clearly." },
-  ],
-  ja: [
-    { year: "2026", title: "ソウル産業 ESG運営方針", copy: "環境経営、安全な現場、品質記録、コンプライアンスを一つの運営フローに整理します。" },
-    { year: "2025", title: "現場改善活動", copy: "エネルギー、廃棄物、不良低減、作業安全の改善活動を項目別に管理します。" },
-    { year: "2024", title: "品質・倫理基準", copy: "顧客要求、工程履歴、協力会社との取引基準を明確に記録します。" },
-  ],
+const sustainabilityPolicyCopy: Record<RenewalLanguage, SustainabilityPolicyCopy> = {
+  ko: {
+    statement: {
+      eyebrow: "SUSTAINABILITY MANAGEMENT POLICY",
+      title: "책임 있는 제조를 모든 경영 판단의 기준으로 삼습니다.",
+      copy: "서울산업은 환경·사회·지배구조 요구사항과 SAQ 5.0 기준을 경영 전반에 반영하고, 사업장과 공급망이 함께 준수해야 할 지속가능경영 원칙을 운영합니다.",
+    },
+    meta: [
+      { label: "적용 대상", value: "전 임직원·사업장·운영·협력사" },
+      { label: "운영 기준", value: "ESG·환경·안전·인권·윤리" },
+      { label: "공급망 기준", value: "SAQ 5.0 요구사항 반영" },
+    ],
+    governance: {
+      eyebrow: "POLICY FOUNDATION",
+      title: "정책의 목적과 적용 원칙",
+      copy: "지속가능성을 별도의 활동으로 두지 않고 사업 운영의 핵심 요소로 통합합니다. 최고경영진이 이행을 감독하고 필요한 자원을 제공하며, 모든 구성원이 각자의 업무에서 정책을 준수합니다.",
+      items: [
+        { title: "경영 통합", copy: "ESG를 사업 전략과 일상적인 의사결정의 핵심 요소로 반영합니다." },
+        { title: "전사 적용", copy: "모든 임직원, 사업장, 운영 활동과 서울산업의 공급망에 동일하게 적용합니다." },
+        { title: "경영진 책임", copy: "최고경영진이 정책의 실행과 준수 여부를 감독하고 필요한 자원을 제공합니다." },
+      ],
+    },
+    pillars: [
+      {
+        letter: "E",
+        title: "Environmental",
+        label: "환경 책임",
+        copy: "오염과 자원 사용을 줄이고 사업 활동이 자연환경에 미치는 영향을 사전에 관리합니다.",
+        items: ["에너지 효율 향상과 온실가스 감축", "폐기물·대기배출·폐수 및 유해물질 관리", "생물다양성·토지이용·산림 훼손 리스크 점검", "소음 측정과 환경사고 비상대응"],
+      },
+      {
+        letter: "S",
+        title: "Social",
+        label: "사람과 지역사회",
+        copy: "안전하고 건강한 근무환경을 제공하고 모든 노동자의 기본 권리와 존엄을 보호합니다.",
+        items: ["아동노동·강제노동·차별 금지", "공정한 근로조건과 안전보건 환경", "지역사회 발전 기여", "공급망 내 국제 동물복지 기준 준수"],
+      },
+      {
+        letter: "G",
+        title: "Governance",
+        label: "윤리와 투명성",
+        copy: "공정거래, 정보보호, 책임 있는 공급망을 투명한 경영의 기본 기준으로 운영합니다.",
+        items: ["뇌물·부패·부당이익 금지", "공정거래 및 이해상충 방지", "개인·기업정보 보호", "협력사 ESG 평가와 시정조치"],
+      },
+    ],
+    domains: {
+      eyebrow: "POLICY COMMITMENTS",
+      title: "서울산업의 지속가능경영 세부 원칙",
+      copy: "문서에 명시된 환경, 사회, 윤리, 정보보호 및 공급망 요구사항을 실행 항목별로 정리했습니다.",
+      items: [
+        { tag: "ENVIRONMENT", title: "환경경영", copy: "폐기물, 대기배출, 폐수 등 환경오염을 최소화하고 에너지 효율과 온실가스 감축을 추진하며 유해물질을 안전하게 관리합니다." },
+        { tag: "NATURE", title: "생물다양성·토지·산림", copy: "생태계 영향을 최소화하고 운영 전 토지이용 리스크를 평가하며, 공급망에서 산림 훼손에 기여하는 원자재 사용을 금지합니다." },
+        { tag: "EMISSIONS", title: "소음·오염·비상대응", copy: "법적 기준에 맞춰 소음을 정기 측정하고 토양·대기·수질 오염을 예방하며 환경사고 비상대응 체계를 유지합니다." },
+        { tag: "PEOPLE", title: "인권·안전·지역사회", copy: "안전하고 건강한 작업환경과 공정한 근로조건을 제공하고 아동노동, 강제노동, 차별을 금지하며 지역사회 발전에 기여합니다." },
+        { tag: "WELFARE", title: "동물복지", copy: "동물에 대한 학대와 불필요한 위해를 금지하고 공급망 안에서 국제 동물복지 기준을 준수합니다." },
+        { tag: "ETHICS", title: "윤리·공정거래", copy: "공정거래 및 이해상충 방지 서약을 따르고 뇌물, 부패, 부당한 이익을 금지하며 투명하고 책임 있는 거래를 유지합니다." },
+        { tag: "DATA", title: "정보보호", copy: "개인정보와 기업정보를 무단 접근과 오용으로부터 보호하고 관련 법규와 고객의 정보보호 요구사항을 준수합니다." },
+        { tag: "SUPPLY CHAIN", title: "지속가능한 공급망", copy: "협력사가 본 정책을 준수하도록 요구하고 SAQ 5.0에 부합하는 ESG 평가와 시정조치를 실시합니다." },
+      ],
+    },
+    execution: {
+      eyebrow: "IMPLEMENTATION & IMPROVEMENT",
+      title: "목표를 세우고 점검하며 지속적으로 개선합니다.",
+      items: [
+        { title: "목표 수립", copy: "환경·사회·윤리·공급망 분야의 지속가능경영 목표와 관리 항목을 정합니다." },
+        { title: "성과 모니터링", copy: "정책 이행 현황과 목표 대비 성과를 정기적으로 확인하고 기록합니다." },
+        { title: "평가와 시정", copy: "내부 감사, 외부 평가, 고객 평가와 SAQ 5.0 결과를 바탕으로 필요한 시정조치를 시행합니다." },
+        { title: "책임과 개선", copy: "경영진과 모든 임직원이 정책 준수에 책임을 지고 평가 결과를 다음 개선 활동에 반영합니다." },
+      ],
+    },
+    document: {
+      eyebrow: "OFFICIAL POLICY",
+      title: "서울산업 지속가능경영정책 원문",
+      copy: "공식 영문 정책 문서에서 목적, 적용 범위, 세부 원칙과 경영진 책임을 확인할 수 있습니다.",
+      dateLabel: "시행일",
+      date: "2025.11.21",
+      download: "정책 원문 다운로드",
+    },
+  },
+  en: {
+    statement: {
+      eyebrow: "SUSTAINABILITY MANAGEMENT POLICY",
+      title: "Responsible manufacturing guides every business decision.",
+      copy: "Seoul Industry integrates environmental, social, and governance requirements, including SAQ 5.0, across its operations and supply chain.",
+    },
+    meta: [
+      { label: "Scope", value: "Employees, sites, operations and suppliers" },
+      { label: "Standards", value: "ESG, environment, safety, human rights and ethics" },
+      { label: "Supply Chain", value: "Aligned with SAQ 5.0 requirements" },
+    ],
+    governance: {
+      eyebrow: "POLICY FOUNDATION",
+      title: "Purpose, scope and governance",
+      copy: "Sustainability is integrated as a core element of business management. Top management oversees implementation, provides the necessary resources, and holds every employee responsible for compliance.",
+      items: [
+        { title: "Management Integration", copy: "ESG principles are embedded in business strategy and day-to-day decisions." },
+        { title: "Company-wide Scope", copy: "The policy applies to all employees, business sites, operations and suppliers." },
+        { title: "Executive Oversight", copy: "Top management ensures implementation, enforcement and adequate resources." },
+      ],
+    },
+    pillars: [
+      {
+        letter: "E",
+        title: "Environmental",
+        label: "Environmental Responsibility",
+        copy: "We reduce pollution and resource use while managing the impact of our operations on nature.",
+        items: ["Energy efficiency and greenhouse-gas reduction", "Waste, emissions, wastewater and hazardous substances", "Biodiversity, land-use and deforestation risk", "Noise measurement and environmental emergency response"],
+      },
+      {
+        letter: "S",
+        title: "Social",
+        label: "People and Communities",
+        copy: "We provide a safe and healthy workplace while protecting fundamental rights and dignity.",
+        items: ["No child labor, forced labor or discrimination", "Fair working conditions and occupational safety", "Contribution to local communities", "International animal-welfare standards in the supply chain"],
+      },
+      {
+        letter: "G",
+        title: "Governance",
+        label: "Ethics and Transparency",
+        copy: "Fair trade, data protection and a responsible supply chain form the basis of transparent management.",
+        items: ["No bribery, corruption or improper benefits", "Fair trade and conflict-of-interest prevention", "Protection of personal and corporate information", "Supplier ESG assessments and corrective action"],
+      },
+    ],
+    domains: {
+      eyebrow: "POLICY COMMITMENTS",
+      title: "Our sustainability commitments",
+      copy: "The official policy translates environmental, social, ethical, data-protection and supply-chain requirements into clear operating commitments.",
+      items: [
+        { tag: "ENVIRONMENT", title: "Environmental Management", copy: "Minimize waste, air emissions and wastewater, improve energy efficiency, reduce greenhouse gases, and manage hazardous substances safely." },
+        { tag: "NATURE", title: "Biodiversity, Land and Forests", copy: "Minimize ecological impacts, assess land-use risks before operations, and prohibit materials that contribute to deforestation." },
+        { tag: "EMISSIONS", title: "Noise, Pollution and Emergency Response", copy: "Measure and manage noise, prevent soil, air and water contamination, and maintain environmental emergency-response systems." },
+        { tag: "PEOPLE", title: "Human Rights, Safety and Community", copy: "Provide safe and fair working conditions, prohibit child labor, forced labor and discrimination, and contribute to local communities." },
+        { tag: "WELFARE", title: "Animal Welfare", copy: "Prohibit cruelty and unnecessary harm and uphold international animal-welfare standards throughout the supply chain." },
+        { tag: "ETHICS", title: "Ethics and Fair Trade", copy: "Prevent bribery, corruption, improper benefits and conflicts of interest while maintaining transparent and fair business practices." },
+        { tag: "DATA", title: "Data Protection", copy: "Protect personal and corporate information from unauthorized access or misuse and meet legal and customer requirements." },
+        { tag: "SUPPLY CHAIN", title: "Sustainable Supply Chain", copy: "Require suppliers to follow this policy and conduct ESG assessments and corrective actions aligned with SAQ 5.0." },
+      ],
+    },
+    execution: {
+      eyebrow: "IMPLEMENTATION & IMPROVEMENT",
+      title: "Set goals, monitor performance and improve continuously.",
+      items: [
+        { title: "Set Objectives", copy: "Define sustainability objectives and management priorities across environment, people, ethics and supply chain." },
+        { title: "Monitor Performance", copy: "Review implementation status and performance against objectives on a regular basis." },
+        { title: "Assess and Correct", copy: "Use internal audits, external evaluations, customer assessments and SAQ 5.0 results to drive corrective action." },
+        { title: "Own and Improve", copy: "Management and employees share responsibility for compliance and feed evaluation results into continuous improvement." },
+      ],
+    },
+    document: {
+      eyebrow: "OFFICIAL POLICY",
+      title: "Seoul Industry Sustainability Management Policy",
+      copy: "Download the official English policy covering its purpose, scope, commitments and management responsibilities.",
+      dateLabel: "Effective",
+      date: "21 November 2025",
+      download: "Download policy",
+    },
+  },
+  ja: {
+    statement: {
+      eyebrow: "SUSTAINABILITY MANAGEMENT POLICY",
+      title: "責任ある製造を、すべての経営判断の基準とします。",
+      copy: "ソウル産業は、SAQ 5.0を含む環境・社会・ガバナンス要件を事業運営とサプライチェーン全体に反映します。",
+    },
+    meta: [
+      { label: "適用範囲", value: "全従業員・事業所・事業活動・協力会社" },
+      { label: "運営基準", value: "ESG・環境・安全・人権・倫理" },
+      { label: "サプライチェーン", value: "SAQ 5.0要件を反映" },
+    ],
+    governance: {
+      eyebrow: "POLICY FOUNDATION",
+      title: "方針の目的と適用原則",
+      copy: "サステナビリティを事業経営の中核要素として統合します。最高経営層が実施を監督し、必要な資源を提供するとともに、すべての従業員が各業務で方針を遵守します。",
+      items: [
+        { title: "経営への統合", copy: "ESGを事業戦略と日常の意思決定に組み込みます。" },
+        { title: "全社への適用", copy: "全従業員、事業所、事業活動および協力会社に同じ基準を適用します。" },
+        { title: "経営者の責任", copy: "最高経営層が方針の実施と遵守を監督し、必要な資源を提供します。" },
+      ],
+    },
+    pillars: [
+      {
+        letter: "E",
+        title: "Environmental",
+        label: "環境責任",
+        copy: "汚染と資源使用を抑え、事業活動が自然環境に与える影響を事前に管理します。",
+        items: ["エネルギー効率向上と温室効果ガス削減", "廃棄物・大気排出・排水・有害物質管理", "生物多様性・土地利用・森林破壊リスク", "騒音測定と環境事故への緊急対応"],
+      },
+      {
+        letter: "S",
+        title: "Social",
+        label: "人と地域社会",
+        copy: "安全で健康的な職場を提供し、すべての労働者の基本的権利と尊厳を守ります。",
+        items: ["児童労働・強制労働・差別の禁止", "公正な労働条件と労働安全衛生", "地域社会の発展への貢献", "サプライチェーンでの国際動物福祉基準"],
+      },
+      {
+        letter: "G",
+        title: "Governance",
+        label: "倫理と透明性",
+        copy: "公正取引、情報保護、責任あるサプライチェーンを透明経営の基本とします。",
+        items: ["贈収賄・腐敗・不当な利益の禁止", "公正取引と利益相反の防止", "個人・企業情報の保護", "協力会社ESG評価と是正措置"],
+      },
+    ],
+    domains: {
+      eyebrow: "POLICY COMMITMENTS",
+      title: "ソウル産業のサステナビリティ原則",
+      copy: "公式方針に定めた環境、社会、倫理、情報保護、サプライチェーン要件を実行項目別に整理しています。",
+      items: [
+        { tag: "ENVIRONMENT", title: "環境マネジメント", copy: "廃棄物、大気排出、排水を最小化し、エネルギー効率と温室効果ガス削減を進め、有害物質を安全に管理します。" },
+        { tag: "NATURE", title: "生物多様性・土地・森林", copy: "生態系への影響を最小化し、操業前に土地利用リスクを評価するとともに、森林破壊につながる原材料を禁止します。" },
+        { tag: "EMISSIONS", title: "騒音・汚染・緊急対応", copy: "騒音を定期的に測定し、土壌・大気・水質の汚染を防止するとともに、環境事故への緊急対応体制を維持します。" },
+        { tag: "PEOPLE", title: "人権・安全・地域社会", copy: "安全で公正な労働条件を提供し、児童労働、強制労働、差別を禁止し、地域社会の発展に貢献します。" },
+        { tag: "WELFARE", title: "動物福祉", copy: "動物への虐待と不必要な危害を禁止し、サプライチェーンで国際的な動物福祉基準を遵守します。" },
+        { tag: "ETHICS", title: "倫理・公正取引", copy: "贈収賄、腐敗、不当な利益、利益相反を防止し、透明で公正な取引慣行を維持します。" },
+        { tag: "DATA", title: "情報保護", copy: "個人情報と企業情報を不正アクセスや不正利用から保護し、法令および顧客要求を遵守します。" },
+        { tag: "SUPPLY CHAIN", title: "持続可能なサプライチェーン", copy: "協力会社に本方針の遵守を求め、SAQ 5.0に沿ったESG評価と是正措置を実施します。" },
+      ],
+    },
+    execution: {
+      eyebrow: "IMPLEMENTATION & IMPROVEMENT",
+      title: "目標を定め、実績を確認し、継続的に改善します。",
+      items: [
+        { title: "目標設定", copy: "環境、人、倫理、サプライチェーンに関するサステナビリティ目標と管理項目を定めます。" },
+        { title: "実績モニタリング", copy: "方針の実施状況と目標に対する実績を定期的に確認し、記録します。" },
+        { title: "評価と是正", copy: "内部監査、外部評価、顧客評価、SAQ 5.0の結果に基づき必要な是正措置を実施します。" },
+        { title: "責任と改善", copy: "経営層と全従業員が遵守責任を担い、評価結果を継続的改善に反映します。" },
+      ],
+    },
+    document: {
+      eyebrow: "OFFICIAL POLICY",
+      title: "ソウル産業 サステナビリティ経営方針",
+      copy: "目的、適用範囲、各原則、経営者責任を定めた公式英語文書をご確認いただけます。",
+      dateLabel: "施行日",
+      date: "2025.11.21",
+      download: "方針原文をダウンロード",
+    },
+  },
 };
 
 const recruitCopy: Record<
@@ -264,7 +500,7 @@ const recruitCopy: Record<
   },
 };
 
-const productImages = [balanceModuleImage, automotiveImage, steeringImage, drivelineImage];
+const productImages = [balanceModuleImage, automotiveImage, steeringImage, powertrainImage, drivelineImage];
 
 const ceoCopy: Record<RenewalLanguage, { quote: string; paragraphs: string[]; sign: string }> = {
   ko: {
@@ -545,7 +781,7 @@ function CeoBody({ language }: { language: RenewalLanguage }) {
   return (
     <section className="renewal-sub-ceo">
       <div className="renewal-sub-ceo__visual" data-sub-reveal>
-        <img src={precisionImage} alt="" />
+        <img src={companyProfileAssets.factoryImage} alt="Seoul Industry head office and production facility" />
         <span>SINCE 1985 · SEOUL INDUSTRY</span>
       </div>
       <div className="renewal-sub-ceo__message" data-sub-reveal>
@@ -577,6 +813,62 @@ function GreetingBody({ content }: { content: SiteContent }) {
         </div>
       </section>
       <CapabilityGrid content={content} />
+    </>
+  );
+}
+
+function CompanyOverviewBody({ language }: { language: RenewalLanguage }) {
+  const copy = companyOverviewCopy[language];
+
+  return (
+    <>
+      <section className="profile-overview">
+        <figure className="profile-overview__factory" data-sub-reveal>
+          <img src={seoulIndustryFacadeImage} alt="Seoul Industry logo signage on the head office facade" />
+          <figcaption>HEAD OFFICE · PRODUCTION FACILITY · HWASEONG, KOREA</figcaption>
+        </figure>
+        <div className="profile-overview__content">
+          <div data-sub-reveal>
+            <span>{copy.eyebrow}</span>
+            <h2>{copy.title}</h2>
+            <p>{copy.copy}</p>
+          </div>
+          <dl className="profile-overview__facts" data-sub-reveal>
+            {copy.facts.map((fact) => (
+              <div key={fact.label}>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section className="profile-systems" data-sub-reveal aria-label="Automotive systems">
+        {copy.systems.map((system, index) => (
+          <div key={system}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <strong>{system}</strong>
+          </div>
+        ))}
+      </section>
+
+      <section className="profile-network">
+        <header data-sub-reveal>
+          <span>GLOBAL PROGRAM NETWORK</span>
+          <h2>{copy.networkTitle}</h2>
+          <p>{copy.networkCopy}</p>
+        </header>
+        <div className="profile-network__regions">
+          {globalRegions.map((region, index) => (
+            <article data-sub-reveal key={region.region}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{region.region}</h3>
+              <p>{region.customers.join(" · ")}</p>
+            </article>
+          ))}
+        </div>
+      </section>
     </>
   );
 }
@@ -698,6 +990,36 @@ function CertificatesBody({ language }: { language: RenewalLanguage }) {
   );
 }
 
+function ProductEvidenceSection({
+  route,
+  language,
+}: {
+  route: string;
+  language: RenewalLanguage;
+}) {
+  const evidence = productEvidenceByRoute[route];
+  if (!evidence) return null;
+
+  return (
+    <section className="profile-product-evidence">
+      <figure data-sub-reveal>
+        <img src={evidence.image} alt="" />
+        <figcaption>{evidence.eyebrow}</figcaption>
+      </figure>
+      <div data-sub-reveal>
+        <span>{evidence.eyebrow}</span>
+        <h2>{evidence.title[language]}</h2>
+        <p>{evidence.copy[language]}</p>
+        <ul>
+          {evidence.items[language].map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 function ProductDetailBody({
   route,
   content,
@@ -737,7 +1059,126 @@ function ProductDetailBody({
         <h2>{labels.manufacturing}</h2>
       </section>
       <CapabilityGrid content={content} />
+      <ProductEvidenceSection route={route} language={language} />
     </>
+  );
+}
+
+function ProcessMedia({
+  image,
+  video,
+  title,
+}: {
+  image: string;
+  video?: string;
+  title: string;
+}) {
+  if (!video) return <img src={image} alt="" />;
+
+  return (
+    <video autoPlay muted loop playsInline poster={image} aria-label={title}>
+      <source src={video} type="video/mp4" />
+    </video>
+  );
+}
+
+function ManufacturingBody({
+  route,
+  language,
+}: {
+  route: string;
+  language: RenewalLanguage;
+}) {
+  const fixedInspection = route === "manufacturing/inspection";
+  const [filter, setFilter] = useState<ManufacturingGroup | "all">(fixedInspection ? "inspection" : "all");
+  const copy = manufacturingPageCopy[language];
+  const labels = manufacturingGroupLabels[language];
+  const visibleProcesses = fixedInspection
+    ? manufacturingProcesses.filter((process) => process.group === "inspection")
+    : manufacturingProcesses.filter((process) => filter === "all" || process.group === filter);
+  const heading =
+    route === "manufacturing/equipment"
+      ? copy.equipmentTitle
+      : route === "manufacturing/inspection"
+        ? copy.inspectionTitle
+        : copy.title;
+  const intro =
+    route === "manufacturing/equipment"
+      ? copy.equipmentCopy
+      : route === "manufacturing/inspection"
+        ? copy.inspectionCopy
+        : copy.copy;
+
+  return (
+    <>
+      <section className="profile-manufacturing-intro" data-sub-reveal>
+        <span>{copy.eyebrow}</span>
+        <h2>{heading}</h2>
+        <p>{intro}</p>
+      </section>
+
+      {!fixedInspection && (
+        <div className="profile-process-filter" role="group" aria-label={copy.title}>
+          {(Object.keys(labels) as Array<ManufacturingGroup | "all">).map((group) => (
+            <button
+              type="button"
+              className={filter === group ? "is-active" : ""}
+              onClick={() => setFilter(group)}
+              key={group}
+            >
+              {labels[group]}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <section className="profile-process-grid" aria-live="polite">
+        {visibleProcesses.map((process, index) => (
+          <article data-sub-reveal key={process.id}>
+            <figure>
+              <ProcessMedia image={process.image} video={process.video} title={process.title} />
+              <span>{String(index + 1).padStart(2, "0")}</span>
+            </figure>
+            <div>
+              <small>{labels[process.group]}</small>
+              <h3>{process.title}</h3>
+              <p>{process.copy[language]}</p>
+              <strong>{process.capability[language]}</strong>
+              <span>{process.makers}</span>
+            </div>
+          </article>
+        ))}
+      </section>
+    </>
+  );
+}
+
+function QualityEvidence({ language }: { language: RenewalLanguage }) {
+  const copy = qualityEvidenceCopy[language];
+
+  return (
+    <section className="profile-quality-evidence">
+      <header data-sub-reveal>
+        <span>SHOP FLOOR QUALITY EVIDENCE</span>
+        <h2>{copy.title}</h2>
+        <p>{copy.copy}</p>
+      </header>
+      <div>
+        {qualityEvidenceProcesses.map((process, index) => (
+          <article data-sub-reveal key={process.id}>
+            <figure>
+              <ProcessMedia image={process.image} video={process.video} title={process.title} />
+              <span>{String(index + 1).padStart(2, "0")}</span>
+            </figure>
+            <div>
+              <h3>{process.title}</h3>
+              <p>{process.copy[language]}</p>
+              <strong>{process.capability[language]}</strong>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -804,6 +1245,7 @@ function QualitySystemBody({ language }: { language: RenewalLanguage }) {
         <h2>{labels.qualityFlow}</h2>
       </section>
       <ProcessFlow items={qualityFlow[language]} label={labels.qualityFlow} />
+      <QualityEvidence language={language} />
       <CertificatesBody language={language} />
     </>
   );
@@ -826,6 +1268,7 @@ function PreventiveQualityBody({ language }: { language: RenewalLanguage }) {
         <h2>{labels.qualityFlow}</h2>
       </section>
       <ProcessFlow items={preventiveFlow[language]} label={labels.qualityFlow} />
+      <QualityEvidence language={language} />
     </>
   );
 }
@@ -852,11 +1295,14 @@ function PartsDevelopmentBody({ content, language }: { content: SiteContent; lan
         </div>
       </section>
       <ProcessFlow items={developmentFlow[language]} label={labels.developmentFlow} />
+      <ProductEvidenceSection route="products/electric-vehicle" language={language} />
     </>
   );
 }
 
-function EnvironmentalBody({ content }: { content: SiteContent }) {
+function EnvironmentalBody({ content, language }: { content: SiteContent; language: RenewalLanguage }) {
+  const policy = sustainabilityPolicyCopy[language];
+
   return (
     <>
       <section className="renewal-sub-esg-word" aria-label="ESG">
@@ -882,49 +1328,133 @@ function EnvironmentalBody({ content }: { content: SiteContent }) {
           </article>
         ))}
       </section>
+      <a className="renewal-sub-esg-policy-link" href="#/sustainability/policy" data-sub-reveal>
+        <span>{policy.statement.eyebrow}</span>
+        <div>
+          <strong>{policy.statement.title}</strong>
+          <p>{policy.statement.copy}</p>
+        </div>
+        <span className="renewal-sub-esg-policy-link__mark" aria-hidden="true">
+          <Icon name="arrow" />
+        </span>
+      </a>
     </>
   );
 }
 
-function GovernanceBody({ language }: { language: RenewalLanguage }) {
-  return (
-    <section className="renewal-sub-governance">
-      {governanceCopy[language].map((item, index) => (
-        <article data-sub-reveal key={item.title}>
-          <span>{item.tag}</span>
-          <strong>{String(index + 1).padStart(2, "0")}</strong>
-          <h3>{item.title}</h3>
-          <p>{item.copy}</p>
-        </article>
-      ))}
-    </section>
-  );
-}
+function SustainabilityPolicyBody({ language }: { language: RenewalLanguage }) {
+  const copy = sustainabilityPolicyCopy[language];
 
-function ReportBody({ language }: { language: RenewalLanguage }) {
   return (
-    <section className="renewal-sub-reports">
-      {reportCopy[language].map((report, index) => (
-        <article data-sub-reveal key={report.year}>
-          <strong>{report.year}</strong>
+    <>
+      <section className="renewal-sub-policy-statement renewal-sub-policy-statement--dark" data-sub-reveal>
+        <span>{copy.statement.eyebrow}</span>
+        <h2>{copy.statement.title}</h2>
+        <p>{copy.statement.copy}</p>
+        <div className="renewal-sub-sustainability-meta" aria-label={copy.statement.eyebrow}>
+          {copy.meta.map((item) => (
+            <div key={item.label}>
+              <span>{item.label}</span>
+              <strong>{item.value}</strong>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="renewal-sub-sustainability-foundation">
+        <div className="renewal-sub-sustainability-foundation__heading" data-sub-reveal>
+          <span>{copy.governance.eyebrow}</span>
+          <h2>{copy.governance.title}</h2>
+          <p>{copy.governance.copy}</p>
+        </div>
+        <div className="renewal-sub-sustainability-foundation__principles">
+          {copy.governance.items.map((item, index) => (
+            <article data-sub-reveal key={item.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="renewal-sub-sustainability-pillars" aria-label="ESG">
+        {copy.pillars.map((pillar) => (
+          <article data-sub-reveal key={pillar.letter}>
+            <div>
+              <strong>{pillar.letter}</strong>
+              <span>{pillar.title}</span>
+            </div>
+            <h3>{pillar.label}</h3>
+            <p>{pillar.copy}</p>
+            <ul>
+              {pillar.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </section>
+
+      <section className="renewal-sub-sustainability-domains">
+        <header data-sub-reveal>
+          <span>{copy.domains.eyebrow}</span>
+          <h2>{copy.domains.title}</h2>
+          <p>{copy.domains.copy}</p>
+        </header>
+        <div>
+          {copy.domains.items.map((item, index) => (
+            <article data-sub-reveal key={item.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <small>{item.tag}</small>
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="renewal-sub-sustainability-execution">
+        <header data-sub-reveal>
+          <span>{copy.execution.eyebrow}</span>
+          <h2>{copy.execution.title}</h2>
+        </header>
+        <ol>
+          {copy.execution.items.map((item, index) => (
+            <li data-sub-reveal key={item.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="renewal-sub-sustainability-document" data-sub-reveal>
+        <div>
+          <span>{copy.document.eyebrow}</span>
+          <h2>{copy.document.title}</h2>
+          <p>{copy.document.copy}</p>
+        </div>
+        <div className="renewal-sub-sustainability-document__action">
           <div>
-            <span>REPORT 0{index + 1}</span>
-            <h3>{report.title}</h3>
-            <p>{report.copy}</p>
+            <span>{copy.document.dateLabel}</span>
+            <strong>{copy.document.date}</strong>
           </div>
-          <span className="renewal-sub-reports__mark" aria-hidden="true">
+          <a href={sustainabilityPolicyDocument} download>
+            <span>{copy.document.download}</span>
             <Icon name="arrow" />
-          </span>
-        </article>
-      ))}
-    </section>
+          </a>
+        </div>
+      </section>
+    </>
   );
 }
 
 function AutomotiveBody({ content }: { content: SiteContent }) {
   return (
     <section className="renewal-sub-products">
-      {content.products.slice(0, 4).map((product, index) => (
+      {content.products.slice(0, 5).map((product, index) => (
         <article data-sub-reveal key={product.title}>
           <div className="renewal-sub-products__media">
             <img src={productImages[index]} alt="" />
@@ -1134,25 +1664,6 @@ function BenefitsBody({ language }: { language: RenewalLanguage }) {
   );
 }
 
-function SustainabilityPolicyBody({ language }: { language: RenewalLanguage }) {
-  return (
-    <>
-      <section className="renewal-sub-policy-statement renewal-sub-policy-statement--dark" data-sub-reveal>
-        <span>RESPONSIBLE MANUFACTURING</span>
-        <h2>
-          {language === "ko"
-            ? "제조의 모든 결정에 환경·안전·품질·윤리 기준을 함께 둡니다."
-            : language === "ja"
-              ? "製造のすべての判断に、環境・安全・品質・倫理の基準を置きます。"
-              : "Every manufacturing decision considers environment, safety, quality, and ethics."}
-        </h2>
-      </section>
-      <GovernanceBody language={language} />
-      <ReportBody language={language} />
-    </>
-  );
-}
-
 function RouteBody({
   route,
   language,
@@ -1162,18 +1673,20 @@ function RouteBody({
   language: RenewalLanguage;
   content: SiteContent;
 }) {
+  if (route === "company/overview") return <CompanyOverviewBody language={language} />;
   if (route === "company/ceo") return <CeoBody language={language} />;
   if (route === "company/history") return <HistoryBody content={content} />;
   if (route === "company/location") return <LocationBody language={language} />;
   if (route === "company/notices") return <NewsBody language={language} content={content} />;
   if (route in productRouteIndex) return <ProductDetailBody route={route} content={content} language={language} />;
+  if (route.startsWith("manufacturing/")) return <ManufacturingBody route={route} language={language} />;
   if (route === "quality/policy") return <QualityPolicyBody language={language} />;
   if (route === "quality/system") return <QualitySystemBody language={language} />;
   if (route === "quality/preventive") return <PreventiveQualityBody language={language} />;
   if (route === "rnd/parts-development") return <PartsDevelopmentBody content={content} language={language} />;
   if (route === "recruit/information") return <RecruitmentBody language={language} />;
   if (route === "recruit/benefits") return <BenefitsBody language={language} />;
-  if (route === "esg/information") return <EnvironmentalBody content={content} />;
+  if (route === "esg/information") return <EnvironmentalBody content={content} language={language} />;
   if (route === "sustainability/policy") return <SustainabilityPolicyBody language={language} />;
   return <GreetingBody content={content} />;
 }
@@ -1264,7 +1777,7 @@ export default function RenewalSubPage({ route }: RenewalSubPageProps) {
       <RenewalSiteHeader language={language} onLanguageChange={setLanguage} currentRoute={cleanRoute} />
       <main key={`${cleanRoute}-${language}`}>
         <section
-          className="renewal-sub-hero"
+          className={`renewal-sub-hero${cleanRoute.startsWith("products/") ? " renewal-sub-hero--product" : ""}`}
           style={
             {
               "--renewal-sub-image": `url(${config.image})`,

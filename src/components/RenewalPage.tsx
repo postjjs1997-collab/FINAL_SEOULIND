@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import balanceModuleImage from "../../housing.png";
-import drivelineImage from "../../driveline.png";
-import electricVehicleImage from "../../electric vehicle.png";
-import steeringImage from "../../steering.png";
+import balanceModuleImage from "../../assets/product-lineup/balance-module.jpg";
+import drivelineImage from "../../assets/product-lineup/driveline.jpg";
+import electricVehicleImage from "../../assets/product-lineup/electric-vehicle.jpg";
+import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
+import steeringImage from "../../assets/product-lineup/steering.jpg";
 import heroVideo from "../../assets/hero3.mp4";
 import heroPoster from "../../assets/hero3-poster.jpg";
 import machiningVideo from "../../machining.mp4";
@@ -11,9 +12,19 @@ import qualityPoster from "../../assets/process-videos/inspection-00-04.jpg";
 import supplyVideo from "../../assets/process-videos/global-supply-08-14.mp4";
 import supplyPoster from "../../assets/process-videos/global-supply-08-14.jpg";
 import machiningPoster from "../../assets/clients/client-dauch.jpg";
-import housingPoster from "../../assets/video-posters/housing1.jpg";
-import steeringPoster from "../../assets/video-posters/steering1.jpg";
+import machiningCenterImage from "../../assets/company-profile/process/machining-center.webp";
+import cmmImage from "../../assets/company-profile/process/cmm.webp";
+import autoInspectionImage from "../../assets/company-profile/process/auto-inspection.webp";
 import evPoster from "../../assets/video-posters/electric-vehicle2.jpg";
+import dauchLogo from "../../assets/partner-dauch.svg";
+import gknLogo from "../../assets/partner-gkn.svg";
+import hanseaLogo from "../../assets/partner-kdac.svg";
+import magnaLogo from "../../assets/partner-magna.svg";
+import mobisLogo from "../../assets/partner-mobis.svg";
+import muncieLogo from "../../assets/partner-mpt.svg";
+import nexteerLogo from "../../assets/partner-nexteer.png";
+import spartanLogo from "../../assets/partner-spartan.svg";
+import trwLogo from "../../assets/partner-trw.svg";
 import Icon from "./Icons";
 import { RenewalSiteFooter, RenewalSiteHeader } from "./RenewalShell";
 import { useLenisScroll } from "../motion/useLenisScroll";
@@ -50,8 +61,17 @@ type RenewalCopy = {
   principles: {
     eyebrow: string;
     title: string[];
+    copy: string;
     link: string;
-    items: Array<{ title: string; copy: string }>;
+    items: Array<{ title: string; copy: string; detail: string }>;
+  };
+  partners: {
+    eyebrow: string;
+    title: string[];
+    copy: string;
+    link: string;
+    regions: string;
+    officialSite: string;
   };
   news: {
     eyebrow: string;
@@ -179,22 +199,43 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       title: "정밀가공 제품군",
       link: "제품 전체 보기",
       items: [
-        { title: "Balance Module", category: "BSM", copy: "진동 저감과 동력 효율을 위한 밸런스 모듈 가공 부품" },
         { title: "Electric Vehicle", category: "EV", copy: "전동화 플랫폼의 조립성과 내구 조건을 고려한 정밀 부품" },
-        { title: "Steering", category: "STEERING", copy: "조향 응답성과 안전 품질을 지지하는 피니언 샤프트 계열" },
+        { title: "Powertrain", category: "POWERTRAIN", copy: "엔진의 캠샤프트와 밸브 타이밍 영역에 적용되는 정밀가공 부품" },
         { title: "Driveline", category: "DRIVELINE", copy: "동력 전달과 조립 안정성을 위한 핵심 구동계 부품" },
+        { title: "Balance Shaft Module", category: "BSM", copy: "진동 저감과 동력 효율을 위한 밸런스 샤프트 모듈 가공 부품" },
+        { title: "Steering", category: "STEERING", copy: "조향 응답성과 안전 품질을 지지하는 피니언 샤프트 계열" },
       ],
     },
     principles: {
-      eyebrow: "MANUFACTURING PRINCIPLES",
-      title: ["정밀가공을 넘어,", "오래 가는 제조 기준"],
-      link: "기술 역량 보기",
+      eyebrow: "SEOUL INDUSTRY STANDARD",
+      title: ["공정에서 확인하고,", "제품으로 증명합니다"],
+      copy: "서울산업은 가공, 검사, 양산 대응을 서로 떨어진 단계로 보지 않습니다. 도면 검토부터 공정 조건, 측정 결과와 출하 일정까지 하나의 흐름으로 관리해 반복 생산의 신뢰를 만듭니다.",
+      link: "생산기술 자세히 보기",
       items: [
-        { title: "Process Stability", copy: "설비 조건과 작업 기준을 표준화해 반복 생산의 흔들림을 줄입니다." },
-        { title: "Built-in Quality", copy: "품질을 마지막 검사에 맡기지 않고 공정 안에서부터 관리합니다." },
-        { title: "Reliable Delivery", copy: "생산 계획과 공급 일정을 연결해 고객의 양산 흐름을 지킵니다." },
-        { title: "Continuous Improvement", copy: "데이터와 현장 경험을 바탕으로 더 나은 가공 조건을 찾습니다." },
+        {
+          title: "정밀 공정기술",
+          copy: "도면과 소재, 부품 형상에 맞춰 CNC 선삭과 기어·스플라인, 연삭 조건을 설계합니다. 설비별 기준을 표준화해 반복 양산에서도 치수와 표면 품질의 편차를 줄입니다.",
+          detail: "공정설계 · 전용 가공조건 · 반복정밀도",
+        },
+        {
+          title: "공정 내 품질관리",
+          copy: "주요 치수와 형상은 3차원 측정과 전용 검사를 통해 확인합니다. 검사 결과를 설비 조건과 LOT 이력에 연결해 이상 징후를 출하 전에 추적하고 개선합니다.",
+          detail: "3차원 측정 · 자동검사 · 품질이력",
+        },
+        {
+          title: "안정적 양산 대응",
+          copy: "자동화 설비와 검사 공정을 연결해 생산 흐름을 안정적으로 유지합니다. 개발 일정부터 양산과 출하까지 고객의 공급 계획에 맞춰 대응합니다.",
+          detail: "자동화 · 공정연계 · 양산대응",
+        },
       ],
+    },
+    partners: {
+      eyebrow: "GLOBAL OEM NETWORK",
+      title: ["세계의 자동차 산업과,", "정밀가공으로 연결됩니다"],
+      copy: "서울산업은 조향, 드라이브라인, 파워트레인과 전동화 부품 프로그램을 통해 국내외 고객과 양산 경험을 축적해 왔습니다. 개발 대응부터 품질 기록, 납기와 공급 안정성까지 같은 기준으로 관리하며 장기적인 제조 파트너십을 이어갑니다.",
+      link: "파트너십 연혁 보기",
+      regions: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN",
+      officialSite: "공식 홈페이지",
     },
     news: {
       eyebrow: "SEOUL INDUSTRY NEWS",
@@ -325,22 +366,43 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       title: "Precision product lineup",
       link: "View all products",
       items: [
-        { title: "Balance Module", category: "BSM", copy: "Machined balance module parts for vibration control and power efficiency." },
         { title: "Electric Vehicle", category: "EV", copy: "Precision parts engineered for EV platform assembly and durability." },
-        { title: "Steering", category: "STEERING", copy: "Pinion shaft components supporting steering response and safety." },
+        { title: "Powertrain", category: "POWERTRAIN", copy: "Precision components for engine camshaft and valve-timing systems." },
         { title: "Driveline", category: "DRIVELINE", copy: "Core driveline components for reliable power delivery and assembly." },
+        { title: "Balance Shaft Module", category: "BSM", copy: "Machined balance shaft module parts for vibration control and power efficiency." },
+        { title: "Steering", category: "STEERING", copy: "Pinion shaft components supporting steering response and safety." },
       ],
     },
     principles: {
-      eyebrow: "MANUFACTURING PRINCIPLES",
-      title: ["Beyond machining,", "standards built to last"],
-      link: "View capabilities",
+      eyebrow: "SEOUL INDUSTRY STANDARD",
+      title: ["Verified in every process,", "proven in every part"],
+      copy: "Machining, inspection, and volume-production response are managed as one connected system. From drawing review and process settings to measurement records and delivery schedules, each decision supports repeatable manufacturing.",
+      link: "Explore production technology",
       items: [
-        { title: "Process Stability", copy: "Standardized equipment settings and work rules reduce variation in repeat production." },
-        { title: "Built-in Quality", copy: "Quality is managed inside every process, not left to the final inspection." },
-        { title: "Reliable Delivery", copy: "Production and delivery plans stay connected to protect customer schedules." },
-        { title: "Continuous Improvement", copy: "Data and shop-floor experience guide better machining conditions." },
+        {
+          title: "Precision Process Engineering",
+          copy: "CNC turning, gear and spline machining, and grinding conditions are engineered around each drawing, material, and part geometry. Standardized equipment settings reduce dimensional and surface-quality variation in repeat production.",
+          detail: "Process design · Dedicated conditions · Repeatability",
+        },
+        {
+          title: "Quality Built into the Process",
+          copy: "Critical dimensions and geometry are verified through CMM and dedicated inspection. Results are linked to equipment conditions and lot records so potential issues can be traced and corrected before shipment.",
+          detail: "CMM · Automated inspection · Traceability",
+        },
+        {
+          title: "Reliable Volume Production",
+          copy: "Automation and inspection are connected to keep production flow stable. From development timing through volume production and shipment, our response stays aligned with each customer supply plan.",
+          detail: "Automation · Connected operations · OEM response",
+        },
       ],
+    },
+    partners: {
+      eyebrow: "GLOBAL OEM NETWORK",
+      title: ["Precision connects", "global mobility"],
+      copy: "Seoul Industry has built volume-production experience with customers in steering, driveline, powertrain, and electrification programs. From development response and quality records to delivery and supply stability, one consistent standard supports every long-term manufacturing partnership.",
+      link: "View partnership history",
+      regions: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN",
+      officialSite: "Official website",
     },
     news: {
       eyebrow: "SEOUL INDUSTRY NEWS",
@@ -471,22 +533,43 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       title: "精密加工製品ラインアップ",
       link: "全製品を見る",
       items: [
-        { title: "Balance Module", category: "BSM", copy: "振動低減と動力効率を支えるバランスモジュール加工部品" },
         { title: "Electric Vehicle", category: "EV", copy: "EVプラットフォームの組立性と耐久性を考慮した精密部品" },
-        { title: "Steering", category: "STEERING", copy: "操舵応答性と安全品質を支えるピニオンシャフト系部品" },
+        { title: "Powertrain", category: "POWERTRAIN", copy: "エンジンのカムシャフトとバルブタイミング領域に適用される精密加工部品" },
         { title: "Driveline", category: "DRIVELINE", copy: "動力伝達と組立安定性を支える主要駆動系部品" },
+        { title: "Balance Shaft Module", category: "BSM", copy: "振動低減と動力効率を支えるバランスシャフトモジュール加工部品" },
+        { title: "Steering", category: "STEERING", copy: "操舵応答性と安全品質を支えるピニオンシャフト系部品" },
       ],
     },
     principles: {
-      eyebrow: "MANUFACTURING PRINCIPLES",
-      title: ["精密加工を超えて、", "長く続く製造基準へ"],
-      link: "技術力を見る",
+      eyebrow: "SEOUL INDUSTRY STANDARD",
+      title: ["工程で確かめ、", "製品で証明します"],
+      copy: "加工、検査、量産対応を別々の段階として扱わず、一つの生産システムとして管理します。図面検討から工程条件、測定記録、出荷日程までをつなぎ、繰り返し生産の信頼性を高めます。",
+      link: "生産技術を見る",
       items: [
-        { title: "Process Stability", copy: "設備条件と作業基準を標準化し、繰り返し生産のばらつきを抑えます。" },
-        { title: "Built-in Quality", copy: "品質を最終検査だけに任せず、工程の中から管理します。" },
-        { title: "Reliable Delivery", copy: "生産計画と供給日程をつなぎ、顧客の量産フローを守ります。" },
-        { title: "Continuous Improvement", copy: "データと現場経験をもとに、より良い加工条件を追求します。" },
+        {
+          title: "精密工程技術",
+          copy: "図面、素材、部品形状に合わせてCNC旋削、ギヤ・スプライン加工、研削条件を設計します。設備ごとの基準を標準化し、繰り返し量産でも寸法と表面品質のばらつきを抑えます。",
+          detail: "工程設計 · 専用加工条件 · 繰り返し精度",
+        },
+        {
+          title: "工程内品質管理",
+          copy: "主要寸法と形状を三次元測定および専用検査で確認します。測定結果を設備条件とロット履歴につなぎ、異常の兆候を出荷前に追跡・改善します。",
+          detail: "三次元測定 · 自動検査 · 品質履歴",
+        },
+        {
+          title: "安定した量産対応",
+          copy: "自動化設備と検査工程をつなぎ、安定した生産フローを維持します。開発日程から量産・出荷まで、顧客の供給計画に合わせて対応します。",
+          detail: "自動化 · 工程連携 · 量産対応",
+        },
       ],
+    },
+    partners: {
+      eyebrow: "GLOBAL OEM NETWORK",
+      title: ["世界の自動車産業と、", "精密加工でつながります"],
+      copy: "ソウル産業は操舵、ドライブライン、パワートレイン、電動化部品の各プログラムを通じて、国内外のお客様との量産実績を積み重ねてきました。開発対応から品質記録、納期、安定供給まで一貫した基準で管理し、長期的な製造パートナーシップを築いています。",
+      link: "パートナーシップ沿革を見る",
+      regions: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN",
+      officialSite: "公式サイト",
     },
     news: {
       eyebrow: "SEOUL INDUSTRY NEWS",
@@ -531,15 +614,33 @@ const processMedia = [
   { video: supplyVideo, poster: supplyPoster },
 ];
 
-const productImages = [balanceModuleImage, electricVehicleImage, steeringImage, drivelineImage];
+const productImages = [electricVehicleImage, powertrainImage, drivelineImage, balanceModuleImage, steeringImage];
 const productRoutes = [
-  "#/products/balance-shaft-module",
   "#/products/electric-vehicle",
-  "#/products/steering",
+  "#/products/powertrain",
   "#/products/driveline",
+  "#/products/balance-shaft-module",
+  "#/products/steering",
 ];
-const principleImages = [housingPoster, steeringPoster, evPoster, heroPoster];
+const principleImages = [machiningCenterImage, cmmImage, autoInspectionImage];
 const newsImages = [machiningPoster, qualityPoster, evPoster, supplyPoster];
+
+const renewalPartners = [
+  { name: "Dauch Corporation", market: "USA", logo: dauchLogo, href: "https://www.dauch.com/" },
+  { name: "Spartan Light Metal Products", market: "USA", logo: spartanLogo, href: "https://spartanlmp.com/" },
+  {
+    name: "ZF TRW",
+    market: "KOREA / GLOBAL",
+    logo: trwLogo,
+    href: "https://aftermarket.zf.com/en/aftermarket-portal/our-brands/trw/",
+  },
+  { name: "Hyundai Mobis", market: "KOREA", logo: mobisLogo, href: "https://www.mobis.com/" },
+  { name: "Nexteer Automotive", market: "GLOBAL", logo: nexteerLogo, href: "https://www.nexteer.com/" },
+  { name: "Hansea Mobility", market: "KOREA", logo: hanseaLogo, href: "https://www.hansaemobility.com/" },
+  { name: "GKN Automotive", market: "GLOBAL", logo: gknLogo, href: "https://www.gknautomotive.com/" },
+  { name: "Muncie Power Products", market: "USA", logo: muncieLogo, href: "https://www.munciepower.com/" },
+  { name: "Magna Powertrain", market: "GLOBAL", logo: magnaLogo, href: "https://www.magna.com/" },
+];
 
 function scrollToSection(target: string) {
   document.getElementById(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -817,7 +918,8 @@ function PrinciplesSection({ copy }: { copy: RenewalCopy }) {
             <span key={line}>{line}</span>
           ))}
         </h2>
-        <a href="#/quality/system" className="renewal-arrow-link">
+        <p>{copy.principles.copy}</p>
+        <a href="#/manufacturing/process" className="renewal-arrow-link">
           <span>{copy.principles.link}</span>
           <Icon name="arrow" />
         </a>
@@ -827,15 +929,66 @@ function PrinciplesSection({ copy }: { copy: RenewalCopy }) {
           const offset = Math.max(0, 1 - progress) * (index % 2 === 0 ? 110 : 165);
           return (
             <article className="renewal-principle-card" style={{ transform: `translate3d(0, ${offset}px, 0)` }} key={item.title}>
-              <img src={principleImages[index]} alt="" />
-              <div>
-                <span>0{index + 1}</span>
+              <div className="renewal-principle-card__media">
+                <img src={principleImages[index]} alt={item.title} loading="lazy" />
+                <span>{String(index + 1).padStart(2, "0")}</span>
+              </div>
+              <div className="renewal-principle-card__copy">
                 <h3>{item.title}</h3>
                 <p>{item.copy}</p>
+                <strong>{item.detail}</strong>
               </div>
             </article>
           );
         })}
+      </div>
+    </section>
+  );
+}
+
+function PartnersSection({ copy }: { copy: RenewalCopy }) {
+  return (
+    <section className="renewal-partners" id="renewal-partners">
+      <div className="renewal-partners__word" aria-hidden="true">
+        GLOBAL PARTNERS
+      </div>
+      <div className="renewal-partners__intro" data-renewal-reveal>
+        <span>{copy.partners.eyebrow}</span>
+        <h2>
+          {copy.partners.title.map((line) => (
+            <span key={line}>{line}</span>
+          ))}
+        </h2>
+        <p>{copy.partners.copy}</p>
+        <strong>{copy.partners.regions}</strong>
+        <a href="#/company/history" className="renewal-arrow-link">
+          <span>{copy.partners.link}</span>
+          <Icon name="arrow" />
+        </a>
+      </div>
+      <div className="renewal-partners__grid">
+        {renewalPartners.map((partner) => (
+          <a
+            className="renewal-partner"
+            data-renewal-reveal
+            href={partner.href}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${partner.name} ${copy.partners.officialSite}`}
+            key={partner.name}
+          >
+            <span className="renewal-partner__logo">
+              <img src={partner.logo} alt={partner.name} loading="lazy" />
+            </span>
+            <span className="renewal-partner__meta">
+              <span>
+                <strong>{partner.name}</strong>
+                <small>{partner.market}</small>
+              </span>
+              <Icon name="arrow" />
+            </span>
+          </a>
+        ))}
       </div>
     </section>
   );
@@ -940,6 +1093,7 @@ export default function RenewalPage() {
         <CompanySection copy={copy} />
         <ProductsSection copy={copy} />
         <PrinciplesSection copy={copy} />
+        <PartnersSection copy={copy} />
         <NewsSection copy={copy} />
         <ContactSection copy={copy} />
       </main>

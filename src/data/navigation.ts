@@ -13,8 +13,9 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
   ko: [
     {
       label: "기업정보",
-      href: "#/company/ceo",
+      href: "#/company/overview",
       children: [
+        { label: "회사개요", href: "#/company/overview" },
         { label: "CEO인사말", href: "#/company/ceo" },
         { label: "회사연혁", href: "#/company/history" },
         { label: "찾아오시는길", href: "#/company/location" },
@@ -31,6 +32,15 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
         { label: "BALANCE SHAFT MODULE", href: "#/products/balance-shaft-module" },
         { label: "STEERING", href: "#/products/steering" },
         { label: "ETC", href: "#/products/etc" },
+      ],
+    },
+    {
+      label: "생산기술",
+      href: "#/manufacturing/process",
+      children: [
+        { label: "생산공정", href: "#/manufacturing/process" },
+        { label: "보유설비·자동화", href: "#/manufacturing/equipment" },
+        { label: "검사기술", href: "#/manufacturing/inspection" },
       ],
     },
     {
@@ -69,8 +79,9 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
   en: [
     {
       label: "Company",
-      href: "#/company/ceo",
+      href: "#/company/overview",
       children: [
+        { label: "Overview", href: "#/company/overview" },
         { label: "CEO Message", href: "#/company/ceo" },
         { label: "History", href: "#/company/history" },
         { label: "Location", href: "#/company/location" },
@@ -87,6 +98,15 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
         { label: "BALANCE SHAFT MODULE", href: "#/products/balance-shaft-module" },
         { label: "STEERING", href: "#/products/steering" },
         { label: "ETC", href: "#/products/etc" },
+      ],
+    },
+    {
+      label: "Manufacturing",
+      href: "#/manufacturing/process",
+      children: [
+        { label: "Production Process", href: "#/manufacturing/process" },
+        { label: "Equipment & Automation", href: "#/manufacturing/equipment" },
+        { label: "Inspection Technology", href: "#/manufacturing/inspection" },
       ],
     },
     {
@@ -125,8 +145,9 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
   ja: [
     {
       label: "企業情報",
-      href: "#/company/ceo",
+      href: "#/company/overview",
       children: [
+        { label: "会社概要", href: "#/company/overview" },
         { label: "CEOメッセージ", href: "#/company/ceo" },
         { label: "会社沿革", href: "#/company/history" },
         { label: "アクセス", href: "#/company/location" },
@@ -143,6 +164,15 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
         { label: "BALANCE SHAFT MODULE", href: "#/products/balance-shaft-module" },
         { label: "STEERING", href: "#/products/steering" },
         { label: "ETC", href: "#/products/etc" },
+      ],
+    },
+    {
+      label: "生産技術",
+      href: "#/manufacturing/process",
+      children: [
+        { label: "生産工程", href: "#/manufacturing/process" },
+        { label: "保有設備・自動化", href: "#/manufacturing/equipment" },
+        { label: "検査技術", href: "#/manufacturing/inspection" },
       ],
     },
     {
