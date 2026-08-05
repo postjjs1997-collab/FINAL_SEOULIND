@@ -7,7 +7,6 @@ import balanceModuleImage from "../../assets/product-lineup/balance-module.jpg";
 import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
 import precisionHeroImage from "../../precision-inside-mobility.jpg";
 import steeringImage from "../../assets/product-lineup/steering.jpg";
-import factoryOverviewImage from "../../assets/company-profile/factory.webp";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import manufacturingProcessHeroImage from "../../assets/manufacturing/hero/production-process-cnc.jpg";
 import manufacturingEquipmentHeroImage from "../../assets/manufacturing/hero/equipment-automation.jpg";
@@ -348,8 +347,8 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     title: "회사개요",
     lead: "서울산업은 엔진과 모터의 동력을 전달하는 샤프트, 기어, 스플라인, 하우징을 생산하는 자동차 부품 정밀가공 기업입니다.",
     heroCopy: "1985년부터 개발 검토, 정밀가공, 열처리, 자동검사와 양산 공급을 하나의 제조 흐름으로 연결해 왔습니다.",
-    image: factoryOverviewImage,
-    imagePosition: "center",
+    image: seoulIndustryFacadeImage,
+    imagePosition: "center 32%",
   },
   "company/ceo": {
     route: "company/ceo",
