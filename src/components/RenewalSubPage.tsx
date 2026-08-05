@@ -851,31 +851,89 @@ const preventiveFlow: Record<RenewalLanguage, Array<{ title: string; copy: strin
   ],
 };
 
-const developmentFlow: Record<RenewalLanguage, Array<{ title: string; copy: string }>> = {
+type DevelopmentFlowItem = {
+  phase: string;
+  title: string;
+  copy: string;
+  output: string;
+};
+
+const developmentFlow: Record<RenewalLanguage, DevelopmentFlowItem[]> = {
   ko: [
-    { title: "요구사항 분석", copy: "도면, 소재, 특별특성, 목표 물량과 납기를 검토합니다." },
-    { title: "가공성 검토", copy: "공정 순서, 설비, 공구, 치공구와 검사 방법을 설계합니다." },
-    { title: "시제품 제작", copy: "초도 가공과 측정으로 형상, 조립성, 핵심 치수를 검증합니다." },
-    { title: "공정 설계", copy: "PFMEA, 관리계획, 작업표준과 LOT 추적 기준을 확정합니다." },
-    { title: "양산 검증", copy: "공정 능력과 반복 생산성, 포장·출하 조건을 확인합니다." },
-    { title: "양산 이관", copy: "승인 조건을 현장 표준으로 연결하고 변경점을 지속 관리합니다." },
+    {
+      phase: "CUSTOMER INPUT",
+      title: "요구사항 분석",
+      copy: "고객 도면과 소재, 특별특성, 목표 물량, 개발 일정을 함께 검토해 프로젝트의 입력 조건을 명확히 정의합니다.",
+      output: "개발 입력조건",
+    },
+    {
+      phase: "PROCESS PLANNING",
+      title: "가공성 검토",
+      copy: "형상과 공차를 기준으로 공정 순서, 설비, 공구, 치공구, 측정 방법을 검토해 안정적인 제조 방안을 구상합니다.",
+      output: "공정 구상안",
+    },
+    {
+      phase: "PROTOTYPE",
+      title: "시제품 제작",
+      copy: "초도 가공과 정밀 측정을 반복하며 형상, 조립성, 핵심 치수와 기능 요구가 설계 의도에 맞는지 확인합니다.",
+      output: "시제품 검증 결과",
+    },
+    {
+      phase: "APQP",
+      title: "공정 설계",
+      copy: "PFMEA와 관리계획, 작업표준, 검사 기준, LOT 추적 체계를 연결해 양산 공정의 관리 조건을 확정합니다.",
+      output: "양산 관리 기준",
+    },
+    {
+      phase: "PPAP",
+      title: "양산 검증",
+      copy: "공정 능력과 반복 생산성, 측정 신뢰성, 포장·출하 조건을 검증하고 고객 승인에 필요한 근거를 완성합니다.",
+      output: "양산 승인 결과",
+    },
+    {
+      phase: "SOP",
+      title: "양산 이관",
+      copy: "승인된 조건을 현장 표준으로 이관하고 작업·검사·변경 이력을 연결해 안정적인 양산 상태를 유지합니다.",
+      output: "현장 표준·변경이력",
+    },
   ],
   en: [
-    { title: "Requirement Analysis", copy: "Drawings, material, special characteristics, volume, and timing are reviewed." },
-    { title: "Feasibility", copy: "Process sequence, equipment, tools, fixtures, and inspection methods are designed." },
-    { title: "Prototype", copy: "Initial machining and measurement validate geometry, assembly, and key dimensions." },
-    { title: "Process Design", copy: "PFMEA, control plans, work standards, and LOT traceability are finalized." },
-    { title: "Production Validation", copy: "Capability, repeat output, packing, and shipment conditions are confirmed." },
-    { title: "Launch", copy: "Approved conditions become site standards, and changes remain controlled." },
+    { phase: "CUSTOMER INPUT", title: "Requirement Analysis", copy: "Drawings, material, special characteristics, target volume, and timing are aligned as clear project inputs.", output: "Development inputs" },
+    { phase: "PROCESS PLANNING", title: "Feasibility Review", copy: "Geometry and tolerances guide the process sequence, equipment, tooling, fixtures, and measurement concept.", output: "Process concept" },
+    { phase: "PROTOTYPE", title: "Prototype Build", copy: "Initial machining and precision measurement validate geometry, assembly, key dimensions, and functional requirements.", output: "Prototype validation" },
+    { phase: "APQP", title: "Process Design", copy: "PFMEA, control plans, work standards, inspection criteria, and LOT traceability become one production control plan.", output: "Production controls" },
+    { phase: "PPAP", title: "Production Validation", copy: "Capability, repeatability, measurement confidence, packing, and shipment conditions are verified for approval.", output: "Launch approval" },
+    { phase: "SOP", title: "Production Handover", copy: "Approved conditions transfer to site standards while work, inspection, and change records remain connected.", output: "Site standards" },
   ],
   ja: [
-    { title: "要求分析", copy: "図面、素材、特殊特性、目標数量、納期を検討します。" },
-    { title: "加工性検討", copy: "工程順序、設備、工具、治工具、検査方法を設計します。" },
-    { title: "試作", copy: "初品加工と測定で形状、組立性、主要寸法を検証します。" },
-    { title: "工程設計", copy: "PFMEA、管理計画、作業標準、LOT追跡基準を確定します。" },
-    { title: "量産検証", copy: "工程能力、反復生産性、梱包・出荷条件を確認します。" },
-    { title: "量産移管", copy: "承認条件を現場標準につなぎ、変更点を継続管理します。" },
+    { phase: "CUSTOMER INPUT", title: "要求分析", copy: "図面、素材、特殊特性、目標数量、開発日程を確認し、プロジェクトの入力条件を明確にします。", output: "開発入力条件" },
+    { phase: "PROCESS PLANNING", title: "加工性検討", copy: "形状と公差を基準に工程順序、設備、工具、治工具、測定方法を検討します。", output: "工程構想案" },
+    { phase: "PROTOTYPE", title: "試作", copy: "初品加工と精密測定を繰り返し、形状、組立性、主要寸法、機能要求を検証します。", output: "試作検証結果" },
+    { phase: "APQP", title: "工程設計", copy: "PFMEA、管理計画、作業標準、検査基準、LOT追跡を量産管理条件として確定します。", output: "量産管理基準" },
+    { phase: "PPAP", title: "量産検証", copy: "工程能力、反復生産性、測定信頼性、梱包・出荷条件を検証し、承認根拠を整えます。", output: "量産承認結果" },
+    { phase: "SOP", title: "量産移管", copy: "承認条件を現場標準へ移管し、作業・検査・変更履歴をつないで安定量産を維持します。", output: "現場標準・変更履歴" },
   ],
+};
+
+const developmentRoadmapCopy: Record<RenewalLanguage, { eyebrow: string; title: string; copy: string; outputLabel: string }> = {
+  ko: {
+    eyebrow: "PART DEVELOPMENT ROADMAP",
+    title: "도면에서 양산까지, 개발의 여섯 관문",
+    copy: "고객 요구를 제조 조건으로 바꾸고, 검증 결과를 현장 표준으로 남기는 서울산업의 부품개발 흐름입니다.",
+    outputLabel: "단계 산출물",
+  },
+  en: {
+    eyebrow: "PART DEVELOPMENT ROADMAP",
+    title: "Six gates from drawing to production",
+    copy: "Seoul Industry turns customer requirements into manufacturing conditions and carries validated results into site standards.",
+    outputLabel: "DELIVERABLE",
+  },
+  ja: {
+    eyebrow: "PART DEVELOPMENT ROADMAP",
+    title: "図面から量産まで、開発の6つのゲート",
+    copy: "顧客要求を製造条件へ変換し、検証結果を現場標準として定着させる部品開発フローです。",
+    outputLabel: "成果物",
+  },
 };
 
 const locationCopy: Record<RenewalLanguage, { address: string; visit: string; email: string }> = {
@@ -1653,6 +1711,105 @@ function QualityFlowIcon({ stage }: { stage: number }) {
 
 const qualityFlowCodes = ["SPEC", "IQC", "SPC", "OQC", "TRACE"];
 
+function DevelopmentProcessIcon({ stage }: { stage: number }) {
+  if (stage === 0) {
+    return (
+      <svg viewBox="0 0 96 96" aria-hidden="true">
+        <path d="M24 14h35l14 14v54H24zM59 14v14h14M35 42h27M35 53h19M35 64h13" />
+        <path d="M17 26v42M13 31l4-5 4 5M13 63l4 5 4-5M31 82h35M36 78l-5 4 5 4M61 78l5 4-5 4" />
+      </svg>
+    );
+  }
+
+  if (stage === 1) {
+    return (
+      <svg viewBox="0 0 96 96" aria-hidden="true">
+        <circle cx="43" cy="48" r="15" />
+        <circle cx="43" cy="48" r="5" />
+        <path d="M43 25v8M43 63v8M20 48h8M58 48h8M27 32l6 6M53 58l6 6M27 64l6-6M53 38l6-6" />
+        <path d="M68 20v55M62 20h12M62 75h12M68 31H58M68 63H58M72 37h8v20h-8" />
+      </svg>
+    );
+  }
+
+  if (stage === 2) {
+    return (
+      <svg viewBox="0 0 96 96" aria-hidden="true">
+        <path d="m22 34 26-14 26 14v31L48 80 22 65zM22 34l26 15 26-15M48 49v31" />
+        <path d="m64 59 13 13M74 48a10 10 0 0 0-12 13l12 12a10 10 0 0 0 13-12l-7 7-6-6 7-7a10 10 0 0 0-7-7Z" />
+      </svg>
+    );
+  }
+
+  if (stage === 3) {
+    return (
+      <svg viewBox="0 0 96 96" aria-hidden="true">
+        <rect x="14" y="17" width="25" height="18" />
+        <rect x="57" y="17" width="25" height="18" />
+        <rect x="36" y="62" width="25" height="18" />
+        <path d="M39 26h18M48 26v36M26 35v15h22M70 35v15H48" />
+        <path d="m43 70 5 5 8-9" />
+      </svg>
+    );
+  }
+
+  if (stage === 4) {
+    return (
+      <svg viewBox="0 0 96 96" aria-hidden="true">
+        <path d="M18 72h60M24 64V50M35 64V39M46 64V48M57 64V31M68 64V42" />
+        <path d="M25 31a28 28 0 0 1 46 0M48 32l16-11" />
+        <circle cx="48" cy="32" r="4" />
+        <path d="m63 76 5 5 11-13" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 96 96" aria-hidden="true">
+      <path d="M17 78V43l20-12v12l20-12v13l22-10v44zM17 78h62M28 56h10v10H28zM49 56h10v10H49z" />
+      <path d="M67 23a24 24 0 0 1 14 19M79 23v19H60M29 22a24 24 0 0 0-14 19M17 22v19h19" />
+    </svg>
+  );
+}
+
+function DevelopmentProcessFlow({ items, language }: { items: DevelopmentFlowItem[]; language: RenewalLanguage }) {
+  const copy = developmentRoadmapCopy[language];
+
+  return (
+    <section className="renewal-sub-development-roadmap" aria-label={copy.title} data-sub-reveal>
+      <header>
+        <div>
+          <span>{copy.eyebrow}</span>
+          <h2>{copy.title}</h2>
+        </div>
+        <p>{copy.copy}</p>
+      </header>
+      <div className="renewal-sub-development-roadmap__grid">
+        {items.map((item, index) => (
+          <article key={item.title}>
+            <div className="renewal-sub-development-roadmap__station" aria-hidden="true">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <DevelopmentProcessIcon stage={index} />
+              </div>
+              <i />
+            </div>
+            <div className="renewal-sub-development-roadmap__copy">
+              <small>{item.phase}</small>
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+              <footer>
+                <span>{copy.outputLabel}</span>
+                <strong>{item.output}</strong>
+              </footer>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function ProcessFlow({
   items,
   label,
@@ -1756,7 +1913,7 @@ function PartsDevelopmentBody({ content, language }: { content: SiteContent; lan
           </div>
         </div>
       </section>
-      <ProcessFlow items={developmentFlow[language]} label={labels.developmentFlow} />
+      <DevelopmentProcessFlow items={developmentFlow[language]} language={language} />
       <ProductEvidenceSection route="products/electric-vehicle" language={language} />
     </>
   );
