@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import balanceModuleImage from "../../assets/product-lineup/balance-module.jpg";
 import drivelineImage from "../../assets/product-lineup/driveline.jpg";
 import electricVehicleImage from "../../assets/product-lineup/electric-vehicle.jpg";
-import powertrainImage from "../../assets/video-posters/powertrain/8l90-output-shafts.jpg";
+import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
 import steeringImage from "../../assets/product-lineup/steering.jpg";
 import heroVideo from "../../assets/hero3.mp4";
 import heroPoster from "../../assets/hero3-poster.jpg";

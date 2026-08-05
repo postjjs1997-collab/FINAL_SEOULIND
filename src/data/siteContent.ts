@@ -103,18 +103,22 @@ function applyKoreanCopy(content: SiteContent) {
   Object.assign(content.hero, {
     fillLines: ["도면 검토부터 양산 공급까지,", "자동차 부품 OEM 생산을 끝까지 책임집니다."],
   });
-  Object.assign(content.products[3], {
-    copy: "Powertrain Shaft와 Sun Gear Output Shaft, Clutch Hub·Disc Carrier 계열 부품",
-  });
-  Object.assign(content.products[4], {
-    copy: "8L90 Input Shaft, Transfer Case Actuator Shaft, 10R TRS Stator Shaft 계열 부품",
-  });
-  Object.assign(content.latestParts[3], {
-    copy: "엔진·감속기용 Powertrain Shaft와 Clutch Hub·Disc Carrier 계열 부품",
-  });
-  Object.assign(content.latestParts[4], {
-    copy: "변속기·Transfer Case용 Input·Actuator·Stator Shaft 계열 부품",
-  });
+  const productCopies = [
+    "엔진의 1차 진동을 상쇄하는 밸런스 샤프트 모듈용 HOUSING",
+    "EV OIL PUMP HOUSING/COVER와 PHEV 기어박스용 LINK SHAFT",
+    "PINION, PINION SHAFT, PISTON, RACK BUSH, TORSION BAR",
+    "캠 샤프트용 END PIECE와 엔진·감속기용 POWERTRAIN SHAFT",
+    "DISK CARRIER, SHAFT, HUB, INPUT SHAFT 계열 부품",
+  ];
+  const latestCopies = [
+    "베어링 보어와 오일 유로를 정밀가공한 밸런스 샤프트 모듈 하우징",
+    "EV 감속기 윤활과 PHEV 동력전달을 위한 하우징·커버·링크 샤프트",
+    "조향 입력을 정확하게 전달하는 피니언, 샤프트, 피스톤, 부시, 토션 바",
+    "밸브 개폐 제어와 동력전달을 위한 엔드 피스·파워트레인 샤프트",
+    "변속기와 트랜스퍼 케이스용 디스크 캐리어, 샤프트, 허브, 인풋 샤프트",
+  ];
+  productCopies.forEach((copy, index) => Object.assign(content.products[index], { copy }));
+  latestCopies.forEach((copy, index) => Object.assign(content.latestParts[index], { copy }));
 
   content.highlights = patchById<Highlight>(content.highlights, [
     {
@@ -226,18 +230,22 @@ function applyEnglishCopy(content: SiteContent) {
   Object.assign(content.hero, {
     fillLines: ["From the first drawing to full production,", "we engineer the precision behind every OEM part."],
   });
-  Object.assign(content.products[3], {
-    copy: "Powertrain shafts, sun-gear output shafts, clutch hubs, and disc carriers.",
-  });
-  Object.assign(content.products[4], {
-    copy: "8L90 input shafts, transfer-case actuator shafts, and 10R TRS stator shafts.",
-  });
-  Object.assign(content.latestParts[3], {
-    copy: "Powertrain shafts, clutch hubs, and disc carriers for engines and reduction systems.",
-  });
-  Object.assign(content.latestParts[4], {
-    copy: "Input, actuator, and stator shafts for transmissions and transfer cases.",
-  });
+  const productCopies = [
+    "Housings for balance shaft modules that counter primary engine vibration.",
+    "EV oil-pump housings and covers plus link shafts for PHEV gearboxes.",
+    "Pinions, pinion shafts, pistons, rack bushes, and torsion bars.",
+    "Camshaft end pieces and powertrain shafts for engines and reduction systems.",
+    "Disk carriers, shafts, hubs, and input shafts for driveline systems.",
+  ];
+  const latestCopies = [
+    "Balance shaft module housings with precision bearing bores and oil passages.",
+    "Housings, covers, and link shafts for EV lubrication and PHEV power delivery.",
+    "Pinions, shafts, pistons, bushes, and torsion bars that transfer steering input.",
+    "End pieces and powertrain shafts for valve control and power delivery.",
+    "Disk carriers, shafts, hubs, and input shafts for transmissions and transfer cases.",
+  ];
+  productCopies.forEach((copy, index) => Object.assign(content.products[index], { copy }));
+  latestCopies.forEach((copy, index) => Object.assign(content.latestParts[index], { copy }));
 
   content.highlights = patchById<Highlight>(content.highlights, [
     {
@@ -350,18 +358,22 @@ function applyJapaneseCopy(content: SiteContent) {
   Object.assign(content.hero, {
     fillLines: ["図面の検討から量産供給まで。", "OEM部品の精度を、工程で造り込みます。"],
   });
-  Object.assign(content.products[3], {
-    copy: "Powertrain Shaft、Sun Gear Output Shaft、Clutch Hub、Disc Carrier系列部品",
-  });
-  Object.assign(content.products[4], {
-    copy: "8L90 Input Shaft、Transfer Case Actuator Shaft、10R TRS Stator Shaft系列部品",
-  });
-  Object.assign(content.latestParts[3], {
-    copy: "エンジン・減速機向けPowertrain Shaft、Clutch Hub、Disc Carrier系列部品",
-  });
-  Object.assign(content.latestParts[4], {
-    copy: "トランスミッション・Transfer Case向けInput・Actuator・Stator Shaft系列部品",
-  });
+  const productCopies = [
+    "エンジンの一次振動を相殺するバランスシャフトモジュール用HOUSING",
+    "EV OIL PUMP HOUSING/COVERとPHEVギヤボックス用LINK SHAFT",
+    "PINION、PINION SHAFT、PISTON、RACK BUSH、TORSION BAR",
+    "カムシャフト用END PIECEとエンジン・減速機用POWERTRAIN SHAFT",
+    "DISK CARRIER、SHAFT、HUB、INPUT SHAFT系列部品",
+  ];
+  const latestCopies = [
+    "ベアリングボアとオイル流路を精密加工したバランスシャフトモジュール・ハウジング",
+    "EV潤滑とPHEV動力伝達向けのハウジング、カバー、リンクシャフト",
+    "操舵入力を正確に伝えるピニオン、シャフト、ピストン、ブッシュ、トーションバー",
+    "バルブ開閉制御と動力伝達向けのエンドピース・パワートレインシャフト",
+    "トランスミッションとTransfer Case向けのディスクキャリア、シャフト、ハブ、インプットシャフト",
+  ];
+  productCopies.forEach((copy, index) => Object.assign(content.products[index], { copy }));
+  latestCopies.forEach((copy, index) => Object.assign(content.latestParts[index], { copy }));
 
   content.highlights = patchById<Highlight>(content.highlights, [
     {

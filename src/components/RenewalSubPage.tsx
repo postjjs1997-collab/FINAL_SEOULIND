@@ -8,7 +8,7 @@ import balanceModuleImage from "../../assets/product-lineup/balance-module.jpg";
 import automotiveImage from "../../assets/product-lineup/electric-vehicle.jpg";
 import steeringImage from "../../assets/product-lineup/steering.jpg";
 import drivelineImage from "../../assets/product-lineup/driveline.jpg";
-import powertrainImage from "../../assets/video-posters/powertrain/8l90-output-shafts.jpg";
+import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
 import precisionImage from "../../precision-inside-mobility.jpg";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import sustainabilityPolicyDocument from "../../assets/documents/sustainability-management-policy-seoul-industry.docx?url";
@@ -28,7 +28,6 @@ import {
   manufacturingGroupLabels,
   manufacturingPageCopy,
   manufacturingProcesses,
-  productEvidenceByRoute,
   qualityEvidenceCopy,
   qualityEvidenceProcesses,
 } from "../data/companyProfile";
@@ -560,11 +559,11 @@ const productRouteImages: Record<string, string> = {
 };
 
 const productStandards: Record<string, string[]> = {
-  "products/electric-vehicle": ["e-DRIVE HOUSING", "REDUCTION GEAR", "EV HALF SHAFT", "ASSEMBLY FIT"],
-  "products/powertrain": ["SUN GEAR OUTPUT SHAFT", "CLUTCH HUB", "DISC CARRIER", "LASER WELDING"],
-  "products/driveline": ["8L90 INPUT SHAFT", "TRANSFER CASE ACTUATOR", "10R TRS STATOR", "SPLINE / CROSS HOLE"],
-  "products/balance-shaft-module": ["AL HOUSING", "BEARING BORE", "ASSEMBLY FACE", "VIBRATION CONTROL"],
-  "products/steering": ["PINION SHAFT", "TORSION BAR", "GEAR PROFILE", "SAFETY CHARACTERISTIC"],
+  "products/electric-vehicle": ["EV OIL PUMP HOUSING / COVER", "LINK SHAFT", "EV REDUCER", "PHEV GEARBOX"],
+  "products/powertrain": ["END PIECE", "POWERTRAIN SHAFT", "ENGINE / DECELERATOR", "CLUTCH HUB"],
+  "products/driveline": ["DISK CARRIER", "SHAFT", "HUB", "INPUT SHAFT"],
+  "products/balance-shaft-module": ["HOUSING", "BEARING BORE", "OIL PASSAGE", "VIBRATION / NOISE CONTROL"],
+  "products/steering": ["PINION", "PINION SHAFT", "PISTON", "RACK BUSH", "TORSION BAR"],
   "products/etc": ["DRAWING REVIEW", "PROTOTYPE", "PROCESS DESIGN", "CUSTOM OEM"],
 };
 
@@ -1001,24 +1000,60 @@ function ProductEvidenceSection({
   route: string;
   language: RenewalLanguage;
 }) {
-  const evidence = productEvidenceByRoute[route];
-  if (!evidence) return null;
+  const catalog = productPartCatalogByRoute[route];
+  if (!catalog?.programs.length) return null;
+
+  const labels = {
+    ko: {
+      eyebrow: "VERIFIED PROGRAMS",
+      title: "확인된 제품·적용 프로그램",
+      copy: "서울산업 회사소개서와 프로그램별 차량정보 자료에서 확인된 항목만 정리했습니다.",
+      partner: "고객·제품군",
+      application: "적용 정보",
+    },
+    en: {
+      eyebrow: "VERIFIED PROGRAMS",
+      title: "Verified products and application programs",
+      copy: "Only entries confirmed in the Seoul Industry company profile and vehicle program deck are listed here.",
+      partner: "Customer / Product line",
+      application: "Application",
+    },
+    ja: {
+      eyebrow: "VERIFIED PROGRAMS",
+      title: "確認済み製品・適用プログラム",
+      copy: "ソウル産業の会社案内と車両プログラム資料で確認できた項目のみを掲載しています。",
+      partner: "顧客・製品群",
+      application: "適用情報",
+    },
+  }[language];
 
   return (
-    <section className="profile-product-evidence">
-      <figure data-sub-reveal>
-        <img src={evidence.image} alt="" />
-        <figcaption>{evidence.eyebrow}</figcaption>
-      </figure>
-      <div data-sub-reveal>
-        <span>{evidence.eyebrow}</span>
-        <h2>{evidence.title[language]}</h2>
-        <p>{evidence.copy[language]}</p>
-        <ul>
-          {evidence.items[language].map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+    <section className="renewal-sub-product-programs">
+      <header data-sub-reveal>
+        <span>{labels.eyebrow}</span>
+        <h2>{labels.title}</h2>
+        <p>{labels.copy}</p>
+      </header>
+      <div>
+        {catalog.programs.map((program, index) => (
+          <article data-sub-reveal key={`${program.program}-${program.partner}`}>
+            <div>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <small>{program.source[language]}</small>
+            </div>
+            <h3>{program.program}</h3>
+            <dl>
+              <div>
+                <dt>{labels.partner}</dt>
+                <dd>{program.partner}</dd>
+              </div>
+              <div>
+                <dt>{labels.application}</dt>
+                <dd>{program.application[language]}</dd>
+              </div>
+            </dl>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -1035,18 +1070,29 @@ function ActualProductLineup({
   if (!catalog) return null;
 
   const labels = {
-    ko: { eyebrow: "ACTUAL PRODUCTION PARTS", item: "실제 생산 부품", motion: "제품 보기" },
-    en: { eyebrow: "ACTUAL PRODUCTION PARTS", item: "Production part", motion: "View product" },
-    ja: { eyebrow: "ACTUAL PRODUCTION PARTS", item: "実際の生産部品", motion: "製品を見る" },
+    ko: { eyebrow: "ACTUAL PRODUCTION PARTS", item: "실제 생산 부품", motion: "제품 보기", overview: "실제 제품군 구성" },
+    en: { eyebrow: "ACTUAL PRODUCTION PARTS", item: "Production part", motion: "View product", overview: "Actual product family" },
+    ja: { eyebrow: "ACTUAL PRODUCTION PARTS", item: "実際の生産部品", motion: "製品を見る", overview: "実際の製品群" },
   }[language];
 
   return (
     <section className="renewal-sub-product-lineup">
-      <header data-sub-reveal>
-        <span>{labels.eyebrow}</span>
-        <h2>{catalog.title[language]}</h2>
-        <p>{catalog.copy[language]}</p>
-      </header>
+      <div className="renewal-sub-product-lineup__overview">
+        <header data-sub-reveal>
+          <span>{labels.eyebrow}</span>
+          <h2>{catalog.title[language]}</h2>
+          <p>{catalog.copy[language]}</p>
+          <div className="renewal-sub-product-lineup__families">
+            {catalog.families.map((family) => (
+              <span key={family}>{family}</span>
+            ))}
+          </div>
+        </header>
+        <figure data-sub-reveal>
+          <img src={catalog.overviewImage} alt={catalog.title[language]} />
+          <figcaption>{labels.overview}</figcaption>
+        </figure>
+      </div>
       <div className={`renewal-sub-product-lineup__grid is-count-${catalog.parts.length}`}>
         {catalog.parts.map((part, index) => (
           <article data-sub-reveal key={part.title.en}>
