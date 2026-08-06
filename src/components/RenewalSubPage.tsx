@@ -10,6 +10,7 @@ import steeringImage from "../../assets/product-lineup/steering.jpg";
 import drivelineImage from "../../assets/product-lineup/driveline.jpg";
 import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
 import precisionImage from "../../precision-inside-mobility.jpg";
+import ceoManufacturingTeamImage from "../../assets/company-profile/ceo-manufacturing-team.webp";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import sustainabilityPolicyDocument from "../../assets/documents/sustainability-management-policy-seoul-industry.docx?url";
 import Icon from "./Icons";
@@ -1004,8 +1005,8 @@ function CeoBody({ language }: { language: RenewalLanguage }) {
   return (
     <section className="renewal-sub-ceo">
       <div className="renewal-sub-ceo__visual" data-sub-reveal>
-        <img src={companyProfileAssets.factoryImage} alt="Seoul Industry head office and production facility" />
-        <span>SINCE 1985 · SEOUL INDUSTRY</span>
+        <img src={ceoManufacturingTeamImage} alt="Manufacturing engineers collaborating around production equipment" />
+        <span>FIELD COLLABORATION · PRECISION MANUFACTURING · CONTINUOUS IMPROVEMENT</span>
       </div>
       <div className="renewal-sub-ceo__message" data-sub-reveal>
         <span>CEO MESSAGE</span>
