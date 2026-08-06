@@ -37,3 +37,6 @@ hero2.mp4
 hero3.mp4
 !assets/hero3.mp4
 inspection.mp4
+
+.vercel
+.env*

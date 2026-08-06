@@ -5796,6 +5796,17 @@
   font-size: 0.9rem;
 }
 
+.notice-admin-login.is-checking {
+  grid-template-columns: 1fr;
+}
+
+.notice-admin button:disabled,
+.notice-admin-login button:disabled,
+.notice-editor input:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
 .notice-admin__head {
   display: flex;
   align-items: end;
@@ -5823,6 +5834,17 @@
 
 .notice-admin__head button:nth-child(3) {
   background: #5f5750;
+}
+
+.notice-admin__status {
+  margin: -22px 0 28px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--color-orange);
+  background: rgba(233, 99, 26, 0.08);
+  color: #453d37;
+  font-size: 0.9rem;
+  font-weight: 850;
+  line-height: 1.6;
 }
 
 .notice-admin__grid {
@@ -5912,9 +5934,66 @@
 
 .notice-editor__settings {
   display: grid;
-  grid-template-columns: minmax(160px, 0.8fr) minmax(150px, 0.7fr) minmax(220px, 1.2fr) auto;
+  grid-template-columns: minmax(150px, 0.7fr) minmax(145px, 0.65fr) minmax(210px, 1.2fr) minmax(190px, 0.9fr) auto;
   gap: 14px;
   align-items: end;
+}
+
+.notice-editor__upload small {
+  min-height: 18px;
+  color: #81766e;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.notice-editor__upload input[type="file"] {
+  padding: 8px;
+  color: #625951;
+  font-size: 0.78rem;
+}
+
+.notice-editor__upload input[type="file"]::file-selector-button {
+  min-height: 34px;
+  margin-right: 10px;
+  padding: 0 12px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  background: #292521;
+  color: #fff;
+  font-weight: 900;
+}
+
+.notice-editor__preview {
+  position: relative;
+  width: min(620px, 100%);
+  aspect-ratio: 16 / 9;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(23, 21, 19, 0.12);
+  border-radius: 6px;
+  background: #171513;
+}
+
+.notice-editor__preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.notice-editor__preview button {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  min-height: 38px;
+  padding: 0 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  background: rgba(12, 10, 8, 0.88);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 900;
 }
 
 .notice-editor__check {

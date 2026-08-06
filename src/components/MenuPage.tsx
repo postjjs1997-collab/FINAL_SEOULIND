@@ -15,7 +15,8 @@ import BrainallLogo from "./BrainallLogo";
 import Header from "./Header";
 import Icon from "./Icons";
 import { defaultLanguage, isLanguageCode, siteContent, type LanguageCode } from "../data/siteContent";
-import { getNoticePosts, newsCategoryLabels, noticeCategoryKickers } from "../data/notices";
+import { newsCategoryLabels, noticeCategoryKickers } from "../data/notices";
+import useNoticePosts from "../hooks/useNoticePosts";
 import { findMenuByRoute, getSiteMenuGroups } from "../data/navigation";
 import { gsap, ScrollTrigger } from "../motion/gsap";
 
@@ -1808,7 +1809,7 @@ function ProductsContent({ route }: { route: string }) {
 }
 
 function NewsContent() {
-  const posts = useMemo(() => getNoticePosts().slice(0, 5), []);
+  const posts = useNoticePosts(5);
 
   return (
     <section className="menu-board menu-reveal" aria-label="공지사항">

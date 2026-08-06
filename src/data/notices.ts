@@ -1,4 +1,5 @@
 import { defaultLanguage, type LanguageCode, type MediaItem } from "./brainall";
+import { upload } from "@vercel/blob/client";
 import newsFactoryImage from "../../assets/manufacturing/hero/production-process-cnc.jpg";
 import newsInspectionImage from "../../assets/process-videos/inspection-00-04.jpg";
 import newsCorporateImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
@@ -321,8 +322,6 @@ export const curatedNoticePosts: NoticePost[] = [
   },
 ];
 
-const storageKey = "seoulind-notice-posts";
-
 function isNoticePost(value: unknown): value is NoticePost {
   if (!value || typeof value !== "object") return false;
   const post = value as NoticePost;
@@ -330,36 +329,78 @@ function isNoticePost(value: unknown): value is NoticePost {
 }
 
 export function getNoticePosts() {
-  if (typeof window === "undefined") return curatedNoticePosts;
+  return curatedNoticePosts;
+}
 
+function announceNoticeUpdate(posts: NoticePost[]) {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(new CustomEvent("seoulind-notices-updated", { detail: posts }));
   try {
-    const stored = window.localStorage.getItem(storageKey);
-    if (!stored) return curatedNoticePosts;
-    const parsed = JSON.parse(stored) as unknown;
-    if (!Array.isArray(parsed) || !parsed.every(isNoticePost)) return curatedNoticePosts;
-    const hasLegacyDefaultData = parsed.some((post) => post.id === "renewal-2026" && !post.image);
-    const hasLegacyNewsImages = parsed.some(
-      (post) =>
-        ["precision-system-2026", "lineup-expansion-2026", "quality-flow-2026", "repeat-accuracy-2026", "global-oem-update-2026"].includes(post.id) &&
-        post.image &&
-        !post.image.includes("images.unsplash.com"),
-    );
-    if (hasLegacyDefaultData) return curatedNoticePosts;
-    if (hasLegacyNewsImages) return curatedNoticePosts;
-    return parsed.map((post) => ({ ...post, image: post.image?.trim() || undefined }));
+    const channel = new BroadcastChannel("seoulind-notices");
+    channel.postMessage("updated");
+    channel.close();
   } catch {
-    return curatedNoticePosts;
+    // BroadcastChannel is optional; same-page updates still work through the custom event.
   }
 }
 
-export function saveNoticePosts(posts: NoticePost[]) {
-  if (typeof window === "undefined") return;
-  window.localStorage.setItem(storageKey, JSON.stringify(posts));
-  window.dispatchEvent(new Event("seoulind-notices-updated"));
+export async function fetchNoticePosts() {
+  const response = await fetch("/api/notices", { cache: "no-store" });
+  if (!response.ok) throw new Error("공지사항을 불러오지 못했습니다.");
+  const data = (await response.json()) as { posts?: unknown };
+  if (!Array.isArray(data.posts) || !data.posts.every(isNoticePost)) return sortNoticePosts(curatedNoticePosts);
+  return sortNoticePosts(data.posts.map((post) => ({ ...post, image: post.image?.trim() || undefined })));
 }
 
-export function resetNoticePosts() {
-  saveNoticePosts(curatedNoticePosts);
+export async function saveNoticePosts(posts: NoticePost[]) {
+  const response = await fetch("/api/notices", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ posts }),
+  });
+  if (!response.ok) {
+    const data = (await response.json().catch(() => ({}))) as { error?: string };
+    throw new Error(data.error || "공지사항을 저장하지 못했습니다.");
+  }
+  const data = (await response.json()) as { posts: NoticePost[] };
+  const saved = sortNoticePosts(data.posts);
+  announceNoticeUpdate(saved);
+  return saved;
+}
+
+export async function resetNoticePosts() {
+  return saveNoticePosts(curatedNoticePosts);
+}
+
+export async function checkNoticeAdminSession() {
+  const response = await fetch("/api/admin/session", { cache: "no-store" });
+  if (!response.ok) return false;
+  const data = (await response.json()) as { authenticated?: boolean };
+  return data.authenticated === true;
+}
+
+export async function loginNoticeAdmin(id: string, password: string) {
+  const response = await fetch("/api/admin/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id, password }),
+  });
+  return response.ok;
+}
+
+export async function logoutNoticeAdmin() {
+  await fetch("/api/admin/logout", { method: "POST" });
+}
+
+export async function uploadNoticeImage(file: File, onProgress?: (percentage: number) => void) {
+  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "-");
+  const result = await upload(`notices/images/${Date.now()}-${safeName}`, file, {
+    access: "public",
+    handleUploadUrl: "/api/admin/upload",
+    multipart: file.size > 4 * 1024 * 1024,
+    onUploadProgress: ({ percentage }) => onProgress?.(percentage),
+  });
+  return result.url;
 }
 
 export function sortNoticePosts(posts: NoticePost[]) {

@@ -24,7 +24,8 @@ import {
   type ShowcaseVideo,
   type EsgPillar,
 } from "../data/siteContent";
-import { getNoticePosts, noticePostsToMediaItems } from "../data/notices";
+import { noticePostsToMediaItems } from "../data/notices";
+import useNoticePosts from "../hooks/useNoticePosts";
 import { gsap, ScrollTrigger } from "../motion/gsap";
 import { motionConfig } from "../motion/config";
 import { usePrefersReducedMotion } from "../motion/usePrefersReducedMotion";
@@ -1837,7 +1838,7 @@ export default function BrainallPage() {
   });
   const content = siteContent[language];
   const latestLineup = latestProductLineup[language] ?? latestProductLineup.ko;
-  const [noticePosts, setNoticePosts] = useState(() => getNoticePosts());
+  const noticePosts = useNoticePosts();
   const mediaItems = noticePostsToMediaItems(noticePosts, language).slice(0, 5);
 
   useLenisScroll(!reduceMotion);
@@ -1847,18 +1848,6 @@ export default function BrainallPage() {
     document.documentElement.lang = option?.htmlLang ?? language;
     window.localStorage.setItem("seoulind-language", language);
   }, [language]);
-
-  useEffect(() => {
-    const syncNoticePosts = () => setNoticePosts(getNoticePosts());
-
-    window.addEventListener("storage", syncNoticePosts);
-    window.addEventListener("seoulind-notices-updated", syncNoticePosts);
-
-    return () => {
-      window.removeEventListener("storage", syncNoticePosts);
-      window.removeEventListener("seoulind-notices-updated", syncNoticePosts);
-    };
-  }, []);
 
   useEffect(() => {
     const refresh = () => ScrollTrigger.refresh();

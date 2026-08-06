@@ -16,7 +16,7 @@ import Icon from "./Icons";
 import { getPageConfig } from "./MenuPage";
 import { RenewalSiteFooter, RenewalSiteHeader, toRenewalHref, type RenewalLanguage } from "./RenewalShell";
 import { defaultLanguage, isLanguageCode, siteContent, type SiteContent } from "../data/siteContent";
-import { getNoticePosts } from "../data/notices";
+import useNoticePosts from "../hooks/useNoticePosts";
 import { findMenuByRoute, getSiteMenuGroups, resolveMenuRoute } from "../data/navigation";
 import {
   companyOverviewCopy,
@@ -2120,7 +2120,7 @@ function IndustrialBody({ content }: { content: SiteContent }) {
 }
 
 function NewsBody({ language, content }: { language: RenewalLanguage; content: SiteContent }) {
-  const posts = getNoticePosts().slice(0, 6);
+  const posts = useNoticePosts(6);
 
   return (
     <section className="renewal-sub-news-list">

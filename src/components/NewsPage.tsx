@@ -3,8 +3,11 @@ import BrainallLogo from "./BrainallLogo";
 import Icon from "./Icons";
 import { defaultLanguage, isLanguageCode, languages, type LanguageCode } from "../data/brainall";
 import {
-  curatedNoticePosts,
+  checkNoticeAdminSession,
+  fetchNoticePosts,
   getNoticePosts,
+  loginNoticeAdmin,
+  logoutNoticeAdmin,
   makeNoticeId,
   newsCategoryLabels,
   noticeCategoryKickers,
@@ -12,6 +15,7 @@ import {
   resetNoticePosts,
   saveNoticePosts,
   sortNoticePosts,
+  uploadNoticeImage,
   type NoticeCategory,
   type NoticePost,
   type NoticeTranslation,
@@ -267,11 +271,6 @@ const newsPageCopy: Record<LanguageCode, NoticePageCopy> = {
 
 const languageCodes: LanguageCode[] = ["ko", "en", "ja"];
 const categoryOrder: NoticeCategory[] = ["notice", "products", "quality", "manufacturing", "resources"];
-const adminSessionKey = "seoulind-admin-auth";
-const adminCredentials = {
-  id: "seoulind1985",
-  password: "asdf1985",
-};
 
 function getTodayInSeoul() {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul" }).format(new Date());
@@ -370,10 +369,12 @@ export default function NewsPage({ route }: NewsPageProps) {
     return isLanguageCode(stored) ? stored : defaultLanguage;
   });
   const [posts, setPosts] = useState<NoticePost[]>(() => sortNoticePosts(getNoticePosts()));
-  const [isAuthed, setIsAuthed] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.sessionStorage.getItem(adminSessionKey) === "true";
-  });
+  const [isAuthed, setIsAuthed] = useState(false);
+  const [isAuthChecking, setIsAuthChecking] = useState(false);
+  const [isBusy, setIsBusy] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [adminStatus, setAdminStatus] = useState("");
   const [loginForm, setLoginForm] = useState({ id: "", password: "" });
   const [loginError, setLoginError] = useState("");
   const [draft, setDraft] = useState<NoticePost>(() => createEmptyNotice());
@@ -398,16 +399,48 @@ export default function NewsPage({ route }: NewsPageProps) {
   }, [route]);
 
   useEffect(() => {
-    const syncPosts = () => setPosts(sortNoticePosts(getNoticePosts()));
+    let active = true;
+    const loadPosts = async () => {
+      try {
+        const nextPosts = await fetchNoticePosts();
+        if (active) setPosts(nextPosts);
+      } catch {
+        // Curated notices remain visible while a network request is unavailable.
+      }
+    };
+    const syncPosts = (event: Event) => {
+      const nextPosts = (event as CustomEvent<NoticePost[]>).detail;
+      if (Array.isArray(nextPosts)) setPosts(sortNoticePosts(nextPosts));
+      else void loadPosts();
+    };
+    const channel = typeof BroadcastChannel !== "undefined" ? new BroadcastChannel("seoulind-notices") : null;
 
-    window.addEventListener("storage", syncPosts);
+    void loadPosts();
     window.addEventListener("seoulind-notices-updated", syncPosts);
+    if (channel) channel.onmessage = () => void loadPosts();
 
     return () => {
-      window.removeEventListener("storage", syncPosts);
+      active = false;
       window.removeEventListener("seoulind-notices-updated", syncPosts);
+      channel?.close();
     };
   }, []);
+
+  useEffect(() => {
+    if (!isAdminRoute) return;
+    let active = true;
+    setIsAuthChecking(true);
+    checkNoticeAdminSession()
+      .then((authenticated) => {
+        if (active) setIsAuthed(authenticated);
+      })
+      .finally(() => {
+        if (active) setIsAuthChecking(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [isAdminRoute]);
 
   const categoryCounts = useMemo(
     () =>
@@ -418,22 +451,28 @@ export default function NewsPage({ route }: NewsPageProps) {
     [sortedPosts],
   );
 
-  const handleLogin = (event: FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (loginForm.id === adminCredentials.id && loginForm.password === adminCredentials.password) {
-      window.sessionStorage.setItem(adminSessionKey, "true");
+    setIsBusy(true);
+    setLoginError("");
+    try {
+      const authenticated = await loginNoticeAdmin(loginForm.id, loginForm.password);
+      if (!authenticated) {
+        setLoginError(copy.loginError);
+        return;
+      }
       setIsAuthed(true);
-      setLoginError("");
       setLoginForm({ id: "", password: "" });
-      return;
+      setAdminStatus("관리자 로그인이 완료되었습니다.");
+    } finally {
+      setIsBusy(false);
     }
-
-    setLoginError(copy.loginError);
   };
 
-  const handleLogout = () => {
-    window.sessionStorage.removeItem(adminSessionKey);
+  const handleLogout = async () => {
+    await logoutNoticeAdmin();
     setIsAuthed(false);
+    setAdminStatus("");
   };
 
   const handleEdit = (post: NoticePost) => {
@@ -446,33 +485,73 @@ export default function NewsPage({ route }: NewsPageProps) {
     setDraft(createEmptyNotice());
   };
 
-  const handleSave = (event: FormEvent<HTMLFormElement>) => {
+  const handleSave = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const normalized = normalizePost(draft, copy.emptyTitle);
     const exists = posts.some((post) => post.id === normalized.id);
     const nextPosts = exists ? posts.map((post) => (post.id === normalized.id ? normalized : post)) : [normalized, ...posts];
-    const sorted = sortNoticePosts(nextPosts);
-
-    setPosts(sorted);
-    saveNoticePosts(sorted);
-    setEditingId(normalized.id);
-    setDraft(cloneNotice(normalized));
+    setIsBusy(true);
+    setAdminStatus("");
+    try {
+      const saved = await saveNoticePosts(sortNoticePosts(nextPosts));
+      setPosts(saved);
+      setEditingId(normalized.id);
+      setDraft(cloneNotice(normalized));
+      setAdminStatus("공지사항이 저장되어 사이트에 반영되었습니다.");
+    } catch (error) {
+      setAdminStatus(error instanceof Error ? error.message : "저장 중 오류가 발생했습니다.");
+    } finally {
+      setIsBusy(false);
+    }
   };
 
-  const handleDelete = (postIdToDelete: string) => {
+  const handleDelete = async (postIdToDelete: string) => {
     if (!window.confirm(copy.deleteConfirm)) return;
     const nextPosts = sortNoticePosts(posts.filter((post) => post.id !== postIdToDelete));
-    setPosts(nextPosts);
-    saveNoticePosts(nextPosts);
-    if (editingId === postIdToDelete) handleNew();
+    setIsBusy(true);
+    setAdminStatus("");
+    try {
+      const saved = await saveNoticePosts(nextPosts);
+      setPosts(saved);
+      if (editingId === postIdToDelete) handleNew();
+      setAdminStatus("공지사항이 삭제되었습니다.");
+    } catch (error) {
+      setAdminStatus(error instanceof Error ? error.message : "삭제 중 오류가 발생했습니다.");
+    } finally {
+      setIsBusy(false);
+    }
   };
 
-  const handleReset = () => {
+  const handleReset = async () => {
     if (!window.confirm(copy.resetConfirm)) return;
-    resetNoticePosts();
-    const nextPosts = sortNoticePosts(curatedNoticePosts);
-    setPosts(nextPosts);
-    handleNew();
+    setIsBusy(true);
+    setAdminStatus("");
+    try {
+      const nextPosts = await resetNoticePosts();
+      setPosts(nextPosts);
+      handleNew();
+      setAdminStatus("기본 공지사항으로 복원되었습니다.");
+    } catch (error) {
+      setAdminStatus(error instanceof Error ? error.message : "복원 중 오류가 발생했습니다.");
+    } finally {
+      setIsBusy(false);
+    }
+  };
+
+  const handleImageUpload = async (file: File | undefined) => {
+    if (!file) return;
+    setIsUploading(true);
+    setUploadProgress(0);
+    setAdminStatus("");
+    try {
+      const image = await uploadNoticeImage(file, setUploadProgress);
+      setDraft((current) => ({ ...current, image }));
+      setAdminStatus("대표 이미지 업로드가 완료되었습니다. 게시글 저장을 눌러 반영해주세요.");
+    } catch (error) {
+      setAdminStatus(error instanceof Error ? error.message : "이미지 업로드에 실패했습니다.");
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   const updateDraftTranslation = (code: LanguageCode, field: keyof NoticeTranslation, value: string) => {
@@ -587,6 +666,17 @@ export default function NewsPage({ route }: NewsPageProps) {
   };
 
   const renderAdmin = () => {
+    if (isAuthChecking) {
+      return (
+        <section className="notice-admin-login is-checking" aria-live="polite">
+          <div>
+            <span>{copy.admin}</span>
+            <h1>관리자 권한을 확인하고 있습니다.</h1>
+          </div>
+        </section>
+      );
+    }
+
     if (!isAuthed) {
       return (
         <section className="notice-admin-login">
@@ -609,7 +699,9 @@ export default function NewsPage({ route }: NewsPageProps) {
               />
             </label>
             {loginError && <strong>{loginError}</strong>}
-            <button type="submit">{copy.login}</button>
+            <button type="submit" disabled={isBusy}>
+              {isBusy ? "확인 중..." : copy.login}
+            </button>
           </form>
         </section>
       );
@@ -624,17 +716,19 @@ export default function NewsPage({ route }: NewsPageProps) {
             <p>{copy.adminHelp}</p>
           </div>
           <div>
-            <button type="button" onClick={handleNew}>
+            <button type="button" onClick={handleNew} disabled={isBusy || isUploading}>
               {copy.newPost}
             </button>
-            <button type="button" onClick={handleReset}>
+            <button type="button" onClick={handleReset} disabled={isBusy || isUploading}>
               {copy.resetDefaults}
             </button>
-            <button type="button" onClick={handleLogout}>
+            <button type="button" onClick={handleLogout} disabled={isBusy || isUploading}>
               {copy.logout}
             </button>
           </div>
         </div>
+
+        {adminStatus && <p className="notice-admin__status" aria-live="polite">{adminStatus}</p>}
 
         <div className="notice-admin__grid">
           <aside className="notice-admin__posts">
@@ -648,7 +742,7 @@ export default function NewsPage({ route }: NewsPageProps) {
                     <strong>{translation.title}</strong>
                     <time>{post.date}</time>
                   </button>
-                  <button type="button" onClick={() => handleDelete(post.id)}>
+                  <button type="button" onClick={() => handleDelete(post.id)} disabled={isBusy || isUploading}>
                     {copy.deletePost}
                   </button>
                 </div>
@@ -676,11 +770,33 @@ export default function NewsPage({ route }: NewsPageProps) {
                 <span>{copy.formImage ?? "Cover image URL"}</span>
                 <input value={draft.image ?? ""} onChange={(event) => setDraft((current) => ({ ...current, image: event.target.value }))} />
               </label>
+              <label className="notice-editor__upload">
+                <span>대표 이미지 파일</span>
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/gif"
+                  disabled={isUploading || isBusy}
+                  onChange={(event) => {
+                    void handleImageUpload(event.target.files?.[0]);
+                    event.currentTarget.value = "";
+                  }}
+                />
+                <small>{isUploading ? `업로드 중 ${Math.round(uploadProgress)}%` : "JPG, PNG, WEBP, GIF / 최대 8MB"}</small>
+              </label>
               <label className="notice-editor__check">
                 <input type="checkbox" checked={draft.pinned} onChange={(event) => setDraft((current) => ({ ...current, pinned: event.target.checked }))} />
                 <span>{copy.formPinned}</span>
               </label>
             </div>
+
+            {draft.image && (
+              <figure className="notice-editor__preview">
+                <img src={draft.image} alt="대표 이미지 미리보기" />
+                <button type="button" onClick={() => setDraft((current) => ({ ...current, image: "" }))}>
+                  이미지 제거
+                </button>
+              </figure>
+            )}
 
             <h2>{copy.formLanguage}</h2>
             {languageCodes.map((code) => {
@@ -706,8 +822,8 @@ export default function NewsPage({ route }: NewsPageProps) {
               );
             })}
 
-            <button className="notice-editor__submit" type="submit">
-              {copy.savePost}
+            <button className="notice-editor__submit" type="submit" disabled={isBusy || isUploading}>
+              {isBusy ? "저장 중..." : copy.savePost}
             </button>
           </form>
         </div>
