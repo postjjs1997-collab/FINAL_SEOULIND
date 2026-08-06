@@ -1143,11 +1143,17 @@ function LocationBody({ language }: { language: RenewalLanguage }) {
 }
 
 function HistoryBody({ content }: { content: SiteContent }) {
+  const historySinceWords = content.historyHeading.since.split(/\s+/).filter(Boolean);
+
   return (
     <section className="renewal-sub-history">
       <div className="renewal-sub-history__since" data-sub-reveal>
         <span>{content.historyHeading.eyebrow}</span>
-        <strong>{content.historyHeading.since}</strong>
+        <strong aria-label={content.historyHeading.since}>
+          {historySinceWords.map((word) => (
+            <span aria-hidden="true" key={word}>{word}</span>
+          ))}
+        </strong>
         <p>{content.historyHeading.copy}</p>
       </div>
       <div className="renewal-sub-history__timeline">

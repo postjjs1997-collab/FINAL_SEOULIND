@@ -414,7 +414,7 @@
   padding-right: 60px;
 }
 
-.renewal-sub-history__since span {
+.renewal-sub-history__since > span {
   color: var(--renewal-orange);
   font-size: 0.72rem;
   font-weight: 900;
@@ -423,8 +423,13 @@
 .renewal-sub-history__since strong {
   display: block;
   margin: 16px 0 26px;
-  font-size: clamp(4.4rem, 8vw, 9rem);
+  font-size: clamp(4rem, 6.5vw, 8rem);
   line-height: 0.88;
+}
+
+.renewal-sub-history__since strong span {
+  display: block;
+  white-space: nowrap;
 }
 
 .renewal-sub-history__since p {
