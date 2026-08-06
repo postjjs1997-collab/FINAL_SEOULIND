@@ -27,10 +27,6 @@ import electricVehicleLineupImage from "../../assets/product-catalog/lineup/elec
 import steeringLineupImage from "../../assets/product-catalog/lineup/steering.webp";
 import powertrainLineupImage from "../../assets/product-catalog/lineup/powertrain.webp";
 import drivelineLineupImage from "../../assets/product-catalog/lineup/driveline.webp";
-import linkShaftImage from "../../assets/product-catalog/electric-vehicle/link-shaft.jpg";
-import pinionImage from "../../assets/product-catalog/steering/pinion.jpg";
-import pistonImage from "../../assets/product-catalog/steering/piston.jpg";
-import rackBushImage from "../../assets/product-catalog/steering/rack-bush.jpg";
 import endPieceImage from "../../assets/product-catalog/powertrain/end-piece.jpg";
 import endPieceVideo from "../../assets/product-catalog/powertrain/end-piece.webm";
 import powertrainShaftVideo1 from "../../assets/product-catalog/powertrain/powertrain-shaft-01.webm";
@@ -158,11 +154,6 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         poster: electricVehiclePoster2,
         video: electricVehicleVideo2,
       },
-      {
-        title: localized("링크 샤프트", "Link Shaft", "リンクシャフト"),
-        application: localized("PHEV 기어박스·E-drive 동력전달", "PHEV gearbox and e-drive power delivery", "PHEVギヤボックス・E-drive動力伝達"),
-        poster: linkShaftImage,
-      },
     ],
     programs: [
       {
@@ -201,21 +192,6 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         application: localized("조향 토크 감지·전달 부품", "Steering torque sensing and transfer", "操舵トルク検知・伝達部品"),
         poster: steeringPoster2,
         video: steeringVideo2,
-      },
-      {
-        title: localized("피니언", "Pinion", "ピニオン"),
-        application: localized("조향 기어 어셈블리", "Steering gear assembly", "ステアリングギヤ・アセンブリ"),
-        poster: pinionImage,
-      },
-      {
-        title: localized("피스톤", "Piston", "ピストン"),
-        application: localized("조향 시스템 유압·기구 부품", "Steering hydraulic and mechanism component", "ステアリング油圧・機構部品"),
-        poster: pistonImage,
-      },
-      {
-        title: localized("랙 부시", "Rack Bush", "ラックブッシュ"),
-        application: localized("랙 지지·마찰 관리 부품", "Rack support and friction-control component", "ラック支持・摩擦管理部品"),
-        poster: rackBushImage,
       },
     ],
     programs: [
