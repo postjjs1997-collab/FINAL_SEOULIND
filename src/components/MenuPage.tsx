@@ -10,7 +10,7 @@ import steeringImage from "../../assets/product-lineup/steering.jpg";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import manufacturingProcessHeroImage from "../../assets/manufacturing/hero/production-process-cnc.jpg";
 import manufacturingEquipmentHeroImage from "../../assets/manufacturing/hero/equipment-automation.jpg";
-import manufacturingInspectionHeroImage from "../../assets/manufacturing/hero/inspection-technology.jpg";
+import manufacturingInspectionHeroImage from "../../assets/process-videos/inspection-00-04.jpg";
 import BrainallLogo from "./BrainallLogo";
 import Header from "./Header";
 import Icon from "./Icons";
@@ -38,18 +38,18 @@ export type PageConfig = {
 const menuHeroImage = (id: string, width = 1800) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=82`;
 
 const menuHeroImages = {
-  factory: menuHeroImage("photo-1504917595217-d4dc5ebe6122"),
-  precision: menuHeroImage("photo-1581092580497-e0d23cbdf1dc"),
-  measurement: menuHeroImage("photo-1581092580497-e0d23cbdf1dc"),
+  factory: manufacturingProcessHeroImage,
+  precision: manufacturingInspectionHeroImage,
+  measurement: manufacturingInspectionHeroImage,
   documents: menuHeroImage("photo-1450101499163-c8848c66ca85"),
   solar: menuHeroImage("photo-1497435334941-8c899ee9e8e9"),
-  governance: menuHeroImage("photo-1517048676732-d65bc937f952"),
-  report: menuHeroImage("photo-1552664730-d307ca884978"),
-  industrial: menuHeroImage("photo-1513828583688-c52646db42da"),
-  news: menuHeroImage("photo-1556761175-b413da4baf72"),
-  contact: menuHeroImage("photo-1517245386807-bb43f82c33c4"),
-  recruit: menuHeroImage("photo-1521737604893-d14cc237f11d"),
-  jobs: menuHeroImage("photo-1552664730-d307ca884978"),
+  governance: seoulIndustryFacadeImage,
+  report: manufacturingEquipmentHeroImage,
+  industrial: manufacturingEquipmentHeroImage,
+  news: seoulIndustryFacadeImage,
+  contact: seoulIndustryFacadeImage,
+  recruit: seoulIndustryFacadeImage,
+  jobs: manufacturingEquipmentHeroImage,
 };
 
 const pageConfigs: Record<string, PageConfig> = {

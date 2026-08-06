@@ -1,4 +1,7 @@
 import { defaultLanguage, type LanguageCode, type MediaItem } from "./brainall";
+import newsFactoryImage from "../../assets/manufacturing/hero/production-process-cnc.jpg";
+import newsInspectionImage from "../../assets/process-videos/inspection-00-04.jpg";
+import newsCorporateImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 
 export type NoticeCategory = "notice" | "products" | "quality" | "manufacturing" | "resources";
 
@@ -73,12 +76,10 @@ export const noticeCategoryKickers: Record<NoticeCategory, string> = {
   resources: "RESOURCES",
 };
 
-const unsplash = (id: string, width = 1400) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=82`;
-
 const newsImages = {
-  factory: unsplash("photo-1581092160607-ee22621dd758"),
-  research: unsplash("photo-1581092580497-e0d23cbdf1dc"),
-  conference: unsplash("photo-1515187029135-18ee286d815b"),
+  factory: newsFactoryImage,
+  research: newsInspectionImage,
+  conference: newsCorporateImage,
 };
 
 export const defaultNoticePosts: NoticePost[] = [

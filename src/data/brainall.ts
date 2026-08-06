@@ -60,6 +60,8 @@ import globalSupplyClipPoster from "../../assets/process-videos/global-supply-08
 import globalSupplyClipVideo from "../../assets/process-videos/global-supply-08-14.mp4";
 import qualityFlowClipPoster from "../../assets/process-videos/quality-flow-15-18.jpg";
 import qualityFlowClipVideo from "../../assets/process-videos/quality-flow-15-18.mp4";
+import inspectionProcessImage from "../../assets/process-videos/inspection-00-04.jpg";
+import automatedProductionImage from "../../assets/manufacturing/hero/equipment-automation.jpg";
 
 export type LanguageOption = {
   code: LanguageCode;
@@ -326,7 +328,7 @@ export const showcaseVideos = {
 
 const images = {
   machining: unsplash("photo-1565043666747-69f6646db940"),
-  inspection: unsplash("photo-1581092580497-e0d23cbdf1dc"),
+  inspection: inspectionProcessImage,
   logistics: unsplash("photo-1494412519320-aa613dfb7738"),
   bsm: unsplash("photo-1492144534655-ae79c964c9d7", 1200),
   brake: unsplash("photo-1486262715619-67b85e0b08d3", 1200),
@@ -335,7 +337,7 @@ const images = {
   driveline: unsplash("photo-1494412519320-aa613dfb7738", 1200),
   oem: unsplash("photo-1565043666747-69f6646db940", 1200),
   esgEnvironmental: unsplash("photo-1469474968028-56623f02e42e", 1400),
-  esgSocial: unsplash("photo-1521737604893-d14cc237f11d", 1400),
+  esgSocial: automatedProductionImage,
   esgGovernance: unsplash("photo-1450101499163-c8848c66ca85", 1400),
   clientDauch: clientDauchImage,
   clientSpartan: clientSpartanImage,
