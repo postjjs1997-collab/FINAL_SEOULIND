@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { requireAdmin } from "../server/auth";
-import { readStoredNotices, writeStoredNotices } from "../server/notices";
+import { requireAdmin } from "../server/auth.js";
+import { readStoredNotices, writeStoredNotices } from "../server/notices.js";
 
 export default async function handler(request: VercelRequest, response: VercelResponse) {
   response.setHeader("Cache-Control", "no-store, max-age=0");

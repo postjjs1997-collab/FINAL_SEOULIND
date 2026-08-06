@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { createAdminSessionCookie, verifyAdminPassword } from "../../server/auth";
+import { createAdminSessionCookie, verifyAdminPassword } from "../../server/auth.js";
 
 export default function handler(request: VercelRequest, response: VercelResponse) {
   if (request.method !== "POST") return response.status(405).json({ error: "Method not allowed" });
