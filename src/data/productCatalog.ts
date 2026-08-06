@@ -32,11 +32,13 @@ import pinionImage from "../../assets/product-catalog/steering/pinion.jpg";
 import pistonImage from "../../assets/product-catalog/steering/piston.jpg";
 import rackBushImage from "../../assets/product-catalog/steering/rack-bush.jpg";
 import endPieceImage from "../../assets/product-catalog/powertrain/end-piece.jpg";
+import endPieceVideo from "../../assets/product-catalog/powertrain/end-piece.webm";
 import powertrainShaftVideo1 from "../../assets/product-catalog/powertrain/powertrain-shaft-01.webm";
 import powertrainShaftVideo2 from "../../assets/product-catalog/powertrain/powertrain-shaft-02.webm";
 import powertrainShaftPoster1 from "../../assets/product-catalog/powertrain/powertrain-shaft-01.jpg";
 import powertrainShaftPoster2 from "../../assets/product-catalog/powertrain/powertrain-shaft-02.jpg";
 import inputShaftImage from "../../assets/product-catalog/driveline/input-shaft.jpg";
+import inputShaftVideo from "../../assets/product-catalog/driveline/input-shaft.webm";
 
 export type ProductCatalogLanguage = "ko" | "en" | "ja";
 
@@ -240,6 +242,7 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         title: localized("엔드 피스", "End Piece", "エンドピース"),
         application: localized("캠 샤프트 밸브 개폐 제어 계열", "Camshaft valve-timing control family", "カムシャフト・バルブ開閉制御系列"),
         poster: endPieceImage,
+        video: endPieceVideo,
       },
       {
         title: localized("파워트레인 샤프트 01", "Powertrain Shaft 01", "パワートレインシャフト 01"),
@@ -302,6 +305,7 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         title: localized("인풋 샤프트", "Input Shaft", "インプットシャフト"),
         application: localized("변속기 입력·오일 분배 계열", "Transmission input and oil-distribution family", "トランスミッション入力・オイル分配系列"),
         poster: inputShaftImage,
+        video: inputShaftVideo,
       },
     ],
     programs: [
