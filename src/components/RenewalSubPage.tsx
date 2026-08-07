@@ -11,6 +11,7 @@ import drivelineImage from "../../assets/product-lineup/driveline.jpg";
 import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
 import precisionImage from "../../precision-inside-mobility.jpg";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
+import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
 import sustainabilityPolicyDocument from "../../assets/documents/sustainability-management-policy-seoul-industry.docx?url";
 import Icon from "./Icons";
 import { getPageConfig } from "./MenuPage";
@@ -555,7 +556,7 @@ const productRouteImages: Record<string, string> = {
   "products/steering": steeringImage,
   "products/powertrain": powertrainImage,
   "products/driveline": drivelineImage,
-  "products/etc": precisionImage,
+  "products/etc": defenseSpecialProjectsImage,
 };
 
 const productStandards: Record<string, string[]> = {
@@ -564,7 +565,7 @@ const productStandards: Record<string, string[]> = {
   "products/driveline": ["DISK CARRIER", "SHAFT", "HUB", "INPUT SHAFT"],
   "products/balance-shaft-module": ["HOUSING", "BEARING BORE", "OIL PASSAGE", "VIBRATION / NOISE CONTROL"],
   "products/steering": ["PINION", "PINION SHAFT", "PISTON", "RACK BUSH", "TORSION BAR"],
-  "products/etc": ["DRAWING REVIEW", "PROTOTYPE", "PROCESS DESIGN", "CUSTOM OEM"],
+  "products/etc": ["SECURE PROJECT", "PRECISION MACHINING", "LOT TRACEABILITY", "CONTROLLED PRODUCTION"],
 };
 
 const bodyLabels: Record<
@@ -1347,6 +1348,170 @@ function ActualProductLineup({
   );
 }
 
+type SpecialProjectsCopy = {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  disclosureLabel: string;
+  disclosure: string;
+  imageCaption: string;
+  principles: Array<{
+    number: string;
+    kicker: string;
+    title: string;
+    copy: string;
+  }>;
+};
+
+const specialProjectsCopy: Record<RenewalLanguage, SpecialProjectsCopy> = {
+  ko: {
+    eyebrow: "DEFENSE & SPECIAL PROJECTS",
+    title: "공개보다 신뢰가 먼저인\n특수사업 제조 체계",
+    intro:
+      "서울산업은 방산 분야를 포함해 보안과 정밀도가 함께 요구되는 특수 프로젝트에 대응합니다. 세부 품목과 고객 정보는 공개하지 않지만, 도면 검토부터 공정 설계, 양산 품질과 LOT 추적까지 검증 가능한 관리 체계를 운영합니다.",
+    disclosureLabel: "DISCLOSURE POLICY",
+    disclosure:
+      "보안상 실제 제품, 고객사, 형상, 적용 체계는 공개하지 않습니다. 본 페이지는 서울산업의 공개 가능한 제조·품질 대응 범위만 안내합니다.",
+    imageCaption: "CONFIDENTIAL PRECISION MANUFACTURING",
+    principles: [
+      {
+        number: "01",
+        kicker: "SECURE PROJECT",
+        title: "보안 정보 관리",
+        copy: "도면과 사양, 변경 이력은 승인된 범위와 절차 안에서 관리하며 프로젝트별 접근과 공유 기준을 구분합니다.",
+      },
+      {
+        number: "02",
+        kicker: "PRECISION PROCESS",
+        title: "정밀 공정 설계",
+        copy: "소재와 형상, 공차 조건을 검토해 전용 가공 순서와 치공구, 측정 기준을 설계하고 반복 정밀도를 확보합니다.",
+      },
+      {
+        number: "03",
+        kicker: "TRACEABLE QUALITY",
+        title: "품질·LOT 추적",
+        copy: "검사 결과와 설비 조건, 작업 이력을 LOT 단위로 연결해 품질 근거와 변경 이력을 추적할 수 있도록 관리합니다.",
+      },
+      {
+        number: "04",
+        kicker: "CONTROLLED PRODUCTION",
+        title: "양산 전환 대응",
+        copy: "시제품 검증에서 공정 안정화, 승인 조건 반영, 반복 생산까지 단계별 게이트를 두고 통제된 양산 체계로 이관합니다.",
+      },
+    ],
+  },
+  en: {
+    eyebrow: "DEFENSE & SPECIAL PROJECTS",
+    title: "A manufacturing system\nbuilt on discretion",
+    intro:
+      "Seoul Industry supports security-sensitive special projects, including defense-related programs. Specific products and customer information remain confidential, while drawing review, process engineering, production quality, and lot traceability are managed as one verifiable system.",
+    disclosureLabel: "DISCLOSURE POLICY",
+    disclosure:
+      "For security reasons, actual products, customers, geometries, and applications are not disclosed. This page presents only the manufacturing and quality capabilities approved for public communication.",
+    imageCaption: "CONFIDENTIAL PRECISION MANUFACTURING",
+    principles: [
+      {
+        number: "01",
+        kicker: "SECURE PROJECT",
+        title: "Controlled information",
+        copy: "Drawings, specifications, and revision histories are handled within approved procedures, with access and sharing rules defined for each project.",
+      },
+      {
+        number: "02",
+        kicker: "PRECISION PROCESS",
+        title: "Precision process design",
+        copy: "Material, geometry, and tolerance conditions are translated into dedicated machining sequences, fixtures, and measurement standards.",
+      },
+      {
+        number: "03",
+        kicker: "TRACEABLE QUALITY",
+        title: "Quality and lot traceability",
+        copy: "Inspection results, equipment conditions, and work records are linked by lot to preserve evidence and trace changes throughout production.",
+      },
+      {
+        number: "04",
+        kicker: "CONTROLLED PRODUCTION",
+        title: "Controlled production transfer",
+        copy: "Stage gates connect prototype validation, process stabilization, approval conditions, and repeat production in a controlled mass-production flow.",
+      },
+    ],
+  },
+  ja: {
+    eyebrow: "DEFENSE & SPECIAL PROJECTS",
+    title: "公開より信頼を優先する\n特殊事業の製造体制",
+    intro:
+      "ソウル産業は、防衛分野を含む機密性と精密性が同時に求められる特殊プロジェクトに対応します。製品・顧客情報は公開せず、図面検討から工程設計、量産品質、LOT追跡まで検証可能な管理体制を運用します。",
+    disclosureLabel: "DISCLOSURE POLICY",
+    disclosure:
+      "保安上、実際の製品、顧客、形状、適用体系は公開しません。本ページでは、公開が承認された製造・品質対応範囲のみをご案内します。",
+    imageCaption: "CONFIDENTIAL PRECISION MANUFACTURING",
+    principles: [
+      {
+        number: "01",
+        kicker: "SECURE PROJECT",
+        title: "機密情報管理",
+        copy: "図面、仕様、変更履歴は承認された手順内で管理し、プロジェクトごとにアクセスと共有基準を区分します。",
+      },
+      {
+        number: "02",
+        kicker: "PRECISION PROCESS",
+        title: "精密工程設計",
+        copy: "素材、形状、公差条件を検討し、専用加工順序、治工具、測定基準を設計して反復精度を確保します。",
+      },
+      {
+        number: "03",
+        kicker: "TRACEABLE QUALITY",
+        title: "品質・LOT追跡",
+        copy: "検査結果、設備条件、作業履歴をLOT単位で連結し、品質根拠と変更履歴を追跡できるよう管理します。",
+      },
+      {
+        number: "04",
+        kicker: "CONTROLLED PRODUCTION",
+        title: "量産移管対応",
+        copy: "試作品検証、工程安定化、承認条件反映、反復生産を段階別ゲートで管理し、統制された量産体制へ移管します。",
+      },
+    ],
+  },
+};
+
+function SpecialProjectsBody({ language }: { language: RenewalLanguage }) {
+  const copy = specialProjectsCopy[language];
+
+  return (
+    <>
+      <section className="renewal-sub-special-projects">
+        <div className="renewal-sub-special-projects__intro">
+          <div className="renewal-sub-special-projects__copy" data-sub-reveal>
+            <span>{copy.eyebrow}</span>
+            <h2>{copy.title}</h2>
+            <p>{copy.intro}</p>
+          </div>
+          <figure data-sub-reveal>
+            <img src={defenseSpecialProjectsImage} alt="" />
+            <figcaption>{copy.imageCaption}</figcaption>
+          </figure>
+        </div>
+        <div className="renewal-sub-special-projects__principles">
+          {copy.principles.map((principle) => (
+            <article data-sub-reveal key={principle.number}>
+              <div>
+                <span>{principle.number}</span>
+                <small>{principle.kicker}</small>
+              </div>
+              <h3>{principle.title}</h3>
+              <p>{principle.copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="renewal-sub-special-projects__notice" data-sub-reveal>
+        <span>{copy.disclosureLabel}</span>
+        <p>{copy.disclosure}</p>
+      </section>
+    </>
+  );
+}
+
 function ProductDetailBody({
   route,
   content,
@@ -1356,6 +1521,10 @@ function ProductDetailBody({
   content: SiteContent;
   language: RenewalLanguage;
 }) {
+  if (route === "products/etc") {
+    return <SpecialProjectsBody language={language} />;
+  }
+
   const productIndex = productRouteIndex[route] ?? 0;
   const product = content.products[productIndex];
   const image = productRouteImages[route] ?? product.image;
@@ -2428,16 +2597,18 @@ export default function RenewalSubPage({ route }: RenewalSubPageProps) {
 
         <RenewalSubNavigation route={cleanRoute} language={language} />
 
-        <section className="renewal-sub-intro">
-          <div className="renewal-sub-intro__title" data-sub-reveal>
-            <span>{config.eyebrow}</span>
-            <h2>{config.title}</h2>
-          </div>
-          <div className="renewal-sub-intro__copy" data-sub-reveal>
-            <strong>{config.lead}</strong>
-            <p>{config.heroCopy}</p>
-          </div>
-        </section>
+        {cleanRoute !== "products/etc" ? (
+          <section className="renewal-sub-intro">
+            <div className="renewal-sub-intro__title" data-sub-reveal>
+              <span>{config.eyebrow}</span>
+              <h2>{config.title}</h2>
+            </div>
+            <div className="renewal-sub-intro__copy" data-sub-reveal>
+              <strong>{config.lead}</strong>
+              <p>{config.heroCopy}</p>
+            </div>
+          </section>
+        ) : null}
 
         <div className="renewal-sub-body">
           <RouteBody route={cleanRoute} language={language} content={content} />

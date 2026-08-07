@@ -11,6 +11,7 @@ import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industr
 import manufacturingProcessHeroImage from "../../assets/manufacturing/hero/production-process-cnc.jpg";
 import manufacturingEquipmentHeroImage from "../../assets/manufacturing/hero/equipment-automation.jpg";
 import manufacturingInspectionHeroImage from "../../assets/process-videos/inspection-00-04.jpg";
+import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
 import BrainallLogo from "./BrainallLogo";
 import Header from "./Header";
 import Icon from "./Icons";
@@ -447,12 +448,12 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     route: "products/etc",
     category: "PRODUCT",
     groupTitle: "제품정보",
-    eyebrow: "Custom OEM",
-    title: "ETC",
-    lead: "고객 도면과 적용 환경에 맞춰 기어, 스플라인, 샤프트, 하우징 계열의 맞춤 정밀가공을 수행합니다.",
-    heroCopy: "개발 검토부터 시제품, 공정 설계, 양산 이관까지 프로젝트 조건에 맞춘 생산 방식을 제안합니다.",
-    image: menuHeroImages.precision,
-    imagePosition: "center 48%",
+    eyebrow: "Defense & Special Projects",
+    title: "방산·특수사업",
+    lead: "방산 분야를 포함해 보안과 정밀도가 함께 요구되는 특수 프로젝트에 대응합니다.",
+    heroCopy: "세부 품목과 고객 정보는 공개하지 않으며, 승인된 범위 안에서 개발 검토부터 공정 설계, 양산 품질, LOT 추적까지 일관되게 관리합니다.",
+    image: defenseSpecialProjectsImage,
+    imagePosition: "center",
   },
   "manufacturing/process": {
     route: "manufacturing/process",
@@ -589,7 +590,7 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
     "products/driveline": { groupTitle: "Products", lead: "Disk carriers, shafts, hubs, and input shafts for transmissions and transfer cases.", heroCopy: "Splines, cross holes, concentricity, runout, and oil distribution are controlled for reliable driveline assembly." },
     "products/balance-shaft-module": { groupTitle: "Products", lead: "Housings for balance shaft modules that counter primary engine vibration.", heroCopy: "Complex geometry, bearing bores, assembly faces, and oil passages support vibration and noise reduction." },
     "products/steering": { groupTitle: "Products", lead: "Pinions, pinion shafts, pistons, rack bushes, and torsion bars for steering gear systems.", heroCopy: "Gear and spline machining, heat treatment, straightening, and runout inspection keep steering input precise." },
-    "products/etc": { groupTitle: "Products", lead: "Custom machining for gears, splines, shafts, and housings based on customer drawings.", heroCopy: "We propose production methods from feasibility review and prototypes through process design and mass production." },
+    "products/etc": { groupTitle: "Products", eyebrow: "Defense & Special Projects", title: "Defense & Special Projects", lead: "We support defense and other security-sensitive programs with high-precision machining and controlled quality systems.", heroCopy: "Specific products and customers remain confidential. Within approved disclosure boundaries, we manage feasibility, process design, production quality, and lot traceability as one controlled flow." },
     "manufacturing/process": { groupTitle: "Manufacturing", title: "Production Process", lead: "Turning, gear and spline machining, grinding, heat treatment, straightening, and inspection are designed as one connected quality flow.", heroCopy: "The output of each operation becomes the standard for the next, maintaining repeat accuracy and surface quality over long production runs." },
     "manufacturing/equipment": { groupTitle: "Manufacturing", title: "Equipment & Automation", lead: "CNC, gear machining, grinding, heat treatment, and automation equipment are configured around part geometry and quality criteria.", heroCopy: "Equipment settings, dedicated fixtures, transfer automation, and measurement reduce process variation and operator dependency." },
     "manufacturing/inspection": { groupTitle: "Manufacturing", title: "Inspection Technology", lead: "Dimensions, GD&T, gear geometry, runout, and cracks are checked through automated inspection, CMM, and dedicated metrology.", heroCopy: "Measurement data feeds back into correction, process conditions, and shipment decisions for preventive quality control." },
@@ -613,7 +614,7 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
     "products/driveline": { groupTitle: "製品情報", lead: "DISK CARRIER、SHAFT、HUB、INPUT SHAFTを生産し、トランスミッションとTransfer Caseの動力伝達を支えます。", heroCopy: "スプライン、クロスホール、同心度、振れ、オイル分配機能を管理し、組立信頼性を高めます。" },
     "products/balance-shaft-module": { groupTitle: "製品情報", lead: "エンジンの一次振動を回転軸で相殺するバランスシャフトモジュール用HOUSINGを生産します。", heroCopy: "複合形状、ベアリングボア、組立面、オイル流路を管理し、振動・騒音低減を支えます。" },
     "products/steering": { groupTitle: "製品情報", lead: "PINION、PINION SHAFT、PISTON、RACK BUSH、TORSION BARなどステアリングギヤの機能部品を生産します。", heroCopy: "ギヤ・スプライン加工、熱処理、矯正、振れ検査をつなぎ、操舵入力を正確に伝えます。" },
-    "products/etc": { groupTitle: "製品情報", lead: "顧客図面に合わせてギヤ、スプライン、シャフト、ハウジングをカスタム加工します。", heroCopy: "開発検討、試作、工程設計、量産移管までプロジェクトに合う生産方式を提案します。" },
+    "products/etc": { groupTitle: "製品情報", eyebrow: "Defense & Special Projects", title: "防衛・特殊事業", lead: "防衛分野を含む機密性の高い特殊プロジェクトに、精密加工と統制された品質管理で対応します。", heroCopy: "製品・顧客情報は公開せず、承認された範囲で開発検討、工程設計、量産品質、LOT追跡を一貫管理します。" },
     "manufacturing/process": { groupTitle: "生産技術", title: "生産工程", lead: "旋削、ギヤ・スプライン加工、研削、熱処理、矯正、検査を一つの品質フローとして設計します。", heroCopy: "各工程の結果を次工程の基準につなげ、長期量産でも反復精度と表面品質を維持します。" },
     "manufacturing/equipment": { groupTitle: "生産技術", title: "保有設備・自動化", lead: "部品形状と品質基準に合わせ、CNC、ギヤ加工、研削、熱処理、自動化設備を運用します。", heroCopy: "設備条件、専用治具、自動搬送、測定をつなげて工程ばらつきと作業依存を抑えます。" },
     "manufacturing/inspection": { groupTitle: "生産技術", title: "検査技術", lead: "寸法、幾何公差、ギヤ形状、振れ、亀裂を自動検査、CMM、専用測定設備で確認します。", heroCopy: "測定データを矯正、工程条件、出荷判定に戻し、予防中心の品質フローを運用します。" },

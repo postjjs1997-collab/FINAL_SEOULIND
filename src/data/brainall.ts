@@ -52,6 +52,7 @@ import heroHousingPoster from "../../assets/video-posters/hero-housing.jpg";
 import housingPoster1 from "../../assets/video-posters/housing1.jpg";
 import housingPoster3 from "../../assets/video-posters/housing3.jpg";
 import housingPoster4 from "../../assets/video-posters/housing4.jpg";
+import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
 import housingPoster5 from "../../assets/video-posters/housing5.jpg";
 import steeringPoster1 from "../../assets/video-posters/steering1.jpg";
 import steeringPoster2 from "../../assets/video-posters/steering2.jpg";
@@ -364,7 +365,7 @@ const productVisuals = [
   { category: "STEERING", title: "Steering Parts", image: images.steering, accent: "#e9efff", variant: "combo" as const },
   { category: "POWERTRAIN", title: "Powertrain Parts", image: images.engine, accent: "#cfb3ff", variant: "robotics" as const },
   { category: "DRIVELINE", title: "Driveline Parts", image: images.driveline, accent: "#ffd36e", variant: "qeeg" as const },
-  { category: "CUSTOM", title: "OEM Machining", image: images.brake, accent: "#63d7ff", variant: "combo" as const },
+  { category: "SPECIAL PROJECTS", title: "Defense & Special Projects", image: defenseSpecialProjectsImage, accent: "#f36f21", variant: "combo" as const },
 ];
 
 const partnerMarks = [

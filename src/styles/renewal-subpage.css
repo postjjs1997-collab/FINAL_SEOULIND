@@ -4384,6 +4384,271 @@
   }
 }
 
+/* Security-sensitive defense and special-project capability */
+.renewal-sub-special-projects {
+  padding: clamp(88px, 8vw, 140px) 5vw;
+  background: #121313;
+  color: #fff;
+}
+
+.renewal-sub-special-projects__intro {
+  display: grid;
+  width: min(100%, 1500px);
+  grid-template-columns: minmax(360px, 0.72fr) minmax(0, 1.28fr);
+  align-items: center;
+  gap: clamp(40px, 6vw, 96px);
+  margin: 0 auto;
+}
+
+.renewal-sub-special-projects__copy > span,
+.renewal-sub-special-projects__notice > span {
+  color: var(--renewal-orange);
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.renewal-sub-special-projects__copy h2 {
+  max-width: 720px;
+  margin: 22px 0 0;
+  font-size: clamp(2.7rem, 4.6vw, 5.3rem);
+  line-height: 1.06;
+  white-space: pre-line;
+  word-break: keep-all;
+}
+
+.renewal-sub-special-projects__copy p {
+  max-width: 690px;
+  margin: 34px 0 0;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.9;
+  word-break: keep-all;
+}
+
+.renewal-sub-special-projects__intro figure {
+  position: relative;
+  min-height: 580px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #070808;
+}
+
+.renewal-sub-special-projects__intro figure::before,
+.renewal-sub-special-projects__intro figure::after {
+  position: absolute;
+  z-index: 1;
+  content: "";
+  pointer-events: none;
+}
+
+.renewal-sub-special-projects__intro figure::before {
+  inset: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.renewal-sub-special-projects__intro figure::after {
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 38%;
+  background: var(--renewal-orange);
+}
+
+.renewal-sub-special-projects__intro img {
+  width: 100%;
+  height: 100%;
+  min-height: 580px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.9s var(--ease-out);
+}
+
+.renewal-sub-special-projects__intro:hover img {
+  transform: scale(1.025);
+}
+
+.renewal-sub-special-projects__intro figcaption {
+  position: absolute;
+  z-index: 2;
+  right: 22px;
+  bottom: 22px;
+  padding: 10px 12px;
+  background: rgba(7, 8, 8, 0.8);
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.62rem;
+  font-weight: 900;
+}
+
+.renewal-sub-special-projects__principles {
+  display: grid;
+  width: min(100%, 1500px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: clamp(62px, 7vw, 96px) auto 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.renewal-sub-special-projects__principles article {
+  min-height: 310px;
+  padding: 30px 28px 34px;
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.renewal-sub-special-projects__principles article:last-child {
+  border-right: 0;
+}
+
+.renewal-sub-special-projects__principles article > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.renewal-sub-special-projects__principles article > div span {
+  color: var(--renewal-orange);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.renewal-sub-special-projects__principles article > div small {
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.58rem;
+  font-weight: 900;
+  text-align: right;
+}
+
+.renewal-sub-special-projects__principles h3 {
+  margin: 82px 0 0;
+  font-size: clamp(1.45rem, 1.9vw, 2.25rem);
+  line-height: 1.2;
+  word-break: keep-all;
+}
+
+.renewal-sub-special-projects__principles p {
+  margin: 20px 0 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+
+.renewal-sub-special-projects__notice {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.35fr) minmax(0, 1.65fr);
+  align-items: start;
+  gap: 40px;
+  padding: clamp(56px, 6vw, 92px) max(5vw, calc((100vw - 1500px) / 2));
+  border-bottom: 1px solid #d4cfc8;
+  background: #e9e6e0;
+  color: #171717;
+}
+
+.renewal-sub-special-projects__notice p {
+  max-width: 980px;
+  margin: 0;
+  font-size: clamp(1.25rem, 2vw, 2.15rem);
+  font-weight: 800;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+@media (max-width: 1080px) {
+  .renewal-sub-special-projects__intro {
+    grid-template-columns: 1fr;
+  }
+
+  .renewal-sub-special-projects__copy {
+    max-width: 820px;
+  }
+
+  .renewal-sub-special-projects__principles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .renewal-sub-special-projects__principles article:nth-child(2) {
+    border-right: 0;
+  }
+
+  .renewal-sub-special-projects__principles article:nth-child(-n + 2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  }
+}
+
+@media (max-width: 720px) {
+  .renewal-sub-special-projects {
+    padding: 78px 22px;
+  }
+
+  .renewal-sub-special-projects__intro,
+  .renewal-sub-special-projects__copy,
+  .renewal-sub-special-projects__copy > * {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .renewal-sub-special-projects__copy h2 {
+    font-size: 2.35rem;
+    overflow-wrap: anywhere;
+  }
+
+  .renewal-sub-special-projects__intro figure,
+  .renewal-sub-special-projects__intro img {
+    min-height: 340px;
+  }
+
+  .renewal-sub-special-projects__principles {
+    grid-template-columns: 1fr;
+  }
+
+  .renewal-sub-special-projects__principles article,
+  .renewal-sub-special-projects__principles article:nth-child(2) {
+    min-height: 260px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .renewal-sub-special-projects__principles article:last-child {
+    border-bottom: 0;
+  }
+
+  .renewal-sub-special-projects__principles h3 {
+    margin-top: 54px;
+  }
+
+  .renewal-sub-special-projects__notice {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 52px 22px;
+  }
+
+  .renewal-sub-special-projects__notice p {
+    font-size: 1.2rem;
+  }
+
+  :lang(ja) .renewal-sub-special-projects__copy h2,
+  :lang(ja) .renewal-sub-special-projects__copy p,
+  :lang(ja) .renewal-sub-special-projects__principles h3,
+  :lang(ja) .renewal-sub-special-projects__principles p,
+  :lang(ja) .renewal-sub-special-projects__notice p {
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .renewal-sub-special-projects__intro img {
+    transition: none;
+  }
+
+  .renewal-sub-special-projects__intro:hover img {
+    transform: none;
+  }
+}
+
 /* Actual product lineup: application image first, manufactured parts second */
 .renewal-sub-product-detail,
 .renewal-sub-product-detail figure {

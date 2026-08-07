@@ -35,6 +35,7 @@ import powertrainShaftPoster1 from "../../assets/product-catalog/powertrain/powe
 import powertrainShaftPoster2 from "../../assets/product-catalog/powertrain/powertrain-shaft-02.jpg";
 import inputShaftImage from "../../assets/product-catalog/driveline/input-shaft.jpg";
 import inputShaftVideo from "../../assets/product-catalog/driveline/input-shaft.webm";
+import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
 
 export type ProductCatalogLanguage = "ko" | "en" | "ja";
 
@@ -336,29 +337,16 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     ],
   },
   "products/etc": {
-    eyebrow: "CUSTOM OEM PARTS",
-    title: localized("도면 기반 맞춤 생산 부품", "Drawing-based custom production parts", "図面ベースのカスタム生産部品"),
+    eyebrow: "DEFENSE & SPECIAL PROJECTS",
+    title: localized("방산·특수사업 대응 역량", "Defense and special-project capability", "防衛・特殊事業対応力"),
     copy: localized(
-      "기어, 스플라인, 샤프트와 하우징을 고객 도면과 양산 조건에 맞춰 공정 설계합니다.",
-      "Gears, splines, shafts, and housings are process-engineered around customer drawings and production conditions.",
-      "ギヤ、スプライン、シャフト、ハウジングを顧客図面と量産条件に合わせて工程設計します。",
+      "제품과 고객 정보는 공개하지 않으며, 보안이 요구되는 프로젝트의 정밀가공과 품질관리 체계를 운영합니다.",
+      "Products and customers remain confidential while precision machining and quality controls support security-sensitive programs.",
+      "製品・顧客情報は公開せず、機密性の高いプロジェクトに対応する精密加工・品質管理体制を運用します。",
     ),
-    overviewImage: bsmLineupImage,
-    families: ["GEAR", "SPLINE", "SHAFT", "HOUSING"],
-    parts: [
-      {
-        title: localized("맞춤 가공 하우징", "Custom Machined Housing", "カスタム加工ハウジング"),
-        application: localized("고객 도면 기반 OEM", "Drawing-based OEM", "顧客図面ベースOEM"),
-        poster: housingPoster3,
-        video: housingVideo3,
-      },
-      {
-        title: localized("전용 정밀 부품", "Dedicated Precision Part", "専用精密部品"),
-        application: localized("시제품부터 양산까지", "Prototype through mass production", "試作から量産まで"),
-        poster: housingPoster4,
-        video: housingVideo4,
-      },
-    ],
+    overviewImage: defenseSpecialProjectsImage,
+    families: ["SECURE PROJECT", "PRECISION MACHINING", "LOT TRACEABILITY", "CONTROLLED PRODUCTION"],
+    parts: [],
     programs: [],
   },
 };
