@@ -12,6 +12,10 @@ import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
 import precisionImage from "../../precision-inside-mobility.jpg";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
+import machiningEquipmentImage from "../../assets/manufacturing/equipment/machining-reference.webp";
+import gearSplineEquipmentImage from "../../assets/manufacturing/equipment/gear-spline-reference.jpg";
+import finishingEquipmentImage from "../../assets/manufacturing/equipment/finishing-reference.jpg";
+import automationInspectionEquipmentImage from "../../assets/manufacturing/equipment/automation-inspection-reference.jpg";
 import sustainabilityPolicyDocument from "../../assets/documents/sustainability-management-policy-seoul-industry.docx?url";
 import Icon from "./Icons";
 import { getPageConfig } from "./MenuPage";
@@ -121,9 +125,9 @@ type CertificateShowcaseCopy = {
 
 const certificateShowcaseCopy: Record<RenewalLanguage, CertificateShowcaseCopy> = {
   ko: {
-    heading: "원본으로 확인하는 서울산업 품질 인증",
-    intro: "자동차 부품 양산에 필요한 품질경영 체계와 고객사 공급 품질 기준을 실제 인증서로 확인할 수 있습니다.",
-    originalLabel: "인증서 원본 보기",
+    heading: "양산 현장을 지키는 품질 인증",
+    intro: "IATF 16949 품질경영시스템과 현대모비스 MSQ 인증을 바탕으로 공정 기준과 공급 품질을 체계적으로 관리합니다.",
+    originalLabel: "인증서 보기",
     items: [
       {
         eyebrow: "AUTOMOTIVE QUALITY MANAGEMENT",
@@ -142,9 +146,9 @@ const certificateShowcaseCopy: Record<RenewalLanguage, CertificateShowcaseCopy> 
     ],
   },
   en: {
-    heading: "Verified quality certifications",
-    intro: "Review the original certificates covering Seoul Industry's automotive quality management system and supplier quality capability.",
-    originalLabel: "View original certificate",
+    heading: "Quality credentials built for production",
+    intro: "IATF 16949 and Hyundai Mobis MSQ underpin the disciplined process control and supplier quality required for automotive production.",
+    originalLabel: "View certificate",
     items: [
       {
         eyebrow: "AUTOMOTIVE QUALITY MANAGEMENT",
@@ -163,9 +167,9 @@ const certificateShowcaseCopy: Record<RenewalLanguage, CertificateShowcaseCopy> 
     ],
   },
   ja: {
-    heading: "原本で確認する品質認証",
-    intro: "自動車部品量産に必要な品質マネジメントシステムと顧客の供給品質基準を、実際の認証書で確認できます。",
-    originalLabel: "認証書の原本を見る",
+    heading: "量産品質を支える認証体制",
+    intro: "IATF 16949と現代モービスMSQ認証を基盤に、工程管理と供給品質を継続的に高めています。",
+    originalLabel: "認証書を見る",
     items: [
       {
         eyebrow: "AUTOMOTIVE QUALITY MANAGEMENT",
@@ -262,7 +266,7 @@ const sustainabilityPolicyCopy: Record<RenewalLanguage, SustainabilityPolicyCopy
     domains: {
       eyebrow: "POLICY COMMITMENTS",
       title: "서울산업의 지속가능경영 세부 원칙",
-      copy: "문서에 명시된 환경, 사회, 윤리, 정보보호 및 공급망 요구사항을 실행 항목별로 정리했습니다.",
+      copy: "환경, 사회, 윤리, 정보보호와 공급망 전반에서 지켜야 할 기준을 구체적인 실행 원칙으로 운영합니다.",
       items: [
         { tag: "ENVIRONMENT", title: "환경경영", copy: "폐기물, 대기배출, 폐수 등 환경오염을 최소화하고 에너지 효율과 온실가스 감축을 추진하며 유해물질을 안전하게 관리합니다." },
         { tag: "NATURE", title: "생물다양성·토지·산림", copy: "생태계 영향을 최소화하고 운영 전 토지이용 리스크를 평가하며, 공급망에서 산림 훼손에 기여하는 원자재 사용을 금지합니다." },
@@ -286,11 +290,11 @@ const sustainabilityPolicyCopy: Record<RenewalLanguage, SustainabilityPolicyCopy
     },
     document: {
       eyebrow: "OFFICIAL POLICY",
-      title: "서울산업 지속가능경영정책 원문",
-      copy: "공식 영문 정책 문서에서 목적, 적용 범위, 세부 원칙과 경영진 책임을 확인할 수 있습니다.",
+      title: "서울산업 지속가능경영정책",
+      copy: "환경, 인권, 안전, 윤리와 공급망 전반에 적용하는 운영 원칙과 실행 책임을 담았습니다.",
       dateLabel: "시행일",
       date: "2025.11.21",
-      download: "정책 원문 다운로드",
+      download: "정책 문서 다운로드",
     },
   },
   en: {
@@ -365,7 +369,7 @@ const sustainabilityPolicyCopy: Record<RenewalLanguage, SustainabilityPolicyCopy
     document: {
       eyebrow: "OFFICIAL POLICY",
       title: "Seoul Industry Sustainability Management Policy",
-      copy: "Download the official English policy covering its purpose, scope, commitments and management responsibilities.",
+      copy: "The policy defines the environmental, human-rights, safety, ethics, and supply-chain principles that guide our operations.",
       dateLabel: "Effective",
       date: "21 November 2025",
       download: "Download policy",
@@ -443,10 +447,10 @@ const sustainabilityPolicyCopy: Record<RenewalLanguage, SustainabilityPolicyCopy
     document: {
       eyebrow: "OFFICIAL POLICY",
       title: "ソウル産業 サステナビリティ経営方針",
-      copy: "目的、適用範囲、各原則、経営者責任を定めた公式英語文書をご確認いただけます。",
+      copy: "環境、人権、安全、倫理、サプライチェーンに適用する運営原則と実行責任を定めています。",
       dateLabel: "施行日",
       date: "2025.11.21",
-      download: "方針原文をダウンロード",
+      download: "方針をダウンロード",
     },
   },
 };
@@ -506,38 +510,46 @@ const recruitCopy: Record<
 
 const productImages = [balanceModuleImage, automotiveImage, steeringImage, powertrainImage, drivelineImage];
 
+const equipmentVisuals: Record<string, string> = {
+  machining: machiningEquipmentImage,
+  "gear-spline": gearSplineEquipmentImage,
+  finishing: finishingEquipmentImage,
+  "automation-inspection": automationInspectionEquipmentImage,
+};
+
 const ceoCopy: Record<RenewalLanguage, { quote: string; paragraphs: string[]; sign: string }> = {
   ko: {
-    quote: "고객의 신뢰를 바탕으로 지속가능한 성장을 추구합니다.",
+    quote: "정밀함과 일관된 품질로 신뢰에 답하고, 지속가능한 성장을 이어가겠습니다.",
     paragraphs: [
-      "안녕하십니까! 저희 서울산업 홈페이지를 찾아주셔서 감사합니다.",
-      "서울산업㈜는 1985년 자동차 부품 정밀 가공 업체로 설립되었습니다.",
-      "30년간의 정밀 가공 노하우로 국내 완성차 Maker와 유럽(독일, 이태리), 북·남미(미국, 캐나다, 멕시코), 아시아(일본, 중국) 등 Global Maker와의 견고한 파트너십 형성으로 지속적인 수출 향상 기업으로 성장하고 있습니다.",
-      "전 임직원의 끊임없는 연구개발과 신기술 축적으로 고객이 원하는 품질 요구 사양을 명확히 이해하고 최적의 품질 수준을 유지하여, 대한민국을 넘어 세계 속의 자동차 부품 회사로 발돋움하기 위해 전 임직원이 창의적인 사고와 고객 중심적인 품질 수준으로 보답하도록 하겠습니다.",
-      "화합으로 창조하는 기업이라는 경영 철학으로 고객이 원하는 최고의 품질과 사회에 공헌하는 Global Leader 기업이 될 수 있도록 최선을 다하겠습니다.",
+      "안녕하십니까. 서울산업 홈페이지를 찾아주셔서 감사합니다.",
+      "서울산업㈜는 1985년 설립 이후 자동차 부품 정밀가공 기술을 축적하며 고객과 함께 성장해 왔습니다.",
+      "40년간 쌓아 온 제조 경험을 바탕으로 국내 완성차 기업은 물론 유럽, 북미, 남미, 아시아의 글로벌 자동차 부품 프로그램에 안정적인 품질과 납기로 대응하고 있습니다.",
+      "도면 검토부터 공정 설계, 정밀가공, 열처리, 검사와 양산 관리까지 전 과정을 긴밀하게 연결해 고객의 요구사항을 정확히 구현하겠습니다.",
+      "앞으로도 끊임없는 기술 개발과 현장 개선을 통해 신뢰받는 자동차 부품 제조 파트너이자 사회에 책임을 다하는 기업으로 나아가겠습니다.",
     ],
     sign: "서울산업(주) 대표이사 김을식",
   },
   en: {
-    quote: "We aim for continuous growth based on our customers' trust.",
+    quote: "Earning trust through precision, consistency, and responsible growth.",
     paragraphs: [
-      "Dear Customer, Seoul Industry is a company which creates in harmony.",
-      "Seoul Industry has been in the automotive industry for about 30 years, serving our valued customers across the world. This has only been possible because we have worked to meet our customers' requirements and expectations for quality and reliability.",
-      "Doing so has been my goal, and it will remain the goal of all our employees. For you, we will continue to improve our quality so that your products are safe and reliable.",
-      "Thank you.",
+      "Thank you for visiting Seoul Industry.",
+      "Since our founding in 1985, we have grown alongside our customers by building deep expertise in precision machining for automotive components.",
+      "Four decades of manufacturing experience enable us to support automotive programs across Korea, Europe, North and South America, and Asia with consistent quality and dependable delivery.",
+      "From drawing review and process design to machining, heat treatment, inspection, and mass-production control, we connect every stage to deliver each requirement with precision.",
+      "We will continue to invest in technology and continuous improvement to remain a trusted manufacturing partner and a responsible member of the communities we serve.",
     ],
-    sign: "Best Regards, Eulsik Kim",
+    sign: "Eul-Sik Kim, President & CEO",
   },
   ja: {
-    quote: "お客様の信頼を基盤に、持続可能な成長を追求します。",
+    quote: "精密さと一貫した品質で信頼に応え、持続的な成長を目指します。",
     paragraphs: [
-      "こんにちは。ソウル産業のウェブサイトをご訪問いただき、ありがとうございます。",
-      "ソウル産業株式会社は1985年、自動車部品の精密加工会社として設立されました。",
-      "30年にわたり蓄積した精密加工ノウハウをもとに、韓国の完成車メーカーをはじめ、欧州（ドイツ、イタリア）、北・南米（米国、カナダ、メキシコ）、アジア（日本、中国）などのグローバルメーカーと強固なパートナーシップを築き、輸出を持続的に拡大する企業へ成長しています。",
-      "全社員の絶え間ない研究開発と新技術の蓄積により、お客様が求める品質仕様を明確に理解し、最適な品質水準を維持します。韓国を越えて世界の自動車部品企業へと飛躍するため、創造的な発想とお客様中心の品質でお応えしてまいります。",
-      "「調和から創造する企業」という経営哲学のもと、お客様が求める最高の品質を実現し、社会に貢献するGlobal Leaderとなれるよう最善を尽くします。",
+      "ソウル産業のウェブサイトをご覧いただき、誠にありがとうございます。",
+      "当社は1985年の設立以来、自動車部品の精密加工技術を磨き、お客様とともに成長してまいりました。",
+      "40年にわたるものづくりの経験を生かし、韓国をはじめ、欧州、北米、南米、アジアの自動車部品プログラムへ、安定した品質と確かな納期で対応しています。",
+      "図面検討から工程設計、精密加工、熱処理、検査、量産管理までを緊密につなぎ、お客様の要求を正確に製品へ反映してまいります。",
+      "今後も技術開発と現場改善を重ね、信頼される製造パートナーとして、社会に責任を果たす企業を目指します。",
     ],
-    sign: "ソウル産業株式会社 代表取締役 キム・ウルシク",
+    sign: "ソウル産業株式会社 代表取締役 金乙植",
   },
 };
 
@@ -1232,23 +1244,23 @@ function ProductEvidenceSection({
 
   const labels = {
     ko: {
-      eyebrow: "VERIFIED PROGRAMS",
-      title: "확인된 제품·적용 프로그램",
-      copy: "서울산업 회사소개서와 프로그램별 차량정보 자료에서 확인된 항목만 정리했습니다.",
+      eyebrow: "APPLICATION PROGRAMS",
+      title: "제품과 적용 프로그램",
+      copy: "제품별 적용 시스템과 고객 프로그램을 기준으로 서울산업의 양산 대응 범위를 소개합니다.",
       partner: "고객·제품군",
       application: "적용 정보",
     },
     en: {
-      eyebrow: "VERIFIED PROGRAMS",
-      title: "Verified products and application programs",
-      copy: "Only entries confirmed in the Seoul Industry company profile and vehicle program deck are listed here.",
+      eyebrow: "APPLICATION PROGRAMS",
+      title: "Products and application programs",
+      copy: "Explore Seoul Industry's production coverage by product family, application system, and customer program.",
       partner: "Customer / Product line",
       application: "Application",
     },
     ja: {
-      eyebrow: "VERIFIED PROGRAMS",
-      title: "確認済み製品・適用プログラム",
-      copy: "ソウル産業の会社案内と車両プログラム資料で確認できた項目のみを掲載しています。",
+      eyebrow: "APPLICATION PROGRAMS",
+      title: "製品・適用プログラム",
+      copy: "製品群、適用システム、顧客プログラム別に、ソウル産業の量産対応領域をご紹介します。",
       partner: "顧客・製品群",
       application: "適用情報",
     },
@@ -1297,9 +1309,9 @@ function ActualProductLineup({
   if (!catalog) return null;
 
   const labels = {
-    ko: { eyebrow: "ACTUAL PRODUCTION PARTS", item: "실제 생산 부품", motion: "제품 보기", overview: "실제 제품군 구성" },
-    en: { eyebrow: "ACTUAL PRODUCTION PARTS", item: "Production part", motion: "View product", overview: "Actual product family" },
-    ja: { eyebrow: "ACTUAL PRODUCTION PARTS", item: "実際の生産部品", motion: "製品を見る", overview: "実際の製品群" },
+    ko: { eyebrow: "PRODUCTION PARTS", item: "양산 부품", motion: "제품 보기", overview: "제품군 구성" },
+    en: { eyebrow: "PRODUCTION PARTS", item: "Production part", motion: "View product", overview: "Product family" },
+    ja: { eyebrow: "PRODUCTION PARTS", item: "量産部品", motion: "製品を見る", overview: "製品群" },
   }[language];
 
   return (
@@ -1612,6 +1624,7 @@ function ManufacturingBody({
 
   const unitLabel = { ko: "대", en: "units", ja: "台" }[language];
   const inventoryLabel = { ko: "보유 대수", en: "Inventory", ja: "保有台数" }[language];
+  const processImageLabel = { ko: "공정 이미지", en: "PROCESS VIEW", ja: "工程イメージ" }[language];
 
   return (
     <>
@@ -1646,24 +1659,37 @@ function ManufacturingBody({
       {route === "manufacturing/equipment" && (
         <section className="profile-equipment-inventory" aria-label={copy.equipmentTitle}>
           {equipmentInventory.map((group, groupIndex) => (
-            <article data-sub-reveal key={group.id}>
-              <header>
-                <span>{String(groupIndex + 1).padStart(2, "0")}</span>
-                <h3>{group.title[language]}</h3>
-                <p>{group.copy[language]}</p>
-              </header>
-              <dl>
-                {group.items.map((item) => (
-                  <div key={item.name}>
-                    <dt>{item.name}</dt>
-                    <dd>
-                      <small>{inventoryLabel}</small>
-                      <strong>{item.count}</strong>
-                      <span>{unitLabel}</span>
-                    </dd>
-                  </div>
-                ))}
-              </dl>
+            <article className={groupIndex % 2 === 1 ? "is-reversed" : undefined} data-sub-reveal key={group.id}>
+              <figure className="profile-equipment-inventory__visual">
+                <img
+                  src={equipmentVisuals[group.id]}
+                  alt={`${group.title[language]} ${processImageLabel}`}
+                  loading="lazy"
+                />
+                <figcaption>
+                  <span>{processImageLabel}</span>
+                  <strong>{String(groupIndex + 1).padStart(2, "0")} / 04</strong>
+                </figcaption>
+              </figure>
+              <div className="profile-equipment-inventory__body">
+                <header>
+                  <span>{String(groupIndex + 1).padStart(2, "0")}</span>
+                  <h3>{group.title[language]}</h3>
+                  <p>{group.copy[language]}</p>
+                </header>
+                <dl>
+                  {group.items.map((item) => (
+                    <div key={item.name}>
+                      <dt>{item.name}</dt>
+                      <dd>
+                        <small>{inventoryLabel}</small>
+                        <strong>{item.count}</strong>
+                        <span>{unitLabel}</span>
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </article>
           ))}
         </section>

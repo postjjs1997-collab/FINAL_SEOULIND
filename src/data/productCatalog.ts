@@ -67,8 +67,8 @@ export type ProductPartCatalog = {
 
 const localized = (ko: string, en: string, ja: string): ProductLocalizedText => ({ ko, en, ja });
 
-const companyProfileSource = localized("회사소개서", "Company profile", "会社案内");
-const vehicleProgramSource = localized("프로그램별 차량정보", "Vehicle program deck", "車両プログラム資料");
+const companyProfileSource = localized("제품군", "Product line", "製品群");
+const vehicleProgramSource = localized("적용 프로그램", "Application program", "適用プログラム");
 
 export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   "products/balance-shaft-module": {
@@ -79,9 +79,9 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       "バランスシャフトモジュール・ハウジング",
     ),
     copy: localized(
-      "엔진의 1차 진동을 상쇄하는 밸런스 샤프트 모듈에 적용되는 알루미늄 하우징입니다. 베어링 보어, 조립면, 오일 유로의 정밀도를 관리하며 제공된 다섯 개의 실제 제품 영상을 모두 같은 HOUSING 제품군으로 분류했습니다.",
-      "Aluminum housings for balance shaft modules that counter primary engine vibration. Bearing bores, assembly faces, and oil passages are precision-controlled; all five supplied clips are correctly grouped under the same HOUSING family.",
-      "エンジンの一次振動を相殺するバランスシャフトモジュール用アルミハウジングです。ベアリングボア、組立面、オイル流路を精密管理し、提供された5本の映像をすべて同じHOUSING系列に分類しました。",
+      "엔진의 1차 진동을 상쇄하는 밸런스 샤프트 모듈용 알루미늄 하우징입니다. 베어링 보어, 조립면, 오일 유로의 정밀도를 통합 관리합니다.",
+      "Aluminum housings for balance shaft modules that counter primary engine vibration, with integrated control of bearing bores, assembly faces, and oil passages.",
+      "エンジンの一次振動を相殺するバランスシャフトモジュール用アルミハウジングです。ベアリングボア、組立面、オイル流路を一体的に精密管理します。",
     ),
     overviewImage: bsmLineupImage,
     families: ["HOUSING"],
@@ -134,11 +134,11 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   },
   "products/electric-vehicle": {
     eyebrow: "ELECTRIC VEHICLE PARTS",
-    title: localized("전동화 구동계 실제 생산 부품", "Production parts for electrified drivetrains", "電動化駆動系の実生産部品"),
+    title: localized("전동화 구동계 정밀 부품", "Precision components for electrified drivetrains", "電動化駆動系の精密部品"),
     copy: localized(
-      "기존 홈페이지의 공식 분류인 EV OIL PUMP HOUSING/COVER와 LINK SHAFT를 기준으로 정리했습니다. EV 감속기 윤활 시스템과 PHEV 기어박스에 적용되는 하우징·커버 및 동력전달 샤프트입니다.",
-      "The lineup follows the official EV OIL PUMP HOUSING/COVER and LINK SHAFT families from Seoul Industry's original website. These housings, covers, and shafts support EV reducer lubrication and PHEV gearbox applications.",
-      "旧公式サイトのEV OIL PUMP HOUSING/COVERとLINK SHAFTを基準に整理しました。EV減速機の潤滑システムとPHEVギヤボックスに適用されるハウジング、カバー、動力伝達シャフトです。",
+      "EV 오일 펌프 하우징·커버와 링크 샤프트를 중심으로 전동화 구동계의 윤활과 동력 전달에 필요한 정밀가공 부품을 생산합니다.",
+      "Precision-machined EV oil-pump housings, covers, and link shafts support lubrication and power transfer across electrified drivetrains.",
+      "EVオイルポンプのハウジング・カバーとリンクシャフトを中心に、電動化駆動系の潤滑と動力伝達を支える精密加工部品を生産しています。",
     ),
     overviewImage: electricVehicleLineupImage,
     families: ["EV OIL PUMP HOUSING / COVER", "LINK SHAFT"],
@@ -173,11 +173,11 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   },
   "products/steering": {
     eyebrow: "STEERING PARTS",
-    title: localized("조향 시스템 실제 생산 부품", "Production parts for steering systems", "ステアリングシステムの実生産部品"),
+    title: localized("조향 시스템 정밀 부품", "Precision components for steering systems", "ステアリングシステムの精密部品"),
     copy: localized(
-      "기존 홈페이지의 PINION, PINION SHAFT, PISTON, RACK BUSH, TORSION BAR 다섯 제품군을 모두 복원했습니다. 기어 형상, 스플라인, 런아웃, 열처리와 교정 기준을 연결해 조향 입력을 정확하게 전달합니다.",
-      "All five official families are restored: PINION, PINION SHAFT, PISTON, RACK BUSH, and TORSION BAR. Gear geometry, splines, runout, heat treatment, and straightening are controlled as one steering-quality flow.",
-      "旧公式サイトのPINION、PINION SHAFT、PISTON、RACK BUSH、TORSION BARの5系列をすべて復元しました。ギヤ形状、スプライン、振れ、熱処理、矯正基準をつなぎ、操舵入力を正確に伝えます。",
+      "피니언, 피니언 샤프트, 피스톤, 랙 부시, 토션 바를 생산합니다. 기어 형상, 스플라인, 런아웃, 열처리와 교정 기준을 통합 관리해 조향 입력을 정밀하게 전달합니다.",
+      "Pinions, pinion shafts, pistons, rack bushes, and torsion bars are produced under integrated controls for gear geometry, splines, runout, heat treatment, and straightening.",
+      "ピニオン、ピニオンシャフト、ピストン、ラックブッシュ、トーションバーを生産しています。ギヤ形状、スプライン、振れ、熱処理、矯正を一体管理し、操舵入力を正確に伝えます。",
     ),
     overviewImage: steeringLineupImage,
     families: ["PINION", "PINION SHAFT", "PISTON", "RACK BUSH", "TORSION BAR"],
@@ -206,11 +206,11 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   },
   "products/powertrain": {
     eyebrow: "POWERTRAIN PARTS",
-    title: localized("파워트레인 실제 생산 부품", "Production parts for powertrain systems", "パワートレインの実生産部品"),
+    title: localized("파워트레인 정밀 부품", "Precision components for powertrain systems", "パワートレインの精密部品"),
     copy: localized(
-      "기존 홈페이지의 공식 품목 END PIECE와 회사소개서에 기재된 POWERTRAIN SHAFT 계열을 기준으로 재분류했습니다. 제공하신 두 파워트레인 영상은 다른 제품군 영상으로 대체하지 않고 원본 그대로 연결했습니다.",
-      "The category is rebuilt around the official END PIECE family and the POWERTRAIN SHAFT family documented in the company profile. Both supplied powertrain videos are used directly without substituting media from another product group.",
-      "旧公式サイトのEND PIECEと会社案内に記載されたPOWERTRAIN SHAFT系列を基準に再分類しました。提供された2本のパワートレイン映像を、他製品群の映像に差し替えずそのまま使用しています。",
+      "엔드 피스와 파워트레인 샤프트를 중심으로 엔진, 감속기, 밸브 타이밍 시스템의 동력 전달에 필요한 정밀 부품을 생산합니다.",
+      "End pieces and powertrain shafts deliver precision power transfer for engines, reduction systems, and valve-timing applications.",
+      "エンドピースとパワートレインシャフトを中心に、エンジン、減速機、バルブタイミングシステムの動力伝達を支える精密部品を生産しています。",
     ),
     overviewImage: powertrainLineupImage,
     families: ["END PIECE", "POWERTRAIN SHAFT"],
@@ -251,11 +251,11 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   },
   "products/driveline": {
     eyebrow: "DRIVELINE PARTS",
-    title: localized("드라이브라인 실제 생산 부품", "Production parts for driveline systems", "ドライブラインの実生産部品"),
+    title: localized("드라이브라인 정밀 부품", "Precision components for driveline systems", "ドライブラインの精密部品"),
     copy: localized(
-      "기존 홈페이지의 DISK CARRIER, SHAFT, HUB, INPUT SHAFT 네 제품군을 복원하고, 제공하신 세 드라이브라인 영상을 각 제품군에 맞춰 배치했습니다. 변속기와 트랜스퍼 케이스에서 동력 전달과 오일 분배 기능을 수행합니다.",
-      "The four official families—DISK CARRIER, SHAFT, HUB, and INPUT SHAFT—are restored, with the three supplied driveline clips mapped to their matching families. These parts support power transfer and oil distribution in transmissions and transfer cases.",
-      "旧公式サイトのDISK CARRIER、SHAFT、HUB、INPUT SHAFTの4系列を復元し、提供された3本の映像を対応製品群に配置しました。トランスミッションとトランスファーケースで動力伝達とオイル分配を担います。",
+      "디스크 캐리어, 샤프트, 허브, 인풋 샤프트를 생산하며, 변속기와 트랜스퍼 케이스에서 동력 전달과 오일 분배 기능을 안정적으로 구현합니다.",
+      "Disk carriers, shafts, hubs, and input shafts provide reliable power transfer and oil distribution in transmissions and transfer cases.",
+      "ディスクキャリア、シャフト、ハブ、インプットシャフトを生産し、トランスミッションとトランスファーケースの動力伝達とオイル分配を安定して支えます。",
     ),
     overviewImage: drivelineLineupImage,
     families: ["DISK CARRIER", "SHAFT", "HUB", "INPUT SHAFT"],

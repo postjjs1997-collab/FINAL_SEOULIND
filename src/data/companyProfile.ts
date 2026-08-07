@@ -58,7 +58,7 @@ export const companyOverviewCopy = {
     facts: [
       { label: "설립", value: "1985" },
       { label: "본사·생산시설", value: "경기도 화성" },
-      { label: "대표이사", value: "김을식" },
+      { label: "업력", value: "40년+" },
       { label: "사업 분야", value: "자동차 부품 정밀가공" },
     ],
     systems: ["STEERING", "E-MOBILITY", "POWERTRAIN", "DRIVELINE", "TRANSMISSION"],
@@ -72,7 +72,7 @@ export const companyOverviewCopy = {
     facts: [
       { label: "Founded", value: "1985" },
       { label: "Head Office & Plant", value: "Hwaseong, Korea" },
-      { label: "President", value: "Eul-Sik Kim" },
+      { label: "Manufacturing Experience", value: "40+ Years" },
       { label: "Business", value: "Automotive Precision Machining" },
     ],
     systems: ["STEERING", "E-MOBILITY", "POWERTRAIN", "DRIVELINE", "TRANSMISSION"],
@@ -86,7 +86,7 @@ export const companyOverviewCopy = {
     facts: [
       { label: "設立", value: "1985" },
       { label: "本社・生産拠点", value: "韓国 京畿道華城市" },
-      { label: "代表取締役", value: "金乙植" },
+      { label: "製造実績", value: "40年以上" },
       { label: "事業分野", value: "自動車部品の精密加工" },
     ],
     systems: ["STEERING", "E-MOBILITY", "POWERTRAIN", "DRIVELINE", "TRANSMISSION"],
@@ -135,8 +135,8 @@ export const manufacturingPageCopy = {
     eyebrow: "MANUFACTURING CAPABILITY",
     title: "가공부터 검사까지 연결된 생산기술",
     copy: "선삭, 기어·스플라인, 연삭, 열처리, 자동 교정과 전용 검사를 한 흐름으로 연결해 반복 양산의 정밀도를 관리합니다.",
-    equipmentTitle: "실제 양산을 뒷받침하는 보유설비",
-    equipmentCopy: "회사소개서의 설비 목록을 기준으로 절삭, 기어·스플라인, 연삭·열처리, 자동화·검사 장비를 역할별로 구분했습니다. 공정 소개와 중복하지 않고 설비 종류와 보유 규모를 바로 확인할 수 있습니다.",
+    equipmentTitle: "안정적인 양산을 뒷받침하는 보유설비",
+    equipmentCopy: "절삭, 기어·스플라인, 연삭·열처리, 자동화·검사 설비를 공정별로 운영해 다양한 부품 형상과 양산 조건에 대응합니다.",
     inspectionTitle: "측정 결과가 다시 공정으로 돌아가는 검사 기술",
     inspectionCopy: "치수와 기하공차, 기어 형상, 런아웃, 균열 여부를 전용 검사와 정밀 측정 장비로 확인합니다.",
   },
@@ -145,7 +145,7 @@ export const manufacturingPageCopy = {
     title: "Production technology connected from machining to inspection",
     copy: "Turning, gear and spline machining, grinding, heat treatment, automatic straightening, and dedicated inspection operate as one controlled production flow.",
     equipmentTitle: "Equipment supporting repeat production",
-    equipmentCopy: "Based on the company equipment inventory, machines are grouped by machining, gear and spline, finishing and heat treatment, and automation and inspection so the actual equipment scale is clear.",
+    equipmentCopy: "Machining, gear and spline, finishing, heat-treatment, automation, and inspection equipment are organized by process to support varied part geometries and production requirements.",
     inspectionTitle: "Inspection technology that feeds results back into production",
     inspectionCopy: "Dimensions, GD&T, gear geometry, runout, and crack conditions are verified through dedicated inspection and precision measuring equipment.",
   },
@@ -154,7 +154,7 @@ export const manufacturingPageCopy = {
     title: "加工から検査までつながる生産技術",
     copy: "旋削、ギヤ・スプライン加工、研削、熱処理、自動矯正、専用検査を一つの流れにつなぎ、量産精度を管理します。",
     equipmentTitle: "量産を支える保有設備",
-    equipmentCopy: "会社案内の設備一覧を基準に、切削、ギヤ・スプライン、研削・熱処理、自動化・検査設備を役割別に整理し、設備の種類と保有規模を明確に示します。",
+    equipmentCopy: "切削、ギヤ・スプライン、研削・熱処理、自動化・検査設備を工程別に運用し、多様な部品形状と量産条件に対応します。",
     inspectionTitle: "測定結果を工程へ戻す検査技術",
     inspectionCopy: "寸法、幾何公差、ギヤ形状、振れ、亀裂を専用検査と精密測定設備で確認します。",
   },
@@ -503,9 +503,9 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
       ja: "エンジン・減速機向けシャフトとクラッチハブ",
     },
     copy: {
-      ko: "회사소개서에 명시된 Powertrain Shaft, Sun Gear Output Shaft와 Engine·Decelerator용 Clutch Hub, Disc Carrier 계열을 정밀가공합니다.",
-      en: "Machining covers the powertrain shafts, sun-gear output shafts, clutch hubs, and disc-carrier families documented in the company profile.",
-      ja: "会社案内に記載されたPowertrain Shaft、Sun Gear Output Shaft、Clutch Hub、Disc Carrier系列を精密加工します。",
+      ko: "Powertrain Shaft, Sun Gear Output Shaft와 Engine·Decelerator용 Clutch Hub, Disc Carrier 계열을 정밀가공합니다.",
+      en: "Production covers powertrain shafts, sun-gear output shafts, clutch hubs, and disc-carrier families for engine and reduction systems.",
+      ja: "Powertrain Shaft、Sun Gear Output Shaft、Clutch Hub、Disc Carrier系列を精密加工します。",
     },
     items: {
       ko: ["Powertrain Shaft", "Sun Gear Output Shaft", "Clutch Hub", "Disc Carrier Assembly"],
@@ -575,16 +575,16 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
 
 export const qualityEvidenceCopy = {
   ko: {
-    title: "실제 생산 현장에서 작동하는 품질검사",
-    copy: "검사 장비를 별도로 나열하지 않고, 측정 결과가 교정·공정조건·출하 판정으로 이어지는 품질 흐름을 보여줍니다.",
+    title: "공정과 출하를 연결하는 품질검사",
+    copy: "측정 결과를 교정, 공정 조건, 추적 관리와 출하 판정에 연결해 품질 변동을 관리합니다.",
   },
   en: {
-    title: "Quality inspection operating on the real production floor",
-    copy: "Inspection is connected to straightening, process settings, traceability, and shipment decisions rather than presented as isolated equipment.",
+    title: "Inspection connected to process and release decisions",
+    copy: "Measurement results inform straightening, process settings, traceability, and shipment release to control variation throughout production.",
   },
   ja: {
-    title: "実際の生産現場で機能する品質検査",
-    copy: "検査設備を単独で並べるのではなく、測定結果を矯正、工程条件、出荷判定へつなげる品質フローを示します。",
+    title: "工程と出荷判定をつなぐ品質検査",
+    copy: "測定結果を矯正、工程条件、トレーサビリティ、出荷判定へつなぎ、量産工程のばらつきを管理します。",
   },
 };
 
