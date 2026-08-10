@@ -1,0 +1,17 @@
+# Local work products and source material are not part of the website build.
+.claude/
+.codex-ppt-audit/
+.codex-ppt-audit-media/
+.codex-ppt-audit-source/
+.codex-product-audit/
+.codex-tmp/
+video-retouch/
+tmp/
+standalone/
+dist/
+node_modules/
+.env*
+*.log
+*.pptx
+
+# Root media files remain included because several routes import them directly.
