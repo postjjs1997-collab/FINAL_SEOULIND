@@ -1,17 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
-import balanceModuleImage from "../../assets/product-lineup/balance-module.jpg";
-import drivelineImage from "../../assets/product-lineup/driveline.jpg";
-import electricVehicleImage from "../../assets/product-lineup/electric-vehicle.jpg";
-import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
-import steeringImage from "../../assets/product-lineup/steering.jpg";
-import heroVideo from "../../assets/hero3.mp4";
-import heroPoster from "../../assets/hero3-poster.jpg";
-import machiningVideo from "../../machining.mp4";
+import balanceModuleImage from "../../assets/product-application/balance-shaft-module-precise.webp";
+import drivelineImage from "../../assets/product-application/driveline-precise.webp";
+import electricVehicleImage from "../../assets/product-application/electric-vehicle-precise.webp";
+import powertrainImage from "../../assets/product-application/powertrain-precise.webp";
+import steeringImage from "../../assets/product-application/steering-precise.webp";
 import qualityVideo from "../../assets/process-videos/inspection-00-04.mp4";
 import qualityPoster from "../../assets/process-videos/inspection-00-04.jpg";
 import supplyVideo from "../../assets/process-videos/global-supply-08-14.mp4";
 import supplyPoster from "../../assets/process-videos/global-supply-08-14.jpg";
-import machiningPoster from "../../assets/clients/client-dauch.jpg";
 import facadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
 import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
@@ -607,12 +603,10 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
 };
 
 const heroMedia = [
-  { video: machiningVideo, poster: machiningPoster },
-  { video: qualityVideo, poster: qualityPoster },
-  { video: supplyVideo, poster: supplyPoster },
+  { image: facadeImage, duration: 5000 },
+  { video: qualityVideo, poster: qualityPoster, duration: 3000 },
+  { video: supplyVideo, poster: supplyPoster, duration: 3000 },
 ];
-
-const HERO_SLIDE_DURATION_MS = 3000;
 
 const productImages = [electricVehicleImage, powertrainImage, drivelineImage, balanceModuleImage, steeringImage];
 const productRoutes = [
@@ -637,8 +631,9 @@ const featuredProcesses = ["cnc-lathe", "hobbing", "induction", "auto-inspection
 const homeUiCopy = {
   ko: {
     companyLink: "회사 정보 자세히 보기",
-    productActual: "양산 부품",
-    productSystem: "적용 시스템",
+    productActual: "서울산업 양산 부품",
+    productSystem: "대표 적용 구역",
+    productApplicationNote: "차종과 프로그램에 따라 적용 위치와 형상은 달라질 수 있습니다.",
     manufacturingLink: "전체 생산기술 보기",
     processStep: "핵심 공정",
     qualityEyebrow: "QUALITY ASSURANCE",
@@ -652,8 +647,9 @@ const homeUiCopy = {
   },
   en: {
     companyLink: "View company profile",
-    productActual: "Production part",
-    productSystem: "Application system",
+    productActual: "Seoul Industry production parts",
+    productSystem: "Representative application area",
+    productApplicationNote: "Installation position and geometry vary by vehicle and program.",
     manufacturingLink: "View all capabilities",
     processStep: "Core process",
     qualityEyebrow: "QUALITY ASSURANCE",
@@ -667,8 +663,9 @@ const homeUiCopy = {
   },
   ja: {
     companyLink: "会社情報を見る",
-    productActual: "量産部品",
-    productSystem: "適用システム",
+    productActual: "ソウル産業の量産部品",
+    productSystem: "代表的な搭載領域",
+    productApplicationNote: "搭載位置や形状は車種・プログラムにより異なります。",
     manufacturingLink: "生産技術一覧を見る",
     processStep: "主要工程",
     qualityEyebrow: "QUALITY ASSURANCE",
@@ -729,7 +726,10 @@ function RenewalHero({ copy, reducedMotion }: { copy: RenewalCopy; reducedMotion
 
   useEffect(() => {
     if (reducedMotion) return;
-    const timeout = window.setTimeout(() => setActive((current) => (current + 1) % slideCount), HERO_SLIDE_DURATION_MS);
+    const timeout = window.setTimeout(
+      () => setActive((current) => (current + 1) % slideCount),
+      heroMedia[active].duration,
+    );
     return () => window.clearTimeout(timeout);
   }, [active, reducedMotion, slideCount]);
 
@@ -740,7 +740,19 @@ function RenewalHero({ copy, reducedMotion }: { copy: RenewalCopy; reducedMotion
   return (
     <section className="renewal-hero" aria-label="Seoul Industry">
       <div className="renewal-hero__media" key={`media-${active}`}>
-        <video src={heroMedia[active].video} poster={heroMedia[active].poster} autoPlay={!reducedMotion} muted loop playsInline preload="metadata" />
+        {"image" in heroMedia[active] ? (
+          <img src={heroMedia[active].image} alt="Seoul Industry" />
+        ) : (
+          <video
+            src={heroMedia[active].video}
+            poster={heroMedia[active].poster}
+            autoPlay={!reducedMotion}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        )}
       </div>
       <div className="renewal-hero__shade" />
       <div className="renewal-hero__content" key={`copy-${active}`}>
@@ -836,7 +848,7 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
       <div className="renewal-products__grid">
         {copy.products.items.map((item, index) => {
           const catalog = productPartCatalogByRoute[productRouteKeys[index]];
-          const actualPart = catalog.parts[0];
+          const featuredParts = catalog.parts.slice(0, 2);
 
           return (
             <a href={productRoutes[index]} className="renewal-product-card" data-renewal-reveal key={item.title}>
@@ -846,14 +858,21 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
               </div>
               <div className="renewal-product-card__image">
                 <img src={productImages[index]} alt={`${item.title} ${ui.productSystem}`} />
-                <span>{ui.productSystem}</span>
+                <span className="renewal-product-card__application">
+                  <strong>{ui.productSystem}</strong>
+                  <small>{ui.productApplicationNote}</small>
+                </span>
               </div>
               <div className="renewal-product-card__actual">
-                <img src={actualPart.poster} alt={actualPart.title[language]} loading="lazy" />
-                <span>
-                  <small>{ui.productActual}</small>
-                  <strong>{actualPart.title[language]}</strong>
-                </span>
+                <small>{ui.productActual}</small>
+                <div>
+                  {featuredParts.map((part) => (
+                    <figure key={part.title.en}>
+                      <img src={part.poster} alt={part.title[language]} loading="lazy" />
+                      <figcaption>{part.title[language]}</figcaption>
+                    </figure>
+                  ))}
+                </div>
               </div>
               <div className="renewal-product-card__copy">
                 <h3>{item.title}</h3>
@@ -1067,13 +1086,20 @@ function SustainabilityBridge({ language }: { language: RenewalLanguage }) {
   );
 }
 
-function ContactSection({ copy }: { copy: RenewalCopy }) {
+function ContactSection({ copy, language }: { copy: RenewalCopy; language: RenewalLanguage }) {
+  const thanks = {
+    ko: "감사합니다",
+    en: "Thank you",
+    ja: "ありがとうございます",
+  }[language];
+
   return (
     <section className="renewal-closing" id="renewal-contact">
-      <video src={heroVideo} poster={heroPoster} autoPlay muted loop playsInline preload="metadata" />
+      <img src={facadeImage} alt="Seoul Industry" />
       <div className="renewal-closing__shade" />
       <div className="renewal-closing__inner" data-renewal-reveal>
         <span>{copy.closing.eyebrow}</span>
+        <strong className="renewal-closing__thanks">{thanks}</strong>
         <h2>
           {copy.closing.title.map((line) => (
             <span key={line}>{line}</span>
@@ -1123,7 +1149,7 @@ export default function RenewalPage() {
         <QualitySection language={language} reducedMotion={reducedMotion} />
         <PartnersSection copy={copy} />
         <SustainabilityBridge language={language} />
-        <ContactSection copy={copy} />
+        <ContactSection copy={copy} language={language} />
       </main>
       <RenewalSiteFooter language={language} />
     </div>

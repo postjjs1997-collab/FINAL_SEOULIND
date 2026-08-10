@@ -4,11 +4,11 @@ import certificationImage from "../../certification.png";
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
 import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
 import msqCertificateImage from "../../assets/certificates/msq-seoul-industry-2025.png";
-import balanceModuleImage from "../../assets/product-lineup/balance-module.jpg";
-import automotiveImage from "../../assets/product-lineup/electric-vehicle.jpg";
-import steeringImage from "../../assets/product-lineup/steering.jpg";
-import drivelineImage from "../../assets/product-lineup/driveline.jpg";
-import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
+import balanceModuleImage from "../../assets/product-application/balance-shaft-module-precise.webp";
+import automotiveImage from "../../assets/product-application/electric-vehicle-precise.webp";
+import steeringImage from "../../assets/product-application/steering-precise.webp";
+import drivelineImage from "../../assets/product-application/driveline-precise.webp";
+import powertrainImage from "../../assets/product-application/powertrain-precise.webp";
 import precisionImage from "../../precision-inside-mobility.jpg";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
@@ -1309,9 +1309,9 @@ function ActualProductLineup({
   if (!catalog) return null;
 
   const labels = {
-    ko: { eyebrow: "PRODUCTION PARTS", item: "양산 부품", motion: "제품 보기", overview: "제품군 구성" },
-    en: { eyebrow: "PRODUCTION PARTS", item: "Production part", motion: "View product", overview: "Product family" },
-    ja: { eyebrow: "PRODUCTION PARTS", item: "量産部品", motion: "製品を見る", overview: "製品群" },
+    ko: { eyebrow: "PRODUCTION PARTS", item: "서울산업 양산 부품", motion: "세부 부품", overview: "실제 양산 제품군" },
+    en: { eyebrow: "PRODUCTION PARTS", item: "Seoul Industry part", motion: "Part detail", overview: "Actual production family" },
+    ja: { eyebrow: "PRODUCTION PARTS", item: "ソウル産業量産部品", motion: "部品詳細", overview: "実量産製品群" },
   }[language];
 
   return (
@@ -1542,6 +1542,25 @@ function ProductDetailBody({
   const image = productRouteImages[route] ?? product.image;
   const standards = productStandards[route] ?? [];
   const labels = bodyLabels[language];
+  const catalog = productPartCatalogByRoute[route];
+  const featuredParts = catalog?.parts.slice(0, 2) ?? [];
+  const applicationLabels = {
+    ko: {
+      area: "대표 적용 구역",
+      parts: "서울산업 양산 부품",
+      note: "차종과 프로그램에 따라 적용 위치와 형상은 달라질 수 있습니다.",
+    },
+    en: {
+      area: "Representative application area",
+      parts: "Seoul Industry production parts",
+      note: "Installation position and geometry vary by vehicle and program.",
+    },
+    ja: {
+      area: "代表的な搭載領域",
+      parts: "ソウル産業の量産部品",
+      note: "搭載位置や形状は車種・プログラムにより異なります。",
+    },
+  }[language];
 
   return (
     <>
@@ -1549,6 +1568,23 @@ function ProductDetailBody({
         <figure data-sub-reveal>
           <span>{String(productIndex + 1).padStart(2, "0")}</span>
           <img src={image} alt={product.title} />
+          <figcaption className="renewal-sub-product-detail__application">
+            <div>
+              <strong>{applicationLabels.area}</strong>
+              <small>{applicationLabels.note}</small>
+            </div>
+            <section aria-label={applicationLabels.parts}>
+              <header>{applicationLabels.parts}</header>
+              <div>
+                {featuredParts.map((part) => (
+                  <article key={part.title.en}>
+                    <img src={part.poster} alt={part.title[language]} loading="lazy" />
+                    <span>{part.title[language]}</span>
+                  </article>
+                ))}
+              </div>
+            </section>
+          </figcaption>
         </figure>
         <div data-sub-reveal>
           <small>{product.category}</small>

@@ -12,6 +12,7 @@ import electricVehicleVideo1 from "../../assets/product-alpha/electric-vehicle1.
 import electricVehicleVideo2 from "../../assets/product-alpha/electric-vehicle2.webm";
 import electricVehiclePoster1 from "../../assets/video-posters/electric-vehicle1.jpg";
 import electricVehiclePoster2 from "../../assets/video-posters/electric-vehicle2.jpg";
+import electricVehicleLinkShaftImage from "../../assets/product-catalog/electric-vehicle/link-shaft.jpg";
 import steeringVideo1 from "../../assets/product-alpha/steering1.webm";
 import steeringVideo2 from "../../assets/product-alpha/steering2.webm";
 import steeringPoster1 from "../../assets/video-posters/steering1.jpg";
@@ -154,6 +155,15 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         application: localized("전동화 오일 펌프 어셈블리", "Electrified oil-pump assembly", "電動化オイルポンプ・アセンブリ"),
         poster: electricVehiclePoster2,
         video: electricVehicleVideo2,
+      },
+      {
+        title: localized("링크 샤프트", "Link Shaft", "リンクシャフト"),
+        application: localized(
+          "PHEV 기어박스·E-drive 동력 전달",
+          "Power transfer for PHEV gearboxes and E-drive systems",
+          "PHEVギヤボックス・E-drive向け動力伝達",
+        ),
+        poster: electricVehicleLinkShaftImage,
       },
     ],
     programs: [

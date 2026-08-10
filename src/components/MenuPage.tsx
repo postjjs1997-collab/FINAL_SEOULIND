@@ -1,12 +1,12 @@
 import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties, FormEvent } from "react";
 import certificationImage from "../../certification.png";
-import drivelineImage from "../../assets/product-lineup/driveline.jpg";
-import automotiveImage from "../../assets/product-lineup/electric-vehicle.jpg";
-import balanceModuleImage from "../../assets/product-lineup/balance-module.jpg";
-import powertrainImage from "../../assets/product-lineup/powertrain.jpg";
+import drivelineImage from "../../assets/product-application/driveline-precise.webp";
+import automotiveImage from "../../assets/product-application/electric-vehicle-precise.webp";
+import balanceModuleImage from "../../assets/product-application/balance-shaft-module-precise.webp";
+import powertrainImage from "../../assets/product-application/powertrain-precise.webp";
 import precisionHeroImage from "../../precision-inside-mobility.jpg";
-import steeringImage from "../../assets/product-lineup/steering.jpg";
+import steeringImage from "../../assets/product-application/steering-precise.webp";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import manufacturingProcessHeroImage from "../../assets/manufacturing/hero/production-process-cnc.jpg";
 import manufacturingEquipmentHeroImage from "../../assets/manufacturing/hero/equipment-automation.jpg";

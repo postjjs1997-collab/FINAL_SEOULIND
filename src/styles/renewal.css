@@ -456,11 +456,16 @@ body.renewal-active {
   animation: renewal-hero-media-in 1.2s var(--ease-out) both;
 }
 
-.renewal-hero__media video {
+.renewal-hero__media video,
+.renewal-hero__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+.renewal-hero__media img {
+  animation: renewal-hero-still-zoom 5s ease-out both;
 }
 
 .renewal-hero__shade {
@@ -1547,6 +1552,7 @@ body.renewal-active {
 }
 
 .renewal-closing > video,
+.renewal-closing > img,
 .renewal-closing__shade {
   position: absolute;
   inset: 0;
@@ -1554,7 +1560,8 @@ body.renewal-active {
   height: 100%;
 }
 
-.renewal-closing > video {
+.renewal-closing > video,
+.renewal-closing > img {
   object-fit: cover;
 }
 
@@ -1576,6 +1583,13 @@ body.renewal-active {
   color: var(--renewal-orange);
   font-size: 0.72rem;
   font-weight: 900;
+}
+
+.renewal-closing__thanks {
+  margin-top: 24px;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 800;
 }
 
 .renewal-closing h2 {
@@ -1725,6 +1739,16 @@ body.renewal-active {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes renewal-hero-still-zoom {
+  from {
+    transform: scale(1.02);
+  }
+
+  to {
+    transform: scale(1.065);
   }
 }
 
@@ -2576,8 +2600,8 @@ body.renewal-active {
 }
 
 .renewal-portfolio .renewal-product-card {
-  min-height: 650px;
-  grid-template-rows: auto 260px 96px minmax(174px, auto);
+  min-height: 720px;
+  grid-template-rows: auto 270px 148px minmax(174px, auto);
   background: #ebe9e5;
 }
 
@@ -2596,52 +2620,85 @@ body.renewal-active {
   object-position: center;
 }
 
-.renewal-portfolio .renewal-product-card__image > span {
+.renewal-product-card__application {
   position: absolute;
-  right: 14px;
+  right: 12px;
   bottom: 12px;
-  padding: 5px 7px;
-  background: rgba(15, 15, 15, 0.82);
+  display: grid;
+  max-width: calc(100% - 24px);
+  gap: 4px;
+  padding: 9px 11px;
+  border-left: 3px solid var(--renewal-orange);
+  background: rgba(15, 15, 15, 0.88);
   color: #fff;
-  font-size: 0.52rem;
+}
+
+.renewal-product-card__application strong {
+  font-size: 0.56rem;
   font-weight: 900;
+}
+
+.renewal-product-card__application small {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.46rem;
+  font-weight: 700;
+  line-height: 1.45;
+  word-break: keep-all;
 }
 
 .renewal-product-card__actual {
   display: grid;
   min-width: 0;
-  grid-template-columns: 96px minmax(0, 1fr);
-  align-items: center;
-  gap: 14px;
-  padding: 10px 14px;
+  grid-template-columns: 94px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 12px;
+  padding: 12px 14px;
   border-top: 1px solid #d1cec8;
   border-bottom: 1px solid #d1cec8;
   background: #111;
   color: #fff;
 }
 
+.renewal-product-card__actual > small {
+  align-self: center;
+  color: var(--renewal-orange);
+  font-size: 0.54rem;
+  font-weight: 900;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.renewal-product-card__actual > div {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.renewal-product-card__actual figure {
+  display: grid;
+  min-width: 0;
+  grid-template-rows: 84px auto;
+  gap: 5px;
+  margin: 0;
+}
+
 .renewal-product-card__actual img {
-  width: 96px;
-  height: 74px;
+  width: 100%;
+  height: 84px;
   object-fit: contain;
   background: #050505;
 }
 
-.renewal-product-card__actual > span {
-  display: grid;
+.renewal-product-card__actual figcaption {
   min-width: 0;
-  gap: 7px;
-}
-
-.renewal-product-card__actual small {
-  color: var(--renewal-orange);
-  font-size: 0.54rem;
-  font-weight: 900;
-}
-
-.renewal-product-card__actual strong {
-  font-size: 0.72rem;
-  line-height: 1.35;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.52rem;
+  font-weight: 800;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .renewal-portfolio .renewal-product-card__copy {
@@ -3191,16 +3248,19 @@ body.renewal-active {
   }
 
   .renewal-portfolio .renewal-product-card {
-    grid-template-rows: auto 230px 90px auto;
+    grid-template-rows: auto 230px 138px auto;
   }
 
   .renewal-product-card__actual {
-    grid-template-columns: 82px minmax(0, 1fr);
+    grid-template-columns: 76px minmax(0, 1fr);
+  }
+
+  .renewal-product-card__actual figure {
+    grid-template-rows: 76px auto;
   }
 
   .renewal-product-card__actual img {
-    width: 82px;
-    height: 68px;
+    height: 76px;
   }
 
   .renewal-quality__inspection {
