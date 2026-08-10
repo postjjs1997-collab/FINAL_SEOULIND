@@ -7,6 +7,7 @@ import { jumpToPageTop, keepPageAtTopAfterRouteChange } from "./utils/pageScroll
 
 const RenewalPage = lazy(() => import("./components/RenewalPage"));
 const RenewalSubPage = lazy(() => import("./components/RenewalSubPage"));
+const RenewalNoticePage = lazy(() => import("./components/RenewalNoticePage"));
 
 function getRoute() {
   if (typeof window === "undefined") return "";
@@ -48,6 +49,12 @@ export default function App() {
     page = (
       <Suspense fallback={<div style={{ minHeight: "100svh", background: "#151515" }} />}>
         <RenewalPage />
+      </Suspense>
+    );
+  } else if (route === "company/notices" || route.startsWith("company/notices/")) {
+    page = (
+      <Suspense fallback={<div style={{ minHeight: "100svh", background: "#151515" }} />}>
+        <RenewalNoticePage route={route} />
       </Suspense>
     );
   } else if (route.startsWith("renewal/")) {
