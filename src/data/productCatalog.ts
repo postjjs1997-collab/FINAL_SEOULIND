@@ -28,7 +28,7 @@ import electricVehicleLineupImage from "../../assets/product-catalog/lineup/elec
 import steeringLineupImage from "../../assets/product-catalog/lineup/steering.webp";
 import powertrainLineupImage from "../../assets/product-catalog/lineup/powertrain.webp";
 import drivelineLineupImage from "../../assets/product-catalog/lineup/driveline.webp";
-import endPieceImage from "../../assets/product-catalog/powertrain/end-piece.jpg";
+import endPieceImage from "../../assets/product-catalog/powertrain/end-piece-dark.webp";
 import endPieceVideo from "../../assets/product-catalog/powertrain/end-piece.webm";
 import powertrainShaftVideo1 from "../../assets/product-catalog/powertrain/powertrain-shaft-01.webm";
 import powertrainShaftVideo2 from "../../assets/product-catalog/powertrain/powertrain-shaft-02.webm";

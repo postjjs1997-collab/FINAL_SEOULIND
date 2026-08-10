@@ -6,8 +6,10 @@ import powertrainImage from "../../assets/product-application/powertrain-precise
 import steeringImage from "../../assets/product-application/steering-precise.webp";
 import qualityVideo from "../../assets/process-videos/inspection-00-04.mp4";
 import qualityPoster from "../../assets/process-videos/inspection-00-04.jpg";
-import supplyVideo from "../../assets/process-videos/global-supply-08-14.mp4";
-import supplyPoster from "../../assets/process-videos/global-supply-08-14.jpg";
+import mainHeroVideo from "../../assets/process-videos/home-main-factory-00-03.mp4";
+import mainHeroPoster from "../../assets/process-videos/home-main-factory-00-03.jpg";
+import oemAutomationVideo from "../../assets/process-videos/home-oem-automation-00-03.mp4";
+import oemAutomationPoster from "../../assets/process-videos/home-oem-automation-00-03.jpg";
 import facadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
 import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
@@ -602,10 +604,13 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
   },
 };
 
-const heroMedia = [
-  { image: facadeImage, duration: 5000 },
+const heroMedia: Array<
+  | { image: string; duration: number }
+  | { video: string; poster: string; duration: number }
+> = [
+  { video: mainHeroVideo, poster: mainHeroPoster, duration: 3000 },
   { video: qualityVideo, poster: qualityPoster, duration: 3000 },
-  { video: supplyVideo, poster: supplyPoster, duration: 3000 },
+  { video: oemAutomationVideo, poster: oemAutomationPoster, duration: 3000 },
 ];
 
 const productImages = [electricVehicleImage, powertrainImage, drivelineImage, balanceModuleImage, steeringImage];
