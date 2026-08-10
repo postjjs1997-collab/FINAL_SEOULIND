@@ -6,10 +6,10 @@ import powertrainImage from "../../assets/product-application/powertrain-precise
 import steeringImage from "../../assets/product-application/steering-precise.webp";
 import qualityVideo from "../../assets/process-videos/inspection-00-04.mp4";
 import qualityPoster from "../../assets/process-videos/inspection-00-04.jpg";
-import mainHeroVideo from "../../assets/process-videos/home-main-factory-00-03.mp4";
-import mainHeroPoster from "../../assets/process-videos/home-main-factory-00-03.jpg";
-import oemAutomationVideo from "../../assets/process-videos/home-oem-automation-00-03.mp4";
-import oemAutomationPoster from "../../assets/process-videos/home-oem-automation-00-03.jpg";
+import qualityFlowVideo from "../../assets/process-videos/quality-flow-15-18.mp4";
+import qualityFlowPoster from "../../assets/process-videos/quality-flow-15-18.jpg";
+import mainHeroVideo from "../../assets/process-videos/home-main2.mp4";
+import mainHeroPoster from "../../assets/process-videos/home-main2.jpg";
 import facadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
 import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
@@ -610,7 +610,7 @@ const heroMedia: Array<
 > = [
   { video: mainHeroVideo, poster: mainHeroPoster, duration: 3000 },
   { video: qualityVideo, poster: qualityPoster, duration: 3000 },
-  { video: oemAutomationVideo, poster: oemAutomationPoster, duration: 3000 },
+  { video: qualityFlowVideo, poster: qualityFlowPoster, duration: 3000 },
 ];
 
 const productImages = [electricVehicleImage, powertrainImage, drivelineImage, balanceModuleImage, steeringImage];
@@ -628,6 +628,35 @@ const productRouteKeys = [
   "products/balance-shaft-module",
   "products/steering",
 ];
+
+const productFeaturePartIndexes = [
+  [0, 1],
+  [0, 1],
+  [3, 1],
+  [0, 4],
+  [0, 1],
+] as const;
+
+const productCardUi = {
+  ko: {
+    actual: "주요 양산 부품",
+    system: "시스템 적용 개요",
+    detail: "양산 부품 상세",
+    applicationNote: "차종과 프로그램에 따라 적용 위치와 형상은 달라질 수 있습니다.",
+  },
+  en: {
+    actual: "Selected production parts",
+    system: "System application overview",
+    detail: "Production part detail",
+    applicationNote: "Installation position and geometry vary by vehicle and program.",
+  },
+  ja: {
+    actual: "主な量産部品",
+    system: "システム適用イメージ",
+    detail: "量産部品の詳細",
+    applicationNote: "搭載位置や形状は車種・プログラムにより異なります。",
+  },
+} as const;
 
 const featuredProcesses = ["cnc-lathe", "hobbing", "induction", "auto-inspection"]
   .map((id) => manufacturingProcesses.find((process) => process.id === id))
@@ -836,7 +865,8 @@ function CompanySection({ language }: { language: RenewalLanguage }) {
 }
 
 function ProductsSection({ copy, language }: { copy: RenewalCopy; language: RenewalLanguage }) {
-  const ui = homeUiCopy[language];
+  const ui = productCardUi[language];
+  const [activeDetailIndex, setActiveDetailIndex] = useState<number | null>(null);
 
   return (
     <section className="renewal-products renewal-portfolio" id="renewal-products">
@@ -852,24 +882,63 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
       </div>
       <div className="renewal-products__grid">
         {copy.products.items.map((item, index) => {
-          const catalog = productPartCatalogByRoute[productRouteKeys[index]];
-          const featuredParts = catalog.parts.slice(0, 2);
+          const catalog = productPartCatalogByRoute[productRouteKeys[index]]!;
+          const featuredPartIndexes = productFeaturePartIndexes[index] ?? productFeaturePartIndexes[0];
+          const featuredParts = featuredPartIndexes.map((partIndex) => catalog.parts[partIndex]!);
+          const detailIsActive = activeDetailIndex === index;
 
           return (
-            <a href={productRoutes[index]} className="renewal-product-card" data-renewal-reveal key={item.title}>
+            <a
+              href={productRoutes[index]}
+              className={`renewal-product-card${detailIsActive ? " is-detail-active" : ""}`}
+              key={item.title}
+              onMouseEnter={() => setActiveDetailIndex(index)}
+              onMouseLeave={() => setActiveDetailIndex((current) => (current === index ? null : current))}
+              onFocus={() => setActiveDetailIndex(index)}
+              onBlur={() => setActiveDetailIndex((current) => (current === index ? null : current))}
+            >
               <div className="renewal-product-card__top">
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <strong>{item.category}</strong>
               </div>
               <div className="renewal-product-card__image">
-                <img src={productImages[index]} alt={`${item.title} ${ui.productSystem}`} />
+                <img className="renewal-product-card__system-visual" src={productImages[index]} alt={`${item.title} ${ui.system}`} />
                 <span className="renewal-product-card__application">
-                  <strong>{ui.productSystem}</strong>
-                  <small>{ui.productApplicationNote}</small>
+                  <strong>{ui.system}</strong>
+                  <small>{ui.applicationNote}</small>
                 </span>
+                <div className="renewal-product-card__detail-visual" aria-hidden={!detailIsActive}>
+                  <span className="renewal-product-card__detail-label">{ui.detail}</span>
+                  <div className="renewal-product-card__detail-grid">
+                    {featuredParts.map((part) => (
+                      <figure className="renewal-product-card__detail-part" key={part.title.en}>
+                        <div className="renewal-product-card__detail-media">
+                          {part.video ? (
+                            <video
+                              key={detailIsActive ? "active" : "idle"}
+                              src={part.video}
+                              poster={part.poster}
+                              autoPlay={detailIsActive}
+                              loop
+                              muted
+                              playsInline
+                              preload={detailIsActive ? "auto" : "metadata"}
+                            />
+                          ) : (
+                            <img src={part.poster} alt="" loading="lazy" />
+                          )}
+                        </div>
+                        <figcaption>
+                          <strong>{part.title[language]}</strong>
+                          <span>{part.application[language]}</span>
+                        </figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                </div>
               </div>
               <div className="renewal-product-card__actual">
-                <small>{ui.productActual}</small>
+                <small>{ui.actual}</small>
                 <div>
                   {featuredParts.map((part) => (
                     <figure key={part.title.en}>
