@@ -6,10 +6,10 @@ import powertrainImage from "../../assets/product-application/powertrain-precise
 import steeringImage from "../../assets/product-application/steering-precise.webp";
 import qualityVideo from "../../assets/process-videos/inspection-00-04.mp4";
 import qualityPoster from "../../assets/process-videos/inspection-00-04.jpg";
-import qualityFlowVideo from "../../assets/process-videos/quality-flow-15-18.mp4";
-import qualityFlowPoster from "../../assets/process-videos/quality-flow-15-18.jpg";
-import mainHeroVideo from "../../assets/process-videos/home-main2.mp4";
-import mainHeroPoster from "../../assets/process-videos/home-main2.jpg";
+import oemProductionVideo from "../../assets/process-videos/oem-production-gantry-montage.mp4";
+import oemProductionPoster from "../../assets/process-videos/oem-production-gantry-montage.jpg";
+import mainHeroVideo from "../../assets/process-videos/home-main3.mp4";
+import mainHeroPoster from "../../assets/process-videos/home-main3.jpg";
 import facadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
 import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
@@ -146,14 +146,14 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         copy: "도면 검토부터 양산 공급까지, 서울산업은 자동차 핵심 부품의 완성도를 높입니다.",
       },
       {
-        eyebrow: "QUALITY IN EVERY MICRON",
-        title: ["측정 가능한 품질,", "흔들리지 않는 기준"],
-        copy: "가공 조건과 검사 데이터를 연결해 반복 생산에서도 같은 품질을 지킵니다.",
-      },
-      {
         eyebrow: "OEM MANUFACTURING PARTNER",
         title: ["개발에서 양산까지,", "끊김 없는 OEM"],
         copy: "개발 일정, 생산 부하, 검사와 출하를 하나의 제조 흐름으로 관리합니다.",
+      },
+      {
+        eyebrow: "QUALITY IN EVERY MICRON",
+        title: ["측정 가능한 품질,", "흔들리지 않는 기준"],
+        copy: "가공 조건과 검사 데이터를 연결해 반복 생산에서도 같은 품질을 지킵니다.",
       },
     ],
     prev: "이전 장면",
@@ -313,14 +313,14 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         copy: "From drawing review to volume supply, Seoul Industry improves the critical parts behind every vehicle.",
       },
       {
-        eyebrow: "QUALITY IN EVERY MICRON",
-        title: ["Measurable quality,", "standards that hold"],
-        copy: "Process conditions and inspection data stay connected, keeping repeat production consistent.",
-      },
-      {
         eyebrow: "OEM MANUFACTURING PARTNER",
         title: ["From development", "to dependable supply"],
         copy: "Development schedules, production load, inspection, and delivery move as one manufacturing flow.",
+      },
+      {
+        eyebrow: "QUALITY IN EVERY MICRON",
+        title: ["Measurable quality,", "standards that hold"],
+        copy: "Process conditions and inspection data stay connected, keeping repeat production consistent.",
       },
     ],
     prev: "Previous scene",
@@ -480,14 +480,14 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         copy: "図面検討から量産供給まで、ソウル産業は自動車主要部品の完成度を高めます。",
       },
       {
-        eyebrow: "QUALITY IN EVERY MICRON",
-        title: ["測定できる品質、", "揺るがない基準"],
-        copy: "加工条件と検査データをつなぎ、繰り返し生産でも同じ品質を守ります。",
-      },
-      {
         eyebrow: "OEM MANUFACTURING PARTNER",
         title: ["開発から量産まで、", "途切れないOEM"],
         copy: "開発日程、生産負荷、検査、出荷を一つの製造フローとして管理します。",
+      },
+      {
+        eyebrow: "QUALITY IN EVERY MICRON",
+        title: ["測定できる品質、", "揺るがない基準"],
+        copy: "加工条件と検査データをつなぎ、繰り返し生産でも同じ品質を守ります。",
       },
     ],
     prev: "前のシーン",
@@ -608,9 +608,9 @@ const heroMedia: Array<
   | { image: string; duration: number }
   | { video: string; poster: string; duration: number }
 > = [
-  { video: mainHeroVideo, poster: mainHeroPoster, duration: 3000 },
+  { video: mainHeroVideo, poster: mainHeroPoster, duration: 4200 },
+  { video: oemProductionVideo, poster: oemProductionPoster, duration: 3000 },
   { video: qualityVideo, poster: qualityPoster, duration: 3000 },
-  { video: qualityFlowVideo, poster: qualityFlowPoster, duration: 3000 },
 ];
 
 const productImages = [electricVehicleImage, powertrainImage, drivelineImage, balanceModuleImage, steeringImage];

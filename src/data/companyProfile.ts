@@ -17,7 +17,13 @@ import shapingImage from "../../assets/company-profile/process/shaping.webp";
 import shotPeeningImage from "../../assets/company-profile/process/shot-peening.webp";
 import straighteningImage from "../../assets/company-profile/process/straightening.webp";
 import autoInspectionVideo from "../../assets/company-profile/video/auto-inspection.mp4";
+import cncLatheVideo from "../../assets/company-profile/video/cnc-lathe.mp4";
 import crackInspectionVideo from "../../assets/company-profile/video/crack-inspection.mp4";
+import grindingVideo from "../../assets/company-profile/video/grinding.mp4";
+import hobbingVideo from "../../assets/company-profile/video/hobbing.mp4";
+import inductionHardeningVideo from "../../assets/company-profile/video/induction-hardening.mp4";
+import machiningCenterVideo from "../../assets/company-profile/video/machining-center.mp4";
+import productionAutoInspectionVideo from "../../assets/company-profile/video/production-auto-inspection.mp4";
 import shotPeeningVideo from "../../assets/company-profile/video/shot-peening.mp4";
 import straighteningVideo from "../../assets/company-profile/video/straightening.mp4";
 
@@ -168,6 +174,15 @@ export const manufacturingFlowIds = [
   "induction",
   "auto-inspection",
 ] as const;
+
+export const manufacturingFlowVideos = {
+  "cnc-lathe": cncLatheVideo,
+  "machining-center": machiningCenterVideo,
+  hobbing: hobbingVideo,
+  grinding: grindingVideo,
+  induction: inductionHardeningVideo,
+  "auto-inspection": productionAutoInspectionVideo,
+} satisfies Record<(typeof manufacturingFlowIds)[number], string>;
 
 export const inspectionProcessIds = [
   "straightening",

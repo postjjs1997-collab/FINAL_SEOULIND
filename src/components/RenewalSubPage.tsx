@@ -30,6 +30,7 @@ import {
   globalRegions,
   inspectionProcessIds,
   manufacturingFlowIds,
+  manufacturingFlowVideos,
   manufacturingGroupLabels,
   manufacturingPageCopy,
   manufacturingProcesses,
@@ -1652,7 +1653,7 @@ function ManufacturingBody({
   const processById = new Map(manufacturingProcesses.map((process) => [process.id, process]));
   const flowProcesses = manufacturingFlowIds.flatMap((id) => {
     const process = processById.get(id);
-    return process ? [process] : [];
+    return process ? [{ ...process, productionVideo: manufacturingFlowVideos[id] }] : [];
   });
   const inspectionProcesses = inspectionProcessIds.flatMap((id) => {
     const process = processById.get(id);
@@ -1692,7 +1693,7 @@ function ManufacturingBody({
                 <strong>{String(index + 1).padStart(2, "0")}</strong>
               </div>
               <figure>
-                <ProcessMedia image={process.image} video={process.video} title={process.title} />
+                <ProcessMedia image={process.image} video={process.productionVideo} title={process.title} />
               </figure>
               <div className="profile-process-flow__content">
                 <small>{labels[process.group]}</small>
