@@ -49,11 +49,10 @@ export type ProductPart = {
   video?: string;
 };
 
-export type ProductProgram = {
-  program: string;
-  partner: string;
-  application: ProductLocalizedText;
-  source: ProductLocalizedText;
+export type ProductQualityControl = {
+  feature: ProductLocalizedText;
+  characteristic: ProductLocalizedText;
+  verification: ProductLocalizedText;
 };
 
 export type ProductPartCatalog = {
@@ -63,13 +62,10 @@ export type ProductPartCatalog = {
   overviewImage: string;
   families: string[];
   parts: ProductPart[];
-  programs: ProductProgram[];
+  qualityControls: ProductQualityControl[];
 };
 
 const localized = (ko: string, en: string, ja: string): ProductLocalizedText => ({ ko, en, ja });
-
-const companyProfileSource = localized("제품군", "Product line", "製品群");
-const vehicleProgramSource = localized("적용 프로그램", "Application program", "適用プログラム");
 
 export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   "products/balance-shaft-module": {
@@ -118,18 +114,45 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         video: housingVideo5,
       },
     ],
-    programs: [
+    qualityControls: [
       {
-        program: "BALANCE SHAFT",
-        partner: "AAM",
-        application: localized("밸런스 샤프트 프로그램", "Balance shaft program", "バランスシャフト・プログラム"),
-        source: vehicleProgramSource,
+        feature: localized("베어링 보어", "Bearing bores", "ベアリングボア"),
+        characteristic: localized(
+          "주요 치수·형상·위치",
+          "Critical dimensions, geometry, and position",
+          "主要寸法・形状・位置",
+        ),
+        verification: localized(
+          "전용 자동검사와 CMM 정밀 측정",
+          "Dedicated automatic inspection and CMM measurement",
+          "専用自動検査およびCMMによる精密測定",
+        ),
       },
       {
-        program: "BALANCE SHAFT ASSEMBLY",
-        partner: "AAM",
-        application: localized("밸런스 샤프트 모듈 어셈블리", "Balance shaft module assembly", "バランスシャフトモジュール・アセンブリ"),
-        source: vehicleProgramSource,
+        feature: localized("모듈 조립면", "Module assembly faces", "モジュール組立面"),
+        characteristic: localized(
+          "기준면 대비 형상·위치 공차",
+          "Geometric and positional tolerances relative to datum faces",
+          "基準面に対する形状・位置公差",
+        ),
+        verification: localized(
+          "CMM 형상·위치 검증",
+          "CMM inspection of geometry and position",
+          "CMMによる形状・位置検証",
+        ),
+      },
+      {
+        feature: localized("오일 유로", "Oil passages", "オイル流路"),
+        characteristic: localized(
+          "도면 기준 치수·가공 상태",
+          "Drawing-defined dimensions and machined condition",
+          "図面基準の寸法・加工状態",
+        ),
+        verification: localized(
+          "치수 측정과 최종 외관 확인",
+          "Dimensional measurement and final visual check",
+          "寸法測定と最終外観確認",
+        ),
       },
     ],
   },
@@ -166,18 +189,53 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         poster: electricVehicleLinkShaftImage,
       },
     ],
-    programs: [
+    qualityControls: [
       {
-        program: "EV EOP OIL PUMP",
-        partner: "MYEONGHWA",
-        application: localized("전기차 전동식 오일 펌프", "Electric-vehicle electric oil pump", "EV用電動オイルポンプ"),
-        source: vehicleProgramSource,
+        feature: localized(
+          "오일 펌프 하우징·커버의 홀·장착면",
+          "Oil-pump housing / cover holes and mounting faces",
+          "オイルポンプ・ハウジング／カバーの穴・取付面",
+        ),
+        characteristic: localized(
+          "주요 치수·위치·기하공차",
+          "Critical dimensions, position, and GD&T",
+          "主要寸法・位置・幾何公差",
+        ),
+        verification: localized(
+          "전용 자동검사와 CMM 정밀 측정",
+          "Dedicated automatic inspection and CMM measurement",
+          "専用自動検査およびCMMによる精密測定",
+        ),
       },
       {
-        program: "LINK SHAFT",
-        partner: "GKN",
-        application: localized("GM Cadillac Escalade 적용", "GM Cadillac Escalade application", "GM Cadillac Escalade向け"),
-        source: vehicleProgramSource,
+        feature: localized("오일 유로·기준면", "Oil passages and datum faces", "オイル流路・基準面"),
+        characteristic: localized(
+          "도면 기준 형상·가공 상태",
+          "Drawing-defined geometry and machined condition",
+          "図面基準の形状・加工状態",
+        ),
+        verification: localized(
+          "치수 측정과 최종 외관 확인",
+          "Dimensional measurement and final visual check",
+          "寸法測定と最終外観確認",
+        ),
+      },
+      {
+        feature: localized(
+          "링크 샤프트 외경·기준면",
+          "Link-shaft outside diameter and datum faces",
+          "リンクシャフトの外径・基準面",
+        ),
+        characteristic: localized(
+          "회전부 치수·런아웃",
+          "Rotating dimensions and runout",
+          "回転部の寸法・振れ",
+        ),
+        verification: localized(
+          "정밀 측정과 런아웃 측정·교정·재측정 이력 확인",
+          "Precision measurement with runout measure-straighten-remeasure records",
+          "精密測定と振れの測定・矯正・再測定履歴の確認",
+        ),
       },
     ],
   },
@@ -205,12 +263,49 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         video: steeringVideo2,
       },
     ],
-    programs: [
+    qualityControls: [
       {
-        program: "STEERING SHAFT",
-        partner: "ZF KOREA",
-        application: localized("조향 샤프트 프로그램", "Steering shaft program", "ステアリングシャフト・プログラム"),
-        source: vehicleProgramSource,
+        feature: localized(
+          "피니언 기어·스플라인부",
+          "Pinion gear and spline sections",
+          "ピニオンのギヤ・スプライン部",
+        ),
+        characteristic: localized(
+          "치형·형상·위치",
+          "Tooth profile, geometry, and position",
+          "歯形・形状・位置",
+        ),
+        verification: localized(
+          "기어 전용 측정과 CMM 검증",
+          "Dedicated gear metrology and CMM verification",
+          "ギヤ専用測定およびCMMによる検証",
+        ),
+      },
+      {
+        feature: localized(
+          "피니언 샤프트 회전부",
+          "Pinion-shaft rotating sections",
+          "ピニオンシャフト回転部",
+        ),
+        characteristic: localized("런아웃·교정 결과", "Runout and straightening results", "振れ・矯正結果"),
+        verification: localized(
+          "자동 런아웃 측정·교정·재측정과 판정 이력 관리",
+          "Automatic runout measure-straighten-remeasure cycle with result records",
+          "自動振れ測定・矯正・再測定と判定履歴管理",
+        ),
+      },
+      {
+        feature: localized("열처리 부품", "Heat-treated components", "熱処理部品"),
+        characteristic: localized(
+          "표면 상태·균열 징후",
+          "Surface condition and crack indications",
+          "表面状態・亀裂兆候",
+        ),
+        verification: localized(
+          "최종 외관 확인과 음향 공진 비파괴 균열검사",
+          "Final visual check and acoustic-resonance nondestructive crack inspection",
+          "最終外観確認と音響共振による非破壊亀裂検査",
+        ),
       },
     ],
   },
@@ -244,18 +339,53 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         video: powertrainShaftVideo2,
       },
     ],
-    programs: [
+    qualityControls: [
       {
-        program: "POWERTRAIN SHAFT",
-        partner: "SEOUL INDUSTRY PRODUCT LINE",
-        application: localized("Engine·Decelerator용 샤프트", "Shafts for engine and decelerator systems", "Engine・Decelerator向けシャフト"),
-        source: companyProfileSource,
+        feature: localized(
+          "파워트레인 샤프트의 기어·스플라인부",
+          "Powertrain-shaft gear and spline sections",
+          "パワートレインシャフトのギヤ・スプライン部",
+        ),
+        characteristic: localized(
+          "치형·형상·위치",
+          "Tooth profile, geometry, and position",
+          "歯形・形状・位置",
+        ),
+        verification: localized(
+          "기어 전용 측정과 CMM 검증",
+          "Dedicated gear metrology and CMM verification",
+          "ギヤ専用測定およびCMMによる検証",
+        ),
       },
       {
-        program: "CLUTCH HUB",
-        partner: "SEOUL INDUSTRY PRODUCT LINE",
-        application: localized("엔진·감속기용 클러치 허브 계열", "Clutch-hub family for engine and reduction systems", "エンジン・減速機向けクラッチハブ系列"),
-        source: companyProfileSource,
+        feature: localized(
+          "샤프트 외경·기준면",
+          "Shaft outside diameter and datum faces",
+          "シャフト外径・基準面",
+        ),
+        characteristic: localized(
+          "치수·진원도·런아웃",
+          "Dimensions, roundness, and runout",
+          "寸法・真円度・振れ",
+        ),
+        verification: localized(
+          "정밀 치수 측정과 자동 런아웃 교정 이력 확인",
+          "Precision dimensional measurement and automatic runout-straightening records",
+          "精密寸法測定と自動振れ矯正履歴の確認",
+        ),
+      },
+      {
+        feature: localized("엔드 피스 주요 형상", "Critical end-piece geometry", "エンドピースの主要形状"),
+        characteristic: localized(
+          "주요 치수·기하공차",
+          "Critical dimensions and GD&T",
+          "主要寸法・幾何公差",
+        ),
+        verification: localized(
+          "전용 자동검사와 LOT 이력 연계",
+          "Dedicated automatic inspection linked to lot history",
+          "専用自動検査とLOT履歴の連携",
+        ),
       },
     ],
   },
@@ -295,54 +425,53 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         video: inputShaftVideo,
       },
     ],
-    programs: [
+    qualityControls: [
       {
-        program: "X51 / X48 OUTPUT SHAFT",
-        partner: "SPARTAN LTM",
-        application: localized("GM Cadillac Escalade 적용", "GM Cadillac Escalade application", "GM Cadillac Escalade向け"),
-        source: vehicleProgramSource,
+        feature: localized(
+          "인풋 샤프트의 스플라인부",
+          "Input-shaft spline sections",
+          "インプットシャフトのスプライン部",
+        ),
+        characteristic: localized(
+          "치형·형상·위치",
+          "Tooth profile, geometry, and position",
+          "歯形・形状・位置",
+        ),
+        verification: localized(
+          "기어 전용 측정과 CMM 검증",
+          "Dedicated gear metrology and CMM verification",
+          "ギヤ専用測定およびCMMによる検証",
+        ),
       },
       {
-        program: "10R60 / 10R140 STATOR SHAFT",
-        partner: "AAM",
-        application: localized("Ford Explorer·Mustang 적용", "Ford Explorer and Mustang application", "Ford Explorer・Mustang向け"),
-        source: vehicleProgramSource,
+        feature: localized(
+          "크로스 홀·오일 분배부",
+          "Cross holes and oil-distribution features",
+          "クロスホール・オイル分配部",
+        ),
+        characteristic: localized(
+          "홀 치수·위치·유로 형상",
+          "Hole dimensions, position, and passage geometry",
+          "穴寸法・位置・流路形状",
+        ),
+        verification: localized(
+          "전용 치수검사와 정밀 측정",
+          "Dedicated dimensional inspection and precision measurement",
+          "専用寸法検査と精密測定",
+        ),
       },
       {
-        program: "6F15 SLEEVE",
-        partner: "AAM",
-        application: localized("Ford KA·Kigo·Fiesta 적용", "Ford KA, Kigo, and Fiesta application", "Ford KA・Kigo・Fiesta向け"),
-        source: vehicleProgramSource,
-      },
-      {
-        program: "JLR MY19 ODC HUB",
-        partner: "GKN",
-        application: localized("Range Rover Evoque 적용", "Range Rover Evoque application", "Range Rover Evoque向け"),
-        source: vehicleProgramSource,
-      },
-      {
-        program: "9BUX IDC / ODC",
-        partner: "GKN",
-        application: localized("Chevrolet Trax·소형 SUV 적용", "Chevrolet Trax and compact-SUV application", "Chevrolet Trax・小型SUV向け"),
-        source: vehicleProgramSource,
-      },
-      {
-        program: "EM8B HUB",
-        partner: "GKN",
-        application: localized("Nissan SUV 적용", "Nissan SUV application", "Nissan SUV向け"),
-        source: vehicleProgramSource,
-      },
-      {
-        program: "FCA MP IDC / ODC",
-        partner: "GKN",
-        application: localized("Jeep B-SUV·Grand Cherokee·Compass 적용", "Jeep B-SUV, Grand Cherokee, and Compass application", "Jeep B-SUV・Grand Cherokee・Compass向け"),
-        source: vehicleProgramSource,
-      },
-      {
-        program: "WL ACTUATOR SHAFT",
-        partner: "MAGNA POWERTRAIN",
-        application: localized("Jeep B-SUV·Transfer Case 2WD/4WD 전환", "Jeep B-SUV transfer-case 2WD/4WD switching", "Jeep B-SUV・Transfer Case 2WD/4WD切替"),
-        source: vehicleProgramSource,
+        feature: localized("샤프트 회전부", "Shaft rotating sections", "シャフト回転部"),
+        characteristic: localized(
+          "치수·진원도·런아웃",
+          "Dimensions, roundness, and runout",
+          "寸法・真円度・振れ",
+        ),
+        verification: localized(
+          "자동 런아웃 측정·교정·재측정과 결과 이력 관리",
+          "Automatic runout measure-straighten-remeasure cycle with result records",
+          "自動振れ測定・矯正・再測定と結果履歴管理",
+        ),
       },
     ],
   },
@@ -357,6 +486,6 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     overviewImage: defenseSpecialProjectsImage,
     families: ["SECURE PROJECT", "PRECISION MACHINING", "LOT TRACEABILITY", "CONTROLLED PRODUCTION"],
     parts: [],
-    programs: [],
+    qualityControls: [],
   },
 };

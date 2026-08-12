@@ -1232,72 +1232,6 @@ function CertificatesBody({ language }: { language: RenewalLanguage }) {
   );
 }
 
-function ProductEvidenceSection({
-  route,
-  language,
-}: {
-  route: string;
-  language: RenewalLanguage;
-}) {
-  const catalog = productPartCatalogByRoute[route];
-  if (!catalog?.programs.length) return null;
-
-  const labels = {
-    ko: {
-      eyebrow: "APPLICATION PROGRAMS",
-      title: "제품과 적용 프로그램",
-      copy: "제품별 적용 시스템과 고객 프로그램을 기준으로 서울산업의 양산 대응 범위를 소개합니다.",
-      partner: "고객·제품군",
-      application: "적용 정보",
-    },
-    en: {
-      eyebrow: "APPLICATION PROGRAMS",
-      title: "Products and application programs",
-      copy: "Explore Seoul Industry's production coverage by product family, application system, and customer program.",
-      partner: "Customer / Product line",
-      application: "Application",
-    },
-    ja: {
-      eyebrow: "APPLICATION PROGRAMS",
-      title: "製品・適用プログラム",
-      copy: "製品群、適用システム、顧客プログラム別に、ソウル産業の量産対応領域をご紹介します。",
-      partner: "顧客・製品群",
-      application: "適用情報",
-    },
-  }[language];
-
-  return (
-    <section className="renewal-sub-product-programs">
-      <header data-sub-reveal>
-        <span>{labels.eyebrow}</span>
-        <h2>{labels.title}</h2>
-        <p>{labels.copy}</p>
-      </header>
-      <div>
-        {catalog.programs.map((program, index) => (
-          <article data-sub-reveal key={`${program.program}-${program.partner}`}>
-            <div>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <small>{program.source[language]}</small>
-            </div>
-            <h3>{program.program}</h3>
-            <dl>
-              <div>
-                <dt>{labels.partner}</dt>
-                <dd>{program.partner}</dd>
-              </div>
-              <div>
-                <dt>{labels.application}</dt>
-                <dd>{program.application[language]}</dd>
-              </div>
-            </dl>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function ActualProductLineup({
   route,
   language,
@@ -1355,6 +1289,85 @@ function ActualProductLineup({
             </div>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function ProductQualitySection({
+  route,
+  language,
+}: {
+  route: string;
+  language: RenewalLanguage;
+}) {
+  const catalog = productPartCatalogByRoute[route];
+  if (!catalog?.qualityControls.length) return null;
+
+  const labels = {
+    ko: {
+      eyebrow: "CRITICAL FEATURES & VERIFICATION",
+      title: "제품별 중요 품질 특성 및 검증 방법",
+      copy: "제품 기능과 형상을 기준으로 정리한 대표 관리 항목과 적용 가능한 검증 방법입니다. 실제 검사 항목·방법·판정 기준은 제품별 고객 도면과 승인 사양에 따라 달라집니다.",
+      feature: "대표 관리 부위",
+      characteristic: "품질 특성",
+      verification: "적용 가능한 검증 방법",
+    },
+    en: {
+      eyebrow: "CRITICAL FEATURES & VERIFICATION",
+      title: "Product-specific critical characteristics and verification methods",
+      copy: "These are representative control points and available verification methods based on product function and geometry. Actual inspection items, methods, and acceptance criteria vary by customer drawing and approved specification.",
+      feature: "Representative control point",
+      characteristic: "Quality characteristic",
+      verification: "Available verification method",
+    },
+    ja: {
+      eyebrow: "CRITICAL FEATURES & VERIFICATION",
+      title: "製品別の重要品質特性と検証方法",
+      copy: "製品の機能と形状をもとに整理した代表的な管理項目と適用可能な検証方法です。実際の検査項目・方法・判定基準は、製品別の顧客図面および承認仕様により異なります。",
+      feature: "代表管理部位",
+      characteristic: "品質特性",
+      verification: "適用可能な検証方法",
+    },
+  }[language];
+  const headingId = `product-quality-${route.replace(/[^a-z0-9]+/gi, "-")}`;
+
+  return (
+    <section className="renewal-sub-product-quality" aria-labelledby={headingId}>
+      <header data-sub-reveal>
+        <span>{labels.eyebrow}</span>
+        <h2 id={headingId}>{labels.title}</h2>
+        <p>{labels.copy}</p>
+      </header>
+      <div className="renewal-sub-product-quality__matrix">
+        <div className="renewal-sub-product-quality__columns" aria-hidden="true">
+          <span>{labels.feature}</span>
+          <span>{labels.characteristic}</span>
+          <span>{labels.verification}</span>
+        </div>
+        <ol>
+          {catalog.qualityControls.map((item, index) => (
+            <li data-sub-reveal key={item.feature.en}>
+              <dl>
+                <div className="is-feature">
+                  <dt>{labels.feature}</dt>
+                  <dd>
+                    <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                    <strong>{item.feature[language]}</strong>
+                  </dd>
+                </div>
+                <div>
+                  <dt>{labels.characteristic}</dt>
+                  <dd>{item.characteristic[language]}</dd>
+                </div>
+                <div>
+                  <dt>{labels.verification}</dt>
+                  <dd>{item.verification[language]}</dd>
+                </div>
+              </dl>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
@@ -1599,7 +1612,7 @@ function ProductDetailBody({
         </div>
       </section>
       <ActualProductLineup route={route} language={language} />
-      <ProductEvidenceSection route={route} language={language} />
+      <ProductQualitySection route={route} language={language} />
       <section className="renewal-sub-section-heading" data-sub-reveal>
         <span>PROCESS STANDARD</span>
         <h2>{labels.manufacturing}</h2>
@@ -2151,7 +2164,6 @@ function PartsDevelopmentBody({ content, language }: { content: SiteContent; lan
         </div>
       </section>
       <DevelopmentProcessFlow items={developmentFlow[language]} language={language} />
-      <ProductEvidenceSection route="products/electric-vehicle" language={language} />
     </>
   );
 }
