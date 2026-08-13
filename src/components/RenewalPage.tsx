@@ -6,6 +6,8 @@ import powertrainImage from "../../assets/product-application/powertrain-precise
 import steeringImage from "../../assets/product-application/steering-precise.webp";
 import qualityVideo from "../../assets/process-videos/inspection-00-04.mp4";
 import qualityPoster from "../../assets/process-videos/inspection-00-04.jpg";
+import qualitySectionVideo from "../../assets/process-videos/quality-inspection-housing.mp4";
+import qualitySectionPoster from "../../assets/process-videos/quality-inspection-housing.jpg";
 import oemProductionVideo from "../../assets/process-videos/oem-production-gantry-montage.mp4";
 import oemProductionPoster from "../../assets/process-videos/oem-production-gantry-montage.jpg";
 import mainHeroVideo from "../../assets/process-videos/home-main3.mp4";
@@ -30,6 +32,7 @@ import { jumpToPageTop } from "../utils/pageScroll";
 import { usePrefersReducedMotion } from "../motion/usePrefersReducedMotion";
 import {
   companyOverviewCopy,
+  manufacturingFlowVideos,
   manufacturingPageCopy,
   manufacturingProcesses,
   qualityEvidenceCopy,
@@ -609,7 +612,7 @@ const heroMedia: Array<
   | { video: string; poster: string; duration: number }
 > = [
   { video: mainHeroVideo, poster: mainHeroPoster, duration: 4200 },
-  { video: oemProductionVideo, poster: oemProductionPoster, duration: 3000 },
+  { video: oemProductionVideo, poster: oemProductionPoster, duration: 5200 },
   { video: qualityVideo, poster: qualityPoster, duration: 3000 },
 ];
 
@@ -658,9 +661,12 @@ const productCardUi = {
   },
 } as const;
 
-const featuredProcesses = ["cnc-lathe", "hobbing", "induction", "auto-inspection"]
-  .map((id) => manufacturingProcesses.find((process) => process.id === id))
-  .filter((process): process is (typeof manufacturingProcesses)[number] => Boolean(process));
+const featuredProcessIds = ["cnc-lathe", "hobbing", "induction", "auto-inspection"] as const;
+
+const featuredProcesses = featuredProcessIds.flatMap((id) => {
+  const process = manufacturingProcesses.find((item) => item.id === id);
+  return process ? [{ ...process, homeVideo: manufacturingFlowVideos[id] }] : [];
+});
 
 const homeUiCopy = {
   ko: {
@@ -961,7 +967,7 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
   );
 }
 
-function ManufacturingSection({ language, reducedMotion }: { language: RenewalLanguage; reducedMotion: boolean }) {
+function ManufacturingSection({ language }: { language: RenewalLanguage }) {
   const copy = manufacturingPageCopy[language];
   const ui = homeUiCopy[language];
 
@@ -980,21 +986,22 @@ function ManufacturingSection({ language, reducedMotion }: { language: RenewalLa
       </div>
       <div className="renewal-capability__grid">
         {featuredProcesses.map((process, index) => (
-          <article className={index === 0 ? "is-featured" : ""} data-renewal-reveal key={process.id}>
+          <article
+            className={`${index === 0 ? "is-featured " : ""}is-${process.id}`}
+            data-renewal-reveal
+            key={process.id}
+          >
             <figure>
-              {process.video ? (
-                <video
-                  src={process.video}
-                  poster={process.image}
-                  autoPlay={!reducedMotion}
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                />
-              ) : (
-                <img src={process.image} alt={process.title} loading="lazy" />
-              )}
+              <video
+                src={process.homeVideo}
+                poster={process.image}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                aria-hidden="true"
+              />
               <figcaption>{String(index + 1).padStart(2, "0")}</figcaption>
             </figure>
             <div>
@@ -1078,8 +1085,8 @@ function QualitySection({ language, reducedMotion }: { language: RenewalLanguage
       <div className="renewal-quality__body">
         <figure className="renewal-quality__inspection" data-renewal-reveal>
           <video
-            src={qualityVideo}
-            poster={qualityPoster}
+            src={qualitySectionVideo}
+            poster={qualitySectionPoster}
             autoPlay={!reducedMotion}
             muted
             loop
@@ -1219,7 +1226,7 @@ export default function RenewalPage() {
         <RenewalHero copy={copy} reducedMotion={reducedMotion} />
         <CompanySection language={language} />
         <ProductsSection copy={copy} language={language} />
-        <ManufacturingSection language={language} reducedMotion={reducedMotion} />
+        <ManufacturingSection language={language} />
         <QualitySection language={language} reducedMotion={reducedMotion} />
         <PartnersSection copy={copy} />
         <SustainabilityBridge language={language} />

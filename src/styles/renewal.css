@@ -2897,9 +2897,30 @@ body.renewal-active {
   transition: transform 0.7s var(--ease-out);
 }
 
-.renewal-capability__grid article:hover img,
-.renewal-capability__grid article:hover video {
+.renewal-capability__grid video {
+  object-position: var(--renewal-capability-video-origin, 50%) center;
+  transform: scale(1.2);
+  transform-origin: var(--renewal-capability-video-origin, 50%) 70%;
+}
+
+.renewal-capability__grid article.is-hobbing {
+  --renewal-capability-video-origin: 52%;
+}
+
+.renewal-capability__grid article.is-induction {
+  --renewal-capability-video-origin: 48%;
+}
+
+.renewal-capability__grid article.is-auto-inspection {
+  --renewal-capability-video-origin: 58%;
+}
+
+.renewal-capability__grid article:hover img {
   transform: scale(1.035);
+}
+
+.renewal-capability__grid article:hover video {
+  transform: scale(1.24);
 }
 
 .renewal-capability__grid figcaption {
@@ -3027,7 +3048,12 @@ body.renewal-active {
 .renewal-quality__inspection::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 62%, rgba(0, 0, 0, 0.78));
+  background: linear-gradient(
+    180deg,
+    rgba(8, 8, 8, 0.02) 0%,
+    rgba(8, 8, 8, 0.08) 54%,
+    rgba(0, 0, 0, 0.88) 100%
+  );
   content: "";
 }
 
@@ -3035,6 +3061,7 @@ body.renewal-active {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 55% center;
 }
 
 .renewal-quality__inspection figcaption {
