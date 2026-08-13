@@ -1,8 +1,8 @@
 import factoryImage from "../../assets/company-profile/factory.webp";
 import machinedAluminumImage from "../../assets/company-deck/machined-aluminum-products.webp";
-import drivelineComponentImage from "../../assets/video-posters/powertrain/clutch-hub-disc-carrier.jpg";
+import drivelineComponentImage from "../../assets/video-posters/driveline/disc-carrier-hub.jpg";
 import electrifiedPowertrainImage from "../../assets/company-deck/electrified-gear-shaft.webp";
-import powertrainComponentImage from "../../assets/video-posters/driveline/8l90-input-shafts.jpg";
+import powertrainComponentImage from "../../assets/product-catalog/lineup/powertrain.webp";
 import autoInspectionImage from "../../assets/company-profile/process/auto-inspection.webp";
 import broachingImage from "../../assets/company-profile/process/broaching.webp";
 import cmmImage from "../../assets/company-profile/process/cmm.webp";
@@ -63,12 +63,12 @@ export const companyOverviewCopy = {
     copy: "서울산업은 1985년부터 엔진과 모터의 토크를 전달하는 샤프트, 기어, 스플라인, 하우징 부품을 개발 검토부터 양산 검사까지 일관된 공정으로 생산해 왔습니다.",
     facts: [
       { label: "설립", value: "1985" },
-      { label: "2025 매출", value: "KRW 65,036M" },
-      { label: "해외 매출", value: "70%" },
+      { label: "핵심 역량", value: "PRECISION MACHINING" },
+      { label: "공급 범위", value: "DEVELOPMENT TO SOP" },
     ],
     systems: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM"],
-    networkTitle: "매출의 70%를 글로벌 시장에서 만드는 제조 기반",
-    networkCopy: "2025년 매출은 국내 30%, 해외 70%로 구성되며 북미·아시아·유럽의 글로벌 자동차 공급망에 대응합니다.",
+    networkTitle: "고객의 개발 일정과 양산 계획을 연결하는 글로벌 공급 체계",
+    networkCopy: "북미·아시아·유럽의 고객 프로그램에 맞춰 도면 검토, 공정 설계, 양산 안정화, 품질 관리, 포장·출하 기준까지 하나의 책임 체계로 관리합니다.",
   },
   en: {
     eyebrow: "INTEGRATED PRECISION MACHINING SUPPLIER",
@@ -76,12 +76,12 @@ export const companyOverviewCopy = {
     copy: "Since 1985, Seoul Industry has produced shafts, gears, splines, and housings that transfer torque from engines and motors, connecting feasibility review, mass production, and inspection in one manufacturing flow.",
     facts: [
       { label: "Founded", value: "1985" },
-      { label: "2025 Revenue", value: "KRW 65,036M" },
-      { label: "Global Sales", value: "70%" },
+      { label: "Core Capability", value: "PRECISION MACHINING" },
+      { label: "Program Coverage", value: "DEVELOPMENT TO SOP" },
     ],
     systems: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM"],
-    networkTitle: "A manufacturing base generating 70% of sales globally",
-    networkCopy: "In 2025, domestic sales accounted for 30% and global sales for 70%, supporting automotive supply chains across North America, Asia, and Europe.",
+    networkTitle: "A global supply system aligned with customer programs",
+    networkCopy: "Across North America, Asia, and Europe, we align drawing review, process engineering, production stabilization, quality control, packing, and delivery with each customer program.",
   },
   ja: {
     eyebrow: "INTEGRATED PRECISION MACHINING SUPPLIER",
@@ -89,12 +89,12 @@ export const companyOverviewCopy = {
     copy: "ソウル産業は1985年から、エンジンとモーターのトルクを伝えるシャフト、ギヤ、スプライン、ハウジングを、製造検討から量産検査まで一貫した工程で生産しています。",
     facts: [
       { label: "設立", value: "1985" },
-      { label: "2025年売上高", value: "KRW 65,036M" },
-      { label: "海外売上比率", value: "70%" },
+      { label: "中核技術", value: "PRECISION MACHINING" },
+      { label: "対応範囲", value: "DEVELOPMENT TO SOP" },
     ],
     systems: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM"],
-    networkTitle: "売上高の70％をグローバル市場で生み出す製造基盤",
-    networkCopy: "2025年の売上構成は国内30％、海外70％で、北米・アジア・欧州の自動車サプライチェーンに対応しています。",
+    networkTitle: "顧客の開発日程と量産計画をつなぐグローバル供給体制",
+    networkCopy: "北米・アジア・欧州の顧客プログラムに合わせ、図面検討、工程設計、量産安定化、品質管理、梱包・出荷基準まで一貫して管理します。",
   },
 } satisfies Record<CompanyProfileLanguage, object>;
 

@@ -85,7 +85,7 @@ const clientPartnerPatches: Record<LanguageCode, Array<Partial<ClientPartner>>> 
     { role: "다이캐스팅 / 가공 부품", year: "미국" },
     { role: "파워트레인 / 드라이브라인 프로그램", year: "글로벌" },
     { role: "조향 / 모듈 프로그램", year: "한국" },
-    { role: "드라이브라인 수출 프로그램", year: "글로벌" },
+    { role: "드라이브라인 양산 프로그램", year: "글로벌" },
     { role: "북미 파워트레인 공급", year: "미국" },
   ],
   en: [],
@@ -94,7 +94,7 @@ const clientPartnerPatches: Record<LanguageCode, Array<Partial<ClientPartner>>> 
     { role: "ダイカスト / 加工部品", year: "米国" },
     { role: "パワートレイン / ドライブラインプログラム", year: "グローバル" },
     { role: "ステアリング / モジュールプログラム", year: "韓国" },
-    { role: "ドライブライン輸出プログラム", year: "グローバル" },
+    { role: "ドライブライン量産プログラム", year: "グローバル" },
     { role: "北米パワートレイン供給", year: "米国" },
   ],
 };
@@ -104,17 +104,17 @@ function applyKoreanCopy(content: SiteContent) {
     fillLines: ["도면 검토부터 양산 공급까지,", "자동차 부품 OEM 생산을 끝까지 책임집니다."],
   });
   const productCopies = [
-    "엔진의 1차 진동을 상쇄하는 밸런스 샤프트 모듈용 HOUSING",
+    "EV OIL PUMP HOUSING·COVER와 BSM HOUSING·OIL PUMP 알루미늄 가공 부품",
     "HEV·PHEV·BEV용 GEAR SHAFT, COAXIAL·LINK SHAFT와 OUTPUT SHAFT 개발품",
     "PINION, PINION SHAFT, PISTON, RACK BUSH, TORSION BAR",
-    "캠 샤프트용 END PIECE와 엔진·감속기용 POWERTRAIN SHAFT",
+    "변속기용 SHAFT와 엔진용 CAMSHAFT NOSE PIECE, BALANCE SHAFT",
     "TRANSFER CASE·ETM용 DISK CARRIER, HUB, ACTUATOR SHAFT 계열 부품",
   ];
   const latestCopies = [
-    "베어링 보어와 오일 유로를 정밀가공한 밸런스 샤프트 모듈 하우징",
+    "EV 오일펌프 하우징·커버와 BSM 하우징·오일펌프 알루미늄 가공 부품",
     "전동화 플랫폼의 설계·기술 검증을 위한 기어·코액시얼·링크·출력 샤프트",
     "조향 입력을 정확하게 전달하는 피니언, 샤프트, 피스톤, 부시, 토션 바",
-    "밸브 개폐 제어와 동력전달을 위한 엔드 피스·파워트레인 샤프트",
+    "밸브 개폐 제어와 동력전달을 위한 캠샤프트 노즈 피스·변속기 샤프트",
     "트랜스퍼 케이스와 ETM용 디스크 캐리어, 허브, 액추에이터 샤프트",
   ];
   productCopies.forEach((copy, index) => Object.assign(content.products[index], { copy }));
@@ -171,8 +171,8 @@ function applyKoreanCopy(content: SiteContent) {
     },
     {
       title: "글로벌 사업영역 확대",
-      summary: "유럽과 북미 고객 프로그램을 확대하고 수출 성과를 축적했습니다.",
-      items: ["2012년 GKN Driveline 유럽·미국 협력업체 등록", "2014년 Spartan LTM 미국 협력업체 등록", "2018년 3천만불 수출의 탑 수상"],
+      summary: "유럽과 북미 고객 프로그램을 확대하며 드라이브라인 사업 기반을 넓혔습니다.",
+      items: ["2012년 GKN Driveline 유럽·미국 협력업체 등록", "2014년 Spartan LTM 미국 협력업체 등록", "드라이브라인 제품군 및 글로벌 고객 프로그램 확대"],
     },
     {
       title: "글로벌 OEM 대응 기반 구축",
@@ -231,17 +231,17 @@ function applyEnglishCopy(content: SiteContent) {
     fillLines: ["From the first drawing to full production,", "we engineer the precision behind every OEM part."],
   });
   const productCopies = [
-    "Housings for balance shaft modules that counter primary engine vibration.",
+    "Machined-aluminum EV oil-pump housings and covers plus BSM housings and oil pumps.",
     "Development gear, coaxial, link, and output shafts for HEV, PHEV, and BEV platforms.",
     "Pinions, pinion shafts, pistons, rack bushes, and torsion bars.",
-    "Camshaft end pieces and powertrain shafts for engines and reduction systems.",
+    "Transmission shafts plus camshaft nose pieces and balance shafts for powertrain systems.",
     "Disk carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
   ];
   const latestCopies = [
-    "Balance shaft module housings with precision bearing bores and oil passages.",
+    "Machined-aluminum EV oil-pump housings and covers plus BSM housings and oil pumps.",
     "Gear, coaxial, link, and output shafts for electrified-platform design validation.",
     "Pinions, shafts, pistons, bushes, and torsion bars that transfer steering input.",
-    "End pieces and powertrain shafts for valve control and power delivery.",
+    "Camshaft nose pieces and transmission shafts for valve control and power delivery.",
     "Disk carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
   ];
   productCopies.forEach((copy, index) => Object.assign(content.products[index], { copy }));
@@ -301,8 +301,8 @@ function applyEnglishCopy(content: SiteContent) {
     },
     {
       title: "Global business expansion",
-      summary: "European and North American customer programs expanded alongside export performance.",
-      items: ["Registered with GKN Driveline Europe and USA in 2012", "Registered with Spartan LTM USA in 2014", "Received the USD 30 Million Export Tower award in 2018"],
+      summary: "European and North American customer programs expanded the company's driveline business base.",
+      items: ["Registered with GKN Driveline Europe and USA in 2012", "Registered with Spartan LTM USA in 2014", "Expanded driveline products and global customer programs"],
     },
     {
       title: "Global OEM operating base",
@@ -359,17 +359,17 @@ function applyJapaneseCopy(content: SiteContent) {
     fillLines: ["図面の検討から量産供給まで。", "OEM部品の精度を、工程で造り込みます。"],
   });
   const productCopies = [
-    "エンジンの一次振動を相殺するバランスシャフトモジュール用HOUSING",
+    "EV OIL PUMP HOUSING・COVERとBSM HOUSING・OIL PUMPのアルミ加工部品",
     "HEV・PHEV・BEV向けGEAR SHAFT、COAXIAL・LINK SHAFT、OUTPUT SHAFT開発品",
     "PINION、PINION SHAFT、PISTON、RACK BUSH、TORSION BAR",
-    "カムシャフト用END PIECEとエンジン・減速機用POWERTRAIN SHAFT",
+    "トランスミッション用SHAFTとエンジン用CAMSHAFT NOSE PIECE、BALANCE SHAFT",
     "TRANSFER CASE・ETM向けDISK CARRIER、HUB、ACTUATOR SHAFT系列部品",
   ];
   const latestCopies = [
-    "ベアリングボアとオイル流路を精密加工したバランスシャフトモジュール・ハウジング",
+    "EVオイルポンプのハウジング・カバーとBSMハウジング・オイルポンプのアルミ加工部品",
     "電動化プラットフォームの設計・技術検証向けギヤ、コアキシャル、リンク、出力シャフト",
     "操舵入力を正確に伝えるピニオン、シャフト、ピストン、ブッシュ、トーションバー",
-    "バルブ開閉制御と動力伝達向けのエンドピース・パワートレインシャフト",
+    "バルブ開閉制御と動力伝達向けのカムシャフト・ノーズピース、トランスミッションシャフト",
     "Transfer Case・ETM向けディスクキャリア、ハブ、アクチュエーターシャフト",
   ];
   productCopies.forEach((copy, index) => Object.assign(content.products[index], { copy }));
@@ -426,8 +426,8 @@ function applyJapaneseCopy(content: SiteContent) {
     },
     {
       title: "グローバル事業領域の拡大",
-      summary: "欧州と北米の顧客プログラムを拡大し、輸出実績を積み重ねました。",
-      items: ["2012年 GKN Driveline欧州・米国の協力会社に登録", "2014年 Spartan LTM米国の協力会社に登録", "2018年 3千万ドル輸出の塔を受賞"],
+      summary: "欧州・北米の顧客プログラムを拡大し、ドライブライン事業の基盤を広げました。",
+      items: ["2012年 GKN Driveline欧州・米国の協力会社に登録", "2014年 Spartan LTM米国の協力会社に登録", "ドライブライン製品群とグローバル顧客プログラムを拡大"],
     },
     {
       title: "グローバルOEM対応基盤の構築",

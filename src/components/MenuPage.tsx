@@ -3,7 +3,7 @@ import type { CSSProperties, FormEvent } from "react";
 import certificationImage from "../../certification.png";
 import drivelineImage from "../../assets/product-application/driveline-precise.webp";
 import automotiveImage from "../../assets/product-application/electric-vehicle-precise.webp";
-import balanceModuleImage from "../../assets/product-application/balance-shaft-module-precise.webp";
+import balanceModuleImage from "../../assets/company-deck/machined-aluminum-products.webp";
 import powertrainImage from "../../assets/product-application/powertrain-precise.webp";
 import precisionHeroImage from "../../precision-inside-mobility.jpg";
 import steeringImage from "../../assets/product-application/steering-precise.webp";
@@ -411,7 +411,7 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     groupTitle: "제품정보",
     eyebrow: "Transmission & Engine",
     title: "POWERTRAIN",
-    lead: "변속기·엔진용 SHAFT, END PIECE, BALANCE SHAFT 계열 부품을 생산해 토크와 동력 전달을 지원합니다.",
+    lead: "변속기·엔진용 SHAFT, CAMSHAFT NOSE PIECE, BALANCE SHAFT 계열 부품을 생산해 토크와 동력 전달을 지원합니다.",
     heroCopy: "기어·스플라인 형상, 베어링 장착면, 런아웃과 표면 건전성을 공정별로 관리해 반복 양산 품질을 확보합니다.",
     image: powertrainImage,
     imagePosition: "center 70%",
@@ -591,7 +591,7 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
     "company/location": { groupTitle: "Company", title: "Location", lead: "Seoul Industry's head office and precision-machining plant are located in Yanggam-myeon, Hwaseong.", heroCopy: "Please coordinate your visit in advance so we can arrange site access and meetings smoothly." },
     "company/notices": { groupTitle: "Company", title: "Notices", lead: "Review Seoul Industry updates on products, quality, recruitment, and company operations.", heroCopy: "We provide customers and partners with accurate company information in a timely manner." },
     "products/electric-vehicle": { groupTitle: "Products", eyebrow: "HEV / PHEV / BEV Platform", title: "ELECTRIFIED POWERTRAIN", lead: "Gear, coaxial, link, and output shafts are reviewed and prototyped for HEV, PHEV, and BEV design validation.", heroCopy: "Gear quality, spline geometry, runout, and surface integrity guide engineering verification as electrified architectures evolve." },
-    "products/powertrain": { groupTitle: "Products", eyebrow: "Transmission & Engine", title: "POWERTRAIN", lead: "Shafts, end pieces, and balance-shaft families for transmission and engine torque delivery.", heroCopy: "Gear and spline geometry, bearing seats, runout, and surface integrity are controlled for repeatable production quality." },
+    "products/powertrain": { groupTitle: "Products", eyebrow: "Transmission & Engine", title: "POWERTRAIN", lead: "Transmission shafts, camshaft nose pieces, and balance-shaft families for transmission and engine torque delivery.", heroCopy: "Gear and spline geometry, bearing seats, runout, and surface integrity are controlled for repeatable production quality." },
     "products/driveline": { groupTitle: "Products", eyebrow: "Transfer Case / ETM", title: "DRIVELINE", lead: "Disk carriers, hubs, and actuator shafts for transfer-case and electronic torque-management systems.", heroCopy: "Hobbing, broaching, rack rolling, and laser-welding processes support reliable torque distribution and AWD control." },
     "products/balance-shaft-module": { groupTitle: "Products", eyebrow: "Machined Aluminum", title: "MACHINED ALUMINUM COMPONENTS", lead: "EV oil-pump housings and covers plus balance-shaft-module housings and oil pumps.", heroCopy: "Oil passages, bearing bores, assembly faces, and complex aluminum geometry are controlled for electric-driveline and BSM performance." },
     "products/steering": { groupTitle: "Products", eyebrow: "Steering Assembly Parts", title: "STEERING", lead: "Pinions, pinion shafts, pistons, rack bushes, and torsion bars for steering assemblies.", heroCopy: "Helical-gear and spline machining, heat treatment, straightening, and runout inspection keep steering input precise." },
@@ -615,7 +615,7 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
     "company/location": { groupTitle: "企業情報", title: "アクセス", lead: "ソウル産業の本社と精密加工工場は京畿道華城市楊甘面にあります。", heroCopy: "ご訪問前に担当者と日程をご調整いただくと、入場と打ち合わせを円滑にご案内できます。" },
     "company/notices": { groupTitle: "企業情報", title: "お知らせ", lead: "製品、品質、採用、会社運営に関するソウル産業の主要情報をご覧いただけます。", heroCopy: "お客様と協力会社に必要な会社情報を正確かつ迅速にお伝えします。" },
     "products/electric-vehicle": { groupTitle: "製品情報", eyebrow: "HEV / PHEV / BEV Platform", title: "ELECTRIFIED POWERTRAIN", lead: "HEV・PHEV・BEV向けGEAR SHAFT、COAXIAL・LINK SHAFT、OUTPUT SHAFTを設計検討し、試作で検証します。", heroCopy: "ギヤ品質、スプライン形状、振れ、表面健全性を基準に技術検証を行います。" },
-    "products/powertrain": { groupTitle: "製品情報", eyebrow: "Transmission & Engine", title: "POWERTRAIN", lead: "トランスミッション・エンジン向けSHAFT、END PIECE、BALANCE SHAFT系列を生産し、トルクと動力の伝達を支えます。", heroCopy: "ギヤ・スプライン形状、ベアリング取付面、振れ、表面健全性を工程ごとに管理し、量産品質を確保します。" },
+    "products/powertrain": { groupTitle: "製品情報", eyebrow: "Transmission & Engine", title: "POWERTRAIN", lead: "トランスミッション・エンジン向けSHAFT、CAMSHAFT NOSE PIECE、BALANCE SHAFT系列を生産し、トルクと動力の伝達を支えます。", heroCopy: "ギヤ・スプライン形状、ベアリング取付面、振れ、表面健全性を工程ごとに管理し、量産品質を確保します。" },
     "products/driveline": { groupTitle: "製品情報", eyebrow: "Transfer Case / ETM", title: "DRIVELINE", lead: "TRANSFER CASEおよびETM向けDISK CARRIER、HUB、ACTUATOR SHAFT系列を生産します。", heroCopy: "HOBBING、BROACHING、RACK ROLLING、LASER WELDINGをつなぎ、トルク配分とAWD制御部品の組立信頼性を高めます。" },
     "products/balance-shaft-module": { groupTitle: "製品情報", eyebrow: "Machined Aluminum", title: "MACHINED ALUMINUM COMPONENTS", lead: "EV減速機潤滑システム向けOIL PUMP HOUSING・COVERとBALANCE SHAFT MODULE HOUSING・OIL PUMPを精密加工します。", heroCopy: "アルミ鋳造部品の流路、ベアリングボア、組立面、複合形状を管理し、電動ドライブラインとBSMの機能品質を確保します。" },
     "products/steering": { groupTitle: "製品情報", eyebrow: "Steering Assembly Parts", title: "STEERING", lead: "PINION、PINION SHAFT、PISTON、RACK BUSH、TORSION BARなど、ステアリングアセンブリの主要機能部品を生産します。", heroCopy: "ヘリカルギヤ・スプライン加工、熱処理、矯正、振れ検査をつなぎ、操舵入力を正確に伝えます。" },
@@ -683,7 +683,7 @@ const historyBlocks = [
   {
     period: "2010 ~ 2019",
     image: menuHeroImages.precision,
-    items: ["현대모비스 SQ 인증 취득", "3천만불 수출의 탑 수상", "AL 다이캐스팅 사업 진출", "GKN Driveline, Spartan 등 고객 네트워크 확대"],
+    items: ["현대모비스 SQ 인증 취득", "드라이브라인 제품군 확대", "GKN Driveline, Spartan 등 고객 네트워크 확대"],
   },
   {
     period: "2020 ~ 현재",

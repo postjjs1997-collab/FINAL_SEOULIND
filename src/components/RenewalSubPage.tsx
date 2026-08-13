@@ -4,7 +4,7 @@ import certificationImage from "../../certification.png";
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
 import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
 import msqCertificateImage from "../../assets/certificates/msq-seoul-industry-2025.png";
-import balanceModuleImage from "../../assets/product-application/balance-shaft-module-precise.webp";
+import balanceModuleImage from "../../assets/company-deck/machined-aluminum-products.webp";
 import automotiveImage from "../../assets/product-application/electric-vehicle-precise.webp";
 import steeringImage from "../../assets/product-application/steering-precise.webp";
 import drivelineImage from "../../assets/product-application/driveline-precise.webp";
@@ -12,10 +12,18 @@ import powertrainImage from "../../assets/product-application/powertrain-precise
 import precisionImage from "../../precision-inside-mobility.jpg";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
-import machiningEquipmentImage from "../../assets/company-profile/process/cnc-lathe.webp";
-import gearSplineEquipmentImage from "../../assets/company-profile/process/hobbing.webp";
-import finishingEquipmentImage from "../../assets/company-profile/process/grinding.webp";
-import automationInspectionEquipmentImage from "../../assets/company-deck/automatic-inspection-cell.jpg";
+import cncLatheEquipmentImage from "../../assets/equipment-inventory/cnc-lathe.jpg";
+import cncMachiningCenterEquipmentImage from "../../assets/equipment-inventory/cnc-machining-center.png";
+import rackRollingEquipmentImage from "../../assets/equipment-inventory/rack-rolling.png";
+import broachingEquipmentImage from "../../assets/equipment-inventory/broaching-actual.jpg";
+import hobbingEquipmentImage from "../../assets/equipment-inventory/cnc-hobbing.png";
+import shapingEquipmentImage from "../../assets/equipment-inventory/shaping.png";
+import grindingEquipmentImage from "../../assets/equipment-inventory/cnc-grinding-actual.jpg";
+import inductionHardeningEquipmentImage from "../../assets/equipment-inventory/induction-hardening-actual.jpg";
+import straightenerEquipmentImage from "../../assets/equipment-inventory/straightener-actual.jpg";
+import automaticInspectionEquipmentImage from "../../assets/equipment-inventory/automatic-inspection.png";
+import gearMeasuringEquipmentImage from "../../assets/equipment-inventory/gear-measuring-machine.png";
+import cmmEquipmentImage from "../../assets/equipment-inventory/cmm.png";
 import sustainabilityPolicyDocument from "../../assets/documents/sustainability-management-policy-seoul-industry.docx?url";
 import Icon from "./Icons";
 import { getPageConfig } from "./MenuPage";
@@ -512,11 +520,27 @@ const recruitCopy: Record<
 
 const productImages = [balanceModuleImage, automotiveImage, steeringImage, powertrainImage, drivelineImage];
 
-const equipmentVisuals: Record<string, string> = {
-  machining: machiningEquipmentImage,
-  "gear-spline": gearSplineEquipmentImage,
-  finishing: finishingEquipmentImage,
-  "automation-inspection": automationInspectionEquipmentImage,
+const equipmentVisuals: Record<string, Array<{ image: string; label: string }>> = {
+  machining: [
+    { image: cncLatheEquipmentImage, label: "CNC LATHE" },
+    { image: cncMachiningCenterEquipmentImage, label: "CNC MCT" },
+  ],
+  "gear-spline": [
+    { image: hobbingEquipmentImage, label: "CNC HOBBING" },
+    { image: shapingEquipmentImage, label: "SHAPING" },
+    { image: broachingEquipmentImage, label: "BROACHING" },
+    { image: rackRollingEquipmentImage, label: "RACK ROLLING" },
+  ],
+  finishing: [
+    { image: grindingEquipmentImage, label: "CNC GRINDING" },
+    { image: inductionHardeningEquipmentImage, label: "INDUCTION HARDENING" },
+  ],
+  "automation-inspection": [
+    { image: straightenerEquipmentImage, label: "STRAIGHTENER" },
+    { image: automaticInspectionEquipmentImage, label: "AUTO INSPECTION" },
+    { image: gearMeasuringEquipmentImage, label: "GEAR MEASURING" },
+    { image: cmmEquipmentImage, label: "CMM" },
+  ],
 };
 
 const ceoCopy: Record<RenewalLanguage, { quote: string; paragraphs: string[]; sign: string }> = {
@@ -583,7 +607,7 @@ const productRouteImages: Record<string, string> = {
 
 const productStandards: Record<string, string[]> = {
   "products/electric-vehicle": ["HEV GEAR SHAFT", "COAXIAL / LINK SHAFT", "E-DRIVE OUTPUT SHAFT", "HEV / PHEV / BEV"],
-  "products/powertrain": ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "END PIECE", "BALANCE SHAFT"],
+  "products/powertrain": ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "CAMSHAFT NOSE PIECE", "BALANCE SHAFT"],
   "products/driveline": ["TRANSFER CASE", "ETM", "DISK CARRIER / HUB", "ACTUATOR SHAFT"],
   "products/balance-shaft-module": ["EV OIL PUMP HOUSING / COVER", "BSM HOUSING / OIL PUMP", "DIE-CAST ALUMINUM", "PRECISION MACHINING"],
   "products/steering": ["PINION", "PINION SHAFT", "PISTON", "RACK BUSH", "TORSION BAR"],
@@ -1279,7 +1303,20 @@ function ActualProductLineup({
           </div>
         </header>
         <figure data-sub-reveal>
-          <img src={catalog.overviewImage} alt={catalog.title[language]} />
+          {catalog.overviewVideo ? (
+            <video
+              src={catalog.overviewVideo}
+              poster={catalog.overviewImage}
+              aria-label={catalog.title[language]}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            />
+          ) : (
+            <img src={catalog.overviewImage} alt={catalog.title[language]} />
+          )}
           <figcaption>{lineupLabels.overview}</figcaption>
         </figure>
       </div>
@@ -1287,13 +1324,16 @@ function ActualProductLineup({
         {catalog.parts.map((part, index) => (
           <article data-sub-reveal key={part.title.en}>
             <figure>
-              {part.video ? (
-                <video autoPlay muted loop playsInline preload="metadata" poster={part.poster} aria-label={part.title[language]}>
-                  <source src={part.video} type="video/webm" />
-                </video>
-              ) : (
-                <img src={part.poster} alt={part.title[language]} />
-              )}
+              <video
+                src={part.video}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster={part.poster}
+                aria-label={part.title[language]}
+              />
               <figcaption>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <small>{lineupLabels.motion}</small>
@@ -1632,7 +1672,16 @@ function ProductDetailBody({
               <div>
                 {featuredParts.map((part) => (
                   <article key={part.title.en}>
-                    <img src={part.poster} alt={part.title[language]} loading="lazy" />
+                    <video
+                      src={part.video}
+                      poster={part.poster}
+                      aria-label={part.title[language]}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                    />
                     <span>{part.title[language]}</span>
                   </article>
                 ))}
@@ -1655,7 +1704,20 @@ function ProductDetailBody({
       {evidence ? (
         <section className="profile-product-evidence" data-sub-reveal>
           <figure>
-            <img src={evidence.image} alt="" loading="lazy" />
+            {catalog?.overviewVideo ? (
+              <video
+                src={catalog.overviewVideo}
+                poster={evidence.image}
+                aria-label={evidence.title[language]}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              />
+            ) : (
+              <img src={evidence.image} alt="" loading="lazy" />
+            )}
             <figcaption>{evidence.eyebrow}</figcaption>
           </figure>
           <div>
@@ -1733,6 +1795,11 @@ function ManufacturingBody({
   const unitLabel = { ko: "대", en: "units", ja: "台" }[language];
   const inventoryLabel = { ko: "보유 대수", en: "Inventory", ja: "保有台数" }[language];
   const processImageLabel = { ko: "공정 이미지", en: "PROCESS VIEW", ja: "工程イメージ" }[language];
+  const equipmentImageLabel = {
+    ko: "설비 외관 및 현장",
+    en: "EQUIPMENT & SHOP FLOOR",
+    ja: "設備外観・生産現場",
+  }[language];
 
   return (
     <>
@@ -1766,40 +1833,51 @@ function ManufacturingBody({
 
       {route === "manufacturing/equipment" && (
         <section className="profile-equipment-inventory" aria-label={copy.equipmentTitle}>
-          {equipmentInventory.map((group, groupIndex) => (
-            <article className={groupIndex % 2 === 1 ? "is-reversed" : undefined} data-sub-reveal key={group.id}>
-              <figure className="profile-equipment-inventory__visual">
-                <img
-                  src={equipmentVisuals[group.id]}
-                  alt={`${group.title[language]} ${processImageLabel}`}
-                  loading="lazy"
-                />
-                <figcaption>
-                  <span>{processImageLabel}</span>
-                  <strong>{String(groupIndex + 1).padStart(2, "0")} / 04</strong>
-                </figcaption>
-              </figure>
-              <div className="profile-equipment-inventory__body">
-                <header>
-                  <span>{String(groupIndex + 1).padStart(2, "0")}</span>
-                  <h3>{group.title[language]}</h3>
-                  <p>{group.copy[language]}</p>
-                </header>
-                <dl>
-                  {group.items.map((item) => (
-                    <div key={item.name}>
-                      <dt>{item.name}</dt>
-                      <dd>
-                        <small>{inventoryLabel}</small>
-                        <strong>{item.count}</strong>
-                        <span>{unitLabel}</span>
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </article>
-          ))}
+          {equipmentInventory.map((group, groupIndex) => {
+            const visuals = equipmentVisuals[group.id] ?? [];
+
+            return (
+              <article className={groupIndex % 2 === 1 ? "is-reversed" : undefined} data-sub-reveal key={group.id}>
+                <figure className="profile-equipment-inventory__visual">
+                  <div className={`profile-equipment-inventory__gallery count-${visuals.length}`}>
+                    {visuals.map((visual) => (
+                      <div className="profile-equipment-inventory__gallery-item" key={visual.label}>
+                        <img
+                          src={visual.image}
+                          alt={`${visual.label} ${equipmentImageLabel}`}
+                          loading="lazy"
+                        />
+                        <span>{visual.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <figcaption>
+                    <span>{equipmentImageLabel}</span>
+                    <strong>{String(groupIndex + 1).padStart(2, "0")} / 04</strong>
+                  </figcaption>
+                </figure>
+                <div className="profile-equipment-inventory__body">
+                  <header>
+                    <span>{String(groupIndex + 1).padStart(2, "0")}</span>
+                    <h3>{group.title[language]}</h3>
+                    <p>{group.copy[language]}</p>
+                  </header>
+                  <dl>
+                    {group.items.map((item) => (
+                      <div key={item.name}>
+                        <dt>{item.name}</dt>
+                        <dd>
+                          <small>{inventoryLabel}</small>
+                          <strong>{item.count}</strong>
+                          <span>{unitLabel}</span>
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </article>
+            );
+          })}
         </section>
       )}
 

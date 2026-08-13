@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import balanceModuleImage from "../../assets/product-application/balance-shaft-module-precise.webp";
+import balanceModuleImage from "../../assets/company-deck/machined-aluminum-products.webp";
 import drivelineImage from "../../assets/product-application/driveline-precise.webp";
 import electricVehicleImage from "../../assets/product-application/electric-vehicle-precise.webp";
 import powertrainImage from "../../assets/product-application/powertrain-precise.webp";
@@ -211,7 +211,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       link: "제품 전체 보기",
       items: [
         { title: "Steering", category: "CORE 01", group: "core", copy: "Pinion, Pinion Shaft, Piston, Rack Bush, Torsion Bar 등 조향 어셈블리 부품" },
-        { title: "Powertrain", category: "CORE 02", group: "core", copy: "변속기·엔진용 Shaft, End Piece, Balance Shaft 계열 부품" },
+        { title: "Powertrain", category: "CORE 02", group: "core", copy: "변속기·엔진용 Shaft, Camshaft Nose Piece, Balance Shaft 계열 부품" },
         { title: "Driveline", category: "CORE 03", group: "core", copy: "Transfer Case·ETM용 Disk Carrier, Shaft, Hub 계열 부품" },
         { title: "Electrified Powertrain", category: "HEV · PHEV · BEV", group: "electrified", copy: "전동화 플랫폼용 Gear Shaft, Coaxial·Link Shaft, Output Shaft" },
         { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "EV 오일펌프 하우징·커버와 BSM 하우징·오일펌프 정밀가공" },
@@ -379,7 +379,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       link: "View all products",
       items: [
         { title: "Steering", category: "CORE 01", group: "core", copy: "Pinions, pinion shafts, pistons, rack bushes, and torsion bars for steering assemblies." },
-        { title: "Powertrain", category: "CORE 02", group: "core", copy: "Shafts, end pieces, and balance-shaft families for transmissions and engines." },
+        { title: "Powertrain", category: "CORE 02", group: "core", copy: "Transmission shafts, camshaft nose pieces, and balance-shaft families for transmissions and engines." },
         { title: "Driveline", category: "CORE 03", group: "core", copy: "Disk carriers, shafts, and hubs for transfer-case and ETM systems." },
         { title: "Electrified Powertrain", category: "HEV · PHEV · BEV", group: "electrified", copy: "Gear shafts, coaxial and link shafts, and output shafts for electrified platforms." },
         { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "EV oil-pump housings and covers plus BSM housings and oil pumps." },
@@ -547,7 +547,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       link: "全製品を見る",
       items: [
         { title: "Steering", category: "CORE 01", group: "core", copy: "Pinion、Pinion Shaft、Piston、Rack Bush、Torsion Barなどの操舵部品" },
-        { title: "Powertrain", category: "CORE 02", group: "core", copy: "トランスミッション・エンジン向けShaft、End Piece、Balance Shaft系列" },
+        { title: "Powertrain", category: "CORE 02", group: "core", copy: "トランスミッション・エンジン向けShaft、Camshaft Nose Piece、Balance Shaft系列" },
         { title: "Driveline", category: "CORE 03", group: "core", copy: "Transfer Case・ETM向けDisk Carrier、Shaft、Hub系列" },
         { title: "Electrified Powertrain", category: "HEV · PHEV · BEV", group: "electrified", copy: "電動化向けGear Shaft、Coaxial・Link Shaft、Output Shaft" },
         { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "EVオイルポンプとBSMのハウジング・カバー精密加工" },
@@ -936,20 +936,16 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
                     {featuredParts.map((part) => (
                       <figure className="renewal-product-card__detail-part" key={part.title.en}>
                         <div className="renewal-product-card__detail-media">
-                          {part.video ? (
-                            <video
-                              key={detailIsActive ? "active" : "idle"}
-                              src={part.video}
-                              poster={part.poster}
-                              autoPlay={detailIsActive}
-                              loop
-                              muted
-                              playsInline
-                              preload={detailIsActive ? "auto" : "metadata"}
-                            />
-                          ) : (
-                            <img src={part.poster} alt="" loading="lazy" />
-                          )}
+                          <video
+                            key={detailIsActive ? "active" : "idle"}
+                            src={part.video}
+                            poster={part.poster}
+                            autoPlay={detailIsActive}
+                            loop
+                            muted
+                            playsInline
+                            preload={detailIsActive ? "auto" : "metadata"}
+                          />
                         </div>
                         <figcaption>
                           <strong>{part.title[language]}</strong>
@@ -965,7 +961,16 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
                 <div>
                   {featuredParts.map((part) => (
                     <figure key={part.title.en}>
-                      <img src={part.poster} alt={part.title[language]} loading="lazy" />
+                      <video
+                        src={part.video}
+                        poster={part.poster}
+                        aria-label={part.title[language]}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                      />
                       <figcaption>{part.title[language]}</figcaption>
                     </figure>
                   ))}

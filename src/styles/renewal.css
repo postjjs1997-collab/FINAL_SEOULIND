@@ -2776,6 +2776,21 @@ body.renewal-active {
   background: #050505;
 }
 
+.renewal-product-card__detail-media video {
+  animation: renewal-home-product-media-drift 6.8s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes renewal-home-product-media-drift {
+  from {
+    transform: scale(1.018) translate3d(-0.45%, 0.15%, 0);
+  }
+
+  to {
+    transform: scale(1.055) translate3d(0.55%, -0.4%, 0);
+  }
+}
+
 .renewal-product-card__detail-part figcaption {
   display: grid;
   gap: 3px;
@@ -2839,7 +2854,9 @@ body.renewal-active {
   margin: 0;
 }
 
-.renewal-product-card__actual img {
+.renewal-product-card__actual img,
+.renewal-product-card__actual video {
+  display: block;
   width: 100%;
   height: 84px;
   object-fit: contain;
@@ -3454,7 +3471,8 @@ body.renewal-active {
     grid-template-rows: 76px auto;
   }
 
-  .renewal-product-card__actual img {
+  .renewal-product-card__actual img,
+  .renewal-product-card__actual video {
     height: 76px;
   }
 

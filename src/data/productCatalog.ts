@@ -13,9 +13,12 @@ import electricVehicleVideo2 from "../../assets/product-alpha/electric-vehicle2.
 import electricVehiclePoster1 from "../../assets/video-posters/electric-vehicle1.jpg";
 import electricVehiclePoster2 from "../../assets/video-posters/electric-vehicle2.jpg";
 import electrifiedGearShaftImage from "../../assets/company-deck/electrified-gear-shaft.webp";
-import electrifiedLinkShaftImage from "../../assets/company-deck/electrified-link-shaft.webp";
-import electrifiedCoaxialShaftImage from "../../assets/company-deck/electrified-coaxial-shaft.webp";
-import electrifiedOutputShaftImage from "../../assets/company-deck/electrified-output-shaft.webp";
+import electrifiedLinkShaftPoster from "../../assets/product-catalog/electrified/link-shaft.jpg";
+import electrifiedLinkShaftVideo from "../../assets/product-catalog/electrified/link-shaft.mp4";
+import electrifiedCoaxialShaftPoster from "../../assets/product-catalog/electrified/coaxial-shaft.jpg";
+import electrifiedCoaxialShaftVideo from "../../assets/product-catalog/electrified/coaxial-shaft.mp4";
+import electrifiedOutputShaftPoster from "../../assets/product-catalog/electrified/e-drive-output-shaft.jpg";
+import electrifiedOutputShaftVideo from "../../assets/product-catalog/electrified/e-drive-output-shaft.mp4";
 import machinedAluminumProductsImage from "../../assets/company-deck/machined-aluminum-products.webp";
 import steeringVideo1 from "../../assets/product-alpha/steering1.webm";
 import steeringVideo2 from "../../assets/product-alpha/steering2.webm";
@@ -27,19 +30,24 @@ import drivelinePoster1 from "../../assets/video-posters/driveline1.jpg";
 import drivelinePoster3 from "../../assets/video-posters/driveline3.jpg";
 import transferCaseActuatorPoster from "../../assets/video-posters/driveline/transfer-case-actuator-shafts.jpg";
 import transferCaseActuatorVideo from "../../assets/product-alpha/driveline/transfer-case-actuator-shafts.webm";
-import discCarrierPoster from "../../assets/video-posters/powertrain/clutch-hub-disc-carrier.jpg";
-import discCarrierVideo from "../../assets/product-alpha/powertrain/clutch-hub-disc-carrier.webm";
+import discCarrierPoster from "../../assets/video-posters/driveline/disc-carrier-hub.jpg";
+import discCarrierVideo from "../../assets/product-alpha/driveline/disc-carrier-hub.webm";
 import transmissionOutputPoster from "../../assets/video-posters/powertrain/8l90-output-shafts.jpg";
 import transmissionOutputVideo from "../../assets/product-alpha/powertrain/8l90-output-shafts.webm";
+import transmission10r140Poster from "../../assets/video-posters/powertrain/10r140-transmission-shaft.jpg";
+import transmission10r140Video from "../../assets/product-alpha/powertrain/10r140-transmission-shaft.webm";
 import steeringLineupImage from "../../assets/product-catalog/lineup/steering.webp";
 import powertrainLineupImage from "../../assets/product-catalog/lineup/powertrain.webp";
 import drivelineLineupImage from "../../assets/product-catalog/lineup/driveline.webp";
+import steeringOverviewVideo from "../../assets/product-catalog/overview/steering.mp4";
+import powertrainOverviewVideo from "../../assets/product-catalog/overview/powertrain.mp4";
+import drivelineOverviewVideo from "../../assets/product-catalog/overview/driveline.mp4";
+import electrifiedOverviewVideo from "../../assets/product-catalog/overview/electrified-powertrain.mp4";
+import machinedAluminumOverviewVideo from "../../assets/product-catalog/overview/machined-aluminum.mp4";
 import endPieceImage from "../../assets/product-catalog/powertrain/end-piece-dark.webp";
 import endPieceVideo from "../../assets/product-catalog/powertrain/end-piece.webm";
 import powertrainShaftVideo1 from "../../assets/product-catalog/powertrain/powertrain-shaft-01.webm";
-import powertrainShaftVideo2 from "../../assets/product-catalog/powertrain/powertrain-shaft-02.webm";
 import powertrainShaftPoster1 from "../../assets/product-catalog/powertrain/powertrain-shaft-01.jpg";
-import powertrainShaftPoster2 from "../../assets/product-catalog/powertrain/powertrain-shaft-02.jpg";
 import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
 
 export type ProductCatalogLanguage = "ko" | "en" | "ja";
@@ -50,7 +58,7 @@ export type ProductPart = {
   title: ProductLocalizedText;
   application: ProductLocalizedText;
   poster: string;
-  video?: string;
+  video: string;
 };
 
 export type ProductQualityControl = {
@@ -64,6 +72,7 @@ export type ProductPartCatalog = {
   title: ProductLocalizedText;
   copy: ProductLocalizedText;
   overviewImage: string;
+  overviewVideo?: string;
   families: string[];
   parts: ProductPart[];
   qualityControls: ProductQualityControl[];
@@ -85,6 +94,7 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       "EV用オイルポンプのハウジング・カバーと、バランスシャフトモジュール用ハウジング・オイルポンプを加工し、ベアリングボア、組立面、オイル流路を一体管理します。",
     ),
     overviewImage: machinedAluminumProductsImage,
+    overviewVideo: machinedAluminumOverviewVideo,
     families: ["EV OIL PUMP HOUSING / COVER", "BSM HOUSING / OIL PUMP"],
     parts: [
       {
@@ -181,22 +191,26 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       "電動化パワートレイン向けCoaxial・Link ShaftとE-drive Gearbox Output Shaftを設計検討・試作し、歯車精度、スプライン形状、振れ、表面健全性を管理します。",
     ),
     overviewImage: electrifiedGearShaftImage,
+    overviewVideo: electrifiedOverviewVideo,
     families: ["HEV GEAR SHAFT", "COAXIAL / LINK SHAFT", "E-DRIVE OUTPUT SHAFT"],
     parts: [
       {
         title: localized("링크 샤프트", "Link Shaft", "リンクシャフト"),
         application: localized("PHEV 기어박스·E-drive 동력 전달", "Power transfer for PHEV gearboxes and E-drive systems", "PHEVギヤボックス・E-drive向け動力伝達"),
-        poster: electrifiedLinkShaftImage,
+        poster: electrifiedLinkShaftPoster,
+        video: electrifiedLinkShaftVideo,
       },
       {
         title: localized("코액시얼 샤프트", "Coaxial Shaft", "コアキシャルシャフト"),
         application: localized("HEV·PHEV 전동화 기어박스", "HEV and PHEV electrified gearboxes", "HEV・PHEV電動化ギヤボックス"),
-        poster: electrifiedCoaxialShaftImage,
+        poster: electrifiedCoaxialShaftPoster,
+        video: electrifiedCoaxialShaftVideo,
       },
       {
         title: localized("E-drive 출력 샤프트", "E-drive Output Shaft", "E-drive出力シャフト"),
         application: localized("BEV 전기 구동 모듈", "BEV electric drive modules", "BEV電動ドライブモジュール"),
-        poster: electrifiedOutputShaftImage,
+        poster: electrifiedOutputShaftPoster,
+        video: electrifiedOutputShaftVideo,
       },
     ],
     qualityControls: [
@@ -254,6 +268,7 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       "ピニオン、ピニオンシャフト、ピストン、ラックブッシュ、トーションバーを生産しています。ギヤ形状、スプライン、振れ、熱処理、矯正を一体管理し、操舵入力を正確に伝えます。",
     ),
     overviewImage: steeringLineupImage,
+    overviewVideo: steeringOverviewVideo,
     families: ["PINION", "PINION SHAFT", "PISTON", "RACK BUSH", "TORSION BAR"],
     parts: [
       {
@@ -324,31 +339,32 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       "6速、8L90 Input・Output、10R140用シャフトに加え、Oil Pump Shaft、Camshaft Nose Piece、Balance Shaftを生産します。",
     ),
     overviewImage: powertrainLineupImage,
-    families: ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "END PIECE", "BALANCE SHAFT"],
+    overviewVideo: powertrainOverviewVideo,
+    families: ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "CAMSHAFT NOSE PIECE", "BALANCE SHAFT"],
     parts: [
       {
-        title: localized("8L90 출력 샤프트", "8L90 Output Shaft", "8L90 Output Shaft"),
+        title: localized("8L90 출력 샤프트", "8L90 Output Shaft", "8L90出力シャフト"),
         application: localized("자동변속기 토크 전달", "Automatic-transmission torque delivery", "オートマチックトランスミッションのトルク伝達"),
         poster: transmissionOutputPoster,
         video: transmissionOutputVideo,
       },
       {
-        title: localized("엔드 피스", "End Piece", "エンドピース"),
+        title: localized("캠샤프트 노즈 피스", "Camshaft Nose Piece", "カムシャフト・ノーズピース"),
         application: localized("캠 샤프트 밸브 개폐 제어 계열", "Camshaft valve-timing control family", "カムシャフト・バルブ開閉制御系列"),
         poster: endPieceImage,
         video: endPieceVideo,
       },
       {
-        title: localized("파워트레인 샤프트 01", "Powertrain Shaft 01", "パワートレインシャフト 01"),
-        application: localized("엔진·감속기 동력전달 샤프트", "Engine and reduction-system power shaft", "エンジン・減速機用動力伝達シャフト"),
+        title: localized("변속기 기어 샤프트", "Transmission Gear Shaft", "トランスミッション・ギヤシャフト"),
+        application: localized("기어·스플라인 동력전달 계열", "Gear-and-spline power-transfer family", "ギヤ・スプライン動力伝達系列"),
         poster: powertrainShaftPoster1,
         video: powertrainShaftVideo1,
       },
       {
-        title: localized("파워트레인 샤프트 02", "Powertrain Shaft 02", "パワートレインシャフト 02"),
-        application: localized("기어·스플라인 정밀 샤프트", "Precision gear and spline shaft", "ギヤ・スプライン精密シャフト"),
-        poster: powertrainShaftPoster2,
-        video: powertrainShaftVideo2,
+        title: localized("10R140 계열 샤프트", "10R140-family Shaft", "10R140系列シャフト"),
+        application: localized("자동변속기 정밀 샤프트 계열", "Precision automatic-transmission shaft family", "オートマチックトランスミッション用精密シャフト系列"),
+        poster: transmission10r140Poster,
+        video: transmission10r140Video,
       },
     ],
     qualityControls: [
@@ -387,7 +403,7 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         ),
       },
       {
-        feature: localized("엔드 피스 주요 형상", "Critical end-piece geometry", "エンドピースの主要形状"),
+        feature: localized("캠샤프트 노즈 피스 주요 형상", "Critical camshaft nose-piece geometry", "カムシャフト・ノーズピースの主要形状"),
         characteristic: localized(
           "주요 치수·기하공차",
           "Critical dimensions and GD&T",
@@ -410,6 +426,7 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       "Transfer Case・ETM向けActuator Shaft、EMCD Hub、Disc Carrier系列を、ホビング、ブローチ、ラックローリング、レーザー溶接組立で生産します。",
     ),
     overviewImage: drivelineLineupImage,
+    overviewVideo: drivelineOverviewVideo,
     families: ["TRANSFER CASE ACTUATOR SHAFT", "EMCD HUB", "DISK CARRIER", "LASER-WELDED ASSEMBLY"],
     parts: [
       {
