@@ -24,14 +24,13 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
     },
     {
       label: "제품정보",
-      href: "#/products/electric-vehicle",
+      href: "#/products/steering",
       children: [
-        { label: "ELECTRIC VEHICLE", href: "#/products/electric-vehicle" },
+        { label: "STEERING", href: "#/products/steering" },
         { label: "POWERTRAIN", href: "#/products/powertrain" },
         { label: "DRIVELINE", href: "#/products/driveline" },
-        { label: "BALANCE SHAFT MODULE", href: "#/products/balance-shaft-module" },
-        { label: "STEERING", href: "#/products/steering" },
-        { label: "ETC", href: "#/products/etc" },
+        { label: "ELECTRIFIED POWERTRAIN", href: "#/products/electric-vehicle" },
+        { label: "MACHINED ALUMINUM COMPONENTS", href: "#/products/balance-shaft-module" },
       ],
     },
     {
@@ -90,14 +89,13 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
     },
     {
       label: "Products",
-      href: "#/products/electric-vehicle",
+      href: "#/products/steering",
       children: [
-        { label: "ELECTRIC VEHICLE", href: "#/products/electric-vehicle" },
+        { label: "STEERING", href: "#/products/steering" },
         { label: "POWERTRAIN", href: "#/products/powertrain" },
         { label: "DRIVELINE", href: "#/products/driveline" },
-        { label: "BALANCE SHAFT MODULE", href: "#/products/balance-shaft-module" },
-        { label: "STEERING", href: "#/products/steering" },
-        { label: "ETC", href: "#/products/etc" },
+        { label: "ELECTRIFIED POWERTRAIN", href: "#/products/electric-vehicle" },
+        { label: "MACHINED ALUMINUM COMPONENTS", href: "#/products/balance-shaft-module" },
       ],
     },
     {
@@ -156,14 +154,13 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
     },
     {
       label: "製品情報",
-      href: "#/products/electric-vehicle",
+      href: "#/products/steering",
       children: [
-        { label: "ELECTRIC VEHICLE", href: "#/products/electric-vehicle" },
+        { label: "STEERING", href: "#/products/steering" },
         { label: "POWERTRAIN", href: "#/products/powertrain" },
         { label: "DRIVELINE", href: "#/products/driveline" },
-        { label: "BALANCE SHAFT MODULE", href: "#/products/balance-shaft-module" },
-        { label: "STEERING", href: "#/products/steering" },
-        { label: "ETC", href: "#/products/etc" },
+        { label: "ELECTRIFIED POWERTRAIN", href: "#/products/electric-vehicle" },
+        { label: "MACHINED ALUMINUM COMPONENTS", href: "#/products/balance-shaft-module" },
       ],
     },
     {
@@ -216,7 +213,7 @@ export const routeAliases: Record<string, string> = {
   "sustainability/environmental": "esg/information",
   "sustainability/governance": "sustainability/policy",
   "sustainability/esg-report": "sustainability/policy",
-  "products/automotive": "products/electric-vehicle",
+  "products/automotive": "products/steering",
   "products/industrial": "products/etc",
   "support/news": "company/notices",
   "support/contact": "company/location",
@@ -239,7 +236,9 @@ const canonicalMenuRoutes = siteMenuGroups.flatMap((group) =>
   group.children.map((child) => child.href.replace(/^#\//, "")),
 );
 
-export const menuRoutes = [...new Set([...canonicalMenuRoutes, ...Object.keys(routeAliases)])];
+export const menuRoutes = [
+  ...new Set([...canonicalMenuRoutes, ...Object.keys(routeAliases), ...Object.values(routeAliases)]),
+];
 
 export function findMenuByRoute(route: string, language: NavigationLanguage = "ko") {
   const cleanRoute = resolveMenuRoute(route);
@@ -248,6 +247,16 @@ export function findMenuByRoute(route: string, language: NavigationLanguage = "k
   for (const group of groups) {
     const activeChild = group.children.find((child) => child.href.replace(/^#\//, "") === cleanRoute);
     if (activeChild) return { group, child: activeChild };
+  }
+
+  if (cleanRoute === "products/etc") {
+    const productGroup = groups.find((group) => group.href.startsWith("#/products/"));
+    if (productGroup) {
+      return {
+        group: productGroup,
+        child: { label: "ETC", href: "#/products/etc" },
+      };
+    }
   }
 
   return {

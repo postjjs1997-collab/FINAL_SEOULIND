@@ -12,10 +12,10 @@ import powertrainImage from "../../assets/product-application/powertrain-precise
 import precisionImage from "../../precision-inside-mobility.jpg";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
-import machiningEquipmentImage from "../../assets/manufacturing/equipment/machining-reference.webp";
-import gearSplineEquipmentImage from "../../assets/manufacturing/equipment/gear-spline-reference.jpg";
-import finishingEquipmentImage from "../../assets/manufacturing/equipment/finishing-reference.jpg";
-import automationInspectionEquipmentImage from "../../assets/manufacturing/equipment/automation-inspection-reference.jpg";
+import machiningEquipmentImage from "../../assets/company-profile/process/cnc-lathe.webp";
+import gearSplineEquipmentImage from "../../assets/company-profile/process/hobbing.webp";
+import finishingEquipmentImage from "../../assets/company-profile/process/grinding.webp";
+import automationInspectionEquipmentImage from "../../assets/company-deck/automatic-inspection-cell.jpg";
 import sustainabilityPolicyDocument from "../../assets/documents/sustainability-management-policy-seoul-industry.docx?url";
 import Icon from "./Icons";
 import { getPageConfig } from "./MenuPage";
@@ -34,6 +34,7 @@ import {
   manufacturingGroupLabels,
   manufacturingPageCopy,
   manufacturingProcesses,
+  productEvidenceByRoute,
   qualityEvidenceCopy,
   qualityEvidenceProcesses,
 } from "../data/companyProfile";
@@ -563,6 +564,14 @@ const productRouteIndex: Record<string, number> = {
   "products/etc": 5,
 };
 
+const productRouteDisplayIndex: Record<string, number> = {
+  "products/steering": 1,
+  "products/powertrain": 2,
+  "products/driveline": 3,
+  "products/electric-vehicle": 4,
+  "products/balance-shaft-module": 5,
+};
+
 const productRouteImages: Record<string, string> = {
   "products/balance-shaft-module": balanceModuleImage,
   "products/electric-vehicle": automotiveImage,
@@ -573,10 +582,10 @@ const productRouteImages: Record<string, string> = {
 };
 
 const productStandards: Record<string, string[]> = {
-  "products/electric-vehicle": ["EV OIL PUMP HOUSING / COVER", "LINK SHAFT", "EV REDUCER", "PHEV GEARBOX"],
-  "products/powertrain": ["END PIECE", "POWERTRAIN SHAFT", "ENGINE / DECELERATOR", "CLUTCH HUB"],
-  "products/driveline": ["DISK CARRIER", "SHAFT", "HUB", "INPUT SHAFT"],
-  "products/balance-shaft-module": ["HOUSING", "BEARING BORE", "OIL PASSAGE", "VIBRATION / NOISE CONTROL"],
+  "products/electric-vehicle": ["HEV GEAR SHAFT", "COAXIAL / LINK SHAFT", "E-DRIVE OUTPUT SHAFT", "HEV / PHEV / BEV"],
+  "products/powertrain": ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "END PIECE", "BALANCE SHAFT"],
+  "products/driveline": ["TRANSFER CASE", "ETM", "DISK CARRIER / HUB", "ACTUATOR SHAFT"],
+  "products/balance-shaft-module": ["EV OIL PUMP HOUSING / COVER", "BSM HOUSING / OIL PUMP", "DIE-CAST ALUMINUM", "PRECISION MACHINING"],
   "products/steering": ["PINION", "PINION SHAFT", "PISTON", "RACK BUSH", "TORSION BAR"],
   "products/etc": ["SECURE PROJECT", "PRECISION MACHINING", "LOT TRACEABILITY", "CONTROLLED PRODUCTION"],
 };
@@ -1248,12 +1257,19 @@ function ActualProductLineup({
     en: { eyebrow: "PRODUCTION PARTS", item: "Seoul Industry part", motion: "Part detail", overview: "Actual production family" },
     ja: { eyebrow: "PRODUCTION PARTS", item: "ソウル産業量産部品", motion: "部品詳細", overview: "実量産製品群" },
   }[language];
+  const lineupLabels = route === "products/electric-vehicle"
+    ? {
+        ko: { ...labels, eyebrow: "DEVELOPMENT & VALIDATION PARTS", item: "서울산업 개발·검증 부품", overview: "전동화 개발 제품군" },
+        en: { ...labels, eyebrow: "DEVELOPMENT & VALIDATION PARTS", item: "Seoul Industry development part", overview: "Electrified development family" },
+        ja: { ...labels, eyebrow: "DEVELOPMENT & VALIDATION PARTS", item: "ソウル産業の開発・検証部品", overview: "電動化開発製品群" },
+      }[language]
+    : labels;
 
   return (
     <section className="renewal-sub-product-lineup">
       <div className="renewal-sub-product-lineup__overview">
         <header data-sub-reveal>
-          <span>{labels.eyebrow}</span>
+          <span>{lineupLabels.eyebrow}</span>
           <h2>{catalog.title[language]}</h2>
           <p>{catalog.copy[language]}</p>
           <div className="renewal-sub-product-lineup__families">
@@ -1264,7 +1280,7 @@ function ActualProductLineup({
         </header>
         <figure data-sub-reveal>
           <img src={catalog.overviewImage} alt={catalog.title[language]} />
-          <figcaption>{labels.overview}</figcaption>
+          <figcaption>{lineupLabels.overview}</figcaption>
         </figure>
       </div>
       <div className={`renewal-sub-product-lineup__grid is-count-${catalog.parts.length}`}>
@@ -1280,11 +1296,11 @@ function ActualProductLineup({
               )}
               <figcaption>
                 <span>{String(index + 1).padStart(2, "0")}</span>
-                <small>{labels.motion}</small>
+                <small>{lineupLabels.motion}</small>
               </figcaption>
             </figure>
             <div>
-              <span>{labels.item}</span>
+              <span>{lineupLabels.item}</span>
               <h3>{part.title[language]}</h3>
               <p>{part.application[language]}</p>
             </div>
@@ -1553,12 +1569,17 @@ function ProductDetailBody({
 
   const productIndex = productRouteIndex[route] ?? 0;
   const product = content.products[productIndex];
-  const image = productRouteImages[route] ?? product.image;
+  const displayIndex = productRouteDisplayIndex[route] ?? productIndex + 1;
   const standards = productStandards[route] ?? [];
   const labels = bodyLabels[language];
   const catalog = productPartCatalogByRoute[route];
+  const evidence = productEvidenceByRoute[route];
+  const displayTitle = catalog?.title[language] ?? product.title;
+  const displayCopy = catalog?.copy[language] ?? product.copy;
+  const displayCategory = catalog?.eyebrow ?? product.category;
+  const image = productRouteImages[route] ?? product.image;
   const featuredParts = catalog?.parts.slice(0, 2) ?? [];
-  const applicationLabels = {
+  const defaultApplicationLabels = {
     ko: {
       area: "대표 적용 구역",
       parts: "서울산업 양산 부품",
@@ -1575,13 +1596,32 @@ function ProductDetailBody({
       note: "搭載位置や形状は車種・プログラムにより異なります。",
     },
   }[language];
+  const applicationLabels = route === "products/electric-vehicle"
+    ? {
+        ko: {
+          ...defaultApplicationLabels,
+          parts: "서울산업 개발·검증 부품",
+          note: "전동화 플랫폼의 설계 검토와 기술 검증을 위한 대표 형상입니다.",
+        },
+        en: {
+          ...defaultApplicationLabels,
+          parts: "Seoul Industry development parts",
+          note: "Representative geometry for electrified-platform design review and engineering validation.",
+        },
+        ja: {
+          ...defaultApplicationLabels,
+          parts: "ソウル産業の開発・検証部品",
+          note: "電動化プラットフォームの設計検討・技術検証向け代表形状です。",
+        },
+      }[language]
+    : defaultApplicationLabels;
 
   return (
     <>
       <section className="renewal-sub-product-detail">
         <figure data-sub-reveal>
-          <span>{String(productIndex + 1).padStart(2, "0")}</span>
-          <img src={image} alt={product.title} />
+          <span>{String(displayIndex).padStart(2, "0")}</span>
+          <img src={image} alt={displayTitle} />
           <figcaption className="renewal-sub-product-detail__application">
             <div>
               <strong>{applicationLabels.area}</strong>
@@ -1601,9 +1641,9 @@ function ProductDetailBody({
           </figcaption>
         </figure>
         <div data-sub-reveal>
-          <small>{product.category}</small>
-          <h2>{product.title}</h2>
-          <p>{product.copy}</p>
+          <small>{displayCategory}</small>
+          <h2>{displayTitle}</h2>
+          <p>{displayCopy}</p>
           <h3>{labels.application}</h3>
           <div className="renewal-sub-product-detail__tags">
             {standards.map((standard) => (
@@ -1612,6 +1652,24 @@ function ProductDetailBody({
           </div>
         </div>
       </section>
+      {evidence ? (
+        <section className="profile-product-evidence" data-sub-reveal>
+          <figure>
+            <img src={evidence.image} alt="" loading="lazy" />
+            <figcaption>{evidence.eyebrow}</figcaption>
+          </figure>
+          <div>
+            <span>{evidence.eyebrow}</span>
+            <h2>{evidence.title[language]}</h2>
+            <p>{evidence.copy[language]}</p>
+            <ul>
+              {evidence.items[language].map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
       <ActualProductLineup route={route} language={language} />
       <ProductQualitySection route={route} language={language} />
       <section className="renewal-sub-section-heading" data-sub-reveal>
@@ -2586,7 +2644,7 @@ function RenewalSubNavigation({ route, language }: { route: string; language: Re
       >
         {group.children.map((item) => (
           <a
-            className={item.label === child.label ? "is-active" : ""}
+            className={`${item.label === child.label ? "is-active" : ""}${item.href.includes("products/electric-vehicle") ? " is-electrified" : item.href.includes("products/balance-shaft-module") ? " is-aluminum" : item.href.includes("products/") ? " is-core-product" : ""}`.trim()}
             href={toRenewalHref(item.href)}
             ref={item.label === child.label ? activeItemRef : undefined}
             key={item.label}

@@ -185,6 +185,7 @@
 }
 
 .renewal-sub-depth a {
+  --product-nav-accent: var(--renewal-orange);
   position: relative;
   display: grid;
   min-width: 0;
@@ -199,6 +200,14 @@
     color 0.3s ease;
 }
 
+.renewal-sub-depth a[href*="products/electric-vehicle"] {
+  --product-nav-accent: #3e9eac;
+}
+
+.renewal-sub-depth a[href*="products/balance-shaft-module"] {
+  --product-nav-accent: #a88a60;
+}
+
 .renewal-sub-depth a:hover,
 .renewal-sub-depth a.is-active {
   background: #0f0f0f;
@@ -211,7 +220,7 @@
   bottom: 0;
   left: 50%;
   height: 3px;
-  background: var(--renewal-orange);
+  background: var(--product-nav-accent);
   content: "";
   transition:
     right 0.3s ease,
@@ -5430,7 +5439,7 @@
 
 .profile-network__regions {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid rgba(255, 255, 255, 0.16);
   border-left: 1px solid rgba(255, 255, 255, 0.16);
 }
@@ -5455,10 +5464,11 @@
 
 .profile-network__regions p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.56);
-  font-size: 0.78rem;
-  font-weight: 700;
-  line-height: 1.75;
+  color: #fff;
+  font-size: clamp(0.78rem, 1vw, 1rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
 }
 
 .profile-manufacturing-intro {

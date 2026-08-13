@@ -1,8 +1,8 @@
 import factoryImage from "../../assets/company-profile/factory.webp";
-import drivelineComponentImage from "../../assets/company-profile/driveline-component.webp";
-import evLubricationImage from "../../assets/company-profile/ev-lubrication.webp";
-import evSystemImage from "../../assets/company-profile/ev-system.webp";
-import powertrainComponentImage from "../../assets/company-profile/powertrain-component.webp";
+import machinedAluminumImage from "../../assets/company-deck/machined-aluminum-products.webp";
+import drivelineComponentImage from "../../assets/video-posters/powertrain/clutch-hub-disc-carrier.jpg";
+import electrifiedPowertrainImage from "../../assets/company-deck/electrified-gear-shaft.webp";
+import powertrainComponentImage from "../../assets/video-posters/driveline/8l90-input-shafts.jpg";
 import autoInspectionImage from "../../assets/company-profile/process/auto-inspection.webp";
 import broachingImage from "../../assets/company-profile/process/broaching.webp";
 import cmmImage from "../../assets/company-profile/process/cmm.webp";
@@ -63,13 +63,12 @@ export const companyOverviewCopy = {
     copy: "서울산업은 1985년부터 엔진과 모터의 토크를 전달하는 샤프트, 기어, 스플라인, 하우징 부품을 개발 검토부터 양산 검사까지 일관된 공정으로 생산해 왔습니다.",
     facts: [
       { label: "설립", value: "1985" },
-      { label: "본사·생산시설", value: "경기도 화성" },
-      { label: "업력", value: "40년+" },
-      { label: "사업 분야", value: "자동차 부품 정밀가공" },
+      { label: "2025 매출", value: "KRW 65,036M" },
+      { label: "해외 매출", value: "70%" },
     ],
-    systems: ["STEERING", "E-MOBILITY", "POWERTRAIN", "DRIVELINE", "TRANSMISSION"],
-    networkTitle: "글로벌 자동차 부품 프로그램과 연결된 제조 기반",
-    networkCopy: "국내 생산 거점을 중심으로 북미, 유럽, 중국, 일본의 자동차 부품 고객 프로그램에 대응합니다.",
+    systems: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM"],
+    networkTitle: "매출의 70%를 글로벌 시장에서 만드는 제조 기반",
+    networkCopy: "2025년 매출은 국내 30%, 해외 70%로 구성되며 북미·아시아·유럽의 글로벌 자동차 공급망에 대응합니다.",
   },
   en: {
     eyebrow: "INTEGRATED PRECISION MACHINING SUPPLIER",
@@ -77,13 +76,12 @@ export const companyOverviewCopy = {
     copy: "Since 1985, Seoul Industry has produced shafts, gears, splines, and housings that transfer torque from engines and motors, connecting feasibility review, mass production, and inspection in one manufacturing flow.",
     facts: [
       { label: "Founded", value: "1985" },
-      { label: "Head Office & Plant", value: "Hwaseong, Korea" },
-      { label: "Manufacturing Experience", value: "40+ Years" },
-      { label: "Business", value: "Automotive Precision Machining" },
+      { label: "2025 Revenue", value: "KRW 65,036M" },
+      { label: "Global Sales", value: "70%" },
     ],
-    systems: ["STEERING", "E-MOBILITY", "POWERTRAIN", "DRIVELINE", "TRANSMISSION"],
-    networkTitle: "A manufacturing base connected to global automotive programs",
-    networkCopy: "From its Korean production base, Seoul Industry supports automotive component programs across North America, Europe, China, and Japan.",
+    systems: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM"],
+    networkTitle: "A manufacturing base generating 70% of sales globally",
+    networkCopy: "In 2025, domestic sales accounted for 30% and global sales for 70%, supporting automotive supply chains across North America, Asia, and Europe.",
   },
   ja: {
     eyebrow: "INTEGRATED PRECISION MACHINING SUPPLIER",
@@ -91,22 +89,19 @@ export const companyOverviewCopy = {
     copy: "ソウル産業は1985年から、エンジンとモーターのトルクを伝えるシャフト、ギヤ、スプライン、ハウジングを、製造検討から量産検査まで一貫した工程で生産しています。",
     facts: [
       { label: "設立", value: "1985" },
-      { label: "本社・生産拠点", value: "韓国 京畿道華城市" },
-      { label: "製造実績", value: "40年以上" },
-      { label: "事業分野", value: "自動車部品の精密加工" },
+      { label: "2025年売上高", value: "KRW 65,036M" },
+      { label: "海外売上比率", value: "70%" },
     ],
-    systems: ["STEERING", "E-MOBILITY", "POWERTRAIN", "DRIVELINE", "TRANSMISSION"],
-    networkTitle: "グローバル自動車部品プログラムにつながる製造基盤",
-    networkCopy: "韓国の生産拠点を中心に、北米、欧州、中国、日本の自動車部品プログラムに対応します。",
+    systems: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM"],
+    networkTitle: "売上高の70％をグローバル市場で生み出す製造基盤",
+    networkCopy: "2025年の売上構成は国内30％、海外70％で、北米・アジア・欧州の自動車サプライチェーンに対応しています。",
   },
 } satisfies Record<CompanyProfileLanguage, object>;
 
 export const globalRegions = [
-  { region: "KOREA", customers: ["ZF / TRW", "AAM", "HYUNDAI MOBIS"] },
-  { region: "NORTH AMERICA", customers: ["GKN DRIVELINE", "AAM", "SPARTAN", "MAGNA POWERTRAIN"] },
-  { region: "EUROPE", customers: ["GKN DRIVELINE"] },
-  { region: "CHINA", customers: ["GKN DRIVELINE", "NEXTEER"] },
-  { region: "JAPAN", customers: ["GKN DRIVELINE", "ZF / TRW"] },
+  { region: "NORTH AMERICA", customers: ["GLOBAL PROGRAMS"] },
+  { region: "ASIA", customers: ["GLOBAL PROGRAMS"] },
+  { region: "EUROPE", customers: ["GLOBAL PROGRAMS"] },
 ];
 
 export const manufacturingGroupLabels: Record<
@@ -140,27 +135,27 @@ export const manufacturingPageCopy = {
   ko: {
     eyebrow: "MANUFACTURING CAPABILITY",
     title: "가공부터 검사까지 연결된 생산기술",
-    copy: "선삭, 기어·스플라인, 연삭, 열처리, 자동 교정과 전용 검사를 한 흐름으로 연결해 반복 양산의 정밀도를 관리합니다.",
+    copy: "선삭, 기어·스플라인, 연삭에 CQI-9 기반의 사내 고주파 열처리, CQI-15 기반의 레이저 용접, 자동 교정과 전용 검사를 연결해 반복 양산의 정밀도를 관리합니다.",
     equipmentTitle: "안정적인 양산을 뒷받침하는 보유설비",
-    equipmentCopy: "절삭, 기어·스플라인, 연삭·열처리, 자동화·검사 설비를 공정별로 운영해 다양한 부품 형상과 양산 조건에 대응합니다.",
+    equipmentCopy: "사내 가공설비와 주요 단조·열처리 협력사를 동일한 공정 계획과 품질 관리 체계로 연결합니다.",
     inspectionTitle: "측정 결과가 다시 공정으로 돌아가는 검사 기술",
     inspectionCopy: "치수와 기하공차, 기어 형상, 런아웃, 균열 여부를 전용 검사와 정밀 측정 장비로 확인합니다.",
   },
   en: {
     eyebrow: "MANUFACTURING CAPABILITY",
     title: "Production technology connected from machining to inspection",
-    copy: "Turning, gear and spline machining, grinding, heat treatment, automatic straightening, and dedicated inspection operate as one controlled production flow.",
+    copy: "Turning, gear and spline machining, and grinding connect with CQI-9-based in-house induction hardening, CQI-15-based laser welding, automatic straightening, and dedicated inspection in one controlled flow.",
     equipmentTitle: "Equipment supporting repeat production",
-    equipmentCopy: "Machining, gear and spline, finishing, heat-treatment, automation, and inspection equipment are organized by process to support varied part geometries and production requirements.",
+    equipmentCopy: "In-house equipment and key forging and heat-treatment partners are managed through the same process plan and quality-control system.",
     inspectionTitle: "Inspection technology that feeds results back into production",
     inspectionCopy: "Dimensions, GD&T, gear geometry, runout, and crack conditions are verified through dedicated inspection and precision measuring equipment.",
   },
   ja: {
     eyebrow: "MANUFACTURING CAPABILITY",
     title: "加工から検査までつながる生産技術",
-    copy: "旋削、ギヤ・スプライン加工、研削、熱処理、自動矯正、専用検査を一つの流れにつなぎ、量産精度を管理します。",
+    copy: "旋削、ギヤ・スプライン加工、研削に、CQI-9に基づく社内高周波焼入れ、CQI-15に基づくレーザー溶接、自動矯正、専用検査をつなぎ、量産精度を管理します。",
     equipmentTitle: "量産を支える保有設備",
-    equipmentCopy: "切削、ギヤ・スプライン、研削・熱処理、自動化・検査設備を工程別に運用し、多様な部品形状と量産条件に対応します。",
+    equipmentCopy: "社内設備と主要な鍛造・熱処理協力会社を、同一の工程計画と品質管理体制で統合管理します。",
     inspectionTitle: "測定結果を工程へ戻す検査技術",
     inspectionCopy: "寸法、幾何公差、ギヤ形状、振れ、亀裂を専用検査と精密測定設備で確認します。",
   },
@@ -232,8 +227,6 @@ export const equipmentInventory: EquipmentInventoryGroup[] = [
     items: [
       { name: "CNC GRINDING", count: 26 },
       { name: "SUPER FINISHING", count: 5 },
-      { name: "HARDENING", count: 3 },
-      { name: "TEMPERING", count: 2 },
       { name: "SHOT PEENING", count: 2 },
     ],
   },
@@ -248,8 +241,6 @@ export const equipmentInventory: EquipmentInventoryGroup[] = [
     items: [
       { name: "LASER WELDING", count: 1 },
       { name: "STRAIGHTENER", count: 3 },
-      { name: "AUTO INSPECTION", count: 12 },
-      { name: "CRACK INSPECTION", count: 2 },
     ],
   },
 ];
@@ -492,61 +483,80 @@ type ProductEvidence = {
 
 export const productEvidenceByRoute: Record<string, ProductEvidence> = {
   "products/electric-vehicle": {
-    eyebrow: "E-MOBILITY APPLICATION",
+    eyebrow: "ELECTRIFIED POWERTRAIN",
     title: {
-      ko: "전동화 구동계의 윤활과 동력전달 부품",
-      en: "Lubrication and power-delivery parts for electrified drivetrains",
-      ja: "電動化駆動系の潤滑・動力伝達部品",
+      ko: "HEV·PHEV·BEV용 기어 샤프트",
+      en: "Gear shafts for HEV, PHEV, and BEV platforms",
+      ja: "HEV・PHEV・BEV向けギヤシャフト",
     },
     copy: {
-      ko: "EV 감속기 윤활 시스템과 Plug-in Hybrid Gearbox에 적용되는 Link Shaft, Stud Shaft, E-drive Shaft를 생산합니다.",
-      en: "Production covers link shafts, stud shafts, and e-drive shafts used in EV reducer lubrication systems and plug-in hybrid gearboxes.",
-      ja: "EV減速機潤滑システムとプラグインハイブリッドギヤボックス向けのLink Shaft、Stud Shaft、E-drive Shaftを生産します。",
+      ko: "전동화 파워트레인의 기어 품질, 스플라인 형상, 런아웃과 표면 건전성을 기준으로 Coaxial·Link·Output Shaft를 개발 검토하고 시제품을 제작합니다.",
+      en: "Coaxial, link, and output shafts are reviewed and prototyped around gear quality, spline geometry, runout, and surface integrity for electrified powertrains.",
+      ja: "電動化パワートレイン向けに、歯車精度、スプライン形状、振れ、表面健全性を基準としてCoaxial・Link・Output Shaftを設計検討し、試作品を製作します。",
     },
     items: {
-      ko: ["EV 감속기 윤활 시스템", "Plug-in Hybrid Gearbox", "Link / Stud / E-drive Shaft", "Torque Vectoring System"],
-      en: ["EV reducer lubrication system", "Plug-in hybrid gearbox", "Link / Stud / E-drive shaft", "Torque vectoring system"],
-      ja: ["EV減速機潤滑システム", "プラグインハイブリッドギヤボックス", "Link / Stud / E-drive Shaft", "トルクベクタリングシステム"],
+      ko: ["HEV Gear Shaft", "Coaxial / Link Shaft", "E-drive Gearbox Output Shaft", "설계·엔지니어링 검증용 시제품"],
+      en: ["HEV gear shaft", "Coaxial / link shaft", "E-drive gearbox output shaft", "Prototype build for design validation"],
+      ja: ["HEV Gear Shaft", "Coaxial / Link Shaft", "E-drive Gearbox Output Shaft", "設計・技術検証用試作品"],
     },
-    image: evSystemImage,
+    image: electrifiedPowertrainImage,
   },
   "products/powertrain": {
     eyebrow: "POWERTRAIN APPLICATION",
     title: {
-      ko: "엔진·감속기용 샤프트와 클러치 허브",
-      en: "Shafts and clutch hubs for engines and reduction systems",
-      ja: "エンジン・減速機向けシャフトとクラッチハブ",
+      ko: "변속기와 엔진용 정밀 샤프트",
+      en: "Precision shafts for transmissions and engines",
+      ja: "トランスミッション・エンジン向け精密シャフト",
     },
     copy: {
-      ko: "Powertrain Shaft, Sun Gear Output Shaft와 Engine·Decelerator용 Clutch Hub, Disc Carrier 계열을 정밀가공합니다.",
-      en: "Production covers powertrain shafts, sun-gear output shafts, clutch hubs, and disc-carrier families for engine and reduction systems.",
-      ja: "Powertrain Shaft、Sun Gear Output Shaft、Clutch Hub、Disc Carrier系列を精密加工します。",
+      ko: "6단 변속기와 8L90 Input·10R140용 샤프트를 비롯해 Oil Pump Shaft, Brake Module Shaft, Camshaft Nose Piece와 Balance Shaft를 정밀가공합니다.",
+      en: "Production covers six-speed, 8L90 input, and 10R140 transmission shafts, plus oil-pump shafts, brake-module shafts, camshaft nose pieces, and balance shafts.",
+      ja: "6速、8L90 Input、10R140用トランスミッションシャフトに加え、Oil Pump Shaft、Brake Module Shaft、Camshaft Nose Piece、Balance Shaftを精密加工します。",
     },
     items: {
-      ko: ["Powertrain Shaft", "Sun Gear Output Shaft", "Clutch Hub", "Disc Carrier Assembly"],
-      en: ["Powertrain shaft", "Sun gear output shaft", "Clutch hub", "Disc carrier assembly"],
-      ja: ["Powertrain Shaft", "Sun Gear Output Shaft", "Clutch Hub", "Disc Carrier Assembly"],
+      ko: ["6-Speed / 8L90 Input / 10R140 Shaft", "Transmission Oil Pump Shaft", "Brake Module / Camshaft Nose Piece", "Balance Shaft"],
+      en: ["6-speed / 8L90 input / 10R140 shaft", "Transmission oil-pump shaft", "Brake-module / camshaft nose piece", "Balance shaft"],
+      ja: ["6-Speed / 8L90 Input / 10R140 Shaft", "Transmission Oil Pump Shaft", "Brake Module / Camshaft Nose Piece", "Balance Shaft"],
     },
     image: powertrainComponentImage,
   },
   "products/driveline": {
     eyebrow: "DRIVELINE APPLICATION",
     title: {
-      ko: "변속기와 Transfer Case의 동력전달 샤프트",
-      en: "Power-delivery shafts for transmissions and transfer cases",
-      ja: "トランスミッションとTransfer Caseの動力伝達シャフト",
+      ko: "Transfer Case와 ETM용 구동 부품",
+      en: "Drive components for transfer cases and ETM systems",
+      ja: "Transfer Case・ETM向け駆動部品",
     },
     copy: {
-      ko: "8L90 Input Shaft, Transfer Case Actuator Shaft와 10R TRS Stator Shaft 계열을 생산합니다.",
-      en: "Production includes 8L90 input shafts, transfer-case actuator shafts, and 10R TRS stator shafts.",
-      ja: "8L90 Input Shaft、Transfer Case Actuator Shaft、10R TRS Stator Shaftを生産します。",
+      ko: "Transfer Case Actuator Shaft, EMCD Hub와 Disc Carrier 계열을 호빙·브로칭·랙 롤링 및 레이저 용접 조립 공정으로 생산합니다.",
+      en: "Transfer-case actuator shafts, EMCD hubs, and disc-carrier families are produced through hobbing, broaching, rack rolling, and laser-welded assembly.",
+      ja: "Transfer Case Actuator Shaft、EMCD Hub、Disc Carrier系列を、ホビング、ブローチ、ラックローリング、レーザー溶接組立で生産します。",
     },
     items: {
-      ko: ["8L90 Input Shaft", "Transfer Case Actuator Shaft", "10R TRS Stator Shaft", "Spline / Cross Hole"],
-      en: ["8L90 input shaft", "Transfer-case actuator shaft", "10R TRS stator shaft", "Spline / cross hole"],
-      ja: ["8L90 Input Shaft", "Transfer Case Actuator Shaft", "10R TRS Stator Shaft", "Spline / Cross Hole"],
+      ko: ["Transfer Case Actuator Shaft", "EMCD Hub", "Disc Carrier / Hub", "Laser-welded Assembly"],
+      en: ["Transfer-case actuator shaft", "EMCD hub", "Disc carrier / hub", "Laser-welded assembly"],
+      ja: ["Transfer Case Actuator Shaft", "EMCD Hub", "Disc Carrier / Hub", "Laser-welded Assembly"],
     },
     image: drivelineComponentImage,
+  },
+  "products/balance-shaft-module": {
+    eyebrow: "MACHINED ALUMINUM COMPONENTS",
+    title: {
+      ko: "전동화·파워트레인용 알루미늄 가공 부품",
+      en: "Machined aluminum components for electrified and conventional powertrains",
+      ja: "電動化・パワートレイン向けアルミ加工部品",
+    },
+    copy: {
+      ko: "알루미늄 다이캐스팅 부품의 정밀가공을 통해 EV Oil Pump Housing·Cover와 Balance Shaft Module Housing·Oil Pump를 공급합니다.",
+      en: "Precision machining of aluminum die-cast parts supports EV oil-pump housings and covers, plus balance-shaft-module housings and oil pumps.",
+      ja: "アルミダイカスト部品を精密加工し、EV Oil Pump Housing・CoverとBalance Shaft Module Housing・Oil Pumpを供給します。",
+    },
+    items: {
+      ko: ["EV Oil Pump Housing", "EV Oil Pump Cover", "BSM Housing", "BSM Oil Pump"],
+      en: ["EV oil-pump housing", "EV oil-pump cover", "BSM housing", "BSM oil pump"],
+      ja: ["EV Oil Pump Housing", "EV Oil Pump Cover", "BSM Housing", "BSM Oil Pump"],
+    },
+    image: machinedAluminumImage,
   },
   "products/steering": {
     eyebrow: "STEERING APPLICATION",

@@ -44,6 +44,7 @@ export default function App() {
   useLayoutEffect(() => keepPageAtTopAfterRouteChange(), [route]);
 
   let page;
+  const resolvedRoute = resolveMenuRoute(route);
 
   if (route === "" || route === "renewal") {
     page = (
@@ -51,22 +52,22 @@ export default function App() {
         <RenewalPage />
       </Suspense>
     );
-  } else if (route === "company/notices" || route.startsWith("company/notices/")) {
+  } else if (resolvedRoute === "company/notices" || resolvedRoute.startsWith("company/notices/")) {
     page = (
       <Suspense fallback={<div style={{ minHeight: "100svh", background: "#151515" }} />}>
-        <RenewalNoticePage route={route} />
+        <RenewalNoticePage route={resolvedRoute} />
       </Suspense>
     );
   } else if (route.startsWith("renewal/")) {
     page = (
       <Suspense fallback={<div style={{ minHeight: "100svh", background: "#151515" }} />}>
-        <RenewalSubPage route={resolveMenuRoute(route)} />
+        <RenewalSubPage route={resolvedRoute} />
       </Suspense>
     );
   } else if (menuRoutes.includes(route)) {
     page = (
       <Suspense fallback={<div style={{ minHeight: "100svh", background: "#151515" }} />}>
-        <RenewalSubPage route={resolveMenuRoute(route)} />
+        <RenewalSubPage route={resolvedRoute} />
       </Suspense>
     );
   } else if (route.startsWith("news")) {

@@ -105,17 +105,17 @@ function applyKoreanCopy(content: SiteContent) {
   });
   const productCopies = [
     "엔진의 1차 진동을 상쇄하는 밸런스 샤프트 모듈용 HOUSING",
-    "EV OIL PUMP HOUSING/COVER와 PHEV 기어박스용 LINK SHAFT",
+    "HEV·PHEV·BEV용 GEAR SHAFT, COAXIAL·LINK SHAFT와 OUTPUT SHAFT 개발품",
     "PINION, PINION SHAFT, PISTON, RACK BUSH, TORSION BAR",
     "캠 샤프트용 END PIECE와 엔진·감속기용 POWERTRAIN SHAFT",
-    "DISK CARRIER, SHAFT, HUB, INPUT SHAFT 계열 부품",
+    "TRANSFER CASE·ETM용 DISK CARRIER, HUB, ACTUATOR SHAFT 계열 부품",
   ];
   const latestCopies = [
     "베어링 보어와 오일 유로를 정밀가공한 밸런스 샤프트 모듈 하우징",
-    "EV 감속기 윤활과 PHEV 동력전달을 위한 하우징·커버·링크 샤프트",
+    "전동화 플랫폼의 설계·기술 검증을 위한 기어·코액시얼·링크·출력 샤프트",
     "조향 입력을 정확하게 전달하는 피니언, 샤프트, 피스톤, 부시, 토션 바",
     "밸브 개폐 제어와 동력전달을 위한 엔드 피스·파워트레인 샤프트",
-    "변속기와 트랜스퍼 케이스용 디스크 캐리어, 샤프트, 허브, 인풋 샤프트",
+    "트랜스퍼 케이스와 ETM용 디스크 캐리어, 허브, 액추에이터 샤프트",
   ];
   productCopies.forEach((copy, index) => Object.assign(content.products[index], { copy }));
   latestCopies.forEach((copy, index) => Object.assign(content.latestParts[index], { copy }));
@@ -124,7 +124,7 @@ function applyKoreanCopy(content: SiteContent) {
     {
       id: "machining",
       title: "정밀가공\n라인업",
-      copy: "BSM, EV, Steering, Powertrain, Driveline 부품의 반복 정밀도와 표면 품질을 공정 조건으로 잡습니다. 전용 설비와 검사 기준을 함께 고정해 양산 편차를 줄입니다.",
+      copy: "Steering, Powertrain, Driveline의 3대 핵심 제품군과 전동화 개발 부품, 알루미늄 가공 부품의 반복 정밀도와 표면 품질을 공정 조건으로 관리합니다.",
     },
     {
       id: "quality",
@@ -161,7 +161,7 @@ function applyKoreanCopy(content: SiteContent) {
 
   Object.assign(content.historyHeading, {
     title: "서울산업이 제조 기준을 넓혀 온 시간",
-    copy: "1985년 조향부품 양산을 시작으로 품질 인증, 연구개발, 글로벌 고객 확대, 생산 기술 고도화를 이어오며 자동차 부품 OEM 제조 기반을 넓혀 왔습니다.",
+    copy: "1985년 설립 이후 조향부품, 파워트레인, 드라이브라인과 전동화 부품으로 영역을 넓히며 품질 인증, 연구개발, 글로벌 고객 대응과 생산 기술을 고도화해 왔습니다.",
   });
   content.historyEras = patchByIndex<HistoryEra>(content.historyEras, [
     {
@@ -232,17 +232,17 @@ function applyEnglishCopy(content: SiteContent) {
   });
   const productCopies = [
     "Housings for balance shaft modules that counter primary engine vibration.",
-    "EV oil-pump housings and covers plus link shafts for PHEV gearboxes.",
+    "Development gear, coaxial, link, and output shafts for HEV, PHEV, and BEV platforms.",
     "Pinions, pinion shafts, pistons, rack bushes, and torsion bars.",
     "Camshaft end pieces and powertrain shafts for engines and reduction systems.",
-    "Disk carriers, shafts, hubs, and input shafts for driveline systems.",
+    "Disk carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
   ];
   const latestCopies = [
     "Balance shaft module housings with precision bearing bores and oil passages.",
-    "Housings, covers, and link shafts for EV lubrication and PHEV power delivery.",
+    "Gear, coaxial, link, and output shafts for electrified-platform design validation.",
     "Pinions, shafts, pistons, bushes, and torsion bars that transfer steering input.",
     "End pieces and powertrain shafts for valve control and power delivery.",
-    "Disk carriers, shafts, hubs, and input shafts for transmissions and transfer cases.",
+    "Disk carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
   ];
   productCopies.forEach((copy, index) => Object.assign(content.products[index], { copy }));
   latestCopies.forEach((copy, index) => Object.assign(content.latestParts[index], { copy }));
@@ -251,7 +251,7 @@ function applyEnglishCopy(content: SiteContent) {
     {
       id: "machining",
       title: "Precision\nMachining Lines",
-      copy: "We machine BSM, EV, steering, powertrain, and driveline parts to repeatable tolerances and clean surface finishes. Locking process settings to inspection criteria keeps variation low, run after run.",
+      copy: "We control repeat accuracy and surface quality across three core families—Steering, Powertrain, and Driveline—plus electrified development and machined-aluminum parts.",
     },
     {
       id: "quality",
@@ -291,7 +291,7 @@ function applyEnglishCopy(content: SiteContent) {
 
   Object.assign(content.historyHeading, {
     title: "How Seoul Industry built its manufacturing base",
-    copy: "Since 1985, Seoul Industry has grown from a steering-parts maker into a full OEM manufacturing partner — with certified quality systems, in-house R&D, global customers, and advanced production technology.",
+    copy: "Founded in 1985, Seoul Industry expanded from steering into powertrain, driveline, and electrified components while strengthening certified quality, R&D, global customer support, and production technology.",
   });
   content.historyEras = patchByIndex<HistoryEra>(content.historyEras, [
     {
@@ -360,17 +360,17 @@ function applyJapaneseCopy(content: SiteContent) {
   });
   const productCopies = [
     "エンジンの一次振動を相殺するバランスシャフトモジュール用HOUSING",
-    "EV OIL PUMP HOUSING/COVERとPHEVギヤボックス用LINK SHAFT",
+    "HEV・PHEV・BEV向けGEAR SHAFT、COAXIAL・LINK SHAFT、OUTPUT SHAFT開発品",
     "PINION、PINION SHAFT、PISTON、RACK BUSH、TORSION BAR",
     "カムシャフト用END PIECEとエンジン・減速機用POWERTRAIN SHAFT",
-    "DISK CARRIER、SHAFT、HUB、INPUT SHAFT系列部品",
+    "TRANSFER CASE・ETM向けDISK CARRIER、HUB、ACTUATOR SHAFT系列部品",
   ];
   const latestCopies = [
     "ベアリングボアとオイル流路を精密加工したバランスシャフトモジュール・ハウジング",
-    "EV潤滑とPHEV動力伝達向けのハウジング、カバー、リンクシャフト",
+    "電動化プラットフォームの設計・技術検証向けギヤ、コアキシャル、リンク、出力シャフト",
     "操舵入力を正確に伝えるピニオン、シャフト、ピストン、ブッシュ、トーションバー",
     "バルブ開閉制御と動力伝達向けのエンドピース・パワートレインシャフト",
-    "トランスミッションとTransfer Case向けのディスクキャリア、シャフト、ハブ、インプットシャフト",
+    "Transfer Case・ETM向けディスクキャリア、ハブ、アクチュエーターシャフト",
   ];
   productCopies.forEach((copy, index) => Object.assign(content.products[index], { copy }));
   latestCopies.forEach((copy, index) => Object.assign(content.latestParts[index], { copy }));
@@ -379,7 +379,7 @@ function applyJapaneseCopy(content: SiteContent) {
     {
       id: "machining",
       title: "精密加工\nライン",
-      copy: "BSM、EV、ステアリング、パワートレイン、ドライブライン部品の反復精度と表面品質を工程条件で造り込みます。専用の加工条件と検査基準をそろえ、量産でのばらつきを抑え込みます。",
+      copy: "Steering、Powertrain、Drivelineの3大中核製品群に加え、電動化開発部品とアルミ加工部品の反復精度・表面品質を工程条件で管理します。",
     },
     {
       id: "quality",
@@ -416,7 +416,7 @@ function applyJapaneseCopy(content: SiteContent) {
 
   Object.assign(content.historyHeading, {
     title: "ソウル産業が製造基盤を広げてきた歩み",
-    copy: "1985年の操舵部品量産を起点に、品質認証、研究開発、グローバル顧客の拡大、生産技術の高度化を重ね、自動車部品OEM製造の基盤を広げてきました。",
+    copy: "1985年の設立以降、操舵部品からパワートレイン、ドライブライン、電動化部品へ領域を広げ、品質認証、研究開発、グローバル顧客対応、生産技術を高度化してきました。",
   });
   content.historyEras = patchByIndex<HistoryEra>(content.historyEras, [
     {

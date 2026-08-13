@@ -8,8 +8,10 @@ import powertrainImage from "../../assets/product-application/powertrain-precise
 import precisionHeroImage from "../../precision-inside-mobility.jpg";
 import steeringImage from "../../assets/product-application/steering-precise.webp";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
-import manufacturingProcessHeroImage from "../../assets/manufacturing/hero/production-process-cnc.jpg";
-import manufacturingEquipmentHeroImage from "../../assets/manufacturing/hero/equipment-automation.jpg";
+import officialFactoryImage from "../../assets/company-profile/factory.webp";
+import manufacturingProcessHeroImage from "../../assets/company-deck/automation-gantry-line.webp";
+import manufacturingEquipmentHeroImage from "../../assets/company-deck/robot-automation-cell.webp";
+import automaticInspectionHeroImage from "../../assets/company-deck/automatic-inspection-cell.jpg";
 import manufacturingInspectionHeroImage from "../../assets/process-videos/inspection-00-04.jpg";
 import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
 import BrainallLogo from "./BrainallLogo";
@@ -40,18 +42,21 @@ export type PageConfig = {
 const menuHeroImage = (id: string, width = 1800) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=82`;
 
 const menuHeroImages = {
-  factory: manufacturingProcessHeroImage,
+  factory: officialFactoryImage,
+  manufacturing: manufacturingProcessHeroImage,
+  automation: manufacturingEquipmentHeroImage,
+  automaticInspection: automaticInspectionHeroImage,
   precision: manufacturingInspectionHeroImage,
   measurement: manufacturingInspectionHeroImage,
   documents: menuHeroImage("photo-1450101499163-c8848c66ca85"),
   solar: menuHeroImage("photo-1497435334941-8c899ee9e8e9"),
   governance: seoulIndustryFacadeImage,
-  report: manufacturingEquipmentHeroImage,
+  report: officialFactoryImage,
   industrial: manufacturingEquipmentHeroImage,
   news: seoulIndustryFacadeImage,
   contact: seoulIndustryFacadeImage,
   recruit: seoulIndustryFacadeImage,
-  jobs: manufacturingEquipmentHeroImage,
+  jobs: officialFactoryImage,
 };
 
 const pageConfigs: Record<string, PageConfig> = {
@@ -126,9 +131,9 @@ const pageConfigs: Record<string, PageConfig> = {
     category: "PRODUCT",
     groupTitle: "제품소개",
     eyebrow: "Automotive",
-    title: "자동차",
-    lead: "BSM, EV, Steering, Powertrain, Driveline 등 자동차 주요 시스템에 필요한 정밀 가공 부품을 생산합니다.",
-    heroCopy: "도면 검토부터 샘플, 양산, 검사, 출하까지 자동차 부품 OEM 생산의 흐름을 안정적으로 연결합니다.",
+    title: "자동차 정밀가공 부품",
+    lead: "Steering·Powertrain·Driveline 3대 핵심 제품군에 전동화 개발 부품과 알루미늄 가공 부품 역량을 확장합니다.",
+    heroCopy: "도면 검토부터 시제품 검증, 양산, 검사, 출하까지 자동차 부품 OEM 제조의 흐름을 연결합니다.",
     image: menuHeroImages.precision,
     imagePosition: "center 45%",
   },
@@ -229,9 +234,9 @@ const pageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record<string,
     },
     "products/automotive": {
       groupTitle: "Products",
-      title: "Automotive",
-      lead: "We manufacture precision-machined parts for core automotive systems including BSM, EV, Steering, Powertrain, and Driveline.",
-      heroCopy: "From drawing review, samples, mass production, inspection, and shipment, we connect the full OEM production flow for automotive components.",
+      title: "Automotive Precision Components",
+      lead: "Three core families—Steering, Powertrain, and Driveline—are extended by electrified development parts and machined aluminum components.",
+      heroCopy: "Drawing review, prototype validation, production, inspection, and shipment operate as one connected OEM manufacturing flow.",
     },
     "products/industrial": {
       groupTitle: "Products",
@@ -303,9 +308,9 @@ const pageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record<string,
     },
     "products/automotive": {
       groupTitle: "製品紹介",
-      title: "自動車",
-      lead: "BSM、EV、Steering、Powertrain、Drivelineなど、自動車主要システムに必要な精密加工部品を生産します。",
-      heroCopy: "図面検討からサンプル、量産、検査、出荷まで、自動車部品OEM生産の流れを安定してつなぎます。",
+      title: "自動車精密加工部品",
+      lead: "Steering・Powertrain・Drivelineの3大中核製品群に、電動化開発部品とアルミ加工部品の対応力を広げています。",
+      heroCopy: "図面検討、試作検証、量産、検査、出荷までを一つのOEM製造フローとしてつなぎます。",
     },
     "products/industrial": {
       groupTitle: "製品紹介",
@@ -393,10 +398,10 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     route: "products/electric-vehicle",
     category: "PRODUCT",
     groupTitle: "제품정보",
-    eyebrow: "Electric Vehicle",
-    title: "ELECTRIC VEHICLE",
-    lead: "EV OIL PUMP HOUSING/COVER와 LINK SHAFT를 생산해 전동화 구동계의 윤활과 동력전달을 지원합니다.",
-    heroCopy: "EV 감속기 윤활 시스템과 PHEV 기어박스의 조립 정합성, 유로, 샤프트 정밀도를 양산 조건으로 관리합니다.",
+    eyebrow: "HEV / PHEV / BEV Platform",
+    title: "ELECTRIFIED POWERTRAIN",
+    lead: "HEV·PHEV·BEV용 GEAR SHAFT, COAXIAL·LINK SHAFT와 OUTPUT SHAFT를 설계 검토하고 시제품으로 검증합니다.",
+    heroCopy: "전동화 아키텍처에서도 기어 품질, 스플라인 형상, 런아웃과 표면 건전성을 동일한 정밀 기준으로 관리합니다.",
     image: automotiveImage,
     imagePosition: "center",
   },
@@ -404,10 +409,10 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     route: "products/powertrain",
     category: "PRODUCT",
     groupTitle: "제품정보",
-    eyebrow: "Powertrain",
+    eyebrow: "Transmission & Engine",
     title: "POWERTRAIN",
-    lead: "캠 샤프트 밸브 개폐를 조절하는 END PIECE와 엔진·감속기용 POWERTRAIN SHAFT 계열을 생산합니다.",
-    heroCopy: "기어·스플라인 형상, 동심도와 회전 정밀도를 공정별로 관리해 파워트레인 부품의 반복 품질을 확보합니다.",
+    lead: "변속기·엔진용 SHAFT, END PIECE, BALANCE SHAFT 계열 부품을 생산해 토크와 동력 전달을 지원합니다.",
+    heroCopy: "기어·스플라인 형상, 베어링 장착면, 런아웃과 표면 건전성을 공정별로 관리해 반복 양산 품질을 확보합니다.",
     image: powertrainImage,
     imagePosition: "center 70%",
   },
@@ -415,10 +420,10 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     route: "products/driveline",
     category: "PRODUCT",
     groupTitle: "제품정보",
-    eyebrow: "Driveline",
+    eyebrow: "Transfer Case / ETM",
     title: "DRIVELINE",
-    lead: "DISK CARRIER, SHAFT, HUB, INPUT SHAFT를 생산해 변속기와 트랜스퍼 케이스의 동력 전달을 지원합니다.",
-    heroCopy: "스플라인, 크로스홀, 동심도와 런아웃을 관리하고 오일 분배 기능까지 고려해 조립 신뢰성을 높입니다.",
+    lead: "TRANSFER CASE와 ETM용 DISK CARRIER, HUB, ACTUATOR SHAFT 계열을 생산합니다.",
+    heroCopy: "HOBBING, BROACHING, RACK ROLLING과 LASER WELDING 공정을 연결해 동력 배분과 AWD 제어 부품의 조립 신뢰성을 높입니다.",
     image: drivelineImage,
     imagePosition: "center",
   },
@@ -426,10 +431,10 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     route: "products/balance-shaft-module",
     category: "PRODUCT",
     groupTitle: "제품정보",
-    eyebrow: "Balance Shaft Module",
-    title: "BALANCE SHAFT MODULE",
-    lead: "엔진의 1차 진동을 회전축으로 상쇄하는 밸런스 샤프트 모듈용 HOUSING을 생산합니다.",
-    heroCopy: "알루미늄 하우징의 복합 형상, 베어링 보어, 조립면과 오일 유로를 관리해 진동·소음 저감 성능을 뒷받침합니다.",
+    eyebrow: "Machined Aluminum",
+    title: "MACHINED ALUMINUM COMPONENTS",
+    lead: "EV 감속기 윤활 시스템용 OIL PUMP HOUSING·COVER와 BALANCE SHAFT MODULE HOUSING·OIL PUMP를 정밀가공합니다.",
+    heroCopy: "알루미늄 주조 부품의 유로, 베어링 보어, 조립면과 복합 형상을 관리해 전동화 드라이브라인과 BSM의 기능 품질을 확보합니다.",
     image: balanceModuleImage,
     imagePosition: "center",
   },
@@ -437,10 +442,10 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     route: "products/steering",
     category: "PRODUCT",
     groupTitle: "제품정보",
-    eyebrow: "Steering",
+    eyebrow: "Steering Assembly Parts",
     title: "STEERING",
-    lead: "PINION, PINION SHAFT, PISTON, RACK BUSH, TORSION BAR 등 조향 기어 장치의 기능 부품을 생산합니다.",
-    heroCopy: "기어·스플라인 가공, 열처리, 교정과 런아웃 검사를 연결해 운전자의 조향 입력이 정확하게 전달되도록 관리합니다.",
+    lead: "PINION, PINION SHAFT, PISTON, RACK BUSH, TORSION BAR 등 조향 장치의 핵심 기능 부품을 생산합니다.",
+    heroCopy: "헬리컬 기어와 스플라인 가공, 열처리, 교정과 런아웃 검사를 연결해 조향 입력을 정밀하게 전달합니다.",
     image: steeringImage,
     imagePosition: "center",
   },
@@ -463,7 +468,7 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     title: "생산공정",
     lead: "선삭에서 기어·스플라인, 연삭, 열처리, 교정과 검사까지 부품별 공정을 연속된 품질 흐름으로 설계합니다.",
     heroCopy: "각 공정의 결과를 다음 공정의 기준과 연결해 장기 양산에서도 반복 정밀도와 표면 품질을 유지합니다.",
-    image: manufacturingProcessHeroImage,
+    image: menuHeroImages.manufacturing,
     imagePosition: "center 50%",
   },
   "manufacturing/equipment": {
@@ -474,7 +479,7 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     title: "보유설비·자동화",
     lead: "부품 형상과 품질 기준에 맞춘 CNC, 기어가공, 연삭, 열처리, 자동화 설비를 공정 목적별로 운영합니다.",
     heroCopy: "설비 조건과 전용 치공구, 자동 이송과 측정을 연결해 공정 편차와 작업 의존도를 줄입니다.",
-    image: manufacturingEquipmentHeroImage,
+    image: menuHeroImages.automation,
     imagePosition: "center 48%",
   },
   "manufacturing/inspection": {
@@ -485,7 +490,7 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     title: "검사기술",
     lead: "치수와 기하공차, 기어 형상, 런아웃과 균열을 자동검사·CMM·전용 측정 장비로 확인합니다.",
     heroCopy: "측정 데이터를 교정과 공정조건, 출하 판정에 다시 연결해 예방 중심의 품질 흐름을 운영합니다.",
-    image: manufacturingInspectionHeroImage,
+    image: menuHeroImages.automaticInspection,
     imagePosition: "center 52%",
   },
   "quality/policy": {
@@ -585,11 +590,11 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
     "company/history": { groupTitle: "Company" },
     "company/location": { groupTitle: "Company", title: "Location", lead: "Seoul Industry's head office and precision-machining plant are located in Yanggam-myeon, Hwaseong.", heroCopy: "Please coordinate your visit in advance so we can arrange site access and meetings smoothly." },
     "company/notices": { groupTitle: "Company", title: "Notices", lead: "Review Seoul Industry updates on products, quality, recruitment, and company operations.", heroCopy: "We provide customers and partners with accurate company information in a timely manner." },
-    "products/electric-vehicle": { groupTitle: "Products", lead: "EV oil-pump housings and covers plus link shafts for electrified drivetrain lubrication and power delivery.", heroCopy: "Flow passages, assembly fit, and shaft accuracy are controlled for EV reducers and PHEV gearboxes." },
-    "products/powertrain": { groupTitle: "Products", lead: "End pieces for camshaft valve control and powertrain shafts for engine and reduction systems.", heroCopy: "Gear and spline geometry, concentricity, and rotational accuracy are controlled for repeatable powertrain quality." },
-    "products/driveline": { groupTitle: "Products", lead: "Disk carriers, shafts, hubs, and input shafts for transmissions and transfer cases.", heroCopy: "Splines, cross holes, concentricity, runout, and oil distribution are controlled for reliable driveline assembly." },
-    "products/balance-shaft-module": { groupTitle: "Products", lead: "Housings for balance shaft modules that counter primary engine vibration.", heroCopy: "Complex geometry, bearing bores, assembly faces, and oil passages support vibration and noise reduction." },
-    "products/steering": { groupTitle: "Products", lead: "Pinions, pinion shafts, pistons, rack bushes, and torsion bars for steering gear systems.", heroCopy: "Gear and spline machining, heat treatment, straightening, and runout inspection keep steering input precise." },
+    "products/electric-vehicle": { groupTitle: "Products", eyebrow: "HEV / PHEV / BEV Platform", title: "ELECTRIFIED POWERTRAIN", lead: "Gear, coaxial, link, and output shafts are reviewed and prototyped for HEV, PHEV, and BEV design validation.", heroCopy: "Gear quality, spline geometry, runout, and surface integrity guide engineering verification as electrified architectures evolve." },
+    "products/powertrain": { groupTitle: "Products", eyebrow: "Transmission & Engine", title: "POWERTRAIN", lead: "Shafts, end pieces, and balance-shaft families for transmission and engine torque delivery.", heroCopy: "Gear and spline geometry, bearing seats, runout, and surface integrity are controlled for repeatable production quality." },
+    "products/driveline": { groupTitle: "Products", eyebrow: "Transfer Case / ETM", title: "DRIVELINE", lead: "Disk carriers, hubs, and actuator shafts for transfer-case and electronic torque-management systems.", heroCopy: "Hobbing, broaching, rack rolling, and laser-welding processes support reliable torque distribution and AWD control." },
+    "products/balance-shaft-module": { groupTitle: "Products", eyebrow: "Machined Aluminum", title: "MACHINED ALUMINUM COMPONENTS", lead: "EV oil-pump housings and covers plus balance-shaft-module housings and oil pumps.", heroCopy: "Oil passages, bearing bores, assembly faces, and complex aluminum geometry are controlled for electric-driveline and BSM performance." },
+    "products/steering": { groupTitle: "Products", eyebrow: "Steering Assembly Parts", title: "STEERING", lead: "Pinions, pinion shafts, pistons, rack bushes, and torsion bars for steering assemblies.", heroCopy: "Helical-gear and spline machining, heat treatment, straightening, and runout inspection keep steering input precise." },
     "products/etc": { groupTitle: "Products", eyebrow: "Defense & Special Projects", title: "Defense & Special Projects", lead: "We support defense and other security-sensitive programs with high-precision machining and controlled quality systems.", heroCopy: "Specific products and customers remain confidential. Within approved disclosure boundaries, we manage feasibility, process design, production quality, and lot traceability as one controlled flow." },
     "manufacturing/process": { groupTitle: "Manufacturing", title: "Production Process", lead: "Turning, gear and spline machining, grinding, heat treatment, straightening, and inspection are designed as one connected quality flow.", heroCopy: "The output of each operation becomes the standard for the next, maintaining repeat accuracy and surface quality over long production runs." },
     "manufacturing/equipment": { groupTitle: "Manufacturing", title: "Equipment & Automation", lead: "CNC, gear machining, grinding, heat treatment, and automation equipment are configured around part geometry and quality criteria.", heroCopy: "Equipment settings, dedicated fixtures, transfer automation, and measurement reduce process variation and operator dependency." },
@@ -609,11 +614,11 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
     "company/history": { groupTitle: "企業情報" },
     "company/location": { groupTitle: "企業情報", title: "アクセス", lead: "ソウル産業の本社と精密加工工場は京畿道華城市楊甘面にあります。", heroCopy: "ご訪問前に担当者と日程をご調整いただくと、入場と打ち合わせを円滑にご案内できます。" },
     "company/notices": { groupTitle: "企業情報", title: "お知らせ", lead: "製品、品質、採用、会社運営に関するソウル産業の主要情報をご覧いただけます。", heroCopy: "お客様と協力会社に必要な会社情報を正確かつ迅速にお伝えします。" },
-    "products/electric-vehicle": { groupTitle: "製品情報", lead: "EV OIL PUMP HOUSING/COVERとLINK SHAFTを生産し、電動化駆動系の潤滑と動力伝達を支えます。", heroCopy: "EV減速機とPHEVギヤボックスの流路、組立整合性、シャフト精度を量産条件として管理します。" },
-    "products/powertrain": { groupTitle: "製品情報", lead: "カムシャフトのバルブ開閉を調整するEND PIECEとエンジン・減速機用POWERTRAIN SHAFTを生産します。", heroCopy: "ギヤ・スプライン形状、同心度、回転精度を工程別に管理し、パワートレイン部品の反復品質を確保します。" },
-    "products/driveline": { groupTitle: "製品情報", lead: "DISK CARRIER、SHAFT、HUB、INPUT SHAFTを生産し、トランスミッションとTransfer Caseの動力伝達を支えます。", heroCopy: "スプライン、クロスホール、同心度、振れ、オイル分配機能を管理し、組立信頼性を高めます。" },
-    "products/balance-shaft-module": { groupTitle: "製品情報", lead: "エンジンの一次振動を回転軸で相殺するバランスシャフトモジュール用HOUSINGを生産します。", heroCopy: "複合形状、ベアリングボア、組立面、オイル流路を管理し、振動・騒音低減を支えます。" },
-    "products/steering": { groupTitle: "製品情報", lead: "PINION、PINION SHAFT、PISTON、RACK BUSH、TORSION BARなどステアリングギヤの機能部品を生産します。", heroCopy: "ギヤ・スプライン加工、熱処理、矯正、振れ検査をつなぎ、操舵入力を正確に伝えます。" },
+    "products/electric-vehicle": { groupTitle: "製品情報", eyebrow: "HEV / PHEV / BEV Platform", title: "ELECTRIFIED POWERTRAIN", lead: "HEV・PHEV・BEV向けGEAR SHAFT、COAXIAL・LINK SHAFT、OUTPUT SHAFTを設計検討し、試作で検証します。", heroCopy: "ギヤ品質、スプライン形状、振れ、表面健全性を基準に技術検証を行います。" },
+    "products/powertrain": { groupTitle: "製品情報", eyebrow: "Transmission & Engine", title: "POWERTRAIN", lead: "トランスミッション・エンジン向けSHAFT、END PIECE、BALANCE SHAFT系列を生産し、トルクと動力の伝達を支えます。", heroCopy: "ギヤ・スプライン形状、ベアリング取付面、振れ、表面健全性を工程ごとに管理し、量産品質を確保します。" },
+    "products/driveline": { groupTitle: "製品情報", eyebrow: "Transfer Case / ETM", title: "DRIVELINE", lead: "TRANSFER CASEおよびETM向けDISK CARRIER、HUB、ACTUATOR SHAFT系列を生産します。", heroCopy: "HOBBING、BROACHING、RACK ROLLING、LASER WELDINGをつなぎ、トルク配分とAWD制御部品の組立信頼性を高めます。" },
+    "products/balance-shaft-module": { groupTitle: "製品情報", eyebrow: "Machined Aluminum", title: "MACHINED ALUMINUM COMPONENTS", lead: "EV減速機潤滑システム向けOIL PUMP HOUSING・COVERとBALANCE SHAFT MODULE HOUSING・OIL PUMPを精密加工します。", heroCopy: "アルミ鋳造部品の流路、ベアリングボア、組立面、複合形状を管理し、電動ドライブラインとBSMの機能品質を確保します。" },
+    "products/steering": { groupTitle: "製品情報", eyebrow: "Steering Assembly Parts", title: "STEERING", lead: "PINION、PINION SHAFT、PISTON、RACK BUSH、TORSION BARなど、ステアリングアセンブリの主要機能部品を生産します。", heroCopy: "ヘリカルギヤ・スプライン加工、熱処理、矯正、振れ検査をつなぎ、操舵入力を正確に伝えます。" },
     "products/etc": { groupTitle: "製品情報", eyebrow: "Defense & Special Projects", title: "防衛・特殊事業", lead: "防衛分野を含む機密性の高い特殊プロジェクトに、精密加工と統制された品質管理で対応します。", heroCopy: "製品・顧客情報は公開せず、承認された範囲で開発検討、工程設計、量産品質、LOT追跡を一貫管理します。" },
     "manufacturing/process": { groupTitle: "生産技術", title: "生産工程", lead: "旋削、ギヤ・スプライン加工、研削、熱処理、矯正、検査を一つの品質フローとして設計します。", heroCopy: "各工程の結果を次工程の基準につなげ、長期量産でも反復精度と表面品質を維持します。" },
     "manufacturing/equipment": { groupTitle: "生産技術", title: "保有設備・自動化", lead: "部品形状と品質基準に合わせ、CNC、ギヤ加工、研削、熱処理、自動化設備を運用します。", heroCopy: "設備条件、専用治具、自動搬送、測定をつなげて工程ばらつきと作業依存を抑えます。" },
@@ -694,8 +699,6 @@ const certificateCards = [
   { title: "SQ 인증", copy: "현대모비스 열처리·고주파열처리 협력사 품질 인증" },
   { title: "INNOBIZ", copy: "기술 혁신형 중소기업으로서의 제조 기술 역량 인증" },
   { title: "VDA 6.3", copy: "자동차 부품 제조 공정의 프로세스 감사 대응 기준" },
-  { title: "CQI-9", copy: "Induction Hardening 열처리 특수공정 품질 평가 기준" },
-  { title: "CQI-15", copy: "Laser Welding 용접 특수공정 품질 평가 기준" },
 ];
 
 const environmentalSteps = [
@@ -787,7 +790,7 @@ const esgFlowSteps = [
   { label: "Record", title: "기록과 공유", copy: "조치 결과와 개선 이력을 남기고 고객 요구사항, 인증 기준, 내부 교육과 연결합니다." },
 ];
 
-const esgStandardBadges = ["ISO 14001", "IATF 16949", "ISO 9001", "SQ", "INNOBIZ", "VDA 6.3", "CQI-9", "CQI-15"];
+const esgStandardBadges = ["ISO 14001", "IATF 16949", "ISO 9001", "SQ", "INNOBIZ", "VDA 6.3"];
 
 type EsgPageCopy = {
   landingEyebrow: string;

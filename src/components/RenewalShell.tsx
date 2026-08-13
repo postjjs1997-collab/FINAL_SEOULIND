@@ -70,6 +70,13 @@ function routeBelongsToGroup(route: string, group: SiteMenuGroup) {
   return group.children.some((child) => child.href.replace(/^#\/?/, "") === cleanRoute);
 }
 
+function productGroupClass(href: string) {
+  if (href.includes("products/electric-vehicle")) return "is-electrified";
+  if (href.includes("products/balance-shaft-module")) return "is-aluminum";
+  if (href.includes("products/")) return "is-core-product";
+  return "";
+}
+
 export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "" }: RenewalShellProps) {
   const [solid, setSolid] = useState(currentRoute.length > 0);
   const [open, setOpen] = useState(false);
@@ -120,7 +127,7 @@ export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "
                 {!directGroup && (
                   <div className="renewal-nav__dropdown">
                     {group.children.map((child) => (
-                      <a href={child.href} key={child.label}>
+                      <a className={productGroupClass(child.href)} href={child.href} key={child.label}>
                         {child.label}
                       </a>
                     ))}
@@ -167,7 +174,7 @@ export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "
                 {!directGroup && (
                   <div>
                     {group.children.map((child) => (
-                      <a href={child.href} onClick={() => setOpen(false)} key={child.label}>
+                      <a className={productGroupClass(child.href)} href={child.href} onClick={() => setOpen(false)} key={child.label}>
                         {child.label}
                       </a>
                     ))}

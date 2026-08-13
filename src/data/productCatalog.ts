@@ -12,19 +12,25 @@ import electricVehicleVideo1 from "../../assets/product-alpha/electric-vehicle1.
 import electricVehicleVideo2 from "../../assets/product-alpha/electric-vehicle2.webm";
 import electricVehiclePoster1 from "../../assets/video-posters/electric-vehicle1.jpg";
 import electricVehiclePoster2 from "../../assets/video-posters/electric-vehicle2.jpg";
-import electricVehicleLinkShaftImage from "../../assets/product-catalog/electric-vehicle/link-shaft.jpg";
+import electrifiedGearShaftImage from "../../assets/company-deck/electrified-gear-shaft.webp";
+import electrifiedLinkShaftImage from "../../assets/company-deck/electrified-link-shaft.webp";
+import electrifiedCoaxialShaftImage from "../../assets/company-deck/electrified-coaxial-shaft.webp";
+import electrifiedOutputShaftImage from "../../assets/company-deck/electrified-output-shaft.webp";
+import machinedAluminumProductsImage from "../../assets/company-deck/machined-aluminum-products.webp";
 import steeringVideo1 from "../../assets/product-alpha/steering1.webm";
 import steeringVideo2 from "../../assets/product-alpha/steering2.webm";
 import steeringPoster1 from "../../assets/video-posters/steering1.jpg";
 import steeringPoster2 from "../../assets/video-posters/steering2.jpg";
 import drivelineVideo1 from "../../assets/product-alpha/driveline1.webm";
-import drivelineVideo2 from "../../assets/product-alpha/driveline2.webm";
 import drivelineVideo3 from "../../assets/product-alpha/driveline3.webm";
 import drivelinePoster1 from "../../assets/video-posters/driveline1.jpg";
-import drivelinePoster2 from "../../assets/video-posters/driveline2.jpg";
 import drivelinePoster3 from "../../assets/video-posters/driveline3.jpg";
-import bsmLineupImage from "../../assets/product-catalog/lineup/balance-shaft-module.webp";
-import electricVehicleLineupImage from "../../assets/product-catalog/lineup/electric-vehicle.webp";
+import transferCaseActuatorPoster from "../../assets/video-posters/driveline/transfer-case-actuator-shafts.jpg";
+import transferCaseActuatorVideo from "../../assets/product-alpha/driveline/transfer-case-actuator-shafts.webm";
+import discCarrierPoster from "../../assets/video-posters/powertrain/clutch-hub-disc-carrier.jpg";
+import discCarrierVideo from "../../assets/product-alpha/powertrain/clutch-hub-disc-carrier.webm";
+import transmissionOutputPoster from "../../assets/video-posters/powertrain/8l90-output-shafts.jpg";
+import transmissionOutputVideo from "../../assets/product-alpha/powertrain/8l90-output-shafts.webm";
 import steeringLineupImage from "../../assets/product-catalog/lineup/steering.webp";
 import powertrainLineupImage from "../../assets/product-catalog/lineup/powertrain.webp";
 import drivelineLineupImage from "../../assets/product-catalog/lineup/driveline.webp";
@@ -34,8 +40,6 @@ import powertrainShaftVideo1 from "../../assets/product-catalog/powertrain/power
 import powertrainShaftVideo2 from "../../assets/product-catalog/powertrain/powertrain-shaft-02.webm";
 import powertrainShaftPoster1 from "../../assets/product-catalog/powertrain/powertrain-shaft-01.jpg";
 import powertrainShaftPoster2 from "../../assets/product-catalog/powertrain/powertrain-shaft-02.jpg";
-import inputShaftImage from "../../assets/product-catalog/driveline/input-shaft.jpg";
-import inputShaftVideo from "../../assets/product-catalog/driveline/input-shaft.webm";
 import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
 
 export type ProductCatalogLanguage = "ko" | "en" | "ja";
@@ -69,20 +73,32 @@ const localized = (ko: string, en: string, ja: string): ProductLocalizedText => 
 
 export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   "products/balance-shaft-module": {
-    eyebrow: "BALANCE SHAFT MODULE PARTS",
+    eyebrow: "MACHINED ALUMINUM COMPONENTS",
     title: localized(
-      "밸런스 샤프트 모듈 하우징",
-      "Balance shaft module housings",
-      "バランスシャフトモジュール・ハウジング",
+      "전동화·파워트레인용 알루미늄 가공 부품",
+      "Machined aluminum components for electrified and conventional powertrains",
+      "電動化・パワートレイン向けアルミ加工部品",
     ),
     copy: localized(
-      "엔진의 1차 진동을 상쇄하는 밸런스 샤프트 모듈용 알루미늄 하우징입니다. 베어링 보어, 조립면, 오일 유로의 정밀도를 통합 관리합니다.",
-      "Aluminum housings for balance shaft modules that counter primary engine vibration, with integrated control of bearing bores, assembly faces, and oil passages.",
-      "エンジンの一次振動を相殺するバランスシャフトモジュール用アルミハウジングです。ベアリングボア、組立面、オイル流路を一体的に精密管理します。",
+      "EV 감속기용 오일펌프 하우징·커버와 밸런스 샤프트 모듈용 하우징·오일펌프를 가공합니다. 베어링 보어, 조립면, 오일 유로의 정밀도를 통합 관리합니다.",
+      "Machining covers EV oil-pump housings and covers plus balance-shaft-module housings and oil pumps, with integrated control of bearing bores, assembly faces, and oil passages.",
+      "EV用オイルポンプのハウジング・カバーと、バランスシャフトモジュール用ハウジング・オイルポンプを加工し、ベアリングボア、組立面、オイル流路を一体管理します。",
     ),
-    overviewImage: bsmLineupImage,
-    families: ["HOUSING"],
+    overviewImage: machinedAluminumProductsImage,
+    families: ["EV OIL PUMP HOUSING / COVER", "BSM HOUSING / OIL PUMP"],
     parts: [
+      {
+        title: localized("EV 오일 펌프 하우징·커버 01", "EV Oil Pump Housing / Cover 01", "EVオイルポンプ・ハウジング／カバー 01"),
+        application: localized("EV 감속기 윤활 시스템", "EV reducer lubrication system", "EV減速機潤滑システム"),
+        poster: electricVehiclePoster1,
+        video: electricVehicleVideo1,
+      },
+      {
+        title: localized("EV 오일 펌프 하우징·커버 02", "EV Oil Pump Housing / Cover 02", "EVオイルポンプ・ハウジング／カバー 02"),
+        application: localized("전동화 오일 펌프 어셈블리", "Electrified oil-pump assembly", "電動化オイルポンプ・アセンブリ"),
+        poster: electricVehiclePoster2,
+        video: electricVehicleVideo2,
+      },
       {
         title: localized("BSM 하우징 01", "BSM Housing 01", "BSMハウジング 01"),
         application: localized("밸런스 샤프트 모듈 하우징", "Balance shaft module housing", "バランスシャフトモジュール・ハウジング"),
@@ -157,74 +173,64 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     ],
   },
   "products/electric-vehicle": {
-    eyebrow: "ELECTRIC VEHICLE PARTS",
-    title: localized("전동화 구동계 정밀 부품", "Precision components for electrified drivetrains", "電動化駆動系の精密部品"),
+    eyebrow: "ELECTRIFIED POWERTRAIN",
+    title: localized("HEV·PHEV·BEV용 기어·샤프트", "Gear and shaft components for HEV, PHEV, and BEV platforms", "HEV・PHEV・BEV向けギヤ・シャフト"),
     copy: localized(
-      "EV 오일 펌프 하우징·커버와 링크 샤프트를 중심으로 전동화 구동계의 윤활과 동력 전달에 필요한 정밀가공 부품을 생산합니다.",
-      "Precision-machined EV oil-pump housings, covers, and link shafts support lubrication and power transfer across electrified drivetrains.",
-      "EVオイルポンプのハウジング・カバーとリンクシャフトを中心に、電動化駆動系の潤滑と動力伝達を支える精密加工部品を生産しています。",
+      "전동화 파워트레인의 Coaxial·Link Shaft와 E-drive Gearbox Output Shaft를 개발 검토하고 시제품으로 제작합니다. 기어 품질, 스플라인 형상, 런아웃과 표면 건전성을 핵심 기준으로 관리합니다.",
+      "Coaxial and link shafts plus e-drive gearbox output shafts are reviewed and prototyped around gear quality, spline geometry, runout, and surface integrity.",
+      "電動化パワートレイン向けCoaxial・Link ShaftとE-drive Gearbox Output Shaftを設計検討・試作し、歯車精度、スプライン形状、振れ、表面健全性を管理します。",
     ),
-    overviewImage: electricVehicleLineupImage,
-    families: ["EV OIL PUMP HOUSING / COVER", "LINK SHAFT"],
+    overviewImage: electrifiedGearShaftImage,
+    families: ["HEV GEAR SHAFT", "COAXIAL / LINK SHAFT", "E-DRIVE OUTPUT SHAFT"],
     parts: [
       {
-        title: localized("EV 오일 펌프 하우징·커버 01", "EV Oil Pump Housing / Cover 01", "EVオイルポンプ・ハウジング／カバー 01"),
-        application: localized("EV 감속기 윤활 시스템", "EV reducer lubrication system", "EV減速機潤滑システム"),
-        poster: electricVehiclePoster1,
-        video: electricVehicleVideo1,
-      },
-      {
-        title: localized("EV 오일 펌프 하우징·커버 02", "EV Oil Pump Housing / Cover 02", "EVオイルポンプ・ハウジング／カバー 02"),
-        application: localized("전동화 오일 펌프 어셈블리", "Electrified oil-pump assembly", "電動化オイルポンプ・アセンブリ"),
-        poster: electricVehiclePoster2,
-        video: electricVehicleVideo2,
-      },
-      {
         title: localized("링크 샤프트", "Link Shaft", "リンクシャフト"),
-        application: localized(
-          "PHEV 기어박스·E-drive 동력 전달",
-          "Power transfer for PHEV gearboxes and E-drive systems",
-          "PHEVギヤボックス・E-drive向け動力伝達",
-        ),
-        poster: electricVehicleLinkShaftImage,
+        application: localized("PHEV 기어박스·E-drive 동력 전달", "Power transfer for PHEV gearboxes and E-drive systems", "PHEVギヤボックス・E-drive向け動力伝達"),
+        poster: electrifiedLinkShaftImage,
+      },
+      {
+        title: localized("코액시얼 샤프트", "Coaxial Shaft", "コアキシャルシャフト"),
+        application: localized("HEV·PHEV 전동화 기어박스", "HEV and PHEV electrified gearboxes", "HEV・PHEV電動化ギヤボックス"),
+        poster: electrifiedCoaxialShaftImage,
+      },
+      {
+        title: localized("E-drive 출력 샤프트", "E-drive Output Shaft", "E-drive出力シャフト"),
+        application: localized("BEV 전기 구동 모듈", "BEV electric drive modules", "BEV電動ドライブモジュール"),
+        poster: electrifiedOutputShaftImage,
       },
     ],
     qualityControls: [
       {
-        feature: localized(
-          "오일 펌프 하우징·커버의 홀·장착면",
-          "Oil-pump housing / cover holes and mounting faces",
-          "オイルポンプ・ハウジング／カバーの穴・取付面",
-        ),
+        feature: localized("전동화 샤프트 기어·스플라인부", "Electrified-shaft gear and spline sections", "電動化シャフトのギヤ・スプライン部"),
         characteristic: localized(
-          "주요 치수·위치·기하공차",
-          "Critical dimensions, position, and GD&T",
-          "主要寸法・位置・幾何公差",
+          "치형·형상·위치",
+          "Tooth profile, geometry, and position",
+          "歯形・形状・位置",
         ),
         verification: localized(
-          "전용 자동검사와 CMM 정밀 측정",
-          "Dedicated automatic inspection and CMM measurement",
-          "専用自動検査およびCMMによる精密測定",
+          "기어 전용 측정과 CMM 검증",
+          "Dedicated gear metrology and CMM verification",
+          "ギヤ専用測定およびCMMによる検証",
         ),
       },
       {
-        feature: localized("오일 유로·기준면", "Oil passages and datum faces", "オイル流路・基準面"),
+        feature: localized("샤프트 베어링 장착면", "Shaft bearing seats", "シャフトのベアリング取付面"),
         characteristic: localized(
-          "도면 기준 형상·가공 상태",
-          "Drawing-defined geometry and machined condition",
-          "図面基準の形状・加工状態",
+          "리드 관리·표면 상태",
+          "Lead control and surface condition",
+          "リード管理・表面状態",
         ),
         verification: localized(
-          "치수 측정과 최종 외관 확인",
-          "Dimensional measurement and final visual check",
-          "寸法測定と最終外観確認",
+          "정밀 측정과 최종 외관 확인",
+          "Precision measurement and final visual check",
+          "精密測定と最終外観確認",
         ),
       },
       {
         feature: localized(
-          "링크 샤프트 외경·기준면",
-          "Link-shaft outside diameter and datum faces",
-          "リンクシャフトの外径・基準面",
+          "Coaxial·Link·Output Shaft 회전부",
+          "Coaxial, link, and output-shaft rotating sections",
+          "Coaxial・Link・Output Shaft回転部",
         ),
         characteristic: localized(
           "회전부 치수·런아웃",
@@ -313,13 +319,19 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     eyebrow: "POWERTRAIN PARTS",
     title: localized("파워트레인 정밀 부품", "Precision components for powertrain systems", "パワートレインの精密部品"),
     copy: localized(
-      "엔드 피스와 파워트레인 샤프트를 중심으로 엔진, 감속기, 밸브 타이밍 시스템의 동력 전달에 필요한 정밀 부품을 생산합니다.",
-      "End pieces and powertrain shafts deliver precision power transfer for engines, reduction systems, and valve-timing applications.",
-      "エンドピースとパワートレインシャフトを中心に、エンジン、減速機、バルブタイミングシステムの動力伝達を支える精密部品を生産しています。",
+      "6단 변속기, 8L90 Input·Output, 10R140용 샤프트와 Oil Pump Shaft, Camshaft Nose Piece, Balance Shaft를 생산합니다.",
+      "Production covers six-speed, 8L90 input and output, and 10R140 transmission shafts, plus oil-pump shafts, camshaft nose pieces, and balance shafts.",
+      "6速、8L90 Input・Output、10R140用シャフトに加え、Oil Pump Shaft、Camshaft Nose Piece、Balance Shaftを生産します。",
     ),
     overviewImage: powertrainLineupImage,
-    families: ["END PIECE", "POWERTRAIN SHAFT"],
+    families: ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "END PIECE", "BALANCE SHAFT"],
     parts: [
+      {
+        title: localized("8L90 출력 샤프트", "8L90 Output Shaft", "8L90 Output Shaft"),
+        application: localized("자동변속기 토크 전달", "Automatic-transmission torque delivery", "オートマチックトランスミッションのトルク伝達"),
+        poster: transmissionOutputPoster,
+        video: transmissionOutputVideo,
+      },
       {
         title: localized("엔드 피스", "End Piece", "エンドピース"),
         application: localized("캠 샤프트 밸브 개폐 제어 계열", "Camshaft valve-timing control family", "カムシャフト・バルブ開閉制御系列"),
@@ -393,44 +405,44 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     eyebrow: "DRIVELINE PARTS",
     title: localized("드라이브라인 정밀 부품", "Precision components for driveline systems", "ドライブラインの精密部品"),
     copy: localized(
-      "디스크 캐리어, 샤프트, 허브, 인풋 샤프트를 생산하며, 변속기와 트랜스퍼 케이스에서 동력 전달과 오일 분배 기능을 안정적으로 구현합니다.",
-      "Disk carriers, shafts, hubs, and input shafts provide reliable power transfer and oil distribution in transmissions and transfer cases.",
-      "ディスクキャリア、シャフト、ハブ、インプットシャフトを生産し、トランスミッションとトランスファーケースの動力伝達とオイル分配を安定して支えます。",
+      "Transfer Case와 ETM용 Actuator Shaft, EMCD Hub, Disc Carrier 계열을 호빙·브로칭·랙 롤링 및 레이저 용접 조립 공정으로 생산합니다.",
+      "Transfer-case and ETM actuator shafts, EMCD hubs, and disc-carrier families are produced through hobbing, broaching, rack rolling, and laser-welded assembly.",
+      "Transfer Case・ETM向けActuator Shaft、EMCD Hub、Disc Carrier系列を、ホビング、ブローチ、ラックローリング、レーザー溶接組立で生産します。",
     ),
     overviewImage: drivelineLineupImage,
-    families: ["DISK CARRIER", "SHAFT", "HUB", "INPUT SHAFT"],
+    families: ["TRANSFER CASE ACTUATOR SHAFT", "EMCD HUB", "DISK CARRIER", "LASER-WELDED ASSEMBLY"],
     parts: [
       {
-        title: localized("디스크 캐리어", "Disk Carrier", "ディスクキャリア"),
-        application: localized("변속기 클러치·캐리어 계열", "Transmission clutch and carrier family", "トランスミッション・クラッチ／キャリア系列"),
-        poster: drivelinePoster1,
-        video: drivelineVideo1,
+        title: localized("디스크 캐리어·허브", "Disk Carrier / Hub", "ディスクキャリア／ハブ"),
+        application: localized("ETM 동력 배분 어셈블리", "ETM torque-distribution assembly", "ETMトルク配分アセンブリ"),
+        poster: discCarrierPoster,
+        video: discCarrierVideo,
       },
       {
-        title: localized("샤프트", "Shaft", "シャフト"),
-        application: localized("변속기·트랜스퍼 케이스 동력전달", "Transmission and transfer-case power delivery", "トランスミッション・Transfer Case動力伝達"),
-        poster: drivelinePoster2,
-        video: drivelineVideo2,
+        title: localized("트랜스퍼 케이스 액추에이터 샤프트", "Transfer Case Actuator Shaft", "Transfer Case Actuator Shaft"),
+        application: localized("트랜스퍼 케이스 구동 제어", "Transfer-case drive control", "Transfer Case駆動制御"),
+        poster: transferCaseActuatorPoster,
+        video: transferCaseActuatorVideo,
       },
       {
-        title: localized("허브", "Hub", "ハブ"),
-        application: localized("IDC·ODC·클러치 허브 계열", "IDC, ODC, and clutch-hub family", "IDC・ODC・クラッチハブ系列"),
+        title: localized("EMCD 허브", "EMCD Hub", "EMCDハブ"),
+        application: localized("ETM·EMCD 허브 계열", "ETM and EMCD hub family", "ETM・EMCDハブ系列"),
         poster: drivelinePoster3,
         video: drivelineVideo3,
       },
       {
-        title: localized("인풋 샤프트", "Input Shaft", "インプットシャフト"),
-        application: localized("변속기 입력·오일 분배 계열", "Transmission input and oil-distribution family", "トランスミッション入力・オイル分配系列"),
-        poster: inputShaftImage,
-        video: inputShaftVideo,
+        title: localized("레이저 용접 어셈블리", "Laser-welded Assembly", "レーザー溶接アセンブリ"),
+        application: localized("Disc Carrier 조립 부품", "Disc-carrier assembly parts", "Disc Carrier組立部品"),
+        poster: drivelinePoster1,
+        video: drivelineVideo1,
       },
     ],
     qualityControls: [
       {
         feature: localized(
-          "인풋 샤프트의 스플라인부",
-          "Input-shaft spline sections",
-          "インプットシャフトのスプライン部",
+          "액추에이터 샤프트의 기어·스플라인부",
+          "Actuator-shaft gear and spline sections",
+          "アクチュエーターシャフトのギヤ・スプライン部",
         ),
         characteristic: localized(
           "치형·형상·위치",
@@ -445,19 +457,19 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       },
       {
         feature: localized(
-          "크로스 홀·오일 분배부",
-          "Cross holes and oil-distribution features",
-          "クロスホール・オイル分配部",
+          "디스크 캐리어·허브 조립면",
+          "Disc-carrier and hub assembly interfaces",
+          "ディスクキャリア・ハブの組立面",
         ),
         characteristic: localized(
-          "홀 치수·위치·유로 형상",
-          "Hole dimensions, position, and passage geometry",
-          "穴寸法・位置・流路形状",
+          "주요 치수·동심도·조립 상태",
+          "Critical dimensions, concentricity, and assembly condition",
+          "主要寸法・同心度・組立状態",
         ),
         verification: localized(
-          "전용 치수검사와 정밀 측정",
-          "Dedicated dimensional inspection and precision measurement",
-          "専用寸法検査と精密測定",
+          "전용 치수검사와 최종 외관 확인",
+          "Dedicated dimensional inspection and final visual check",
+          "専用寸法検査と最終外観確認",
         ),
       },
       {

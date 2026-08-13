@@ -64,8 +64,9 @@ type RenewalCopy = {
   products: {
     eyebrow: string;
     title: string;
+    summary: string;
     link: string;
-    items: Array<{ title: string; category: string; copy: string }>;
+    items: Array<{ title: string; category: string; group: "core" | "electrified" | "aluminum"; copy: string }>;
   };
   principles: {
     eyebrow: string;
@@ -200,19 +201,20 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     company: {
       eyebrow: "BUILT SINCE 1985",
       title: ["기술은 공정에 남고,", "신뢰는 제품으로 증명됩니다"],
-      copy: "서울산업은 1985년 자동차 조향 부품 양산을 시작으로 정밀가공, 품질 인증, 연구개발과 글로벌 OEM 대응 역량을 넓혀 왔습니다. 화려한 말보다 반복 생산에서 흔들리지 않는 결과로 제조의 기준을 쌓습니다.",
+      copy: "서울산업은 1985년 설립 이후 조향, 파워트레인, 드라이브라인과 전동화 부품으로 정밀가공, 품질 인증, 연구개발과 글로벌 OEM 대응 역량을 넓혀 왔습니다. 반복 생산에서 흔들리지 않는 결과로 제조의 기준을 쌓습니다.",
       link: "회사 연혁 보기",
     },
     products: {
-      eyebrow: "AUTOMOTIVE PARTS",
-      title: "정밀가공 제품군",
+      eyebrow: "CORE PORTFOLIO · ELECTRIFIED · ALUMINUM",
+      title: "3개 핵심 제품군과 2개 확장 역량",
+      summary: "Steering·Powertrain·Driveline을 하나의 핵심 샤프트 포트폴리오로 묶고, 전동화 플랫폼과 알루미늄 가공을 별도 확장 축으로 구성했습니다.",
       link: "제품 전체 보기",
       items: [
-        { title: "Electric Vehicle", category: "EV", copy: "전동화 플랫폼의 조립성과 내구 조건을 고려한 정밀 부품" },
-        { title: "Powertrain", category: "POWERTRAIN", copy: "Powertrain Shaft와 Sun Gear Output Shaft, Clutch Hub·Disc Carrier 계열" },
-        { title: "Driveline", category: "DRIVELINE", copy: "8L90 Input Shaft와 Transfer Case Actuator·10R TRS Stator Shaft 계열" },
-        { title: "Balance Shaft Module", category: "BSM", copy: "진동 저감과 동력 효율을 위한 밸런스 샤프트 모듈 가공 부품" },
-        { title: "Steering", category: "STEERING", copy: "조향 응답성과 안전 품질을 지지하는 피니언 샤프트 계열" },
+        { title: "Steering", category: "CORE 01", group: "core", copy: "Pinion, Pinion Shaft, Piston, Rack Bush, Torsion Bar 등 조향 어셈블리 부품" },
+        { title: "Powertrain", category: "CORE 02", group: "core", copy: "변속기·엔진용 Shaft, End Piece, Balance Shaft 계열 부품" },
+        { title: "Driveline", category: "CORE 03", group: "core", copy: "Transfer Case·ETM용 Disk Carrier, Shaft, Hub 계열 부품" },
+        { title: "Electrified Powertrain", category: "HEV · PHEV · BEV", group: "electrified", copy: "전동화 플랫폼용 Gear Shaft, Coaxial·Link Shaft, Output Shaft" },
+        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "EV 오일펌프 하우징·커버와 BSM 하우징·오일펌프 정밀가공" },
       ],
     },
     principles: {
@@ -241,7 +243,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     partners: {
       eyebrow: "GLOBAL OEM NETWORK",
       title: ["세계의 자동차 산업과,", "정밀가공으로 연결됩니다"],
-      copy: "서울산업은 조향, 드라이브라인, 파워트레인과 전동화 부품 프로그램을 통해 국내외 고객과 양산 경험을 축적해 왔습니다. 개발 대응부터 품질 기록, 납기와 공급 안정성까지 같은 기준으로 관리하며 장기적인 제조 파트너십을 이어갑니다.",
+      copy: "서울산업은 조향, 드라이브라인, 파워트레인 양산 프로그램과 전동화 부품의 개발·검증 대응을 통해 국내외 고객과 제조 경험을 축적해 왔습니다. 개발 대응부터 품질 기록, 납기와 공급 안정성까지 같은 기준으로 관리하며 장기적인 제조 파트너십을 이어갑니다.",
       link: "파트너십 연혁 보기",
       regions: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN",
       officialSite: "공식 홈페이지",
@@ -253,7 +255,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       items: [
         { category: "ENTERPRISE", title: "서울산업, 글로벌 웹사이트 리뉴얼 프로젝트 진행", date: "2026.07.30" },
         { category: "QUALITY", title: "가공 데이터 기반 품질관리 프로세스 고도화", date: "2026.06.18" },
-        { category: "PRODUCT", title: "BSM·EV·Steering 정밀가공 제품군 소개", date: "2026.05.24" },
+        { category: "PRODUCT", title: "3대 핵심 제품군과 전동화·알루미늄 가공 역량 소개", date: "2026.05.24" },
         { category: "MANUFACTURING", title: "개발 대응부터 양산 공급까지 이어지는 제조 흐름", date: "2026.05.09" },
       ],
     },
@@ -367,19 +369,20 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     company: {
       eyebrow: "BUILT SINCE 1985",
       title: ["Technology stays in the process.", "Trust shows in the product."],
-      copy: "Since beginning volume production of steering components in 1985, Seoul Industry has expanded its precision machining, quality certification, R&D, and global OEM capabilities. We build manufacturing standards through repeatable results.",
+      copy: "Founded in 1985, Seoul Industry has expanded from steering into powertrain, driveline, and electrified components while strengthening precision machining, certified quality, R&D, and global OEM capabilities.",
       link: "View our history",
     },
     products: {
-      eyebrow: "AUTOMOTIVE PARTS",
-      title: "Precision product lineup",
+      eyebrow: "CORE PORTFOLIO · ELECTRIFIED · ALUMINUM",
+      title: "Three core families, two expansion capabilities",
+      summary: "Steering, Powertrain, and Driveline form the core shaft portfolio, extended by electrified-platform and machined-aluminum capabilities.",
       link: "View all products",
       items: [
-        { title: "Electric Vehicle", category: "EV", copy: "Precision parts engineered for EV platform assembly and durability." },
-        { title: "Powertrain", category: "POWERTRAIN", copy: "Powertrain shafts, sun-gear output shafts, clutch hubs, and disc carriers." },
-        { title: "Driveline", category: "DRIVELINE", copy: "8L90 input, transfer-case actuator, and 10R TRS stator shafts." },
-        { title: "Balance Shaft Module", category: "BSM", copy: "Machined balance shaft module parts for vibration control and power efficiency." },
-        { title: "Steering", category: "STEERING", copy: "Pinion shaft components supporting steering response and safety." },
+        { title: "Steering", category: "CORE 01", group: "core", copy: "Pinions, pinion shafts, pistons, rack bushes, and torsion bars for steering assemblies." },
+        { title: "Powertrain", category: "CORE 02", group: "core", copy: "Shafts, end pieces, and balance-shaft families for transmissions and engines." },
+        { title: "Driveline", category: "CORE 03", group: "core", copy: "Disk carriers, shafts, and hubs for transfer-case and ETM systems." },
+        { title: "Electrified Powertrain", category: "HEV · PHEV · BEV", group: "electrified", copy: "Gear shafts, coaxial and link shafts, and output shafts for electrified platforms." },
+        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "EV oil-pump housings and covers plus BSM housings and oil pumps." },
       ],
     },
     principles: {
@@ -408,7 +411,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     partners: {
       eyebrow: "GLOBAL OEM NETWORK",
       title: ["Precision connects", "global mobility"],
-      copy: "Seoul Industry has built volume-production experience with customers in steering, driveline, powertrain, and electrification programs. From development response and quality records to delivery and supply stability, one consistent standard supports every long-term manufacturing partnership.",
+      copy: "Seoul Industry combines volume-production experience in steering, driveline, and powertrain with development and validation support for electrified components. From engineering response and quality records to delivery and supply stability, one consistent standard supports every long-term manufacturing partnership.",
       link: "View partnership history",
       regions: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN",
       officialSite: "Official website",
@@ -420,7 +423,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       items: [
         { category: "ENTERPRISE", title: "Seoul Industry begins its global website renewal project", date: "2026.07.30" },
         { category: "QUALITY", title: "Advancing data-based quality management", date: "2026.06.18" },
-        { category: "PRODUCT", title: "Introducing BSM, EV, and steering precision parts", date: "2026.05.24" },
+        { category: "PRODUCT", title: "Three core families with electrified and aluminum capabilities", date: "2026.05.24" },
         { category: "MANUFACTURING", title: "A connected flow from development to volume supply", date: "2026.05.09" },
       ],
     },
@@ -534,19 +537,20 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     company: {
       eyebrow: "BUILT SINCE 1985",
       title: ["技術は工程に残り、", "信頼は製品で証明されます"],
-      copy: "ソウル産業は1985年の自動車操舵部品量産を起点に、精密加工、品質認証、研究開発、グローバルOEM対応力を広げてきました。繰り返し生産で揺るがない結果を製造基準としています。",
+      copy: "ソウル産業は1985年の設立以降、操舵、パワートレイン、ドライブライン、電動化部品へ領域を広げ、精密加工、品質認証、研究開発、グローバルOEM対応力を強化してきました。",
       link: "会社沿革を見る",
     },
     products: {
-      eyebrow: "AUTOMOTIVE PARTS",
-      title: "精密加工製品ラインアップ",
+      eyebrow: "CORE PORTFOLIO · ELECTRIFIED · ALUMINUM",
+      title: "3つの中核製品群と2つの拡張領域",
+      summary: "Steering・Powertrain・Drivelineを中核シャフトポートフォリオとし、電動化プラットフォームとアルミ加工を拡張領域として構成しています。",
       link: "全製品を見る",
       items: [
-        { title: "Electric Vehicle", category: "EV", copy: "EVプラットフォームの組立性と耐久性を考慮した精密部品" },
-        { title: "Powertrain", category: "POWERTRAIN", copy: "Powertrain Shaft、Sun Gear Output Shaft、Clutch Hub、Disc Carrier系列" },
-        { title: "Driveline", category: "DRIVELINE", copy: "8L90 Input、Transfer Case Actuator、10R TRS Stator Shaft系列" },
-        { title: "Balance Shaft Module", category: "BSM", copy: "振動低減と動力効率を支えるバランスシャフトモジュール加工部品" },
-        { title: "Steering", category: "STEERING", copy: "操舵応答性と安全品質を支えるピニオンシャフト系部品" },
+        { title: "Steering", category: "CORE 01", group: "core", copy: "Pinion、Pinion Shaft、Piston、Rack Bush、Torsion Barなどの操舵部品" },
+        { title: "Powertrain", category: "CORE 02", group: "core", copy: "トランスミッション・エンジン向けShaft、End Piece、Balance Shaft系列" },
+        { title: "Driveline", category: "CORE 03", group: "core", copy: "Transfer Case・ETM向けDisk Carrier、Shaft、Hub系列" },
+        { title: "Electrified Powertrain", category: "HEV · PHEV · BEV", group: "electrified", copy: "電動化向けGear Shaft、Coaxial・Link Shaft、Output Shaft" },
+        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "EVオイルポンプとBSMのハウジング・カバー精密加工" },
       ],
     },
     principles: {
@@ -575,7 +579,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     partners: {
       eyebrow: "GLOBAL OEM NETWORK",
       title: ["世界の自動車産業と、", "精密加工でつながります"],
-      copy: "ソウル産業は操舵、ドライブライン、パワートレイン、電動化部品の各プログラムを通じて、国内外のお客様との量産実績を積み重ねてきました。開発対応から品質記録、納期、安定供給まで一貫した基準で管理し、長期的な製造パートナーシップを築いています。",
+      copy: "ソウル産業は操舵、ドライブライン、パワートレインの量産実績に、電動化部品の開発・検証対応を組み合わせ、国内外のお客様との製造経験を積み重ねてきました。開発対応から品質記録、納期、安定供給まで一貫した基準で管理し、長期的な製造パートナーシップを築いています。",
       link: "パートナーシップ沿革を見る",
       regions: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN",
       officialSite: "公式サイト",
@@ -587,7 +591,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       items: [
         { category: "ENTERPRISE", title: "ソウル産業、グローバルウェブサイト刷新プロジェクトを開始", date: "2026.07.30" },
         { category: "QUALITY", title: "加工データに基づく品質管理プロセスを高度化", date: "2026.06.18" },
-        { category: "PRODUCT", title: "BSM・EV・Steering精密加工製品群のご紹介", date: "2026.05.24" },
+        { category: "PRODUCT", title: "3大中核製品群と電動化・アルミ加工対応のご紹介", date: "2026.05.24" },
         { category: "MANUFACTURING", title: "開発対応から量産供給までつながる製造フロー", date: "2026.05.09" },
       ],
     },
@@ -609,35 +613,35 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
 
 const heroMedia: Array<
   | { image: string; duration: number }
-  | { video: string; poster: string; duration: number }
+  | { video: string; poster: string; duration: number; playbackRate?: number }
 > = [
   { video: mainHeroVideo, poster: mainHeroPoster, duration: 4200 },
-  { video: oemProductionVideo, poster: oemProductionPoster, duration: 5200 },
+  { video: oemProductionVideo, poster: oemProductionPoster, duration: 5700, playbackRate: 0.9 },
   { video: qualityVideo, poster: qualityPoster, duration: 3000 },
 ];
 
-const productImages = [electricVehicleImage, powertrainImage, drivelineImage, balanceModuleImage, steeringImage];
+const productImages = [steeringImage, powertrainImage, drivelineImage, electricVehicleImage, balanceModuleImage];
 const productRoutes = [
-  "#/products/electric-vehicle",
+  "#/products/steering",
   "#/products/powertrain",
   "#/products/driveline",
+  "#/products/electric-vehicle",
   "#/products/balance-shaft-module",
-  "#/products/steering",
 ];
 const productRouteKeys = [
-  "products/electric-vehicle",
+  "products/steering",
   "products/powertrain",
   "products/driveline",
+  "products/electric-vehicle",
   "products/balance-shaft-module",
-  "products/steering",
 ];
 
 const productFeaturePartIndexes = [
   [0, 1],
   [0, 1],
-  [3, 1],
-  [0, 4],
   [0, 1],
+  [0, 1],
+  [0, 4],
 ] as const;
 
 const productCardUi = {
@@ -659,6 +663,12 @@ const productCardUi = {
     detail: "量産部品の詳細",
     applicationNote: "搭載位置や形状は車種・プログラムにより異なります。",
   },
+} as const;
+
+const electrifiedCardUi = {
+  ko: { actual: "대표 개발 부품", detail: "개발·검증 부품 상세" },
+  en: { actual: "Representative development parts", detail: "Development and validation detail" },
+  ja: { actual: "代表開発部品", detail: "開発・検証部品の詳細" },
 } as const;
 
 const featuredProcessIds = ["cnc-lathe", "hobbing", "induction", "auto-inspection"] as const;
@@ -763,6 +773,7 @@ function useRevealObserver() {
 function RenewalHero({ copy, reducedMotion }: { copy: RenewalCopy; reducedMotion: boolean }) {
   const [active, setActive] = useState(0);
   const slideCount = copy.hero.length;
+  const activeMedia = heroMedia[active];
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -780,17 +791,20 @@ function RenewalHero({ copy, reducedMotion }: { copy: RenewalCopy; reducedMotion
   return (
     <section className="renewal-hero" aria-label="Seoul Industry">
       <div className="renewal-hero__media" key={`media-${active}`}>
-        {"image" in heroMedia[active] ? (
-          <img src={heroMedia[active].image} alt="Seoul Industry" />
+        {"image" in activeMedia ? (
+          <img src={activeMedia.image} alt="Seoul Industry" />
         ) : (
           <video
-            src={heroMedia[active].video}
-            poster={heroMedia[active].poster}
+            src={activeMedia.video}
+            poster={activeMedia.poster}
             autoPlay={!reducedMotion}
             muted
             loop
             playsInline
             preload="metadata"
+            onLoadedMetadata={(event) => {
+              event.currentTarget.playbackRate = activeMedia.playbackRate ?? 1;
+            }}
           />
         )}
       </div>
@@ -880,8 +894,9 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
         <div>
           <span>{copy.products.eyebrow}</span>
           <h2>{copy.products.title}</h2>
+          <p className="renewal-section-heading__summary">{copy.products.summary}</p>
         </div>
-        <a href="#/products/electric-vehicle" className="renewal-arrow-link">
+        <a href="#/products/steering" className="renewal-arrow-link">
           <span>{copy.products.link}</span>
           <Icon name="arrow" />
         </a>
@@ -892,11 +907,13 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
           const featuredPartIndexes = productFeaturePartIndexes[index] ?? productFeaturePartIndexes[0];
           const featuredParts = featuredPartIndexes.map((partIndex) => catalog.parts[partIndex]!);
           const detailIsActive = activeDetailIndex === index;
+          const cardUi = item.group === "electrified" ? { ...ui, ...electrifiedCardUi[language] } : ui;
 
           return (
             <a
               href={productRoutes[index]}
-              className={`renewal-product-card${detailIsActive ? " is-detail-active" : ""}`}
+              className={`renewal-product-card renewal-product-card--${item.group}${detailIsActive ? " is-detail-active" : ""}`}
+              data-product-group={item.group}
               key={item.title}
               onMouseEnter={() => setActiveDetailIndex(index)}
               onMouseLeave={() => setActiveDetailIndex((current) => (current === index ? null : current))}
@@ -910,11 +927,11 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
               <div className="renewal-product-card__image">
                 <img className="renewal-product-card__system-visual" src={productImages[index]} alt={`${item.title} ${ui.system}`} />
                 <span className="renewal-product-card__application">
-                  <strong>{ui.system}</strong>
-                  <small>{ui.applicationNote}</small>
+                  <strong>{cardUi.system}</strong>
+                  <small>{cardUi.applicationNote}</small>
                 </span>
                 <div className="renewal-product-card__detail-visual" aria-hidden={!detailIsActive}>
-                  <span className="renewal-product-card__detail-label">{ui.detail}</span>
+                  <span className="renewal-product-card__detail-label">{cardUi.detail}</span>
                   <div className="renewal-product-card__detail-grid">
                     {featuredParts.map((part) => (
                       <figure className="renewal-product-card__detail-part" key={part.title.en}>
@@ -944,7 +961,7 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
                 </div>
               </div>
               <div className="renewal-product-card__actual">
-                <small>{ui.actual}</small>
+                <small>{cardUi.actual}</small>
                 <div>
                   {featuredParts.map((part) => (
                     <figure key={part.title.en}>
