@@ -215,6 +215,11 @@ body.renewal-active {
   color: #d1bb9c;
 }
 
+.renewal-nav__dropdown a.is-defense {
+  border-left: 2px solid #708399;
+  color: #aebdcb;
+}
+
 .renewal-header__actions {
   position: relative;
   z-index: 2;
@@ -444,6 +449,12 @@ body.renewal-active {
   border-left: 2px solid #a88a60;
   padding-left: 10px;
   color: #d1bb9c;
+}
+
+.renewal-drawer__group > div a.is-defense {
+  border-left: 2px solid #708399;
+  padding-left: 10px;
+  color: #aebdcb;
 }
 
 .renewal-drawer__languages {
@@ -2774,21 +2785,6 @@ body.renewal-active {
   height: 100%;
   object-fit: contain;
   background: #050505;
-}
-
-.renewal-product-card__detail-media video {
-  animation: renewal-home-product-media-drift 6.8s ease-in-out infinite alternate;
-  will-change: transform;
-}
-
-@keyframes renewal-home-product-media-drift {
-  from {
-    transform: scale(1.018) translate3d(-0.45%, 0.15%, 0);
-  }
-
-  to {
-    transform: scale(1.055) translate3d(0.55%, -0.4%, 0);
-  }
 }
 
 .renewal-product-card__detail-part figcaption {

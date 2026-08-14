@@ -104,15 +104,15 @@ function applyKoreanCopy(content: SiteContent) {
     fillLines: ["도면 검토부터 양산 공급까지,", "자동차 부품 OEM 생산을 끝까지 책임집니다."],
   });
   const productCopies = [
-    "EV OIL PUMP HOUSING·COVER와 BSM HOUSING·OIL PUMP 알루미늄 가공 부품",
-    "HEV·PHEV·BEV용 GEAR SHAFT, COAXIAL·LINK SHAFT와 OUTPUT SHAFT 개발품",
+    "BSM HOUSING·OIL PUMP 알루미늄 가공 부품",
+    "EV OIL PUMP HOUSING·COVER와 HEV·PHEV·BEV용 GEAR·COAXIAL·LINK·OUTPUT SHAFT",
     "PINION, PINION SHAFT, PISTON, RACK BUSH, TORSION BAR",
     "변속기용 SHAFT와 엔진용 CAMSHAFT NOSE PIECE, BALANCE SHAFT",
     "TRANSFER CASE·ETM용 DISK CARRIER, HUB, ACTUATOR SHAFT 계열 부품",
   ];
   const latestCopies = [
-    "EV 오일펌프 하우징·커버와 BSM 하우징·오일펌프 알루미늄 가공 부품",
-    "전동화 플랫폼의 설계·기술 검증을 위한 기어·코액시얼·링크·출력 샤프트",
+    "BSM 하우징·오일펌프 알루미늄 가공 부품",
+    "EV 오일펌프 하우징·커버와 전동화 플랫폼용 기어·코액시얼·링크·출력 샤프트",
     "조향 입력을 정확하게 전달하는 피니언, 샤프트, 피스톤, 부시, 토션 바",
     "밸브 개폐 제어와 동력전달을 위한 캠샤프트 노즈 피스·변속기 샤프트",
     "트랜스퍼 케이스와 ETM용 디스크 캐리어, 허브, 액추에이터 샤프트",
@@ -124,7 +124,7 @@ function applyKoreanCopy(content: SiteContent) {
     {
       id: "machining",
       title: "정밀가공\n라인업",
-      copy: "Steering, Powertrain, Driveline의 3대 핵심 제품군과 전동화 개발 부품, 알루미늄 가공 부품의 반복 정밀도와 표면 품질을 공정 조건으로 관리합니다.",
+      copy: "Steering, Powertrain, Driveline의 3대 핵심 제품군과 전동화 부품, 알루미늄 가공 부품의 반복 정밀도와 표면 품질을 공정 조건으로 관리합니다.",
     },
     {
       id: "quality",
@@ -231,15 +231,15 @@ function applyEnglishCopy(content: SiteContent) {
     fillLines: ["From the first drawing to full production,", "we engineer the precision behind every OEM part."],
   });
   const productCopies = [
-    "Machined-aluminum EV oil-pump housings and covers plus BSM housings and oil pumps.",
-    "Development gear, coaxial, link, and output shafts for HEV, PHEV, and BEV platforms.",
+    "Machined-aluminum BSM housings and oil pumps.",
+    "EV oil-pump housings and covers plus gear, coaxial, link, and output shafts for HEV, PHEV, and BEV platforms.",
     "Pinions, pinion shafts, pistons, rack bushes, and torsion bars.",
     "Transmission shafts plus camshaft nose pieces and balance shafts for powertrain systems.",
     "Disk carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
   ];
   const latestCopies = [
-    "Machined-aluminum EV oil-pump housings and covers plus BSM housings and oil pumps.",
-    "Gear, coaxial, link, and output shafts for electrified-platform design validation.",
+    "Machined-aluminum BSM housings and oil pumps.",
+    "EV oil-pump housings and covers plus gear, coaxial, link, and output shafts for electrified platforms.",
     "Pinions, shafts, pistons, bushes, and torsion bars that transfer steering input.",
     "Camshaft nose pieces and transmission shafts for valve control and power delivery.",
     "Disk carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
@@ -251,7 +251,7 @@ function applyEnglishCopy(content: SiteContent) {
     {
       id: "machining",
       title: "Precision\nMachining Lines",
-      copy: "We control repeat accuracy and surface quality across three core families—Steering, Powertrain, and Driveline—plus electrified development and machined-aluminum parts.",
+      copy: "We control repeat accuracy and surface quality across three core families—Steering, Powertrain, and Driveline—plus electrified and machined-aluminum parts.",
     },
     {
       id: "quality",
@@ -359,15 +359,15 @@ function applyJapaneseCopy(content: SiteContent) {
     fillLines: ["図面の検討から量産供給まで。", "OEM部品の精度を、工程で造り込みます。"],
   });
   const productCopies = [
-    "EV OIL PUMP HOUSING・COVERとBSM HOUSING・OIL PUMPのアルミ加工部品",
-    "HEV・PHEV・BEV向けGEAR SHAFT、COAXIAL・LINK SHAFT、OUTPUT SHAFT開発品",
+    "BSM HOUSING・OIL PUMPのアルミ加工部品",
+    "EV OIL PUMP HOUSING・COVERとHEV・PHEV・BEV向けGEAR・COAXIAL・LINK・OUTPUT SHAFT",
     "PINION、PINION SHAFT、PISTON、RACK BUSH、TORSION BAR",
     "トランスミッション用SHAFTとエンジン用CAMSHAFT NOSE PIECE、BALANCE SHAFT",
     "TRANSFER CASE・ETM向けDISK CARRIER、HUB、ACTUATOR SHAFT系列部品",
   ];
   const latestCopies = [
-    "EVオイルポンプのハウジング・カバーとBSMハウジング・オイルポンプのアルミ加工部品",
-    "電動化プラットフォームの設計・技術検証向けギヤ、コアキシャル、リンク、出力シャフト",
+    "BSMハウジング・オイルポンプのアルミ加工部品",
+    "EVオイルポンプのハウジング・カバーと電動化プラットフォーム向けギヤ、コアキシャル、リンク、出力シャフト",
     "操舵入力を正確に伝えるピニオン、シャフト、ピストン、ブッシュ、トーションバー",
     "バルブ開閉制御と動力伝達向けのカムシャフト・ノーズピース、トランスミッションシャフト",
     "Transfer Case・ETM向けディスクキャリア、ハブ、アクチュエーターシャフト",
@@ -379,7 +379,7 @@ function applyJapaneseCopy(content: SiteContent) {
     {
       id: "machining",
       title: "精密加工\nライン",
-      copy: "Steering、Powertrain、Drivelineの3大中核製品群に加え、電動化開発部品とアルミ加工部品の反復精度・表面品質を工程条件で管理します。",
+      copy: "Steering、Powertrain、Drivelineの3大中核製品群に加え、電動化部品とアルミ加工部品の反復精度・表面品質を工程条件で管理します。",
     },
     {
       id: "quality",

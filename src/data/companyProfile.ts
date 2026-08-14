@@ -1,7 +1,8 @@
 import factoryImage from "../../assets/company-profile/factory.webp";
-import machinedAluminumImage from "../../assets/company-deck/machined-aluminum-products.webp";
+import machinedAluminumImage from "../../assets/product-catalog/lineup/balance-shaft-module.webp";
 import drivelineComponentImage from "../../assets/video-posters/driveline/disc-carrier-hub.jpg";
-import electrifiedPowertrainImage from "../../assets/company-deck/electrified-gear-shaft.webp";
+import electrifiedPowertrainImage from "../../assets/product-catalog/lineup/electric-vehicle.webp";
+import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
 import powertrainComponentImage from "../../assets/product-catalog/lineup/powertrain.webp";
 import autoInspectionImage from "../../assets/company-profile/process/auto-inspection.webp";
 import broachingImage from "../../assets/company-profile/process/broaching.webp";
@@ -485,19 +486,19 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
   "products/electric-vehicle": {
     eyebrow: "ELECTRIFIED POWERTRAIN",
     title: {
-      ko: "HEV·PHEV·BEV용 기어 샤프트",
-      en: "Gear shafts for HEV, PHEV, and BEV platforms",
-      ja: "HEV・PHEV・BEV向けギヤシャフト",
+      ko: "EV 오일펌프 부품과 전동화용 기어·샤프트",
+      en: "EV oil-pump components plus gears and shafts for electrified platforms",
+      ja: "EVオイルポンプ部品と電動化向けギヤ・シャフト",
     },
     copy: {
-      ko: "전동화 파워트레인의 기어 품질, 스플라인 형상, 런아웃과 표면 건전성을 기준으로 Coaxial·Link·Output Shaft를 개발 검토하고 시제품을 제작합니다.",
-      en: "Coaxial, link, and output shafts are reviewed and prototyped around gear quality, spline geometry, runout, and surface integrity for electrified powertrains.",
-      ja: "電動化パワートレイン向けに、歯車精度、スプライン形状、振れ、表面健全性を基準としてCoaxial・Link・Output Shaftを設計検討し、試作品を製作します。",
+      ko: "EV 감속기용 Oil Pump Housing·Cover를 가공하고, Coaxial·Link·Output Shaft는 전동화 플랫폼의 설계 검토와 시제품 검증에 대응합니다.",
+      en: "EV oil-pump housings and covers are machined for reducer systems, while coaxial, link, and output shafts support electrified-platform design review and prototype validation.",
+      ja: "EV減速機向けOil Pump Housing・Coverを加工し、Coaxial・Link・Output Shaftは電動化プラットフォームの設計検討・試作検証に対応します。",
     },
     items: {
-      ko: ["HEV Gear Shaft", "Coaxial / Link Shaft", "E-drive Gearbox Output Shaft", "설계·엔지니어링 검증용 시제품"],
-      en: ["HEV gear shaft", "Coaxial / link shaft", "E-drive gearbox output shaft", "Prototype build for design validation"],
-      ja: ["HEV Gear Shaft", "Coaxial / Link Shaft", "E-drive Gearbox Output Shaft", "設計・技術検証用試作品"],
+      ko: ["EV Oil Pump Housing / Cover", "HEV Gear Shaft", "Coaxial / Link Shaft", "E-drive Gearbox Output Shaft"],
+      en: ["EV oil-pump housing / cover", "HEV gear shaft", "Coaxial / link shaft", "E-drive gearbox output shaft"],
+      ja: ["EV Oil Pump Housing / Cover", "HEV Gear Shaft", "Coaxial / Link Shaft", "E-drive Gearbox Output Shaft"],
     },
     image: electrifiedPowertrainImage,
   },
@@ -542,19 +543,19 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
   "products/balance-shaft-module": {
     eyebrow: "MACHINED ALUMINUM COMPONENTS",
     title: {
-      ko: "전동화·파워트레인용 알루미늄 가공 부품",
-      en: "Machined aluminum components for electrified and conventional powertrains",
-      ja: "電動化・パワートレイン向けアルミ加工部品",
+      ko: "밸런스 샤프트 모듈용 알루미늄 가공 부품",
+      en: "Machined aluminum components for balance-shaft modules",
+      ja: "バランスシャフトモジュール向けアルミ加工部品",
     },
     copy: {
-      ko: "알루미늄 다이캐스팅 부품의 정밀가공을 통해 EV Oil Pump Housing·Cover와 Balance Shaft Module Housing·Oil Pump를 공급합니다.",
-      en: "Precision machining of aluminum die-cast parts supports EV oil-pump housings and covers, plus balance-shaft-module housings and oil pumps.",
-      ja: "アルミダイカスト部品を精密加工し、EV Oil Pump Housing・CoverとBalance Shaft Module Housing・Oil Pumpを供給します。",
+      ko: "알루미늄 다이캐스팅 부품의 정밀가공을 통해 Balance Shaft Module Housing과 Oil Pump에 대응합니다.",
+      en: "Precision machining of aluminum die-cast parts supports balance-shaft-module housings and oil pumps.",
+      ja: "アルミダイカスト部品を精密加工し、Balance Shaft Module HousingとOil Pumpに対応します。",
     },
     items: {
-      ko: ["EV Oil Pump Housing", "EV Oil Pump Cover", "BSM Housing", "BSM Oil Pump"],
-      en: ["EV oil-pump housing", "EV oil-pump cover", "BSM housing", "BSM oil pump"],
-      ja: ["EV Oil Pump Housing", "EV Oil Pump Cover", "BSM Housing", "BSM Oil Pump"],
+      ko: ["BSM Housing", "BSM Oil Pump", "Bearing Bore / Oil Passage", "Complex Aluminum Geometry"],
+      en: ["BSM housing", "BSM oil pump", "Bearing bore / oil passage", "Complex aluminum geometry"],
+      ja: ["BSM Housing", "BSM Oil Pump", "Bearing Bore / Oil Passage", "Complex Aluminum Geometry"],
     },
     image: machinedAluminumImage,
   },
@@ -578,23 +579,23 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
     image: hobbingImage,
   },
   "products/etc": {
-    eyebrow: "DRAWING BASED MANUFACTURING",
+    eyebrow: "DEFENSE & SPECIAL PROJECTS",
     title: {
-      ko: "도면과 사용 조건에 맞춘 특수 정밀가공",
-      en: "Custom precision machining for drawing and application requirements",
-      ja: "図面と使用条件に合わせた特殊精密加工",
+      ko: "정보 관리와 추적성을 갖춘 방산 정밀 제조",
+      en: "Defense precision manufacturing with controlled information and traceability",
+      ja: "情報管理とトレーサビリティを備えた防衛向け精密製造",
     },
     copy: {
-      ko: "내·외측 기어와 스플라인, 샤프트, 하우징을 고객 도면과 양산 조건에 맞춰 공정 설계합니다.",
-      en: "Internal and external gears, splines, shafts, and housings are process-engineered around customer drawings and production conditions.",
-      ja: "内・外歯ギヤ、スプライン、シャフト、ハウジングを顧客図面と量産条件に合わせて工程設計します。",
+      ko: "실제 제품과 고객 정보는 공개하지 않으며, 승인된 절차에 따라 도면 검토, 공정 설계, 생산 품질과 LOT 추적을 관리합니다.",
+      en: "Actual product and customer details are not disclosed. Drawing review, process engineering, production quality, and lot traceability follow approved procedures.",
+      ja: "実際の製品・顧客情報は公開せず、承認された手順に基づいて図面検討、工程設計、生産品質、LOTトレーサビリティを管理します。",
     },
     items: {
-      ko: ["내측·외측 Gear", "Spline / Serration", "Precision Shaft", "Machined Housing"],
-      en: ["Internal / external gear", "Spline / serration", "Precision shaft", "Machined housing"],
-      ja: ["内・外歯Gear", "Spline / Serration", "Precision Shaft", "Machined Housing"],
+      ko: ["정보 관리 프로젝트", "정밀 공정 설계", "품질·LOT 추적", "통제된 생산 이관"],
+      en: ["Controlled-information project", "Precision process design", "Quality and lot traceability", "Controlled production transfer"],
+      ja: ["情報管理プロジェクト", "精密工程設計", "品質・LOTトレーサビリティ", "統制された量産移管"],
     },
-    image: hobbingImage,
+    image: defenseSpecialProjectsImage,
   },
 };
 

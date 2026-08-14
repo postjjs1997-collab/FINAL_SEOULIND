@@ -213,8 +213,8 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         { title: "Steering", category: "CORE 01", group: "core", copy: "Pinion, Pinion Shaft, Piston, Rack Bush, Torsion Bar 등 조향 어셈블리 부품" },
         { title: "Powertrain", category: "CORE 02", group: "core", copy: "변속기·엔진용 Shaft, Camshaft Nose Piece, Balance Shaft 계열 부품" },
         { title: "Driveline", category: "CORE 03", group: "core", copy: "Transfer Case·ETM용 Disk Carrier, Shaft, Hub 계열 부품" },
-        { title: "Electrified Powertrain", category: "HEV · PHEV · BEV", group: "electrified", copy: "전동화 플랫폼용 Gear Shaft, Coaxial·Link Shaft, Output Shaft" },
-        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "EV 오일펌프 하우징·커버와 BSM 하우징·오일펌프 정밀가공" },
+        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV 오일펌프 하우징·커버와 전동화용 Gear·Coaxial·Link·Output Shaft" },
+        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "BSM 하우징·오일펌프 알루미늄 정밀가공" },
       ],
     },
     principles: {
@@ -381,8 +381,8 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         { title: "Steering", category: "CORE 01", group: "core", copy: "Pinions, pinion shafts, pistons, rack bushes, and torsion bars for steering assemblies." },
         { title: "Powertrain", category: "CORE 02", group: "core", copy: "Transmission shafts, camshaft nose pieces, and balance-shaft families for transmissions and engines." },
         { title: "Driveline", category: "CORE 03", group: "core", copy: "Disk carriers, shafts, and hubs for transfer-case and ETM systems." },
-        { title: "Electrified Powertrain", category: "HEV · PHEV · BEV", group: "electrified", copy: "Gear shafts, coaxial and link shafts, and output shafts for electrified platforms." },
-        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "EV oil-pump housings and covers plus BSM housings and oil pumps." },
+        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV oil-pump housings and covers plus gear, coaxial, link, and output shafts." },
+        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "Precision-machined aluminum BSM housings and oil pumps." },
       ],
     },
     principles: {
@@ -549,8 +549,8 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         { title: "Steering", category: "CORE 01", group: "core", copy: "Pinion、Pinion Shaft、Piston、Rack Bush、Torsion Barなどの操舵部品" },
         { title: "Powertrain", category: "CORE 02", group: "core", copy: "トランスミッション・エンジン向けShaft、Camshaft Nose Piece、Balance Shaft系列" },
         { title: "Driveline", category: "CORE 03", group: "core", copy: "Transfer Case・ETM向けDisk Carrier、Shaft、Hub系列" },
-        { title: "Electrified Powertrain", category: "HEV · PHEV · BEV", group: "electrified", copy: "電動化向けGear Shaft、Coaxial・Link Shaft、Output Shaft" },
-        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "EVオイルポンプとBSMのハウジング・カバー精密加工" },
+        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EVオイルポンプのハウジング・カバーと電動化向けGear・Coaxial・Link・Output Shaft" },
+        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "BSMハウジング・オイルポンプのアルミ精密加工" },
       ],
     },
     principles: {
@@ -666,9 +666,9 @@ const productCardUi = {
 } as const;
 
 const electrifiedCardUi = {
-  ko: { actual: "대표 개발 부품", detail: "개발·검증 부품 상세" },
-  en: { actual: "Representative development parts", detail: "Development and validation detail" },
-  ja: { actual: "代表開発部品", detail: "開発・検証部品の詳細" },
+  ko: { actual: "대표 전동화 부품", detail: "전동화 부품 상세" },
+  en: { actual: "Representative electrified parts", detail: "Electrified component detail" },
+  ja: { actual: "代表電動化部品", detail: "電動化部品の詳細" },
 } as const;
 
 const featuredProcessIds = ["cnc-lathe", "hobbing", "induction", "auto-inspection"] as const;

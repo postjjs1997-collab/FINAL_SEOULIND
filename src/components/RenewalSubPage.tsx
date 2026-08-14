@@ -606,10 +606,10 @@ const productRouteImages: Record<string, string> = {
 };
 
 const productStandards: Record<string, string[]> = {
-  "products/electric-vehicle": ["HEV GEAR SHAFT", "COAXIAL / LINK SHAFT", "E-DRIVE OUTPUT SHAFT", "HEV / PHEV / BEV"],
+  "products/electric-vehicle": ["EV OIL PUMP HOUSING / COVER", "HEV GEAR SHAFT", "COAXIAL / LINK SHAFT", "E-DRIVE OUTPUT SHAFT"],
   "products/powertrain": ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "CAMSHAFT NOSE PIECE", "BALANCE SHAFT"],
   "products/driveline": ["TRANSFER CASE", "ETM", "DISK CARRIER / HUB", "ACTUATOR SHAFT"],
-  "products/balance-shaft-module": ["EV OIL PUMP HOUSING / COVER", "BSM HOUSING / OIL PUMP", "DIE-CAST ALUMINUM", "PRECISION MACHINING"],
+  "products/balance-shaft-module": ["BSM HOUSING", "BSM OIL PUMP", "DIE-CAST ALUMINUM", "PRECISION MACHINING"],
   "products/steering": ["PINION", "PINION SHAFT", "PISTON", "RACK BUSH", "TORSION BAR"],
   "products/etc": ["SECURE PROJECT", "PRECISION MACHINING", "LOT TRACEABILITY", "CONTROLLED PRODUCTION"],
 };
@@ -1283,9 +1283,9 @@ function ActualProductLineup({
   }[language];
   const lineupLabels = route === "products/electric-vehicle"
     ? {
-        ko: { ...labels, eyebrow: "DEVELOPMENT & VALIDATION PARTS", item: "서울산업 개발·검증 부품", overview: "전동화 개발 제품군" },
-        en: { ...labels, eyebrow: "DEVELOPMENT & VALIDATION PARTS", item: "Seoul Industry development part", overview: "Electrified development family" },
-        ja: { ...labels, eyebrow: "DEVELOPMENT & VALIDATION PARTS", item: "ソウル産業の開発・検証部品", overview: "電動化開発製品群" },
+        ko: { ...labels, eyebrow: "ELECTRIFIED PARTS", item: "서울산업 전동화 부품", overview: "전동화 제품군" },
+        en: { ...labels, eyebrow: "ELECTRIFIED PARTS", item: "Seoul Industry electrified part", overview: "Electrified product family" },
+        ja: { ...labels, eyebrow: "ELECTRIFIED PARTS", item: "ソウル産業の電動化部品", overview: "電動化製品群" },
       }[language]
     : labels;
 
@@ -1448,13 +1448,13 @@ type SpecialProjectsCopy = {
 const specialProjectsCopy: Record<RenewalLanguage, SpecialProjectsCopy> = {
   ko: {
     eyebrow: "DEFENSE & SPECIAL PROJECTS",
-    title: "공개보다 신뢰가 먼저인\n특수사업 제조 체계",
+    title: "정보 관리와 추적성을 갖춘\n방산 정밀 제조 체계",
     intro:
-      "서울산업은 방산 분야를 포함해 보안과 정밀도가 함께 요구되는 특수 프로젝트에 대응합니다. 세부 품목과 고객 정보는 공개하지 않지만, 도면 검토부터 공정 설계, 양산 품질과 LOT 추적까지 검증 가능한 관리 체계를 운영합니다.",
-    disclosureLabel: "DISCLOSURE POLICY",
+      "서울산업은 방산을 포함해 정보 관리가 요구되는 프로젝트를 위한 정밀가공·품질관리 역량을 갖추고 있습니다. 고객·제품·형상·적용 정보는 공개하지 않으며, 도면 검토부터 공정 설계, 생산 품질, LOT 추적까지 승인된 절차에 따라 관리합니다.",
+    disclosureLabel: "PUBLIC CAPABILITY OVERVIEW",
     disclosure:
       "보안상 실제 제품, 고객사, 형상, 적용 체계는 공개하지 않습니다. 본 페이지는 서울산업의 공개 가능한 제조·품질 대응 범위만 안내합니다.",
-    imageCaption: "CONFIDENTIAL PRECISION MANUFACTURING",
+    imageCaption: "CONCEPT IMAGE · PRODUCT DETAILS NOT DISCLOSED",
     principles: [
       {
         number: "01",
@@ -1484,13 +1484,13 @@ const specialProjectsCopy: Record<RenewalLanguage, SpecialProjectsCopy> = {
   },
   en: {
     eyebrow: "DEFENSE & SPECIAL PROJECTS",
-    title: "A manufacturing system\nbuilt on discretion",
+    title: "Precision manufacturing with\ncontrolled information and traceability",
     intro:
-      "Seoul Industry supports security-sensitive special projects, including defense-related programs. Specific products and customer information remain confidential, while drawing review, process engineering, production quality, and lot traceability are managed as one verifiable system.",
-    disclosureLabel: "DISCLOSURE POLICY",
+      "Seoul Industry maintains precision-machining and quality-management capabilities for defense and other projects requiring controlled information. Customer, product, geometry, and application details are not disclosed. Drawing review, process engineering, production quality, and lot traceability are managed under approved procedures.",
+    disclosureLabel: "PUBLIC CAPABILITY OVERVIEW",
     disclosure:
       "For security reasons, actual products, customers, geometries, and applications are not disclosed. This page presents only the manufacturing and quality capabilities approved for public communication.",
-    imageCaption: "CONFIDENTIAL PRECISION MANUFACTURING",
+    imageCaption: "CONCEPT IMAGE · PRODUCT DETAILS NOT DISCLOSED",
     principles: [
       {
         number: "01",
@@ -1520,13 +1520,13 @@ const specialProjectsCopy: Record<RenewalLanguage, SpecialProjectsCopy> = {
   },
   ja: {
     eyebrow: "DEFENSE & SPECIAL PROJECTS",
-    title: "公開より信頼を優先する\n特殊事業の製造体制",
+    title: "情報管理とトレーサビリティを備えた\n防衛向け精密製造体制",
     intro:
-      "ソウル産業は、防衛分野を含む機密性と精密性が同時に求められる特殊プロジェクトに対応します。製品・顧客情報は公開せず、図面検討から工程設計、量産品質、LOT追跡まで検証可能な管理体制を運用します。",
-    disclosureLabel: "DISCLOSURE POLICY",
+      "ソウル産業は、防衛分野を含む情報管理が求められるプロジェクトに向けた精密加工・品質管理体制を整えています。顧客、製品、形状、用途に関する情報は公開せず、図面検討、工程設計、生産品質、LOTトレーサビリティを承認された手順に基づいて管理します。",
+    disclosureLabel: "PUBLIC CAPABILITY OVERVIEW",
     disclosure:
       "保安上、実際の製品、顧客、形状、適用体系は公開しません。本ページでは、公開が承認された製造・品質対応範囲のみをご案内します。",
-    imageCaption: "CONFIDENTIAL PRECISION MANUFACTURING",
+    imageCaption: "CONCEPT IMAGE · PRODUCT DETAILS NOT DISCLOSED",
     principles: [
       {
         number: "01",
@@ -1640,18 +1640,18 @@ function ProductDetailBody({
     ? {
         ko: {
           ...defaultApplicationLabels,
-          parts: "서울산업 개발·검증 부품",
-          note: "전동화 플랫폼의 설계 검토와 기술 검증을 위한 대표 형상입니다.",
+          parts: "서울산업 전동화 부품",
+          note: "양산 및 개발·검증 범위는 제품별 고객 승인 단계에 따라 다릅니다.",
         },
         en: {
           ...defaultApplicationLabels,
-          parts: "Seoul Industry development parts",
-          note: "Representative geometry for electrified-platform design review and engineering validation.",
+          parts: "Seoul Industry electrified parts",
+          note: "Production and development-validation scope varies by each product's customer-approval stage.",
         },
         ja: {
           ...defaultApplicationLabels,
-          parts: "ソウル産業の開発・検証部品",
-          note: "電動化プラットフォームの設計検討・技術検証向け代表形状です。",
+          parts: "ソウル産業の電動化部品",
+          note: "量産および開発・検証の範囲は、製品ごとの顧客承認段階により異なります。",
         },
       }[language]
     : defaultApplicationLabels;
@@ -2722,7 +2722,7 @@ function RenewalSubNavigation({ route, language }: { route: string; language: Re
       >
         {group.children.map((item) => (
           <a
-            className={`${item.label === child.label ? "is-active" : ""}${item.href.includes("products/electric-vehicle") ? " is-electrified" : item.href.includes("products/balance-shaft-module") ? " is-aluminum" : item.href.includes("products/") ? " is-core-product" : ""}`.trim()}
+            className={`${item.label === child.label ? "is-active" : ""}${item.href.includes("products/defense") ? " is-defense" : item.href.includes("products/electric-vehicle") ? " is-electrified" : item.href.includes("products/balance-shaft-module") ? " is-aluminum" : item.href.includes("products/") ? " is-core-product" : ""}`.trim()}
             href={toRenewalHref(item.href)}
             ref={item.label === child.label ? activeItemRef : undefined}
             key={item.label}
@@ -2737,7 +2737,7 @@ function RenewalSubNavigation({ route, language }: { route: string; language: Re
 
 function NextPage({ route, language }: { route: string; language: RenewalLanguage }) {
   const flat = getSiteMenuGroups(language).flatMap((group) => group.children.map((child) => ({ group: group.label, child })));
-  const currentIndex = flat.findIndex((item) => item.child.href.replace(/^#\/?/, "") === route);
+  const currentIndex = flat.findIndex((item) => resolveMenuRoute(item.child.href) === route);
   const next = flat[(currentIndex + 1 + flat.length) % flat.length];
 
   return (

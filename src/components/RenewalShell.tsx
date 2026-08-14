@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import BrainallLogo from "./BrainallLogo";
 import Icon from "./Icons";
-import { getSiteMenuGroups, type NavigationLanguage, type SiteMenuGroup } from "../data/navigation";
+import { getSiteMenuGroups, resolveMenuRoute, type NavigationLanguage, type SiteMenuGroup } from "../data/navigation";
 
 export type RenewalLanguage = NavigationLanguage;
 
@@ -66,11 +66,12 @@ export function getRenewalMenuGroups(language: RenewalLanguage) {
 }
 
 function routeBelongsToGroup(route: string, group: SiteMenuGroup) {
-  const cleanRoute = route.replace(/^renewal\//, "");
-  return group.children.some((child) => child.href.replace(/^#\/?/, "") === cleanRoute);
+  const cleanRoute = resolveMenuRoute(route);
+  return group.children.some((child) => resolveMenuRoute(child.href) === cleanRoute);
 }
 
 function productGroupClass(href: string) {
+  if (href.includes("products/defense")) return "is-defense";
   if (href.includes("products/electric-vehicle")) return "is-electrified";
   if (href.includes("products/balance-shaft-module")) return "is-aluminum";
   if (href.includes("products/")) return "is-core-product";

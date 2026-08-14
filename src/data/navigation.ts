@@ -31,6 +31,7 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
         { label: "DRIVELINE", href: "#/products/driveline" },
         { label: "ELECTRIFIED POWERTRAIN", href: "#/products/electric-vehicle" },
         { label: "MACHINED ALUMINUM COMPONENTS", href: "#/products/balance-shaft-module" },
+        { label: "DEFENSE", href: "#/products/defense" },
       ],
     },
     {
@@ -96,6 +97,7 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
         { label: "DRIVELINE", href: "#/products/driveline" },
         { label: "ELECTRIFIED POWERTRAIN", href: "#/products/electric-vehicle" },
         { label: "MACHINED ALUMINUM COMPONENTS", href: "#/products/balance-shaft-module" },
+        { label: "DEFENSE", href: "#/products/defense" },
       ],
     },
     {
@@ -161,6 +163,7 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
         { label: "DRIVELINE", href: "#/products/driveline" },
         { label: "ELECTRIFIED POWERTRAIN", href: "#/products/electric-vehicle" },
         { label: "MACHINED ALUMINUM COMPONENTS", href: "#/products/balance-shaft-module" },
+        { label: "DEFENSE", href: "#/products/defense" },
       ],
     },
     {
@@ -215,6 +218,7 @@ export const routeAliases: Record<string, string> = {
   "sustainability/esg-report": "sustainability/policy",
   "products/automotive": "products/steering",
   "products/industrial": "products/etc",
+  "products/defense": "products/etc",
   "support/news": "company/notices",
   "support/contact": "company/location",
   "recruit/guide": "recruit/information",
@@ -245,7 +249,7 @@ export function findMenuByRoute(route: string, language: NavigationLanguage = "k
   const groups = getSiteMenuGroups(language);
 
   for (const group of groups) {
-    const activeChild = group.children.find((child) => child.href.replace(/^#\//, "") === cleanRoute);
+    const activeChild = group.children.find((child) => resolveMenuRoute(child.href) === cleanRoute);
     if (activeChild) return { group, child: activeChild };
   }
 
@@ -254,7 +258,7 @@ export function findMenuByRoute(route: string, language: NavigationLanguage = "k
     if (productGroup) {
       return {
         group: productGroup,
-        child: { label: "ETC", href: "#/products/etc" },
+        child: { label: "DEFENSE", href: "#/products/defense" },
       };
     }
   }

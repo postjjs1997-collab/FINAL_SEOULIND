@@ -365,7 +365,7 @@ const productVisuals = [
   { category: "STEERING", title: "Steering Parts", image: images.steering, accent: "#e9efff", variant: "combo" as const },
   { category: "POWERTRAIN", title: "Powertrain Parts", image: images.engine, accent: "#cfb3ff", variant: "robotics" as const },
   { category: "DRIVELINE", title: "Driveline Parts", image: images.driveline, accent: "#ffd36e", variant: "qeeg" as const },
-  { category: "SPECIAL PROJECTS", title: "Defense & Special Projects", image: defenseSpecialProjectsImage, accent: "#f36f21", variant: "combo" as const },
+  { category: "DEFENSE", title: "DEFENSE", image: defenseSpecialProjectsImage, accent: "#708399", variant: "combo" as const },
 ];
 
 const partnerMarks = [

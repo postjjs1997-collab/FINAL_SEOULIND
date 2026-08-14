@@ -116,17 +116,17 @@ export const defaultNoticePosts: NoticePost[] = [
       ko: {
         title: "자동차 정밀가공 제품 체계 소개",
         summary: "Steering·Powertrain·Driveline과 전동화·알루미늄 가공 역량을 함께 소개합니다.",
-        body: "서울산업은 Steering, Powertrain, Driveline의 3대 핵심 제품군을 중심으로 정밀가공 부품을 생산합니다. 전동화 플랫폼용 샤프트는 설계 검토와 시제품 검증에 대응하며, EV Oil Pump와 BSM용 알루미늄 하우징·오일 펌프까지 가공 범위를 확장합니다.",
+        body: "서울산업은 Steering, Powertrain, Driveline의 3대 핵심 제품군을 중심으로 정밀가공 부품을 생산합니다. Electrified Powertrain에는 EV Oil Pump Housing·Cover와 전동화 플랫폼용 샤프트를 포함하며, Machined Aluminum Components는 BSM Housing·Oil Pump 가공 역량으로 구성합니다.",
       },
       en: {
         title: "Automotive precision-component portfolio",
         summary: "Steering, Powertrain, and Driveline are presented with electrified and machined-aluminum capabilities.",
-        body: "Seoul Industry produces precision components across three core families: Steering, Powertrain, and Driveline. Electrified-platform shafts support design review and prototype validation, while the machined-aluminum range includes EV oil-pump and BSM housings and oil pumps.",
+        body: "Seoul Industry produces precision components across three core families: Steering, Powertrain, and Driveline. Electrified Powertrain includes EV oil-pump housings and covers plus electrified-platform shafts, while Machined Aluminum Components focuses on BSM housings and oil pumps.",
       },
       ja: {
         title: "自動車精密加工製品ポートフォリオ",
         summary: "Steering・Powertrain・Drivelineに電動化・アルミ加工の対応力を加えてご紹介します。",
-        body: "ソウル産業はSteering、Powertrain、Drivelineの3大中核製品群を中心に精密加工部品を生産します。電動化プラットフォーム向けシャフトは設計検討・試作検証に対応し、EV Oil PumpおよびBSM向けアルミハウジング・オイルポンプまで加工範囲を広げています。",
+        body: "ソウル産業はSteering、Powertrain、Drivelineの3大中核製品群を中心に精密加工部品を生産します。Electrified PowertrainにはEV Oil Pump Housing・Coverと電動化プラットフォーム向けシャフトを含み、Machined Aluminum ComponentsはBSM Housing・Oil Pumpの加工力で構成します。",
       },
     },
   },
@@ -234,18 +234,18 @@ export const curatedNoticePosts: NoticePost[] = [
     translations: {
       ko: {
         title: "전동화·알루미늄 가공 대응 범위 확대",
-        summary: "기존 3대 제품군에 전동화 개발 부품과 Machined Aluminum Components 역량을 확장했습니다.",
-        body: "Steering, Powertrain, Driveline의 양산 역량을 기반으로 HEV·PHEV·BEV용 샤프트의 설계 검토와 시제품 검증에 대응합니다.\n\nEV Oil Pump Housing·Cover와 BSM Housing·Oil Pump의 알루미늄 정밀가공도 함께 제공합니다.",
+        summary: "기존 3대 제품군에 전동화 부품과 Machined Aluminum Components 역량을 확장했습니다.",
+        body: "Electrified Powertrain은 EV Oil Pump Housing·Cover의 정밀가공과 HEV·PHEV·BEV용 샤프트의 설계 검토·시제품 검증을 함께 다룹니다.\n\nMachined Aluminum Components는 BSM Housing·Oil Pump의 알루미늄 정밀가공 역량을 별도로 소개합니다.",
       },
       en: {
         title: "Expanded electrified and machined-aluminum capabilities",
-        summary: "Electrified development parts and machined aluminum extend the three core product families.",
-        body: "Steering, Powertrain, and Driveline production capabilities support design review and prototype validation for HEV, PHEV, and BEV shafts.\n\nThe machined-aluminum range also covers EV oil-pump housings and covers plus BSM housings and oil pumps.",
+        summary: "Electrified parts and machined aluminum extend the three core product families.",
+        body: "Electrified Powertrain combines precision machining for EV oil-pump housings and covers with design review and prototype validation for HEV, PHEV, and BEV shafts.\n\nMachined Aluminum Components separately presents aluminum-machining capabilities for BSM housings and oil pumps.",
       },
       ja: {
         title: "電動化・アルミ加工の対応範囲を拡大",
-        summary: "3大中核製品群に電動化開発部品とMachined Aluminum Componentsの対応力を加えました。",
-        body: "Steering、Powertrain、Drivelineの量産力を基盤に、HEV・PHEV・BEV向けシャフトの設計検討・試作検証に対応します。\n\nEV Oil Pump Housing・CoverとBSM Housing・Oil Pumpのアルミ精密加工も提供します。",
+        summary: "3大中核製品群に電動化部品とMachined Aluminum Componentsの対応力を加えました。",
+        body: "Electrified PowertrainではEV Oil Pump Housing・Coverの精密加工と、HEV・PHEV・BEV向けシャフトの設計検討・試作検証に対応します。\n\nMachined Aluminum ComponentsではBSM Housing・Oil Pumpのアルミ精密加工力を分けてご紹介します。",
       },
     },
   },
