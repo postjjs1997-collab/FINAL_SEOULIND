@@ -3476,3 +3476,53 @@ body.renewal-active {
     min-height: 330px;
   }
 }
+
+/* Keep localized copy inside its layout tracks at every viewport. */
+.renewal-company__content,
+.renewal-section-heading > div,
+.renewal-capability__heading > div,
+.renewal-capability__grid article > div,
+.renewal-quality__heading > div,
+.renewal-quality__certificates,
+.renewal-sustainability > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.renewal-partners__intro {
+  min-width: 0;
+}
+
+.renewal-page main :where(h1, h2, h3, p, li, dt, dd) {
+  overflow-wrap: anywhere;
+}
+
+.renewal-page[data-language="ja"] main :where(h1, h2, h3, p, li, dt, dd) {
+  line-break: strict;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.renewal-page[data-language="ja"] main :where(h1, h2, h3) {
+  text-wrap: balance;
+}
+
+.renewal-page[data-language="ja"] .renewal-partners__intro h2 span {
+  white-space: normal;
+}
+
+.renewal-page[data-language="ja"] .renewal-partners__intro h2,
+.renewal-page[data-language="ja"] .renewal-partners__intro p {
+  line-break: strict;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.renewal-drawer__group > a,
+.renewal-drawer__group > button,
+.renewal-drawer__group > a strong,
+.renewal-drawer__group > button strong {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}

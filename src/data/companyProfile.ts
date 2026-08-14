@@ -269,6 +269,161 @@ export const globalProgramNetwork = {
   },
 } satisfies Record<CompanyProfileLanguage, GlobalProgramNetwork>;
 
+export const localSupplyNetwork = {
+  ko: {
+    eyebrow: "INTEGRATED LOCAL SUPPLY NETWORK",
+    title: "약 2시간 권역의 전문 파트너와 하나의 제조 흐름을 운영합니다.",
+    copy: "서울산업이 공정 책임과 품질 기준을 관리하고, 공정별 전문 협력사가 소재와 특수공정 역량을 연결해 개발 변경과 양산 변동에 신속히 대응합니다.",
+    processes: [
+      { title: "HOT FORGING", copy: "열간단조" },
+      { title: "WARM FORGING", copy: "온간단조" },
+      { title: "COLD FORGING", copy: "냉간단조" },
+      { title: "EXTERNAL TURNING", copy: "외주 선삭" },
+      { title: "CARBURIZING", copy: "침탄열처리" },
+      { title: "EXTERNAL INDUCTION HARDENING", copy: "외주 고주파열처리" },
+    ],
+    benefits: [
+      { title: "긴밀한 기술 협업", copy: "짧은 이동 거리에서 공정 검토와 현장 협의를 반복합니다." },
+      { title: "신속한 대응", copy: "개발 변경과 생산 이슈에 필요한 현장 확인 시간을 줄입니다." },
+      { title: "유연한 생산 대응", copy: "프로그램 변화에 맞춰 전문 공정과 생산 여력을 연계합니다." },
+      { title: "공급 연속성", copy: "소재·외주공정·사내가공의 진행 상태를 하나의 계획으로 관리합니다." },
+    ],
+  },
+  en: {
+    eyebrow: "INTEGRATED LOCAL SUPPLY NETWORK",
+    title: "One manufacturing flow with specialist partners within about two hours.",
+    copy: "Seoul Industry retains process ownership and quality standards while qualified partners connect material and special-process capability for responsive development and production support.",
+    processes: [
+      { title: "HOT FORGING", copy: "Qualified partner" },
+      { title: "WARM FORGING", copy: "Qualified partner" },
+      { title: "COLD FORGING", copy: "Qualified partner" },
+      { title: "EXTERNAL TURNING", copy: "Qualified partner" },
+      { title: "CARBURIZING", copy: "Qualified partner" },
+      { title: "EXTERNAL INDUCTION HARDENING", copy: "Qualified partner" },
+    ],
+    benefits: [
+      { title: "Close collaboration", copy: "Short travel distance supports repeated technical and shop-floor reviews." },
+      { title: "Rapid response", copy: "On-site checks for development changes and production issues happen quickly." },
+      { title: "Flexible capacity", copy: "Specialist processes and available capacity adapt to program changes." },
+      { title: "Supply continuity", copy: "Material, outsourced processes, and in-house machining are managed in one plan." },
+    ],
+  },
+  ja: {
+    eyebrow: "INTEGRATED LOCAL SUPPLY NETWORK",
+    title: "約2時間圏内の専門パートナーと一つの製造フローを運営します。",
+    copy: "ソウル産業が工程責任と品質基準を管理し、工程別の専門協力会社が素材・特殊工程能力をつなぎ、開発変更と量産変動に迅速に対応します。",
+    processes: [
+      { title: "HOT FORGING", copy: "熱間鍛造" },
+      { title: "WARM FORGING", copy: "温間鍛造" },
+      { title: "COLD FORGING", copy: "冷間鍛造" },
+      { title: "EXTERNAL TURNING", copy: "外注旋削" },
+      { title: "CARBURIZING", copy: "浸炭処理" },
+      { title: "EXTERNAL INDUCTION HARDENING", copy: "外注高周波焼入れ" },
+    ],
+    benefits: [
+      { title: "緊密な技術連携", copy: "短い移動距離で工程検討と現場協議を繰り返します。" },
+      { title: "迅速な対応", copy: "開発変更や生産課題に必要な現場確認時間を短縮します。" },
+      { title: "柔軟な生産対応", copy: "プログラム変化に合わせて専門工程と生産余力を連携します。" },
+      { title: "供給継続性", copy: "素材・外注工程・社内加工の進捗を一つの計画で管理します。" },
+    ],
+  },
+} satisfies Record<
+  CompanyProfileLanguage,
+  {
+    eyebrow: string;
+    title: string;
+    copy: string;
+    processes: Array<{ title: string; copy: string }>;
+    benefits: Array<{ title: string; copy: string }>;
+  }
+>;
+
+export const operationalReliability = {
+  ko: {
+    eyebrow: "EQUIPMENT RELIABILITY",
+    title: "데이터와 자주보전으로 설비 가동 안정성을 관리합니다.",
+    copy: "MES 설비 이력, 테마별 자주보전, 정비·셋팅 후 작업자 교육을 연결해 가동 리스크를 예방하고 개선 우선순위를 관리합니다.",
+    items: [
+      {
+        code: "01 · MES",
+        title: "가동·비가동 이력관리",
+        copy: "설비의 고장·비가동 이력과 주요 원인을 MES 데이터로 확인해 정비 우선순위를 관리합니다.",
+        detail: "History · Downtime · Priority",
+      },
+      {
+        code: "02 · TPM",
+        title: "테마별 자주보전",
+        copy: "청소, 점검, 보전 항목을 테마별로 운영하고 개선 전후 상태를 확인해 현장 기본조건을 유지합니다.",
+        detail: "Clean · Inspect · Maintain",
+      },
+      {
+        code: "03 · TRAINING",
+        title: "정비·셋팅 후 교육",
+        copy: "설비 정비·셋팅 후 작업방법을 확인하고 담당자 교육으로 운전 조건과 주의사항을 공유합니다.",
+        detail: "Maintenance · Setup · Training",
+      },
+    ],
+  },
+  en: {
+    eyebrow: "EQUIPMENT RELIABILITY",
+    title: "Equipment stability managed through data and autonomous maintenance.",
+    copy: "MES equipment history, themed autonomous maintenance, and training after maintenance and setup are connected to prevent operating risk and prioritize improvement.",
+    items: [
+      {
+        code: "01 · MES",
+        title: "Uptime and downtime history",
+        copy: "MES data is used to review failure and downtime history and major causes, helping prioritize maintenance.",
+        detail: "History · Downtime · Priority",
+      },
+      {
+        code: "02 · TPM",
+        title: "Themed autonomous maintenance",
+        copy: "Cleaning, inspection, and maintenance themes keep basic equipment conditions visible and controlled.",
+        detail: "Clean · Inspect · Maintain",
+      },
+      {
+        code: "03 · TRAINING",
+        title: "Training after maintenance and setup",
+        copy: "Work methods are reviewed after equipment maintenance or setup, and operating conditions and precautions are shared through training.",
+        detail: "Maintenance · Setup · Training",
+      },
+    ],
+  },
+  ja: {
+    eyebrow: "EQUIPMENT RELIABILITY",
+    title: "データと自主保全で設備稼働の安定性を管理します。",
+    copy: "MES設備履歴、テーマ別自主保全、整備・セットアップ後の作業者教育をつなぎ、稼働リスクの予防と改善優先順位を管理します。",
+    items: [
+      {
+        code: "01 · MES",
+        title: "稼働・非稼働履歴管理",
+        copy: "設備の故障・非稼働履歴と主な原因をMESデータで確認し、整備の優先順位を管理します。",
+        detail: "History · Downtime · Priority",
+      },
+      {
+        code: "02 · TPM",
+        title: "テーマ別自主保全",
+        copy: "清掃、点検、保全項目をテーマ別に運営し、改善前後の状態を確認して設備の基本条件を維持します。",
+        detail: "Clean · Inspect · Maintain",
+      },
+      {
+        code: "03 · TRAINING",
+        title: "整備・セットアップ後の教育",
+        copy: "設備整備・セットアップ後に作業方法を確認し、担当者教育を通じて運転条件と注意事項を共有します。",
+        detail: "Maintenance · Setup · Training",
+      },
+    ],
+  },
+} satisfies Record<
+  CompanyProfileLanguage,
+  {
+    eyebrow: string;
+    title: string;
+    copy: string;
+    items: Array<{ code: string; title: string; copy: string; detail: string }>;
+  }
+>;
+
 export const manufacturingGroupLabels: Record<
   CompanyProfileLanguage,
   Record<ManufacturingGroup | "all", string>
@@ -655,14 +810,14 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
       ja: "EVオイルポンプ部品と電動化向けギヤ・シャフト",
     },
     copy: {
-      ko: "EV 감속기용 Oil Pump Housing·Cover를 가공하고, Coaxial·Link·Output Shaft는 전동화 플랫폼의 설계 검토와 시제품 검증에 대응합니다.",
-      en: "EV oil-pump housings and covers are machined for reducer systems, while coaxial, link, and output shafts support electrified-platform design review and prototype validation.",
-      ja: "EV減速機向けOil Pump Housing・Coverを加工し、Coaxial・Link・Output Shaftは電動化プラットフォームの設計検討・試作検証に対応します。",
+      ko: "EV 감속기용 Oil Pump Housing·Cover를 가공하고, Coaxial·Link Shaft는 전동화 플랫폼의 설계 검토와 시제품 검증에 대응합니다.",
+      en: "EV oil-pump housings and covers are machined for reducer systems, while coaxial and link shafts support electrified-platform design review and prototype validation.",
+      ja: "EV減速機向けOil Pump Housing・Coverを加工し、Coaxial・Link Shaftは電動化プラットフォームの設計検討・試作検証に対応します。",
     },
     items: {
-      ko: ["EV Oil Pump Housing / Cover", "HEV Gear Shaft", "Coaxial / Link Shaft", "E-drive Gearbox Output Shaft"],
-      en: ["EV oil-pump housing / cover", "HEV gear shaft", "Coaxial / link shaft", "E-drive gearbox output shaft"],
-      ja: ["EV Oil Pump Housing / Cover", "HEV Gear Shaft", "Coaxial / Link Shaft", "E-drive Gearbox Output Shaft"],
+      ko: ["EV Oil Pump Housing / Cover", "HEV Gear Shaft", "Coaxial / Link Shaft"],
+      en: ["EV oil-pump housing / cover", "HEV gear shaft", "Coaxial / link shaft"],
+      ja: ["EV Oil Pump Housing / Cover", "HEV Gear Shaft", "Coaxial / Link Shaft"],
     },
     image: electrifiedPowertrainImage,
   },

@@ -17,8 +17,6 @@ import electrifiedLinkShaftPoster from "../../assets/product-catalog/electrified
 import electrifiedLinkShaftVideo from "../../assets/product-catalog/electrified/link-shaft.mp4";
 import electrifiedCoaxialShaftPoster from "../../assets/product-catalog/electrified/coaxial-shaft.jpg";
 import electrifiedCoaxialShaftVideo from "../../assets/product-catalog/electrified/coaxial-shaft.mp4";
-import electrifiedOutputShaftPoster from "../../assets/product-catalog/electrified/e-drive-output-shaft.jpg";
-import electrifiedOutputShaftVideo from "../../assets/product-catalog/electrified/e-drive-output-shaft.mp4";
 import machinedAluminumLineupImage from "../../assets/product-catalog/lineup/balance-shaft-module.webp";
 import steeringVideo1 from "../../assets/product-alpha/steering1.webm";
 import steeringVideo2 from "../../assets/product-alpha/steering2.webm";
@@ -207,12 +205,12 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       "EVオイルポンプ部品とHEV・PHEV・BEV向けギヤ・シャフト",
     ),
     copy: localized(
-      "EV 감속기 윤활계용 오일펌프 하우징·커버를 가공하며, HEV·PHEV·BEV용 Coaxial·Link·Output Shaft의 설계 검토와 시제품 검증에 대응합니다. 제품별 승인 단계에 맞춰 형상과 품질 기준을 관리합니다.",
-      "EV oil-pump housings and covers are machined for reducer lubrication systems, while coaxial, link, and output shafts support design review and prototype validation for HEV, PHEV, and BEV platforms. Geometry and quality controls follow each product's approval stage.",
-      "EV減速機潤滑系向けオイルポンプのハウジング・カバーを加工し、HEV・PHEV・BEV向けCoaxial・Link・Output Shaftの設計検討と試作検証に対応します。製品ごとの承認段階に合わせて形状と品質基準を管理します。",
+      "EV 감속기 윤활계용 오일펌프 하우징·커버를 가공하며, HEV·PHEV·BEV용 Coaxial·Link Shaft의 설계 검토와 시제품 검증에 대응합니다. 제품별 승인 단계에 맞춰 형상과 품질 기준을 관리합니다.",
+      "EV oil-pump housings and covers are machined for reducer lubrication systems, while coaxial and link shafts support design review and prototype validation for HEV, PHEV, and BEV platforms. Geometry and quality controls follow each product's approval stage.",
+      "EV減速機潤滑系向けオイルポンプのハウジング・カバーを加工し、HEV・PHEV・BEV向けCoaxial・Link Shaftの設計検討と試作検証に対応します。製品ごとの承認段階に合わせて形状と品質基準を管理します。",
     ),
     overviewImage: electrifiedLineupImage,
-    families: ["EV OIL PUMP HOUSING / COVER", "HEV GEAR SHAFT", "COAXIAL / LINK SHAFT", "E-DRIVE OUTPUT SHAFT"],
+    families: ["EV OIL PUMP HOUSING / COVER", "HEV GEAR SHAFT", "COAXIAL / LINK SHAFT"],
     // The source deck presents the oil-pump housing/cover in its machined-aluminum chapter.
     // The website intentionally groups them here by their EV reducer application.
     parts: [
@@ -239,12 +237,6 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         application: localized("HEV·PHEV 전동화 기어박스", "HEV and PHEV electrified gearboxes", "HEV・PHEV電動化ギヤボックス"),
         poster: electrifiedCoaxialShaftPoster,
         video: electrifiedCoaxialShaftVideo,
-      },
-      {
-        title: localized("E-drive 출력 샤프트", "E-drive Output Shaft", "E-drive出力シャフト"),
-        application: localized("BEV 전기 구동 모듈", "BEV electric drive modules", "BEV電動ドライブモジュール"),
-        poster: electrifiedOutputShaftPoster,
-        video: electrifiedOutputShaftVideo,
       },
     ],
     qualityStory: {
@@ -290,19 +282,6 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
           "도면·가공성 검토 후 기어·스플라인·런아웃 공통 측정 인프라 적용",
           "Drawing and machinability review followed by gear, spline, and runout measurement capability",
           "図面・加工性検討後にギヤ・スプライン・振れ測定基盤を適用",
-        ),
-      },
-      {
-        feature: localized("E-drive Output Shaft", "E-drive output shaft", "E-drive Output Shaft"),
-        characteristic: localized(
-          "베어링 장착 랜드의 No-lead 요구와 Polishing 공정",
-          "No-lead bearing-land requirement and polishing process",
-          "ベアリングランドのNo-lead要求とPolishing工程",
-        ),
-        verification: localized(
-          "표면 건전성과 런아웃을 포함한 설계·엔지니어링 검증",
-          "Design and engineering verification including surface integrity and runout",
-          "表面健全性と振れを含む設計・エンジニアリング検証",
         ),
       },
       {
@@ -416,12 +395,12 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     eyebrow: "POWERTRAIN PARTS",
     title: localized("파워트레인 정밀 부품", "Precision components for powertrain systems", "パワートレインの精密部品"),
     copy: localized(
-      "6단 변속기, 8L90 Input·Output, 10R140용 샤프트와 Oil Pump Shaft, Camshaft Nose Piece, Balance Shaft를 생산합니다.",
-      "Production covers six-speed, 8L90 input and output, and 10R140 transmission shafts, plus oil-pump shafts, camshaft nose pieces, and balance shafts.",
-      "6速、8L90 Input・Output、10R140用シャフトに加え、Oil Pump Shaft、Camshaft Nose Piece、Balance Shaftを生産します。",
+      "6단 변속기, 8L90 Input·Output, 10R140용 샤프트와 Oil Pump Shaft, Brake Module Shaft, Camshaft Nose Piece, Balance Shaft를 생산합니다.",
+      "Production covers six-speed, 8L90 input and output, and 10R140 transmission shafts, plus oil-pump shafts, brake-module shafts, camshaft nose pieces, and balance shafts.",
+      "6速、8L90 Input・Output、10R140用シャフトに加え、Oil Pump Shaft、Brake Module Shaft、Camshaft Nose Piece、Balance Shaftを生産します。",
     ),
     overviewImage: powertrainLineupImage,
-    families: ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "CAMSHAFT NOSE PIECE", "BALANCE SHAFT"],
+    families: ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "BRAKE MODULE SHAFT", "CAMSHAFT NOSE PIECE", "BALANCE SHAFT"],
     parts: [
       {
         title: localized("8L90 출력 샤프트", "8L90 Output Shaft", "8L90出力シャフト"),

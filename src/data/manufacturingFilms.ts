@@ -41,9 +41,9 @@ export type ManufacturingFilm = {
 
 export const manufacturingFilmLibraryCopy = {
   ko: {
-    eyebrow: "SHOP FLOOR FILM LIBRARY",
-    title: "실제 생산 현장에서 확인하는 세부 공정",
-    copy: "회사소개 자료의 현장 영상을 공정별로 재구성했습니다. 중복 편집본은 제외하고, 각 영상에는 해당 기술을 가장 분명하게 보여 주는 구간만 담았습니다.",
+    eyebrow: "MANUFACTURING IN ACTION",
+    title: "정밀 부품을 완성하는 핵심 생산 공정",
+    copy: "기어·스플라인 가공, 연삭·폴리싱, 레이저 용접, 자동 이송까지 서울산업의 핵심 생산 기술과 공정 흐름을 실제 가동 영상으로 소개합니다.",
     tabs: {
       "gear-spline": "기어·스플라인",
       "precision-finishing": "정밀 정삭",
@@ -51,9 +51,9 @@ export const manufacturingFilmLibraryCopy = {
     },
   },
   en: {
-    eyebrow: "SHOP FLOOR FILM LIBRARY",
-    title: "Detailed processes documented on the shop floor",
-    copy: "Plant footage from the company profile has been organized by process. Duplicate edits are omitted, and each film focuses on the clearest working sequence for that technology.",
+    eyebrow: "MANUFACTURING IN ACTION",
+    title: "Core processes behind precision components",
+    copy: "See Seoul Industry’s key manufacturing technologies and process flow in operation—from gear and spline machining to grinding, polishing, laser welding, and automated transfer.",
     tabs: {
       "gear-spline": "Gear & Spline",
       "precision-finishing": "Precision Finishing",
@@ -61,9 +61,9 @@ export const manufacturingFilmLibraryCopy = {
     },
   },
   ja: {
-    eyebrow: "SHOP FLOOR FILM LIBRARY",
-    title: "生産現場で確認する詳細工程",
-    copy: "会社案内資料の現場映像を工程別に再構成しました。重複する編集版を除き、各技術の作業内容が最も明確に伝わる区間のみを収録しています。",
+    eyebrow: "MANUFACTURING IN ACTION",
+    title: "精密部品を支える主要生産工程",
+    copy: "ギヤ・スプライン加工から研削・ポリッシング、レーザー溶接、自動搬送まで、ソウル産業の主要な生産技術と工程の流れを実際の稼働映像でご紹介します。",
     tabs: {
       "gear-spline": "ギヤ・スプライン",
       "precision-finishing": "精密仕上げ",

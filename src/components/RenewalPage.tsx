@@ -13,6 +13,8 @@ import oemProductionPoster from "../../assets/process-videos/oem-production-gant
 import mainHeroVideo from "../../assets/process-videos/home-main-final.mp4";
 import mainHeroPoster from "../../assets/process-videos/home-main-final.jpg";
 import facadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
+import homeCncLatheVideo from "../../assets/company-profile/video/cnc-lathe-line-automation.mp4";
+import homeCncLathePoster from "../../assets/company-profile/process/cnc-lathe-line-automation.webp";
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
 import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
 import msqCertificateImage from "../../assets/certificates/msq-seoul-industry-2025.png";
@@ -213,7 +215,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         { title: "Steering", category: "CORE 01", group: "core", copy: "Pinion, Pinion Shaft, Piston, Rack Bush, Torsion Bar 등 조향 어셈블리 부품" },
         { title: "Powertrain", category: "CORE 02", group: "core", copy: "변속기·엔진용 Shaft, Camshaft Nose Piece, Balance Shaft 계열 부품" },
         { title: "Driveline", category: "CORE 03", group: "core", copy: "Transfer Case·ETM용 Disk Carrier, Shaft, Hub 계열 부품" },
-        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV 오일펌프 하우징·커버와 전동화용 Gear·Coaxial·Link·Output Shaft" },
+        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV 오일펌프 하우징·커버와 전동화용 Gear·Coaxial·Link Shaft" },
         { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "BSM 하우징·오일펌프 알루미늄 정밀가공" },
       ],
     },
@@ -381,7 +383,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         { title: "Steering", category: "CORE 01", group: "core", copy: "Pinions, pinion shafts, pistons, rack bushes, and torsion bars for steering assemblies." },
         { title: "Powertrain", category: "CORE 02", group: "core", copy: "Transmission shafts, camshaft nose pieces, and balance-shaft families for transmissions and engines." },
         { title: "Driveline", category: "CORE 03", group: "core", copy: "Disk carriers, shafts, and hubs for transfer-case and ETM systems." },
-        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV oil-pump housings and covers plus gear, coaxial, link, and output shafts." },
+        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV oil-pump housings and covers plus gear, coaxial, and link shafts." },
         { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "Precision-machined aluminum BSM housings and oil pumps." },
       ],
     },
@@ -549,7 +551,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         { title: "Steering", category: "CORE 01", group: "core", copy: "Pinion、Pinion Shaft、Piston、Rack Bush、Torsion Barなどの操舵部品" },
         { title: "Powertrain", category: "CORE 02", group: "core", copy: "トランスミッション・エンジン向けShaft、Camshaft Nose Piece、Balance Shaft系列" },
         { title: "Driveline", category: "CORE 03", group: "core", copy: "Transfer Case・ETM向けDisk Carrier、Shaft、Hub系列" },
-        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EVオイルポンプのハウジング・カバーと電動化向けGear・Coaxial・Link・Output Shaft" },
+        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EVオイルポンプのハウジング・カバーと電動化向けGear・Coaxial・Link Shaft" },
         { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "BSMハウジング・オイルポンプのアルミ精密加工" },
       ],
     },
@@ -616,7 +618,7 @@ const heroMedia: Array<
   | { video: string; poster: string; duration: number; playbackRate?: number }
 > = [
   { video: mainHeroVideo, poster: mainHeroPoster, duration: 7000 },
-  { video: oemProductionVideo, poster: oemProductionPoster, duration: 5700, playbackRate: 0.9 },
+  { video: oemProductionVideo, poster: oemProductionPoster, duration: 6250, playbackRate: 0.8 },
   { video: qualityVideo, poster: qualityPoster, duration: 3000 },
 ];
 
@@ -675,8 +677,22 @@ const featuredProcessIds = ["cnc-lathe", "hobbing", "induction", "auto-inspectio
 
 const featuredProcesses = featuredProcessIds.flatMap((id) => {
   const process = manufacturingProcesses.find((item) => item.id === id);
-  return process ? [{ ...process, homeVideo: manufacturingFlowVideos[id] }] : [];
+  if (!process) return [];
+
+  return [
+    {
+      ...process,
+      homeVideo: id === "cnc-lathe" ? homeCncLatheVideo : manufacturingFlowVideos[id],
+      homePoster: id === "cnc-lathe" ? homeCncLathePoster : process.image,
+    },
+  ];
 });
+
+const homeCncLatheCopy = {
+  ko: "자동 이송·로딩이 연계된 CNC 선반 라인으로 장축 샤프트 가공의 반복성과 공정 흐름을 안정적으로 관리합니다.",
+  en: "Automated transfer and loading are integrated with the CNC lathe line to support repeatable long-shaft machining and stable process flow.",
+  ja: "自動搬送・ローディングをCNC旋盤ラインと連携し、長尺シャフト加工の再現性と安定した工程フローを管理します。",
+} as const;
 
 const homeUiCopy = {
   ko: {
@@ -1016,7 +1032,7 @@ function ManufacturingSection({ language }: { language: RenewalLanguage }) {
             <figure>
               <video
                 src={process.homeVideo}
-                poster={process.image}
+                poster={process.homePoster}
                 autoPlay
                 muted
                 loop
@@ -1029,7 +1045,7 @@ function ManufacturingSection({ language }: { language: RenewalLanguage }) {
             <div>
               <span>{ui.processStep}</span>
               <h3>{process.title}</h3>
-              <p>{process.copy[language]}</p>
+              <p>{process.id === "cnc-lathe" ? homeCncLatheCopy[language] : process.copy[language]}</p>
               <strong>{process.capability[language]}</strong>
             </div>
           </article>

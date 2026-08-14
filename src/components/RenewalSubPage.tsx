@@ -4,7 +4,7 @@ import certificationImage from "../../certification.png";
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
 import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
 import msqCertificateImage from "../../assets/certificates/msq-seoul-industry-2025.png";
-import balanceModuleImage from "../../assets/company-deck/machined-aluminum-products.webp";
+import balanceModuleImage from "../../assets/product-application/machined-aluminum-application.webp";
 import automotiveImage from "../../assets/product-application/electric-vehicle-precise.webp";
 import steeringImage from "../../assets/product-application/steering-precise.webp";
 import drivelineImage from "../../assets/product-application/driveline-precise.webp";
@@ -12,18 +12,18 @@ import powertrainImage from "../../assets/product-application/powertrain-precise
 import precisionImage from "../../precision-inside-mobility.jpg";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
-import cncLatheEquipmentImage from "../../assets/equipment-inventory/cnc-lathe.jpg";
-import cncMachiningCenterEquipmentImage from "../../assets/equipment-inventory/cnc-machining-center.png";
-import rackRollingEquipmentImage from "../../assets/equipment-inventory/rack-rolling.png";
-import broachingEquipmentImage from "../../assets/equipment-inventory/broaching-actual.jpg";
-import hobbingEquipmentImage from "../../assets/equipment-inventory/cnc-hobbing.png";
-import shapingEquipmentImage from "../../assets/equipment-inventory/shaping.png";
-import grindingEquipmentImage from "../../assets/equipment-inventory/cnc-grinding-actual.jpg";
-import inductionHardeningEquipmentImage from "../../assets/equipment-inventory/induction-hardening-actual.jpg";
-import straightenerEquipmentImage from "../../assets/equipment-inventory/straightener-actual.jpg";
-import automaticInspectionEquipmentImage from "../../assets/equipment-inventory/automatic-inspection.png";
-import gearMeasuringEquipmentImage from "../../assets/equipment-inventory/gear-measuring-machine.png";
-import cmmEquipmentImage from "../../assets/equipment-inventory/cmm.png";
+import cncLatheEquipmentImage from "../../assets/equipment-inventory/actual/cnc-lathe.webp";
+import cncMachiningCenterEquipmentImage from "../../assets/equipment-inventory/actual/cnc-machining-center.webp";
+import rackRollingEquipmentImage from "../../assets/equipment-inventory/actual/rack-rolling.webp";
+import broachingEquipmentImage from "../../assets/equipment-inventory/actual/broaching.webp";
+import hobbingEquipmentImage from "../../assets/equipment-inventory/actual/cnc-hobbing.webp";
+import shapingEquipmentImage from "../../assets/equipment-inventory/actual/shaping.webp";
+import grindingEquipmentImage from "../../assets/equipment-inventory/actual/cnc-grinding.webp";
+import inductionHardeningEquipmentImage from "../../assets/equipment-inventory/actual/induction-hardening.webp";
+import straightenerEquipmentImage from "../../assets/equipment-inventory/actual/straightener.webp";
+import automaticInspectionEquipmentImage from "../../assets/equipment-inventory/actual/automatic-inspection.webp";
+import gearMeasuringEquipmentImage from "../../assets/equipment-inventory/actual/gear-measuring.webp";
+import cmmEquipmentImage from "../../assets/equipment-inventory/actual/cmm.webp";
 import sustainabilityPolicyDocument from "../../assets/documents/sustainability-management-policy-seoul-industry.docx?url";
 import Icon from "./Icons";
 import { getPageConfig } from "./MenuPage";
@@ -38,12 +38,13 @@ import {
   equipmentInventory,
   globalProgramNetwork,
   inspectionProcessIds,
+  localSupplyNetwork,
   manufacturingFlowIds,
   manufacturingFlowVideos,
   manufacturingGroupLabels,
   manufacturingPageCopy,
   manufacturingProcesses,
-  productEvidenceByRoute,
+  operationalReliability,
   qualityEvidenceCopy,
   qualityEvidenceProcesses,
 } from "../data/companyProfile";
@@ -54,6 +55,7 @@ import {
   manufacturingFilmLibraryCopy,
   type ManufacturingFilmGroupId,
 } from "../data/manufacturingFilms";
+import { qualityCapabilityCopy, type QualityCapabilityContent } from "../data/qualityCapability";
 import { productPartCatalogByRoute } from "../data/productCatalog";
 import { useLenisScroll } from "../motion/useLenisScroll";
 import { jumpToPageTop } from "../utils/pageScroll";
@@ -232,6 +234,8 @@ type SustainabilityPolicyCopy = {
     eyebrow: string;
     title: string;
     items: Array<{ title: string; copy: string }>;
+    evidenceTitle: string;
+    evidenceItems: Array<{ tag: string; title: string; copy: string }>;
   };
   document: { eyebrow: string; title: string; copy: string; dateLabel: string; date: string; download: string };
 };
@@ -304,6 +308,11 @@ const sustainabilityPolicyCopy: Record<RenewalLanguage, SustainabilityPolicyCopy
         { title: "성과 모니터링", copy: "정책 이행 현황과 목표 대비 성과를 정기적으로 확인하고 기록합니다." },
         { title: "평가와 시정", copy: "내부 감사, 외부 평가, 고객 평가와 SAQ 5.0 결과를 바탕으로 필요한 시정조치를 시행합니다." },
         { title: "책임과 개선", copy: "경영진과 모든 임직원이 정책 준수에 책임을 지고 평가 결과를 다음 개선 활동에 반영합니다." },
+      ],
+      evidenceTitle: "현장 실행 근거",
+      evidenceItems: [
+        { tag: "ENERGY DATA", title: "에너지 데이터 관리", copy: "전력 관련 지표를 월별로 확인해 변화 추세를 파악하고 외부 에너지진단을 추진합니다." },
+        { tag: "ELECTRICAL SAFETY", title: "전기설비 안전점검", copy: "전기설비 정기 안전점검을 실시하고 점검 이력을 관리해 생산현장의 안전 기반을 유지합니다." },
       ],
     },
     document: {
@@ -383,6 +392,11 @@ const sustainabilityPolicyCopy: Record<RenewalLanguage, SustainabilityPolicyCopy
         { title: "Assess and Correct", copy: "Use internal audits, external evaluations, customer assessments and SAQ 5.0 results to drive corrective action." },
         { title: "Own and Improve", copy: "Management and employees share responsibility for compliance and feed evaluation results into continuous improvement." },
       ],
+      evidenceTitle: "Shop-floor implementation evidence",
+      evidenceItems: [
+        { tag: "ENERGY DATA", title: "Energy data management", copy: "Review power-related indicators monthly, track trends, and pursue external energy diagnostics." },
+        { tag: "ELECTRICAL SAFETY", title: "Electrical safety inspections", copy: "Conduct regular electrical-equipment safety inspections and retain the inspection history that supports safe production." },
+      ],
     },
     document: {
       eyebrow: "OFFICIAL POLICY",
@@ -460,6 +474,11 @@ const sustainabilityPolicyCopy: Record<RenewalLanguage, SustainabilityPolicyCopy
         { title: "実績モニタリング", copy: "方針の実施状況と目標に対する実績を定期的に確認し、記録します。" },
         { title: "評価と是正", copy: "内部監査、外部評価、顧客評価、SAQ 5.0の結果に基づき必要な是正措置を実施します。" },
         { title: "責任と改善", copy: "経営層と全従業員が遵守責任を担い、評価結果を継続的改善に反映します。" },
+      ],
+      evidenceTitle: "現場での実行根拠",
+      evidenceItems: [
+        { tag: "ENERGY DATA", title: "エネルギーデータ管理", copy: "電力関連指標を月次で確認して変化傾向を把握し、外部エネルギー診断を推進します。" },
+        { tag: "ELECTRICAL SAFETY", title: "電気設備安全点検", copy: "電気設備の定期安全点検を実施し、点検履歴を管理して生産現場の安全基盤を維持します。" },
       ],
     },
     document: {
@@ -614,7 +633,7 @@ const productRouteImages: Record<string, string> = {
 };
 
 const productStandards: Record<string, string[]> = {
-  "products/electric-vehicle": ["EV OIL PUMP HOUSING / COVER", "HEV GEAR SHAFT", "COAXIAL / LINK SHAFT", "E-DRIVE OUTPUT SHAFT"],
+  "products/electric-vehicle": ["EV OIL PUMP HOUSING / COVER", "HEV GEAR SHAFT", "COAXIAL / LINK SHAFT"],
   "products/powertrain": ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "CAMSHAFT NOSE PIECE", "BALANCE SHAFT"],
   "products/driveline": ["TRANSFER CASE", "ETM", "DISK CARRIER / HUB", "ACTUATOR SHAFT"],
   "products/balance-shaft-module": ["BSM HOUSING", "BSM OIL PUMP", "DIE-CAST ALUMINUM", "PRECISION MACHINING"],
@@ -1095,6 +1114,47 @@ function GreetingBody({ content }: { content: SiteContent }) {
   );
 }
 
+function LocalSupplyNetworkSection({ language }: { language: RenewalLanguage }) {
+  const copy = localSupplyNetwork[language];
+
+  return (
+    <section className="profile-local-network">
+      <header data-sub-reveal>
+        <span>{copy.eyebrow}</span>
+        <div>
+          <h2>{copy.title}</h2>
+          <p>{copy.copy}</p>
+        </div>
+      </header>
+      <div className="profile-local-network__flow" data-sub-reveal>
+        <div className="profile-local-network__hub">
+          <small>PROCESS OWNER</small>
+          <strong>SEOUL INDUSTRY</strong>
+          <span>HWASEONG · KOREA</span>
+        </div>
+        <div className="profile-local-network__processes">
+          {copy.processes.map((process, index) => (
+            <article key={process.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{process.title}</strong>
+              <small>{process.copy}</small>
+            </article>
+          ))}
+        </div>
+      </div>
+      <div className="profile-local-network__benefits">
+        {copy.benefits.map((benefit, index) => (
+          <article data-sub-reveal key={benefit.title}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{benefit.title}</h3>
+            <p>{benefit.copy}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function CompanyOverviewBody({ language }: { language: RenewalLanguage }) {
   const copy = companyOverviewCopy[language];
   const network = globalProgramNetwork[language];
@@ -1131,6 +1191,8 @@ function CompanyOverviewBody({ language }: { language: RenewalLanguage }) {
           </div>
         ))}
       </section>
+
+      <LocalSupplyNetworkSection language={language} />
 
       <section className="profile-network">
         <header data-sub-reveal>
@@ -1402,26 +1464,26 @@ function ProductQualitySection({
     ko: {
       eyebrow: "CRITICAL FEATURES & VERIFICATION",
       title: "서울산업이 이 제품군을 만드는 방식",
-      copy: "공식 제품·공정·검증 자료에 근거한 대표 제조 포인트입니다. 세부 관리 항목과 합격 기준은 고객 승인 도면에 따라 운영됩니다.",
-      feature: "제품·적용 근거",
-      characteristic: "핵심 공정·차별점",
-      verification: "검증·자동화 근거",
+      copy: "제품 기능과 형상에 맞춰 관리하는 핵심 제조 항목입니다. 세부 관리 항목과 합격 기준은 고객 승인 도면에 따라 적용합니다.",
+      feature: "핵심 제품·기능",
+      characteristic: "주요 공정·제조 역량",
+      verification: "품질 검증·자동화",
     },
     en: {
       eyebrow: "CRITICAL FEATURES & VERIFICATION",
       title: "How Seoul Industry manufactures this product family",
-      copy: "Representative manufacturing points drawn from official product, process, and verification material. Detailed controls and acceptance criteria follow customer-approved drawings.",
-      feature: "Product / application evidence",
-      characteristic: "Core process / differentiator",
-      verification: "Verification / automation evidence",
+      copy: "These are the key manufacturing controls applied to each product’s function and geometry. Detailed controls and acceptance criteria follow customer-approved drawings.",
+      feature: "Product / function",
+      characteristic: "Process / manufacturing capability",
+      verification: "Quality verification / automation",
     },
     ja: {
       eyebrow: "CRITICAL FEATURES & VERIFICATION",
       title: "ソウル産業がこの製品群をつくる方法",
-      copy: "公式の製品・工程・検証資料に基づく代表的な製造ポイントです。詳細な管理項目と合格基準は、顧客承認図面に従って運用します。",
-      feature: "製品・適用根拠",
-      characteristic: "中核工程・差別化要素",
-      verification: "検証・自動化根拠",
+      copy: "製品の機能と形状に合わせて管理する主要製造項目です。詳細な管理項目と合格基準は、顧客承認図面に従って適用します。",
+      feature: "主要製品・機能",
+      characteristic: "主要工程・製造能力",
+      verification: "品質検証・自動化",
     },
   }[language];
   const headingId = `product-quality-${route.replace(/[^a-z0-9]+/gi, "-")}`;
@@ -1650,26 +1712,21 @@ function ProductDetailBody({
   const standards = productStandards[route] ?? [];
   const labels = bodyLabels[language];
   const catalog = productPartCatalogByRoute[route];
-  const evidence = productEvidenceByRoute[route];
   const displayTitle = catalog?.title[language] ?? product.title;
   const displayCopy = catalog?.copy[language] ?? product.copy;
   const displayCategory = catalog?.eyebrow ?? product.category;
   const image = productRouteImages[route] ?? product.image;
-  const featuredParts = catalog?.parts.slice(0, 2) ?? [];
   const defaultApplicationLabels = {
     ko: {
       area: "대표 적용 구역",
-      parts: "서울산업 양산 부품",
       note: "차종과 프로그램에 따라 적용 위치와 형상은 달라질 수 있습니다.",
     },
     en: {
       area: "Representative application area",
-      parts: "Seoul Industry production parts",
       note: "Installation position and geometry vary by vehicle and program.",
     },
     ja: {
       area: "代表的な搭載領域",
-      parts: "ソウル産業の量産部品",
       note: "搭載位置や形状は車種・プログラムにより異なります。",
     },
   }[language];
@@ -1677,17 +1734,14 @@ function ProductDetailBody({
     ? {
         ko: {
           ...defaultApplicationLabels,
-          parts: "서울산업 전동화 부품",
           note: "양산 및 개발·검증 범위는 제품별 고객 승인 단계에 따라 다릅니다.",
         },
         en: {
           ...defaultApplicationLabels,
-          parts: "Seoul Industry electrified parts",
           note: "Production and development-validation scope varies by each product's customer-approval stage.",
         },
         ja: {
           ...defaultApplicationLabels,
-          parts: "ソウル産業の電動化部品",
           note: "量産および開発・検証の範囲は、製品ごとの顧客承認段階により異なります。",
         },
       }[language]
@@ -1704,26 +1758,6 @@ function ProductDetailBody({
               <strong>{applicationLabels.area}</strong>
               <small>{applicationLabels.note}</small>
             </div>
-            <section aria-label={applicationLabels.parts}>
-              <header>{applicationLabels.parts}</header>
-              <div>
-                {featuredParts.map((part) => (
-                  <article key={part.title.en}>
-                    <video
-                      src={part.video}
-                      poster={part.poster}
-                      aria-label={part.title[language]}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                    />
-                    <span>{part.title[language]}</span>
-                  </article>
-                ))}
-              </div>
-            </section>
           </figcaption>
         </figure>
         <div data-sub-reveal>
@@ -1738,37 +1772,6 @@ function ProductDetailBody({
           </div>
         </div>
       </section>
-      {evidence ? (
-        <section className="profile-product-evidence" data-sub-reveal>
-          <figure>
-            {catalog?.overviewVideo ? (
-              <video
-                src={catalog.overviewVideo}
-                poster={evidence.image}
-                aria-label={evidence.title[language]}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-              />
-            ) : (
-              <img src={evidence.image} alt="" loading="lazy" />
-            )}
-            <figcaption>{evidence.eyebrow}</figcaption>
-          </figure>
-          <div>
-            <span>{evidence.eyebrow}</span>
-            <h2>{evidence.title[language]}</h2>
-            <p>{evidence.copy[language]}</p>
-            <ul>
-              {evidence.items[language].map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      ) : null}
       <ActualProductLineup route={route} language={language} />
       <ProductQualitySection route={route} language={language} />
       <section className="renewal-sub-section-heading" data-sub-reveal>
@@ -1802,8 +1805,59 @@ function ProcessMedia({
 
 function ManufacturingFilmLibrary({ language }: { language: RenewalLanguage }) {
   const [activeGroup, setActiveGroup] = useState<ManufacturingFilmGroupId>("gear-spline");
+  const [cycleRevision, setCycleRevision] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isInteracting, setIsInteracting] = useState(false);
+  const reducedMotion = usePrefersReducedMotion();
+  const tabsRef = useRef<HTMLDivElement>(null);
   const copy = manufacturingFilmLibraryCopy[language];
   const visibleFilms = manufacturingFilmLibrary.filter((film) => film.group === activeGroup);
+
+  useEffect(() => {
+    const tabs = tabsRef.current;
+    if (!tabs) return;
+
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.35 },
+    );
+    observer.observe(tabs);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible || isInteracting || reducedMotion) return;
+
+    let timer = 0;
+    const scheduleNextGroup = () => {
+      window.clearTimeout(timer);
+      if (document.visibilityState !== "visible") return;
+      timer = window.setTimeout(() => {
+        setActiveGroup((currentGroup) => {
+          const currentIndex = manufacturingFilmGroupIds.indexOf(currentGroup);
+          return manufacturingFilmGroupIds[(currentIndex + 1) % manufacturingFilmGroupIds.length];
+        });
+      }, 3000);
+    };
+    const handleVisibilityChange = () => scheduleNextGroup();
+
+    scheduleNextGroup();
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      window.clearTimeout(timer);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [activeGroup, cycleRevision, isInteracting, isVisible, reducedMotion]);
+
+  const selectGroup = (groupId: ManufacturingFilmGroupId) => {
+    setActiveGroup(groupId);
+    setCycleRevision((revision) => revision + 1);
+  };
 
   return (
     <section className="profile-film-library" aria-labelledby="manufacturing-film-library-title">
@@ -1815,7 +1869,18 @@ function ManufacturingFilmLibrary({ language }: { language: RenewalLanguage }) {
         <p>{copy.copy}</p>
       </header>
 
-      <div className="profile-film-library__tabs" role="tablist" aria-label={copy.title}>
+      <div
+        className="profile-film-library__tabs"
+        role="tablist"
+        aria-label={copy.title}
+        ref={tabsRef}
+        onPointerEnter={() => setIsInteracting(true)}
+        onPointerLeave={() => setIsInteracting(false)}
+        onFocusCapture={() => setIsInteracting(true)}
+        onBlurCapture={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget)) setIsInteracting(false);
+        }}
+      >
         {manufacturingFilmGroupIds.map((groupId) => {
           const filmCount = manufacturingFilmLibrary.filter((film) => film.group === groupId).length;
           const isActive = groupId === activeGroup;
@@ -1828,7 +1893,7 @@ function ManufacturingFilmLibrary({ language }: { language: RenewalLanguage }) {
               aria-controls="manufacturing-film-panel"
               className={isActive ? "is-active" : undefined}
               key={groupId}
-              onClick={() => setActiveGroup(groupId)}
+              onClick={() => selectGroup(groupId)}
             >
               <span>{copy.tabs[groupId]}</span>
               <strong>{String(filmCount).padStart(2, "0")}</strong>
@@ -1841,7 +1906,7 @@ function ManufacturingFilmLibrary({ language }: { language: RenewalLanguage }) {
         className={`profile-film-library__grid is-count-${visibleFilms.length}`}
         id="manufacturing-film-panel"
         role="tabpanel"
-        aria-live="polite"
+        aria-live={isInteracting ? "polite" : "off"}
       >
         {visibleFilms.map((film, index) => (
           <article key={film.id}>
@@ -1945,12 +2010,13 @@ function ManufacturingBody({
       )}
 
       {route === "manufacturing/equipment" && (
-        <section className="profile-equipment-inventory" aria-label={copy.equipmentTitle}>
-          {equipmentInventory.map((group, groupIndex) => {
-            const visuals = equipmentVisuals[group.id] ?? [];
+        <>
+          <section className="profile-equipment-inventory" aria-label={copy.equipmentTitle}>
+            {equipmentInventory.map((group, groupIndex) => {
+              const visuals = equipmentVisuals[group.id] ?? [];
 
-            return (
-              <article className={groupIndex % 2 === 1 ? "is-reversed" : undefined} data-sub-reveal key={group.id}>
+              return (
+                <article className={groupIndex % 2 === 1 ? "is-reversed" : undefined} data-sub-reveal key={group.id}>
                 <figure className="profile-equipment-inventory__visual">
                   <div className={`profile-equipment-inventory__gallery count-${visuals.length}`}>
                     {visuals.map((visual) => (
@@ -1959,6 +2025,7 @@ function ManufacturingBody({
                           src={visual.image}
                           alt={`${visual.label} ${equipmentImageLabel}`}
                           loading="lazy"
+                          decoding="async"
                         />
                         <span>{visual.label}</span>
                       </div>
@@ -1988,10 +2055,12 @@ function ManufacturingBody({
                     ))}
                   </dl>
                 </div>
-              </article>
-            );
-          })}
-        </section>
+                </article>
+              );
+            })}
+          </section>
+          <OperationalReliabilitySection language={language} />
+        </>
       )}
 
       {route === "manufacturing/inspection" && (
@@ -2025,6 +2094,32 @@ function ManufacturingBody({
   );
 }
 
+function OperationalReliabilitySection({ language }: { language: RenewalLanguage }) {
+  const copy = operationalReliability[language];
+
+  return (
+    <section className="profile-operational-reliability">
+      <header data-sub-reveal>
+        <span>{copy.eyebrow}</span>
+        <div>
+          <h2>{copy.title}</h2>
+          <p>{copy.copy}</p>
+        </div>
+      </header>
+      <div className="profile-operational-reliability__grid">
+        {copy.items.map((item) => (
+          <article data-sub-reveal key={item.code}>
+            <span>{item.code}</span>
+            <h3>{item.title}</h3>
+            <p>{item.copy}</p>
+            <small>{item.detail}</small>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function QualityEvidence({ language }: { language: RenewalLanguage }) {
   const copy = qualityEvidenceCopy[language];
 
@@ -2049,6 +2144,112 @@ function QualityEvidence({ language }: { language: RenewalLanguage }) {
             </div>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function CapabilityMatrix({
+  section,
+  className = "",
+}: {
+  section: QualityCapabilityContent["governance"];
+  className?: string;
+}) {
+  return (
+    <section className={`renewal-sub-capability-matrix ${className}`.trim()}>
+      <header data-sub-reveal>
+        <span>{section.eyebrow}</span>
+        <div>
+          <h2>{section.title}</h2>
+          <p>{section.copy}</p>
+        </div>
+      </header>
+      <div className="renewal-sub-capability-matrix__grid">
+        {section.items.map((item) => (
+          <article data-sub-reveal key={`${item.code}-${item.title}`}>
+            <span>{item.code}</span>
+            <h3>{item.title}</h3>
+            <p>{item.copy}</p>
+            <small>{item.detail}</small>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function QualityMetrologySection({ language }: { language: RenewalLanguage }) {
+  const copy = qualityCapabilityCopy[language].measurement;
+
+  return (
+    <section className="renewal-sub-metrology">
+      <header data-sub-reveal>
+        <span>{copy.eyebrow}</span>
+        <div>
+          <h2>{copy.title}</h2>
+          <p>{copy.copy}</p>
+        </div>
+      </header>
+      <div className="renewal-sub-metrology__grid">
+        {copy.items.map((item, index) => (
+          <article data-sub-reveal key={item.title}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.scope}</p>
+            </div>
+            <strong>{item.capability}</strong>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function EngineeringCapabilitySection({ language }: { language: RenewalLanguage }) {
+  const copy = qualityCapabilityCopy[language].engineering;
+
+  return (
+    <section className="renewal-sub-engineering-capability">
+      <header data-sub-reveal>
+        <span>{copy.eyebrow}</span>
+        <div>
+          <h2>{copy.title}</h2>
+          <p>{copy.copy}</p>
+        </div>
+      </header>
+      <ol className="renewal-sub-engineering-capability__stages">
+        {copy.stages.map((stage) => (
+          <li data-sub-reveal key={stage.code}>
+            <span>{stage.code}</span>
+            <h3>{stage.title}</h3>
+            <p>{stage.copy}</p>
+            <small>{stage.detail}</small>
+          </li>
+        ))}
+      </ol>
+      <div className="renewal-sub-engineering-capability__details">
+        <section data-sub-reveal>
+          <h3>{copy.toolsTitle}</h3>
+          <div>
+            {copy.tools.map((tool) => (
+              <article key={tool.title}>
+                <span>{tool.label}</span>
+                <strong>{tool.title}</strong>
+                <p>{tool.copy}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+        <section data-sub-reveal>
+          <h3>{copy.validationTitle}</h3>
+          <ul>
+            {copy.validation.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
       </div>
     </section>
   );
@@ -2159,6 +2360,8 @@ function QualityPolicyBody({ language }: { language: RenewalLanguage }) {
           ))}
         </div>
       </section>
+      <CapabilityMatrix section={qualityCapabilityCopy[language].governance} className="is-governance" />
+      <CapabilityMatrix section={qualityCapabilityCopy[language].credentials} className="is-credentials" />
     </>
   );
 }
@@ -2372,6 +2575,12 @@ function QualitySystemBody({ language }: { language: RenewalLanguage }) {
         <h2>{labels.qualityFlow}</h2>
       </section>
       <ProcessFlow items={qualityFlow[language]} label={labels.qualityFlow} visual />
+      <CapabilityMatrix section={qualityCapabilityCopy[language].digitalLoop} className="is-digital-loop" />
+      <CapabilityMatrix
+        section={qualityCapabilityCopy[language].shopFloorAssurance}
+        className="is-shop-floor-assurance"
+      />
+      <QualityMetrologySection language={language} />
       <QualityEvidence language={language} />
       <CertificatesBody language={language} />
     </>
@@ -2395,7 +2604,8 @@ function PreventiveQualityBody({ language }: { language: RenewalLanguage }) {
         <h2>{labels.qualityFlow}</h2>
       </section>
       <ProcessFlow items={preventiveFlow[language]} label={labels.qualityFlow} />
-      <QualityEvidence language={language} />
+      <CapabilityMatrix section={qualityCapabilityCopy[language].problemSolving} className="is-problem-solving" />
+      <CapabilityMatrix section={qualityCapabilityCopy[language].supplierQuality} className="is-supplier-quality" />
     </>
   );
 }
@@ -2422,6 +2632,7 @@ function PartsDevelopmentBody({ content, language }: { content: SiteContent; lan
         </div>
       </section>
       <DevelopmentProcessFlow items={developmentFlow[language]} language={language} />
+      <EngineeringCapabilitySection language={language} />
     </>
   );
 }
@@ -2554,6 +2765,18 @@ function SustainabilityPolicyBody({ language }: { language: RenewalLanguage }) {
             </li>
           ))}
         </ol>
+        <div className="renewal-sub-sustainability-execution__evidence">
+          <h3>{copy.execution.evidenceTitle}</h3>
+          <div>
+            {copy.execution.evidenceItems.map((item) => (
+              <article data-sub-reveal key={item.title}>
+                <span>{item.tag}</span>
+                <h4>{item.title}</h4>
+                <p>{item.copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="renewal-sub-sustainability-document" data-sub-reveal>

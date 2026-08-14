@@ -105,14 +105,14 @@ function applyKoreanCopy(content: SiteContent) {
   });
   const productCopies = [
     "BSM HOUSING·OIL PUMP 알루미늄 가공 부품",
-    "EV OIL PUMP HOUSING·COVER와 HEV·PHEV·BEV용 GEAR·COAXIAL·LINK·OUTPUT SHAFT",
+    "EV OIL PUMP HOUSING·COVER와 HEV·PHEV·BEV용 GEAR·COAXIAL·LINK SHAFT",
     "PINION, PINION SHAFT, PISTON, RACK BUSH, TORSION BAR",
     "변속기용 SHAFT와 엔진용 CAMSHAFT NOSE PIECE, BALANCE SHAFT",
     "TRANSFER CASE·ETM용 DISK CARRIER, HUB, ACTUATOR SHAFT 계열 부품",
   ];
   const latestCopies = [
     "BSM 하우징·오일펌프 알루미늄 가공 부품",
-    "EV 오일펌프 하우징·커버와 전동화 플랫폼용 기어·코액시얼·링크·출력 샤프트",
+    "EV 오일펌프 하우징·커버와 전동화 플랫폼용 기어·코액시얼·링크 샤프트",
     "조향 입력을 정확하게 전달하는 피니언, 샤프트, 피스톤, 부시, 토션 바",
     "밸브 개폐 제어와 동력전달을 위한 캠샤프트 노즈 피스·변속기 샤프트",
     "트랜스퍼 케이스와 ETM용 디스크 캐리어, 허브, 액추에이터 샤프트",
@@ -232,14 +232,14 @@ function applyEnglishCopy(content: SiteContent) {
   });
   const productCopies = [
     "Machined-aluminum BSM housings and oil pumps.",
-    "EV oil-pump housings and covers plus gear, coaxial, link, and output shafts for HEV, PHEV, and BEV platforms.",
+    "EV oil-pump housings and covers plus gear, coaxial, and link shafts for HEV, PHEV, and BEV platforms.",
     "Pinions, pinion shafts, pistons, rack bushes, and torsion bars.",
     "Transmission shafts plus camshaft nose pieces and balance shafts for powertrain systems.",
     "Disk carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
   ];
   const latestCopies = [
     "Machined-aluminum BSM housings and oil pumps.",
-    "EV oil-pump housings and covers plus gear, coaxial, link, and output shafts for electrified platforms.",
+    "EV oil-pump housings and covers plus gear, coaxial, and link shafts for electrified platforms.",
     "Pinions, shafts, pistons, bushes, and torsion bars that transfer steering input.",
     "Camshaft nose pieces and transmission shafts for valve control and power delivery.",
     "Disk carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
@@ -360,14 +360,14 @@ function applyJapaneseCopy(content: SiteContent) {
   });
   const productCopies = [
     "BSM HOUSING・OIL PUMPのアルミ加工部品",
-    "EV OIL PUMP HOUSING・COVERとHEV・PHEV・BEV向けGEAR・COAXIAL・LINK・OUTPUT SHAFT",
+    "EV OIL PUMP HOUSING・COVERとHEV・PHEV・BEV向けGEAR・COAXIAL・LINK SHAFT",
     "PINION、PINION SHAFT、PISTON、RACK BUSH、TORSION BAR",
     "トランスミッション用SHAFTとエンジン用CAMSHAFT NOSE PIECE、BALANCE SHAFT",
     "TRANSFER CASE・ETM向けDISK CARRIER、HUB、ACTUATOR SHAFT系列部品",
   ];
   const latestCopies = [
     "BSMハウジング・オイルポンプのアルミ加工部品",
-    "EVオイルポンプのハウジング・カバーと電動化プラットフォーム向けギヤ、コアキシャル、リンク、出力シャフト",
+    "EVオイルポンプのハウジング・カバーと電動化プラットフォーム向けギヤ、コアキシャル、リンクシャフト",
     "操舵入力を正確に伝えるピニオン、シャフト、ピストン、ブッシュ、トーションバー",
     "バルブ開閉制御と動力伝達向けのカムシャフト・ノーズピース、トランスミッションシャフト",
     "Transfer Case・ETM向けディスクキャリア、ハブ、アクチュエーターシャフト",

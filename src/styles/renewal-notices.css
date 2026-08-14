@@ -1,4 +1,5 @@
 .renewal-notice-page {
+  --renewal-orange: #f47a20;
   background: #f2efe9;
   color: #181818;
   min-height: 100svh;
@@ -941,4 +942,31 @@
   .notice-editor__image {
     grid-template-columns: 1fr;
   }
+}
+
+/* Notice titles and admin copy must remain readable in every locale. */
+.renewal-notice-page main :where(h1, h2, h3, p, li, dt, dd, a, strong) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+:lang(ja) .renewal-notice-page main :where(h1, h2, h3, p, li, dt, dd, a, strong) {
+  line-break: strict;
+  word-break: normal;
+}
+
+.notice-admin-login > div,
+.notice-admin-login form,
+.notice-admin-login input {
+  min-width: 0;
+}
+
+.notice-admin-login > div > span {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+:lang(ja) .notice-admin-login > div > span {
+  line-break: strict;
+  word-break: normal;
 }
