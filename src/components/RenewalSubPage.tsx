@@ -28,6 +28,7 @@ import sustainabilityPolicyDocument from "../../assets/documents/sustainability-
 import Icon from "./Icons";
 import { getPageConfig } from "./MenuPage";
 import { RenewalSiteFooter, RenewalSiteHeader, toRenewalHref, type RenewalLanguage } from "./RenewalShell";
+import ViewportLoopVideo from "./ViewportLoopVideo";
 import { defaultLanguage, isLanguageCode, siteContent, type SiteContent } from "../data/siteContent";
 import useNoticePosts from "../hooks/useNoticePosts";
 import { findMenuByRoute, getSiteMenuGroups, resolveMenuRoute } from "../data/navigation";
@@ -35,7 +36,7 @@ import {
   companyOverviewCopy,
   companyProfileAssets,
   equipmentInventory,
-  globalRegions,
+  globalProgramNetwork,
   inspectionProcessIds,
   manufacturingFlowIds,
   manufacturingFlowVideos,
@@ -46,6 +47,13 @@ import {
   qualityEvidenceCopy,
   qualityEvidenceProcesses,
 } from "../data/companyProfile";
+import {
+  inspectionFilmByProcessId,
+  manufacturingFilmGroupIds,
+  manufacturingFilmLibrary,
+  manufacturingFilmLibraryCopy,
+  type ManufacturingFilmGroupId,
+} from "../data/manufacturingFilms";
 import { productPartCatalogByRoute } from "../data/productCatalog";
 import { useLenisScroll } from "../motion/useLenisScroll";
 import { jumpToPageTop } from "../utils/pageScroll";
@@ -1089,6 +1097,7 @@ function GreetingBody({ content }: { content: SiteContent }) {
 
 function CompanyOverviewBody({ language }: { language: RenewalLanguage }) {
   const copy = companyOverviewCopy[language];
+  const network = globalProgramNetwork[language];
 
   return (
     <>
@@ -1125,18 +1134,45 @@ function CompanyOverviewBody({ language }: { language: RenewalLanguage }) {
 
       <section className="profile-network">
         <header data-sub-reveal>
-          <span>GLOBAL PROGRAM NETWORK</span>
+          <span>GLOBAL PROGRAM SUPPORT</span>
           <h2>{copy.networkTitle}</h2>
           <p>{copy.networkCopy}</p>
         </header>
         <div className="profile-network__regions">
-          {globalRegions.map((region, index) => (
+          {network.regions.map((region, index) => (
             <article data-sub-reveal key={region.region}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div className="profile-network__region-meta">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <small>{region.coverage}</small>
+              </div>
               <h3>{region.region}</h3>
-              <p>{region.customers.join(" · ")}</p>
+              <strong>{region.title}</strong>
+              <p>{region.copy}</p>
+              <div className="profile-network__tags" aria-label={`${region.region} program scope`}>
+                {region.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
             </article>
           ))}
+        </div>
+        <div className="profile-network__framework" data-sub-reveal>
+          <div className="profile-network__framework-head">
+            <div>
+              <span>ONE CONNECTED VALUE STREAM</span>
+              <h3>{network.frameworkTitle}</h3>
+            </div>
+            <p>{network.frameworkCopy}</p>
+          </div>
+          <ol className="profile-network__stages">
+            {network.stages.map((stage, index) => (
+              <li key={stage.title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{stage.title}</strong>
+                <p>{stage.copy}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
     </>
@@ -1360,31 +1396,32 @@ function ProductQualitySection({
 }) {
   const catalog = productPartCatalogByRoute[route];
   if (!catalog?.qualityControls.length) return null;
+  const qualityStory = catalog.qualityStory;
 
   const labels = {
     ko: {
       eyebrow: "CRITICAL FEATURES & VERIFICATION",
-      title: "제품별 중요 품질 특성 및 검증 방법",
-      copy: "제품 기능과 형상을 기준으로 정리한 대표 관리 항목과 적용 가능한 검증 방법입니다. 실제 검사 항목·방법·판정 기준은 제품별 고객 도면과 승인 사양에 따라 달라집니다.",
-      feature: "대표 관리 부위",
-      characteristic: "품질 특성",
-      verification: "적용 가능한 검증 방법",
+      title: "서울산업이 이 제품군을 만드는 방식",
+      copy: "공식 제품·공정·검증 자료에 근거한 대표 제조 포인트입니다. 세부 관리 항목과 합격 기준은 고객 승인 도면에 따라 운영됩니다.",
+      feature: "제품·적용 근거",
+      characteristic: "핵심 공정·차별점",
+      verification: "검증·자동화 근거",
     },
     en: {
       eyebrow: "CRITICAL FEATURES & VERIFICATION",
-      title: "Product-specific critical characteristics and verification methods",
-      copy: "These are representative control points and available verification methods based on product function and geometry. Actual inspection items, methods, and acceptance criteria vary by customer drawing and approved specification.",
-      feature: "Representative control point",
-      characteristic: "Quality characteristic",
-      verification: "Available verification method",
+      title: "How Seoul Industry manufactures this product family",
+      copy: "Representative manufacturing points drawn from official product, process, and verification material. Detailed controls and acceptance criteria follow customer-approved drawings.",
+      feature: "Product / application evidence",
+      characteristic: "Core process / differentiator",
+      verification: "Verification / automation evidence",
     },
     ja: {
       eyebrow: "CRITICAL FEATURES & VERIFICATION",
-      title: "製品別の重要品質特性と検証方法",
-      copy: "製品の機能と形状をもとに整理した代表的な管理項目と適用可能な検証方法です。実際の検査項目・方法・判定基準は、製品別の顧客図面および承認仕様により異なります。",
-      feature: "代表管理部位",
-      characteristic: "品質特性",
-      verification: "適用可能な検証方法",
+      title: "ソウル産業がこの製品群をつくる方法",
+      copy: "公式の製品・工程・検証資料に基づく代表的な製造ポイントです。詳細な管理項目と合格基準は、顧客承認図面に従って運用します。",
+      feature: "製品・適用根拠",
+      characteristic: "中核工程・差別化要素",
+      verification: "検証・自動化根拠",
     },
   }[language];
   const headingId = `product-quality-${route.replace(/[^a-z0-9]+/gi, "-")}`;
@@ -1392,9 +1429,9 @@ function ProductQualitySection({
   return (
     <section className="renewal-sub-product-quality" aria-labelledby={headingId}>
       <header data-sub-reveal>
-        <span>{labels.eyebrow}</span>
-        <h2 id={headingId}>{labels.title}</h2>
-        <p>{labels.copy}</p>
+        <span>{qualityStory?.eyebrow ?? labels.eyebrow}</span>
+        <h2 id={headingId}>{qualityStory?.title[language] ?? labels.title}</h2>
+        <p>{qualityStory?.copy[language] ?? labels.copy}</p>
       </header>
       <div className="renewal-sub-product-quality__matrix">
         <div className="renewal-sub-product-quality__columns" aria-hidden="true">
@@ -1752,12 +1789,85 @@ function ProcessMedia({
   video?: string;
   title: string;
 }) {
-  if (!video) return <img src={image} alt="" />;
+  if (!video) return <img src={image} alt="" loading="lazy" decoding="async" />;
 
   return (
-    <video autoPlay muted loop playsInline poster={image} aria-label={title}>
-      <source src={video} type="video/mp4" />
-    </video>
+    <ViewportLoopVideo
+      src={video}
+      poster={image}
+      aria-label={title}
+    />
+  );
+}
+
+function ManufacturingFilmLibrary({ language }: { language: RenewalLanguage }) {
+  const [activeGroup, setActiveGroup] = useState<ManufacturingFilmGroupId>("gear-spline");
+  const copy = manufacturingFilmLibraryCopy[language];
+  const visibleFilms = manufacturingFilmLibrary.filter((film) => film.group === activeGroup);
+
+  return (
+    <section className="profile-film-library" aria-labelledby="manufacturing-film-library-title">
+      <header className="profile-film-library__header" data-sub-reveal>
+        <div>
+          <span>{copy.eyebrow}</span>
+          <h2 id="manufacturing-film-library-title">{copy.title}</h2>
+        </div>
+        <p>{copy.copy}</p>
+      </header>
+
+      <div className="profile-film-library__tabs" role="tablist" aria-label={copy.title}>
+        {manufacturingFilmGroupIds.map((groupId) => {
+          const filmCount = manufacturingFilmLibrary.filter((film) => film.group === groupId).length;
+          const isActive = groupId === activeGroup;
+
+          return (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              aria-controls="manufacturing-film-panel"
+              className={isActive ? "is-active" : undefined}
+              key={groupId}
+              onClick={() => setActiveGroup(groupId)}
+            >
+              <span>{copy.tabs[groupId]}</span>
+              <strong>{String(filmCount).padStart(2, "0")}</strong>
+            </button>
+          );
+        })}
+      </div>
+
+      <div
+        className={`profile-film-library__grid is-count-${visibleFilms.length}`}
+        id="manufacturing-film-panel"
+        role="tabpanel"
+        aria-live="polite"
+      >
+        {visibleFilms.map((film, index) => (
+          <article key={film.id}>
+            <figure>
+              <ViewportLoopVideo
+                className="profile-film-library__video"
+                src={film.video}
+                poster={film.poster}
+                aria-label={film.title[language]}
+                objectFit="cover"
+                objectPosition="center"
+              />
+              <figcaption>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{copy.tabs[film.group]}</strong>
+              </figcaption>
+            </figure>
+            <div>
+              <small>{copy.tabs[film.group]}</small>
+              <h3>{film.title[language]}</h3>
+              <p>{film.copy[language]}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -1810,25 +1920,28 @@ function ManufacturingBody({
       </section>
 
       {route === "manufacturing/process" && (
-        <section className="profile-process-flow" aria-label={copy.title}>
-          {flowProcesses.map((process, index) => (
-            <article data-sub-reveal key={process.id}>
-              <div className="profile-process-flow__number">
-                <span>STEP</span>
-                <strong>{String(index + 1).padStart(2, "0")}</strong>
-              </div>
-              <figure>
-                <ProcessMedia image={process.image} video={process.productionVideo} title={process.title} />
-              </figure>
-              <div className="profile-process-flow__content">
-                <small>{labels[process.group]}</small>
-                <h3>{process.title}</h3>
-                <p>{process.copy[language]}</p>
-                <strong>{process.capability[language]}</strong>
-              </div>
-            </article>
-          ))}
-        </section>
+        <>
+          <section className="profile-process-flow" aria-label={copy.title}>
+            {flowProcesses.map((process, index) => (
+              <article data-sub-reveal key={process.id}>
+                <div className="profile-process-flow__number">
+                  <span>STEP</span>
+                  <strong>{String(index + 1).padStart(2, "0")}</strong>
+                </div>
+                <figure>
+                  <ProcessMedia image={process.image} video={process.productionVideo} title={process.title} />
+                </figure>
+                <div className="profile-process-flow__content">
+                  <small>{labels[process.group]}</small>
+                  <h3>{process.title}</h3>
+                  <p>{process.copy[language]}</p>
+                  <strong>{process.capability[language]}</strong>
+                </div>
+              </article>
+            ))}
+          </section>
+          <ManufacturingFilmLibrary language={language} />
+        </>
       )}
 
       {route === "manufacturing/equipment" && (
@@ -1883,21 +1996,29 @@ function ManufacturingBody({
 
       {route === "manufacturing/inspection" && (
         <section className="profile-process-grid is-inspection" aria-label={copy.inspectionTitle}>
-          {inspectionProcesses.map((process, index) => (
-            <article data-sub-reveal key={process.id}>
-              <figure>
-                <ProcessMedia image={process.image} video={process.video} title={process.title} />
-                <span>{String(index + 1).padStart(2, "0")}</span>
-              </figure>
-              <div>
-                <small>{labels[process.group]}</small>
-                <h3>{process.title}</h3>
-                <p>{process.copy[language]}</p>
-                <strong>{process.capability[language]}</strong>
-                <span>{process.makers}</span>
-              </div>
-            </article>
-          ))}
+          {inspectionProcesses.map((process, index) => {
+            const inspectionFilm = inspectionFilmByProcessId[process.id];
+
+            return (
+              <article data-sub-reveal key={process.id}>
+                <figure>
+                  <ProcessMedia
+                    image={inspectionFilm?.poster ?? process.image}
+                    video={inspectionFilm?.video ?? process.video}
+                    title={process.title}
+                  />
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                </figure>
+                <div>
+                  <small>{labels[process.group]}</small>
+                  <h3>{process.title}</h3>
+                  <p>{process.copy[language]}</p>
+                  <strong>{process.capability[language]}</strong>
+                  <span>{process.makers}</span>
+                </div>
+              </article>
+            );
+          })}
         </section>
       )}
     </>

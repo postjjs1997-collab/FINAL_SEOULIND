@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import balanceModuleImage from "../../assets/company-deck/machined-aluminum-products.webp";
+import balanceModuleImage from "../../assets/product-application/machined-aluminum-precise.webp";
 import drivelineImage from "../../assets/product-application/driveline-precise.webp";
 import electricVehicleImage from "../../assets/product-application/electric-vehicle-precise.webp";
 import powertrainImage from "../../assets/product-application/powertrain-precise.webp";
@@ -10,8 +10,8 @@ import qualitySectionVideo from "../../assets/process-videos/quality-inspection-
 import qualitySectionPoster from "../../assets/process-videos/quality-inspection-housing.jpg";
 import oemProductionVideo from "../../assets/process-videos/oem-production-gantry-montage.mp4";
 import oemProductionPoster from "../../assets/process-videos/oem-production-gantry-montage.jpg";
-import mainHeroVideo from "../../assets/process-videos/home-main3.mp4";
-import mainHeroPoster from "../../assets/process-videos/home-main3.jpg";
+import mainHeroVideo from "../../assets/process-videos/home-main-final.mp4";
+import mainHeroPoster from "../../assets/process-videos/home-main-final.jpg";
 import facadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
 import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
@@ -615,7 +615,7 @@ const heroMedia: Array<
   | { image: string; duration: number }
   | { video: string; poster: string; duration: number; playbackRate?: number }
 > = [
-  { video: mainHeroVideo, poster: mainHeroPoster, duration: 4200 },
+  { video: mainHeroVideo, poster: mainHeroPoster, duration: 7000 },
   { video: oemProductionVideo, poster: oemProductionPoster, duration: 5700, playbackRate: 0.9 },
   { video: qualityVideo, poster: qualityPoster, duration: 3000 },
 ];

@@ -58,6 +58,12 @@ export default function App() {
         <RenewalNoticePage route={resolvedRoute} />
       </Suspense>
     );
+  } else if (route === "news/admin" || route.startsWith("news/admin/")) {
+    page = (
+      <Suspense fallback={<div style={{ minHeight: "100svh", background: "#151515" }} />}>
+        <RenewalNoticePage route="company/notices/admin" />
+      </Suspense>
+    );
   } else if (route.startsWith("renewal/")) {
     page = (
       <Suspense fallback={<div style={{ minHeight: "100svh", background: "#151515" }} />}>

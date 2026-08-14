@@ -1,4 +1,4 @@
-import { type ChangeEvent, type FormEvent, useEffect, useMemo, useState } from "react";
+import { type ChangeEvent, type FormEvent, type SyntheticEvent, useEffect, useMemo, useState } from "react";
 import { defaultLanguage, isLanguageCode, type LanguageCode } from "../data/brainall";
 import {
   checkNoticeAdminSession,
@@ -9,6 +9,7 @@ import {
   makeNoticeId,
   noticeCategoryKickers,
   noticeCategoryLabels,
+  noticePostFallbackImage,
   noticePostImage,
   resetNoticePosts,
   saveNoticePosts,
@@ -60,10 +61,15 @@ type NoticeCopy = {
   category: string;
   date: string;
   pinned: string;
+  published: string;
+  publishedStatus: string;
+  unpublishedStatus: string;
+  publishHint: string;
   coverImage: string;
   imageUrl: string;
   uploadImage: string;
   uploading: string;
+  uploaded: string;
   removeImage: string;
   titleLabel: string;
   summary: string;
@@ -75,6 +81,7 @@ type NoticeCopy = {
   editHint: string;
   noPosts: string;
   loadError: string;
+  retryLoad: string;
   saveError: string;
   uploadError: string;
 };
@@ -99,7 +106,7 @@ const noticeCopy: Record<RenewalLanguage, NoticeCopy> = {
     notFound: "게시글을 찾을 수 없습니다.",
     notFoundDescription: "삭제되었거나 주소가 변경된 게시글입니다.",
     loginTitle: "공지사항 관리",
-    loginDescription: "관리자 계정으로 로그인하면 게시글을 작성하고 수정할 수 있습니다.",
+    loginDescription: "관리자 계정으로 로그인하면 게시글 작성·수정·게시중지·삭제를 관리할 수 있습니다.",
     id: "관리자 아이디",
     password: "비밀번호",
     login: "로그인",
@@ -119,10 +126,15 @@ const noticeCopy: Record<RenewalLanguage, NoticeCopy> = {
     category: "분류",
     date: "게시일",
     pinned: "목록 상단에 고정",
+    published: "공개 게시",
+    publishedStatus: "공개",
+    unpublishedStatus: "비공개",
+    publishHint: "체크를 끄고 저장하면 글을 삭제하지 않고 공개 목록에서 내릴 수 있습니다.",
     coverImage: "대표 이미지",
     imageUrl: "이미지 주소",
     uploadImage: "이미지 업로드",
     uploading: "업로드 중...",
+    uploaded: "이미지가 업로드되었습니다. 게시글 저장을 눌러 반영해 주세요.",
     removeImage: "이미지 삭제",
     titleLabel: "제목",
     summary: "요약",
@@ -134,6 +146,7 @@ const noticeCopy: Record<RenewalLanguage, NoticeCopy> = {
     editHint: "선택한 게시글을 수정하고 있습니다.",
     noPosts: "등록된 게시글이 없습니다.",
     loadError: "공지사항을 불러오지 못했습니다.",
+    retryLoad: "다시 불러오기",
     saveError: "게시글을 저장하지 못했습니다.",
     uploadError: "이미지를 업로드하지 못했습니다.",
   },
@@ -147,7 +160,7 @@ const noticeCopy: Record<RenewalLanguage, NoticeCopy> = {
     notFound: "This post is not available.",
     notFoundDescription: "It may have been removed or its address may have changed.",
     loginTitle: "Notice management",
-    loginDescription: "Sign in with an administrator account to create and manage notices.",
+    loginDescription: "Sign in to create, edit, unpublish, and delete notices.",
     id: "Administrator ID",
     password: "Password",
     login: "Sign in",
@@ -167,10 +180,15 @@ const noticeCopy: Record<RenewalLanguage, NoticeCopy> = {
     category: "Category",
     date: "Date",
     pinned: "Pin to top of list",
+    published: "Published",
+    publishedStatus: "Public",
+    unpublishedStatus: "Unpublished",
+    publishHint: "Turn this off and save to remove the post from the public list without deleting it.",
     coverImage: "Cover image",
     imageUrl: "Image URL",
     uploadImage: "Upload image",
     uploading: "Uploading...",
+    uploaded: "The image has been uploaded. Save the post to apply it.",
     removeImage: "Remove image",
     titleLabel: "Title",
     summary: "Summary",
@@ -182,6 +200,7 @@ const noticeCopy: Record<RenewalLanguage, NoticeCopy> = {
     editHint: "Editing the selected post.",
     noPosts: "No notices have been registered.",
     loadError: "Unable to load notices.",
+    retryLoad: "Try again",
     saveError: "Unable to save the post.",
     uploadError: "Unable to upload the image.",
   },
@@ -195,7 +214,7 @@ const noticeCopy: Record<RenewalLanguage, NoticeCopy> = {
     notFound: "記事が見つかりません。",
     notFoundDescription: "削除されたか、URLが変更された可能性があります。",
     loginTitle: "お知らせ管理",
-    loginDescription: "管理者アカウントでログインすると、記事の作成・編集ができます。",
+    loginDescription: "管理者アカウントでログインすると、記事の作成・編集・非公開・削除を管理できます。",
     id: "管理者ID",
     password: "パスワード",
     login: "ログイン",
@@ -215,10 +234,15 @@ const noticeCopy: Record<RenewalLanguage, NoticeCopy> = {
     category: "分類",
     date: "公開日",
     pinned: "一覧の先頭に固定",
+    published: "公開する",
+    publishedStatus: "公開",
+    unpublishedStatus: "非公開",
+    publishHint: "チェックを外して保存すると、記事を削除せず公開一覧から取り下げられます。",
     coverImage: "メイン画像",
     imageUrl: "画像URL",
     uploadImage: "画像をアップロード",
     uploading: "アップロード中...",
+    uploaded: "画像をアップロードしました。記事を保存すると反映されます。",
     removeImage: "画像を削除",
     titleLabel: "タイトル",
     summary: "概要",
@@ -230,6 +254,7 @@ const noticeCopy: Record<RenewalLanguage, NoticeCopy> = {
     editHint: "選択した記事を編集しています。",
     noPosts: "登録された記事はありません。",
     loadError: "お知らせを読み込めませんでした。",
+    retryLoad: "再読み込み",
     saveError: "記事を保存できませんでした。",
     uploadError: "画像をアップロードできませんでした。",
   },
@@ -262,6 +287,7 @@ function createEmptyNotice(): NoticePost {
     date: getTodayInSeoul(),
     image: "",
     pinned: false,
+    published: false,
     translations: {
       ko: emptyTranslation(),
       en: emptyTranslation(),
@@ -303,6 +329,7 @@ function normalizePost(post: NoticePost, emptyTitle: string): NoticePost {
     id: post.id || makeNoticeId(),
     date: post.date || getTodayInSeoul(),
     image: post.image?.trim() || undefined,
+    published: post.published !== false,
     translations: {
       ko: normalizeTranslation(post.translations.ko, fallback, emptyTitle),
       en: normalizeTranslation(post.translations.en, fallback, emptyTitle),
@@ -335,6 +362,17 @@ function noticeParagraphs(body: string) {
     .filter(Boolean);
 }
 
+function handleNoticeImageError(event: SyntheticEvent<HTMLImageElement>, post: NoticePost) {
+  const image = event.currentTarget;
+  if (image.dataset.fallbackApplied === "true") {
+    image.hidden = true;
+    return;
+  }
+
+  image.dataset.fallbackApplied = "true";
+  image.src = noticePostFallbackImage(post);
+}
+
 export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
   const [language, setLanguage] = useState<RenewalLanguage>(() => {
     const stored = window.localStorage.getItem("seoulind-language");
@@ -354,6 +392,7 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [formLanguage, setFormLanguage] = useState<LanguageCode>("ko");
+  const [adminReloadKey, setAdminReloadKey] = useState(0);
 
   const parts = route.split("/");
   const isAdminRoute = parts[2] === "admin";
@@ -372,6 +411,10 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
   }, [language]);
 
   useEffect(() => {
+    if (isAdminRoute) {
+      return;
+    }
+
     let active = true;
 
     const loadPosts = async () => {
@@ -384,7 +427,8 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
         }
       } catch {
         if (active) {
-          setError(copy.loadError);
+          setPosts(sortNoticePosts(getNoticePosts()));
+          setError(isAdminRoute ? copy.loadError : "");
         }
       } finally {
         if (active) {
@@ -397,21 +441,24 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
     return () => {
       active = false;
     };
-  }, [copy.loadError]);
+  }, [copy.loadError, isAdminRoute]);
 
   useEffect(() => {
     const syncPosts = (event: Event) => {
       const nextPosts = (event as CustomEvent<NoticePost[]>).detail;
       if (Array.isArray(nextPosts)) {
-        setPosts(sortNoticePosts(nextPosts));
+        const visiblePosts = isAdminRoute
+          ? nextPosts
+          : nextPosts.filter((post) => post.published);
+        setPosts(sortNoticePosts(visiblePosts));
       }
     };
 
-    window.addEventListener("seoulind:notices-updated", syncPosts);
+    window.addEventListener("seoulind-notices-updated", syncPosts);
     return () => {
-      window.removeEventListener("seoulind:notices-updated", syncPosts);
+      window.removeEventListener("seoulind-notices-updated", syncPosts);
     };
-  }, []);
+  }, [isAdminRoute]);
 
   useEffect(() => {
     if (!isAdminRoute) {
@@ -442,6 +489,36 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
       active = false;
     };
   }, [isAdminRoute]);
+
+  useEffect(() => {
+    if (!isAdminRoute || !isAuthed) {
+      return;
+    }
+
+    let active = true;
+    setIsLoading(true);
+    setError("");
+    void fetchNoticePosts({ includeUnpublished: true })
+      .then((nextPosts) => {
+        if (active) {
+          setPosts(nextPosts);
+          setEditingId(null);
+          setIsCreating(false);
+          setDraft(createEmptyNotice());
+          setError("");
+          setIsLoading(false);
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setError(copy.loadError);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [adminReloadKey, copy.loadError, isAdminRoute, isAuthed]);
 
   useEffect(() => {
     if (!isAdminRoute || isCreating || editingId || sortedPosts.length === 0) {
@@ -501,6 +578,7 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
       }
 
       setLoginForm({ id: "", password: "" });
+      setIsLoading(true);
       setIsAuthed(true);
     } catch {
       setError(copy.loginFailed);
@@ -615,7 +693,7 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
         ...current,
         image: imageUrl,
       }));
-      setStatus(copy.saved);
+      setStatus(copy.uploaded);
     } catch (uploadError) {
       setError(uploadError instanceof Error ? uploadError.message : copy.uploadError);
     } finally {
@@ -657,7 +735,11 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
                   key={post.id}
                 >
                   <div className="notice-card__media">
-                    <img alt="" src={noticePostImage(post)} />
+                    <img
+                      alt={translation.title}
+                      onError={(event) => handleNoticeImageError(event, post)}
+                      src={noticePostImage(post)}
+                    />
                   </div>
                   <div className="notice-card__content">
                     <div className="notice-card__meta">
@@ -697,7 +779,11 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
         <p>{translationFor(selectedPost, language).summary}</p>
       </header>
       <div className="notice-detail__media">
-        <img alt="" src={noticePostImage(selectedPost)} />
+        <img
+          alt={translationFor(selectedPost, language).title}
+          onError={(event) => handleNoticeImageError(event, selectedPost)}
+          src={noticePostImage(selectedPost)}
+        />
       </div>
       <div className="notice-detail__body">
         {noticeParagraphs(translationFor(selectedPost, language).body).map((paragraph) => (
@@ -758,6 +844,27 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
     <div className="notice-admin-loading">{copy.loginChecking}</div>
   ) : !isAuthed ? (
     loginContent
+  ) : isLoading ? (
+    <div className="notice-admin-loading">
+      <p>{error || copy.loginChecking}</p>
+      {error ? (
+        <div className="notice-admin-loading__actions">
+          <button
+            className="notice-button"
+            onClick={() => {
+              setError("");
+              setAdminReloadKey((current) => current + 1);
+            }}
+            type="button"
+          >
+            {copy.retryLoad}
+          </button>
+          <button className="notice-button notice-button--outline" onClick={handleLogout} type="button">
+            {copy.logout}
+          </button>
+        </div>
+      ) : null}
+    </div>
   ) : (
     <section className="notice-admin">
       <header className="notice-admin__header">
@@ -796,7 +903,12 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
                   onClick={() => openEditor(post)}
                   type="button"
                 >
-                  <span>{noticeCategoryLabels[language][post.category]}</span>
+                  <div className="notice-admin-post__meta">
+                    <span>{noticeCategoryLabels[language][post.category]}</span>
+                    <span className={post.published ? "is-public" : "is-private"}>
+                      {post.published ? copy.publishedStatus : copy.unpublishedStatus}
+                    </span>
+                  </div>
                   <strong>{translation.title}</strong>
                   <time dateTime={post.date}>{post.date}</time>
                 </button>
@@ -858,7 +970,18 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
               />
               <span>{copy.pinned}</span>
             </label>
+            <label className="notice-checkbox">
+              <input
+                checked={draft.published}
+                onChange={(event) =>
+                  setDraft((current) => ({ ...current, published: event.target.checked }))
+                }
+                type="checkbox"
+              />
+              <span>{copy.published}</span>
+            </label>
           </div>
+          <p className="notice-editor__publish-hint">{copy.publishHint}</p>
 
           <div className="notice-editor__image">
             <div>
@@ -876,14 +999,15 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
                   onChange={(event) =>
                     setDraft((current) => ({ ...current, image: event.target.value }))
                   }
-                  placeholder="https://"
-                  type="url"
+                  inputMode="url"
+                  placeholder="https:// 또는 /assets/..."
+                  type="text"
                   value={draft.image ?? ""}
                 />
               </label>
               <label className="notice-upload-button">
                 <input
-                  accept="image/jpeg,image/png,image/webp,image/avif"
+                  accept="image/jpeg,image/png,image/webp,image/gif"
                   disabled={isUploading}
                   onChange={handleImageUpload}
                   type="file"

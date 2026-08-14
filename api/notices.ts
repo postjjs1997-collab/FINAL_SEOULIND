@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { requireAdmin } from "../server/auth.js";
+import { isAdminRequest, requireAdmin } from "../server/auth.js";
 import { readStoredNotices, writeStoredNotices } from "../server/notices.js";
 
 export default async function handler(request: VercelRequest, response: VercelResponse) {
@@ -8,7 +8,10 @@ export default async function handler(request: VercelRequest, response: VercelRe
   try {
     if (request.method === "GET") {
       const posts = await readStoredNotices();
-      return response.status(200).json({ posts });
+      const includeUnpublished = request.query.includeUnpublished === "1" && isAdminRequest(request);
+      return response.status(200).json({
+        posts: includeUnpublished ? posts : posts?.filter((post) => post.published),
+      });
     }
 
     if (request.method === "PUT") {

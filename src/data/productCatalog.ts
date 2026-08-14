@@ -62,6 +62,13 @@ export type ProductQualityControl = {
   verification: ProductLocalizedText;
 };
 
+export type ProductQualityStory = {
+  eyebrow: string;
+  title: ProductLocalizedText;
+  copy: ProductLocalizedText;
+  sourceSlides: number[];
+};
+
 export type ProductPartCatalog = {
   eyebrow: string;
   title: ProductLocalizedText;
@@ -70,6 +77,7 @@ export type ProductPartCatalog = {
   overviewVideo?: string;
   families: string[];
   parts: ProductPart[];
+  qualityStory?: ProductQualityStory;
   qualityControls: ProductQualityControl[];
 };
 
@@ -122,44 +130,71 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         video: housingVideo5,
       },
     ],
+    qualityStory: {
+      eyebrow: "CAST-TO-MACHINING CONTROL",
+      title: localized(
+        "BSM 알루미늄 부품은 주조 단계부터 사내 가공까지 연결합니다",
+        "BSM aluminum parts connect casting-stage control with in-house machining",
+        "BSMアルミ部品は鋳造段階から社内加工までをつなぎます",
+      ),
+      copy: localized(
+        "BSM 하우징·오일 펌프는 알루미늄 다이캐스팅 단계의 유동·충전·가스·응고 해석, T5 열처리와 금형 유지보수, 서울산업의 사내 정밀가공을 하나의 공급 흐름으로 관리합니다. 세부 관리 항목과 판정 기준은 승인 도면에 따릅니다.",
+        "BSM housings and oil pumps connect casting-stage flow, filling, gas, and solidification analysis with T5 treatment, mold maintenance, and Seoul Industry's in-house precision machining. Detailed controls and acceptance criteria follow approved drawings.",
+        "BSMハウジング・オイルポンプは、鋳造段階の流動・充填・ガス・凝固解析、T5熱処理、金型保全、ソウル産業の社内精密加工を一つの供給フローで管理します。詳細な管理項目と判定基準は承認図面に従います。",
+      ),
+      sourceSlides: [5, 20, 21, 22],
+    },
     qualityControls: [
       {
-        feature: localized("베어링 보어", "Bearing bores", "ベアリングボア"),
+        feature: localized("BSM 하우징·오일 펌프", "BSM housings and oil pumps", "BSMハウジング・オイルポンプ"),
         characteristic: localized(
-          "주요 치수·형상·위치",
-          "Critical dimensions, geometry, and position",
-          "主要寸法・形状・位置",
+          "주조 부품 공급과 서울산업 사내 가공을 연결한 알루미늄 제품군",
+          "Aluminum product family linking casting supply with Seoul Industry's in-house machining",
+          "鋳造部品供給とソウル産業の社内加工を結ぶアルミ製品群",
         ),
         verification: localized(
-          "전용 자동검사와 CMM 정밀 측정",
-          "Dedicated automatic inspection and CMM measurement",
-          "専用自動検査およびCMMによる精密測定",
+          "도면·가공성 검토에서 공정 설계와 생산 검증까지 연결",
+          "Connected drawing and machinability review, process design, and production validation",
+          "図面・加工性検討から工程設計・生産検証までを連携",
         ),
       },
       {
-        feature: localized("모듈 조립면", "Module assembly faces", "モジュール組立面"),
+        feature: localized("ADC12 다이캐스팅 단계", "ADC12 die-casting stage", "ADC12ダイカスト段階"),
         characteristic: localized(
-          "기준면 대비 형상·위치 공차",
-          "Geometric and positional tolerances relative to datum faces",
-          "基準面に対する形状・位置公差",
+          "AnyCasting 기반 유동·충전·가스·응고 해석",
+          "AnyCasting analysis for flow, filling, gas, and solidification",
+          "AnyCastingによる流動・充填・ガス・凝固解析",
         ),
         verification: localized(
-          "CMM 형상·위치 검증",
-          "CMM inspection of geometry and position",
-          "CMMによる形状・位置検証",
+          "유동·충전·가스·응고 항목별 주조 해석 검토",
+          "Casting review across flow, filling, gas, and solidification analysis",
+          "流動・充填・ガス・凝固の各項目による鋳造解析レビュー",
         ),
       },
       {
-        feature: localized("오일 유로", "Oil passages", "オイル流路"),
+        feature: localized("T5·금형 유지보수", "T5 treatment and mold maintenance", "T5熱処理・金型保全"),
         characteristic: localized(
-          "도면 기준 치수·가공 상태",
-          "Drawing-defined dimensions and machined condition",
-          "図面基準の寸法・加工状態",
+          "T5 열처리 설비와 Tool Shop 기반 금형 유지보수",
+          "T5 treatment capability and tool-shop mold maintenance",
+          "T5熱処理設備とTool Shopによる金型保全",
         ),
         verification: localized(
-          "치수 측정과 최종 외관 확인",
-          "Dimensional measurement and final visual check",
-          "寸法測定と最終外観確認",
+          "T5 열처리와 금형 유지보수를 주조 공급 공정에 포함",
+          "T5 treatment and mold maintenance included in the casting supply process",
+          "T5熱処理と金型保全を鋳造供給工程に組み込み",
+        ),
+      },
+      {
+        feature: localized("서울산업 정밀가공", "Seoul Industry precision machining", "ソウル産業の精密加工"),
+        characteristic: localized(
+          "기준면·지그·클램핑·가공 조건을 제품 형상에 맞춰 설계",
+          "Datums, fixtures, clamping, and machining parameters designed around part geometry",
+          "基準面・治具・クランプ・加工条件を製品形状に合わせて設計",
+        ),
+        verification: localized(
+          "GD&T·CMM과 자동검사 기반의 가공 완료 검증",
+          "Post-machining verification through GD&T, CMM, and automated inspection",
+          "GD&T・CMM・自動検査による加工完了検証",
         ),
       },
     ],
@@ -212,65 +247,79 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         video: electrifiedOutputShaftVideo,
       },
     ],
+    qualityStory: {
+      eyebrow: "PROTOTYPE-TO-PRODUCTION VALIDATION",
+      title: localized(
+        "전동화 부품은 양산 가공과 시제품 검증을 구분해 관리합니다",
+        "Electrified parts separate production machining from prototype validation",
+        "電動化部品は量産加工と試作検証を分けて管理します",
+      ),
+      copy: localized(
+        "EV 감속기 오일 펌프 하우징·커버의 정밀가공과 HEV·PHEV·BEV용 샤프트의 설계·엔지니어링 검증용 시제품 제작에 대응합니다. 샤프트는 기어 품질, 스플라인 형상, 런아웃과 표면 건전성을 중심으로 검증합니다.",
+        "We precision-machine EV-reducer oil-pump housings and covers and build HEV, PHEV, and BEV shaft prototypes for design and engineering verification. Shaft validation focuses on gear quality, spline geometry, runout, and surface integrity.",
+        "EV減速機オイルポンプのハウジング・カバーを精密加工し、HEV・PHEV・BEV向けシャフトの設計・エンジニアリング検証用試作品を製作します。シャフトはギヤ品質、スプライン形状、振れ、表面健全性を中心に検証します。",
+      ),
+      sourceSlides: [5, 10, 11, 12, 14, 19, 20, 22],
+    },
     qualityControls: [
       {
         feature: localized(
-          "EV 오일펌프 하우징·커버",
+          "HEV 기어 샤프트 시제품",
+          "HEV gear-shaft prototypes",
+          "HEVギヤシャフト試作品",
+        ),
+        characteristic: localized(
+          "설계·엔지니어링 검증을 위한 시제품 제작",
+          "Prototype build for design and engineering verification",
+          "設計・エンジニアリング検証のための試作製作",
+        ),
+        verification: localized(
+          "기어 품질·스플라인 형상·런아웃·표면 건전성 확인",
+          "Verification of gear quality, spline geometry, runout, and surface integrity",
+          "ギヤ品質・スプライン形状・振れ・表面健全性を確認",
+        ),
+      },
+      {
+        feature: localized("Coaxial·Link Shaft", "Coaxial and link shafts", "Coaxial・Link Shaft"),
+        characteristic: localized(
+          "E-drive Gearbox용 동력 전달 샤프트 형상",
+          "Power-transfer shaft geometry for E-drive gearboxes",
+          "E-drive Gearbox向け動力伝達シャフト形状",
+        ),
+        verification: localized(
+          "도면·가공성 검토 후 기어·스플라인·런아웃 공통 측정 인프라 적용",
+          "Drawing and machinability review followed by gear, spline, and runout measurement capability",
+          "図面・加工性検討後にギヤ・スプライン・振れ測定基盤を適用",
+        ),
+      },
+      {
+        feature: localized("E-drive Output Shaft", "E-drive output shaft", "E-drive Output Shaft"),
+        characteristic: localized(
+          "베어링 장착 랜드의 No-lead 요구와 Polishing 공정",
+          "No-lead bearing-land requirement and polishing process",
+          "ベアリングランドのNo-lead要求とPolishing工程",
+        ),
+        verification: localized(
+          "표면 건전성과 런아웃을 포함한 설계·엔지니어링 검증",
+          "Design and engineering verification including surface integrity and runout",
+          "表面健全性と振れを含む設計・エンジニアリング検証",
+        ),
+      },
+      {
+        feature: localized(
+          "EV 오일 펌프 하우징·커버",
           "EV oil-pump housings and covers",
           "EVオイルポンプのハウジング・カバー",
         ),
         characteristic: localized(
-          "주요 홀·장착면·오일 유로",
-          "Critical holes, mounting faces, and oil passages",
-          "主要穴・取付面・オイル流路",
+          "EV 감속기 윤활 시스템용 알루미늄 정밀가공 부품",
+          "Precision-machined aluminum parts for EV-reducer lubrication systems",
+          "EV減速機潤滑システム向けアルミ精密加工部品",
         ),
         verification: localized(
-          "전용 자동검사와 CMM 정밀 측정",
-          "Dedicated automatic inspection and CMM measurement",
-          "専用自動検査およびCMMによる精密測定",
-        ),
-      },
-      {
-        feature: localized("전동화 샤프트 기어·스플라인부", "Electrified-shaft gear and spline sections", "電動化シャフトのギヤ・スプライン部"),
-        characteristic: localized(
-          "치형·형상·위치",
-          "Tooth profile, geometry, and position",
-          "歯形・形状・位置",
-        ),
-        verification: localized(
-          "기어 전용 측정과 CMM 검증",
-          "Dedicated gear metrology and CMM verification",
-          "ギヤ専用測定およびCMMによる検証",
-        ),
-      },
-      {
-        feature: localized("샤프트 베어링 장착면", "Shaft bearing seats", "シャフトのベアリング取付面"),
-        characteristic: localized(
-          "리드 관리·표면 상태",
-          "Lead control and surface condition",
-          "リード管理・表面状態",
-        ),
-        verification: localized(
-          "정밀 측정과 최종 외관 확인",
-          "Precision measurement and final visual check",
-          "精密測定と最終外観確認",
-        ),
-      },
-      {
-        feature: localized(
-          "Coaxial·Link·Output Shaft 회전부",
-          "Coaxial, link, and output-shaft rotating sections",
-          "Coaxial・Link・Output Shaft回転部",
-        ),
-        characteristic: localized(
-          "회전부 치수·런아웃",
-          "Rotating dimensions and runout",
-          "回転部の寸法・振れ",
-        ),
-        verification: localized(
-          "정밀 측정과 런아웃 측정·교정·재측정 이력 확인",
-          "Precision measurement with runout measure-straighten-remeasure records",
-          "精密測定と振れの測定・矯正・再測定履歴の確認",
+          "승인 도면 기준 GD&T·CMM과 자동 측정 인프라 적용",
+          "Approved-drawing-based GD&T, CMM, and automated measurement capability",
+          "承認図面基準のGD&T・CMM・自動測定基盤を適用",
         ),
       },
     ],
@@ -299,48 +348,66 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         video: steeringVideo2,
       },
     ],
+    qualityStory: {
+      eyebrow: "STEERING PROCESS EVIDENCE",
+      title: localized(
+        "헬리컬 피니언 샤프트, 서울산업 조향 사업의 출발점",
+        "Helical pinion shafts anchor Seoul Industry's steering heritage",
+        "ヘリカルピニオンシャフトはソウル産業の操舵事業の原点です",
+      ),
+      copy: localized(
+        "서울산업은 초기 조향 부품 사업부터 헬리컬 기어 피니언 샤프트 호빙 경험을 축적해 왔습니다. 치형·스플라인 가공은 기어 형상·리드, CMM, 셀·최종 자동검사 등 회사 공통 측정 인프라와 고객 승인 도면을 기준으로 연결합니다.",
+        "Seoul Industry's early steering business established its experience in hobbing helical-gear pinion shafts. Gear and spline machining is linked with company-wide gear profile/lead, CMM, cell, and final automated inspection capability under approved customer drawings.",
+        "ソウル産業は初期の操舵部品事業から、ヘリカルギヤ・ピニオンシャフトのホビング経験を蓄積してきました。ギヤ・スプライン加工は、歯形・リード、CMM、セル・最終自動検査など全社共通の測定基盤と承認図面に基づいて連携します。",
+      ),
+      sourceSlides: [3, 5, 7, 11, 12, 13, 22],
+    },
     qualityControls: [
       {
         feature: localized(
-          "피니언 기어·스플라인부",
-          "Pinion gear and spline sections",
-          "ピニオンのギヤ・スプライン部",
+          "헬리컬 피니언 샤프트",
+          "Helical pinion shafts",
+          "ヘリカルピニオンシャフト",
         ),
         characteristic: localized(
-          "치형·형상·위치",
-          "Tooth profile, geometry, and position",
-          "歯形・形状・位置",
+          "조향 사업 초기부터 축적한 Hobbing 기반 헬리컬 기어 가공",
+          "Helical-gear machining based on hobbing experience developed from the early steering business",
+          "操舵事業初期から蓄積したHobbingベースのヘリカルギヤ加工",
         ),
         verification: localized(
-          "기어 전용 측정과 CMM 검증",
-          "Dedicated gear metrology and CMM verification",
-          "ギヤ専用測定およびCMMによる検証",
+          "기어 형상·리드 전용 측정과 관련 GD&T의 CMM 검증",
+          "Dedicated gear profile/lead measurement and CMM verification of related GD&T",
+          "歯形・リード専用測定と関連GD&TのCMM検証",
         ),
       },
       {
         feature: localized(
-          "피니언 샤프트 회전부",
-          "Pinion-shaft rotating sections",
-          "ピニオンシャフト回転部",
+          "기어·스플라인 생산 인프라",
+          "Gear and spline production capability",
+          "ギヤ・スプライン生産基盤",
         ),
-        characteristic: localized("런아웃·교정 결과", "Runout and straightening results", "振れ・矯正結果"),
+        characteristic: localized(
+          "Hobbing·Hard Hobbing과 형상별 Shaping·Rolling 공정 적용 가능",
+          "Hobbing and hard hobbing, with shaping and rolling available by geometry",
+          "Hobbing・Hard Hobbingと形状別のShaping・Rolling工程に対応",
+        ),
         verification: localized(
-          "자동 런아웃 측정·교정·재측정과 판정 이력 관리",
-          "Automatic runout measure-straighten-remeasure cycle with result records",
-          "自動振れ測定・矯正・再測定と判定履歴管理",
+          "도면의 CTQ·위험을 공정 순서·기준면·치공구 조건과 생산 검증으로 전환",
+          "Translation of drawing CTQs and risks into process sequence, datums, fixtures, and production validation",
+          "図面のCTQ・リスクを工程順序・基準面・治工具条件・生産検証へ展開",
         ),
       },
       {
-        feature: localized("열처리 부품", "Heat-treated components", "熱処理部品"),
+        feature: localized("셀·최종 자동검사", "Cell and final automated inspection", "セル・最終自動検査"),
         characteristic: localized(
-          "표면 상태·균열 징후",
-          "Surface condition and crack indications",
-          "表面状態・亀裂兆候",
+          "Air Gauge 측정 데이터의 선행 공정 피드백과 자동 보정·SPC",
+          "Air-gage measurement feedback to the preceding operation with automatic compensation and SPC",
+          "Air Gauge測定データの前工程フィードバックと自動補正・SPC",
         ),
         verification: localized(
-          "최종 외관 확인과 음향 공진 비파괴 균열검사",
-          "Final visual check and acoustic-resonance nondestructive crack inspection",
-          "最終外観確認と音響共振による非破壊亀裂検査",
+          "최종 GD&T·데이터 기록·공정 누락 확인과 LOT 마킹 추적",
+          "Final GD&T, data recording, missed-operation detection, and lot-mark traceability",
+          "最終GD&T・データ記録・工程抜け確認とLOTマーキング追跡",
         ),
       },
     ],
@@ -381,52 +448,79 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         video: transmission10r140Video,
       },
     ],
+    qualityStory: {
+      eyebrow: "TRANSMISSION SHAFT CONTROL",
+      title: localized(
+        "6단·8L90·10R140 변속기 샤프트의 기능면을 따로 관리합니다",
+        "Separate controls for 6-speed, 8L90, and 10R140 shaft features",
+        "6速・8L90・10R140シャフトの機能面を個別管理します",
+      ),
+      copy: localized(
+        "토크를 전달하는 기어·스플라인, Long Drilling 중공부, No-lead가 요구되는 베어링 랜드, 고주파 열처리 적용부를 형상별 공정과 측정 근거로 관리합니다. 6단·8L90·10R140 변속기 샤프트와 Oil Pump·Balance Shaft 계열을 하나의 공정 체계로 연결합니다.",
+        "Torque-transmitting gears and splines, long-drilled hollow sections, no-lead bearing lands, and induction-hardened features follow distinct process and measurement evidence. One process system connects 6-speed, 8L90, and 10R140 transmission shafts with oil-pump and balance-shaft families.",
+        "トルク伝達用ギヤ・スプライン、Long Drilling中空部、No-lead要求のベアリングランド、高周波焼入れ部を、形状別工程と測定根拠で管理します。6速・8L90・10R140トランスミッションシャフトとOil Pump・Balance Shaft系列を一つの工程体系でつなぎます。",
+      ),
+      sourceSlides: [7, 8, 9, 10, 11, 12, 15, 16, 22],
+    },
     qualityControls: [
       {
         feature: localized(
-          "파워트레인 샤프트의 기어·스플라인부",
-          "Powertrain-shaft gear and spline sections",
-          "パワートレインシャフトのギヤ・スプライン部",
+          "6단·8L90·10R140 샤프트",
+          "6-speed, 8L90, and 10R140 shafts",
+          "6速・8L90・10R140シャフト",
         ),
         characteristic: localized(
-          "치형·형상·위치",
-          "Tooth profile, geometry, and position",
-          "歯形・形状・位置",
+          "토크 전달용 기어·스플라인과 샤프트 형상",
+          "Torque-transmitting gear, spline, and shaft geometry",
+          "トルク伝達用ギヤ・スプライン・シャフト形状",
         ),
         verification: localized(
-          "기어 전용 측정과 CMM 검증",
-          "Dedicated gear metrology and CMM verification",
-          "ギヤ専用測定およびCMMによる検証",
+          "기어 형상·리드 전용 측정과 관련 GD&T의 CMM 검증",
+          "Dedicated gear profile/lead measurement and CMM verification of related GD&T",
+          "歯形・リード専用測定と関連GD&TのCMM検証",
         ),
       },
       {
         feature: localized(
-          "샤프트 외경·기준면",
-          "Shaft outside diameter and datum faces",
-          "シャフト外径・基準面",
+          "Hollow Shaft",
+          "Hollow shafts",
+          "Hollow Shaft",
         ),
         characteristic: localized(
-          "치수·진원도·런아웃",
-          "Dimensions, roundness, and runout",
-          "寸法・真円度・振れ",
+          "Long Drilling 공정과 Bar-stock→Tube VA/VE",
+          "Long-drilling process and bar-stock-to-tube VA/VE",
+          "Long Drilling工程とBar-stock→Tube VA/VE",
         ),
         verification: localized(
-          "정밀 치수 측정과 자동 런아웃 교정 이력 확인",
-          "Precision dimensional measurement and automatic runout-straightening records",
-          "精密寸法測定と自動振れ矯正履歴の確認",
+          "승인 도면 기준 내경·가공 형상 측정과 생산 검증",
+          "Approved-drawing-based bore and machined-geometry measurement with production validation",
+          "承認図面基準の内径・加工形状測定と生産検証",
         ),
       },
       {
-        feature: localized("캠샤프트 노즈 피스 주요 형상", "Critical camshaft nose-piece geometry", "カムシャフト・ノーズピースの主要形状"),
+        feature: localized("베어링 장착 랜드", "Bearing lands", "ベアリングランド"),
         characteristic: localized(
-          "주요 치수·기하공차",
-          "Critical dimensions and GD&T",
-          "主要寸法・幾何公差",
+          "Lead Control·No-lead 요구와 Polishing 공정",
+          "Lead control, no-lead requirement, and polishing process",
+          "Lead Control・No-lead要求とPolishing工程",
         ),
         verification: localized(
-          "전용 자동검사와 LOT 이력 연계",
-          "Dedicated automatic inspection linked to lot history",
-          "専用自動検査とLOT履歴の連携",
+          "Polishing·Super Finishing 후 기능 표면 특성 확인",
+          "Functional-surface verification after polishing and superfinishing",
+          "Polishing・Super Finishing後の機能表面特性確認",
+        ),
+      },
+      {
+        feature: localized("Balance Shaft 계열", "Balance-shaft family", "Balance Shaft系列"),
+        characteristic: localized(
+          "사내 고주파 열처리와 Line Automation",
+          "In-house induction hardening and line automation",
+          "社内高周波焼入れとLine Automation",
+        ),
+        verification: localized(
+          "MPI 검사와 적용 시 경도·금속조직 측정",
+          "MPI with applicable hardness and metallurgical inspection",
+          "MPI検査と適用時の硬さ・金属組織測定",
         ),
       },
     ],
@@ -467,52 +561,79 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         video: drivelineVideo1,
       },
     ],
+    qualityStory: {
+      eyebrow: "ETM & TRANSFER CASE PROCESS",
+      title: localized(
+        "ETM·Transfer Case는 형상마다 공정이 달라집니다",
+        "ETM and transfer-case parts follow feature-specific process routes",
+        "ETM・Transfer Case部品は形状別の工程で管理します",
+      ),
+      copy: localized(
+        "ETM과 Transfer Case 부품은 Hobbing, Sleeve Broaching, Rack Rolling, Laser Welding Assembly를 형상별로 조합합니다. EMCD Hub에는 내스플라인 단조를, Actuator Shaft에는 Block Tooth Rolling을 적용해 VA/VE를 구현합니다.",
+        "ETM and transfer-case parts combine hobbing, sleeve broaching, rack rolling, and laser-welded assembly by geometry. Forged EMCD-hub internal splines and rolled actuator-shaft block teeth support VA/VE.",
+        "ETM・Transfer Case部品は、形状に応じてHobbing、Sleeve Broaching、Rack Rolling、Laser Welding Assemblyを組み合わせます。EMCD Hubには内スプライン鍛造、Actuator ShaftにはBlock Tooth Rollingを適用し、VA/VEにつなげます。",
+      ),
+      sourceSlides: [7, 8, 11, 12, 17, 18, 22],
+    },
     qualityControls: [
       {
         feature: localized(
-          "액추에이터 샤프트의 기어·스플라인부",
-          "Actuator-shaft gear and spline sections",
-          "アクチュエーターシャフトのギヤ・スプライン部",
+          "ETM 외치·스플라인",
+          "ETM external teeth and splines",
+          "ETM外歯・スプライン",
         ),
         characteristic: localized(
-          "치형·형상·위치",
-          "Tooth profile, geometry, and position",
-          "歯形・形状・位置",
+          "Hobbing과 Rack Rolling 기반 형상별 가공",
+          "Geometry-specific machining through hobbing and rack rolling",
+          "HobbingとRack Rollingによる形状別加工",
         ),
         verification: localized(
-          "기어 전용 측정과 CMM 검증",
-          "Dedicated gear metrology and CMM verification",
-          "ギヤ専用測定およびCMMによる検証",
+          "기어 형상·리드 측정과 관련 GD&T의 CMM 검증",
+          "Gear profile/lead measurement and CMM verification of related GD&T",
+          "歯形・リード測定と関連GD&TのCMM検証",
         ),
       },
       {
         feature: localized(
-          "디스크 캐리어·허브 조립면",
-          "Disc-carrier and hub assembly interfaces",
-          "ディスクキャリア・ハブの組立面",
+          "Sleeve 내스플라인",
+          "Sleeve internal splines",
+          "Sleeve内スプライン",
         ),
         characteristic: localized(
-          "주요 치수·동심도·조립 상태",
-          "Critical dimensions, concentricity, and assembly condition",
-          "主要寸法・同心度・組立状態",
+          "Broaching 기반 내스플라인 가공",
+          "Broaching-based internal-spline machining",
+          "Broachingによる内スプライン加工",
         ),
         verification: localized(
-          "전용 치수검사와 최종 외관 확인",
-          "Dedicated dimensional inspection and final visual check",
-          "専用寸法検査と最終外観確認",
+          "전용 속성 게이지와 CMM 등 회사 공통 측정 인프라 적용",
+          "Company-wide attribute-gage and CMM measurement capability",
+          "専用属性ゲージ・CMMなど全社共通の測定基盤を適用",
         ),
       },
       {
-        feature: localized("샤프트 회전부", "Shaft rotating sections", "シャフト回転部"),
+        feature: localized("EMCD Hub·Actuator Shaft", "EMCD hubs and actuator shafts", "EMCD Hub・Actuator Shaft"),
         characteristic: localized(
-          "치수·진원도·런아웃",
-          "Dimensions, roundness, and runout",
-          "寸法・真円度・振れ",
+          "내스플라인 단조와 Block Tooth Rolling을 통한 VA/VE",
+          "VA/VE through forged internal splines and rolled block teeth",
+          "内スプライン鍛造とBlock Tooth RollingによるVA/VE",
         ),
         verification: localized(
-          "자동 런아웃 측정·교정·재측정과 결과 이력 관리",
-          "Automatic runout measure-straighten-remeasure cycle with result records",
-          "自動振れ測定・矯正・再測定と結果履歴管理",
+          "승인 도면 기준 치형·관련 기하 특성 측정과 생산 검증",
+          "Approved-drawing-based tooth and related geometric measurement with production validation",
+          "承認図面基準の歯形・関連幾何特性測定と生産検証",
+        ),
+      },
+      {
+        feature: localized("Disc Carrier 용접 조립", "Disc-carrier welded assembly", "Disc Carrier溶接組立"),
+        characteristic: localized(
+          "사내 Base Material Laser Welding Assembly",
+          "In-house base-material laser-welded assembly",
+          "社内Base Material Laser Welding Assembly",
+        ),
+        verification: localized(
+          "레이저 용접 공정 관리와 최종 자동검사·데이터 기록",
+          "Laser-welding process control with final automated inspection and data recording",
+          "レーザー溶接工程管理と最終自動検査・データ記録",
         ),
       },
     ],

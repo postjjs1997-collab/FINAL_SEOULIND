@@ -1,8 +1,8 @@
 import { defaultLanguage, type LanguageCode, type MediaItem } from "./brainall";
 import { upload } from "@vercel/blob/client";
-import newsFactoryImage from "../../assets/manufacturing/hero/production-process-cnc.jpg";
-import newsInspectionImage from "../../assets/process-videos/inspection-00-04.jpg";
-import newsCorporateImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
+import companyFactoryImage from "../../assets/company-profile/factory.webp";
+import automationGantryImage from "../../assets/company-deck/automation-gantry-line.webp";
+import automaticInspectionImage from "../../assets/company-deck/automatic-inspection-cell.jpg";
 
 export type NoticeCategory = "notice" | "products" | "quality" | "manufacturing" | "resources";
 
@@ -18,6 +18,7 @@ export type NoticePost = {
   date: string;
   image?: string;
   pinned: boolean;
+  published: boolean;
   translations: Record<LanguageCode, NoticeTranslation>;
 };
 
@@ -77,246 +78,87 @@ export const noticeCategoryKickers: Record<NoticeCategory, string> = {
   resources: "RESOURCES",
 };
 
-const newsImages = {
-  factory: newsFactoryImage,
-  research: newsInspectionImage,
-  conference: newsCorporateImage,
+const noticeFallbackImages: Record<NoticeCategory, string> = {
+  notice: companyFactoryImage,
+  products: automationGantryImage,
+  quality: automaticInspectionImage,
+  manufacturing: automationGantryImage,
+  resources: companyFactoryImage,
 };
-
-export const defaultNoticePosts: NoticePost[] = [
-  {
-    id: "renewal-2026",
-    category: "notice",
-    date: "2026-05-28",
-    pinned: true,
-    translations: {
-      ko: {
-        title: "서울산업 신규 홈페이지 개편 준비 중입니다",
-        summary: "서울산업의 제조 역량과 글로벌 OEM 대응 체계를 더 명확하게 전달하기 위한 홈페이지 개편을 준비하고 있습니다.",
-        body: "서울산업은 자동차 부품 정밀가공 기반의 OEM 제조 파트너로서 제품군, 공정, 품질 대응, 글로벌 협력 정보를 한 화면에서 확인할 수 있도록 신규 홈페이지를 준비하고 있습니다. 개편 이후에는 제품군별 자료와 주요 소식을 더 빠르게 안내할 예정입니다.",
-      },
-      en: {
-        title: "Seoul Industry is preparing a renewed global website",
-        summary: "The renewed site will present our manufacturing capabilities and global OEM support more clearly.",
-        body: "Seoul Industry is preparing a renewed website where customers can review our precision automotive component manufacturing, product groups, process capabilities, quality systems, and global OEM partnerships in one place.",
-      },
-      ja: {
-        title: "ソウル産業の新しいホームページを準備しています",
-        summary: "製造力とグローバルOEM対応体制をより分かりやすくお伝えするため、サイトを改編しています。",
-        body: "ソウル産業は、自動車部品の精密加工を基盤とするOEM製造パートナーとして、製品群、工程、品質対応、グローバル協力情報を分かりやすく確認できる新しいホームページを準備しています。",
-      },
-    },
-  },
-  {
-    id: "product-lineup-2026",
-    category: "products",
-    date: "2026-05-21",
-    pinned: false,
-    translations: {
-      ko: {
-        title: "자동차 정밀가공 제품 체계 소개",
-        summary: "Steering·Powertrain·Driveline과 전동화·알루미늄 가공 역량을 함께 소개합니다.",
-        body: "서울산업은 Steering, Powertrain, Driveline의 3대 핵심 제품군을 중심으로 정밀가공 부품을 생산합니다. Electrified Powertrain에는 EV Oil Pump Housing·Cover와 전동화 플랫폼용 샤프트를 포함하며, Machined Aluminum Components는 BSM Housing·Oil Pump 가공 역량으로 구성합니다.",
-      },
-      en: {
-        title: "Automotive precision-component portfolio",
-        summary: "Steering, Powertrain, and Driveline are presented with electrified and machined-aluminum capabilities.",
-        body: "Seoul Industry produces precision components across three core families: Steering, Powertrain, and Driveline. Electrified Powertrain includes EV oil-pump housings and covers plus electrified-platform shafts, while Machined Aluminum Components focuses on BSM housings and oil pumps.",
-      },
-      ja: {
-        title: "自動車精密加工製品ポートフォリオ",
-        summary: "Steering・Powertrain・Drivelineに電動化・アルミ加工の対応力を加えてご紹介します。",
-        body: "ソウル産業はSteering、Powertrain、Drivelineの3大中核製品群を中心に精密加工部品を生産します。Electrified PowertrainにはEV Oil Pump Housing・Coverと電動化プラットフォーム向けシャフトを含み、Machined Aluminum ComponentsはBSM Housing・Oil Pumpの加工力で構成します。",
-      },
-    },
-  },
-  {
-    id: "quality-process-2026",
-    category: "quality",
-    date: "2026-05-15",
-    pinned: false,
-    translations: {
-      ko: {
-        title: "도면 기반 OEM 개발 대응과 품질 검사 프로세스",
-        summary: "도면 검토부터 샘플 제작, 치수 검사, 양산 전환까지 이어지는 품질 흐름을 안내합니다.",
-        body: "고객 도면을 기준으로 개발 조건을 검토하고, 샘플 제작과 치수 확인, LOT 관리, 양산 품질 기준까지 연결해 반복 정밀도와 납품 신뢰도를 높입니다.",
-      },
-      en: {
-        title: "Drawing-based OEM development and inspection process",
-        summary: "From drawing review to sample production, inspection, and mass-production transfer.",
-        body: "Customer drawings are reviewed against development requirements, sample verification, dimensional inspection, LOT-level quality control, and mass-production standards to support dependable delivery.",
-      },
-      ja: {
-        title: "図面ベースのOEM開発対応と品質検査プロセス",
-        summary: "図面検討から試作、寸法検査、量産移行までの品質フローをご案内します。",
-        body: "お客様の図面を基準に開発条件を確認し、試作、寸法確認、LOT管理、量産品質基準まで連携させることで、納品信頼性を高めます。",
-      },
-    },
-  },
-  {
-    id: "repeat-accuracy-2026",
-    category: "manufacturing",
-    date: "2026-05-09",
-    pinned: false,
-    translations: {
-      ko: {
-        title: "자동차 부품 양산 공정에서 중요한 반복 정밀도 관리",
-        summary: "반복 생산 조건에서 치수 편차와 표면 품질을 안정적으로 관리하는 제조 기준을 설명합니다.",
-        body: "자동차 부품 OEM 공급에서는 반복 정밀도, 표면 품질, 납기 안정성이 함께 관리되어야 합니다. 서울산업은 공정 조건을 기록하고 검사 흐름과 연결해 양산 품질을 안정화합니다.",
-      },
-      en: {
-        title: "Managing repeat accuracy in automotive component production",
-        summary: "Manufacturing standards for dimensional consistency and surface quality.",
-        body: "Automotive OEM supply requires repeat accuracy, surface quality, and delivery stability to be controlled together. Seoul Industry records process conditions and links them with inspection flow to stabilize mass-production quality.",
-      },
-      ja: {
-        title: "自動車部品の量産工程における反復精度管理",
-        summary: "寸法ばらつきと表面品質を安定して管理する製造基準について説明します。",
-        body: "自動車部品のOEM供給では、反復精度、表面品質、納期安定性を一体で管理する必要があります。ソウル産業は工程条件を記録し、検査フローと連携して量産品質を安定させます。",
-      },
-    },
-  },
-  {
-    id: "driveline-guide-2026",
-    category: "resources",
-    date: "2026-04-30",
-    pinned: false,
-    translations: {
-      ko: {
-        title: "Driveline 부품과 동력 전달계 가공 안내",
-        summary: "동력 전달 부품의 가공 안정성과 조립 품질을 위한 기본 검토 항목을 정리했습니다.",
-        body: "Driveline 계열 부품은 동력 전달 흐름, 조립 조건, 표면 품질, 반복 정밀도를 함께 검토해야 합니다. 서울산업은 도면 기반의 맞춤 가공과 양산 대응을 통해 안정적인 부품 공급을 지원합니다.",
-      },
-      en: {
-        title: "Driveline components and power-delivery machining guide",
-        summary: "Key review points for machining stability and assembly quality.",
-        body: "Driveline components require coordinated review of power delivery, assembly conditions, surface quality, and repeat accuracy. Seoul Industry supports drawing-based machining and mass-production programs.",
-      },
-      ja: {
-        title: "ドライブライン部品と動力伝達系加工ガイド",
-        summary: "加工安定性と組立品質のための基本確認項目をまとめました。",
-        body: "ドライブライン部品では、動力伝達、組立条件、表面品質、反復精度を総合的に確認する必要があります。ソウル産業は図面ベースの加工と量産プログラムを支援します。",
-      },
-    },
-  },
-];
 
 export const curatedNoticePosts: NoticePost[] = [
   {
-    id: "precision-system-2026",
+    id: "integrated-manufacturing-2026",
     category: "notice",
-    date: "2026-05-29",
-    image: newsImages.factory,
+    date: "2026-08-14",
+    image: companyFactoryImage,
     pinned: true,
+    published: true,
     translations: {
       ko: {
-        title: "서울산업, 정밀가공 생산 체계 고도화",
-        summary: "개발 대응부터 양산 품질까지 한 흐름으로 관리하는 제조 기준을 강화했습니다.",
-        body: "서울산업은 자동차 부품 OEM 생산에서 요구되는 도면 검토, 공정 조건, 품질 기록, 납기 대응을 더 명확하게 연결하고 있습니다.\n\n이번 개편은 고객이 제품군과 제조 역량, 품질 대응 흐름을 한눈에 확인할 수 있도록 정리한 것이며, 반복 생산에서 중요한 공정 안정성과 기록 관리 기준을 함께 강화합니다.",
+        title: "도면 검토부터 양산 공급까지, 서울산업의 통합 정밀가공 체계",
+        summary: "경기도 화성 생산 거점을 중심으로 개발 타당성 검토, 공정 설계, 정밀가공, 검사, 양산 공급을 하나의 흐름으로 연결합니다.",
+        body: "서울산업은 1985년 설립 이후 샤프트, 허브, 디스크 캐리어와 알루미늄 주조 가공 부품을 중심으로 자동차용 정밀 부품을 생산해 왔습니다.\n\n고객 도면과 제품 요구사항을 바탕으로 가공 순서, 가공 기준면, 지그·고정구와 클램핑 방식, 가공 조건을 설계하고 생산 검증과 검사까지 연결합니다. 단조와 열처리 등 외부 공정도 동일한 생산 계획과 관리 기준 안에서 조율합니다.",
       },
       en: {
-        title: "Seoul Industry advances its precision manufacturing system",
-        summary: "We strengthened the operating flow from development support to mass-production quality.",
-        body: "Seoul Industry is tying drawing review, process conditions, quality records, and delivery together more tightly for automotive OEM production.\n\nThe update makes it easier for customers to see our product groups, manufacturing capabilities, and quality systems at a glance, while we reinforce process stability and record-keeping.",
+        title: "From drawing review to volume supply: Seoul Industry’s integrated precision-machining system",
+        summary: "From our manufacturing base in Hwaseong, Korea, we connect feasibility review, process design, precision machining, inspection, and volume supply in one continuous flow.",
+        body: "Since 1985, Seoul Industry has produced precision automotive components centered on shafts, hubs, disk carriers, and machined aluminum casting components.\n\nBased on customer drawings and product requirements, we define process sequences, machining datums, fixtures and clamping methods, and operating parameters, then connect production validation with inspection. External processes such as forging and heat treatment are coordinated under the same manufacturing plan and control standards.",
       },
       ja: {
-        title: "ソウル産業、精密加工の生産体制を高度化",
-        summary: "開発対応から量産品質まで一つの流れで管理する製造基準を強化しました。",
-        body: "ソウル産業は、自動車部品OEM生産に必要な図面検討、工程条件、品質記録、納期対応をより明確につなげています。\n\n今回の更新により、製品群、製造力、品質対応の流れを確認しやすくし、反復生産に必要な工程安定性と記録管理基準を強化します。",
+        title: "図面検討から量産供給まで、ソウル産業の一貫精密加工体制",
+        summary: "京畿道華城の生産拠点を中心に、実現可能性検討、工程設計、精密加工、検査、量産供給を一つの流れでつなぎます。",
+        body: "ソウル産業は1985年の創業以来、シャフト、ハブ、ディスクキャリア、アルミダイカスト加工部品を中心に、自動車用精密部品を生産してきました。\n\nお客様の図面と製品要求をもとに、加工順序、加工基準面、治具・クランプ方法、加工条件を設計し、生産検証と検査まで連携します。鍛造・熱処理などの外部工程も同じ生産計画と管理基準のもとで調整します。",
       },
     },
   },
   {
-    id: "lineup-expansion-2026",
-    category: "products",
-    date: "2026-05-24",
-    pinned: false,
-    translations: {
-      ko: {
-        title: "전동화·알루미늄 가공 대응 범위 확대",
-        summary: "기존 3대 제품군에 전동화 부품과 Machined Aluminum Components 역량을 확장했습니다.",
-        body: "Electrified Powertrain은 EV Oil Pump Housing·Cover의 정밀가공과 HEV·PHEV·BEV용 샤프트의 설계 검토·시제품 검증을 함께 다룹니다.\n\nMachined Aluminum Components는 BSM Housing·Oil Pump의 알루미늄 정밀가공 역량을 별도로 소개합니다.",
-      },
-      en: {
-        title: "Expanded electrified and machined-aluminum capabilities",
-        summary: "Electrified parts and machined aluminum extend the three core product families.",
-        body: "Electrified Powertrain combines precision machining for EV oil-pump housings and covers with design review and prototype validation for HEV, PHEV, and BEV shafts.\n\nMachined Aluminum Components separately presents aluminum-machining capabilities for BSM housings and oil pumps.",
-      },
-      ja: {
-        title: "電動化・アルミ加工の対応範囲を拡大",
-        summary: "3大中核製品群に電動化部品とMachined Aluminum Componentsの対応力を加えました。",
-        body: "Electrified PowertrainではEV Oil Pump Housing・Coverの精密加工と、HEV・PHEV・BEV向けシャフトの設計検討・試作検証に対応します。\n\nMachined Aluminum ComponentsではBSM Housing・Oil Pumpのアルミ精密加工力を分けてご紹介します。",
-      },
-    },
-  },
-  {
-    id: "quality-flow-2026",
-    category: "quality",
-    date: "2026-05-18",
-    image: newsImages.research,
-    pinned: false,
-    translations: {
-      ko: {
-        title: "검사 데이터 기반 품질 흐름 강화",
-        summary: "치수, 형상, 조립 품질을 LOT별로 확인하고 공정 조건과 연결합니다.",
-        body: "서울산업은 검사 결과를 단순 확인에 그치지 않고 공정 조건과 연결해 양산 품질의 변동을 줄입니다.\n\n고객 납품 기준에 맞춘 치수 검사, 형상 확인, 조립 품질 검토를 통해 출하 전 품질 안정성을 높입니다.",
-      },
-      en: {
-        title: "Quality flow strengthened with inspection data",
-        summary: "Dimensional, geometric, and assembly quality are checked by lot and linked to process conditions.",
-        body: "Seoul Industry connects inspection results with process conditions rather than treating them as isolated checks.\n\nDimensional inspection, geometry review, and assembly-quality checks help stabilize outgoing quality before shipment.",
-      },
-      ja: {
-        title: "検査データ基盤の品質フローを強化",
-        summary: "寸法、形状、組立品質をLOT別に確認し、工程条件と連携します。",
-        body: "ソウル産業は検査結果を単なる確認にとどめず、工程条件と連携させることで量産品質のばらつきを抑えます。\n\n顧客納入基準に合わせた寸法検査、形状確認、組立品質の確認により、出荷前の品質安定性を高めます。",
-      },
-    },
-  },
-  {
-    id: "repeat-accuracy-2026",
+    id: "automation-production-line-2026",
     category: "manufacturing",
-    date: "2026-05-10",
-    image: newsImages.conference,
+    date: "2026-08-11",
+    image: automationGantryImage,
     pinned: false,
+    published: true,
     translations: {
       ko: {
-        title: "반복 정밀도를 위한 가공 조건 표준화",
-        summary: "자동차 부품 양산에서 중요한 반복 정밀도와 표면 품질 기준을 관리합니다.",
-        body: "자동차 부품 OEM 공급에서는 반복 정밀도, 표면 품질, 납기 안정성이 함께 관리되어야 합니다.\n\n서울산업은 공정 조건을 기록하고 검사 흐름과 연결해 양산 품질을 안정화합니다.",
+        title: "갠트리·로봇 자동화를 적용한 정밀가공 양산 라인",
+        summary: "로딩과 언로딩, 공정 간 이송, 셀 검사를 전용 생산 라인에 연결해 생산성과 공정 안정성을 함께 관리합니다.",
+        body: "서울산업은 CNC 선반과 머시닝센터, 기어·스플라인 가공, 연삭과 표면 마무리 공정을 제품 요구사항에 맞춰 구성합니다.\n\n전용 라인에서는 갠트리와 로봇 핸들링이 로딩·언로딩 및 공정 간 이송을 담당합니다. 공정 중 검사 데이터를 선행 공정에 피드백하고 보정에 활용해 반복 정밀도와 공정 안정성을 관리합니다.",
       },
       en: {
-        title: "Standardized machining conditions for repeat accuracy",
-        summary: "We manage repeat accuracy and surface-quality standards for automotive mass production.",
-        body: "Automotive OEM supply requires repeat accuracy, surface quality, and delivery stability to be controlled together.\n\nSeoul Industry records process conditions and connects them with inspection flow to stabilize mass-production quality.",
+        title: "Precision mass-production lines with gantry and robot automation",
+        summary: "Loading, unloading, inter-process transfer, and cell inspection are connected within dedicated production lines to manage productivity and process stability together.",
+        body: "Seoul Industry configures CNC turning and machining centers, gear and spline manufacturing, grinding, and surface-finishing processes according to each product requirement.\n\nWithin dedicated lines, gantry and robot handling systems perform loading, unloading, and inter-process transfer. In-process inspection data is fed back to preceding operations and used for compensation to manage repeat accuracy and process stability.",
       },
       ja: {
-        title: "反復精度のための加工条件を標準化",
-        summary: "自動車部品の量産で重要な反復精度と表面品質基準を管理します。",
-        body: "自動車部品OEM供給では、反復精度、表面品質、納期安定性を合わせて管理する必要があります。\n\nソウル産業は工程条件を記録し、検査フローと連携して量産品質を安定化します。",
+        title: "ガントリー・ロボット自動化を導入した精密加工量産ライン",
+        summary: "ローディング、アンローディング、工程間搬送、セル検査を専用ラインでつなぎ、生産性と工程安定性を管理します。",
+        body: "ソウル産業は、CNC旋盤・マシニングセンタ、ギヤ・スプライン加工、研削・表面仕上げなどの工程を製品要求に合わせて構成します。\n\n専用ラインでは、ガントリーおよびロボットハンドリングがローディング、アンローディング、工程間搬送を担います。工程内検査データを前工程へフィードバックし、補正に活用することで、繰り返し精度と工程安定性を管理します。",
       },
     },
   },
   {
-    id: "global-oem-update-2026",
-    category: "resources",
-    date: "2026-04-30",
+    id: "inspection-traceability-2026",
+    category: "quality",
+    date: "2026-08-07",
+    image: automaticInspectionImage,
     pinned: false,
+    published: true,
     translations: {
       ko: {
-        title: "글로벌 OEM 대응 자료 업데이트",
-        summary: "고객사와 협력사가 확인할 수 있는 제품군, 공정, 품질 정보를 정리했습니다.",
-        body: "서울산업은 글로벌 OEM 고객과 협력사가 필요한 정보를 빠르게 확인할 수 있도록 제품군, 공정 흐름, 품질 대응 자료를 정리했습니다.\n\n개발 대응부터 양산 공급까지 이어지는 제조 파트너십의 기준을 더 명확하게 제공합니다.",
+        title: "자동검사 데이터로 완성하는 출하 품질과 추적성",
+        summary: "공정 중 셀 검사와 최종 검사를 연결해 치수·형상·공정 누락을 확인하고, 측정 기록과 LOT 추적성을 관리합니다.",
+        body: "공정 중 셀 검사에서는 에어 게이지 등을 활용해 측정 데이터를 수집하고 선행 공정에 피드백합니다. 필요한 경우 자동 보정과 SPC 관리에도 활용합니다.\n\n최종 검사에서는 GD&T 측정, 균열과 공정 누락 확인, 데이터 기록, LOT 마킹을 통해 출하 전 품질을 확인합니다. CMM, 기어 측정, 경도·금속조직 검사도 중요 특성 검증에 활용합니다.",
       },
       en: {
-        title: "Updated reference materials for global OEM partners",
-        summary: "Product, process, and quality information has been organized for customers and partners.",
-        body: "Seoul Industry organized product group, process flow, and quality materials so global OEM customers and partners can review key information quickly.\n\nThe update clarifies our manufacturing partnership from development support to mass-production supply.",
+        title: "Outgoing quality and traceability secured by automated inspection data",
+        summary: "In-process cell inspection and final inspection are connected to verify dimensions, geometry, and missing operations while maintaining measurement records and lot traceability.",
+        body: "During in-process cell inspection, measurement data is collected using air gauges and related systems, then fed back to preceding operations. Where required, the data supports automatic compensation and SPC control.\n\nFinal inspection verifies outgoing quality through GD&T measurement, crack and missing-operation detection, data recording, and lot marking. CMM, gear measurement, hardness testing, and metallurgical examination also support validation of critical characteristics.",
       },
       ja: {
-        title: "グローバルOEM対応資料を更新",
-        summary: "顧客と協力会社が確認できる製品群、工程、品質情報を整理しました。",
-        body: "ソウル産業は、グローバルOEM顧客と協力会社が必要な情報をすばやく確認できるよう、製品群、工程フロー、品質資料を整理しました。\n\n開発対応から量産供給までつながる製造パートナーシップの基準をより明確に提供します。",
+        title: "自動検査データで確保する出荷品質とトレーサビリティ",
+        summary: "工程内セル検査と最終検査を連携し、寸法・幾何特性・工程抜けを確認するとともに、測定記録とロットトレーサビリティを管理します。",
+        body: "工程内セル検査では、エアゲージなどで測定データを収集し、前工程へフィードバックします。必要に応じて自動補正およびSPC管理に活用します。\n\n最終検査では、GD&T測定、亀裂・工程抜けの検出、データ記録、ロットマーキングにより出荷前品質を確認します。CMM、ギヤ測定、硬度・金属組織検査も重要特性の検証に活用します。",
       },
     },
   },
@@ -332,6 +174,14 @@ export function getNoticePosts() {
   return curatedNoticePosts;
 }
 
+function normalizeNoticePost(post: NoticePost): NoticePost {
+  return {
+    ...post,
+    image: post.image?.trim() || undefined,
+    published: post.published !== false,
+  };
+}
+
 function announceNoticeUpdate(posts: NoticePost[]) {
   if (typeof window === "undefined") return;
   window.dispatchEvent(new CustomEvent("seoulind-notices-updated", { detail: posts }));
@@ -344,12 +194,13 @@ function announceNoticeUpdate(posts: NoticePost[]) {
   }
 }
 
-export async function fetchNoticePosts() {
-  const response = await fetch("/api/notices", { cache: "no-store" });
+export async function fetchNoticePosts(options: { includeUnpublished?: boolean } = {}) {
+  const query = options.includeUnpublished ? "?includeUnpublished=1" : "";
+  const response = await fetch(`/api/notices${query}`, { cache: "no-store" });
   if (!response.ok) throw new Error("공지사항을 불러오지 못했습니다.");
   const data = (await response.json()) as { posts?: unknown };
   if (!Array.isArray(data.posts) || !data.posts.every(isNoticePost)) return sortNoticePosts(curatedNoticePosts);
-  return sortNoticePosts(data.posts.map((post) => ({ ...post, image: post.image?.trim() || undefined })));
+  return sortNoticePosts(data.posts.map(normalizeNoticePost));
 }
 
 export async function saveNoticePosts(posts: NoticePost[]) {
@@ -426,7 +277,11 @@ export function noticePostsToMediaItems(posts: NoticePost[], language: LanguageC
 }
 
 export function noticePostImage(post: NoticePost) {
-  return post.image?.trim() || undefined;
+  return post.image?.trim() || noticeFallbackImages[post.category];
+}
+
+export function noticePostFallbackImage(post: NoticePost) {
+  return noticeFallbackImages[post.category];
 }
 
 export function makeNoticeId() {

@@ -287,6 +287,7 @@ function createEmptyNotice(): NoticePost {
     date: getTodayInSeoul(),
     image: "",
     pinned: false,
+    published: true,
     translations: {
       ko: emptyTranslation(),
       en: emptyTranslation(),
@@ -318,6 +319,7 @@ function normalizePost(post: NoticePost, emptyTitle: string): NoticePost {
     id: post.id || makeNoticeId(),
     date: post.date || getTodayInSeoul(),
     image: post.image?.trim() || undefined,
+    published: post.published !== false,
     translations: {
       ko: normalizeTranslation(post.translations.ko, fallback, emptyTitle),
       en: normalizeTranslation(post.translations.en, fallback, emptyTitle),
@@ -343,7 +345,7 @@ function NoticeTopbar({
       <nav className="notice-topbar__nav" aria-label="News page navigation">
         <a href="#/">{copy.home}</a>
         <a href="#/news">{copy.list}</a>
-        <a href="#/news/admin">{copy.admin}</a>
+        <a href="#/company/notices/admin">{copy.admin}</a>
       </nav>
       <div className="notice-language" aria-label="Language">
         {languages.map((item) => (
@@ -410,7 +412,12 @@ export default function NewsPage({ route }: NewsPageProps) {
     };
     const syncPosts = (event: Event) => {
       const nextPosts = (event as CustomEvent<NoticePost[]>).detail;
-      if (Array.isArray(nextPosts)) setPosts(sortNoticePosts(nextPosts));
+      if (Array.isArray(nextPosts)) {
+        const visiblePosts = isAdminRoute
+          ? nextPosts
+          : nextPosts.filter((post) => post.published);
+        setPosts(sortNoticePosts(visiblePosts));
+      }
       else void loadPosts();
     };
     const channel = typeof BroadcastChannel !== "undefined" ? new BroadcastChannel("seoulind-notices") : null;
@@ -424,7 +431,7 @@ export default function NewsPage({ route }: NewsPageProps) {
       window.removeEventListener("seoulind-notices-updated", syncPosts);
       channel?.close();
     };
-  }, []);
+  }, [isAdminRoute]);
 
   useEffect(() => {
     if (!isAdminRoute) return;
@@ -622,7 +629,7 @@ export default function NewsPage({ route }: NewsPageProps) {
             </span>
           ))}
         </div>
-        <a className="notice-news__view" href="#/news/admin">
+        <a className="notice-news__view" href="#/company/notices/admin">
           {copy.admin}
           <Icon name="arrow" />
         </a>
@@ -656,7 +663,7 @@ export default function NewsPage({ route }: NewsPageProps) {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <a className="notice-detail__admin" href="#/news/admin">
+          <a className="notice-detail__admin" href="#/company/notices/admin">
             {copy.editInAdmin}
             <Icon name="arrow" />
           </a>

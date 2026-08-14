@@ -68,8 +68,8 @@ export const companyOverviewCopy = {
       { label: "공급 범위", value: "DEVELOPMENT TO SOP" },
     ],
     systems: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM"],
-    networkTitle: "고객의 개발 일정과 양산 계획을 연결하는 글로벌 공급 체계",
-    networkCopy: "북미·아시아·유럽의 고객 프로그램에 맞춰 도면 검토, 공정 설계, 양산 안정화, 품질 관리, 포장·출하 기준까지 하나의 책임 체계로 관리합니다.",
+    networkTitle: "한국의 제조 거점에서 세 지역의 고객 프로그램을 연결합니다.",
+    networkCopy: "화성 제조 거점을 중심으로 북미·아시아·유럽 프로그램의 도면 검토, 공정 설계, 생산 검증, 양산 안정화와 품질 기록을 하나의 흐름으로 관리합니다.",
   },
   en: {
     eyebrow: "INTEGRATED PRECISION MACHINING SUPPLIER",
@@ -81,8 +81,8 @@ export const companyOverviewCopy = {
       { label: "Program Coverage", value: "DEVELOPMENT TO SOP" },
     ],
     systems: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM"],
-    networkTitle: "A global supply system aligned with customer programs",
-    networkCopy: "Across North America, Asia, and Europe, we align drawing review, process engineering, production stabilization, quality control, packing, and delivery with each customer program.",
+    networkTitle: "One manufacturing base. Program support across three regions.",
+    networkCopy: "From Hwaseong, Korea, Seoul Industry supports programs across North America, Asia, and Europe through one connected flow—from drawing review and process engineering to production validation, launch stabilization, and quality records.",
   },
   ja: {
     eyebrow: "INTEGRATED PRECISION MACHINING SUPPLIER",
@@ -94,16 +94,180 @@ export const companyOverviewCopy = {
       { label: "対応範囲", value: "DEVELOPMENT TO SOP" },
     ],
     systems: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM"],
-    networkTitle: "顧客の開発日程と量産計画をつなぐグローバル供給体制",
-    networkCopy: "北米・アジア・欧州の顧客プログラムに合わせ、図面検討、工程設計、量産安定化、品質管理、梱包・出荷基準まで一貫して管理します。",
+    networkTitle: "韓国の生産拠点から、3地域の顧客プログラムを支えます。",
+    networkCopy: "華城の生産拠点を中心に、北米・アジア・欧州のプログラムに対し、図面検討、工程設計、生産検証、量産立上げの安定化、品質記録までを一つの流れで管理します。",
   },
 } satisfies Record<CompanyProfileLanguage, object>;
 
-export const globalRegions = [
-  { region: "NORTH AMERICA", customers: ["GLOBAL PROGRAMS"] },
-  { region: "ASIA", customers: ["GLOBAL PROGRAMS"] },
-  { region: "EUROPE", customers: ["GLOBAL PROGRAMS"] },
-];
+type GlobalProgramRegion = {
+  region: string;
+  coverage: string;
+  title: string;
+  copy: string;
+  tags: string[];
+};
+
+type GlobalProgramStage = {
+  title: string;
+  copy: string;
+};
+
+type GlobalProgramNetwork = {
+  regions: GlobalProgramRegion[];
+  frameworkTitle: string;
+  frameworkCopy: string;
+  stages: GlobalProgramStage[];
+};
+
+export const globalProgramNetwork = {
+  ko: {
+    regions: [
+      {
+        region: "NORTH AMERICA",
+        coverage: "UNITED STATES · MEXICO",
+        title: "개발·양산 준비",
+        copy: "고객 도면과 CTQ를 공정 순서, 치공구, 검사 로직으로 구체화하고 생산 검증부터 초기 양산의 공정 안정화까지 연결합니다.",
+        tags: ["FEASIBILITY", "VALIDATION", "SOP"],
+      },
+      {
+        region: "ASIA",
+        coverage: "KOREA · JAPAN · CHINA",
+        title: "통합 제조 운영",
+        copy: "화성 사업장에서 정밀가공, 기어·스플라인, 연삭, 열처리 연계, 자동화와 최종 검사를 하나의 생산 계획으로 운영합니다.",
+        tags: ["MACHINING", "PROCESS CONTROL", "INSPECTION"],
+      },
+      {
+        region: "EUROPE",
+        coverage: "EUROPEAN PROGRAMS",
+        title: "품질 문서·변경 관리",
+        copy: "GD&T·CMM 측정, 기어 형상 검사, 자동검사와 추적성 데이터를 기반으로 승인 단계별 품질 자료와 프로그램 변경 사항을 관리합니다.",
+        tags: ["GD&T / CMM", "TRACEABILITY", "CHANGE CONTROL"],
+      },
+    ],
+    frameworkTitle: "도면 검토에서 양산 공급까지, 하나의 책임 체계로 연결합니다.",
+    frameworkCopy: "모든 지역 프로그램에는 화성 제조 거점을 중심으로 한 동일한 개발–양산 공급 흐름을 적용합니다.",
+    stages: [
+      {
+        title: "도면·CTQ 검토",
+        copy: "제품 형상, 공차, 소재, 가공 난이도와 생산 조건을 검토해 주요 품질 특성과 공정 리스크를 정의합니다.",
+      },
+      {
+        title: "공정·공급망 설계",
+        copy: "공정 순서, 기준면, 치공구와 가공 조건을 설계하고 단조·열처리 연계 공정을 같은 생산 계획에 반영합니다.",
+      },
+      {
+        title: "생산 검증",
+        copy: "공정 능력과 검사 로직을 검증하고 셀·최종검사 데이터를 전공정 피드백과 보정에 연결합니다.",
+      },
+      {
+        title: "SOP·양산 안정화",
+        copy: "검사 기준, 자동화 조건과 추적성 체계를 고정하고 초기 양산 데이터를 기반으로 편차를 안정화합니다.",
+      },
+      {
+        title: "양산 공급·개선",
+        copy: "품질 기록과 LOT 이력을 유지하며 공급 일정, 포장·출하 기준, 외부 공정과 변경 사항을 함께 관리합니다.",
+      },
+    ],
+  },
+  en: {
+    regions: [
+      {
+        region: "NORTH AMERICA",
+        coverage: "UNITED STATES · MEXICO",
+        title: "Launch & Volume Readiness",
+        copy: "Customer drawings and CTQs are translated into process sequences, fixture concepts, and inspection logic, connecting production validation with early-volume stabilization.",
+        tags: ["FEASIBILITY", "VALIDATION", "SOP"],
+      },
+      {
+        region: "ASIA",
+        coverage: "KOREA · JAPAN · CHINA",
+        title: "Integrated Manufacturing Hub",
+        copy: "At Hwaseong, precision machining, gear and spline operations, grinding, coordinated heat treatment, automation, and final inspection are managed under one production plan.",
+        tags: ["MACHINING", "PROCESS CONTROL", "INSPECTION"],
+      },
+      {
+        region: "EUROPE",
+        coverage: "EUROPEAN PROGRAMS",
+        title: "Quality Documentation & Change Control",
+        copy: "GD&T and CMM measurement, gear inspection, automated inspection, and traceability data support approval-stage documentation and program changes.",
+        tags: ["GD&T / CMM", "TRACEABILITY", "CHANGE CONTROL"],
+      },
+    ],
+    frameworkTitle: "One connected responsibility from drawing review to volume supply.",
+    frameworkCopy: "All regional programs follow the same development-to-volume-supply framework from the Hwaseong manufacturing base.",
+    stages: [
+      {
+        title: "Drawing & CTQ Review",
+        copy: "We review geometry, tolerances, material, machining complexity, and production conditions to define critical characteristics and process risks.",
+      },
+      {
+        title: "Process & Supply-Chain Design",
+        copy: "We define process sequence, datums, fixtures, clamping, and machining conditions, coordinating forging and heat-treatment processes within the same production plan.",
+      },
+      {
+        title: "Production Validation",
+        copy: "We validate process capability and inspection logic, connecting in-cell and final-inspection data to upstream feedback and compensation.",
+      },
+      {
+        title: "SOP Launch & Stabilization",
+        copy: "We lock inspection criteria, automation conditions, and traceability, then stabilize variation with early-production data.",
+      },
+      {
+        title: "Volume Supply & Improvement",
+        copy: "We maintain quality records and lot history while coordinating supply schedules, packing and delivery standards, external processes, and changes.",
+      },
+    ],
+  },
+  ja: {
+    regions: [
+      {
+        region: "NORTH AMERICA",
+        coverage: "UNITED STATES · MEXICO",
+        title: "立上げ・量産準備",
+        copy: "顧客図面とCTQを工程順序、治具、検査ロジックへ落とし込み、生産検証から初期量産の工程安定化までつなげます。",
+        tags: ["FEASIBILITY", "VALIDATION", "SOP"],
+      },
+      {
+        region: "ASIA",
+        coverage: "KOREA · JAPAN · CHINA",
+        title: "統合生産ハブ",
+        copy: "華城の生産拠点で、精密加工、ギヤ・スプライン、研削、熱処理連携、自動化、最終検査を一つの生産計画で運用します。",
+        tags: ["MACHINING", "PROCESS CONTROL", "INSPECTION"],
+      },
+      {
+        region: "EUROPE",
+        coverage: "EUROPEAN PROGRAMS",
+        title: "品質文書・変更管理",
+        copy: "GD&T・CMM測定、ギヤ形状検査、自動検査、トレーサビリティデータを基に、承認段階ごとの品質資料とプログラム変更を管理します。",
+        tags: ["GD&T / CMM", "TRACEABILITY", "CHANGE CONTROL"],
+      },
+    ],
+    frameworkTitle: "図面検討から量産供給まで、一つの責任体制でつなぎます。",
+    frameworkCopy: "すべての地域プログラムに、華城の生産拠点を中心とする共通の開発–量産供給フローを適用します。",
+    stages: [
+      {
+        title: "図面・CTQ検討",
+        copy: "製品形状、公差、材料、加工難易度、生産条件を検討し、重要品質特性と工程リスクを定義します。",
+      },
+      {
+        title: "工程・サプライチェーン設計",
+        copy: "工程順序、基準面、治具、クランプ、加工条件を設計し、鍛造・熱処理の連携工程を同じ生産計画へ反映します。",
+      },
+      {
+        title: "生産検証",
+        copy: "工程能力と検査ロジックを検証し、工程内・最終検査データを前工程へのフィードバックと補正につなげます。",
+      },
+      {
+        title: "SOP立上げ・安定化",
+        copy: "検査基準、自動化条件、トレーサビリティ体制を固定し、初期量産データを基にばらつきを安定化します。",
+      },
+      {
+        title: "量産供給・改善",
+        copy: "品質記録とLOT履歴を維持しながら、供給日程、梱包・出荷基準、外部工程、変更事項を一体管理します。",
+      },
+    ],
+  },
+} satisfies Record<CompanyProfileLanguage, GlobalProgramNetwork>;
 
 export const manufacturingGroupLabels: Record<
   CompanyProfileLanguage,

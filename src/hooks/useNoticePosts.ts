@@ -16,7 +16,9 @@ export default function useNoticePosts(limit?: number) {
     };
     const sync = (event: Event) => {
       const nextPosts = (event as CustomEvent<NoticePost[]>).detail;
-      if (Array.isArray(nextPosts)) setPosts(sortNoticePosts(nextPosts));
+      if (Array.isArray(nextPosts)) {
+        setPosts(sortNoticePosts(nextPosts.filter((post) => post.published)));
+      }
       else void load();
     };
     const channel = typeof BroadcastChannel !== "undefined" ? new BroadcastChannel("seoulind-notices") : null;

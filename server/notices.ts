@@ -12,10 +12,13 @@ export type StoredNotice = {
   date: string;
   image?: string;
   pinned: boolean;
+  published: boolean;
   translations: Record<"ko" | "en" | "ja", StoredNoticeTranslation>;
 };
 
-const dataPath = "notices/notices.json";
+// v2 intentionally starts from the three Seoul Industry posts bundled with the site.
+// The previous blob contained unrelated placeholder posts and must not override them.
+const dataPath = "notices/notices-v2.json";
 const categories = new Set(["notice", "products", "quality", "manufacturing", "resources"]);
 
 function cleanText(value: unknown, maxLength: number) {
@@ -23,8 +26,17 @@ function cleanText(value: unknown, maxLength: number) {
 }
 function cleanImage(value: unknown) {
   if (typeof value !== "string" || !value.trim()) return undefined;
+  const trimmed = value.trim().slice(0, 2048);
+  if (
+    trimmed.startsWith("/assets/") &&
+    !trimmed.startsWith("//") &&
+    !trimmed.includes("\\") &&
+    !trimmed.includes("..")
+  ) {
+    return trimmed;
+  }
   try {
-    const url = new URL(value.trim());
+    const url = new URL(trimmed);
     return ["https:", "http:"].includes(url.protocol) ? url.toString() : undefined;
   } catch {
     return undefined;
@@ -56,6 +68,7 @@ export function sanitizeNotices(value: unknown): StoredNotice[] {
       date,
       image: cleanImage(post.image),
       pinned: post.pinned === true,
+      published: post.published !== false,
       translations: {
         ko: cleanTranslation(translations.ko),
         en: cleanTranslation(translations.en),
