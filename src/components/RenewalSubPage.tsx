@@ -4,6 +4,8 @@ import certificationImage from "../../certification.png";
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
 import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
 import msqCertificateImage from "../../assets/certificates/msq-seoul-industry-2025.png";
+import iso14001CertificateImage from "../../assets/certificates/iso-14001-seoul-industry.webp";
+import iso14001CertificatePdf from "../../assets/certificates/iso-14001-seoul-industry.pdf";
 import balanceModuleImage from "../../assets/product-application/machined-aluminum-application.webp";
 import automotiveImage from "../../assets/product-application/electric-vehicle-precise.webp";
 import steeringImage from "../../assets/product-application/steering-precise.webp";
@@ -145,8 +147,8 @@ type CertificateShowcaseCopy = {
 
 const certificateShowcaseCopy: Record<RenewalLanguage, CertificateShowcaseCopy> = {
   ko: {
-    heading: "양산 현장을 지키는 품질 인증",
-    intro: "IATF 16949 품질경영시스템과 현대모비스 MSQ 인증을 바탕으로 공정 기준과 공급 품질을 체계적으로 관리합니다.",
+    heading: "양산 품질과 환경경영을 뒷받침하는 인증",
+    intro: "IATF 16949와 현대모비스 MSQ로 양산 품질 체계를 운영하고, ISO 14001 인증 범위에 따라 자동차 조향부품 제조·서비스의 환경경영 체계를 관리합니다.",
     originalLabel: "인증서 보기",
     items: [
       {
@@ -163,11 +165,18 @@ const certificateShowcaseCopy: Record<RenewalLanguage, CertificateShowcaseCopy> 
         metadata: ["인증번호 MWK0276", "발급일 2025.01.08"],
         alt: "서울산업 MSQ 인증서",
       },
+      {
+        eyebrow: "ENVIRONMENTAL MANAGEMENT",
+        title: "ISO 14001:2015",
+        copy: "자동차 조향부품의 제조·서비스 범위에 대한 서울산업의 환경경영시스템 인증입니다.",
+        metadata: ["인증번호 JEK-2330", "유효기간 2027.05.06"],
+        alt: "서울산업 ISO 14001:2015 환경경영시스템 인증서",
+      },
     ],
   },
   en: {
-    heading: "Quality credentials built for production",
-    intro: "IATF 16949 and Hyundai Mobis MSQ underpin the disciplined process control and supplier quality required for automotive production.",
+    heading: "Certifications supporting production quality and environmental management",
+    intro: "IATF 16949 and Hyundai Mobis MSQ support automotive production quality, while ISO 14001 covers the environmental management system for the manufacture and service of automotive steering parts.",
     originalLabel: "View certificate",
     items: [
       {
@@ -184,11 +193,18 @@ const certificateShowcaseCopy: Record<RenewalLanguage, CertificateShowcaseCopy> 
         metadata: ["Certificate MWK0276", "Issued 8 January 2025"],
         alt: "Seoul Industry MSQ certificate",
       },
+      {
+        eyebrow: "ENVIRONMENTAL MANAGEMENT",
+        title: "ISO 14001:2015",
+        copy: "Seoul Industry's environmental management system is certified for the manufacture and service of automotive steering parts.",
+        metadata: ["Certificate JEK-2330", "Valid through 6 May 2027"],
+        alt: "Seoul Industry ISO 14001:2015 environmental management system certificate",
+      },
     ],
   },
   ja: {
-    heading: "量産品質を支える認証体制",
-    intro: "IATF 16949と現代モービスMSQ認証を基盤に、工程管理と供給品質を継続的に高めています。",
+    heading: "量産品質と環境マネジメントを支える認証",
+    intro: "IATF 16949と現代モービスMSQに基づく量産品質管理に加え、ISO 14001の認証範囲に沿って自動車用ステアリング部品の製造・サービスに関する環境マネジメントシステムを運用しています。",
     originalLabel: "認証書を見る",
     items: [
       {
@@ -205,6 +221,13 @@ const certificateShowcaseCopy: Record<RenewalLanguage, CertificateShowcaseCopy> 
         metadata: ["認証番号 MWK0276", "発行日 2025.01.08"],
         alt: "ソウル産業 MSQ認証書",
       },
+      {
+        eyebrow: "ENVIRONMENTAL MANAGEMENT",
+        title: "ISO 14001:2015",
+        copy: "自動車用ステアリング部品の製造・サービスを認証範囲とする、ソウル産業の環境マネジメントシステム認証です。",
+        metadata: ["認証番号 JEK-2330", "有効期限 2027.05.06"],
+        alt: "ソウル産業 ISO 14001:2015環境マネジメントシステム認証書",
+      },
     ],
   },
 };
@@ -212,6 +235,7 @@ const certificateShowcaseCopy: Record<RenewalLanguage, CertificateShowcaseCopy> 
 const certificateAssets = [
   { image: iatfCertificateImage, href: iatfCertificatePdf },
   { image: msqCertificateImage, href: msqCertificateImage },
+  { image: iso14001CertificateImage, href: iso14001CertificatePdf },
 ];
 
 type SustainabilityPolicyCopy = {
@@ -1328,7 +1352,7 @@ function CertificatesBody({ language }: { language: RenewalLanguage }) {
   return (
     <section className="renewal-sub-cert-showcase">
       <header className="renewal-sub-cert-showcase__header" data-sub-reveal>
-        <span>CERTIFIED QUALITY SYSTEM</span>
+        <span>CORPORATE CERTIFICATIONS</span>
         <div>
           <h2>{copy.heading}</h2>
           <p>{copy.intro}</p>
@@ -1339,7 +1363,7 @@ function CertificatesBody({ language }: { language: RenewalLanguage }) {
           <article data-sub-reveal key={certificate.title}>
             <a href={certificateAssets[index].href} target="_blank" rel="noreferrer">
               <figure>
-                <img src={certificateAssets[index].image} alt={certificate.alt} />
+                <img src={certificateAssets[index].image} alt={certificate.alt} loading="lazy" decoding="async" />
                 <span>{String(index + 1).padStart(2, "0")}</span>
               </figure>
               <div>

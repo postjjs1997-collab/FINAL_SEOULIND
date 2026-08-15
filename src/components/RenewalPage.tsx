@@ -18,6 +18,8 @@ import homeCncLathePoster from "../../assets/company-profile/process/cnc-lathe-l
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
 import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
 import msqCertificateImage from "../../assets/certificates/msq-seoul-industry-2025.png";
+import iso14001CertificateImage from "../../assets/certificates/iso-14001-seoul-industry.webp";
+import iso14001CertificatePdf from "../../assets/certificates/iso-14001-seoul-industry.pdf";
 import dauchLogo from "../../assets/partner-dauch.svg";
 import gknLogo from "../../assets/partner-gkn.svg";
 import hanseaLogo from "../../assets/partner-kdac.svg";
@@ -704,12 +706,13 @@ const homeUiCopy = {
     processStep: "핵심 공정",
     qualityEyebrow: "QUALITY ASSURANCE",
     qualityLink: "품질 시스템 자세히 보기",
-    certificateEyebrow: "CERTIFIED QUALITY SYSTEM",
-    certificateTitle: "문서가 아니라 생산 현장에서 작동하는 품질 기준",
-    certificateCopy: "전용 검사와 정밀 측정 결과를 공정 조건, 교정, 출하 판정에 연결합니다. IATF 16949와 현대모비스 MSQ 인증은 이 운영 체계를 고객 기준으로 검증한 결과입니다.",
+    certificateEyebrow: "CORPORATE CERTIFICATIONS",
+    certificateTitle: "생산 현장에서 작동하는 품질·환경경영 기준",
+    certificateCopy: "IATF 16949와 현대모비스 MSQ로 양산 품질 체계를 운영하고, ISO 14001 인증 범위에 따라 자동차 조향부품 제조·서비스의 환경경영 체계를 관리합니다.",
     certificateView: "인증서 보기",
     iatf: "IATF 16949 품질경영시스템",
     msq: "현대모비스 MSQ 공급사 품질 인증",
+    iso14001: "ISO 14001 환경경영시스템",
   },
   en: {
     companyLink: "View company profile",
@@ -720,12 +723,13 @@ const homeUiCopy = {
     processStep: "Core process",
     qualityEyebrow: "QUALITY ASSURANCE",
     qualityLink: "View quality system",
-    certificateEyebrow: "CERTIFIED QUALITY SYSTEM",
-    certificateTitle: "Quality standards that operate on the production floor",
-    certificateCopy: "Dedicated inspection and precision measurement feed back into process settings, straightening, and shipment decisions. IATF 16949 and Hyundai Mobis MSQ certify this operating system against customer requirements.",
+    certificateEyebrow: "CORPORATE CERTIFICATIONS",
+    certificateTitle: "Quality and environmental standards operating on the production floor",
+    certificateCopy: "IATF 16949 and Hyundai Mobis MSQ support production quality, while ISO 14001 covers environmental management for the manufacture and service of automotive steering parts.",
     certificateView: "View certificate",
     iatf: "IATF 16949 Quality Management System",
     msq: "Hyundai Mobis MSQ Supplier Quality",
+    iso14001: "ISO 14001 Environmental Management System",
   },
   ja: {
     companyLink: "会社情報を見る",
@@ -736,12 +740,13 @@ const homeUiCopy = {
     processStep: "主要工程",
     qualityEyebrow: "QUALITY ASSURANCE",
     qualityLink: "品質システムを見る",
-    certificateEyebrow: "CERTIFIED QUALITY SYSTEM",
-    certificateTitle: "生産現場で機能する品質基準",
-    certificateCopy: "専用検査と精密測定の結果を工程条件、矯正、出荷判定へつなぎます。IATF 16949と現代モービスMSQ認証は、この運用体制を顧客基準で検証した結果です。",
+    certificateEyebrow: "CORPORATE CERTIFICATIONS",
+    certificateTitle: "生産現場で機能する品質・環境マネジメント基準",
+    certificateCopy: "IATF 16949と現代モービスMSQに基づく量産品質管理に加え、ISO 14001の認証範囲に沿って自動車用ステアリング部品の製造・サービスに関する環境マネジメントを運用しています。",
     certificateView: "認証書を見る",
     iatf: "IATF 16949 品質マネジメントシステム",
     msq: "現代モービスMSQサプライヤー品質認証",
+    iso14001: "ISO 14001 環境マネジメントシステム",
   },
 } satisfies Record<RenewalLanguage, Record<string, string>>;
 
@@ -1159,6 +1164,16 @@ function QualitySection({ language, reducedMotion }: { language: RenewalLanguage
               </figure>
               <span>
                 <strong>{ui.msq}</strong>
+                <small>{ui.certificateView}</small>
+              </span>
+              <Icon name="arrow" />
+            </a>
+            <a href={iso14001CertificatePdf} target="_blank" rel="noreferrer" data-renewal-reveal>
+              <figure>
+                <img src={iso14001CertificateImage} alt={ui.iso14001} loading="lazy" />
+              </figure>
+              <span>
+                <strong>{ui.iso14001}</strong>
                 <small>{ui.certificateView}</small>
               </span>
               <Icon name="arrow" />
