@@ -76,16 +76,16 @@ const noticePageCopy: Record<LanguageCode, NoticePageCopy> = {
     adminPassword: "비밀번호",
     login: "로그인",
     logout: "로그아웃",
-    loginError: "아이디 또는 비밀번호를 확인해주세요.",
+    loginError: "아이디 또는 비밀번호를 확인해 주세요.",
     heroEyebrow: "NEWSROOM",
     heroTitle: "서울산업 공지사항",
-    heroCopy: "제품군, 개발 대응, 품질/양산 흐름과 관련된 서울산업의 새로운 소식을 확인하세요.",
+    heroCopy: "제품군, 개발 대응, 품질·양산 흐름과 관련된 서울산업의 최신 소식을 확인하세요.",
     postsCount: "등록된 소식",
     pinned: "중요",
     categories: "카테고리",
     readMore: "자세히 보기",
     backToList: "목록으로 돌아가기",
-    editInAdmin: "관리자에서 수정",
+    editInAdmin: "관리자 화면에서 수정",
     newPost: "새 글 작성",
     savePost: "저장하기",
     resetDefaults: "기본 글 복원",
@@ -143,7 +143,7 @@ const noticePageCopy: Record<LanguageCode, NoticePageCopy> = {
     list: "お知らせ一覧",
     adminLogin: "管理者ログイン",
     adminDashboard: "お知らせ管理",
-    adminHelp: "保存した内容は、このページとメインのNews & Noticeにすぐ反映されます。",
+    adminHelp: "保存した内容は、このページとメインの「ニュース・お知らせ」欄にすぐ反映されます。",
     adminId: "ID",
     adminPassword: "パスワード",
     login: "ログイン",
@@ -182,22 +182,22 @@ const newsPageCopy: Record<LanguageCode, NoticePageCopy> = {
     admin: "관리자",
     list: "News",
     adminLogin: "관리자 로그인",
-    adminDashboard: "NEWS 관리자",
+    adminDashboard: "뉴스 관리",
     adminHelp: "저장한 뉴스는 이 페이지와 메인 NEWS 섹션에 바로 반영됩니다.",
     adminId: "아이디",
     adminPassword: "비밀번호",
     login: "로그인",
     logout: "로그아웃",
-    loginError: "아이디 또는 비밀번호를 확인해주세요.",
+    loginError: "아이디 또는 비밀번호를 확인해 주세요.",
     heroEyebrow: "SEOULIND NEWS",
     heroTitle: "NEWS",
     heroCopy: "서울산업의 제품, 제조 공정, 품질 대응, 글로벌 OEM 소식을 확인하세요.",
     postsCount: "등록된 뉴스",
     pinned: "중요",
     categories: "카테고리",
-    readMore: "View",
+    readMore: "자세히 보기",
     backToList: "NEWS 목록으로",
-    editInAdmin: "관리자에서 수정",
+    editInAdmin: "관리자 화면에서 수정",
     newPost: "새 뉴스 작성",
     savePost: "저장하기",
     resetDefaults: "기본 뉴스 복원",
@@ -250,7 +250,7 @@ const newsPageCopy: Record<LanguageCode, NoticePageCopy> = {
     categories: "カテゴリー",
     readMore: "詳しく見る",
     backToList: "NEWS一覧へ",
-    editInAdmin: "管理画面で修正",
+    editInAdmin: "管理画面で編集",
     newPost: "新規記事",
     savePost: "保存",
     resetDefaults: "初期ニュースに戻す",
@@ -259,13 +259,62 @@ const newsPageCopy: Record<LanguageCode, NoticePageCopy> = {
     resetConfirm: "初期ニュースデータに戻しますか？",
     formCategory: "分類",
     formDate: "日付",
-    formImage: "代表画像URL",
+    formImage: "メイン画像URL",
     formPinned: "上部固定",
     formTitle: "タイトル",
     formSummary: "要約",
     formBody: "本文",
     formLanguage: "言語別内容",
     emptyTitle: "無題のニュース",
+  },
+};
+
+const adminActionCopy: Record<
+  LanguageCode,
+  {
+    loginSuccess: string;
+    saveSuccess: string;
+    saveError: string;
+    deleteSuccess: string;
+    deleteError: string;
+    resetSuccess: string;
+    resetError: string;
+    uploadSuccess: string;
+    uploadError: string;
+  }
+> = {
+  ko: {
+    loginSuccess: "관리자 로그인이 완료되었습니다.",
+    saveSuccess: "뉴스가 저장되어 사이트에 반영되었습니다.",
+    saveError: "저장 중 오류가 발생했습니다.",
+    deleteSuccess: "뉴스가 삭제되었습니다.",
+    deleteError: "삭제 중 오류가 발생했습니다.",
+    resetSuccess: "기본 뉴스로 복원되었습니다.",
+    resetError: "복원 중 오류가 발생했습니다.",
+    uploadSuccess: "대표 이미지 업로드가 완료되었습니다. 게시글을 저장하면 반영됩니다.",
+    uploadError: "이미지 업로드에 실패했습니다.",
+  },
+  en: {
+    loginSuccess: "Administrator login complete.",
+    saveSuccess: "The news article has been saved and published to the site.",
+    saveError: "An error occurred while saving.",
+    deleteSuccess: "The news article has been deleted.",
+    deleteError: "An error occurred while deleting.",
+    resetSuccess: "The default news articles have been restored.",
+    resetError: "An error occurred while restoring the defaults.",
+    uploadSuccess: "The cover image has been uploaded. Save the post to publish it.",
+    uploadError: "The image could not be uploaded.",
+  },
+  ja: {
+    loginSuccess: "管理者としてログインしました。",
+    saveSuccess: "ニュースを保存し、サイトに反映しました。",
+    saveError: "保存中にエラーが発生しました。",
+    deleteSuccess: "ニュースを削除しました。",
+    deleteError: "削除中にエラーが発生しました。",
+    resetSuccess: "初期のニュースを復元しました。",
+    resetError: "復元中にエラーが発生しました。",
+    uploadSuccess: "メイン画像をアップロードしました。記事を保存すると反映されます。",
+    uploadError: "画像をアップロードできませんでした。",
   },
 };
 
@@ -339,15 +388,22 @@ function NoticeTopbar({
 }) {
   return (
     <header className="notice-topbar">
-      <a className="notice-topbar__brand" href="#/" aria-label="seoulind home">
+      <a
+        className="notice-topbar__brand"
+        href="#/"
+        aria-label={language === "ko" ? "서울산업 홈" : language === "ja" ? "ソウル産業ホーム" : "Seoul Industry home"}
+      >
         <BrainallLogo />
       </a>
-      <nav className="notice-topbar__nav" aria-label="News page navigation">
+      <nav
+        className="notice-topbar__nav"
+        aria-label={language === "ko" ? "뉴스 페이지 메뉴" : language === "ja" ? "ニュースページメニュー" : "News page navigation"}
+      >
         <a href="#/">{copy.home}</a>
         <a href="#/news">{copy.list}</a>
         <a href="#/company/notices/admin">{copy.admin}</a>
       </nav>
-      <div className="notice-language" aria-label="Language">
+      <div className="notice-language" aria-label={language === "ko" ? "언어 선택" : language === "ja" ? "言語選択" : "Language selection"}>
         {languages.map((item) => (
           <button
             className={item.code === language ? "is-active" : ""}
@@ -384,6 +440,7 @@ export default function NewsPage({ route }: NewsPageProps) {
   const listRef = useRef<HTMLDivElement>(null);
 
   const copy = newsPageCopy[language];
+  const actionCopy = adminActionCopy[language];
   const sortedPosts = useMemo(() => sortNoticePosts(posts), [posts]);
   const routeParts = route.split("/");
   const isAdminRoute = routeParts[1] === "admin";
@@ -470,7 +527,7 @@ export default function NewsPage({ route }: NewsPageProps) {
       }
       setIsAuthed(true);
       setLoginForm({ id: "", password: "" });
-      setAdminStatus("관리자 로그인이 완료되었습니다.");
+      setAdminStatus(actionCopy.loginSuccess);
     } finally {
       setIsBusy(false);
     }
@@ -504,9 +561,9 @@ export default function NewsPage({ route }: NewsPageProps) {
       setPosts(saved);
       setEditingId(normalized.id);
       setDraft(cloneNotice(normalized));
-      setAdminStatus("공지사항이 저장되어 사이트에 반영되었습니다.");
+      setAdminStatus(actionCopy.saveSuccess);
     } catch (error) {
-      setAdminStatus(error instanceof Error ? error.message : "저장 중 오류가 발생했습니다.");
+      setAdminStatus(error instanceof Error ? error.message : actionCopy.saveError);
     } finally {
       setIsBusy(false);
     }
@@ -521,9 +578,9 @@ export default function NewsPage({ route }: NewsPageProps) {
       const saved = await saveNoticePosts(nextPosts);
       setPosts(saved);
       if (editingId === postIdToDelete) handleNew();
-      setAdminStatus("공지사항이 삭제되었습니다.");
+      setAdminStatus(actionCopy.deleteSuccess);
     } catch (error) {
-      setAdminStatus(error instanceof Error ? error.message : "삭제 중 오류가 발생했습니다.");
+      setAdminStatus(error instanceof Error ? error.message : actionCopy.deleteError);
     } finally {
       setIsBusy(false);
     }
@@ -537,9 +594,9 @@ export default function NewsPage({ route }: NewsPageProps) {
       const nextPosts = await resetNoticePosts();
       setPosts(nextPosts);
       handleNew();
-      setAdminStatus("기본 공지사항으로 복원되었습니다.");
+      setAdminStatus(actionCopy.resetSuccess);
     } catch (error) {
-      setAdminStatus(error instanceof Error ? error.message : "복원 중 오류가 발생했습니다.");
+      setAdminStatus(error instanceof Error ? error.message : actionCopy.resetError);
     } finally {
       setIsBusy(false);
     }
@@ -553,9 +610,9 @@ export default function NewsPage({ route }: NewsPageProps) {
     try {
       const image = await uploadNoticeImage(file, setUploadProgress);
       setDraft((current) => ({ ...current, image }));
-      setAdminStatus("대표 이미지 업로드가 완료되었습니다. 게시글 저장을 눌러 반영해주세요.");
+      setAdminStatus(actionCopy.uploadSuccess);
     } catch (error) {
-      setAdminStatus(error instanceof Error ? error.message : "이미지 업로드에 실패했습니다.");
+      setAdminStatus(error instanceof Error ? error.message : actionCopy.uploadError);
     } finally {
       setIsUploading(false);
     }
@@ -588,11 +645,22 @@ export default function NewsPage({ route }: NewsPageProps) {
           <h1>{copy.heroTitle}</h1>
           <p>{copy.heroCopy}</p>
         </div>
-        <div className="notice-news__arrows" aria-label="News controls">
-          <button type="button" onClick={() => scrollNewsCards(-1)} aria-label="Previous news">
+        <div
+          className="notice-news__arrows"
+          aria-label={language === "ko" ? "뉴스 이동" : language === "ja" ? "ニュースの移動" : "News controls"}
+        >
+          <button
+            type="button"
+            onClick={() => scrollNewsCards(-1)}
+            aria-label={language === "ko" ? "이전 뉴스" : language === "ja" ? "前のニュース" : "Previous news"}
+          >
             <Icon name="arrow" />
           </button>
-          <button type="button" onClick={() => scrollNewsCards(1)} aria-label="Next news">
+          <button
+            type="button"
+            onClick={() => scrollNewsCards(1)}
+            aria-label={language === "ko" ? "다음 뉴스" : language === "ja" ? "次のニュース" : "Next news"}
+          >
             <Icon name="arrow" />
           </button>
         </div>
@@ -678,7 +746,13 @@ export default function NewsPage({ route }: NewsPageProps) {
         <section className="notice-admin-login is-checking" aria-live="polite">
           <div>
             <span>{copy.admin}</span>
-            <h1>관리자 권한을 확인하고 있습니다.</h1>
+            <h1>
+              {language === "ko"
+                ? "관리자 권한을 확인하고 있습니다."
+                : language === "ja"
+                  ? "管理者権限を確認しています。"
+                  : "Checking administrator access."}
+            </h1>
           </div>
         </section>
       );
@@ -707,7 +781,7 @@ export default function NewsPage({ route }: NewsPageProps) {
             </label>
             {loginError && <strong>{loginError}</strong>}
             <button type="submit" disabled={isBusy}>
-              {isBusy ? "확인 중..." : copy.login}
+              {isBusy ? (language === "ko" ? "확인 중..." : language === "ja" ? "確認中..." : "Checking...") : copy.login}
             </button>
           </form>
         </section>
@@ -778,7 +852,7 @@ export default function NewsPage({ route }: NewsPageProps) {
                 <input value={draft.image ?? ""} onChange={(event) => setDraft((current) => ({ ...current, image: event.target.value }))} />
               </label>
               <label className="notice-editor__upload">
-                <span>대표 이미지 파일</span>
+                <span>{language === "ko" ? "대표 이미지 파일" : language === "ja" ? "メイン画像ファイル" : "Cover image file"}</span>
                 <input
                   type="file"
                   accept="image/jpeg,image/png,image/webp,image/gif"
@@ -788,7 +862,19 @@ export default function NewsPage({ route }: NewsPageProps) {
                     event.currentTarget.value = "";
                   }}
                 />
-                <small>{isUploading ? `업로드 중 ${Math.round(uploadProgress)}%` : "JPG, PNG, WEBP, GIF / 최대 8MB"}</small>
+                <small>
+                  {isUploading
+                    ? language === "ko"
+                      ? `업로드 중 ${Math.round(uploadProgress)}%`
+                      : language === "ja"
+                        ? `アップロード中 ${Math.round(uploadProgress)}%`
+                        : `Uploading ${Math.round(uploadProgress)}%`
+                    : language === "ko"
+                      ? "JPG, PNG, WEBP, GIF / 최대 8MB"
+                      : language === "ja"
+                        ? "JPG、PNG、WEBP、GIF / 最大8MB"
+                        : "JPG, PNG, WEBP, GIF / up to 8 MB"}
+                </small>
               </label>
               <label className="notice-editor__check">
                 <input type="checkbox" checked={draft.pinned} onChange={(event) => setDraft((current) => ({ ...current, pinned: event.target.checked }))} />
@@ -798,9 +884,18 @@ export default function NewsPage({ route }: NewsPageProps) {
 
             {draft.image && (
               <figure className="notice-editor__preview">
-                <img src={draft.image} alt="대표 이미지 미리보기" />
+                <img
+                  src={draft.image}
+                  alt={
+                    language === "ko"
+                      ? "대표 이미지 미리보기"
+                      : language === "ja"
+                        ? "メイン画像のプレビュー"
+                        : "Cover image preview"
+                  }
+                />
                 <button type="button" onClick={() => setDraft((current) => ({ ...current, image: "" }))}>
-                  이미지 제거
+                  {language === "ko" ? "이미지 제거" : language === "ja" ? "画像を削除" : "Remove image"}
                 </button>
               </figure>
             )}
@@ -830,7 +925,7 @@ export default function NewsPage({ route }: NewsPageProps) {
             })}
 
             <button className="notice-editor__submit" type="submit" disabled={isBusy || isUploading}>
-              {isBusy ? "저장 중..." : copy.savePost}
+              {isBusy ? (language === "ko" ? "저장 중..." : language === "ja" ? "保存中..." : "Saving...") : copy.savePost}
             </button>
           </form>
         </div>

@@ -3920,7 +3920,8 @@
 
   .renewal-sub-quality-policy-hero__statement p {
     font-size: 0.92rem;
-    word-break: break-all !important;
+    overflow-wrap: anywhere;
+    word-break: normal;
   }
 
   .renewal-sub-quality-principles {
@@ -3936,7 +3937,8 @@
   .renewal-sub-quality-principles > header p {
     max-width: 320px;
     font-size: 0.94rem;
-    word-break: break-all !important;
+    overflow-wrap: anywhere;
+    word-break: normal;
   }
 
   .renewal-sub-quality-principles__grid article,
@@ -3959,7 +3961,7 @@
   .renewal-sub-quality-principles__grid footer b {
     overflow-wrap: anywhere;
     text-wrap: pretty;
-    word-break: break-all !important;
+    word-break: normal;
   }
 
   .renewal-sub-quality-principles__grid footer {

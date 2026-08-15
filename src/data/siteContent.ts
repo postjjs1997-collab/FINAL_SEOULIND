@@ -129,12 +129,12 @@ function applyKoreanCopy(content: SiteContent) {
     {
       id: "quality",
       title: "품질을\n공정 안으로",
-      copy: "치수, 형상, 조립 품질을 LOT 단위로 확인하고 생산 조건과 연결합니다. 검사 결과가 출하 전 기준에 다시 반영되어 납품 품질을 잡아 줍니다.",
+      copy: "치수, 형상, 조립 품질을 LOT 단위로 확인하고 생산 조건과 연결합니다. 검사 결과를 출하 전 기준에 반영해 납품 품질의 신뢰성을 높입니다.",
     },
     {
       id: "mass-production",
       title: "글로벌\n공급 대응",
-      copy: "개발 일정, 생산 부하, 포장, 출하 흐름을 한 화면에서 봅니다. 고객사의 양산 계획에 맞춰 정밀가공 부품을 안정적으로 공급합니다.",
+      copy: "개발 일정, 생산 부하, 포장, 출하 흐름을 하나의 체계로 관리합니다. 고객사의 양산 계획에 맞춰 정밀가공 부품을 안정적으로 공급합니다.",
     },
   ]);
 
@@ -145,7 +145,7 @@ function applyKoreanCopy(content: SiteContent) {
     {
       id: "machining",
       copy: "부품별 가공 조건을 표준화해 자동차 부품에 필요한 반복 정밀도와 표면 품질, 안정적인 생산성을 확보합니다.",
-      details: ["부품군과 도면 요구 조건에 맞춰 CNC 조건을 설정합니다.", "반복 생산 중 치수 변동과 재가공을 줄입니다.", "설비 조건과 가공 이력을 기록해 품질 편차를 다잡습니다."],
+      details: ["부품군과 도면 요구 조건에 맞춰 CNC 조건을 설정합니다.", "반복 생산 중 치수 변동과 재가공을 줄입니다.", "설비 조건과 가공 이력을 기록해 품질 편차를 줄입니다."],
     },
     {
       id: "quality",
@@ -160,17 +160,17 @@ function applyKoreanCopy(content: SiteContent) {
   ]);
 
   Object.assign(content.historyHeading, {
-    title: "서울산업이 제조 기준을 넓혀 온 시간",
-    copy: "1985년 설립 이후 조향부품, 파워트레인, 드라이브라인과 전동화 부품으로 영역을 넓히며 품질 인증, 연구개발, 글로벌 고객 대응과 생산 기술을 고도화해 왔습니다.",
+    title: "서울산업이 제조 기반을 확장해 온 역사",
+    copy: "1985년 설립 이후 조향 부품, 파워트레인, 드라이브라인과 전동화 부품으로 영역을 넓히며 품질 인증, 연구 개발, 글로벌 고객 대응과 생산 기술을 고도화해 왔습니다.",
   });
   content.historyEras = patchByIndex<HistoryEra>(content.historyEras, [
     {
       title: "전동화 대응과 신규 고객 확대",
       summary: "내연기관부터 HEV, PHEV, BEV까지 대응 범위를 넓히며 다음 성장 단계를 준비하고 있습니다.",
-      items: ["2021년 AAM 미국·한국 협력업체 등록", "2022년 PHEV Gear Box용 Link Shaft 양산 론칭", "2025년 ICE·HEV·PHEV·BEV 신규 고객 개발"],
+      items: ["2021년 AAM 미국·한국 협력업체 등록", "2022년 PHEV Gear Box용 Link Shaft 양산 시작", "2025년 ICE·HEV·PHEV·BEV 신규 고객 개발"],
     },
     {
-      title: "글로벌 사업영역 확대",
+      title: "글로벌 사업 영역 확대",
       summary: "유럽과 북미 고객 프로그램을 확대하며 드라이브라인 사업 기반을 넓혔습니다.",
       items: ["2012년 GKN Driveline 유럽·미국 협력업체 등록", "2014년 Spartan LTM 미국 협력업체 등록", "드라이브라인 제품군 및 글로벌 고객 프로그램 확대"],
     },
@@ -180,9 +180,9 @@ function applyKoreanCopy(content: SiteContent) {
       items: ["2001년 QS9000·ISO 9002 인증", "2002년 Delphi Korea 협력업체 등록", "2003년 TRW 미국·일본·말레이시아 협력업체 등록", "2004년 Metaldyne 미국·한국 협력업체 등록 및 ISO/TS 16949·ISO 14001 인증", "2006년 공장 확장 이전", "2007년 Nexteer, ThyssenKrupp Presta, Magna Powertrain 협력업체 등록"],
     },
     {
-      title: "정밀가공 제조 기반 구축",
+      title: "정밀 가공 기반 구축",
       summary: "서울산업을 설립하고 조향부품과 헬리컬 기어 샤프트 양산 기반을 구축했습니다.",
-      items: ["1985년 서울산업 설립", "1987년 TRW Korea 협력업체 등록", "1990년 조향부품 산업군 진입", "1999년 Pinion Shaft, Piston, Torsion Bar 및 헬리컬 기어 샤프트 제조"],
+      items: ["1985년 서울산업 설립", "1987년 TRW Korea 협력업체 등록", "1990년 조향 부품 사업 진출", "1999년 Pinion Shaft, Piston, Torsion Bar 및 헬리컬 기어 샤프트 제조"],
     },
   ]);
   content.historyEras = chronologicalHistoryEras(content.historyEras);
@@ -196,13 +196,13 @@ function applyKoreanCopy(content: SiteContent) {
     { label: "설립", value: "1985", unit: "SINCE" },
     { label: "주요 적용 시스템", value: "5", unit: "AUTOMOTIVE SYSTEMS" },
     { label: "연계 생산·검사 공정", value: "13", unit: "PROCESSES" },
-    { label: "글로벌 프로그램 대응", value: "5", unit: "REGIONS" },
+    { label: "글로벌 대응 지역", value: "5", unit: "REGIONS" },
   ];
   content.partnerLogos = patchByIndex<PartnerLogo>(content.partnerLogos, partnerRegionPatches.ko);
   content.clientCollabStatement = clientStatements.ko;
   content.clientPartners = patchByIndex<ClientPartner>(content.clientPartners, clientPartnerPatches.ko);
   Object.assign(content.esgHeading, {
-    copy: "정밀가공 기업으로서 환경 부담을 줄이고 안전한 현장과 투명한 기준을 지키며, 오래 가는 OEM 파트너십을 만들어 갑니다.",
+    copy: "정밀가공 기업으로서 환경 부담을 줄이고 안전한 현장과 투명한 기준을 지키며, 지속 가능한 OEM 파트너십을 만들어 갑니다.",
   });
   content.esgPillars = patchByIndex<EsgPillar>(content.esgPillars, [
     {
@@ -222,7 +222,7 @@ function applyKoreanCopy(content: SiteContent) {
     },
   ]);
   Object.assign(content.mediaHeading, {
-    copy: "제품, 공정, 품질, OEM 공급과 관련된 서울산업의 새로운 소식을 확인하세요.",
+    copy: "제품, 공정, 품질, OEM 공급과 관련된 서울산업의 최신 소식을 확인하세요.",
   });
 }
 
@@ -251,7 +251,7 @@ function applyEnglishCopy(content: SiteContent) {
     {
       id: "machining",
       title: "Precision\nMachining Lines",
-      copy: "We control repeat accuracy and surface quality across three core families—Steering, Powertrain, and Driveline—plus electrified and machined-aluminum parts.",
+      copy: "We control repeatability and surface quality across three core families—Steering, Powertrain, and Driveline—plus electrified and machined-aluminum parts.",
     },
     {
       id: "quality",
@@ -261,31 +261,31 @@ function applyEnglishCopy(content: SiteContent) {
     {
       id: "mass-production",
       title: "Global Supply,\nOn Schedule",
-      copy: "Development timelines, capacity, packing, and shipping run as one connected flow — so OEM programs get the precision parts they need, exactly when they need them.",
+      copy: "Development timelines, capacity, packing, and shipping run as one connected flow—so OEM programs get the precision parts they need exactly when they need them.",
     },
   ]);
 
   Object.assign(content.solutionHeading, {
-    copy: "From drawing review and precision machining to inspection and volume supply, Seoul Industry keeps the entire OEM manufacturing flow under one roof.",
+    copy: "From drawing review and precision machining to inspection and volume supply, Seoul Industry manages the entire OEM manufacturing process as one connected flow.",
   });
   content.solutions = patchById<Solution>(content.solutions, [
     {
       id: "machining",
       title: "Precision Machining",
-      copy: "Purpose-built machining setups hold repeatable accuracy, clean finishes, and steady output across every automotive part we make.",
+      copy: "Purpose-built machining setups maintain repeatable accuracy, consistent surface quality, and stable output across our automotive components.",
       details: ["CNC settings tuned to each part family and drawing.", "Less dimensional drift and rework over long runs.", "Machine conditions logged to keep quality consistent."],
     },
     {
       id: "quality",
       title: "Quality Inspection",
-      copy: "Every inspection ties back to how the part was made — so issues get caught and traced long before shipment.",
+      copy: "Every inspection ties back to how the part was made—so issues are detected and traced well before shipment.",
       details: ["Key dimensions and geometry checked lot by lot.", "Inspection data linked to process records.", "Outgoing quality held to each customer's standard."],
     },
     {
       id: "mass-production",
       title: "Volume Supply",
       copy: "Delivery planning, packing, inventory, and shipping all move in step with your production schedule.",
-      details: ["Capacity planned against your delivery dates.", "Packing, inventory, and shipping matched to each program.", "Quality and delivery issues flagged fast on repeat orders."],
+      details: ["Capacity planned against your delivery dates.", "Packing, inventory, and shipping matched to each program.", "Quality and delivery issues flagged quickly during ongoing production."],
     },
   ]);
 
@@ -302,26 +302,26 @@ function applyEnglishCopy(content: SiteContent) {
     {
       title: "Global business expansion",
       summary: "European and North American customer programs expanded the company's driveline business base.",
-      items: ["Registered with GKN Driveline Europe and USA in 2012", "Registered with Spartan LTM USA in 2014", "Expanded driveline products and global customer programs"],
+      items: ["Registered as a supplier to GKN Driveline in Europe and the United States in 2012", "Registered as a supplier to Spartan LTM in the United States in 2014", "Expanded driveline products and global customer programs"],
     },
     {
       title: "Global OEM operating base",
-      summary: "Certifications, plant expansion, and global customer registrations strengthened mass-production capability.",
-      items: ["QS9000 and ISO 9002 certification in 2001", "Registered with Delphi Korea in 2002", "Registered with TRW US, Japan, and Malaysia in 2003", "Registered with Metaldyne US and Korea and earned ISO/TS 16949 and ISO 14001 in 2004", "Expanded and relocated the plant in 2006", "Registered with Nexteer, ThyssenKrupp Presta, and Magna Powertrain in 2007"],
+      summary: "Certifications, plant expansion, and global supplier registrations strengthened volume-production capability.",
+      items: ["QS9000 and ISO 9002 certification in 2001", "Registered as a supplier to Delphi Korea in 2002", "Registered as a supplier to TRW in the United States, Japan, and Malaysia in 2003", "Registered as a supplier to Metaldyne in the United States and Korea and earned ISO/TS 16949 and ISO 14001 in 2004", "Expanded and relocated the plant in 2006", "Registered as a supplier to Nexteer, ThyssenKrupp Presta, and Magna Powertrain in 2007"],
     },
     {
       title: "Where precision machining began",
       summary: "Seoul Industry established its steering component and helical gear shaft manufacturing base.",
-      items: ["Seoul Industry founded in 1985", "Registered with TRW Korea in 1987", "Entered the steering component sector in 1990", "Manufactured pinion shafts, pistons, torsion bars, and helical gear shafts from 1999"],
+      items: ["Seoul Industry founded in 1985", "Registered as a supplier to TRW Korea in 1987", "Entered the steering component sector in 1990", "Manufactured pinion shafts, pistons, torsion bars, and helical gear shafts from 1999"],
     },
   ]);
   content.historyEras = chronologicalHistoryEras(content.historyEras);
 
   Object.assign(content.global, {
-    copy: "In automotive supply, the schedule has to hold and the quality can't drift.\nSeoul Industry machines to exactly that standard — in step with your development and production plans.",
+    copy: "In automotive supply, schedules must hold and quality cannot drift.\nSeoul Industry machines to that standard—in step with your development and production plans.",
     lines: ["Precise to the micron,", "we stand behind every vehicle we help build."],
   });
-  content.achievementsHeading.titleLines = ["From first drawing to full production —", "the base Seoul Industry is built on"];
+  content.achievementsHeading.titleLines = ["From first drawing to full production—", "the manufacturing base behind Seoul Industry"];
   content.globalAchievements = [
     { label: "Founded", value: "1985", unit: "SINCE" },
     { label: "Core Applications", value: "5", unit: "AUTOMOTIVE SYSTEMS" },
@@ -330,12 +330,12 @@ function applyEnglishCopy(content: SiteContent) {
   ];
   content.clientCollabStatement = clientStatements.en;
   Object.assign(content.esgHeading, {
-    copy: "As a precision machining company, we keep our footprint light, our shop floor safe, and our standards clear — the foundation for OEM partnerships that last.",
+    copy: "As a precision machining company, we reduce our environmental footprint, keep our shop floor safe, and maintain clear standards—the foundation for lasting OEM partnerships.",
   });
   content.esgPillars = patchByIndex<EsgPillar>(content.esgPillars, [
     {
       title: "Machining with a lighter footprint",
-      copy: "We look at energy, resources, and process stability together to lower the environmental load of how we make parts.",
+      copy: "We review energy use, resources, and process stability together to reduce the environmental impact of our manufacturing.",
       bullets: ["Lower energy and resource use", "Less waste through tighter processes", "Compliance with environmental and site standards"],
     },
     {
@@ -345,12 +345,12 @@ function applyEnglishCopy(content: SiteContent) {
     },
     {
       title: "Partnerships built on clear standards",
-      copy: "We keep drawing control, quality records, delivery terms, and every dealing transparent — that's how trust holds up over the long run.",
+      copy: "We keep drawing control, quality records, delivery terms, and business practices transparent—that is how we build trust for the long term.",
       bullets: ["Quality records and process history kept in order", "Customer requirements and revisions tracked", "Fair, transparent business dealings"],
     },
   ]);
   Object.assign(content.mediaHeading, {
-    copy: "The latest from Seoul Industry — products, processes, quality, and OEM supply.",
+    copy: "The latest from Seoul Industry—products, processes, quality, and OEM supply.",
   });
 }
 
@@ -359,18 +359,18 @@ function applyJapaneseCopy(content: SiteContent) {
     fillLines: ["図面の検討から量産供給まで。", "OEM部品の精度を、工程で造り込みます。"],
   });
   const productCopies = [
-    "BSM HOUSING・OIL PUMPのアルミ加工部品",
-    "EV OIL PUMP HOUSING・COVERとHEV・PHEV・BEV向けGEAR・COAXIAL・LINK SHAFT",
-    "PINION、PINION SHAFT、PISTON、RACK BUSH、TORSION BAR",
-    "トランスミッション用SHAFTとエンジン用CAMSHAFT NOSE PIECE、BALANCE SHAFT",
-    "TRANSFER CASE・ETM向けDISK CARRIER、HUB、ACTUATOR SHAFT系列部品",
+    "BSMハウジング・オイルポンプのアルミ加工部品",
+    "EVオイルポンプハウジング・カバーとHEV・PHEV・BEV向けギヤ、コアキシャルシャフト、リンクシャフト",
+    "ピニオン、ピニオンシャフト、ピストン、ラックブッシュ、トーションバー",
+    "トランスミッション用シャフトとエンジン用カムシャフトノーズピース、バランスシャフト",
+    "トランスファーケース・ETM向けのディスクキャリア、ハブ、アクチュエーターシャフト類",
   ];
   const latestCopies = [
     "BSMハウジング・オイルポンプのアルミ加工部品",
     "EVオイルポンプのハウジング・カバーと電動化プラットフォーム向けギヤ、コアキシャル、リンクシャフト",
     "操舵入力を正確に伝えるピニオン、シャフト、ピストン、ブッシュ、トーションバー",
     "バルブ開閉制御と動力伝達向けのカムシャフト・ノーズピース、トランスミッションシャフト",
-    "Transfer Case・ETM向けディスクキャリア、ハブ、アクチュエーターシャフト",
+    "トランスファーケース・ETM向けディスクキャリア、ハブ、アクチュエーターシャフト",
   ];
   productCopies.forEach((copy, index) => Object.assign(content.products[index], { copy }));
   latestCopies.forEach((copy, index) => Object.assign(content.latestParts[index], { copy }));
@@ -379,12 +379,12 @@ function applyJapaneseCopy(content: SiteContent) {
     {
       id: "machining",
       title: "精密加工\nライン",
-      copy: "Steering、Powertrain、Drivelineの3大中核製品群に加え、電動化部品とアルミ加工部品の反復精度・表面品質を工程条件で管理します。",
+      copy: "ステアリング、パワートレイン、ドライブラインの3大中核製品群に加え、電動化部品とアルミ加工部品の繰り返し精度・表面品質を工程条件で管理します。",
     },
     {
       id: "quality",
       title: "品質を\n工程の中へ",
-      copy: "寸法、形状、組立品質をLOT単位で確認し、生産条件と結びつけます。検査結果を工程へフィードバックし、出荷前に品質を確かなものにします。",
+      copy: "寸法、形状、組立品質をロット単位で確認し、生産条件と結びつけます。検査結果を工程へフィードバックし、出荷前に品質を確かなものにします。",
     },
     {
       id: "mass-production",
@@ -399,45 +399,45 @@ function applyJapaneseCopy(content: SiteContent) {
   content.solutions = patchById<Solution>(content.solutions, [
     {
       id: "machining",
-      copy: "部品ごとに加工条件を整え、自動車部品に求められる反復精度、表面品質、安定した生産性を確保します。",
-      details: ["部品群と図面要求に合わせてCNC条件を設定します。", "反復生産での寸法変動と再加工を抑えます。", "設備条件と加工履歴を記録し、品質のばらつきを抑えます。"],
+      copy: "部品ごとに加工条件を整え、自動車部品に求められる繰り返し精度、表面品質、安定した生産性を確保します。",
+      details: ["部品群と図面要件に合わせてCNC条件を設定します。", "繰り返し生産での寸法変動と再加工を抑えます。", "設備条件と加工履歴を記録し、品質のばらつきを抑えます。"],
     },
     {
       id: "quality",
       copy: "検査結果を生産条件と結びつけ、出荷前に品質課題を追える体制を整えています。",
-      details: ["主要寸法と形状をLOT単位で確認します。", "検査データを工程記録と連携します。", "顧客の納入基準に合わせて出荷品質を安定させます。"],
+      details: ["主要寸法と形状をロット単位で確認します。", "検査データを工程記録と連携します。", "顧客の納入基準に合わせて出荷品質を安定させます。"],
     },
     {
       id: "mass-production",
       copy: "納期計画、梱包、在庫、出荷の流れを顧客の生産計画に合わせて管理します。",
-      details: ["生産負荷と納期計画を合わせて確認します。", "梱包、在庫、出荷条件を納入基準に合わせます。", "反復供給で生じる品質・納期の課題をすばやく共有します。"],
+      details: ["生産負荷と納期計画を合わせて確認します。", "梱包、在庫、出荷条件を納入基準に合わせます。", "継続供給で生じる品質・納期の課題をすばやく共有します。"],
     },
   ]);
 
   Object.assign(content.historyHeading, {
     title: "ソウル産業が製造基盤を広げてきた歩み",
-    copy: "1985年の設立以降、操舵部品からパワートレイン、ドライブライン、電動化部品へ領域を広げ、品質認証、研究開発、グローバル顧客対応、生産技術を高度化してきました。",
+    copy: "1985年の設立以来、操舵部品からパワートレイン、ドライブライン、電動化部品へ領域を広げ、品質認証、研究開発、グローバル顧客対応、生産技術を高度化してきました。",
   });
   content.historyEras = patchByIndex<HistoryEra>(content.historyEras, [
     {
       title: "電動化対応と新規顧客拡大",
       summary: "ICE、HEV、PHEV、BEVまで対応範囲を広げています。",
-      items: ["2021年 AAM米国・韓国の協力会社に登録", "2022年 PHEV Gear Box用Link Shaftの量産開始", "2025年 ICE・HEV・PHEV・BEVの新規顧客開発"],
+      items: ["2021年 AAM米国・韓国のサプライヤーとして登録", "2022年 PHEVギヤボックス用リンクシャフトの量産開始", "2025年 ICE・HEV・PHEV・BEVの新規顧客開発"],
     },
     {
       title: "グローバル事業領域の拡大",
       summary: "欧州・北米の顧客プログラムを拡大し、ドライブライン事業の基盤を広げました。",
-      items: ["2012年 GKN Driveline欧州・米国の協力会社に登録", "2014年 Spartan LTM米国の協力会社に登録", "ドライブライン製品群とグローバル顧客プログラムを拡大"],
+      items: ["2012年 GKN Driveline欧州・米国のサプライヤーとして登録", "2014年 Spartan LTM米国のサプライヤーとして登録", "ドライブライン製品群とグローバル顧客プログラムを拡大"],
     },
     {
       title: "グローバルOEM対応基盤の構築",
       summary: "品質・環境認証、工場拡張、グローバル顧客登録で量産対応力を強化しました。",
-      items: ["2001年 QS9000・ISO 9002認証", "2002年 Delphi Korea協力会社登録", "2003年 TRW米国・日本・マレーシア協力会社登録", "2004年 Metaldyne米国・韓国協力会社登録およびISO/TS 16949・ISO 14001認証", "2006年 工場拡張移転", "2007年 Nexteer、ThyssenKrupp Presta、Magna Powertrain協力会社登録"],
+      items: ["2001年 QS9000・ISO 9002認証", "2002年 Delphi Koreaのサプライヤーとして登録", "2003年 TRW米国・日本・マレーシアのサプライヤーとして登録", "2004年 Metaldyne米国・韓国のサプライヤーとして登録、ISO/TS 16949・ISO 14001認証", "2006年 工場拡張移転", "2007年 Nexteer、ThyssenKrupp Presta、Magna Powertrainのサプライヤーとして登録"],
     },
     {
       title: "精密加工の製造基盤を構築",
       summary: "操舵部品とヘリカルギヤシャフトの製造基盤を構築しました。",
-      items: ["1985年 ソウル産業設立", "1987年 TRW Korea協力会社登録", "1990年 操舵部品事業へ進出", "1999年 Pinion Shaft、Piston、Torsion Bar、ヘリカルギヤシャフトを製造"],
+      items: ["1985年 ソウル産業設立", "1987年 TRW Koreaのサプライヤーとして登録", "1990年 操舵部品事業へ進出", "1999年 ピニオンシャフト、ピストン、トーションバー、ヘリカルギヤシャフトを製造"],
     },
   ]);
   content.historyEras = chronologicalHistoryEras(content.historyEras);
@@ -468,7 +468,7 @@ function applyJapaneseCopy(content: SiteContent) {
     {
       title: "安全で熟練した製造現場",
       copy: "従業員の安全と現場力を土台に、顧客が安心して任せられる品質と納期対応を続けます。",
-      bullets: ["安全な作業環境の維持", "現場技能と品質意識の強化", "顧客・協力会社との責任ある関係"],
+      bullets: ["安全な作業環境の維持", "現場技能と品質意識の強化", "顧客・サプライヤーとの責任ある関係"],
     },
     {
       title: "透明な基準でつながるOEMパートナーシップ",

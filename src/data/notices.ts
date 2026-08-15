@@ -55,11 +55,11 @@ export const newsCategoryLabels: Record<LanguageCode, Record<NoticeCategory, str
     resources: "자료",
   },
   en: {
-    notice: "Enterprise",
-    products: "Product",
+    notice: "Corporate",
+    products: "Products",
     quality: "Quality",
     manufacturing: "Manufacturing",
-    resources: "Resource",
+    resources: "Resources",
   },
   ja: {
     notice: "企業",
@@ -98,17 +98,17 @@ export const curatedNoticePosts: NoticePost[] = [
       ko: {
         title: "도면 검토부터 양산 공급까지, 서울산업의 통합 정밀가공 체계",
         summary: "경기도 화성 생산 거점을 중심으로 개발 타당성 검토, 공정 설계, 정밀가공, 검사, 양산 공급을 하나의 흐름으로 연결합니다.",
-        body: "서울산업은 1985년 설립 이후 샤프트, 허브, 디스크 캐리어와 알루미늄 주조 가공 부품을 중심으로 자동차용 정밀 부품을 생산해 왔습니다.\n\n고객 도면과 제품 요구사항을 바탕으로 가공 순서, 가공 기준면, 지그·고정구와 클램핑 방식, 가공 조건을 설계하고 생산 검증과 검사까지 연결합니다. 단조와 열처리 등 외부 공정도 동일한 생산 계획과 관리 기준 안에서 조율합니다.",
+        body: "서울산업은 1985년 설립 이후 샤프트, 허브, 디스크 캐리어와 알루미늄 주조 가공 부품을 중심으로 자동차용 정밀 부품을 생산해 왔습니다.\n\n고객 도면과 제품 요구 사항을 바탕으로 가공 순서, 가공 기준면, 지그·고정구와 클램핑 방식, 가공 조건을 설계하고 생산 검증과 검사까지 연결합니다. 단조와 열처리 등 외부 공정도 동일한 생산 계획과 관리 기준 안에서 조율합니다.",
       },
       en: {
         title: "From drawing review to volume supply: Seoul Industry’s integrated precision-machining system",
         summary: "From our manufacturing base in Hwaseong, Korea, we connect feasibility review, process design, precision machining, inspection, and volume supply in one continuous flow.",
-        body: "Since 1985, Seoul Industry has produced precision automotive components centered on shafts, hubs, disk carriers, and machined aluminum casting components.\n\nBased on customer drawings and product requirements, we define process sequences, machining datums, fixtures and clamping methods, and operating parameters, then connect production validation with inspection. External processes such as forging and heat treatment are coordinated under the same manufacturing plan and control standards.",
+        body: "Since 1985, Seoul Industry has produced precision automotive components including shafts, hubs, disk carriers, and machined aluminum castings.\n\nBased on customer drawings and product requirements, we define process sequences, machining datums, fixtures, clamping methods, and operating parameters, then connect production validation with inspection. External processes such as forging and heat treatment are coordinated under the same manufacturing plan and control standards.",
       },
       ja: {
         title: "図面検討から量産供給まで、ソウル産業の一貫精密加工体制",
-        summary: "京畿道華城の生産拠点を中心に、実現可能性検討、工程設計、精密加工、検査、量産供給を一つの流れでつなぎます。",
-        body: "ソウル産業は1985年の創業以来、シャフト、ハブ、ディスクキャリア、アルミダイカスト加工部品を中心に、自動車用精密部品を生産してきました。\n\nお客様の図面と製品要求をもとに、加工順序、加工基準面、治具・クランプ方法、加工条件を設計し、生産検証と検査まで連携します。鍛造・熱処理などの外部工程も同じ生産計画と管理基準のもとで調整します。",
+        summary: "京畿道華城市の生産拠点を中心に、実現可能性の検討、工程設計、精密加工、検査、量産供給を一つの流れでつなぎます。",
+        body: "ソウル産業は1985年の創業以来、シャフト、ハブ、ディスクキャリア、アルミダイカスト加工部品を中心に、自動車用精密部品を生産してきました。\n\nお客様の図面と製品要件をもとに、加工順序、加工基準面、治具・クランプ方法、加工条件を設計し、生産検証から検査まで一貫して対応します。鍛造・熱処理などの外部工程も同じ生産計画と管理基準のもとで調整します。",
       },
     },
   },
@@ -123,17 +123,17 @@ export const curatedNoticePosts: NoticePost[] = [
       ko: {
         title: "갠트리·로봇 자동화를 적용한 정밀가공 양산 라인",
         summary: "로딩과 언로딩, 공정 간 이송, 셀 검사를 전용 생산 라인에 연결해 생산성과 공정 안정성을 함께 관리합니다.",
-        body: "서울산업은 CNC 선반과 머시닝센터, 기어·스플라인 가공, 연삭과 표면 마무리 공정을 제품 요구사항에 맞춰 구성합니다.\n\n전용 라인에서는 갠트리와 로봇 핸들링이 로딩·언로딩 및 공정 간 이송을 담당합니다. 공정 중 검사 데이터를 선행 공정에 피드백하고 보정에 활용해 반복 정밀도와 공정 안정성을 관리합니다.",
+        body: "서울산업은 CNC 선반과 머시닝 센터, 기어·스플라인 가공, 연삭과 표면 마무리 공정을 제품 요구 사항에 맞춰 구성합니다.\n\n전용 라인에서는 갠트리와 로봇 핸들링이 로딩·언로딩 및 공정 간 이송을 담당합니다. 공정 내 검사 데이터를 선행 공정에 피드백하고 보정에 활용해 반복 정밀도와 공정 안정성을 관리합니다.",
       },
       en: {
-        title: "Precision mass-production lines with gantry and robot automation",
-        summary: "Loading, unloading, inter-process transfer, and cell inspection are connected within dedicated production lines to manage productivity and process stability together.",
-        body: "Seoul Industry configures CNC turning and machining centers, gear and spline manufacturing, grinding, and surface-finishing processes according to each product requirement.\n\nWithin dedicated lines, gantry and robot handling systems perform loading, unloading, and inter-process transfer. In-process inspection data is fed back to preceding operations and used for compensation to manage repeat accuracy and process stability.",
+        title: "Precision production lines with gantry and robotic automation",
+        summary: "Dedicated production lines connect loading, unloading, inter-process transfer, and cell inspection to support both productivity and process stability.",
+        body: "Seoul Industry configures CNC lathes and machining centers, gear and spline machining, grinding, and surface-finishing processes according to each product's requirements.\n\nWithin dedicated lines, gantry and robotic handling systems perform loading, unloading, and inter-process transfer. In-process inspection data is fed back to preceding operations and used for compensation to maintain repeatability and process stability.",
       },
       ja: {
         title: "ガントリー・ロボット自動化を導入した精密加工量産ライン",
         summary: "ローディング、アンローディング、工程間搬送、セル検査を専用ラインでつなぎ、生産性と工程安定性を管理します。",
-        body: "ソウル産業は、CNC旋盤・マシニングセンタ、ギヤ・スプライン加工、研削・表面仕上げなどの工程を製品要求に合わせて構成します。\n\n専用ラインでは、ガントリーおよびロボットハンドリングがローディング、アンローディング、工程間搬送を担います。工程内検査データを前工程へフィードバックし、補正に活用することで、繰り返し精度と工程安定性を管理します。",
+        body: "ソウル産業は、CNC旋盤・マシニングセンタ、ギヤ・スプライン加工、研削・表面仕上げなどの工程を製品要件に合わせて構成します。\n\n専用ラインでは、ガントリーおよびロボットハンドリングがローディング、アンローディング、工程間搬送を担います。工程内検査データを前工程へフィードバックし、補正に活用することで、繰り返し精度と工程安定性を確保します。",
       },
     },
   },
@@ -147,13 +147,13 @@ export const curatedNoticePosts: NoticePost[] = [
     translations: {
       ko: {
         title: "자동검사 데이터로 완성하는 출하 품질과 추적성",
-        summary: "공정 중 셀 검사와 최종 검사를 연결해 치수·형상·공정 누락을 확인하고, 측정 기록과 LOT 추적성을 관리합니다.",
-        body: "공정 중 셀 검사에서는 에어 게이지 등을 활용해 측정 데이터를 수집하고 선행 공정에 피드백합니다. 필요한 경우 자동 보정과 SPC 관리에도 활용합니다.\n\n최종 검사에서는 GD&T 측정, 균열과 공정 누락 확인, 데이터 기록, LOT 마킹을 통해 출하 전 품질을 확인합니다. CMM, 기어 측정, 경도·금속조직 검사도 중요 특성 검증에 활용합니다.",
+        summary: "공정 내 셀 검사와 최종 검사를 연결해 치수·형상·공정 누락을 확인하고, 측정 기록과 LOT 추적성을 관리합니다.",
+        body: "공정 내 셀 검사에서는 에어 게이지 등을 활용해 측정 데이터를 수집하고 선행 공정에 피드백합니다. 필요한 경우 자동 보정과 SPC 관리에도 활용합니다.\n\n최종 검사에서는 GD&T 측정, 균열과 공정 누락 확인, 데이터 기록, LOT 마킹을 통해 출하 전 품질을 확인합니다. CMM, 기어 측정, 경도·금속 조직 검사도 중요 특성 검증에 활용합니다.",
       },
       en: {
-        title: "Outgoing quality and traceability secured by automated inspection data",
-        summary: "In-process cell inspection and final inspection are connected to verify dimensions, geometry, and missing operations while maintaining measurement records and lot traceability.",
-        body: "During in-process cell inspection, measurement data is collected using air gauges and related systems, then fed back to preceding operations. Where required, the data supports automatic compensation and SPC control.\n\nFinal inspection verifies outgoing quality through GD&T measurement, crack and missing-operation detection, data recording, and lot marking. CMM, gear measurement, hardness testing, and metallurgical examination also support validation of critical characteristics.",
+        title: "Using automated inspection data to ensure outgoing quality and traceability",
+        summary: "In-process cell inspection and final inspection work together to verify dimensions, geometry, and missed operations while maintaining measurement records and lot traceability.",
+        body: "During in-process cell inspection, measurement data is collected using air gauges and related systems, then fed back to preceding operations. Where required, the data supports automatic compensation and SPC control.\n\nFinal inspection verifies outgoing quality through GD&T measurement, detection of cracks and omitted process steps, data recording, and lot marking. CMM, gear measurement, hardness testing, and metallurgical examination also support validation of critical characteristics.",
       },
       ja: {
         title: "自動検査データで確保する出荷品質とトレーサビリティ",

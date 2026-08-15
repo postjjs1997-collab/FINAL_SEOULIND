@@ -17,6 +17,9 @@ const shellCopy: Record<
     menuLabel: string;
     closeLabel: string;
     languageLabel: string;
+    home: string;
+    mainNav: string;
+    backToTop: string;
     footerNav: string;
     office: string;
     address: string;
@@ -27,27 +30,36 @@ const shellCopy: Record<
     menuLabel: "메뉴 열기",
     closeLabel: "메뉴 닫기",
     languageLabel: "언어 선택",
+    home: "서울산업 홈페이지",
+    mainNav: "주요 메뉴",
+    backToTop: "맨 위로 이동",
     footerNav: "하단 메뉴",
     office: "본사·공장",
-    address: "경기도 화성시 양감면 요당길 320번길 51",
+    address: "경기도 화성시 양감면 요당길320번길 51",
     copyright: "© SEOUL INDUSTRY CO., LTD.",
   },
   en: {
     menuLabel: "Open menu",
     closeLabel: "Close menu",
     languageLabel: "Language",
+    home: "Seoul Industry home",
+    mainNav: "Primary navigation",
+    backToTop: "Back to top",
     footerNav: "Footer navigation",
     office: "Head Office · Factory",
-    address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Korea",
+    address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Republic of Korea",
     copyright: "© SEOUL INDUSTRY CO., LTD.",
   },
   ja: {
     menuLabel: "メニューを開く",
     closeLabel: "メニューを閉じる",
     languageLabel: "言語選択",
+    home: "ソウル産業ホーム",
+    mainNav: "メインメニュー",
+    backToTop: "ページ上部へ戻る",
     footerNav: "フッターメニュー",
     office: "本社・工場",
-    address: "韓国 京畿道 華城市 楊甘面 ヨダンギル320番ギル51",
+    address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Republic of Korea",
     copyright: "© SEOUL INDUSTRY CO., LTD.",
   },
 };
@@ -111,14 +123,14 @@ export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "
   return (
     <>
       <header className={`renewal-header ${solid ? "is-solid" : ""}`}>
-        <a className="renewal-header__brand" href="#/" aria-label="Seoul Industry home">
+        <a className="renewal-header__brand" href="#/" aria-label={copy.home}>
           <span className="renewal-header__brand-symbol" aria-hidden="true">
             <BrainallLogo markOnly />
           </span>
           <span className="renewal-header__wordmark">Seoul Industry Co., Ltd.</span>
         </a>
 
-        <nav className="renewal-nav" aria-label="Renewal navigation">
+        <nav className="renewal-nav" aria-label={copy.mainNav}>
           {menuGroups.map((group, index) => {
             const active = routeBelongsToGroup(currentRoute, sourceGroups[index]);
             const directGroup = group.children.length === 1 && group.children[0].href === group.href;
@@ -156,7 +168,7 @@ export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "
 
       <aside className={`renewal-drawer ${open ? "is-open" : ""}`} aria-hidden={!open}>
         <div className="renewal-drawer__top">
-          <a href="#/" onClick={() => setOpen(false)} aria-label="Seoul Industry home">
+          <a href="#/" onClick={() => setOpen(false)} aria-label={copy.home}>
             <BrainallLogo markOnly />
           </a>
           <button type="button" onClick={() => setOpen(false)} aria-label={copy.closeLabel}>
@@ -216,7 +228,7 @@ export function RenewalSiteFooter({ language }: { language: RenewalLanguage }) {
           <BrainallLogo markOnly />
           <strong>Precision Automotive Components OEM</strong>
         </div>
-        <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Back to top">
+        <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={copy.backToTop}>
           <Icon name="up" />
         </button>
       </div>

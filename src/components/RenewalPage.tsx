@@ -155,7 +155,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       },
       {
         eyebrow: "OEM MANUFACTURING PARTNER",
-        title: ["개발에서 양산까지,", "끊김 없는 OEM"],
+        title: ["개발에서 양산까지,", "끊김 없는 OEM 대응"],
         copy: "개발 일정, 생산 부하, 검사와 출하를 하나의 제조 흐름으로 관리합니다.",
       },
       {
@@ -211,14 +211,14 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     products: {
       eyebrow: "CORE PORTFOLIO · ELECTRIFIED · ALUMINUM",
       title: "3개 핵심 제품군과 2개 확장 역량",
-      summary: "Steering·Powertrain·Driveline을 하나의 핵심 샤프트 포트폴리오로 묶고, 전동화 플랫폼과 알루미늄 가공을 별도 확장 축으로 구성했습니다.",
+      summary: "조향·파워트레인·드라이브라인을 중심으로 전동화 부품과 알루미늄 정밀가공까지 대응 범위를 넓히고 있습니다.",
       link: "제품 전체 보기",
       items: [
-        { title: "Steering", category: "CORE 01", group: "core", copy: "Pinion, Pinion Shaft, Piston, Rack Bush, Torsion Bar 등 조향 어셈블리 부품" },
-        { title: "Powertrain", category: "CORE 02", group: "core", copy: "변속기·엔진용 Shaft, Camshaft Nose Piece, Balance Shaft 계열 부품" },
-        { title: "Driveline", category: "CORE 03", group: "core", copy: "Transfer Case·ETM용 Disk Carrier, Shaft, Hub 계열 부품" },
-        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV 오일펌프 하우징·커버와 전동화용 Gear·Coaxial·Link Shaft" },
-        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "BSM 하우징·오일펌프 알루미늄 정밀가공" },
+        { title: "Steering", category: "CORE 01", group: "core", copy: "피니언, 피니언 샤프트, 피스톤, 랙 부시, 토션 바 등 조향 어셈블리 부품" },
+        { title: "Powertrain", category: "CORE 02", group: "core", copy: "변속기·엔진용 샤프트, 캠샤프트 노즈 피스, 밸런스 샤프트 계열 부품" },
+        { title: "Driveline", category: "CORE 03", group: "core", copy: "트랜스퍼 케이스·ETM용 디스크 캐리어, 샤프트, 허브 계열 부품" },
+        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV 오일 펌프 하우징·커버와 전동화용 기어·코액시얼·링크 샤프트" },
+        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "BSM 하우징·오일 펌프 알루미늄 정밀가공" },
       ],
     },
     principles: {
@@ -245,9 +245,9 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       ],
     },
     partners: {
-      eyebrow: "GLOBAL OEM NETWORK",
-      title: ["세계의 자동차 산업과,", "정밀가공으로 연결됩니다"],
-      copy: "서울산업은 조향, 드라이브라인, 파워트레인 양산 프로그램과 전동화 부품의 개발·검증 대응을 통해 국내외 고객과 제조 경험을 축적해 왔습니다. 개발 대응부터 품질 기록, 납기와 공급 안정성까지 같은 기준으로 관리하며 장기적인 제조 파트너십을 이어갑니다.",
+      eyebrow: "CUSTOMER & PARTNERSHIP HISTORY",
+      title: ["세계의 자동차 산업과", "정밀가공으로 연결됩니다"],
+      copy: "서울산업은 조향, 드라이브라인, 파워트레인 양산 프로그램과 전동화 부품의 개발·검증에 대응하며 국내외 고객 프로그램의 제조 경험을 축적해 왔습니다. 개발 대응부터 품질 기록, 납기와 공급 안정성까지 같은 기준으로 관리하며 장기적인 제조 협력 관계를 이어갑니다.",
       link: "파트너십 연혁 보기",
       regions: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN",
       officialSite: "공식 홈페이지",
@@ -379,7 +379,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     products: {
       eyebrow: "CORE PORTFOLIO · ELECTRIFIED · ALUMINUM",
       title: "Three core families, two expansion capabilities",
-      summary: "Steering, Powertrain, and Driveline form the core shaft portfolio, extended by electrified-platform and machined-aluminum capabilities.",
+      summary: "Steering, Powertrain, and Driveline form the core product portfolio, complemented by electrified and machined-aluminum capabilities.",
       link: "View all products",
       items: [
         { title: "Steering", category: "CORE 01", group: "core", copy: "Pinions, pinion shafts, pistons, rack bushes, and torsion bars for steering assemblies." },
@@ -413,9 +413,9 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       ],
     },
     partners: {
-      eyebrow: "GLOBAL OEM NETWORK",
+      eyebrow: "CUSTOMER & PARTNERSHIP HISTORY",
       title: ["Precision connects", "global mobility"],
-      copy: "Seoul Industry combines volume-production experience in steering, driveline, and powertrain with development and validation support for electrified components. From engineering response and quality records to delivery and supply stability, one consistent standard supports every long-term manufacturing partnership.",
+      copy: "Seoul Industry combines volume-production experience in steering, driveline, and powertrain with development and validation support for electrified components. From engineering response and quality records to delivery and supply stability, consistent standards support long-term manufacturing relationships.",
       link: "View partnership history",
       regions: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN",
       officialSite: "Official website",
@@ -434,7 +434,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     closing: {
       eyebrow: "READY TO BUILD TOGETHER",
       title: ["When the part must be precise,", "talk to Seoul Industry"],
-      copy: "Share your drawing, development window, and production requirements. We will review the right manufacturing flow with you.",
+      copy: "Share your drawing, development schedule, and production requirements. We will review a suitable manufacturing approach with you.",
       link: "Start a project",
     },
     footer: {
@@ -491,7 +491,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       },
       {
         eyebrow: "OEM MANUFACTURING PARTNER",
-        title: ["開発から量産まで、", "途切れないOEM"],
+        title: ["開発から量産まで、", "途切れないOEM対応"],
         copy: "開発日程、生産負荷、検査、出荷を一つの製造フローとして管理します。",
       },
       {
@@ -547,12 +547,12 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     products: {
       eyebrow: "CORE PORTFOLIO · ELECTRIFIED · ALUMINUM",
       title: "3つの中核製品群と2つの拡張領域",
-      summary: "Steering・Powertrain・Drivelineを中核シャフトポートフォリオとし、電動化プラットフォームとアルミ加工を拡張領域として構成しています。",
+      summary: "Steering・Powertrain・Drivelineを中核製品群とし、電動化部品とアルミ精密加工へ対応領域を広げています。",
       link: "全製品を見る",
       items: [
         { title: "Steering", category: "CORE 01", group: "core", copy: "Pinion、Pinion Shaft、Piston、Rack Bush、Torsion Barなどの操舵部品" },
-        { title: "Powertrain", category: "CORE 02", group: "core", copy: "トランスミッション・エンジン向けShaft、Camshaft Nose Piece、Balance Shaft系列" },
-        { title: "Driveline", category: "CORE 03", group: "core", copy: "Transfer Case・ETM向けDisk Carrier、Shaft、Hub系列" },
+        { title: "Powertrain", category: "CORE 02", group: "core", copy: "トランスミッション・エンジン向けシャフト、カムシャフトノーズピース、バランスシャフト部品" },
+        { title: "Driveline", category: "CORE 03", group: "core", copy: "トランスファーケース・ETM向けディスクキャリア、シャフト、ハブ部品" },
         { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EVオイルポンプのハウジング・カバーと電動化向けGear・Coaxial・Link Shaft" },
         { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "BSMハウジング・オイルポンプのアルミ精密加工" },
       ],
@@ -581,9 +581,9 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       ],
     },
     partners: {
-      eyebrow: "GLOBAL OEM NETWORK",
+      eyebrow: "CUSTOMER & PARTNERSHIP HISTORY",
       title: ["世界の自動車産業と、", "精密加工でつながります"],
-      copy: "ソウル産業は操舵、ドライブライン、パワートレインの量産実績に、電動化部品の開発・検証対応を組み合わせ、国内外のお客様との製造経験を積み重ねてきました。開発対応から品質記録、納期、安定供給まで一貫した基準で管理し、長期的な製造パートナーシップを築いています。",
+      copy: "ソウル産業は操舵、ドライブライン、パワートレインの量産実績に、電動化部品の開発・検証対応を組み合わせ、国内外の顧客プログラムを通じて製造経験を積み重ねてきました。開発対応から品質記録、納期、安定供給まで一貫した基準で管理し、長期的な製造協力関係を築いています。",
       link: "パートナーシップ沿革を見る",
       regions: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN",
       officialSite: "公式サイト",
@@ -602,7 +602,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     closing: {
       eyebrow: "READY TO BUILD TOGETHER",
       title: ["精密な部品が必要なとき、", "ソウル産業にご相談ください"],
-      copy: "図面、開発日程、量産条件をお送りいただければ、最適な製造フローを一緒に検討します。",
+      copy: "図面、開発日程、量産条件をお送りいただければ、適切な製造フローを一緒に検討します。",
       link: "プロジェクト相談",
     },
     footer: {
@@ -708,7 +708,7 @@ const homeUiCopy = {
     qualityLink: "품질 시스템 자세히 보기",
     certificateEyebrow: "CORPORATE CERTIFICATIONS",
     certificateTitle: "생산 현장에서 작동하는 품질·환경경영 기준",
-    certificateCopy: "IATF 16949와 현대모비스 MSQ로 양산 품질 체계를 운영하고, ISO 14001 인증 범위에 따라 자동차 조향부품 제조·서비스의 환경경영 체계를 관리합니다.",
+    certificateCopy: "IATF 16949 및 현대모비스 MSQ 인증 기준에 따라 양산 품질 체계를 운영하고, ISO 14001 인증 범위에 따라 자동차 조향 부품 제조·서비스의 환경 경영 체계를 관리합니다.",
     certificateView: "인증서 보기",
     iatf: "IATF 16949 품질경영시스템",
     msq: "현대모비스 MSQ 공급사 품질 인증",
@@ -717,15 +717,15 @@ const homeUiCopy = {
   en: {
     companyLink: "View company profile",
     productActual: "Seoul Industry production parts",
-    productSystem: "Representative application area",
+    productSystem: "Typical application area",
     productApplicationNote: "Installation position and geometry vary by vehicle and program.",
     manufacturingLink: "View all capabilities",
     processStep: "Core process",
     qualityEyebrow: "QUALITY ASSURANCE",
     qualityLink: "View quality system",
     certificateEyebrow: "CORPORATE CERTIFICATIONS",
-    certificateTitle: "Quality and environmental standards operating on the production floor",
-    certificateCopy: "IATF 16949 and Hyundai Mobis MSQ support production quality, while ISO 14001 covers environmental management for the manufacture and service of automotive steering parts.",
+    certificateTitle: "Quality and environmental standards applied on the production floor",
+    certificateCopy: "Our production quality system follows IATF 16949 and Hyundai Mobis MSQ certification requirements, while the ISO 14001 scope covers environmental management for the manufacture and service of automotive steering components.",
     certificateView: "View certificate",
     iatf: "IATF 16949 Quality Management System",
     msq: "Hyundai Mobis MSQ Supplier Quality",
@@ -742,7 +742,7 @@ const homeUiCopy = {
     qualityLink: "品質システムを見る",
     certificateEyebrow: "CORPORATE CERTIFICATIONS",
     certificateTitle: "生産現場で機能する品質・環境マネジメント基準",
-    certificateCopy: "IATF 16949と現代モービスMSQに基づく量産品質管理に加え、ISO 14001の認証範囲に沿って自動車用ステアリング部品の製造・サービスに関する環境マネジメントを運用しています。",
+    certificateCopy: "IATF 16949および現代モービスMSQの認証基準に基づいて量産品質体制を運用し、ISO 14001の認証範囲に沿って自動車用ステアリング部品の製造・サービスに関する環境マネジメントを管理しています。",
     certificateView: "認証書を見る",
     iatf: "IATF 16949 品質マネジメントシステム",
     msq: "現代モービスMSQサプライヤー品質認証",
@@ -1064,7 +1064,7 @@ function PartnersSection({ copy }: { copy: RenewalCopy }) {
   return (
     <section className="renewal-partners" id="renewal-partners">
       <div className="renewal-partners__word" aria-hidden="true">
-        GLOBAL PARTNERS
+        PARTNERSHIP HISTORY
       </div>
       <div className="renewal-partners__intro" data-renewal-reveal>
         <span>{copy.partners.eyebrow}</span>
@@ -1190,8 +1190,8 @@ function SustainabilityBridge({ language }: { language: RenewalLanguage }) {
     ko: {
       eyebrow: "SUSTAINABLE MANUFACTURING",
       title: "정밀가공의 책임을 환경·안전·윤리 기준으로 이어갑니다.",
-      text: "에너지와 자원 사용을 줄이고, 안전한 작업환경과 투명한 거래 기준을 지키며 지속 가능한 제조 파트너십을 구축합니다.",
-      link: "지속가능경영 정책 보기",
+      text: "에너지와 자원 사용을 줄이고, 안전한 작업 환경과 투명한 거래 기준을 지키며 지속 가능한 제조 파트너십을 구축합니다.",
+      link: "지속 가능 경영 정책 보기",
     },
     en: {
       eyebrow: "SUSTAINABLE MANUFACTURING",
@@ -1203,7 +1203,7 @@ function SustainabilityBridge({ language }: { language: RenewalLanguage }) {
       eyebrow: "SUSTAINABLE MANUFACTURING",
       title: "精密加工の責任を環境・安全・倫理基準へつなげます。",
       text: "エネルギーと資源使用を減らし、安全な職場と透明な取引基準を守り、持続可能な製造パートナーシップを築きます。",
-      link: "持続可能経営方針を見る",
+      link: "サステナビリティ経営方針を見る",
     },
   }[language];
 

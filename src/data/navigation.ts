@@ -16,9 +16,9 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
       href: "#/company/overview",
       children: [
         { label: "회사개요", href: "#/company/overview" },
-        { label: "CEO인사말", href: "#/company/ceo" },
-        { label: "회사연혁", href: "#/company/history" },
-        { label: "찾아오시는길", href: "#/company/location" },
+        { label: "CEO 인사말", href: "#/company/ceo" },
+        { label: "회사 연혁", href: "#/company/history" },
+        { label: "찾아오시는 길", href: "#/company/location" },
         { label: "공지사항", href: "#/company/notices" },
       ],
     },
@@ -47,22 +47,22 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
       label: "품질보증",
       href: "#/quality/policy",
       children: [
-        { label: "품질방침", href: "#/quality/policy" },
-        { label: "품질시스템", href: "#/quality/system" },
-        { label: "예방품질활동", href: "#/quality/preventive" },
+        { label: "품질 방침", href: "#/quality/policy" },
+        { label: "품질 시스템", href: "#/quality/system" },
+        { label: "예방 품질 활동", href: "#/quality/preventive" },
       ],
     },
     {
       label: "연구개발",
       href: "#/rnd/parts-development",
-      children: [{ label: "부품개발", href: "#/rnd/parts-development" }],
+      children: [{ label: "부품 개발", href: "#/rnd/parts-development" }],
     },
     {
       label: "채용정보",
       href: "#/recruit/information",
       children: [
         { label: "채용정보", href: "#/recruit/information" },
-        { label: "복지제도", href: "#/recruit/benefits" },
+        { label: "복지 제도", href: "#/recruit/benefits" },
       ],
     },
     {
@@ -203,9 +203,9 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
       children: [{ label: "ESG情報", href: "#/esg/information" }],
     },
     {
-      label: "持続可能経営方針",
+      label: "サステナビリティ経営方針",
       href: "#/sustainability/policy",
-      children: [{ label: "持続可能経営方針", href: "#/sustainability/policy" }],
+      children: [{ label: "サステナビリティ経営方針", href: "#/sustainability/policy" }],
     },
   ],
 };

@@ -23,7 +23,7 @@ const technologyPageCopy: Record<LanguageCode, TechnologyPageCopy> = {
     home: "홈",
     news: "공지사항",
     index: "기술 항목",
-    eyebrow: "Technology Detail",
+    eyebrow: "기술 상세",
     overview: "개요",
     managedItems: "관리 항목",
     processTags: "핵심 키워드",
@@ -33,9 +33,9 @@ const technologyPageCopy: Record<LanguageCode, TechnologyPageCopy> = {
     home: "Home",
     news: "News",
     index: "Capabilities",
-    eyebrow: "Technology Detail",
+    eyebrow: "Capability Detail",
     overview: "Overview",
-    managedItems: "Managed Items",
+    managedItems: "Key Controls",
     processTags: "Key Terms",
     nextCapability: "Next Capability",
   },
@@ -43,7 +43,7 @@ const technologyPageCopy: Record<LanguageCode, TechnologyPageCopy> = {
     home: "ホーム",
     news: "お知らせ",
     index: "技術項目",
-    eyebrow: "Technology Detail",
+    eyebrow: "技術詳細",
     overview: "概要",
     managedItems: "管理項目",
     processTags: "キーワード",
@@ -100,14 +100,21 @@ export default function TechnologyPage({ route }: TechnologyPageProps) {
   return (
     <div className="technology-page">
       <header className="notice-topbar">
-        <a className="notice-topbar__brand" href="#/" aria-label="seoulind home">
+        <a
+          className="notice-topbar__brand"
+          href="#/"
+          aria-label={language === "ko" ? "서울산업 홈" : language === "ja" ? "ソウル産業ホーム" : "Seoul Industry home"}
+        >
           <BrainallLogo />
         </a>
-        <nav className="notice-topbar__nav" aria-label="Technology page navigation">
+        <nav
+          className="notice-topbar__nav"
+          aria-label={language === "ko" ? "기술 페이지 메뉴" : language === "ja" ? "技術ページメニュー" : "Technology page navigation"}
+        >
           <a href="#/">{copy.home}</a>
           <a href="#/news">{copy.news}</a>
         </nav>
-        <div className="notice-language" aria-label="Language">
+        <div className="notice-language" aria-label={language === "ko" ? "언어 선택" : language === "ja" ? "言語選択" : "Language selection"}>
           {languages.map((item) => (
             <button className={item.code === language ? "is-active" : ""} type="button" key={item.code} onClick={() => setLanguage(item.code)}>
               {item.shortLabel}
