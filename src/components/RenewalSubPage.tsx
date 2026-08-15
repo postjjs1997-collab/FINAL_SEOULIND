@@ -1451,16 +1451,25 @@ function ActualProductLineup({
         {catalog.parts.map((part, index) => (
           <article data-sub-reveal key={part.title.en}>
             <figure>
-              <video
-                src={part.video}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                poster={part.poster}
-                aria-label={part.title[language]}
-              />
+              {part.video ? (
+                <video
+                  src={part.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster={part.poster}
+                  aria-label={part.title[language]}
+                />
+              ) : (
+                <img
+                  src={part.poster}
+                  alt={part.title[language]}
+                  loading="lazy"
+                  decoding="async"
+                />
+              )}
               <figcaption>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <small>{lineupLabels.motion}</small>

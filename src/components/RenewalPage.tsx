@@ -641,7 +641,7 @@ const productRouteKeys = [
 ];
 
 const productFeaturePartIndexes = [
-  [0, 1],
+  [1, 4],
   [0, 1],
   [0, 1],
   [0, 1],
@@ -957,16 +957,20 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
                     {featuredParts.map((part) => (
                       <figure className="renewal-product-card__detail-part" key={part.title.en}>
                         <div className="renewal-product-card__detail-media">
-                          <video
-                            key={detailIsActive ? "active" : "idle"}
-                            src={part.video}
-                            poster={part.poster}
-                            autoPlay={detailIsActive}
-                            loop
-                            muted
-                            playsInline
-                            preload={detailIsActive ? "auto" : "metadata"}
-                          />
+                          {part.video ? (
+                            <video
+                              key={detailIsActive ? "active" : "idle"}
+                              src={part.video}
+                              poster={part.poster}
+                              autoPlay={detailIsActive}
+                              loop
+                              muted
+                              playsInline
+                              preload={detailIsActive ? "auto" : "metadata"}
+                            />
+                          ) : (
+                            <img src={part.poster} alt="" loading="lazy" decoding="async" />
+                          )}
                         </div>
                         <figcaption>
                           <strong>{part.title[language]}</strong>
@@ -982,16 +986,25 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
                 <div>
                   {featuredParts.map((part) => (
                     <figure key={part.title.en}>
-                      <video
-                        src={part.video}
-                        poster={part.poster}
-                        aria-label={part.title[language]}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        preload="metadata"
-                      />
+                      {part.video ? (
+                        <video
+                          src={part.video}
+                          poster={part.poster}
+                          aria-label={part.title[language]}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          preload="metadata"
+                        />
+                      ) : (
+                        <img
+                          src={part.poster}
+                          alt={part.title[language]}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
                       <figcaption>{part.title[language]}</figcaption>
                     </figure>
                   ))}

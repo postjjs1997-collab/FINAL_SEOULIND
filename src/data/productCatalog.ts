@@ -22,6 +22,9 @@ import steeringVideo1 from "../../assets/product-alpha/steering1.webm";
 import steeringVideo2 from "../../assets/product-alpha/steering2.webm";
 import steeringPoster1 from "../../assets/video-posters/steering1.jpg";
 import steeringPoster2 from "../../assets/video-posters/steering2.jpg";
+import steeringPinionImage from "../../assets/product-catalog/steering/pinion.jpg";
+import steeringPistonImage from "../../assets/product-catalog/steering/piston.jpg";
+import steeringRackBushImage from "../../assets/product-catalog/steering/rack-bush.jpg";
 import drivelineVideo1 from "../../assets/product-alpha/driveline1.webm";
 import drivelineVideo3 from "../../assets/product-alpha/driveline3.webm";
 import drivelinePoster1 from "../../assets/video-posters/driveline1.jpg";
@@ -51,7 +54,7 @@ export type ProductPart = {
   title: ProductLocalizedText;
   application: ProductLocalizedText;
   poster: string;
-  video: string;
+  video?: string;
 };
 
 export type ProductQualityControl = {
@@ -315,10 +318,25 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     families: ["PINION", "PINION SHAFT", "PISTON", "RACK BUSH", "TORSION BAR"],
     parts: [
       {
+        title: localized("피니언", "Pinion", "ピニオン"),
+        application: localized("조향 기어 어셈블리용 헬리컬 피니언", "Helical pinion for steering-gear assemblies", "ステアリングギヤ・アセンブリ用ヘリカルピニオン"),
+        poster: steeringPinionImage,
+      },
+      {
         title: localized("피니언 샤프트", "Pinion Shaft", "ピニオンシャフト"),
         application: localized("헬리컬 기어 조향 샤프트", "Helical-gear steering shaft", "ヘリカルギヤ・ステアリングシャフト"),
         poster: steeringPoster1,
         video: steeringVideo1,
+      },
+      {
+        title: localized("피스톤", "Piston", "ピストン"),
+        application: localized("조향 기구의 유압 작동 부품", "Hydraulic actuation component for steering mechanisms", "ステアリング機構の油圧作動部品"),
+        poster: steeringPistonImage,
+      },
+      {
+        title: localized("랙 부시", "Rack Bush", "ラックブッシュ"),
+        application: localized("스티어링 랙 지지·마찰 관리 부품", "Steering-rack support and friction-control component", "ステアリングラックの支持・摩擦管理部品"),
+        poster: steeringRackBushImage,
       },
       {
         title: localized("토션 바", "Torsion Bar", "トーションバー"),
