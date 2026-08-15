@@ -272,7 +272,7 @@ export const globalProgramNetwork = {
 export const localSupplyNetwork = {
   ko: {
     eyebrow: "INTEGRATED LOCAL SUPPLY NETWORK",
-    title: "약 2시간 권역의 전문 파트너와 하나의 제조 흐름을 운영합니다.",
+    title: "검증된 전문 파트너와 연결한 통합 공급망",
     copy: "서울산업이 공정 책임과 품질 기준을 관리하고, 공정별 전문 협력사가 소재와 특수공정 역량을 연결해 개발 변경과 양산 변동에 신속히 대응합니다.",
     processes: [
       { title: "HOT FORGING", copy: "열간단조" },
@@ -283,7 +283,7 @@ export const localSupplyNetwork = {
       { title: "EXTERNAL INDUCTION HARDENING", copy: "외주 고주파열처리" },
     ],
     benefits: [
-      { title: "긴밀한 기술 협업", copy: "짧은 이동 거리에서 공정 검토와 현장 협의를 반복합니다." },
+      { title: "긴밀한 기술 협업", copy: "공정별 기술 검토와 현장 협의를 통해 품질 기준과 작업 조건을 조율합니다." },
       { title: "신속한 대응", copy: "개발 변경과 생산 이슈에 필요한 현장 확인 시간을 줄입니다." },
       { title: "유연한 생산 대응", copy: "프로그램 변화에 맞춰 전문 공정과 생산 여력을 연계합니다." },
       { title: "공급 연속성", copy: "소재·외주공정·사내가공의 진행 상태를 하나의 계획으로 관리합니다." },
@@ -291,7 +291,7 @@ export const localSupplyNetwork = {
   },
   en: {
     eyebrow: "INTEGRATED LOCAL SUPPLY NETWORK",
-    title: "One manufacturing flow with specialist partners within about two hours.",
+    title: "An integrated supply network built with qualified specialist partners.",
     copy: "Seoul Industry retains process ownership and quality standards while qualified partners connect material and special-process capability for responsive development and production support.",
     processes: [
       { title: "HOT FORGING", copy: "Qualified partner" },
@@ -302,7 +302,7 @@ export const localSupplyNetwork = {
       { title: "EXTERNAL INDUCTION HARDENING", copy: "Qualified partner" },
     ],
     benefits: [
-      { title: "Close collaboration", copy: "Short travel distance supports repeated technical and shop-floor reviews." },
+      { title: "Close collaboration", copy: "Technical and shop-floor reviews align quality standards and operating conditions across each process." },
       { title: "Rapid response", copy: "On-site checks for development changes and production issues happen quickly." },
       { title: "Flexible capacity", copy: "Specialist processes and available capacity adapt to program changes." },
       { title: "Supply continuity", copy: "Material, outsourced processes, and in-house machining are managed in one plan." },
@@ -310,7 +310,7 @@ export const localSupplyNetwork = {
   },
   ja: {
     eyebrow: "INTEGRATED LOCAL SUPPLY NETWORK",
-    title: "約2時間圏内の専門パートナーと一つの製造フローを運営します。",
+    title: "検証された専門パートナーとつながる統合サプライネットワーク",
     copy: "ソウル産業が工程責任と品質基準を管理し、工程別の専門協力会社が素材・特殊工程能力をつなぎ、開発変更と量産変動に迅速に対応します。",
     processes: [
       { title: "HOT FORGING", copy: "熱間鍛造" },
@@ -321,7 +321,7 @@ export const localSupplyNetwork = {
       { title: "EXTERNAL INDUCTION HARDENING", copy: "外注高周波焼入れ" },
     ],
     benefits: [
-      { title: "緊密な技術連携", copy: "短い移動距離で工程検討と現場協議を繰り返します。" },
+      { title: "緊密な技術連携", copy: "工程別の技術検討と現場協議を通じて、品質基準と作業条件を調整します。" },
       { title: "迅速な対応", copy: "開発変更や生産課題に必要な現場確認時間を短縮します。" },
       { title: "柔軟な生産対応", copy: "プログラム変化に合わせて専門工程と生産余力を連携します。" },
       { title: "供給継続性", copy: "素材・外注工程・社内加工の進捗を一つの計画で管理します。" },
