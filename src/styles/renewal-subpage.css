@@ -5659,9 +5659,9 @@
 }
 
 .renewal-sub-product-lineup__grid figure > img {
-    padding: 22px;
-    background: #f8f8f6;
-  }
+  padding: 0;
+  background: #030303;
+}
 
 .renewal-sub-product-lineup__grid figure::after {
   position: absolute;
