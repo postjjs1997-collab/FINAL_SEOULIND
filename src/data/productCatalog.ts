@@ -55,6 +55,7 @@ export type ProductPart = {
   application: ProductLocalizedText;
   poster: string;
   video?: string;
+  mediaFit?: "contain" | "cover";
 };
 
 export type ProductQualityControl = {
@@ -76,6 +77,7 @@ export type ProductPartCatalog = {
   copy: ProductLocalizedText;
   overviewImage: string;
   overviewVideo?: string;
+  overviewPresentation?: "portrait-focused";
   families: string[];
   parts: ProductPart[];
   qualityStory?: ProductQualityStory;
@@ -418,6 +420,7 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       "6速トランスミッションシャフト、8L90の入力・出力シャフト、10R140用トランスミッションシャフトに加え、オイルポンプシャフト、ブレーキモジュールシャフト、カムシャフトノーズピース、バランスシャフトを生産します。",
     ),
     overviewImage: powertrainLineupImage,
+    overviewPresentation: "portrait-focused",
     families: ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "BRAKE MODULE SHAFT", "CAMSHAFT NOSE PIECE", "BALANCE SHAFT"],
     parts: [
       {
@@ -437,6 +440,7 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         application: localized("기어·스플라인 동력 전달 부품", "Gear-and-spline power-transfer components", "ギヤ・スプライン動力伝達部品"),
         poster: powertrainShaftPoster1,
         video: powertrainShaftVideo1,
+        mediaFit: "cover",
       },
       {
         title: localized("10R140 변속기 샤프트", "10R140 Transmission Shaft", "10R140トランスミッションシャフト"),
@@ -531,6 +535,7 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       "トランスファーケースおよびETM向けのアクチュエーターシャフト、EMCDハブ、ディスクキャリア類を、ホブ加工、ブローチ加工、ラック転造、レーザー溶接・組立で生産します。",
     ),
     overviewImage: drivelineLineupImage,
+    overviewPresentation: "portrait-focused",
     families: ["TRANSFER CASE ACTUATOR SHAFT", "EMCD HUB", "DISC CARRIER", "LASER-WELDED ASSEMBLY"],
     parts: [
       {

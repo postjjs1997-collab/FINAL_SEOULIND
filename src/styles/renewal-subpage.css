@@ -5586,10 +5586,16 @@
 
 .renewal-sub-product-lineup__overview > figure {
   position: relative;
-  min-height: 540px;
+  align-self: center;
+  min-height: 0;
+  aspect-ratio: 480 / 643;
   margin: 0;
   overflow: hidden;
   background: #111;
+}
+
+.renewal-sub-product-lineup__overview > figure.is-portrait-focused {
+  aspect-ratio: 19 / 20;
 }
 
 .renewal-sub-product-lineup__overview > figure img,
@@ -5598,6 +5604,12 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.renewal-sub-product-lineup__overview > figure.is-portrait-focused img,
+.renewal-sub-product-lineup__overview > figure.is-portrait-focused video {
+  object-fit: cover;
+  object-position: 50% 84%;
 }
 
 .renewal-sub-product-lineup__overview > figure figcaption {
@@ -5661,6 +5673,12 @@
 .renewal-sub-product-lineup__grid figure > img {
   padding: 0;
   background: #030303;
+}
+
+.renewal-sub-product-lineup__grid video.is-cover,
+.renewal-sub-product-lineup__grid figure > img.is-cover {
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 .renewal-sub-product-lineup__grid figure::after {
@@ -5822,9 +5840,6 @@
     aspect-ratio: 4 / 3;
   }
 
-  .renewal-sub-product-lineup__overview > figure {
-    min-height: 440px;
-  }
 }
 
 .renewal-sub-product-quality {

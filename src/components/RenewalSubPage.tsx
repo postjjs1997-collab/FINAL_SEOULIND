@@ -1429,7 +1429,10 @@ function ActualProductLineup({
             ))}
           </div>
         </header>
-        <figure data-sub-reveal>
+        <figure
+          className={catalog.overviewPresentation === "portrait-focused" ? "is-portrait-focused" : undefined}
+          data-sub-reveal
+        >
           {catalog.overviewVideo ? (
             <video
               src={catalog.overviewVideo}
@@ -1453,6 +1456,7 @@ function ActualProductLineup({
             <figure>
               {part.video ? (
                 <video
+                  className={part.mediaFit === "cover" ? "is-cover" : undefined}
                   src={part.video}
                   autoPlay
                   muted
@@ -1464,6 +1468,7 @@ function ActualProductLineup({
                 />
               ) : (
                 <img
+                  className={part.mediaFit === "cover" ? "is-cover" : undefined}
                   src={part.poster}
                   alt={part.title[language]}
                   loading="lazy"
