@@ -47,8 +47,6 @@ import {
   manufacturingPageCopy,
   manufacturingProcesses,
   operationalReliability,
-  qualityEvidenceCopy,
-  qualityEvidenceProcesses,
 } from "../data/companyProfile";
 import {
   inspectionFilmByProcessId,
@@ -658,11 +656,11 @@ const productRouteImages: Record<string, string> = {
 
 const productStandards: Record<string, string[]> = {
   "products/electric-vehicle": ["EV OIL PUMP HOUSING / COVER", "HEV GEAR SHAFT", "COAXIAL / LINK SHAFT"],
-  "products/powertrain": ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "CAMSHAFT NOSE PIECE", "BALANCE SHAFT"],
-  "products/driveline": ["TRANSFER CASE", "ETM", "DISK CARRIER / HUB", "ACTUATOR SHAFT"],
-  "products/balance-shaft-module": ["BSM HOUSING", "BSM OIL PUMP", "DIE-CAST ALUMINUM", "PRECISION MACHINING"],
+  "products/powertrain": ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "BRAKE MODULE SHAFT", "CAMSHAFT NOSE PIECE", "BALANCE SHAFT"],
+  "products/driveline": ["TRANSFER CASE", "ETM", "DISC CARRIER / HUB", "ACTUATOR SHAFT"],
+  "products/balance-shaft-module": ["BSM HOUSING", "BSM OIL PUMP COMPONENT", "DIE-CAST ALUMINUM", "PRECISION MACHINING"],
   "products/steering": ["PINION", "PINION SHAFT", "PISTON", "RACK BUSH", "TORSION BAR"],
-  "products/etc": ["SECURE PROJECT", "PRECISION MACHINING", "LOT TRACEABILITY", "CONTROLLED PRODUCTION"],
+  "products/etc": ["SECURE PROJECT INQUIRY", "SCOPE REVIEW", "CUSTOMER APPROVAL", "CONTROLLED DISCLOSURE"],
 };
 
 const bodyLabels: Record<
@@ -681,7 +679,7 @@ const bodyLabels: Record<
   }
 > = {
   ko: {
-    application: "적용·관리 기준",
+    application: "주요 제품군",
     manufacturing: "제품별 제조 대응",
     qualityFlow: "품질 관리 흐름",
     policyStatement: "서울산업 품질방침",
@@ -693,7 +691,7 @@ const bodyLabels: Record<
     welfare: "복지 지원",
   },
   en: {
-    application: "Application & Controls",
+    application: "Product Scope",
     manufacturing: "Manufacturing Capabilities",
     qualityFlow: "Quality Control Flow",
     policyStatement: "Seoul Industry Quality Policy",
@@ -705,7 +703,7 @@ const bodyLabels: Record<
     welfare: "Employee Support",
   },
   ja: {
-    application: "適用・管理基準",
+    application: "主な製品群",
     manufacturing: "製品別製造対応",
     qualityFlow: "品質管理フロー",
     policyStatement: "ソウル産業 品質方針",
@@ -1405,13 +1403,13 @@ function ActualProductLineup({
 
   const labels = {
     ko: { eyebrow: "PRODUCTION PARTS", item: "서울산업 양산 부품", motion: "세부 부품", overview: "대표 제품군" },
-    en: { eyebrow: "PRODUCTION PARTS", item: "Production part", motion: "Product detail", overview: "Product family overview" },
+    en: { eyebrow: "PRODUCTION PARTS", item: "Production component", motion: "Product detail", overview: "Product family overview" },
     ja: { eyebrow: "PRODUCTION PARTS", item: "ソウル産業の量産部品", motion: "製品詳細", overview: "代表製品群" },
   }[language];
   const lineupLabels = route === "products/electric-vehicle"
     ? {
         ko: { ...labels, eyebrow: "ELECTRIFIED PARTS", item: "서울산업 전동화 부품", overview: "전동화 제품군" },
-        en: { ...labels, eyebrow: "ELECTRIFIED PARTS", item: "Electrified production part", overview: "Electrified product family" },
+        en: { ...labels, eyebrow: "ELECTRIFIED PARTS", item: "Electrified component", overview: "Electrified product family" },
         ja: { ...labels, eyebrow: "ELECTRIFIED PARTS", item: "ソウル産業の電動化部品", overview: "電動化製品群" },
       }[language]
     : labels;
@@ -1492,86 +1490,6 @@ function ActualProductLineup({
   );
 }
 
-function ProductQualitySection({
-  route,
-  language,
-}: {
-  route: string;
-  language: RenewalLanguage;
-}) {
-  const catalog = productPartCatalogByRoute[route];
-  if (!catalog?.qualityControls.length) return null;
-  const qualityStory = catalog.qualityStory;
-
-  const labels = {
-    ko: {
-      eyebrow: "CRITICAL FEATURES & VERIFICATION",
-      title: "서울산업이 이 제품군을 만드는 방식",
-      copy: "제품 기능과 형상에 맞춰 관리하는 핵심 제조 항목입니다. 세부 관리 항목과 합격 기준은 고객 승인 도면에 따라 적용합니다.",
-      feature: "핵심 제품·기능",
-      characteristic: "주요 공정·제조 역량",
-      verification: "품질 검증·자동화",
-    },
-    en: {
-      eyebrow: "CRITICAL FEATURES & VERIFICATION",
-      title: "How Seoul Industry manufactures this product family",
-      copy: "These are the key manufacturing controls applied to each product’s function and geometry. Detailed controls and acceptance criteria follow customer-approved drawings.",
-      feature: "Product / function",
-      characteristic: "Process / manufacturing capability",
-      verification: "Quality verification / automation",
-    },
-    ja: {
-      eyebrow: "CRITICAL FEATURES & VERIFICATION",
-      title: "ソウル産業がこの製品群をつくる方法",
-      copy: "製品の機能と形状に合わせて管理する主要製造項目です。詳細な管理項目と合格基準は、顧客承認図面に基づきます。",
-      feature: "主要製品・機能",
-      characteristic: "主要工程・製造能力",
-      verification: "品質検証・自動化",
-    },
-  }[language];
-  const headingId = `product-quality-${route.replace(/[^a-z0-9]+/gi, "-")}`;
-
-  return (
-    <section className="renewal-sub-product-quality" aria-labelledby={headingId}>
-      <header data-sub-reveal>
-        <span>{qualityStory?.eyebrow ?? labels.eyebrow}</span>
-        <h2 id={headingId}>{qualityStory?.title[language] ?? labels.title}</h2>
-        <p>{qualityStory?.copy[language] ?? labels.copy}</p>
-      </header>
-      <div className="renewal-sub-product-quality__matrix">
-        <div className="renewal-sub-product-quality__columns" aria-hidden="true">
-          <span>{labels.feature}</span>
-          <span>{labels.characteristic}</span>
-          <span>{labels.verification}</span>
-        </div>
-        <ol>
-          {catalog.qualityControls.map((item, index) => (
-            <li data-sub-reveal key={item.feature.en}>
-              <dl>
-                <div className="is-feature">
-                  <dt>{labels.feature}</dt>
-                  <dd>
-                    <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                    <strong>{item.feature[language]}</strong>
-                  </dd>
-                </div>
-                <div>
-                  <dt>{labels.characteristic}</dt>
-                  <dd>{item.characteristic[language]}</dd>
-                </div>
-                <div>
-                  <dt>{labels.verification}</dt>
-                  <dd>{item.verification[language]}</dd>
-                </div>
-              </dl>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  );
-}
-
 type SpecialProjectsCopy = {
   eyebrow: string;
   title: string;
@@ -1590,109 +1508,109 @@ type SpecialProjectsCopy = {
 const specialProjectsCopy: Record<RenewalLanguage, SpecialProjectsCopy> = {
   ko: {
     eyebrow: "DEFENSE & SPECIAL PROJECTS",
-    title: "정보 관리와 추적성을 갖춘\n방산 정밀 제조 체계",
+    title: "보안 프로젝트\n공개·협의 안내",
     intro:
-      "서울산업은 방산을 포함해 정보 관리가 요구되는 프로젝트를 위한 정밀 가공·품질 관리 역량을 갖추고 있습니다. 고객·제품·형상·적용 정보는 공개하지 않으며, 도면 검토부터 공정 설계, 생산 품질 관리, LOT 추적까지 승인된 절차에 따라 관리합니다.",
+      "방산·특수 프로젝트는 보안 및 고객 승인 조건에 따라 공개 범위가 달라집니다. 구체적인 제품, 고객사, 형상, 적용 분야는 공개하지 않으며, 제조·품질 관리 범위는 프로젝트별로 협의합니다.",
     disclosureLabel: "PUBLIC CAPABILITY OVERVIEW",
     disclosure:
-      "보안상 실제 제품, 고객사, 형상, 적용 체계는 공개하지 않습니다. 본 페이지는 서울산업의 공개 가능한 제조·품질 대응 범위만 안내합니다.",
+      "보안상 실제 제품, 고객사, 형상, 적용 분야는 공개하지 않습니다. 이 페이지에는 공개 가능한 제조·품질 관리 범위만 안내합니다.",
     imageCaption: "CONCEPT IMAGE · PRODUCT DETAILS NOT DISCLOSED",
     principles: [
       {
         number: "01",
         kicker: "SECURE PROJECT",
-        title: "보안 정보 관리",
-        copy: "도면과 사양, 변경 이력은 승인된 범위와 절차 안에서 관리하며 프로젝트별 접근과 공유 기준을 구분합니다.",
+        title: "보안 정보 범위",
+        copy: "프로젝트 요구 시 도면, 사양 및 변경 이력의 접근 권한과 공유 범위를 구분합니다.",
       },
       {
         number: "02",
         kicker: "PRECISION PROCESS",
-        title: "정밀 공정 설계",
-        copy: "소재와 형상, 공차 조건을 검토해 전용 가공 순서와 치공구, 측정 기준을 설계하고 반복 정밀도를 확보합니다.",
+        title: "공정 요구사항 검토",
+        copy: "프로젝트별 승인 조건이 정해지면 소재, 형상 및 공차를 검토해 가공·측정 기준을 수립합니다.",
       },
       {
         number: "03",
-        kicker: "TRACEABLE QUALITY",
-        title: "품질·LOT 추적",
-        copy: "검사 결과와 설비 조건, 작업 이력을 LOT 단위로 연결해 품질 근거와 변경 이력을 추적할 수 있도록 관리합니다.",
+        kicker: "TRACEABILITY SCOPE",
+        title: "추적 범위 협의",
+        copy: "검사 결과와 작업 이력의 LOT 단위 관리 범위는 고객 요구사항과 승인 조건에 따라 정합니다.",
       },
       {
         number: "04",
-        kicker: "CONTROLLED PRODUCTION",
-        title: "양산 전환 대응",
-        copy: "시제품 검증에서 공정 안정화, 승인 조건 반영, 반복 생산까지 단계별 게이트를 두고 통제된 양산 체계로 이관합니다.",
+        kicker: "PRODUCTION SCOPE",
+        title: "생산 범위 협의",
+        copy: "시제품 검증, 공정 안정화 및 양산 적용 범위는 프로젝트별 승인 조건에 따라 정합니다.",
       },
     ],
   },
   en: {
     eyebrow: "DEFENSE & SPECIAL PROJECTS",
-    title: "Controlled, traceable\nprecision manufacturing",
+    title: "Disclosure and consultation\nfor secure projects",
     intro:
-      "Seoul Industry maintains precision-machining and quality-management capabilities for defense and other projects requiring controlled information. Customer, product, geometry, and application details are not disclosed. Drawing review, process engineering, production quality control, and lot traceability are managed under approved procedures.",
+      "The disclosure scope for defense and special projects varies according to security and customer-approval conditions. Specific products, customers, geometries, and application fields are not disclosed; manufacturing and quality-control scope is agreed for each project.",
     disclosureLabel: "PUBLIC CAPABILITY OVERVIEW",
     disclosure:
-      "For security reasons, actual products, customers, geometries, and applications are not disclosed. This page presents only the manufacturing and quality capabilities approved for public communication.",
+      "For security reasons, actual products, customers, geometries, and application fields are not disclosed. This page presents only the manufacturing and quality-management scope approved for public communication.",
     imageCaption: "CONCEPT IMAGE · PRODUCT DETAILS NOT DISCLOSED",
     principles: [
       {
         number: "01",
         kicker: "SECURE PROJECT",
-        title: "Controlled information",
-        copy: "Drawings, specifications, and revision histories are handled within approved procedures, with access and sharing rules defined for each project.",
+        title: "Information-security scope",
+        copy: "When required by a project, access permissions and sharing scopes are defined for drawings, specifications, and revision histories.",
       },
       {
         number: "02",
         kicker: "PRECISION PROCESS",
-        title: "Precision process design",
-        copy: "Material, geometry, and tolerance conditions are translated into dedicated machining sequences, fixtures, and measurement standards.",
+        title: "Process-requirement review",
+        copy: "Once project-specific approval conditions are defined, material, geometry, and tolerances are reviewed to establish machining and measurement criteria.",
       },
       {
         number: "03",
-        kicker: "TRACEABLE QUALITY",
-        title: "Quality and lot traceability",
-        copy: "Inspection results, equipment conditions, and work records are linked by lot to maintain traceable quality evidence and a record of production changes.",
+        kicker: "TRACEABILITY SCOPE",
+        title: "Traceability scope",
+        copy: "The scope of lot-level control for inspection results and work records is defined according to customer requirements and approval conditions.",
       },
       {
         number: "04",
-        kicker: "CONTROLLED PRODUCTION",
-        title: "Controlled production transfer",
-        copy: "Stage gates connect prototype validation, process stabilization, approval conditions, and repeatable production in a controlled production process.",
+        kicker: "PRODUCTION SCOPE",
+        title: "Production scope",
+        copy: "Prototype validation, process stabilization, and production scope are defined according to project-specific approval conditions.",
       },
     ],
   },
   ja: {
     eyebrow: "DEFENSE & SPECIAL PROJECTS",
-    title: "情報管理とトレーサビリティを備えた\n防衛向け精密製造体制",
+    title: "セキュアプロジェクトの\n公開・協議案内",
     intro:
-      "ソウル産業は、防衛分野を含む情報管理が求められるプロジェクトに向けた精密加工・品質管理体制を整えています。顧客、製品、形状、用途に関する情報は公開せず、図面検討、工程設計、生産品質管理、ロットトレーサビリティを承認された手順に基づいて管理します。",
+      "防衛・特別プロジェクトの公開範囲は、セキュリティおよび顧客承認条件によって異なります。具体的な製品、顧客、形状、適用分野は公開せず、製造・品質管理の範囲はプロジェクトごとに協議します。",
     disclosureLabel: "PUBLIC CAPABILITY OVERVIEW",
     disclosure:
-      "保安上、実際の製品、顧客、形状、用途・適用先は公開しません。本ページでは、公開が承認された製造・品質対応範囲のみをご案内します。",
+      "保安上、実際の製品、顧客、形状、適用分野は公開しません。本ページでは、公開可能な製造・品質管理範囲のみをご案内します。",
     imageCaption: "CONCEPT IMAGE · PRODUCT DETAILS NOT DISCLOSED",
     principles: [
       {
         number: "01",
         kicker: "SECURE PROJECT",
-        title: "機密情報管理",
-        copy: "図面、仕様、変更履歴は承認された手順に基づいて管理し、プロジェクトごとにアクセス権限と共有ルールを設定します。",
+        title: "機密情報の範囲",
+        copy: "プロジェクトで要求される場合、図面、仕様、変更履歴のアクセス権限と共有範囲を区分します。",
       },
       {
         number: "02",
         kicker: "PRECISION PROCESS",
-        title: "精密工程設計",
-        copy: "素材、形状、公差条件を検討し、専用加工順序、治工具、測定基準を設計して繰り返し精度を確保します。",
+        title: "工程要求事項の検討",
+        copy: "プロジェクト別の承認条件が定まった後、素材、形状、公差を検討し、加工・測定基準を策定します。",
       },
       {
         number: "03",
-        kicker: "TRACEABLE QUALITY",
-        title: "品質・ロット追跡",
-        copy: "検査結果、設備条件、作業履歴をロット単位で関連付け、品質根拠と変更履歴を追跡できるよう管理します。",
+        kicker: "TRACEABILITY SCOPE",
+        title: "追跡範囲の協議",
+        copy: "検査結果と作業履歴のロット単位管理範囲は、顧客要求事項と承認条件に応じて定めます。",
       },
       {
         number: "04",
-        kicker: "CONTROLLED PRODUCTION",
-        title: "量産移管対応",
-        copy: "試作品検証、工程安定化、承認条件反映、繰り返し生産を段階ごとのゲートで管理し、統制された量産体制へ移管します。",
+        kicker: "PRODUCTION SCOPE",
+        title: "生産範囲の協議",
+        copy: "試作品検証、工程安定化、量産適用範囲は、プロジェクト別の承認条件に応じて定めます。",
       },
     ],
   },
@@ -1761,7 +1679,7 @@ function ProductDetailBody({
   const image = productRouteImages[route] ?? product.image;
   const defaultApplicationLabels = {
     ko: {
-      area: "대표 적용 구역",
+      area: "주요 적용 영역",
       note: "차종과 프로그램에 따라 적용 위치와 형상은 달라질 수 있습니다.",
     },
     en: {
@@ -1816,12 +1734,6 @@ function ProductDetailBody({
         </div>
       </section>
       <ActualProductLineup route={route} language={language} />
-      <ProductQualitySection route={route} language={language} />
-      <section className="renewal-sub-section-heading" data-sub-reveal>
-        <span>PROCESS STANDARD</span>
-        <h2>{labels.manufacturing}</h2>
-      </section>
-      <CapabilityGrid content={content} />
     </>
   );
 }
@@ -2010,8 +1922,6 @@ function ManufacturingBody({
         ? copy.inspectionCopy
         : copy.copy;
 
-  const unitLabel = { ko: "대", en: "units", ja: "台" }[language];
-  const inventoryLabel = { ko: "보유 대수", en: "Inventory", ja: "保有台数" }[language];
   const processImageLabel = { ko: "공정 이미지", en: "PROCESS VIEW", ja: "工程イメージ" }[language];
   const equipmentImageLabel = {
     ko: "설비 외관 및 현장",
@@ -2085,18 +1995,11 @@ function ManufacturingBody({
                     <h3>{group.title[language]}</h3>
                     <p>{group.copy[language]}</p>
                   </header>
-                  <dl>
+                  <ul className="profile-equipment-inventory__list">
                     {group.items.map((item) => (
-                      <div key={item.name}>
-                        <dt>{item.name}</dt>
-                        <dd>
-                          <small>{inventoryLabel}</small>
-                          <strong>{item.count}</strong>
-                          <span>{unitLabel}</span>
-                        </dd>
-                      </div>
+                      <li key={item}>{item}</li>
                     ))}
-                  </dl>
+                  </ul>
                 </div>
                 </article>
               );
@@ -2156,35 +2059,6 @@ function OperationalReliabilitySection({ language }: { language: RenewalLanguage
             <h3>{item.title}</h3>
             <p>{item.copy}</p>
             <small>{item.detail}</small>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function QualityEvidence({ language }: { language: RenewalLanguage }) {
-  const copy = qualityEvidenceCopy[language];
-
-  return (
-    <section className="profile-quality-evidence">
-      <header data-sub-reveal>
-        <span>SHOP FLOOR QUALITY EVIDENCE</span>
-        <h2>{copy.title}</h2>
-        <p>{copy.copy}</p>
-      </header>
-      <div>
-        {qualityEvidenceProcesses.map((process, index) => (
-          <article data-sub-reveal key={process.id}>
-            <figure>
-              <ProcessMedia image={process.image} video={process.video} title={process.title} />
-              <span>{String(index + 1).padStart(2, "0")}</span>
-            </figure>
-            <div>
-              <h3>{process.title}</h3>
-              <p>{process.copy[language]}</p>
-              <strong>{process.capability[language]}</strong>
-            </div>
           </article>
         ))}
       </div>
@@ -2624,7 +2498,6 @@ function QualitySystemBody({ language }: { language: RenewalLanguage }) {
         className="is-shop-floor-assurance"
       />
       <QualityMetrologySection language={language} />
-      <QualityEvidence language={language} />
       <CertificatesBody language={language} />
     </>
   );

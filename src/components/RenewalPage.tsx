@@ -215,10 +215,10 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       link: "제품 전체 보기",
       items: [
         { title: "Steering", category: "CORE 01", group: "core", copy: "피니언, 피니언 샤프트, 피스톤, 랙 부시, 토션 바 등 조향 어셈블리 부품" },
-        { title: "Powertrain", category: "CORE 02", group: "core", copy: "변속기·엔진용 샤프트, 캠샤프트 노즈 피스, 밸런스 샤프트 계열 부품" },
-        { title: "Driveline", category: "CORE 03", group: "core", copy: "트랜스퍼 케이스·ETM용 디스크 캐리어, 샤프트, 허브 계열 부품" },
-        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV 오일 펌프 하우징·커버와 전동화용 기어·코액시얼·링크 샤프트" },
-        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "BSM 하우징·오일 펌프 알루미늄 정밀가공" },
+        { title: "Powertrain", category: "CORE 02", group: "core", copy: "변속기용 샤프트와 엔진용 캠샤프트 노즈 피스·밸런스 샤프트" },
+        { title: "Driveline", category: "CORE 03", group: "core", copy: "트랜스퍼 케이스·ETM용 디스크 캐리어, 샤프트, 허브 부품" },
+        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV 오일 펌프 하우징·커버와 전동화용 기어 샤프트·코액시얼 샤프트·링크 샤프트" },
+        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "BSM 하우징·오일 펌프용 알루미늄 정밀가공 부품" },
       ],
     },
     principles: {
@@ -383,10 +383,10 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       link: "View all products",
       items: [
         { title: "Steering", category: "CORE 01", group: "core", copy: "Pinions, pinion shafts, pistons, rack bushes, and torsion bars for steering assemblies." },
-        { title: "Powertrain", category: "CORE 02", group: "core", copy: "Transmission shafts, camshaft nose pieces, and balance-shaft families for transmissions and engines." },
-        { title: "Driveline", category: "CORE 03", group: "core", copy: "Disk carriers, shafts, and hubs for transfer-case and ETM systems." },
-        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV oil-pump housings and covers plus gear, coaxial, and link shafts." },
-        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "Precision-machined aluminum BSM housings and oil pumps." },
+        { title: "Powertrain", category: "CORE 02", group: "core", copy: "Transmission shafts and engine components, including camshaft nose pieces and balance shafts." },
+        { title: "Driveline", category: "CORE 03", group: "core", copy: "Disc carriers, shafts, and hubs for transfer-case and ETM systems." },
+        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV oil-pump housings and covers plus electrified-powertrain gear shafts, coaxial shafts, and link shafts." },
+        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "Precision-machined aluminum BSM housings and oil-pump components." },
       ],
     },
     principles: {
@@ -551,10 +551,10 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       link: "全製品を見る",
       items: [
         { title: "Steering", category: "CORE 01", group: "core", copy: "Pinion、Pinion Shaft、Piston、Rack Bush、Torsion Barなどの操舵部品" },
-        { title: "Powertrain", category: "CORE 02", group: "core", copy: "トランスミッション・エンジン向けシャフト、カムシャフトノーズピース、バランスシャフト部品" },
+        { title: "Powertrain", category: "CORE 02", group: "core", copy: "トランスミッション用シャフトと、カムシャフトノーズピース、バランスシャフトなどのエンジン用部品" },
         { title: "Driveline", category: "CORE 03", group: "core", copy: "トランスファーケース・ETM向けディスクキャリア、シャフト、ハブ部品" },
-        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EVオイルポンプのハウジング・カバーと電動化向けGear・Coaxial・Link Shaft" },
-        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "BSMハウジング・オイルポンプのアルミ精密加工" },
+        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EVオイルポンプのハウジング・カバーと電動化向けギヤシャフト、コアキシャルシャフト、リンクシャフト" },
+        { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "BSMハウジング・オイルポンプ用アルミ精密加工部品" },
       ],
     },
     principles: {

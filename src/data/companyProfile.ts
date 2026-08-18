@@ -48,7 +48,7 @@ export type EquipmentInventoryGroup = {
   id: string;
   title: LocalizedText;
   copy: LocalizedText;
-  items: Array<{ name: string; count: number }>;
+  items: string[];
 };
 
 export const companyProfileAssets = {
@@ -515,10 +515,7 @@ export const equipmentInventory: EquipmentInventoryGroup[] = [
       en: "Core equipment for diameters, datum faces, holes, and mounting surfaces",
       ja: "外径、基準面、穴、取付面を加工する基幹設備",
     },
-    items: [
-      { name: "CNC LATHE", count: 41 },
-      { name: "CNC MCT", count: 79 },
-    ],
+    items: ["CNC LATHE", "CNC MCT"],
   },
   {
     id: "gear-spline",
@@ -528,13 +525,7 @@ export const equipmentInventory: EquipmentInventoryGroup[] = [
       en: "Dedicated equipment for gear profiles and internal or external splines",
       ja: "歯形と内外スプラインを部品形状に合わせて加工する専用設備",
     },
-    items: [
-      { name: "CNC HOBBING", count: 17 },
-      { name: "SHAPING", count: 2 },
-      { name: "BROACHING", count: 2 },
-      { name: "RACK ROLLING", count: 6 },
-      { name: "TR ROLLING", count: 2 },
-    ],
+    items: ["CNC HOBBING", "SHAPING", "BROACHING", "RACK ROLLING", "TR ROLLING"],
   },
   {
     id: "finishing",
@@ -544,11 +535,7 @@ export const equipmentInventory: EquipmentInventoryGroup[] = [
       en: "Finishing equipment for rotating accuracy, wear resistance, and fatigue strength",
       ja: "回転部品の精度、耐摩耗性、疲労強度を仕上げる後工程設備",
     },
-    items: [
-      { name: "CNC GRINDING", count: 26 },
-      { name: "SUPER FINISHING", count: 5 },
-      { name: "SHOT PEENING", count: 2 },
-    ],
+    items: ["CNC GRINDING", "SUPER FINISHING", "SHOT PEENING"],
   },
   {
     id: "automation-inspection",
@@ -558,10 +545,7 @@ export const equipmentInventory: EquipmentInventoryGroup[] = [
       en: "Equipment connecting assembly, runout correction, dimensional inspection, and crack detection",
       ja: "組立、振れ矯正、専用寸法検査、非破壊亀裂検査をつなぐ設備",
     },
-    items: [
-      { name: "LASER WELDING", count: 1 },
-      { name: "STRAIGHTENER", count: 3 },
-    ],
+    items: ["LASER WELDING", "STRAIGHTENER"],
   },
 ];
 
@@ -805,14 +789,14 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
   "products/electric-vehicle": {
     eyebrow: "ELECTRIFIED POWERTRAIN",
     title: {
-      ko: "EV 오일펌프 부품과 전동화용 기어·샤프트",
-      en: "EV oil-pump components plus gears and shafts for electrified platforms",
-      ja: "EVオイルポンプ部品と電動化向けギヤ・シャフト",
+      ko: "EV 오일 펌프 부품과 전동화용 기어·샤프트",
+      en: "EV oil-pump components and electrified-powertrain gears and shafts",
+      ja: "EVオイルポンプ部品と電動化パワートレイン向けギヤ・シャフト",
     },
     copy: {
-      ko: "EV 감속기용 Oil Pump Housing·Cover를 가공하고, Coaxial·Link Shaft는 전동화 플랫폼의 설계 검토와 시제품 검증에 대응합니다.",
-      en: "EV oil-pump housings and covers are machined for reducer systems, while coaxial and link shafts support electrified-platform design review and prototype validation.",
-      ja: "EV減速機向けオイルポンプハウジング・カバーを加工し、コアキシャルシャフト・リンクシャフトは電動化プラットフォームの設計検討・試作検証に対応します。",
+      ko: "EV 감속기용 오일 펌프 하우징·커버를 가공하고, 전동화용 기어 샤프트·코액시얼 샤프트·링크 샤프트의 설계 검토와 시제품 제작·검증에 대응합니다.",
+      en: "We machine oil-pump housings and covers for EV reduction gears and support design reviews, prototype production, and validation for electrified-powertrain gear shafts, coaxial shafts, and link shafts.",
+      ja: "EV減速機向けオイルポンプハウジング・カバーを加工し、電動化パワートレイン向けギヤシャフト、コアキシャルシャフト、リンクシャフトの設計検討・試作品の製作・検証に対応します。",
     },
     items: {
       ko: ["EV Oil Pump Housing / Cover", "HEV Gear Shaft", "Coaxial / Link Shaft"],
@@ -824,9 +808,9 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
   "products/powertrain": {
     eyebrow: "POWERTRAIN APPLICATION",
     title: {
-      ko: "변속기와 엔진용 정밀 샤프트",
-      en: "Precision shafts for transmissions and engines",
-      ja: "トランスミッション・エンジン向け精密シャフト",
+      ko: "변속기·엔진용 정밀 가공 부품",
+      en: "Precision-machined components for transmissions and engines",
+      ja: "トランスミッション・エンジン向け精密加工部品",
     },
     copy: {
       ko: "6단 변속기와 8L90 Input·10R140용 샤프트를 비롯해 Oil Pump Shaft, Brake Module Shaft, Camshaft Nose Piece와 Balance Shaft를 정밀가공합니다.",
@@ -848,9 +832,9 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
       ja: "トランスファーケース・ETM向け駆動部品",
     },
     copy: {
-      ko: "Transfer Case Actuator Shaft, EMCD Hub와 Disc Carrier 계열을 호빙·브로칭·랙 롤링 및 레이저 용접 조립 공정으로 생산합니다.",
-      en: "Transfer-case actuator shafts, EMCD hubs, and disc-carrier families are produced through hobbing, broaching, rack rolling, and laser-welded assembly.",
-      ja: "トランスファーケースアクチュエーターシャフト、EMCDハブ、ディスクキャリア各種を、ホビング、ブローチ、ラックローリング、レーザー溶接組立で生産します。",
+      ko: "트랜스퍼 케이스 액추에이터 샤프트, EMCD 허브 및 디스크 캐리어 부품에 형상별로 호빙·브로칭·랙 롤링·레이저 용접·조립 공정을 적용합니다.",
+      en: "Hobbing, broaching, rack rolling, laser welding, and assembly are applied according to the geometry of transfer-case actuator shafts, EMCD hubs, and disc-carrier components.",
+      ja: "トランスファーケースアクチュエーターシャフト、EMCDハブ、ディスクキャリア部品に、形状に応じてホブ加工、ブローチ加工、ラック転造、レーザー溶接・組立を適用します。",
     },
     items: {
       ko: ["Transfer Case Actuator Shaft", "EMCD Hub", "Disc Carrier / Hub", "Laser-welded Assembly"],
@@ -867,28 +851,28 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
       ja: "バランスシャフトモジュール向けアルミ加工部品",
     },
     copy: {
-      ko: "알루미늄 다이캐스팅 부품의 정밀가공을 통해 Balance Shaft Module Housing과 Oil Pump에 대응합니다.",
-      en: "Precision machining of aluminum die-cast parts supports balance-shaft-module housings and oil pumps.",
-      ja: "アルミダイカスト部品を精密加工し、バランスシャフトモジュールハウジングとオイルポンプに対応します。",
+      ko: "밸런스 샤프트 모듈용 하우징과 오일 펌프용 알루미늄 다이캐스팅 부품을 정밀가공합니다.",
+      en: "We precision-machine aluminum die-cast housings and oil-pump components for balance-shaft modules.",
+      ja: "バランスシャフトモジュール向けハウジングとオイルポンプ用アルミダイカスト部品を精密加工します。",
     },
     items: {
-      ko: ["BSM Housing", "BSM Oil Pump", "Bearing Bore / Oil Passage", "Complex Aluminum Geometry"],
-      en: ["BSM housing", "BSM oil pump", "Bearing bore / oil passage", "Complex aluminum geometry"],
-      ja: ["BSMハウジング", "BSMオイルポンプ", "ベアリングボア／オイル通路", "複雑形状アルミ部品"],
+      ko: ["BSM Housing", "BSM Oil Pump Component", "Bearing Bore / Oil Passage", "Complex Aluminum Geometry"],
+      en: ["BSM housing", "BSM oil-pump component", "Bearing bore / oil passage", "Complex aluminum geometry"],
+      ja: ["BSMハウジング", "BSMオイルポンプ用部品", "ベアリングボア／オイル通路", "複雑形状アルミ部品"],
     },
     image: machinedAluminumImage,
   },
   "products/steering": {
     eyebrow: "STEERING APPLICATION",
     title: {
-      ko: "조향 입력을 정확히 전달하는 기어·샤프트",
-      en: "Gears and shafts that transmit steering input precisely",
-      ja: "操舵入力を正確に伝えるギヤ・シャフト",
+      ko: "조향 장치용 정밀 가공 부품",
+      en: "Precision-machined components for steering systems",
+      ja: "ステアリングシステム向け精密加工部品",
     },
     copy: {
-      ko: "Helical Pinion, P/Shaft, Torsion Bar와 Steering Assembly Component를 기어·스플라인, 열처리, 교정 공정으로 생산합니다.",
-      en: "Helical pinions, P/shafts, torsion bars, and steering assembly parts are produced through gear, spline, heat-treatment, and straightening processes.",
-      ja: "ヘリカルピニオン、P／シャフト、トーションバー、ステアリングアセンブリー部品を、ギヤ・スプライン加工、熱処理、矯正工程で生産します。",
+      ko: "헬리컬 피니언, 피니언 샤프트, 토션 바 등 조향 어셈블리 부품에 기어·스플라인 가공, 열처리 및 교정 공정을 적용합니다.",
+      en: "Gear and spline machining, heat treatment, and straightening are applied to steering-assembly components such as helical pinions, pinion shafts, and torsion bars.",
+      ja: "ヘリカルピニオン、ピニオンシャフト、トーションバーなどのステアリングアセンブリ部品に、ギヤ・スプライン加工、熱処理、矯正工程を適用します。",
     },
     items: {
       ko: ["Helical Pinion", "P/Shaft", "Torsion Bar", "Steering Assembly Component"],
@@ -900,14 +884,14 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
   "products/etc": {
     eyebrow: "DEFENSE & SPECIAL PROJECTS",
     title: {
-      ko: "정보 관리와 추적성을 갖춘 방산 정밀 제조",
-      en: "Defense precision manufacturing with controlled information and traceability",
-      ja: "情報管理とトレーサビリティを備えた防衛向け精密製造",
+      ko: "방산·특수 프로젝트 공개 안내",
+      en: "Disclosure guidance for defense and special projects",
+      ja: "防衛・特別プロジェクトの公開案内",
     },
     copy: {
-      ko: "실제 제품과 고객 정보는 공개하지 않으며, 승인된 절차에 따라 도면 검토, 공정 설계, 생산 품질과 LOT 추적을 관리합니다.",
-      en: "Actual product and customer details are not disclosed. Drawing review, process engineering, production quality, and lot traceability follow approved procedures.",
-      ja: "実際の製品・顧客情報は公開せず、承認された手順に基づいて図面検討、工程設計、生産品質、ロットトレーサビリティを管理します。",
+      ko: "구체적인 제품과 고객 정보는 공개하지 않으며, 대응 범위와 관리 기준은 보안 및 고객 승인 조건에 따라 개별 협의합니다.",
+      en: "Specific product and customer details are not disclosed. Project scope and control requirements are agreed case by case according to security and customer-approval conditions.",
+      ja: "具体的な製品・顧客情報は公開せず、対応範囲と管理基準はセキュリティおよび顧客承認条件に応じて個別に協議します。",
     },
     items: {
       ko: ["정보 관리 프로젝트", "정밀 공정 설계", "품질·LOT 추적", "통제된 생산 이관"],
@@ -932,7 +916,3 @@ export const qualityEvidenceCopy = {
     copy: "測定結果を矯正、工程条件、トレーサビリティ、出荷判定へつなぎ、量産工程のばらつきを管理します。",
   },
 };
-
-export const qualityEvidenceProcesses = manufacturingProcesses.filter((process) =>
-  ["straightening", "auto-inspection", "crack-inspection", "precision-measurement"].includes(process.id),
-);

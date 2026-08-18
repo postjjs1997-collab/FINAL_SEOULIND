@@ -104,17 +104,17 @@ function applyKoreanCopy(content: SiteContent) {
     fillLines: ["도면 검토부터 양산 공급까지,", "자동차 부품 OEM 생산을 끝까지 책임집니다."],
   });
   const productCopies = [
-    "BSM HOUSING·OIL PUMP 알루미늄 가공 부품",
-    "EV OIL PUMP HOUSING·COVER와 HEV·PHEV·BEV용 GEAR·COAXIAL·LINK SHAFT",
+    "BSM HOUSING·OIL PUMP COMPONENT 알루미늄 가공 부품",
+    "EV OIL PUMP HOUSING·COVER와 전동화용 GEAR·COAXIAL·LINK SHAFT",
     "PINION, PINION SHAFT, PISTON, RACK BUSH, TORSION BAR",
     "변속기용 SHAFT와 엔진용 CAMSHAFT NOSE PIECE, BALANCE SHAFT",
-    "TRANSFER CASE·ETM용 DISK CARRIER, HUB, ACTUATOR SHAFT 계열 부품",
+    "TRANSFER CASE·ETM용 DISC CARRIER, HUB, ACTUATOR SHAFT",
   ];
   const latestCopies = [
-    "BSM 하우징·오일펌프 알루미늄 가공 부품",
-    "EV 오일펌프 하우징·커버와 전동화 플랫폼용 기어·코액시얼·링크 샤프트",
-    "조향 입력을 정확하게 전달하는 피니언, 샤프트, 피스톤, 부시, 토션 바",
-    "밸브 개폐 제어와 동력전달을 위한 캠샤프트 노즈 피스·변속기 샤프트",
+    "BSM 하우징·오일 펌프용 알루미늄 가공 부품",
+    "EV 오일 펌프 하우징·커버와 전동화용 기어 샤프트·코액시얼 샤프트·링크 샤프트",
+    "조향 장치용 피니언, 피니언 샤프트, 피스톤, 랙 부시, 토션 바",
+    "캠샤프트 선단 구동계 연결 부품과 변속기용 샤프트",
     "트랜스퍼 케이스와 ETM용 디스크 캐리어, 허브, 액추에이터 샤프트",
   ];
   productCopies.forEach((copy, index) => Object.assign(content.products[index], { copy }));
@@ -231,18 +231,18 @@ function applyEnglishCopy(content: SiteContent) {
     fillLines: ["From the first drawing to full production,", "we engineer the precision behind every OEM part."],
   });
   const productCopies = [
-    "Machined-aluminum BSM housings and oil pumps.",
-    "EV oil-pump housings and covers plus gear, coaxial, and link shafts for HEV, PHEV, and BEV platforms.",
+    "Machined-aluminum BSM housings and oil-pump components.",
+    "EV oil-pump housings and covers plus electrified-powertrain gear shafts, coaxial shafts, and link shafts.",
     "Pinions, pinion shafts, pistons, rack bushes, and torsion bars.",
     "Transmission shafts plus camshaft nose pieces and balance shafts for powertrain systems.",
-    "Disk carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
+    "Disc carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
   ];
   const latestCopies = [
-    "Machined-aluminum BSM housings and oil pumps.",
-    "EV oil-pump housings and covers plus gear, coaxial, and link shafts for electrified platforms.",
-    "Pinions, shafts, pistons, bushes, and torsion bars that transfer steering input.",
-    "Camshaft nose pieces and transmission shafts for valve control and power delivery.",
-    "Disk carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
+    "Machined-aluminum BSM housings and oil-pump components.",
+    "EV oil-pump housings and covers plus electrified-powertrain gear shafts, coaxial shafts, and link shafts.",
+    "Pinions, pinion shafts, pistons, rack bushes, and torsion bars for steering systems.",
+    "Camshaft-end drive-interface components and transmission shafts.",
+    "Disc carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
   ];
   productCopies.forEach((copy, index) => Object.assign(content.products[index], { copy }));
   latestCopies.forEach((copy, index) => Object.assign(content.latestParts[index], { copy }));
@@ -359,17 +359,17 @@ function applyJapaneseCopy(content: SiteContent) {
     fillLines: ["図面の検討から量産供給まで。", "OEM部品の精度を、工程で造り込みます。"],
   });
   const productCopies = [
-    "BSMハウジング・オイルポンプのアルミ加工部品",
-    "EVオイルポンプハウジング・カバーとHEV・PHEV・BEV向けギヤ、コアキシャルシャフト、リンクシャフト",
+    "BSMハウジング・オイルポンプ用アルミ加工部品",
+    "EVオイルポンプハウジング・カバーと電動化パワートレイン向けギヤシャフト、コアキシャルシャフト、リンクシャフト",
     "ピニオン、ピニオンシャフト、ピストン、ラックブッシュ、トーションバー",
     "トランスミッション用シャフトとエンジン用カムシャフトノーズピース、バランスシャフト",
     "トランスファーケース・ETM向けのディスクキャリア、ハブ、アクチュエーターシャフト類",
   ];
   const latestCopies = [
-    "BSMハウジング・オイルポンプのアルミ加工部品",
-    "EVオイルポンプのハウジング・カバーと電動化プラットフォーム向けギヤ、コアキシャル、リンクシャフト",
-    "操舵入力を正確に伝えるピニオン、シャフト、ピストン、ブッシュ、トーションバー",
-    "バルブ開閉制御と動力伝達向けのカムシャフト・ノーズピース、トランスミッションシャフト",
+    "BSMハウジング・オイルポンプ用アルミ加工部品",
+    "EVオイルポンプのハウジング・カバーと電動化パワートレイン向けギヤシャフト、コアキシャルシャフト、リンクシャフト",
+    "ステアリングシステム用ピニオン、ピニオンシャフト、ピストン、ラックブッシュ、トーションバー",
+    "カムシャフト先端の駆動系連結部品とトランスミッション用シャフト",
     "トランスファーケース・ETM向けディスクキャリア、ハブ、アクチュエーターシャフト",
   ];
   productCopies.forEach((copy, index) => Object.assign(content.products[index], { copy }));
