@@ -13,6 +13,7 @@ import drivelineImage from "../../assets/product-application/driveline-precise.w
 import powertrainImage from "../../assets/product-application/powertrain-precise.webp";
 import precisionImage from "../../precision-inside-mobility.jpg";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
+import ceoGreetingIllustration from "../../assets/company-profile/ceo-greeting-illustration.webp";
 import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
 import cncLatheEquipmentImage from "../../assets/equipment-inventory/actual/cnc-lathe.webp";
 import cncMachiningCenterEquipmentImage from "../../assets/equipment-inventory/actual/cnc-machining-center.webp";
@@ -1085,18 +1086,48 @@ function CapabilityGrid({ content }: { content: SiteContent }) {
   );
 }
 
+const ceoTagline: Record<RenewalLanguage, { lead: string; emphasis: string; tail: string; sub: string; alt: string }> = {
+  ko: {
+    lead: "서울산업은",
+    emphasis: "화합으로 창조",
+    tail: "하는 기업입니다.",
+    sub: "환경 친화적 경영, 서울산업 웹사이트에 오신 것을 환영합니다.",
+    alt: "서울산업 사옥 일러스트",
+  },
+  en: {
+    lead: "Seoul Industry",
+    emphasis: "creates through harmony",
+    tail: ".",
+    sub: "Environmentally responsible management — welcome to Seoul Industry.",
+    alt: "Illustration of the Seoul Industry head office",
+  },
+  ja: {
+    lead: "ソウル産業は",
+    emphasis: "和合による創造",
+    tail: "を掲げる企業です。",
+    sub: "環境に配慮した経営 — ソウル産業のウェブサイトへようこそ。",
+    alt: "ソウル産業本社のイラスト",
+  },
+};
+
 function CeoBody({ language }: { language: RenewalLanguage }) {
   const copy = ceoCopy[language];
-  const facadeAlt = {
-    ko: "서울산업 사옥 외벽의 CI와 영문 사명",
-    en: "Seoul Industry headquarters facade with the corporate identity and English company name",
-    ja: "ソウル産業本社外壁のCIと英文社名",
-  }[language];
+  const tagline = ceoTagline[language];
 
   return (
     <section className="renewal-sub-ceo">
-      <div className="renewal-sub-ceo__visual" data-sub-reveal>
-        <img src={seoulIndustryFacadeImage} alt={facadeAlt} />
+      <div className="renewal-sub-ceo__visual renewal-sub-ceo__visual--illustration" data-sub-reveal>
+        <div className="renewal-sub-ceo__tagline">
+          <p>
+            {tagline.lead}
+            <br />
+            <em>{tagline.emphasis}</em>
+            {language === "ko" ? <br /> : null}
+            {tagline.tail}
+          </p>
+          <small>{tagline.sub}</small>
+        </div>
+        <img src={ceoGreetingIllustration} alt={tagline.alt} />
         <span>SEOUL INDUSTRY · PRECISION MANUFACTURING SINCE 1985</span>
       </div>
       <div className="renewal-sub-ceo__message" data-sub-reveal>
