@@ -8,6 +8,7 @@ import powertrainImage from "../../assets/product-application/powertrain-precise
 import precisionHeroImage from "../../precision-inside-mobility.jpg";
 import steeringImage from "../../assets/product-application/steering-precise.webp";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
+import seoulIndustryCampusOverviewImage from "../../assets/company-profile/seoul-industry-campus-overview.jpg";
 import officialFactoryImage from "../../assets/company-profile/factory.webp";
 import manufacturingProcessHeroImage from "../../assets/company-deck/automation-gantry-line.webp";
 import manufacturingEquipmentHeroImage from "../../assets/company-deck/robot-automation-cell.webp";
@@ -73,8 +74,8 @@ const pageConfigs: Record<string, PageConfig> = {
     title: "인사말",
     lead: "최고의 품질과 정밀가공 기술로 자동차 부품 OEM 시장에서 신뢰받는 제조 파트너가 되겠습니다.",
     heroCopy: "도면 검토부터 양산 공급까지, 고객사의 생산 계획에 맞춰 흔들림 없는 제조 흐름을 만듭니다.",
-    image: menuHeroImages.factory,
-    imagePosition: "center 56%",
+    image: seoulIndustryCampusOverviewImage,
+    imagePosition: "center bottom",
   },
   "company/history": {
     route: "company/history",
@@ -359,8 +360,8 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     title: "회사개요",
     lead: "서울산업은 엔진과 모터의 동력을 전달하는 샤프트, 기어, 스플라인, 하우징을 생산하는 자동차 부품 정밀가공 기업입니다.",
     heroCopy: "1985년부터 개발 검토, 정밀가공, 열처리, 자동 검사와 양산 공급을 하나의 제조 흐름으로 연결해 왔습니다.",
-    image: seoulIndustryFacadeImage,
-    imagePosition: "center 32%",
+    image: seoulIndustryCampusOverviewImage,
+    imagePosition: "center bottom",
   },
   "company/ceo": {
     route: "company/ceo",
@@ -370,8 +371,8 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     title: "CEO 인사말",
     lead: "고객의 신뢰를 바탕으로 지속 가능한 성장을 추구합니다.",
     heroCopy: "‘화합으로 창조하는 기업’이라는 경영 철학을 바탕으로, 최고의 품질로 사회에 공헌하는 글로벌 리더가 되겠습니다.",
-    image: seoulIndustryFacadeImage,
-    imagePosition: "center 38%",
+    image: seoulIndustryCampusOverviewImage,
+    imagePosition: "center bottom",
   },
   "company/history": {
     ...pageConfigs["company/history"],
