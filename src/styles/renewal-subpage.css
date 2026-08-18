@@ -2695,15 +2695,18 @@
   min-height: 600px;
   place-items: center;
   margin: 0 auto;
-  padding: 80px 5vw;
   overflow: hidden;
   background: #171717;
+  isolation: isolate;
 }
 
 .renewal-sub-preventive-visual img {
-  width: min(100%, 1000px);
-  opacity: 0.6;
-  filter: grayscale(1);
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .renewal-sub-preventive-visual > div {
@@ -2712,9 +2715,14 @@
   display: grid;
   place-content: center;
   gap: 24px;
-  background: rgba(10, 10, 10, 0.32);
+  z-index: 1;
+  padding: 64px 5vw;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.3), rgba(10, 10, 10, 0.52)),
+    linear-gradient(90deg, rgba(10, 10, 10, 0.14), transparent 50%, rgba(10, 10, 10, 0.14));
   color: #fff;
   text-align: center;
+  text-shadow: 0 3px 28px rgba(0, 0, 0, 0.84);
 }
 
 .renewal-sub-preventive-visual span {

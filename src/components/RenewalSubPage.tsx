@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { FormEvent } from "react";
-import certificationImage from "../../certification.png";
+import preventiveQualityImage from "../../assets/company-profile/process/crack-inspection.webp";
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
 import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
 import msqCertificateImage from "../../assets/certificates/msq-seoul-industry-2025.png";
@@ -654,15 +654,6 @@ const productRouteImages: Record<string, string> = {
   "products/etc": defenseSpecialProjectsImage,
 };
 
-const productStandards: Record<string, string[]> = {
-  "products/electric-vehicle": ["EV OIL PUMP HOUSING / COVER", "HEV GEAR SHAFT", "COAXIAL / LINK SHAFT"],
-  "products/powertrain": ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "BRAKE MODULE SHAFT", "CAMSHAFT NOSE PIECE", "BALANCE SHAFT"],
-  "products/driveline": ["TRANSFER CASE", "ETM", "DISC CARRIER / HUB", "ACTUATOR SHAFT"],
-  "products/balance-shaft-module": ["BSM HOUSING", "BSM OIL PUMP COMPONENT", "DIE-CAST ALUMINUM", "PRECISION MACHINING"],
-  "products/steering": ["PINION", "PINION SHAFT", "PISTON", "RACK BUSH", "TORSION BAR"],
-  "products/etc": ["SECURE PROJECT INQUIRY", "SCOPE REVIEW", "CUSTOMER APPROVAL", "CONTROLLED DISCLOSURE"],
-};
-
 const bodyLabels: Record<
   RenewalLanguage,
   {
@@ -679,7 +670,7 @@ const bodyLabels: Record<
   }
 > = {
   ko: {
-    application: "주요 제품군",
+    application: "핵심 가공·검증 항목",
     manufacturing: "제품별 제조 대응",
     qualityFlow: "품질 관리 흐름",
     policyStatement: "서울산업 품질방침",
@@ -691,7 +682,7 @@ const bodyLabels: Record<
     welfare: "복지 지원",
   },
   en: {
-    application: "Product Scope",
+    application: "Key process controls",
     manufacturing: "Manufacturing Capabilities",
     qualityFlow: "Quality Control Flow",
     policyStatement: "Seoul Industry Quality Policy",
@@ -703,7 +694,7 @@ const bodyLabels: Record<
     welfare: "Employee Support",
   },
   ja: {
-    application: "主な製品群",
+    application: "主な加工・検証項目",
     manufacturing: "製品別製造対応",
     qualityFlow: "品質管理フロー",
     policyStatement: "ソウル産業 品質方針",
@@ -1419,8 +1410,8 @@ function ActualProductLineup({
       <div className="renewal-sub-product-lineup__overview">
         <header data-sub-reveal>
           <span>{lineupLabels.eyebrow}</span>
-          <h2>{catalog.title[language]}</h2>
-          <p>{catalog.copy[language]}</p>
+          <h2>{catalog.lineupTitle[language]}</h2>
+          <p>{catalog.lineupCopy[language]}</p>
           <div className="renewal-sub-product-lineup__families">
             {catalog.families.map((family) => (
               <span key={family}>{family}</span>
@@ -1435,7 +1426,7 @@ function ActualProductLineup({
             <video
               src={catalog.overviewVideo}
               poster={catalog.overviewImage}
-              aria-label={catalog.title[language]}
+              aria-label={catalog.lineupTitle[language]}
               autoPlay
               muted
               loop
@@ -1443,7 +1434,7 @@ function ActualProductLineup({
               preload="metadata"
             />
           ) : (
-            <img src={catalog.overviewImage} alt={catalog.title[language]} />
+            <img src={catalog.overviewImage} alt={catalog.lineupTitle[language]} />
           )}
           <figcaption>{lineupLabels.overview}</figcaption>
         </figure>
@@ -1510,7 +1501,7 @@ const specialProjectsCopy: Record<RenewalLanguage, SpecialProjectsCopy> = {
     eyebrow: "DEFENSE & SPECIAL PROJECTS",
     title: "보안 프로젝트\n공개·협의 안내",
     intro:
-      "방산·특수 프로젝트는 보안 및 고객 승인 조건에 따라 공개 범위가 달라집니다. 구체적인 제품, 고객사, 형상, 적용 분야는 공개하지 않으며, 제조·품질 관리 범위는 프로젝트별로 협의합니다.",
+      "이 페이지는 보안 프로젝트 문의 시 확인하는 제조 검토 항목과 협의 절차를 공개 가능한 범위에서 안내합니다.",
     disclosureLabel: "PUBLIC CAPABILITY OVERVIEW",
     disclosure:
       "보안상 실제 제품, 고객사, 형상, 적용 분야는 공개하지 않습니다. 이 페이지에는 공개 가능한 제조·품질 관리 범위만 안내합니다.",
@@ -1546,7 +1537,7 @@ const specialProjectsCopy: Record<RenewalLanguage, SpecialProjectsCopy> = {
     eyebrow: "DEFENSE & SPECIAL PROJECTS",
     title: "Disclosure and consultation\nfor secure projects",
     intro:
-      "The disclosure scope for defense and special projects varies according to security and customer-approval conditions. Specific products, customers, geometries, and application fields are not disclosed; manufacturing and quality-control scope is agreed for each project.",
+      "This page outlines the manufacturing-review items and consultation process used for secure-project inquiries, within the scope approved for public communication.",
     disclosureLabel: "PUBLIC CAPABILITY OVERVIEW",
     disclosure:
       "For security reasons, actual products, customers, geometries, and application fields are not disclosed. This page presents only the manufacturing and quality-management scope approved for public communication.",
@@ -1582,7 +1573,7 @@ const specialProjectsCopy: Record<RenewalLanguage, SpecialProjectsCopy> = {
     eyebrow: "DEFENSE & SPECIAL PROJECTS",
     title: "セキュアプロジェクトの\n公開・協議案内",
     intro:
-      "防衛・特別プロジェクトの公開範囲は、セキュリティおよび顧客承認条件によって異なります。具体的な製品、顧客、形状、適用分野は公開せず、製造・品質管理の範囲はプロジェクトごとに協議します。",
+      "本ページでは、機密プロジェクトのお問い合わせ時に確認する製造検討項目と協議手順を、公開可能な範囲で案内します。",
     disclosureLabel: "PUBLIC CAPABILITY OVERVIEW",
     disclosure:
       "保安上、実際の製品、顧客、形状、適用分野は公開しません。本ページでは、公開可能な製造・品質管理範囲のみをご案内します。",
@@ -1670,11 +1661,11 @@ function ProductDetailBody({
   const productIndex = productRouteIndex[route] ?? 0;
   const product = content.products[productIndex];
   const displayIndex = productRouteDisplayIndex[route] ?? productIndex + 1;
-  const standards = productStandards[route] ?? [];
   const labels = bodyLabels[language];
   const catalog = productPartCatalogByRoute[route];
-  const displayTitle = catalog?.title[language] ?? product.title;
-  const displayCopy = catalog?.copy[language] ?? product.copy;
+  const standards = catalog?.detailTags ?? [];
+  const displayTitle = catalog?.detailTitle[language] ?? product.title;
+  const displayCopy = catalog?.detailCopy[language] ?? product.copy;
   const displayCategory = catalog?.eyebrow ?? product.category;
   const image = productRouteImages[route] ?? product.image;
   const defaultApplicationLabels = {
@@ -2509,7 +2500,7 @@ function PreventiveQualityBody({ language }: { language: RenewalLanguage }) {
   return (
     <>
       <section className="renewal-sub-preventive-visual" data-sub-reveal>
-        <img src={certificationImage} alt="" />
+        <img src={preventiveQualityImage} alt="" />
         <div>
           <span>PREVENTIVE QUALITY APPROACH</span>
           <strong>PLAN · VERIFY · CONTROL · IMPROVE</strong>
@@ -3072,11 +3063,11 @@ export default function RenewalSubPage({ route }: RenewalSubPageProps) {
           <section className="renewal-sub-intro">
             <div className="renewal-sub-intro__title" data-sub-reveal>
               <span>{config.eyebrow}</span>
-              <h2>{config.title}</h2>
+              <h2>{config.introTitle ?? config.title}</h2>
             </div>
             <div className="renewal-sub-intro__copy" data-sub-reveal>
               <strong>{config.lead}</strong>
-              <p>{config.heroCopy}</p>
+              <p>{config.introCopy ?? config.heroCopy}</p>
             </div>
           </section>
         ) : null}

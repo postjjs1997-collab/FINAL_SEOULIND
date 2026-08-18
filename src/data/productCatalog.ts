@@ -73,8 +73,11 @@ export type ProductQualityStory = {
 
 export type ProductPartCatalog = {
   eyebrow: string;
-  title: ProductLocalizedText;
-  copy: ProductLocalizedText;
+  detailTitle: ProductLocalizedText;
+  detailCopy: ProductLocalizedText;
+  detailTags: string[];
+  lineupTitle: ProductLocalizedText;
+  lineupCopy: ProductLocalizedText;
   overviewImage: string;
   overviewVideo?: string;
   overviewPresentation?: "portrait-focused";
@@ -89,15 +92,26 @@ const localized = (ko: string, en: string, ja: string): ProductLocalizedText => 
 export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   "products/balance-shaft-module": {
     eyebrow: "MACHINED ALUMINUM COMPONENTS",
-    title: localized(
-      "밸런스 샤프트 모듈용 알루미늄 가공 부품",
-      "Machined aluminum components for balance-shaft modules",
-      "バランスシャフトモジュール向けアルミ加工部品",
+    detailTitle: localized(
+      "주조 공급부터 사내 정밀가공까지",
+      "From casting supply to in-house precision machining",
+      "鋳造供給から社内精密加工まで",
     ),
-    copy: localized(
-      "밸런스 샤프트 모듈용 알루미늄 하우징과 오일 펌프용 알루미늄 부품을 가공합니다. 베어링 보어, 조립면, 오일 유로 및 복합 형상의 치수·기하공차를 공정별로 관리합니다.",
-      "We machine aluminum housings and aluminum components for oil pumps used in balance-shaft modules. Dimensional and geometric requirements for bearing bores, assembly faces, oil passages, and complex features are controlled at each process stage.",
-      "バランスシャフトモジュール向けアルミハウジングとオイルポンプ用アルミ部品を加工します。ベアリングボア、組立面、オイル流路、複合形状の寸法・幾何公差を工程ごとに管理します。",
+    detailCopy: localized(
+      "다이캐스팅 공급 단계에서는 소재, 유동·충전·응고 해석, T5 열처리 및 금형 보전 항목을 관리하고, 이후 서울산업의 사내 정밀가공 공정으로 연결합니다.",
+      "The die-casting supply stage covers material control, flow, filling and solidification analysis, T5 heat treatment, and die maintenance before the parts move into Seoul Industry's in-house precision-machining process.",
+      "ダイカスト供給段階では、素材、湯流れ・充填・凝固解析、T5熱処理、金型保全を管理し、その後ソウル産業の社内精密加工工程へつなぎます。",
+    ),
+    detailTags: ["CASTING SUPPLY", "IN-HOUSE MACHINING", "CMM / AUTOMATED INSPECTION"],
+    lineupTitle: localized(
+      "BSM 하우징 5종 가공 사례",
+      "Five BSM housing machining examples",
+      "BSMハウジング5種の加工事例",
+    ),
+    lineupCopy: localized(
+      "크기와 기준면 구성이 다른 다섯 개 하우징을 실제 형상과 가공 전경 중심으로 소개합니다.",
+      "Five housings with different sizes and datum arrangements are presented through their actual forms and machining views.",
+      "サイズと基準面構成が異なる5種類のハウジングを、実際の形状と加工シーンを中心に紹介します。",
     ),
     overviewImage: machinedAluminumLineupImage,
     families: ["BSM HOUSING", "BSM OIL PUMP COMPONENT", "DIE-CAST ALUMINUM", "PRECISION MACHINING"],
@@ -204,15 +218,26 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   },
   "products/electric-vehicle": {
     eyebrow: "ELECTRIFIED POWERTRAIN",
-    title: localized(
-      "EV 오일 펌프 부품과 전동화용 기어·샤프트",
-      "EV oil-pump components and electrified-powertrain gears and shafts",
-      "EVオイルポンプ部品と電動化パワートレイン向けギヤ・シャフト",
+    detailTitle: localized(
+      "양산 부품과 개발 시제품의 구분 대응",
+      "Separate paths for production parts and development prototypes",
+      "量産部品と開発試作品を区分して対応",
     ),
-    copy: localized(
-      "EV 감속기 윤활 시스템용 오일 펌프 하우징·커버를 가공하고, 전동화용 기어 샤프트·코액시얼 샤프트·링크 샤프트의 설계 검토와 시제품 제작·검증에 대응합니다. 제품별 승인 단계에 따라 형상과 품질 기준을 구분해 관리합니다.",
-      "We machine oil-pump housings and covers for EV reduction-gear lubrication systems and support design reviews, prototype production, and validation for electrified-powertrain gear shafts, coaxial shafts, and link shafts. Geometry and quality criteria are controlled according to each product's approval stage.",
-      "EV減速機の潤滑システム向けオイルポンプハウジング・カバーを加工し、電動化パワートレイン向けギヤシャフト、コアキシャルシャフト、リンクシャフトの設計検討・試作品の製作・検証に対応します。製品ごとの承認段階に応じて形状と品質基準を区分して管理します。",
+    detailCopy: localized(
+      "EV 감속기용 오일 펌프 하우징·커버는 양산 공정으로, 전동화용 샤프트는 설계 검증용 시제품으로 구분해 제작합니다. 도면 검토와 승인 단계도 제품 성격에 맞춰 별도로 운영합니다.",
+      "EV reduction-gear oil-pump housings and covers follow a production process, while electrified-powertrain shafts are made as design-validation prototypes. Drawing reviews and approval stages are managed separately for each product type.",
+      "EV減速機用オイルポンプのハウジング・カバーは量産工程で、電動化パワートレイン向けシャフトは設計検証用試作品として区分して製作します。図面検討と承認段階も製品の性格に合わせて個別に運用します。",
+    ),
+    detailTags: ["SERIES PRODUCTION", "DEVELOPMENT PROTOTYPE", "CUSTOMER APPROVAL STAGE"],
+    lineupTitle: localized(
+      "하우징·커버와 전동화 샤프트",
+      "Housings, covers, and electrified-powertrain shafts",
+      "ハウジング・カバーと電動化シャフト",
+    ),
+    lineupCopy: localized(
+      "알루미늄 하우징 계열과 회전축 계열을 나누어 실제 형상과 제품별 개발 구분을 이미지와 영상으로 소개합니다.",
+      "The gallery separates aluminum-housing parts from rotating shafts and presents their actual forms and product-development categories through images and video.",
+      "アルミハウジング系と回転シャフト系に分け、実際の形状と製品別の開発区分を画像・動画で紹介します。",
     ),
     overviewImage: electrifiedLineupImage,
     families: ["EV OIL PUMP HOUSING / COVER", "HEV GEAR SHAFT", "COAXIAL / LINK SHAFT"],
@@ -310,11 +335,26 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   },
   "products/steering": {
     eyebrow: "STEERING PARTS",
-    title: localized("조향 시스템 정밀 부품", "Precision components for steering systems", "ステアリングシステムの精密部品"),
-    copy: localized(
-      "피니언, 피니언 샤프트, 피스톤, 랙 부시, 토션 바를 생산합니다. 치형·스플라인 형상, 런아웃, 열처리 및 교정 요구사항을 제품별 관리 기준에 따라 확인합니다.",
-      "We produce pinions, pinion shafts, pistons, rack bushes, and torsion bars. Gear and spline geometry, runout, heat-treatment, and straightening requirements are verified against product-specific control criteria.",
-      "ピニオン、ピニオンシャフト、ピストン、ラックブッシュ、トーションバーを生産します。歯形・スプライン形状、振れ、熱処理、矯正の要求事項を製品別の管理基準に従って確認します。",
+    detailTitle: localized(
+      "헬리컬 피니언 샤프트에서 시작된 조향 부품",
+      "Steering components built from helical-pinion-shaft experience",
+      "ヘリカルピニオンシャフトから広がったステアリング部品",
+    ),
+    detailCopy: localized(
+      "서울산업은 조향 부품 사업 초기부터 헬리컬 기어 피니언 샤프트의 호빙 가공 경험을 축적해 왔습니다. 치형·스플라인 가공 결과는 고객 승인 도면을 기준으로 기어 측정기, CMM, 공정 내 검사 및 최종 자동 검사로 검증합니다.",
+      "Seoul Industry has built hobbing experience for helical-gear pinion shafts since the early stages of its steering-component business. Gear and spline machining results are verified against customer-approved drawings using gear-measuring equipment, CMM, in-process inspection, and final automated inspection.",
+      "ソウル産業はステアリング部品事業の初期から、ヘリカルギヤを備えたピニオンシャフトのホブ加工経験を蓄積してきました。歯形・スプラインの加工結果は、顧客承認図面に基づき、ギヤ測定機、CMM、工程内検査、最終自動検査で検証します。",
+    ),
+    detailTags: ["HOBBING EXPERIENCE", "GEAR MEASUREMENT", "CMM / AUTOMATED INSPECTION"],
+    lineupTitle: localized(
+      "조향 장치용 부품 5종",
+      "Five component types for steering assemblies",
+      "ステアリング装置向け部品5種",
+    ),
+    lineupCopy: localized(
+      "회전축, 작동 부품 및 지지 부품으로 구분되는 형상 차이와 각 품목의 적용 용도를 이미지와 영상으로 확인할 수 있습니다.",
+      "Images and video show the geometric differences among rotating, actuating, and supporting components, together with each item's application.",
+      "回転部品、作動部品、支持部品に分かれる形状の違いと、各品目の用途を画像・動画で確認できます。",
     ),
     overviewImage: steeringLineupImage,
     families: ["PINION", "PINION SHAFT", "PISTON", "RACK BUSH", "TORSION BAR"],
@@ -413,18 +453,33 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   },
   "products/powertrain": {
     eyebrow: "POWERTRAIN PARTS",
-    title: localized("파워트레인 정밀 부품", "Precision components for powertrain systems", "パワートレインの精密部品"),
-    copy: localized(
-      "6단 변속기용 샤프트, 8L90 입력·출력 샤프트, 10R140 변속기 샤프트를 비롯해 오일 펌프 샤프트, 브레이크 모듈 샤프트, 캠샤프트 노즈 피스 및 밸런스 샤프트를 생산합니다.",
-      "We produce six-speed transmission shafts, 8L90 input and output shafts, and 10R140 transmission shafts, along with oil-pump shafts, brake-module shafts, camshaft nose pieces, and balance shafts.",
-      "6速トランスミッションシャフト、8L90の入力・出力シャフト、10R140用トランスミッションシャフトに加え、オイルポンプシャフト、ブレーキモジュールシャフト、カムシャフトノーズピース、バランスシャフトを生産します。",
+    detailTitle: localized(
+      "기능 부위별로 구분한 샤프트 공정",
+      "Shaft processes organized by functional area",
+      "機能部位別に区分したシャフト工程",
+    ),
+    detailCopy: localized(
+      "장축·중공 샤프트에는 심공 가공을 적용하고, 제품에 따라 고주파 열처리와 연삭·폴리싱을 조합합니다. 각 공정 결과는 기능 부위에 맞는 측정 항목으로 확인합니다.",
+      "Long and hollow shafts use deep-hole drilling, with induction hardening and grinding or polishing combined as required by the product. Each process result is checked using measurements assigned to the relevant functional area.",
+      "長尺・中空シャフトには深穴加工を適用し、製品に応じて高周波焼入れと研削・ポリッシングを組み合わせます。各工程結果は機能部位に応じた測定項目で確認します。",
+    ),
+    detailTags: ["DEEP-HOLE DRILLING", "INDUCTION HARDENING", "GRINDING / POLISHING", "MPI / METALLURGY"],
+    lineupTitle: localized(
+      "구동 위치별 대표 샤프트와 엔진 부품",
+      "Representative shafts and engine components by application",
+      "搭載位置別の代表シャフト・エンジン部品",
+    ),
+    lineupCopy: localized(
+      "장축, 기어 일체형 및 단품 구성으로 나뉘는 형상 차이와 각 부품의 적용 위치를 실제 제품 이미지와 영상으로 비교합니다.",
+      "Product images and videos compare long-shaft, integral-gear, and discrete-component forms together with their application positions.",
+      "長尺、ギヤ一体型、単品構成に分かれる形状の違いと各部品の搭載位置を、実製品の画像・動画で比較します。",
     ),
     overviewImage: powertrainLineupImage,
     overviewPresentation: "portrait-focused",
     families: ["TRANSMISSION SHAFT", "OIL PUMP SHAFT", "BRAKE MODULE SHAFT", "CAMSHAFT NOSE PIECE", "BALANCE SHAFT"],
     parts: [
       {
-        title: localized("8L90 출력 샤프트", "8L90 Output Shaft", "8L90出力シャフト"),
+        title: localized("출력 샤프트", "Output Shaft", "出力シャフト"),
         application: localized("자동변속기에서 토크를 전달하는 출력 샤프트", "Output shaft for torque transmission in automatic transmissions", "オートマチックトランスミッションでトルクを伝達する出力シャフト"),
         poster: transmissionOutputPoster,
         video: transmissionOutputVideo,
@@ -443,8 +498,8 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         mediaFit: "cover",
       },
       {
-        title: localized("10R140 변속기 샤프트", "10R140 Transmission Shaft", "10R140トランスミッションシャフト"),
-        application: localized("10R140 자동변속기용 정밀 샤프트", "Precision shaft for 10R140 automatic transmissions", "10R140オートマチックトランスミッション用精密シャフト"),
+        title: localized("변속기 샤프트", "Transmission Shaft", "トランスミッションシャフト"),
+        application: localized("자동변속기용 정밀 샤프트", "Precision shaft for automatic transmissions", "オートマチックトランスミッション用精密シャフト"),
         poster: transmission10r140Poster,
         video: transmission10r140Video,
       },
@@ -452,23 +507,23 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     qualityStory: {
       eyebrow: "TRANSMISSION SHAFT CONTROL",
       title: localized(
-        "6단·8L90·10R140 변속기 샤프트의 기능 부위별 공정과 검사 기준을 구분해 관리합니다",
-        "Process and inspection criteria are defined for each functional area of 6-speed, 8L90, and 10R140 transmission shafts",
-        "6速・8L90・10R140トランスミッションシャフトの機能部位ごとに工程・検査基準を区分して管理します",
+        "6단·8단·10단 변속기 샤프트의 기능 부위별 공정과 검사 기준을 구분해 관리합니다",
+        "Process and inspection criteria are defined for each functional area of 6-, 8-, and 10-speed transmission shafts",
+        "6速・8速・10速トランスミッションシャフトの機能部位ごとに工程・検査基準を区分して管理します",
       ),
       copy: localized(
-        "토크 전달용 기어·스플라인, 심공 가공된 중공부, 베어링 장착면, 고주파 경화부를 각각의 공정 기준과 측정 결과로 관리합니다. 6단·8L90·10R140 변속기 샤프트와 오일 펌프·밸런스 샤프트의 제품별 요구사항을 공통 품질 관리 체계 안에서 관리합니다.",
-        "Torque-transmitting gears and splines, hollow sections produced by deep-hole drilling, bearing seats, and induction-hardened areas are controlled using feature-specific process criteria and measurement results. Product-specific requirements for 6-speed, 8L90, and 10R140 transmission shafts and for oil-pump and balance-shaft components are managed within a common quality-control system.",
-        "トルク伝達用ギヤ・スプライン、深穴加工された中空部、ベアリング取付面、高周波焼入れ部を、それぞれの工程基準と測定結果で管理します。6速・8L90・10R140トランスミッションシャフトとオイルポンプ・バランスシャフトの製品別要求事項を共通の品質管理体系で管理します。",
+        "토크 전달용 기어·스플라인, 심공 가공된 중공부, 베어링 장착면, 고주파 경화부를 각각의 공정 기준과 측정 결과로 관리합니다. 6단·8단·10단 변속기 샤프트와 오일 펌프·밸런스 샤프트의 제품별 요구사항을 공통 품질 관리 체계 안에서 관리합니다.",
+        "Torque-transmitting gears and splines, hollow sections produced by deep-hole drilling, bearing seats, and induction-hardened areas are controlled using feature-specific process criteria and measurement results. Product-specific requirements for 6-, 8-, and 10-speed transmission shafts and for oil-pump and balance-shaft components are managed within a common quality-control system.",
+        "トルク伝達用ギヤ・スプライン、深穴加工された中空部、ベアリング取付面、高周波焼入れ部を、それぞれの工程基準と測定結果で管理します。6速・8速・10速トランスミッションシャフトとオイルポンプ・バランスシャフトの製品別要求事項を共通の品質管理体系で管理します。",
       ),
       sourceSlides: [7, 8, 9, 10, 11, 12, 15, 16, 22],
     },
     qualityControls: [
       {
         feature: localized(
-          "6단·8L90·10R140 샤프트",
-          "6-speed, 8L90, and 10R140 shafts",
-          "6速・8L90・10R140シャフト",
+          "6단·8단·10단 샤프트",
+          "6-, 8-, and 10-speed shafts",
+          "6速・8速・10速シャフト",
         ),
         characteristic: localized(
           "토크 전달용 기어·스플라인과 샤프트 형상",
@@ -528,11 +583,26 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   },
   "products/driveline": {
     eyebrow: "DRIVELINE PARTS",
-    title: localized("드라이브라인 정밀 부품", "Precision components for driveline systems", "ドライブラインの精密部品"),
-    copy: localized(
-      "트랜스퍼 케이스와 ETM용 액추에이터 샤프트, EMCD 허브 및 디스크 캐리어 부품을 생산합니다. 제품 형상에 따라 호빙·브로칭·랙 롤링·레이저 용접·조립 공정을 적용합니다.",
-      "We produce actuator shafts, EMCD hubs, and disc-carrier components for transfer cases and ETM systems. Hobbing, broaching, rack rolling, laser welding, and assembly are applied according to part geometry.",
-      "トランスファーケースおよびETM向けのアクチュエーターシャフト、EMCDハブ、ディスクキャリア部品を生産します。製品形状に応じてホブ加工、ブローチ加工、ラック転造、レーザー溶接・組立を適用します。",
+    detailTitle: localized(
+      "형상에 따라 달라지는 공정 경로",
+      "Process routes selected by component geometry",
+      "形状に応じて選定する工程ルート",
+    ),
+    detailCopy: localized(
+      "ETM과 트랜스퍼 케이스 부품에는 형상에 따라 호빙, 내경 스플라인 브로칭, 랙 롤링, 레이저 용접·조립을 적용합니다. EMCD 허브의 내측 스플라인 단조와 액추에이터 샤프트의 블록 치형 롤링은 제품별 승인 사양에 따라 적용합니다.",
+      "ETM and transfer-case parts use hobbing, internal-spline broaching, rack rolling, laser welding, and assembly according to component geometry. Forged internal splines for EMCD hubs and rolled block teeth for actuator shafts are applied to product-specific approved specifications.",
+      "ETM・トランスファーケース部品には、形状に応じてホブ加工、内径スプラインブローチ加工、ラック転造、レーザー溶接・組立を適用します。EMCDハブの内スプライン鍛造とアクチュエーターシャフトのブロック歯形転造は、製品別の承認仕様に基づいて適用します。",
+    ),
+    detailTags: ["HOBBING", "INTERNAL-SPLINE BROACHING", "RACK ROLLING", "LASER WELDING"],
+    lineupTitle: localized(
+      "ETM·트랜스퍼 케이스 부품 라인업",
+      "ETM and transfer-case component lineup",
+      "ETM・トランスファーケース部品ラインアップ",
+    ),
+    lineupCopy: localized(
+      "치형, 내경 스플라인 및 용접 조립부처럼 제품마다 다른 구조와 적용 용도를 실제 이미지와 영상으로 비교합니다.",
+      "Images and videos compare product-specific structures such as toothed features, internal splines, and welded assemblies, together with their applications.",
+      "歯形、内径スプライン、溶接組立部など、製品ごとに異なる構造と用途を画像・動画で比較します。",
     ),
     overviewImage: drivelineLineupImage,
     overviewPresentation: "portrait-focused",
@@ -642,11 +712,18 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   },
   "products/etc": {
     eyebrow: "DEFENSE & SPECIAL PROJECTS",
-    title: localized("DEFENSE", "DEFENSE", "DEFENSE"),
-    copy: localized(
+    detailTitle: localized("보안 프로젝트 협의", "Secure-project consultation", "機密プロジェクトの協議"),
+    detailCopy: localized(
       "방산·특수 프로젝트 관련 정보는 대외 공개 범위를 제한하며, 구체적인 대응 범위와 관리 기준은 보안 및 고객 승인 조건에 따라 개별 협의합니다.",
       "Public disclosure of information related to defense and special projects is restricted. Specific project scope and control requirements are agreed case by case according to security and customer-approval conditions.",
       "防衛・特別プロジェクトに関する情報は対外公開の範囲を限定し、具体的な対応範囲と管理基準はセキュリティおよび顧客承認条件に応じて個別に協議します。",
+    ),
+    detailTags: ["SECURE PROJECT INQUIRY", "CUSTOMER APPROVAL", "CONTROLLED DISCLOSURE"],
+    lineupTitle: localized("공개 가능한 협의 범위", "Scope available for public consultation", "公開可能な協議範囲"),
+    lineupCopy: localized(
+      "실제 제품 정보는 공개하지 않으며, 프로젝트별 제조·품질 관리 범위만 개별 협의합니다.",
+      "Actual product information is not disclosed; manufacturing and quality-control scope is discussed for each project.",
+      "実製品の情報は公開せず、プロジェクトごとの製造・品質管理範囲のみ個別に協議します。",
     ),
     overviewImage: defenseSpecialProjectsImage,
     families: ["SECURE PROJECT INQUIRY", "SCOPE REVIEW", "CUSTOMER APPROVAL", "CONTROLLED DISCLOSURE"],
