@@ -104,11 +104,11 @@ function applyKoreanCopy(content: SiteContent) {
     fillLines: ["도면 검토부터 양산 공급까지,", "자동차 부품 OEM 생산을 끝까지 책임집니다."],
   });
   const productCopies = [
-    "BSM HOUSING·OIL PUMP COMPONENT 알루미늄 가공 부품",
-    "EV OIL PUMP HOUSING·COVER와 전동화용 GEAR·COAXIAL·LINK SHAFT",
-    "PINION, PINION SHAFT, PISTON, RACK BUSH, TORSION BAR",
-    "변속기용 SHAFT와 엔진용 CAMSHAFT NOSE PIECE, BALANCE SHAFT",
-    "TRANSFER CASE·ETM용 DISC CARRIER, HUB, ACTUATOR SHAFT",
+    "BSM 하우징·오일 펌프용 알루미늄 가공 부품",
+    "EV 오일 펌프 하우징·커버와 전동화용 기어 샤프트·코액시얼 샤프트·링크 샤프트",
+    "조향 장치용 피니언, 피니언 샤프트, 피스톤, 랙 부시, 토션 바",
+    "변속기용 샤프트와 엔진용 캠샤프트 노즈 피스, 밸런스 샤프트",
+    "트랜스퍼 케이스·ETM용 디스크 캐리어, 허브, 액추에이터 샤프트",
   ];
   const latestCopies = [
     "BSM 하우징·오일 펌프용 알루미늄 가공 부품",
@@ -145,7 +145,7 @@ function applyKoreanCopy(content: SiteContent) {
     {
       id: "machining",
       copy: "부품별 가공 조건을 표준화해 자동차 부품에 필요한 반복 정밀도와 표면 품질, 안정적인 생산성을 확보합니다.",
-      details: ["부품군과 도면 요구 조건에 맞춰 CNC 조건을 설정합니다.", "반복 생산 중 치수 변동과 재가공을 줄입니다.", "설비 조건과 가공 이력을 기록해 품질 편차를 줄입니다."],
+      details: ["부품군과 도면 요구 조건에 맞춰 CNC 조건을 설정합니다.", "반복 생산 중 치수 변동과 재가공을 줄입니다.", "설비 조건과 가공 이력을 기록해 품질 편차를 관리합니다."],
     },
     {
       id: "quality",
@@ -161,7 +161,7 @@ function applyKoreanCopy(content: SiteContent) {
 
   Object.assign(content.historyHeading, {
     title: "서울산업이 제조 기반을 확장해 온 역사",
-    copy: "1985년 설립 이후 조향 부품, 파워트레인, 드라이브라인과 전동화 부품으로 영역을 넓히며 품질 인증, 연구 개발, 글로벌 고객 대응과 생산 기술을 고도화해 왔습니다.",
+    copy: "1985년 설립 이후 조향 부품, 파워트레인, 드라이브라인과 전동화 부품으로 영역을 넓히며 품질 인증과 연구 개발, 글로벌 고객 대응 체계, 생산 기술을 꾸준히 강화해 왔습니다.",
   });
   content.historyEras = patchByIndex<HistoryEra>(content.historyEras, [
     {
@@ -177,11 +177,11 @@ function applyKoreanCopy(content: SiteContent) {
     {
       title: "글로벌 OEM 대응 기반 구축",
       summary: "품질·환경 인증과 공장 확장, 글로벌 고객 등록을 통해 양산 대응 기반을 강화했습니다.",
-      items: ["2001년 QS9000·ISO 9002 인증", "2002년 Delphi Korea 협력업체 등록", "2003년 TRW 미국·일본·말레이시아 협력업체 등록", "2004년 Metaldyne 미국·한국 협력업체 등록 및 ISO/TS 16949·ISO 14001 인증", "2006년 공장 확장 이전", "2007년 Nexteer, ThyssenKrupp Presta, Magna Powertrain 협력업체 등록"],
+      items: ["2001년 QS-9000·ISO 9002 인증", "2002년 Delphi Korea 협력업체 등록", "2003년 TRW 미국·일본·말레이시아 협력업체 등록", "2004년 Metaldyne 미국·한국 협력업체 등록 및 ISO/TS 16949·ISO 14001 인증", "2006년 공장 확장 이전", "2007년 Nexteer, ThyssenKrupp Presta, Magna Powertrain 협력업체 등록"],
     },
     {
       title: "정밀 가공 기반 구축",
-      summary: "서울산업을 설립하고 조향부품과 헬리컬 기어 샤프트 양산 기반을 구축했습니다.",
+      summary: "서울산업을 설립하고 조향 부품과 헬리컬 기어 샤프트 양산 기반을 구축했습니다.",
       items: ["1985년 서울산업 설립", "1987년 TRW Korea 협력업체 등록", "1990년 조향 부품 사업 진출", "1999년 Pinion Shaft, Piston, Torsion Bar 및 헬리컬 기어 샤프트 제조"],
     },
   ]);
@@ -233,14 +233,14 @@ function applyEnglishCopy(content: SiteContent) {
   const productCopies = [
     "Machined-aluminum BSM housings and oil-pump components.",
     "EV oil-pump housings and covers plus electrified-powertrain gear shafts, coaxial shafts, and link shafts.",
-    "Pinions, pinion shafts, pistons, rack bushes, and torsion bars.",
+    "Pinions, pinion shafts, pistons, rack bushings, and torsion bars.",
     "Transmission shafts plus camshaft nose pieces and balance shafts for powertrain systems.",
     "Disc carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
   ];
   const latestCopies = [
     "Machined-aluminum BSM housings and oil-pump components.",
     "EV oil-pump housings and covers plus electrified-powertrain gear shafts, coaxial shafts, and link shafts.",
-    "Pinions, pinion shafts, pistons, rack bushes, and torsion bars for steering systems.",
+    "Pinions, pinion shafts, pistons, rack bushings, and torsion bars for steering systems.",
     "Camshaft-end drive-interface components and transmission shafts.",
     "Disc carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
   ];
@@ -291,17 +291,17 @@ function applyEnglishCopy(content: SiteContent) {
 
   Object.assign(content.historyHeading, {
     title: "How Seoul Industry built its manufacturing base",
-    copy: "Founded in 1985, Seoul Industry expanded from steering into powertrain, driveline, and electrified components while strengthening certified quality, R&D, global customer support, and production technology.",
+    copy: "Founded in 1985, Seoul Industry expanded from steering into powertrain, driveline, and electrified components while strengthening quality certifications, R&D, global customer programs, and production technology.",
   });
   content.historyEras = patchByIndex<HistoryEra>(content.historyEras, [
     {
       title: "Electrification and new customer programs",
       summary: "The product range now covers ICE, HEV, PHEV, and BEV programs.",
-      items: ["Registered as an AAM supplier in the US and Korea in 2021", "Launched PHEV gearbox Link Shaft production in 2022", "Developing new ICE, HEV, PHEV, and BEV customers from 2025"],
+      items: ["Registered as an AAM supplier in the US and Korea in 2021", "Launched PHEV gearbox link-shaft production in 2022", "Developing new ICE, HEV, PHEV, and BEV customers from 2025"],
     },
     {
       title: "Global business expansion",
-      summary: "European and North American customer programs expanded the company's driveline business base.",
+      summary: "European and North American customer programs expanded the company's driveline business.",
       items: ["Registered as a supplier to GKN Driveline in Europe and the United States in 2012", "Registered as a supplier to Spartan LTM in the United States in 2014", "Expanded driveline products and global customer programs"],
     },
     {
@@ -363,7 +363,7 @@ function applyJapaneseCopy(content: SiteContent) {
     "EVオイルポンプハウジング・カバーと電動化パワートレイン向けギヤシャフト、コアキシャルシャフト、リンクシャフト",
     "ピニオン、ピニオンシャフト、ピストン、ラックブッシュ、トーションバー",
     "トランスミッション用シャフトとエンジン用カムシャフトノーズピース、バランスシャフト",
-    "トランスファーケース・ETM向けのディスクキャリア、ハブ、アクチュエーターシャフト類",
+    "トランスファーケース・ETM向けディスクキャリア、ハブ、アクチュエーターシャフト",
   ];
   const latestCopies = [
     "BSMハウジング・オイルポンプ用アルミ加工部品",
@@ -394,7 +394,7 @@ function applyJapaneseCopy(content: SiteContent) {
   ]);
 
   Object.assign(content.solutionHeading, {
-    copy: "図面の検討から精密加工、品質検査、量産供給まで。ソウル産業は自動車部品OEMの製造フロー全体を一つにつなぎます。",
+    copy: "図面の検討から精密加工、品質検査、量産供給まで。ソウル産業は顧客の生産計画に合わせ、自動車部品OEM製造の流れ全体を一つにつなぎます。",
   });
   content.solutions = patchById<Solution>(content.solutions, [
     {
@@ -421,8 +421,8 @@ function applyJapaneseCopy(content: SiteContent) {
   content.historyEras = patchByIndex<HistoryEra>(content.historyEras, [
     {
       title: "電動化対応と新規顧客拡大",
-      summary: "ICE、HEV、PHEV、BEVまで対応範囲を広げています。",
-      items: ["2021年 AAM米国・韓国のサプライヤーとして登録", "2022年 PHEVギヤボックス用リンクシャフトの量産開始", "2025年 ICE・HEV・PHEV・BEVの新規顧客開発"],
+      summary: "ICEからHEV、PHEV、BEVまで対応範囲を広げ、次の成長段階に備えています。",
+      items: ["2021年 AAM米国・韓国のサプライヤーとして登録", "2022年 PHEVギヤボックス用リンクシャフトの量産開始", "2025年 ICE・HEV・PHEV・BEVの新規顧客を開拓"],
     },
     {
       title: "グローバル事業領域の拡大",

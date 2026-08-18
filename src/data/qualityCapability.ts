@@ -62,8 +62,8 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
         {
           code: "01 · LEADERSHIP",
           title: "경영 책임과 고객 중심",
-          copy: "품질 목표, 고객 요구, 중대 이슈와 자원 투입을 경영 검토 안에서 결정합니다.",
-          detail: "고객 요구 · 품질 목표 · 이슈 격상 · 자원 정렬",
+          copy: "품질 목표, 고객 요구, 중대 이슈와 자원 투입을 경영검토를 통해 결정합니다.",
+          detail: "고객 요구 · 품질 목표 · 이슈 격상 · 자원 배분",
         },
         {
           code: "02 · SYSTEM ASSURANCE",
@@ -113,14 +113,14 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
     },
     digitalLoop: {
       eyebrow: "DATA-DRIVEN QUALITY LOOP",
-      title: "측정값을 보관하는 데서 끝내지 않고 공정 결정으로 되돌립니다",
+      title: "측정값을 쌓아 두는 데 그치지 않고 공정 판단에 반영합니다",
       copy:
-        "소재 입고부터 특수공정, 가공 중 측정, 최종 판정까지 각 결과를 이상 발생 시 대응계획과 공정 보정에 연결하고 이력을 남깁니다.",
+        "소재 입고부터 특수공정, 가공 중 측정, 최종 판정까지 각 단계의 결과를 이상 발생 시 대응 계획과 공정 보정으로 연결하고 이력을 남깁니다.",
       items: [
         {
           code: "01 · INCOMING",
           title: "소재·수입 검사",
-          copy: "소재 성적서, 등급, 용강 번호(Heat No.), LOT를 확인하고 치수와 식별 상태를 검증합니다.",
+          copy: "소재 성적서, 재질 등급, 용강 번호(Heat No.), LOT를 확인하고 치수와 식별 상태를 검증합니다.",
           detail: "소재 성적서 · 등급 · 용강 번호 · LOT",
         },
         {
@@ -132,13 +132,13 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
         {
           code: "03 · IN-PROCESS",
           title: "SPC·자동 보정",
-          copy: "연삭 직후 측정값은 SPC로 관리해 적용 공정의 설비 오프셋에 피드백하고, 기어 치형·리드·피치·비틀림은 제품 요구에 따라 검증합니다.",
+          copy: "연삭 직후 측정값은 SPC로 관리하고, 적용 공정에서는 설비 오프셋 보정에 반영하며, 기어 치형·리드·피치·비틀림은 제품 요구에 따라 검증합니다.",
           detail: "연삭 · 기어 정밀 측정 · SPC · 오프셋",
         },
         {
           code: "04 · FINAL RELEASE",
           title: "최종 검사·출하 판정",
-          copy: "제품 특성에 따라 CMM·기어 측정기·전용 게이지를 선택하고, 요구 시 스플라인을 100% 전수 검사하고 청정도를 확인합니다. QR 기반 LOT 추적으로 보관 위치, 선입선출, 검사 상태, 방청, 출하 준비 이력을 연결합니다.",
+          copy: "제품 특성에 따라 CMM·기어 측정기·전용 게이지를 선택하고, 요구 시 스플라인은 전수 검사하고 청정도를 확인합니다. QR 기반 LOT 추적으로 보관 위치, 선입선출, 검사 상태, 방청, 출하 준비 이력을 연결합니다.",
           detail: "정밀 측정 · 조건부 전수 검사 · QR/선입선출 · 출하 판정",
         },
       ],
@@ -170,7 +170,7 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
         {
           code: "04 · CHANGE REVIEW",
           title: "4M 변경 검토",
-          copy: "4M 변경 시 샘플·시험·검증 자료와 필요한 PPAP 진행 상태를 확인합니다.",
+          copy: "4M 변경 시 샘플·시험·검증 자료를 확인하고, 필요한 경우 PPAP 진행 상태까지 점검합니다.",
           detail: "4M · 샘플 · 검증 · PPAP",
         },
       ],
@@ -186,18 +186,18 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
         { title: "표면·윤곽", scope: "Ra · Rz · Rmr · 윤곽", capability: "표면조도와 기능 형상 통합 분석" },
         { title: "진원도", scope: "진원도 · 원통도", capability: "분해능 0.002 μm · 최대 25 kg" },
         { title: "경도·금속조직", scope: "비커스 · 로크웰 · 현미경", capability: "현미경 50–500× · 열처리 결과 확인" },
-        { title: "재료 기계특성", scope: "인장 · 압축", capability: "인장·압축 하중과 변형 거동 확인" },
+        { title: "재료 기계적 특성", scope: "인장 · 압축", capability: "인장·압축 하중과 변형 거동 확인" },
         { title: "용접부 검증", scope: "용접선 · 단면 깊이", capability: "접합부 단면과 용입 깊이 확인" },
       ],
     },
     problemSolving: {
       eyebrow: "STRUCTURED PROBLEM SOLVING",
-      title: "발견부터 표준화까지 닫히는 여섯 단계 개선 루프",
+      title: "발견부터 표준화까지 완결되는 6단계 개선 루프",
       copy:
         "문제를 임시 조치로 끝내지 않고 고객과 후속 공정 보호, 원인 검증, 효과 확인, 표준 반영까지 하나의 이력으로 관리합니다.",
       items: [
         { code: "01", title: "발견", copy: "SPC 신호, 감사 결과, 고객 피드백으로 이상을 식별합니다.", detail: "신호 · 감사 · 피드백" },
-        { code: "02", title: "확산 방지", copy: "영향 범위를 구분하고 고객과 후속 공정을 우선 보호합니다.", detail: "범위 · 추적 · 보호" },
+        { code: "02", title: "유출 방지", copy: "영향 범위를 구분하고 고객과 후속 공정을 우선 보호합니다.", detail: "범위 · 추적 · 보호" },
         { code: "03", title: "원인 분석", copy: "5 Why 분석, 특성요인도, 데이터 층별화로 근본 원인을 검증합니다.", detail: "5 Why · 특성요인도 · 데이터" },
         { code: "04", title: "개선", copy: "원인을 제거하고 오류 방지와 관리 조건을 보완합니다.", detail: "원인 제거 · 오류 방지" },
         { code: "05", title: "효과 검증", copy: "공정 능력과 추세로 개선 효과와 재발 여부를 확인합니다.", detail: "공정 능력 · 추세 · 효과" },
@@ -222,9 +222,9 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
       eyebrow: "EARLY SUPPLIER INVOLVEMENT",
       title: "도면 확정 전부터 제조성·품질 위험·원가를 함께 검토합니다",
       copy:
-        "고객의 기능 요구를 실제 가공 순서, 치공구, 검사 방법과 검증 계획으로 전환합니다. 신규 요구는 제품 요구사항과 고객 승인 단계에 맞춰 별도의 타당성 검증을 수행합니다.",
+        "고객의 기능 요구를 실제 가공 순서, 치공구, 검사 방법, 검증 계획으로 구체화합니다. 신규 요구는 제품 요구사항과 고객 승인 단계에 맞춰 별도의 타당성 검증을 수행합니다.",
       stages: [
-        { code: "01", title: "초기 제조성 검토", copy: "설계 동결 전 기능 요구, 도면, 특별특성과 생산 조건을 함께 검토해 제조성 위험을 조기에 정리합니다.", detail: "초기 공동 엔지니어링 · 도면 · 제조성 검토" },
+        { code: "01", title: "초기 제조성 검토", copy: "설계 동결 전 기능 요구, 도면, 특별특성과 생산 조건을 함께 검토해 제조성 위험을 조기에 식별해 해소합니다.", detail: "초기 공동 엔지니어링 · 도면 · 제조성 검토" },
         { code: "02", title: "공정·치공구 엔지니어링", copy: "장비와 공구 확정 전 공정 순서, 기준면, 클램핑, 사내·외주 공정 경로, 치공구와 검사 전략을 FMEA와 함께 설계합니다.", detail: "FMEA · 기준면 · 치공구 · 관리" },
         { code: "03", title: "데이터 기반 검증·VA/VE", copy: "시험 생산, 측정, 공정 능력과 기능 시험을 승인 단계에 맞춰 검증하고 소재·공정·치공구·사이클 타임 개선안을 제안합니다.", detail: "시험 생산 · 검증 · PPAP · VA/VE" },
       ],
@@ -238,7 +238,7 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
       validation: [
         "단조 유동·응력·변형률·성형하중 시뮬레이션",
         "서보 프레스 하중–변위 모니터링",
-        "제품별 승인 단계에 따른 레이저 용접 용입·접합 상태와 치수 영향의 별도 타당성 검증",
+        "제품별 승인 단계에 맞춘 레이저 용접 용입·접합 상태·치수 영향의 타당성 검증",
         "연삭 측정 데이터의 SPC·설비 보정 피드백",
         "필요 시 외부 전문기관과 연계한 기능 시험",
       ],
@@ -250,7 +250,7 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
       title: "A quality system that turns policy into shop-floor decisions",
       copy: "Leadership, system assurance, and operational control have distinct ownership and are linked through regular review and clear escalation.",
       items: [
-        { code: "01 · LEADERSHIP", title: "Leadership & customer focus", copy: "Quality objectives, customer requirements, critical issues, and resources are reviewed by management.", detail: "Customer · Objectives · Escalation · Resources" },
+        { code: "01 · LEADERSHIP", title: "Leadership & customer focus", copy: "Quality objectives, customer requirements, critical issues, and resource allocation are decided in management review.", detail: "Customer · Objectives · Escalation · Resources" },
         { code: "02 · SYSTEM ASSURANCE", title: "Quality system assurance", copy: "APQP and PPAP, document and change control, audits, and KPI reviews operate as one system.", detail: "APQP / PPAP · Change · Audit · KPI" },
         { code: "03 · OPERATIONAL CONTROL", title: "Shop-floor quality execution", copy: "Incoming, in-process, special-process, and final inspections are integrated with metrology and lot traceability.", detail: "Incoming · Process · Special · Final · Trace" },
       ],
@@ -260,9 +260,9 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
       title: "Operating standards for automotive production and special processes",
       copy: "Certifications and process standards are translated into customer-specific audits, validation, calibration, and traceable process records.",
       items: [
-        { code: "AUTOMOTIVE QMS", title: "IATF 16949", copy: "An automotive quality management system supports production discipline.", detail: "CSR · APQP / PPAP · Change Control" },
+        { code: "AUTOMOTIVE QMS", title: "IATF 16949", copy: "An automotive quality management system underpins volume production of automotive parts.", detail: "CSR · APQP / PPAP · Change Control" },
         { code: "SUPPLIER QUALITY", title: "MSQ", copy: "Hyundai Mobis supplier-quality requirements are applied to machining operations.", detail: "Machining Grade G · Supply Quality" },
-        { code: "PROCESS AUDIT", title: "VDA 6.3-based audit capability", copy: "A VDA 6.3 process view supports risk review and process-maturity checks in quality operations.", detail: "Process Audit · Risk Review · Maturity" },
+        { code: "PROCESS AUDIT", title: "VDA 6.3-based audit capability", copy: "VDA 6.3-based process audits support risk review and process-maturity checks in quality operations.", detail: "Process Audit · Risk Review · Maturity" },
         { code: "SPECIAL PROCESS", title: "CQI-9 · CQI-15", copy: "Induction hardening, tempering, and laser welding are controlled through CQI-based process parameters, calibration, validation, and records.", detail: "CQI-9 Heat Treatment · CQI-15 Welding" },
       ],
     },
@@ -271,15 +271,15 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
       title: "Measurement results inform process decisions—not just recordkeeping",
       copy: "From incoming material through special processes, in-process measurement, and final release, each result informs reaction plans and process adjustments while preserving traceable evidence.",
       items: [
-        { code: "01 · INCOMING", title: "Material & incoming", copy: "Material certificates, grade, heat number, lot, dimensions, and identification status are verified.", detail: "Material Certificate · Grade · Heat No. · Lot" },
+        { code: "01 · INCOMING", title: "Material & incoming inspection", copy: "Material certificates, grade, heat number, lot, dimensions, and identification status are verified.", detail: "Material Certificate · Grade · Heat No. · Lot" },
         { code: "02 · SPECIAL PROCESS", title: "Heat treatment & welding", copy: "Induction hardening, tempering, and laser-welding conditions, calibration, and validation are retained as traceable records.", detail: "Parameter · Calibration · Verification" },
         { code: "03 · IN-PROCESS", title: "SPC & automatic offset", copy: "Post-grinding measurements are managed in SPC and, where applied, fed back to equipment offsets; gear profile, lead, pitch, and twist are verified against product requirements.", detail: "Grinding · Gear Metrology · SPC · Offset" },
-        { code: "04 · FINAL RELEASE", title: "Final inspection & release", copy: "CMM, gear metrology, and dedicated gauges are selected by product characteristic; where required, 100% spline gauging and cleanliness checks are applied. QR-linked lot records connect storage location, FIFO status, inspection status, rust prevention, and shipment readiness.", detail: "Metrology · Conditional 100% · QR/FIFO · Release" },
+        { code: "04 · FINAL RELEASE", title: "Final inspection & release", copy: "CMM, gear measuring machines, and dedicated gauges are selected for each product characteristic; where required, 100% spline gauging and cleanliness checks are applied. QR-linked lot records connect storage location, FIFO status, inspection status, rust prevention, and shipment readiness.", detail: "Metrology · Conditional 100% · QR/FIFO · Release" },
       ],
     },
     shopFloorAssurance: {
       eyebrow: "SHOP-FLOOR ASSURANCE",
-      title: "Consistent decisions through audits, verification, and training",
+      title: "Consistent shop-floor decisions through audits, verification, and competency management",
       copy:
         "Production risk is managed proactively through layered process audits, planned correlation checks between automated inspection results and CMM reference measurements, inspector qualification, and structured 4M change review.",
       items: [
@@ -320,7 +320,7 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
         { title: "Roundness", scope: "Roundness · Cylindricity", capability: "0.002 μm resolution · Up to 25 kg" },
         { title: "Hardness & metallurgy", scope: "Vickers · Rockwell · Microscope", capability: "50–500× microscopy for heat-treatment checks" },
         { title: "Mechanical properties", scope: "Tensile · Compression", capability: "Load and deformation behavior verification" },
-        { title: "Weld verification", scope: "Weld seam · Section depth", capability: "Joint cross-section and penetration-depth review" },
+        { title: "Weld verification", scope: "Weld seam · Penetration depth", capability: "Joint cross-section and penetration-depth review" },
       ],
     },
     problemSolving: {
@@ -341,10 +341,10 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
       title: "Supplier quality from selection through volume production",
       copy: "Material and outsourced-process quality are validated within the same connected flow as Seoul Industry’s internal operations, with oversight adjusted to performance and risk.",
       items: [
-        { code: "01", title: "New supplier evaluation", copy: "Review quality systems, technical capability, problem-solving methods, and traceability through on-site and document reviews.", detail: "System · Process · Technical" },
-        { code: "02", title: "APQP management", copy: "Review PFMEA, assurance planning, timing, and open issues through stage gates.", detail: "Gate Review · Open Issue" },
+        { code: "01", title: "New supplier evaluation", copy: "Assess quality systems, technical capability, problem-solving methods, and traceability through on-site audits and document review.", detail: "System · Process · Technical" },
+        { code: "02", title: "APQP management", copy: "Review PFMEA, assurance planning, timing, and open issues through stage gates.", detail: "Gate Review · Open Issues" },
         { code: "03", title: "PPAP approval", copy: "Validate approval evidence and production readiness for new and changed parts.", detail: "PPAP · Run-at-Rate" },
-        { code: "04", title: "Quality response", copy: "Connect root cause, corrective action, and effectiveness review to prevent recurrence.", detail: "CAPA · Effectiveness · Prevention" },
+        { code: "04", title: "Quality issue response", copy: "Connect root cause, corrective action, and effectiveness review to prevent recurrence.", detail: "CAPA · Effectiveness · Prevention" },
         { code: "05", title: "Process improvement", copy: "Use system, process, and product audits to support improvement and training.", detail: "Audit · Coaching · Capability Improvement" },
         { code: "06", title: "Production control", copy: "Monitor performance and changes continuously and track open issues to closure.", detail: "KPI · Change · Follow-up" },
       ],
@@ -360,16 +360,16 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
       ],
       toolsTitle: "Engineering tools connecting design and manufacturing",
       tools: [
-        { label: "2D ENGINEERING", title: "AutoCAD", copy: "Drawing review, process and line layouts, and fixture details" },
+        { label: "2D ENGINEERING", title: "AutoCAD", copy: "Drawing review, process and line layouts, and detailed fixture design" },
         { label: "3D ENGINEERING", title: "Autodesk Inventor", copy: "3D modeling, assembly and interference review, and fixture concepts" },
-        { label: "CAM & COST SUPPORT", title: "Mastercam", copy: "Toolpaths, machining access, cycle time, and early cost review" },
+        { label: "CAM & COST SUPPORT", title: "Mastercam", copy: "Toolpaths, tool access, cycle time, and early cost review" },
       ],
       validationTitle: "Evidence for manufacturing decisions",
       validation: [
-        "Forging simulation for flow, stress, strain, and forming load",
-        "Servo-press force–distance monitoring",
+        "Forging simulation of material flow, stress, strain, and forming load",
+        "Servo-press force–displacement monitoring",
         "Separate feasibility validation of laser-weld penetration, joint condition, and dimensional impact at each product approval stage",
-        "Grinding SPC and measurement feedback to equipment offsets",
+        "SPC on grinding measurement data, fed back to machine offsets",
         "External functional testing through qualified institutes when required",
       ],
     },
@@ -382,7 +382,7 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
       items: [
         { code: "01 · LEADERSHIP", title: "経営責任と顧客重視", copy: "品質目標、顧客要求、重大課題、資源配分をマネジメントレビューで判断します。", detail: "顧客要求 · 品質目標 · エスカレーション · 資源" },
         { code: "02 · SYSTEM ASSURANCE", title: "品質システム保証", copy: "APQP・PPAP、文書・変更管理、内部・工程監査、KPIレビューを一つのシステムで運用します。", detail: "APQP / PPAP · 変更管理 · 工程監査 · KPI" },
-        { code: "03 · OPERATIONAL CONTROL", title: "現場品質の実行", copy: "受入検査、工程・特殊工程検査、最終検査を、精密測定とロットトレーサビリティに連携させます。", detail: "受入 · 工程 · 特殊工程 · 最終検査 · 追跡性" },
+        { code: "03 · OPERATIONAL CONTROL", title: "現場品質の実行", copy: "受入検査、工程・特殊工程検査、最終検査を、精密測定およびロットトレーサビリティと結びつけて管理します。", detail: "受入 · 工程 · 特殊工程 · 最終検査 · トレーサビリティ" },
       ],
     },
     credentials: {
@@ -392,7 +392,7 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
       items: [
         { code: "AUTOMOTIVE QMS", title: "IATF 16949", copy: "自動車部品量産のための品質マネジメントシステムを運用します。", detail: "顧客固有要求 · APQP / PPAP · 変更管理" },
         { code: "SUPPLIER QUALITY", title: "MSQ", copy: "現代モービスのサプライヤー品質基準を加工現場に適用します。", detail: "加工分野G等級 · 供給品質管理" },
-        { code: "PROCESS AUDIT", title: "VDA 6.3に基づく工程監査能力", copy: "VDA 6.3のプロセス視点によるリスク確認と工程成熟度の点検能力を品質管理に反映します。", detail: "工程監査 · リスク確認 · 成熟度" },
+        { code: "PROCESS AUDIT", title: "VDA 6.3に基づく工程監査能力", copy: "VDA 6.3の視点に基づくリスク評価と工程成熟度の点検手法を、品質管理に取り入れています。", detail: "工程監査 · リスク確認 · 成熟度" },
         { code: "SPECIAL PROCESS", title: "CQI-9 · CQI-15", copy: "CQI基準に沿って高周波焼入れ・焼戻しとレーザー溶接の条件、校正、検証、記録を管理します。", detail: "CQI-9 熱処理 · CQI-15 溶接" },
       ],
     },
@@ -404,7 +404,7 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
         { code: "01 · INCOMING", title: "素材・受入検査", copy: "材料証明書、材質、ヒート番号、ロット、寸法、識別状態を確認します。", detail: "材料証明書 · 材質 · ヒート番号 · ロット" },
         { code: "02 · SPECIAL PROCESS", title: "熱処理・溶接管理", copy: "高周波焼入れ・焼戻しとレーザー溶接の工程条件、設備校正、検証結果を追跡可能な記録として管理します。", detail: "工程条件 · 校正 · 検証" },
         { code: "03 · IN-PROCESS", title: "SPC・自動補正", copy: "研削直後の測定値はSPCで管理し、適用工程では設備オフセットへフィードバックします。ギヤの歯形・歯すじ・ピッチ・ねじれは製品要求に応じて検証します。", detail: "研削 · ギヤ測定 · SPC · オフセット" },
-        { code: "04 · FINAL RELEASE", title: "最終検査・出荷判定", copy: "製品特性に応じてCMM、ギヤ測定機、専用ゲージを選定し、要求時にはスプラインの100%全数検査と清浄度確認を行います。QRコードにひもづくロット記録により、保管位置、先入れ先出し、検査状態、防錆、出荷準備の履歴を連携します。", detail: "精密測定 · 条件別全数検査 · QR／先入れ先出し · 出荷判定" },
+        { code: "04 · FINAL RELEASE", title: "最終検査・出荷判定", copy: "製品特性に応じてCMM、ギヤ測定機、専用ゲージを選定し、要求時にはスプラインの100%全数検査と清浄度確認を行います。QRコードに紐づくロット記録により、保管位置、先入れ先出し、検査状態、防錆、出荷準備までの履歴を一元管理します。", detail: "精密測定 · 条件付き全数検査 · QR／先入れ先出し · 出荷判定" },
       ],
     },
     shopFloorAssurance: {
@@ -442,7 +442,7 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
     measurement: {
       eyebrow: "QUALITY LAB & METROLOGY",
       title: "寸法からギヤ、表面、材質、溶接断面まで社内で検証",
-      copy: "製品特性と管理目的に応じて測定・試験設備を選定し、結果を工程判断と出荷根拠に活用します。",
+      copy: "製品特性と管理目的に応じて測定・試験設備を選定し、結果を工程判断と出荷判定の根拠として活用します。",
       items: [
         { title: "三次元測定", scope: "CMM · GD&T · 複合形状", capability: "最大 1,000 × 1,200 × 600 mm" },
         { title: "ギヤ精密測定", scope: "歯形 · 歯すじ · ピッチ", capability: "Ø300 · モジュール 0.2–12 · 長さ 500 mm" },
@@ -471,20 +471,20 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
       title: "選定から量産までつながるサプライヤー品質管理",
       copy: "素材と外注工程の品質を社内工程と同じ一連の流れで検証し、実績とリスクに応じて管理レベルを調整します。",
       items: [
-        { code: "01", title: "新規サプライヤー評価", copy: "品質システム、技術力、問題解決、追跡性を現場と文書で確認します。", detail: "システム · 工程 · 技術" },
-        { code: "02", title: "APQP管理", copy: "PFMEA、品質保証計画、進捗、未解決課題を段階別に確認します。", detail: "段階別レビュー · 未解決課題" },
+        { code: "01", title: "新規サプライヤー評価", copy: "品質システム、技術力、問題解決力、トレーサビリティを現場と文書で確認します。", detail: "システム · 工程 · 技術" },
+        { code: "02", title: "APQP管理", copy: "PFMEA、品質保証計画、進捗、未解決課題を段階ごとに確認します。", detail: "段階別レビュー · 未解決課題" },
         { code: "03", title: "PPAP承認", copy: "新規・変更部品の承認資料と量産準備状態を検証します。", detail: "PPAP · 生産能力確認" },
-        { code: "04", title: "品質問題対応", copy: "根本原因、是正処置、効果確認をつなげて供給網での再発を防ぎます。", detail: "是正処置 · 効果確認 · 再発防止" },
+        { code: "04", title: "品質問題対応", copy: "根本原因、是正処置、効果確認をつなげてサプライチェーンでの再発を防ぎます。", detail: "是正処置 · 効果確認 · 再発防止" },
         { code: "05", title: "工程改善", copy: "システム・工程・製品監査を基に改善と教育を支援します。", detail: "監査 · 指導 · 能力向上" },
-        { code: "06", title: "量産管理", copy: "品質実績と変更点を継続確認し、未解決課題を完了まで追跡します。", detail: "KPI · 変更 · フォローアップ" },
+        { code: "06", title: "量産管理", copy: "品質実績と変更点を継続的に確認し、未解決課題を完了まで追跡します。", detail: "KPI · 変更 · フォローアップ" },
       ],
     },
     engineering: {
       eyebrow: "EARLY SUPPLIER INVOLVEMENT",
-      title: "図面確定前から製造性・品質リスク・コストを共に検討します",
-      copy: "機能要求を加工順序、治工具、検査方法、検証計画へ変換します。新規要求は製品要求事項と顧客承認段階に合わせて個別の実現可能性検証を行います。",
+      title: "図面確定前から、顧客とともに製造性・品質リスク・コストを検討します",
+      copy: "顧客の機能要求を、実際の加工順序、治工具、検査方法、検証計画へ落とし込みます。新規要求は製品要求事項と顧客承認段階に合わせて個別の実現可能性検証を行います。",
       stages: [
-        { code: "01", title: "初期製造性検討", copy: "設計凍結前に機能要求、図面、特殊特性、生産条件を確認し、製造リスクを早期に整理します。", detail: "初期共同エンジニアリング · 図面 · 製造性検討" },
+        { code: "01", title: "初期製造性検討", copy: "設計凍結前に機能要求、図面、特殊特性、生産条件を確認し、製造リスクを早期に洗い出します。", detail: "初期共同エンジニアリング · 図面 · 製造性検討" },
         { code: "02", title: "工程・治工具エンジニアリング", copy: "設備・工具確定前に工程順序、基準面、クランプ、社内・外注工程ルート、治工具、検査戦略をFMEAと共に設計します。", detail: "FMEA · 基準面 · 治工具 · 管理" },
         { code: "03", title: "データ検証・VA/VE", copy: "試作・試験生産、測定、工程能力、機能試験を承認段階に合わせて検証し、素材・工程・治工具・サイクルタイムの改善を提案します。", detail: "試験生産 · 検証 · PPAP · VA/VE" },
       ],
@@ -492,15 +492,15 @@ export const qualityCapabilityCopy: Record<CapabilityLanguage, QualityCapability
       tools: [
         { label: "2D ENGINEERING", title: "AutoCAD", copy: "図面検討、工程・ライン配置、治工具詳細設計" },
         { label: "3D ENGINEERING", title: "Autodesk Inventor", copy: "3Dモデル、組立・干渉、治工具構想の検討" },
-        { label: "CAM & COST SUPPORT", title: "Mastercam", copy: "加工経路、工具接近性、サイクルタイム、初期原価の検討" },
+        { label: "CAM & COST SUPPORT", title: "Mastercam", copy: "加工経路、工具アクセス性、サイクルタイム、初期原価の検討" },
       ],
       validationTitle: "製造判断を支える検証根拠",
       validation: [
-        "鍛造流動・応力・ひずみ・成形荷重シミュレーション",
+        "鍛造における材料流動・応力・ひずみ・成形荷重のシミュレーション",
         "サーボプレス荷重－変位モニタリング",
         "製品別承認段階に応じたレーザー溶接の溶込み・接合状態・寸法影響の個別実現可能性検証",
         "研削測定データのSPC・設備補正フィードバック",
-        "必要に応じた外部専門機関との機能試験連携",
+        "必要に応じて外部専門機関と連携した機能試験",
       ],
     },
   },

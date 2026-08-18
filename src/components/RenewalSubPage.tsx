@@ -124,10 +124,10 @@ const uiCopy: Record<RenewalLanguage, LocalizedUi> = {
     details: "詳細",
     next: "次のページ",
     view: "詳しく見る",
-    contact: "プロジェクト相談",
+    contact: "プロジェクトのご相談",
     submit: "お問い合わせを送信",
     sent: "お問い合わせを受け付けました。確認後、担当者よりご連絡いたします。",
-    fields: { company: "会社名", name: "担当者名", email: "メール", phone: "連絡先", subject: "お問い合わせ分野", message: "お問い合わせ内容" },
+    fields: { company: "会社名", name: "担当者名", email: "メール", phone: "電話番号", subject: "お問い合わせ分野", message: "お問い合わせ内容" },
   },
 };
 
@@ -209,7 +209,7 @@ const certificateShowcaseCopy: Record<RenewalLanguage, CertificateShowcaseCopy> 
       {
         eyebrow: "AUTOMOTIVE QUALITY MANAGEMENT",
         title: "IATF 16949:2016",
-        copy: "Intertekが、操舵・エンジン・トランスミッション部品の製造および加工に関するソウル産業の品質マネジメントシステムを認証しました。",
+        copy: "認証機関のIntertekが、ステアリング・エンジン・トランスミッション部品の製造および加工に関するソウル産業の品質マネジメントシステムを認証しました。",
         metadata: ["認証番号 2022-0205", "有効期限 2027.05.23"],
         alt: "ソウル産業 IATF 16949:2016認証書",
       },
@@ -354,18 +354,18 @@ const sustainabilityPolicyCopy: Record<RenewalLanguage, SustainabilityPolicyCopy
       copy: "Seoul Industry integrates environmental, social, and governance requirements, including SAQ 5.0, across its operations and supply chain.",
     },
     meta: [
-      { label: "Scope", value: "Employees, sites, operations and suppliers" },
-      { label: "Standards", value: "ESG, environment, safety, human rights and ethics" },
+      { label: "Scope", value: "Employees, sites, operations, and suppliers" },
+      { label: "Standards", value: "ESG, environment, safety, human rights, and ethics" },
       { label: "Supply Chain", value: "Aligned with SAQ 5.0 requirements" },
     ],
     governance: {
       eyebrow: "POLICY FOUNDATION",
-      title: "Purpose, scope and governance",
+      title: "Purpose, scope, and governance",
       copy: "Sustainability is integrated as a core element of business management. Top management oversees implementation, provides the necessary resources, and holds every employee responsible for compliance.",
       items: [
         { title: "Management Integration", copy: "ESG principles are embedded in business strategy and day-to-day decisions." },
-        { title: "Company-wide Scope", copy: "The policy applies to all employees, business sites, operations and suppliers." },
-        { title: "Executive Oversight", copy: "Top management ensures implementation, enforcement and adequate resources." },
+        { title: "Company-wide Scope", copy: "The policy applies to all employees, business sites, operations, and suppliers." },
+        { title: "Executive Oversight", copy: "Top management ensures implementation, enforcement, and adequate resources." },
       ],
     },
     pillars: [
@@ -374,7 +374,7 @@ const sustainabilityPolicyCopy: Record<RenewalLanguage, SustainabilityPolicyCopy
         title: "Environmental",
         label: "Environmental Responsibility",
         copy: "We reduce pollution and resource use while managing the impact of our operations on nature.",
-        items: ["Energy efficiency and greenhouse-gas reduction", "Waste, emissions, wastewater and hazardous substances", "Biodiversity, land-use and deforestation risk", "Noise measurement and environmental emergency response"],
+        items: ["Energy efficiency and greenhouse-gas reduction", "Waste, emissions, wastewater, and hazardous substances", "Biodiversity, land-use, and deforestation risk", "Noise measurement and environmental emergency response"],
       },
       {
         letter: "S",
@@ -394,11 +394,11 @@ const sustainabilityPolicyCopy: Record<RenewalLanguage, SustainabilityPolicyCopy
     domains: {
       eyebrow: "POLICY COMMITMENTS",
       title: "Our sustainability commitments",
-      copy: "The official policy translates environmental, social, ethical, data-protection and supply-chain requirements into clear operating commitments.",
+      copy: "The official policy translates environmental, social, ethical, data-protection, and supply-chain requirements into clear operating commitments.",
       items: [
         { tag: "ENVIRONMENT", title: "Environmental Management", copy: "Minimize waste, air emissions and wastewater, improve energy efficiency, reduce greenhouse gases, and manage hazardous substances safely." },
         { tag: "NATURE", title: "Biodiversity, Land and Forests", copy: "Minimize ecological impacts, assess land-use risks before operations, and prohibit materials that contribute to deforestation." },
-        { tag: "EMISSIONS", title: "Noise, Pollution and Emergency Response", copy: "Measure and manage noise, prevent soil, air and water contamination, and maintain environmental emergency-response systems." },
+        { tag: "EMISSIONS", title: "Noise, Pollution, and Emergency Response", copy: "Measure and manage noise, prevent soil, air, and water contamination, and maintain environmental emergency-response systems." },
         { tag: "PEOPLE", title: "Human Rights, Safety and Community", copy: "Provide safe and fair working conditions, prohibit child labor, forced labor and discrimination, and contribute to local communities." },
         { tag: "WELFARE", title: "Animal Welfare", copy: "Prohibit cruelty and unnecessary harm and uphold international animal-welfare standards throughout the supply chain." },
         { tag: "ETHICS", title: "Ethics and Fair Trade", copy: "Prevent bribery, corruption, improper benefits and conflicts of interest while maintaining transparent and fair business practices." },
@@ -410,14 +410,14 @@ const sustainabilityPolicyCopy: Record<RenewalLanguage, SustainabilityPolicyCopy
       eyebrow: "IMPLEMENTATION & IMPROVEMENT",
       title: "Set goals, monitor performance and improve continuously.",
       items: [
-        { title: "Set Objectives", copy: "Define sustainability objectives and management priorities across environment, people, ethics and supply chain." },
+        { title: "Set Objectives", copy: "Define sustainability objectives and management priorities across environment, people, ethics, and supply chain." },
         { title: "Monitor Performance", copy: "Review implementation status and performance against objectives on a regular basis." },
         { title: "Assess and Correct", copy: "Use internal audits, external evaluations, customer assessments and SAQ 5.0 results to drive corrective action." },
         { title: "Own and Improve", copy: "Management and employees share responsibility for compliance and feed evaluation results into continuous improvement." },
       ],
       evidenceTitle: "Shop-floor implementation evidence",
       evidenceItems: [
-        { tag: "ENERGY DATA", title: "Energy data management", copy: "Review power-related indicators monthly, track trends, and pursue external energy diagnostics." },
+        { tag: "ENERGY DATA", title: "Energy data management", copy: "Review power-related indicators monthly, track trends, and pursue third-party energy audits." },
         { tag: "ELECTRICAL SAFETY", title: "Electrical safety inspections", copy: "Conduct regular electrical-equipment safety inspections and retain the inspection history that supports safe production." },
       ],
     },
@@ -480,7 +480,7 @@ const sustainabilityPolicyCopy: Record<RenewalLanguage, SustainabilityPolicyCopy
       copy: "公式方針に定めた環境、社会、倫理、情報保護、サプライチェーン要件を実行項目別に整理しています。",
       items: [
         { tag: "ENVIRONMENT", title: "環境マネジメント", copy: "廃棄物、大気排出、排水を最小化し、エネルギー効率と温室効果ガス削減を進め、有害物質を安全に管理します。" },
-        { tag: "NATURE", title: "生物多様性・土地・森林", copy: "生態系への影響を最小化し、操業前に土地利用リスクを評価するとともに、森林破壊につながる原材料を禁止します。" },
+        { tag: "NATURE", title: "生物多様性・土地・森林", copy: "生態系への影響を最小化し、操業前に土地利用リスクを評価するとともに、森林破壊につながる原材料の使用を禁止します。" },
         { tag: "EMISSIONS", title: "騒音・汚染・緊急対応", copy: "騒音を定期的に測定し、土壌・大気・水質の汚染を防止するとともに、環境事故への緊急対応体制を維持します。" },
         { tag: "PEOPLE", title: "人権・安全・地域社会", copy: "安全で公正な労働条件を提供し、児童労働、強制労働、差別を禁止し、地域社会の発展に貢献します。" },
         { tag: "WELFARE", title: "動物福祉", copy: "動物への虐待と不必要な危害を禁止し、サプライチェーンで国際的な動物福祉基準を遵守します。" },
@@ -534,7 +534,7 @@ const recruitCopy: Record<
     jobs: [
       { title: "정밀 가공·생산 기술", field: "생산·기술", status: "상시 채용", copy: "공정 조건, 설비 세팅, 생산성 개선" },
       { title: "자동차 부품 품질 관리", field: "품질", status: "상시 채용", copy: "수입·공정·출하 검사, 고객 품질 대응" },
-      { title: "생산 관리·자재", field: "생산 관리", status: "인재 등록", copy: "생산 계획, 자재 흐름, 납기 관리" },
+      { title: "생산 관리·자재", field: "생산 관리", status: "인재풀 등록", copy: "생산 계획, 자재 흐름, 납기 관리" },
     ],
     benefits: ["직무·품질 교육", "건강검진", "경조사 지원", "통근·식사 지원", "장기근속 포상", "자격증 지원"],
   },
@@ -544,13 +544,13 @@ const recruitCopy: Record<
       { title: "Continue Improving", copy: "Identify minor shop-floor issues and quality variation, then suggest better methods." },
       { title: "Build Together", copy: "Connect production, quality, development, and administration through clear communication." },
     ],
-    steps: ["Application", "Application Review", "Interview", "Offer & Onboarding"],
+    steps: ["Apply", "Document Screening", "Interview", "Offer & Onboarding"],
     jobs: [
-      { title: "Precision Machining Engineer", field: "Production · Engineering", status: "Ongoing Recruitment", copy: "Process conditions, equipment setup, and productivity improvement" },
-      { title: "Automotive Quality Engineer", field: "Quality", status: "Ongoing Recruitment", copy: "Incoming, in-process, and final inspection, plus customer quality support" },
+      { title: "Precision Machining Engineer", field: "Production · Engineering", status: "Open year-round", copy: "Process conditions, equipment setup, and productivity improvement" },
+      { title: "Automotive Quality Engineer", field: "Quality", status: "Open year-round", copy: "Incoming, in-process, and final inspection, plus customer quality support" },
       { title: "Production & Materials Management", field: "Production Control", status: "Talent Pool", copy: "Production planning, material flow, and delivery management" },
     ],
-    benefits: ["Job and quality training", "Health checks", "Family and bereavement support", "Transportation and meal support", "Long-service awards", "Professional certification support"],
+    benefits: ["Job and quality training", "Health checks", "Family event and bereavement support", "Transportation and meal support", "Long-service awards", "Professional certification support"],
   },
   ja: {
     values: [
@@ -595,10 +595,10 @@ const equipmentVisuals: Record<string, Array<{ image: string; label: string }>> 
 
 const ceoCopy: Record<RenewalLanguage, { quote: string; paragraphs: string[]; sign: string }> = {
   ko: {
-    quote: "정밀함과 일관된 품질로 신뢰에 답하고, 지속가능한 성장을 이어가겠습니다.",
+    quote: "정밀함과 일관된 품질로 신뢰에 답하고, 지속 가능한 성장을 이어가겠습니다.",
     paragraphs: [
       "안녕하십니까. 서울산업 홈페이지를 찾아주셔서 감사합니다.",
-      "서울산업㈜는 1985년 설립 이후 자동차 부품 정밀가공 기술을 축적하며 고객과 함께 성장해 왔습니다.",
+      "서울산업(주)는 1985년 설립 이후 자동차 부품 정밀가공 기술을 축적하며 고객과 함께 성장해 왔습니다.",
       "40여 년간 쌓아 온 제조 경험을 바탕으로 국내외 자동차 부품 고객의 다양한 프로그램에 안정적인 품질과 납기로 대응하고 있습니다.",
       "도면 검토부터 공정 설계, 정밀가공, 열처리, 검사와 양산 관리까지 전 과정을 긴밀하게 연결해 고객의 요구사항을 정확히 구현하겠습니다.",
       "앞으로도 끊임없는 기술 개발과 현장 개선을 통해 신뢰받는 자동차 부품 제조 파트너이자 사회에 책임을 다하는 기업으로 나아가겠습니다.",
@@ -611,7 +611,7 @@ const ceoCopy: Record<RenewalLanguage, { quote: string; paragraphs: string[]; si
       "Thank you for visiting Seoul Industry.",
       "Since our founding in 1985, we have grown alongside our customers by building deep expertise in precision machining for automotive components.",
       "Over four decades of manufacturing experience enable us to support diverse automotive-component programs in Korea and overseas with consistent quality and dependable delivery.",
-      "From drawing review and process design to machining, heat treatment, inspection, and mass-production control, we connect every stage to deliver each requirement with precision.",
+      "From drawing review and process design to machining, heat treatment, inspection, and mass-production control, we connect every stage to meet each requirement with precision.",
       "We will continue to invest in technology and continuous improvement to remain a trusted manufacturing partner and a responsible member of the communities we serve.",
     ],
     sign: "Eul-Sik Kim, President & CEO",
@@ -728,7 +728,7 @@ const qualityPolicyCopy: Record<
   }
 > = {
   ko: {
-    headline: "품질은 검사로 선별하는 것이 아니라 공정에서 완성합니다.",
+    headline: "품질은 검사로 가려내는 것이 아니라 공정에서 만들어 냅니다.",
     introduction:
       "서울산업은 고객 요구사항을 개발 단계에서 공정 기준으로 전환하고, 양산 조건과 측정 데이터를 연결해 LOT별 품질 근거를 관리합니다. 발견된 문제는 원인 분석과 효과 검증을 거쳐 표준에 반영하며 재발을 방지합니다.",
     sectionTitle: "일관된 품질을 만드는 네 가지 약속",
@@ -748,7 +748,7 @@ const qualityPolicyCopy: Record<
       },
       {
         title: "공정에서 완성",
-        english: "BUILT INTO PROCESS",
+        english: "BUILT INTO THE PROCESS",
         statement: "검사보다 예방 중심의 공정 설계로 품질을 만듭니다.",
         actions: [
           "PFMEA·관리계획·작업표준의 일관된 연계",
@@ -846,7 +846,7 @@ const qualityPolicyCopy: Record<
       {
         title: "顧客要求を最優先",
         english: "CUSTOMER REQUIREMENTS",
-        statement: "顧客の言葉を明確な工程基準へ変換します。",
+        statement: "顧客要求を明確な工程基準へ変換します。",
         actions: [
           "図面・仕様・特殊特性の開発段階での事前検討",
           "顧客別の検査・梱包・納入基準の文書化",
@@ -856,7 +856,7 @@ const qualityPolicyCopy: Record<
       },
       {
         title: "工程で造り込む",
-        english: "BUILT INTO PROCESS",
+        english: "BUILT INTO THE PROCESS",
         statement: "検査より予防を重視した工程設計で品質を造り込みます。",
         actions: [
           "PFMEA・管理計画・作業標準の一貫した連携",
@@ -870,7 +870,7 @@ const qualityPolicyCopy: Record<
         english: "VERIFIED BY DATA",
         statement: "測定結果と生産履歴をロット単位で関連付けます。",
         actions: [
-          "エアゲージ・画像・CMM・寸法測定結果の管理",
+          "エアゲージ・画像検査・CMM・寸法測定結果の管理",
           "SPCと工程能力指標による変動監視",
           "設備条件・検査結果・作業履歴のロット追跡",
         ],
@@ -909,7 +909,7 @@ const qualityFlow: Record<RenewalLanguage, Array<{ title: string; copy: string }
   ja: [
     { title: "図面・仕様検討", copy: "顧客要求、特殊特性、検査基準を開発段階で確認します。" },
     { title: "受入・初品検査", copy: "素材、外注工程、初品を承認基準に照らして検証します。" },
-    { title: "工程品質管理", copy: "エアゲージ、画像、寸法測定、SPCで工程状態を確認します。" },
+    { title: "工程品質管理", copy: "エアゲージ、画像検査、寸法測定、SPCで工程状態を確認します。" },
     { title: "最終・出荷検査", copy: "最終寸法、外観、梱包、識別票を確認して出荷します。" },
     { title: "ロットトレーサビリティ", copy: "検査結果、設備条件、作業履歴をロット単位で関連付けます。" },
   ],
@@ -918,7 +918,7 @@ const qualityFlow: Record<RenewalLanguage, Array<{ title: string; copy: string }
 const preventiveFlow: Record<RenewalLanguage, Array<{ title: string; copy: string }>> = {
   ko: [
     { title: "위험 요인 식별", copy: "공정 FMEA와 과거 불량 이력을 바탕으로 잠재 위험을 먼저 찾습니다." },
-    { title: "관리 계획 수립", copy: "특별 특성, 검사 주기, 이상 발생 시 대응 계획과 담당자를 관리 계획에 명확히 규정합니다." },
+    { title: "관리 계획 수립", copy: "특별특성, 검사 주기, 이상 발생 시 대응 계획과 담당자를 관리계획에 명확히 규정합니다." },
     { title: "초도품 검증", copy: "설비·치공구 조건과 측정 결과를 확인해 양산 승인 전에 문제를 제거합니다." },
     { title: "SPC·자동 보정", copy: "측정 데이터를 기록하고 필요 시 자동 오프셋으로 공정 변동을 줄입니다." },
     { title: "변경점·재발 방지", copy: "4M 변경과 이상 발생 시 원인, 조치, 효과 확인을 하나의 이력으로 관리합니다." },
@@ -1032,7 +1032,7 @@ const locationCopy: Record<RenewalLanguage, { address: string; visit: string; em
   },
   en: {
     address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Republic of Korea",
-    visit: "Factory visits require advance coordination. Please contact your representative before arrival.",
+    visit: "Factory visits require advance coordination. Please contact your Seoul Industry representative before arriving.",
     email: "admin@seoulind.co.kr",
   },
   ja: {
@@ -1540,7 +1540,7 @@ const specialProjectsCopy: Record<RenewalLanguage, SpecialProjectsCopy> = {
     principles: [
       {
         number: "01",
-        kicker: "SECURE PROJECT",
+        kicker: "CONFIDENTIAL PROJECT",
         title: "보안 정보 범위",
         copy: "프로젝트 요구 시 도면, 사양 및 변경 이력의 접근 권한과 공유 범위를 구분합니다.",
       },
@@ -1560,15 +1560,15 @@ const specialProjectsCopy: Record<RenewalLanguage, SpecialProjectsCopy> = {
         number: "04",
         kicker: "PRODUCTION SCOPE",
         title: "생산 범위 협의",
-        copy: "시제품 검증, 공정 안정화 및 양산 적용 범위는 프로젝트별 승인 조건에 따라 정합니다.",
+        copy: "시제품 검증, 공정 안정화 및 양산 적용 범위는 프로젝트별 승인 조건에 맞춰 협의합니다.",
       },
     ],
   },
   en: {
     eyebrow: "DEFENSE & SPECIAL PROJECTS",
-    title: "Disclosure and consultation\nfor secure projects",
+    title: "Disclosure and consultation\nfor confidential projects",
     intro:
-      "This page outlines the manufacturing-review items and consultation process used for secure-project inquiries, within the scope approved for public communication.",
+      "This page outlines the manufacturing-review items and consultation process used for confidential-project inquiries, within the scope approved for public communication.",
     disclosureLabel: "PUBLIC CAPABILITY OVERVIEW",
     disclosure:
       "For security reasons, actual products, customers, geometries, and application fields are not disclosed. This page presents only the manufacturing and quality-management scope approved for public communication.",
@@ -1576,7 +1576,7 @@ const specialProjectsCopy: Record<RenewalLanguage, SpecialProjectsCopy> = {
     principles: [
       {
         number: "01",
-        kicker: "SECURE PROJECT",
+        kicker: "CONFIDENTIAL PROJECT",
         title: "Information-security scope",
         copy: "When required by a project, access permissions and sharing scopes are defined for drawings, specifications, and revision histories.",
       },
@@ -1602,17 +1602,17 @@ const specialProjectsCopy: Record<RenewalLanguage, SpecialProjectsCopy> = {
   },
   ja: {
     eyebrow: "DEFENSE & SPECIAL PROJECTS",
-    title: "セキュアプロジェクトの\n公開・協議案内",
+    title: "機密プロジェクトの\n公開・協議のご案内",
     intro:
       "本ページでは、機密プロジェクトのお問い合わせ時に確認する製造検討項目と協議手順を、公開可能な範囲で案内します。",
     disclosureLabel: "PUBLIC CAPABILITY OVERVIEW",
     disclosure:
-      "保安上、実際の製品、顧客、形状、適用分野は公開しません。本ページでは、公開可能な製造・品質管理範囲のみをご案内します。",
+      "機密保持のため、実際の製品、顧客、形状、適用分野は公開していません。本ページでは、公開可能な製造・品質管理範囲のみをご案内します。",
     imageCaption: "CONCEPT IMAGE · PRODUCT DETAILS NOT DISCLOSED",
     principles: [
       {
         number: "01",
-        kicker: "SECURE PROJECT",
+        kicker: "CONFIDENTIAL PROJECT",
         title: "機密情報の範囲",
         copy: "プロジェクトで要求される場合、図面、仕様、変更履歴のアクセス権限と共有範囲を区分します。",
       },
@@ -2260,7 +2260,7 @@ function QualityPolicyBody({ language }: { language: RenewalLanguage }) {
           </div>
           <div>
             <small>TRACEABILITY</small>
-            <strong>LOT UNIT</strong>
+            <strong>LOT LEVEL</strong>
           </div>
         </div>
       </section>
@@ -2915,7 +2915,7 @@ function RecruitmentBody({ language }: { language: RenewalLanguage }) {
     <>
       <RecruitGuideBody language={language} />
       <section className="renewal-sub-section-heading" data-sub-reveal>
-        <span>OPEN POSITION</span>
+        <span>OPEN POSITIONS</span>
         <h2>{bodyLabels[language].recruitmentOpenings}</h2>
       </section>
       <JobsBody language={language} />
@@ -2933,7 +2933,7 @@ function BenefitsBody({ language }: { language: RenewalLanguage }) {
         <h2>{bodyLabels[language].welfare}</h2>
         <p>
           {language === "ko"
-            ? "현장의 경험이 개인의 성장으로 이어지고, 그 성장이 다시 제조 경쟁력으로 이어지는 환경을 지원합니다."
+            ? "현장의 경험이 개인의 성장으로 이어지고, 그 성장이 다시 제조 경쟁력이 되는 환경을 만듭니다."
             : language === "ja"
               ? "現場での経験が個人の成長につながり、その成長が製造競争力の向上につながる環境を整えます。"
               : "We create an environment where shop-floor experience supports personal growth and stronger manufacturing capability."}

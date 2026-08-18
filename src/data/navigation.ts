@@ -38,9 +38,9 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
       label: "생산기술",
       href: "#/manufacturing/process",
       children: [
-        { label: "생산공정", href: "#/manufacturing/process" },
-        { label: "보유설비·자동화", href: "#/manufacturing/equipment" },
-        { label: "검사기술", href: "#/manufacturing/inspection" },
+        { label: "생산 공정", href: "#/manufacturing/process" },
+        { label: "보유 설비·자동화", href: "#/manufacturing/equipment" },
+        { label: "검사 기술", href: "#/manufacturing/inspection" },
       ],
     },
     {
@@ -181,7 +181,7 @@ export const siteMenuGroupsByLanguage: Record<NavigationLanguage, SiteMenuGroup[
       children: [
         { label: "品質方針", href: "#/quality/policy" },
         { label: "品質システム", href: "#/quality/system" },
-        { label: "予防品質活動", href: "#/quality/preventive" },
+        { label: "未然防止活動", href: "#/quality/preventive" },
       ],
     },
     {

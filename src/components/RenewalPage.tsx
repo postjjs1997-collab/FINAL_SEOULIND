@@ -210,7 +210,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     },
     products: {
       eyebrow: "CORE PORTFOLIO · ELECTRIFIED · ALUMINUM",
-      title: "3개 핵심 제품군과 2개 확장 역량",
+      title: "3대 핵심 제품군과 2가지 확장 역량",
       summary: "조향·파워트레인·드라이브라인을 중심으로 전동화 부품과 알루미늄 정밀가공까지 대응 범위를 넓히고 있습니다.",
       link: "제품 전체 보기",
       items: [
@@ -265,12 +265,12 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     },
     closing: {
       eyebrow: "READY TO BUILD TOGETHER",
-      title: ["정밀한 부품이 필요할 때,", "서울산업과 이야기하세요"],
+      title: ["정밀한 부품이 필요할 때,", "서울산업과 상의하세요"],
       copy: "도면, 개발 일정, 양산 조건을 보내주시면 필요한 제조 흐름을 함께 검토하겠습니다.",
       link: "프로젝트 문의",
     },
     footer: {
-      tagline: "Precision Automotive Components OEM",
+      tagline: "OEM Supplier of Precision Automotive Components",
       office: "본사·공장",
       address: "경기도 화성시, 대한민국",
       phone: "031-366-1141",
@@ -319,7 +319,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       {
         eyebrow: "PRECISION AUTOMOTIVE COMPONENTS",
         title: ["Machining precision,", "moving trust forward"],
-        copy: "From drawing review to volume supply, Seoul Industry improves the critical parts behind every vehicle.",
+        copy: "From drawing review to volume supply, Seoul Industry perfects the critical components behind every vehicle.",
       },
       {
         eyebrow: "OEM MANUFACTURING PARTNER",
@@ -359,13 +359,13 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         {
           kicker: "DATA-DRIVEN QUALITY",
           title: "Quality Control",
-          copy: "Machining and inspection data share one flow so abnormal signals can be identified early.",
+          copy: "Machining and inspection data share one flow so anomalies can be detected early.",
           detail: "Process records · Traceability · Outgoing quality",
         },
         {
           kicker: "RELIABLE DELIVERY",
           title: "Volume Supply",
-          copy: "Delivery, packing, inventory, and shipping stay aligned with every customer production plan.",
+          copy: "Delivery schedules, packing, inventory, and shipping stay aligned with each customer's production plan.",
           detail: "OEM response · Delivery control · Stable supply",
         },
       ],
@@ -378,11 +378,11 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     },
     products: {
       eyebrow: "CORE PORTFOLIO · ELECTRIFIED · ALUMINUM",
-      title: "Three core families, two expansion capabilities",
+      title: "Three core product families, two expanding capabilities",
       summary: "Steering, Powertrain, and Driveline form the core product portfolio, complemented by electrified and machined-aluminum capabilities.",
       link: "View all products",
       items: [
-        { title: "Steering", category: "CORE 01", group: "core", copy: "Pinions, pinion shafts, pistons, rack bushes, and torsion bars for steering assemblies." },
+        { title: "Steering", category: "CORE 01", group: "core", copy: "Pinions, pinion shafts, pistons, rack bushings, and torsion bars for steering assemblies." },
         { title: "Powertrain", category: "CORE 02", group: "core", copy: "Transmission shafts and engine components, including camshaft nose pieces and balance shafts." },
         { title: "Driveline", category: "CORE 03", group: "core", copy: "Disc carriers, shafts, and hubs for transfer-case and ETM systems." },
         { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV oil-pump housings and covers plus electrified-powertrain gear shafts, coaxial shafts, and link shafts." },
@@ -392,7 +392,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     principles: {
       eyebrow: "SEOUL INDUSTRY STANDARD",
       title: ["Verified in every process,", "proven in every part"],
-      copy: "Machining, inspection, and volume-production response are managed as one connected system. From drawing review and process settings to measurement records and delivery schedules, each decision supports repeatable manufacturing.",
+      copy: "Machining, inspection, and volume production are managed as one connected system. From drawing review and process settings to measurement records and delivery schedules, each decision supports repeatable manufacturing.",
       link: "Explore production technology",
       items: [
         {
@@ -407,7 +407,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         },
         {
           title: "Reliable Volume Production",
-          copy: "Automation and inspection are connected to keep production flow stable. From development timing through volume production and shipment, our response stays aligned with each customer supply plan.",
+          copy: "Automation and inspection are connected to keep production flow stable. From development timing through volume production and shipment, we stay aligned with each customer's supply plan.",
           detail: "Automation · Connected operations · OEM response",
         },
       ],
@@ -415,7 +415,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     partners: {
       eyebrow: "CUSTOMER & PARTNERSHIP HISTORY",
       title: ["Precision connects", "global mobility"],
-      copy: "Seoul Industry combines volume-production experience in steering, driveline, and powertrain with development and validation support for electrified components. From engineering response and quality records to delivery and supply stability, consistent standards support long-term manufacturing relationships.",
+      copy: "Seoul Industry combines volume-production experience in steering, driveline, and powertrain with development and validation support for electrified components. From engineering support and quality records to delivery and supply stability, consistent standards support long-term manufacturing relationships.",
       link: "View partnership history",
       regions: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN",
       officialSite: "Official website",
@@ -425,20 +425,20 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       title: "Latest from the manufacturing floor",
       link: "View all news",
       items: [
-        { category: "ENTERPRISE", title: "Seoul Industry begins its global website renewal project", date: "2026.07.30" },
-        { category: "QUALITY", title: "Advancing data-based quality management", date: "2026.06.18" },
+        { category: "ENTERPRISE", title: "Seoul Industry launches its global website redesign project", date: "2026.07.30" },
+        { category: "QUALITY", title: "Advancing data-driven quality management", date: "2026.06.18" },
         { category: "PRODUCT", title: "Three core families with electrified and aluminum capabilities", date: "2026.05.24" },
         { category: "MANUFACTURING", title: "A connected flow from development to volume supply", date: "2026.05.09" },
       ],
     },
     closing: {
       eyebrow: "READY TO BUILD TOGETHER",
-      title: ["When the part must be precise,", "talk to Seoul Industry"],
-      copy: "Share your drawing, development schedule, and production requirements. We will review a suitable manufacturing approach with you.",
+      title: ["When precision matters,", "talk to Seoul Industry"],
+      copy: "Share your drawing, development schedule, and production requirements. We will work with you to define the right manufacturing approach.",
       link: "Start a project",
     },
     footer: {
-      tagline: "Precision Automotive Components OEM",
+      tagline: "OEM Supplier of Precision Automotive Components",
       office: "Head Office & Factory",
       address: "Hwaseong, Gyeonggi-do, Korea",
       phone: "+82-31-366-1141",
@@ -486,7 +486,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     hero: [
       {
         eyebrow: "PRECISION AUTOMOTIVE COMPONENTS",
-        title: ["精密を加工し、", "信頼を動かす"],
+        title: ["精密さを形にし、", "信頼を動かす"],
         copy: "図面検討から量産供給まで、ソウル産業は自動車主要部品の完成度を高めます。",
       },
       {
@@ -504,44 +504,44 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     next: "次のシーン",
     process: {
       eyebrow: "MANUFACTURING FLOW",
-      title: ["自動車部品の完成度をつくる", "五つの製造シーン"],
+      title: ["自動車部品の完成度を高める", "五つの製造シーン"],
       items: [
         {
           kicker: "DRAWING TO PROCESS",
           title: "精密加工",
-          copy: "部品図面の条件を設備と工程の言語に変え、繰り返し精度を安定させます。",
-          detail: "専用条件 · CNC標準化 · 寸法ばらつき管理",
+          copy: "部品図面の要求を設備条件と工程基準に落とし込み、繰り返し精度を安定させます。",
+          detail: "専用条件・CNC標準化・寸法ばらつき管理",
         },
         {
           kicker: "QUALITY INSPECTION",
           title: "精密検査",
           copy: "寸法、形状、組立基準をロット単位で確認し、生産条件とともに追跡します。",
-          detail: "寸法検査 · 形状測定 · 検査履歴",
+          detail: "寸法検査・形状測定・検査履歴",
         },
         {
           kicker: "AUTOMATED PRODUCTION",
           title: "工程自動化",
           copy: "設備と搬送フローをつなぎ、作業ばらつきを減らして安定した生産リズムをつくります。",
-          detail: "自動搬送 · 工程連携 · 生産性管理",
+          detail: "自動搬送・工程連携・生産性管理",
         },
         {
           kicker: "DATA-DRIVEN QUALITY",
           title: "品質管理",
           copy: "加工と検査データを一つの流れで管理し、異常の兆候を早期に確認します。",
-          detail: "工程記録 · 原因追跡 · 出荷品質",
+          detail: "工程記録・原因追跡・出荷品質",
         },
         {
           kicker: "RELIABLE DELIVERY",
           title: "量産供給",
           copy: "顧客の生産計画に合わせ、納期、梱包、在庫、出荷までを管理します。",
-          detail: "OEM対応 · 納期管理 · 安定供給",
+          detail: "OEM対応・納期管理・安定供給",
         },
       ],
     },
     company: {
       eyebrow: "BUILT SINCE 1985",
       title: ["技術は工程に残り、", "信頼は製品で証明されます"],
-      copy: "ソウル産業は1985年の設立以降、操舵、パワートレイン、ドライブライン、電動化部品へ領域を広げ、精密加工、品質認証、研究開発、グローバルOEM対応力を強化してきました。",
+      copy: "ソウル産業は1985年の設立以降、ステアリング、パワートレイン、ドライブライン、電動化部品へ領域を広げ、精密加工、品質認証、研究開発、グローバルOEM対応力を強化してきました。",
       link: "会社沿革を見る",
     },
     products: {
@@ -550,7 +550,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       summary: "Steering・Powertrain・Drivelineを中核製品群とし、電動化部品とアルミ精密加工へ対応領域を広げています。",
       link: "全製品を見る",
       items: [
-        { title: "Steering", category: "CORE 01", group: "core", copy: "Pinion、Pinion Shaft、Piston、Rack Bush、Torsion Barなどの操舵部品" },
+        { title: "Steering", category: "CORE 01", group: "core", copy: "ピニオン、ピニオンシャフト、ピストン、ラックブッシュ、トーションバーなどのステアリング部品" },
         { title: "Powertrain", category: "CORE 02", group: "core", copy: "トランスミッション用シャフトと、カムシャフトノーズピース、バランスシャフトなどのエンジン用部品" },
         { title: "Driveline", category: "CORE 03", group: "core", copy: "トランスファーケース・ETM向けディスクキャリア、シャフト、ハブ部品" },
         { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EVオイルポンプのハウジング・カバーと電動化向けギヤシャフト、コアキシャルシャフト、リンクシャフト" },
@@ -566,24 +566,24 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         {
           title: "精密工程技術",
           copy: "図面、素材、部品形状に合わせてCNC旋削、ギヤ・スプライン加工、研削条件を設計します。設備ごとの基準を標準化し、繰り返し量産でも寸法と表面品質のばらつきを抑えます。",
-          detail: "工程設計 · 専用加工条件 · 繰り返し精度",
+          detail: "工程設計・専用加工条件・繰り返し精度",
         },
         {
           title: "工程内品質管理",
           copy: "主要寸法と形状を三次元測定および専用検査で確認します。測定結果を設備条件とロット履歴につなぎ、異常の兆候を出荷前に追跡・改善します。",
-          detail: "三次元測定 · 自動検査 · 品質履歴",
+          detail: "三次元測定・自動検査・品質履歴",
         },
         {
           title: "安定した量産対応",
           copy: "自動化設備と検査工程をつなぎ、安定した生産フローを維持します。開発日程から量産・出荷まで、顧客の供給計画に合わせて対応します。",
-          detail: "自動化 · 工程連携 · 量産対応",
+          detail: "自動化・工程連携・量産対応",
         },
       ],
     },
     partners: {
       eyebrow: "CUSTOMER & PARTNERSHIP HISTORY",
       title: ["世界の自動車産業と、", "精密加工でつながります"],
-      copy: "ソウル産業は操舵、ドライブライン、パワートレインの量産実績に、電動化部品の開発・検証対応を組み合わせ、国内外の顧客プログラムを通じて製造経験を積み重ねてきました。開発対応から品質記録、納期、安定供給まで一貫した基準で管理し、長期的な製造協力関係を築いています。",
+      copy: "ソウル産業はステアリング、ドライブライン、パワートレインの量産実績に、電動化部品の開発・検証対応を組み合わせ、国内外の顧客プログラムを通じて製造経験を積み重ねてきました。開発対応から品質記録、納期、安定供給まで一貫した基準で管理し、長期的な製造協力関係を築いています。",
       link: "パートナーシップ沿革を見る",
       regions: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN",
       officialSite: "公式サイト",
@@ -602,11 +602,11 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
     closing: {
       eyebrow: "READY TO BUILD TOGETHER",
       title: ["精密な部品が必要なとき、", "ソウル産業にご相談ください"],
-      copy: "図面、開発日程、量産条件をお送りいただければ、適切な製造フローを一緒に検討します。",
-      link: "プロジェクト相談",
+      copy: "図面、開発日程、量産条件をお送りいただければ、最適な製造フローをともに検討いたします。",
+      link: "プロジェクトのご相談",
     },
     footer: {
-      tagline: "Precision Automotive Components OEM",
+      tagline: "OEM Supplier of Precision Automotive Components",
       office: "本社・工場",
       address: "韓国 京畿道 華城市",
       phone: "+82-31-366-1141",
@@ -671,8 +671,8 @@ const productCardUi = {
 
 const electrifiedCardUi = {
   ko: { actual: "대표 전동화 부품", detail: "전동화 부품 상세" },
-  en: { actual: "Representative electrified parts", detail: "Electrified component detail" },
-  ja: { actual: "代表電動化部品", detail: "電動化部品の詳細" },
+  en: { actual: "Featured electrified parts", detail: "Electrified component detail" },
+  ja: { actual: "代表的な電動化部品", detail: "電動化部品の詳細" },
 } as const;
 
 const featuredProcessIds = ["cnc-lathe", "hobbing", "induction", "auto-inspection"] as const;
@@ -707,11 +707,11 @@ const homeUiCopy = {
     qualityEyebrow: "QUALITY ASSURANCE",
     qualityLink: "품질 시스템 자세히 보기",
     certificateEyebrow: "CORPORATE CERTIFICATIONS",
-    certificateTitle: "생산 현장에서 작동하는 품질·환경경영 기준",
-    certificateCopy: "IATF 16949 및 현대모비스 MSQ 인증 기준에 따라 양산 품질 체계를 운영하고, ISO 14001 인증 범위에 따라 자동차 조향 부품 제조·서비스의 환경 경영 체계를 관리합니다.",
+    certificateTitle: "생산 현장에서 실제로 운영되는 품질·환경경영 기준",
+    certificateCopy: "IATF 16949 및 현대모비스 MSQ 인증 기준에 따라 양산 품질 체계를 운영하고, ISO 14001 인증 범위에 따라 자동차 조향 부품 제조·서비스의 환경경영 체계를 관리합니다.",
     certificateView: "인증서 보기",
     iatf: "IATF 16949 품질경영시스템",
-    msq: "현대모비스 MSQ 공급사 품질 인증",
+    msq: "현대모비스 MSQ 협력사 품질 인증",
     iso14001: "ISO 14001 환경경영시스템",
   },
   en: {
@@ -761,7 +761,7 @@ const renewalPartners = [
   },
   { name: "Hyundai Mobis", market: "KOREA", logo: mobisLogo, href: "https://www.mobis.com/" },
   { name: "Nexteer Automotive", market: "GLOBAL", logo: nexteerLogo, href: "https://www.nexteer.com/" },
-  { name: "Hansea Mobility", market: "KOREA", logo: hanseaLogo, href: "https://www.hansaemobility.com/" },
+  { name: "Hansae Mobility", market: "KOREA", logo: hanseaLogo, href: "https://www.hansaemobility.com/" },
   { name: "GKN Automotive", market: "GLOBAL", logo: gknLogo, href: "https://www.gknautomotive.com/" },
   { name: "Muncie Power Products", market: "USA", logo: muncieLogo, href: "https://www.munciepower.com/" },
   { name: "Magna Powertrain", market: "GLOBAL", logo: magnaLogo, href: "https://www.magna.com/" },
@@ -1208,14 +1208,14 @@ function SustainabilityBridge({ language }: { language: RenewalLanguage }) {
     },
     en: {
       eyebrow: "SUSTAINABLE MANUFACTURING",
-      title: "Extending precision manufacturing into environmental, safety, and ethical standards.",
+      title: "Extending the discipline of precision manufacturing to environmental, safety, and ethical standards.",
       text: "We reduce energy and resource use, protect workplace safety, and maintain transparent business standards for long-term manufacturing partnerships.",
       link: "View sustainability policy",
     },
     ja: {
       eyebrow: "SUSTAINABLE MANUFACTURING",
-      title: "精密加工の責任を環境・安全・倫理基準へつなげます。",
-      text: "エネルギーと資源使用を減らし、安全な職場と透明な取引基準を守り、持続可能な製造パートナーシップを築きます。",
+      title: "精密加工の責任を、環境・安全・倫理の基準へと広げていきます。",
+      text: "エネルギーや資源の使用を抑え、安全な職場と透明な取引基準を守り、持続可能な製造パートナーシップを築きます。",
       link: "サステナビリティ経営方針を見る",
     },
   }[language];

@@ -115,7 +115,7 @@ const noticeCopy: Record<RenewalLanguage, NoticeCopy> = {
     logout: "로그아웃",
     newPost: "새 게시글",
     restoreDefaults: "초기 게시글 복원",
-    restoreConfirm: "현재 게시글을 초기 목록으로 되돌릴까요? 이 작업은 되돌릴 수 없습니다.",
+    restoreConfirm: "현재 게시글을 초기 목록으로 복원할까요? 이 작업은 취소할 수 없습니다.",
     delete: "삭제",
     deleteConfirm: "이 게시글을 삭제할까요?",
     save: "게시글 저장",

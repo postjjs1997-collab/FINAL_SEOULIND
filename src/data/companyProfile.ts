@@ -61,14 +61,14 @@ export const companyOverviewCopy = {
   ko: {
     eyebrow: "INTEGRATED PRECISION MACHINING SUPPLIER",
     title: "동력을 전달하는 핵심 부품을 정밀가공합니다.",
-    copy: "서울산업은 1985년부터 엔진과 모터의 토크를 전달하는 샤프트, 기어, 스플라인, 하우징 부품을 개발 검토부터 양산 검사까지 일관된 공정으로 생산해 왔습니다.",
+    copy: "서울산업은 1985년부터 엔진과 모터의 토크를 전달하는 샤프트, 기어, 스플라인, 하우징 부품을 개발 검토부터 양산 검사까지 일관 공정으로 생산해 왔습니다.",
     facts: [
       { label: "설립", value: "1985" },
       { label: "핵심 역량", value: "PRECISION MACHINING" },
       { label: "공급 범위", value: "DEVELOPMENT TO SOP" },
     ],
     systems: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM"],
-    networkTitle: "한국의 제조 거점에서 세 지역의 고객 프로그램을 연결합니다.",
+    networkTitle: "한국의 제조 거점에서 세 지역의 고객 프로그램을 지원합니다.",
     networkCopy: "화성 제조 거점을 중심으로 북미·아시아·유럽 프로그램의 도면 검토, 공정 설계, 생산 검증, 양산 안정화와 품질 기록을 하나의 흐름으로 관리합니다.",
   },
   en: {
@@ -126,14 +126,14 @@ export const globalProgramNetwork = {
         region: "NORTH AMERICA",
         coverage: "UNITED STATES · MEXICO",
         title: "개발·양산 준비",
-        copy: "고객 도면과 CTQ를 공정 순서, 치공구, 검사 로직으로 구체화하고 생산 검증부터 초기 양산의 공정 안정화까지 연결합니다.",
+        copy: "고객 도면과 CTQ를 공정 순서, 치공구, 검사 로직으로 구체화하고, 생산 검증부터 초기 양산 안정화까지 책임집니다.",
         tags: ["FEASIBILITY", "VALIDATION", "SOP"],
       },
       {
         region: "ASIA",
         coverage: "KOREA · JAPAN · CHINA",
         title: "통합 제조 운영",
-        copy: "화성 사업장에서 정밀가공, 기어·스플라인, 연삭, 열처리 연계, 자동화와 최종 검사를 하나의 생산 계획으로 운영합니다.",
+        copy: "화성 제조 거점에서 정밀가공, 기어·스플라인 가공, 연삭, 열처리 연계 공정, 자동화, 최종 검사를 하나의 생산 계획으로 운영합니다.",
         tags: ["MACHINING", "PROCESS CONTROL", "INSPECTION"],
       },
       {
@@ -157,15 +157,15 @@ export const globalProgramNetwork = {
       },
       {
         title: "생산 검증",
-        copy: "공정 능력과 검사 로직을 검증하고 셀·최종 검사 데이터를 선행 공정 피드백과 보정에 연결합니다.",
+        copy: "공정 능력과 검사 로직을 검증하고, 공정 내 검사와 최종 검사 데이터를 선행 공정 피드백과 보정에 활용합니다.",
       },
       {
         title: "SOP·양산 안정화",
-        copy: "검사 기준, 자동화 조건과 추적성 체계를 확정하고 초기 양산 데이터를 기반으로 편차를 줄여 공정을 안정화합니다.",
+        copy: "검사 기준, 자동화 조건과 추적성 체계를 확정하고 초기 양산 데이터를 기반으로 산포를 줄여 공정을 안정화합니다.",
       },
       {
         title: "양산 공급·개선",
-        copy: "품질 기록과 LOT 이력을 유지하며 공급 일정, 포장·출하 기준, 외부 공정과 변경 사항을 함께 관리합니다.",
+        copy: "품질 기록과 LOT 이력을 유지하며 공급 일정, 포장·출하 기준, 외주 공정과 변경 사항을 함께 관리합니다.",
       },
     ],
   },
@@ -189,11 +189,11 @@ export const globalProgramNetwork = {
         region: "EUROPE",
         coverage: "EUROPEAN PROGRAMS",
         title: "Quality Documentation & Change Control",
-        copy: "GD&T and CMM measurement, gear inspection, automated inspection, and traceability data support approval-stage documentation and program changes.",
+        copy: "GD&T and CMM measurement, gear-profile inspection, automated inspection, and traceability data underpin approval-stage quality documentation and program change control.",
         tags: ["GD&T / CMM", "TRACEABILITY", "CHANGE CONTROL"],
       },
     ],
-    frameworkTitle: "One connected responsibility from drawing review to volume supply.",
+    frameworkTitle: "A single line of responsibility from drawing review to volume supply.",
     frameworkCopy: "All regional programs follow the same development-to-volume-supply framework from the Hwaseong manufacturing base.",
     stages: [
       {
@@ -209,12 +209,12 @@ export const globalProgramNetwork = {
         copy: "We validate process capability and inspection logic, connecting in-cell and final-inspection data to upstream feedback and compensation.",
       },
       {
-        title: "SOP Launch & Stabilization",
+        title: "SOP & Ramp-Up",
         copy: "We establish inspection criteria, automation conditions, and traceability, then use early-production data to reduce process variation.",
       },
       {
         title: "Volume Supply & Improvement",
-        copy: "We maintain quality records and lot history while coordinating supply schedules, packing and delivery standards, external processes, and changes.",
+        copy: "We maintain quality records and lot history while coordinating supply schedules, packaging and shipping standards, outsourced processes, and engineering changes.",
       },
     ],
   },
@@ -231,7 +231,7 @@ export const globalProgramNetwork = {
         region: "ASIA",
         coverage: "KOREA · JAPAN · CHINA",
         title: "統合生産ハブ",
-        copy: "華城の生産拠点で、精密加工、ギヤ・スプライン、研削、熱処理連携、自動化、最終検査を一つの生産計画で運用します。",
+        copy: "華城の生産拠点で、精密加工、ギヤ・スプライン加工、研削、熱処理との連携、自動化、最終検査を一つの生産計画で運用します。",
         tags: ["MACHINING", "PROCESS CONTROL", "INSPECTION"],
       },
       {
@@ -243,7 +243,7 @@ export const globalProgramNetwork = {
       },
     ],
     frameworkTitle: "図面検討から量産供給まで、一つの責任体制でつなぎます。",
-    frameworkCopy: "すべての地域プログラムに、華城の生産拠点を中心とする共通の開発から量産供給までのフローを適用します。",
+    frameworkCopy: "すべての地域プログラムに、華城の生産拠点を中心とした、開発から量産供給までの共通フローを適用します。",
     stages: [
       {
         title: "図面・CTQ検討",
@@ -263,7 +263,7 @@ export const globalProgramNetwork = {
       },
       {
         title: "量産供給・改善",
-        copy: "品質記録とロット履歴を維持しながら、供給日程、梱包・出荷基準、外部工程、変更事項を一体管理します。",
+        copy: "品質記録とロット履歴を維持しながら、納入日程、梱包・出荷基準、外部工程、変更事項を一元管理します。",
       },
     ],
   },
@@ -272,19 +272,19 @@ export const globalProgramNetwork = {
 export const localSupplyNetwork = {
   ko: {
     eyebrow: "INTEGRATED LOCAL SUPPLY NETWORK",
-    title: "검증된 전문 파트너와 연결한 통합 공급망",
-    copy: "서울산업이 공정 책임과 품질 기준을 관리하고, 공정별 전문 협력사가 소재와 특수 공정 역량을 제공해 개발 변경과 양산 변동에 신속히 대응합니다.",
+    title: "검증된 전문 파트너와 함께 구축한 통합 공급망",
+    copy: "서울산업이 공정 책임과 품질 기준을 총괄하고, 공정별 전문 협력사가 소재와 특수 공정을 맡아 개발 변경과 양산 변동에 신속히 대응합니다.",
     processes: [
       { title: "HOT FORGING", copy: "열간 단조" },
       { title: "WARM FORGING", copy: "온간 단조" },
       { title: "COLD FORGING", copy: "냉간 단조" },
-      { title: "EXTERNAL TURNING", copy: "외주 선삭" },
+      { title: "OUTSOURCED TURNING", copy: "외주 선삭" },
       { title: "CARBURIZING", copy: "침탄 열처리" },
-      { title: "EXTERNAL INDUCTION HARDENING", copy: "외주 고주파 열처리" },
+      { title: "OUTSOURCED INDUCTION HARDENING", copy: "외주 고주파 열처리" },
     ],
     benefits: [
       { title: "긴밀한 기술 협업", copy: "공정별 기술 검토와 현장 협의를 통해 품질 기준과 작업 조건을 조율합니다." },
-      { title: "신속한 대응", copy: "개발 변경과 생산 이슈에 필요한 현장 확인 시간을 줄입니다." },
+      { title: "신속한 대응", copy: "개발 변경이나 생산 이슈 발생 시 현장 확인에 걸리는 시간을 줄입니다." },
       { title: "유연한 생산 대응", copy: "프로그램 변화에 맞춰 전문 공정과 생산 여력을 연계합니다." },
       { title: "공급 연속성", copy: "소재·외주 공정·사내 가공의 진행 상태를 하나의 계획으로 관리합니다." },
     ],
@@ -292,17 +292,17 @@ export const localSupplyNetwork = {
   en: {
     eyebrow: "INTEGRATED LOCAL SUPPLY NETWORK",
     title: "An integrated supply network built with qualified specialist partners.",
-    copy: "Seoul Industry retains process ownership and quality standards, while qualified partners provide material and special-process capabilities for responsive development and production support.",
+    copy: "Seoul Industry retains process ownership and control of quality standards, while qualified specialist partners supply raw materials and special processes, enabling rapid response to development changes and production fluctuations.",
     processes: [
       { title: "HOT FORGING", copy: "Qualified partner" },
       { title: "WARM FORGING", copy: "Qualified partner" },
       { title: "COLD FORGING", copy: "Qualified partner" },
-      { title: "EXTERNAL TURNING", copy: "Qualified partner" },
+      { title: "OUTSOURCED TURNING", copy: "Qualified partner" },
       { title: "CARBURIZING", copy: "Qualified partner" },
-      { title: "EXTERNAL INDUCTION HARDENING", copy: "Qualified partner" },
+      { title: "OUTSOURCED INDUCTION HARDENING", copy: "Qualified partner" },
     ],
     benefits: [
-      { title: "Close collaboration", copy: "Technical and shop-floor reviews align quality standards and operating conditions across each process." },
+      { title: "Close collaboration", copy: "Technical and shop-floor reviews align quality standards and operating conditions for each process." },
       { title: "Rapid response", copy: "On-site reviews shorten response times for development changes and production issues." },
       { title: "Flexible capacity", copy: "Specialist processes and available capacity adapt to program changes." },
       { title: "Supply continuity", copy: "Materials, outsourced processes, and in-house machining are managed under one plan." },
@@ -310,15 +310,15 @@ export const localSupplyNetwork = {
   },
   ja: {
     eyebrow: "INTEGRATED LOCAL SUPPLY NETWORK",
-    title: "検証された専門パートナーとつながる統合サプライチェーン",
-    copy: "ソウル産業が工程責任と品質基準を管理し、工程ごとの専門サプライヤーと連携して素材・特殊工程の能力を確保し、開発変更と量産変動に迅速に対応します。",
+    title: "認定された専門パートナーと連携する統合サプライチェーン",
+    copy: "ソウル産業が工程責任と品質基準を管理し、工程ごとの専門サプライヤーと連携して素材・特殊工程の能力を確保し、開発段階の変更や量産段階の変動に迅速に対応します。",
     processes: [
       { title: "HOT FORGING", copy: "熱間鍛造" },
       { title: "WARM FORGING", copy: "温間鍛造" },
       { title: "COLD FORGING", copy: "冷間鍛造" },
-      { title: "EXTERNAL TURNING", copy: "外注旋削" },
+      { title: "OUTSOURCED TURNING", copy: "外注旋削" },
       { title: "CARBURIZING", copy: "浸炭処理" },
-      { title: "EXTERNAL INDUCTION HARDENING", copy: "外注高周波焼入れ" },
+      { title: "OUTSOURCED INDUCTION HARDENING", copy: "外注高周波焼入れ" },
     ],
     benefits: [
       { title: "緊密な技術連携", copy: "工程別の技術検討と現場協議を通じて、品質基準と作業条件を調整します。" },
@@ -341,8 +341,8 @@ export const localSupplyNetwork = {
 export const operationalReliability = {
   ko: {
     eyebrow: "EQUIPMENT RELIABILITY",
-    title: "데이터와 자주 보전으로 설비 가동 안정성을 관리합니다.",
-    copy: "MES 설비 이력, 테마별 자주 보전, 정비·세팅 후 작업자 교육을 연계해 가동 리스크를 줄이고 개선 우선순위를 정합니다.",
+    title: "데이터와 자주보전으로 설비 가동 안정성을 관리합니다.",
+    copy: "MES 설비 이력, 테마별 자주보전, 정비·세팅 후 작업자 교육을 연계해 가동 리스크를 줄이고 개선 우선순위를 정합니다.",
     items: [
       {
         code: "01 · MES",
@@ -352,7 +352,7 @@ export const operationalReliability = {
       },
       {
         code: "02 · TPM",
-        title: "테마별 자주 보전",
+        title: "테마별 자주보전",
         copy: "청소, 점검, 보전 항목을 테마별로 운영하고 개선 전후 상태를 확인해 설비의 기본 조건을 유지합니다.",
         detail: "Clean · Inspect · Maintain",
       },
@@ -372,19 +372,19 @@ export const operationalReliability = {
       {
         code: "01 · MES",
         title: "Uptime and downtime history",
-        copy: "MES data is used to review failure and downtime history and major causes, helping prioritize maintenance.",
+        copy: "MES data tracks failure and downtime history along with their primary causes, guiding maintenance priorities.",
         detail: "History · Downtime · Priority",
       },
       {
         code: "02 · TPM",
         title: "Targeted autonomous maintenance",
-        copy: "Cleaning, inspection, and maintenance themes keep basic equipment conditions visible and controlled.",
+        copy: "Cleaning, inspection, and maintenance tasks are organized by theme, with before-and-after checks that maintain basic equipment conditions.",
         detail: "Clean · Inspect · Maintain",
       },
       {
         code: "03 · TRAINING",
         title: "Training after maintenance and setup",
-        copy: "Work methods are reviewed after equipment maintenance or setup, and operating conditions and precautions are shared through training.",
+        copy: "After maintenance or setup, work methods are verified and operators are trained on the updated operating conditions and precautions.",
         detail: "Maintenance · Setup · Training",
       },
     ],
@@ -392,12 +392,12 @@ export const operationalReliability = {
   ja: {
     eyebrow: "EQUIPMENT RELIABILITY",
     title: "データと自主保全で設備稼働の安定性を管理します。",
-    copy: "MES設備履歴、テーマ別自主保全、整備・セットアップ後の作業者教育を連携させ、稼働リスクを低減して改善の優先順位を定めます。",
+    copy: "MES設備履歴、テーマ別自主保全、設備保全・セットアップ後の作業者教育を連携させ、稼働リスクを低減して改善の優先順位を定めます。",
     items: [
       {
         code: "01 · MES",
         title: "稼働・非稼働履歴管理",
-        copy: "設備の故障・非稼働履歴と主な原因をMESデータで確認し、整備の優先順位を管理します。",
+        copy: "設備の故障・非稼働履歴と主な原因をMESデータで確認し、保全の優先順位を管理します。",
         detail: "History · Downtime · Priority",
       },
       {
@@ -408,8 +408,8 @@ export const operationalReliability = {
       },
       {
         code: "03 · TRAINING",
-        title: "整備・セットアップ後の教育",
-        copy: "設備整備・セットアップ後に作業方法を確認し、担当者教育を通じて運転条件と注意事項を共有します。",
+        title: "保全・セットアップ後の教育",
+        copy: "設備の保全・セットアップ後に作業方法を確認し、担当者教育を通じて運転条件と注意事項を共有します。",
         detail: "Maintenance · Setup · Training",
       },
     ],
@@ -439,7 +439,7 @@ export const manufacturingGroupLabels: Record<
     all: "All Processes",
     cutting: "Machining",
     gear: "Gear & Spline",
-    surface: "Heat & Surface",
+    surface: "Heat Treat & Surface",
     inspection: "Automation & Inspection",
   },
   ja: {
@@ -455,26 +455,26 @@ export const manufacturingPageCopy = {
   ko: {
     eyebrow: "MANUFACTURING CAPABILITY",
     title: "가공부터 검사까지 연결된 생산 기술",
-    copy: "선삭, 기어·스플라인, 연삭에 CQI-9 기반의 사내 고주파 열처리, CQI-15 기반의 레이저 용접, 자동 교정과 전용 검사를 연결해 장기 양산의 정밀도를 관리합니다.",
+    copy: "선삭, 기어·스플라인 가공, 연삭에 CQI-9 기반의 사내 고주파 열처리, CQI-15 기반의 레이저 용접, 자동 교정과 전용 검사를 연결해 장기 양산의 정밀도를 관리합니다.",
     equipmentTitle: "안정적인 양산을 뒷받침하는 보유 설비",
-    equipmentCopy: "사내 가공 설비와 주요 단조·열처리 협력사를 동일한 공정 계획과 품질 관리 체계로 연결합니다.",
+    equipmentCopy: "사내 가공 설비와 주요 단조·열처리 협력사를 동일한 공정 계획과 품질 관리 체계 아래 운영합니다.",
     inspectionTitle: "측정 결과가 다시 공정으로 돌아가는 검사 기술",
     inspectionCopy: "치수와 기하공차, 기어 형상, 런아웃, 균열 여부를 전용 검사와 정밀 측정 장비로 확인합니다.",
   },
   en: {
     eyebrow: "MANUFACTURING CAPABILITY",
-    title: "Production technology connected from machining to inspection",
-    copy: "Turning, gear and spline machining, and grinding connect with CQI-9-based in-house induction hardening, CQI-15-based laser welding, automatic straightening, and dedicated inspection in one controlled flow.",
+    title: "Production technology that connects machining to inspection",
+    copy: "Turning, gear and spline machining, and grinding are linked with CQI-9-compliant in-house induction hardening, CQI-15-compliant laser welding, automatic straightening, and dedicated inspection to sustain precision over long production runs.",
     equipmentTitle: "Equipment supporting stable volume production",
     equipmentCopy: "In-house equipment and key forging and heat-treatment partners are managed through the same process plan and quality-control system.",
     inspectionTitle: "Inspection technology that feeds results back into production",
-    inspectionCopy: "Dimensions, GD&T, gear geometry, runout, and cracks are verified through dedicated inspection and precision measuring equipment.",
+    inspectionCopy: "Dedicated inspection systems and precision measuring equipment verify dimensions, GD&T, gear geometry, and runout, and screen every part for cracks.",
   },
   ja: {
     eyebrow: "MANUFACTURING CAPABILITY",
     title: "加工から検査までつながる生産技術",
-    copy: "旋削、ギヤ・スプライン加工、研削に、CQI-9に基づく社内高周波焼入れ、CQI-15に基づくレーザー溶接、自動矯正、専用検査をつなぎ、量産精度を管理します。",
-    equipmentTitle: "量産を支える保有設備",
+    copy: "旋削、ギヤ・スプライン加工、研削に、CQI-9に基づく社内高周波焼入れ、CQI-15に基づくレーザー溶接、自動矯正、専用検査をつなぎ、長期量産の精度を管理します。",
+    equipmentTitle: "安定した量産を支える保有設備",
     equipmentCopy: "社内設備と主要な鍛造・熱処理パートナーを、同一の工程計画と品質管理体制で一元管理します。",
     inspectionTitle: "測定結果を工程へ戻す検査技術",
     inspectionCopy: "寸法、幾何公差、ギヤ形状、振れ、亀裂を専用検査と精密測定設備で確認します。",
@@ -512,7 +512,7 @@ export const equipmentInventory: EquipmentInventoryGroup[] = [
     title: { ko: "절삭가공", en: "Machining", ja: "切削加工" },
     copy: {
       ko: "외경·단차·기준면과 하우징의 홀·장착면을 가공하는 기반 설비",
-      en: "Core equipment for diameters, datum faces, holes, and mounting surfaces",
+      en: "Core equipment for outside diameters, steps, datum faces, and housing holes and mounting surfaces",
       ja: "外径、基準面、穴、取付面を加工する基幹設備",
     },
     items: ["CNC LATHE", "CNC MCT"],
@@ -531,9 +531,9 @@ export const equipmentInventory: EquipmentInventoryGroup[] = [
     id: "finishing",
     title: { ko: "연삭·열처리·표면", en: "Finishing & Heat Treatment", ja: "研削・熱処理・表面" },
     copy: {
-      ko: "회전부 정밀도와 내마모성, 피로강도를 완성하는 후공정 설비",
-      en: "Finishing equipment for rotating accuracy, wear resistance, and fatigue strength",
-      ja: "回転部品の精度、耐摩耗性、疲労強度を仕上げる後工程設備",
+      ko: "회전부 정밀도와 내마모성, 피로강도를 확보하는 후공정 설비",
+      en: "Finishing equipment for rotational accuracy, wear resistance, and fatigue strength",
+      ja: "回転部品の精度、耐摩耗性、疲労強度を作り込む後工程設備",
     },
     items: ["CNC GRINDING", "SUPER FINISHING", "SHOT PEENING"],
   },
@@ -579,8 +579,8 @@ export const manufacturingProcesses: ManufacturingProcess[] = [
     },
     capability: {
       ko: "수직형 MCT와 전용 치공구를 활용한 복합가공",
-      en: "Complex vertical machining with dedicated fixtures",
-      ja: "立形MCTと専用治具による複合加工",
+      en: "Complex machining on vertical machining centers with dedicated fixtures",
+      ja: "立形マシニングセンタと専用治具による複合加工",
     },
     image: machiningCenterImage,
   },
@@ -590,12 +590,12 @@ export const manufacturingProcesses: ManufacturingProcess[] = [
     title: "RACK ROLLING",
     makers: "NACHI · DONG-IL · COMET",
     copy: {
-      ko: "래크 롤 다이로 샤프트 표면에 치형을 성형해 반복 생산성과 섬유 흐름을 확보합니다.",
-      en: "Forms rack teeth on shaft surfaces with rolling dies for repeatable production.",
-      ja: "ラックロールダイスでシャフト表面に歯形を成形し、安定した量産性を確保します。",
+      ko: "전조 다이로 샤프트 표면에 랙 치형을 성형해 반복 생산성과 끊김 없는 단류선을 확보합니다.",
+      en: "Forms rack teeth on shaft surfaces with rolling dies, securing repeatable production and continuous grain flow.",
+      ja: "ラック転造ダイスでシャフト表面に歯形を転造し、安定した量産性を確保します。",
     },
     capability: {
-      ko: "샤프트 계열 래크·스플라인 성형",
+      ko: "샤프트 계열 랙·스플라인 성형",
       en: "Rack and spline forming for shaft components",
       ja: "シャフト部品のラック・スプライン成形",
     },
@@ -607,9 +607,9 @@ export const manufacturingProcesses: ManufacturingProcess[] = [
     title: "BROACHING",
     makers: "HANKOOK BROACH · NACHI-KUKJE",
     copy: {
-      ko: "내경 기어와 스플라인을 브로치 공구로 연속 절삭해 형상과 위치 정밀도를 관리합니다.",
+      ko: "내측 기어와 스플라인을 브로치 공구로 연속 절삭해 형상과 위치 정밀도를 관리합니다.",
       en: "Continuously cuts internal gears and splines while controlling profile and position.",
-      ja: "内径ギヤとスプラインを連続切削し、形状と位置精度を管理します。",
+      ja: "内歯ギヤとスプラインをブローチ加工で連続切削し、形状と位置精度を管理します。",
     },
     capability: {
       ko: "내측 기어·스플라인 전용 가공",
@@ -626,11 +626,11 @@ export const manufacturingProcesses: ManufacturingProcess[] = [
     copy: {
       ko: "헬리컬과 스퍼 기어의 치형을 가공하고 공정 조건을 표준화해 장기 양산의 반복 정밀도를 유지합니다.",
       en: "Machines helical and spur gear profiles under standardized conditions to maintain accuracy across long production runs.",
-      ja: "ヘリカルギヤ・スパーギヤの歯形を加工し、標準条件で量産精度を維持します。",
+      ja: "ヘリカルギヤ・スパーギヤの歯形を加工し、標準化した工程条件で長期量産の繰返し精度を維持します。",
     },
     capability: {
       ko: "헬리컬·스퍼 기어 및 Hard Hobbing 대응",
-      en: "Helical, spur, and hard-hobbing capability",
+      en: "Helical and spur gear hobbing, including hard hobbing",
       ja: "ヘリカルギヤ・スパーギヤおよびハードホビング",
     },
     image: hobbingImage,
@@ -643,7 +643,7 @@ export const manufacturingProcesses: ManufacturingProcess[] = [
     copy: {
       ko: "공구 간섭이 있는 형상과 내·외측 기어를 셰이핑 방식으로 가공합니다.",
       en: "Shapes internal and external gears where tool access or geometry limits other processes.",
-      ja: "工具干渉のある形状や内・外歯ギヤをシェイピング方式で加工します。",
+      ja: "工具干渉のある形状や内・外歯ギヤをギヤシェーパーで加工します。",
     },
     capability: {
       ko: "내측·외측 기어 및 스플라인 형상 가공",
@@ -660,7 +660,7 @@ export const manufacturingProcesses: ManufacturingProcess[] = [
     copy: {
       ko: "원통, 앵귤러, 센터리스 연삭으로 회전부의 치수, 진원도와 표면 품질을 완성합니다.",
       en: "Finishes rotating parts through cylindrical, angular, and centerless grinding.",
-      ja: "円筒、アンギュラ、センタレス研削で寸法、真円度、表面品質を仕上げます。",
+      ja: "円筒・アンギュラ・センタレス研削で、回転部の寸法精度、真円度、表面品質を作り込みます。",
     },
     capability: {
       ko: "원통·앵귤러·센터리스 연삭",
@@ -673,15 +673,15 @@ export const manufacturingProcesses: ManufacturingProcess[] = [
     id: "induction",
     group: "surface",
     title: "INDUCTION HARDENING",
-    makers: "INDUCTION · LOW TEMPERING",
+    makers: "INDUCTION HARDENING · LOW-TEMP TEMPERING",
     copy: {
-      ko: "부품의 필요한 구간만 선택적으로 경화하고 저온 템퍼링을 연결해 내마모성과 인성을 관리합니다.",
+      ko: "필요한 부위만 선택적으로 경화하고 저온 템퍼링을 연계해 내마모성과 인성을 관리합니다.",
       en: "Selectively hardens critical areas and uses low-temperature tempering to balance wear resistance and toughness.",
-      ja: "必要部位を選択的に高周波焼入れし、低温焼戻しで耐摩耗性と靭性を管理します。",
+      ja: "必要部位を選択的に高周波焼入れし、低温焼戻しで耐摩耗性と靭性を両立させます。",
     },
     capability: {
       ko: "고주파 경화와 저온 템퍼링 연계",
-      en: "Integrated induction hardening and low tempering",
+      en: "Induction hardening integrated with low-temperature tempering",
       ja: "高周波焼入れと低温焼戻し",
     },
     image: inductionHardeningImage,
@@ -725,7 +725,7 @@ export const manufacturingProcesses: ManufacturingProcess[] = [
   {
     id: "auto-inspection",
     group: "inspection",
-    title: "DEDICATED AUTO INSPECTION",
+    title: "DEDICATED AUTOMATED INSPECTION",
     makers: "DIMENSION · GD&T · TRACEABILITY",
     copy: {
       ko: "부품별 전용 검사기로 주요 치수와 기하공차를 자동 측정하고 생산 이력과 연결합니다.",
@@ -748,11 +748,11 @@ export const manufacturingProcesses: ManufacturingProcess[] = [
     copy: {
       ko: "부품을 타격했을 때 발생하는 고유 주파수를 비교해 균열 가능성을 비파괴 방식으로 판정합니다.",
       en: "Compares resonant frequency after impact to identify potential cracks without damaging the part.",
-      ja: "打撃時の固有周波数を比較し、部品を傷つけずに亀裂の可能性を判定します。",
+      ja: "打撃時の固有振動数を比較し、部品を傷つけずに亀裂の可能性を判定します。",
     },
     capability: {
       ko: "음향 공진 기반 비파괴 균열검사",
-      en: "Acoustic-resonance nondestructive crack detection",
+      en: "Acoustic-resonance non-destructive crack detection",
       ja: "音響共振による非破壊亀裂検査",
     },
     image: crackInspectionImage,
@@ -765,7 +765,7 @@ export const manufacturingProcesses: ManufacturingProcess[] = [
     makers: "ZEISS CMM · TTI GEAR MEASUREMENT",
     copy: {
       ko: "3차원 측정과 기어 전용 측정으로 형상, 위치, 치형 데이터를 정밀하게 검증합니다.",
-      en: "Verifies geometry, position, and gear-profile data with CMM and dedicated gear measurement.",
+      en: "Verifies geometry, position, and gear-profile data with CMM and dedicated gear-measurement systems.",
       ja: "三次元測定とギヤ専用測定により、形状、位置、歯形データを精密に検証します。",
     },
     capability: {
@@ -789,14 +789,14 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
   "products/electric-vehicle": {
     eyebrow: "ELECTRIFIED POWERTRAIN",
     title: {
-      ko: "EV 오일 펌프 부품과 전동화용 기어·샤프트",
+      ko: "EV 오일 펌프 부품과 전동화 파워트레인용 기어·샤프트",
       en: "EV oil-pump components and electrified-powertrain gears and shafts",
       ja: "EVオイルポンプ部品と電動化パワートレイン向けギヤ・シャフト",
     },
     copy: {
-      ko: "EV 감속기용 오일 펌프 하우징·커버를 가공하고, 전동화용 기어 샤프트·코액시얼 샤프트·링크 샤프트의 설계 검토와 시제품 제작·검증에 대응합니다.",
-      en: "We machine oil-pump housings and covers for EV reduction gears and support design reviews, prototype production, and validation for electrified-powertrain gear shafts, coaxial shafts, and link shafts.",
-      ja: "EV減速機向けオイルポンプハウジング・カバーを加工し、電動化パワートレイン向けギヤシャフト、コアキシャルシャフト、リンクシャフトの設計検討・試作品の製作・検証に対応します。",
+      ko: "EV 감속기용 오일 펌프 하우징·커버를 가공하고, 전동화 파워트레인용 기어 샤프트·코액시얼 샤프트·링크 샤프트의 설계 검토와 시제품 제작·검증에 대응합니다.",
+      en: "We machine oil-pump housings and covers for EV reduction gearboxes and support design reviews, prototype production, and validation for electrified-powertrain gear shafts, coaxial shafts, and link shafts.",
+      ja: "EV減速機向けオイルポンプハウジング・カバーを加工し、電動化パワートレイン向けギヤシャフト、コアキシャルシャフト、リンクシャフトの設計検討および試作・検証に対応します。",
     },
     items: {
       ko: ["EV Oil Pump Housing / Cover", "HEV Gear Shaft", "Coaxial / Link Shaft"],
@@ -808,7 +808,7 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
   "products/powertrain": {
     eyebrow: "POWERTRAIN APPLICATION",
     title: {
-      ko: "변속기·엔진용 정밀 가공 부품",
+      ko: "변속기·엔진용 정밀가공 부품",
       en: "Precision-machined components for transmissions and engines",
       ja: "トランスミッション・エンジン向け精密加工部品",
     },
@@ -827,13 +827,13 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
   "products/driveline": {
     eyebrow: "DRIVELINE APPLICATION",
     title: {
-      ko: "Transfer Case와 ETM용 구동 부품",
+      ko: "트랜스퍼 케이스·ETM용 구동 부품",
       en: "Drive components for transfer cases and ETM systems",
       ja: "トランスファーケース・ETM向け駆動部品",
     },
     copy: {
       ko: "트랜스퍼 케이스 액추에이터 샤프트, EMCD 허브 및 디스크 캐리어 부품에 형상별로 호빙·브로칭·랙 롤링·레이저 용접·조립 공정을 적용합니다.",
-      en: "Hobbing, broaching, rack rolling, laser welding, and assembly are applied according to the geometry of transfer-case actuator shafts, EMCD hubs, and disc-carrier components.",
+      en: "Hobbing, broaching, rack rolling, laser welding, and assembly are applied to transfer-case actuator shafts, EMCD hubs, and disc-carrier components as each geometry requires.",
       ja: "トランスファーケースアクチュエーターシャフト、EMCDハブ、ディスクキャリア部品に、形状に応じてホブ加工、ブローチ加工、ラック転造、レーザー溶接・組立を適用します。",
     },
     items: {
@@ -851,8 +851,8 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
       ja: "バランスシャフトモジュール向けアルミ加工部品",
     },
     copy: {
-      ko: "밸런스 샤프트 모듈용 하우징과 오일 펌프용 알루미늄 다이캐스팅 부품을 정밀가공합니다.",
-      en: "We precision-machine aluminum die-cast housings and oil-pump components for balance-shaft modules.",
+      ko: "밸런스 샤프트 모듈용 알루미늄 다이캐스팅 하우징과 오일 펌프 부품을 정밀가공합니다.",
+      en: "We precision-machine die-cast aluminum housings and oil-pump components for balance-shaft modules.",
       ja: "バランスシャフトモジュール向けハウジングとオイルポンプ用アルミダイカスト部品を精密加工します。",
     },
     items: {
@@ -865,18 +865,18 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
   "products/steering": {
     eyebrow: "STEERING APPLICATION",
     title: {
-      ko: "조향 장치용 정밀 가공 부품",
+      ko: "조향 장치용 정밀가공 부품",
       en: "Precision-machined components for steering systems",
       ja: "ステアリングシステム向け精密加工部品",
     },
     copy: {
       ko: "헬리컬 피니언, 피니언 샤프트, 토션 바 등 조향 어셈블리 부품에 기어·스플라인 가공, 열처리 및 교정 공정을 적용합니다.",
       en: "Gear and spline machining, heat treatment, and straightening are applied to steering-assembly components such as helical pinions, pinion shafts, and torsion bars.",
-      ja: "ヘリカルピニオン、ピニオンシャフト、トーションバーなどのステアリングアセンブリ部品に、ギヤ・スプライン加工、熱処理、矯正工程を適用します。",
+      ja: "ヘリカルピニオン、ピニオンシャフト、トーションバーなどのステアリングアセンブリー部品に、ギヤ・スプライン加工、熱処理、矯正工程を適用します。",
     },
     items: {
       ko: ["Helical Pinion", "P/Shaft", "Torsion Bar", "Steering Assembly Component"],
-      en: ["Helical pinion", "P/shaft", "Torsion bar", "Steering assembly component"],
+      en: ["Helical pinion", "Pinion shaft", "Torsion bar", "Steering assembly component"],
       ja: ["ヘリカルピニオン", "P／シャフト", "トーションバー", "ステアリングアセンブリー部品"],
     },
     image: hobbingImage,
@@ -884,19 +884,19 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
   "products/etc": {
     eyebrow: "DEFENSE & SPECIAL PROJECTS",
     title: {
-      ko: "방산·특수 프로젝트 공개 안내",
-      en: "Disclosure guidance for defense and special projects",
-      ja: "防衛・特別プロジェクトの公開案内",
+      ko: "방산·특수 프로젝트 정보 공개 기준",
+      en: "Disclosure policy for defense and special projects",
+      ja: "防衛・特殊プロジェクトの情報開示について",
     },
     copy: {
       ko: "구체적인 제품과 고객 정보는 공개하지 않으며, 대응 범위와 관리 기준은 보안 및 고객 승인 조건에 따라 개별 협의합니다.",
-      en: "Specific product and customer details are not disclosed. Project scope and control requirements are agreed case by case according to security and customer-approval conditions.",
-      ja: "具体的な製品・顧客情報は公開せず、対応範囲と管理基準はセキュリティおよび顧客承認条件に応じて個別に協議します。",
+      en: "Specific product and customer details are not disclosed. Project scope and control requirements are agreed on case by case, subject to security and customer-approval requirements.",
+      ja: "具体的な製品・顧客情報は開示せず、対応範囲と管理基準は機密保持および顧客の承認条件に応じて個別に協議します。",
     },
     items: {
-      ko: ["정보 관리 프로젝트", "정밀 공정 설계", "품질·LOT 추적", "통제된 생산 이관"],
-      en: ["Controlled-information project", "Precision process design", "Quality and lot traceability", "Controlled production transfer"],
-      ja: ["情報管理プロジェクト", "精密工程設計", "品質・ロットトレーサビリティ", "管理された量産移管"],
+      ko: ["정보 관리 프로젝트", "정밀 공정 설계", "품질·LOT 추적", "통제된 양산 이관"],
+      en: ["Restricted-information projects", "Precision process design", "Quality and lot traceability", "Controlled production transfer"],
+      ja: ["情報管理プロジェクト", "精密工程設計", "品質・ロットトレーサビリティ", "管理下での量産移管"],
     },
     image: defenseSpecialProjectsImage,
   },
@@ -905,7 +905,7 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
 export const qualityEvidenceCopy = {
   ko: {
     title: "공정과 출하를 연결하는 품질검사",
-    copy: "측정 결과를 교정, 공정 조건, 추적 관리와 출하 판정에 연결해 품질 변동을 관리합니다.",
+    copy: "측정 결과를 런아웃 교정, 공정 조건, 추적 관리, 출하 판정에 반영해 품질 변동을 관리합니다.",
   },
   en: {
     title: "Inspection connected to process and release decisions",
@@ -913,6 +913,6 @@ export const qualityEvidenceCopy = {
   },
   ja: {
     title: "工程と出荷判定をつなぐ品質検査",
-    copy: "測定結果を矯正、工程条件、トレーサビリティ、出荷判定へつなぎ、量産工程のばらつきを管理します。",
+    copy: "測定結果を矯正・工程条件・トレーサビリティ・出荷判定へつなぎ、量産工程のばらつきを管理します。",
   },
 };

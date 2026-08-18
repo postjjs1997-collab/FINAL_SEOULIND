@@ -103,7 +103,7 @@ export const curatedNoticePosts: NoticePost[] = [
       en: {
         title: "From drawing review to volume supply: Seoul Industry’s integrated precision-machining system",
         summary: "From our manufacturing base in Hwaseong, Korea, we connect feasibility review, process design, precision machining, inspection, and volume supply in one continuous flow.",
-        body: "Since 1985, Seoul Industry has produced precision automotive components including shafts, hubs, disk carriers, and machined aluminum castings.\n\nBased on customer drawings and product requirements, we define process sequences, machining datums, fixtures, clamping methods, and operating parameters, then connect production validation with inspection. External processes such as forging and heat treatment are coordinated under the same manufacturing plan and control standards.",
+        body: "Since 1985, Seoul Industry has produced precision automotive components including shafts, hubs, disc carriers, and machined aluminum castings.\n\nBased on customer drawings and product requirements, we define process sequences, machining datums, fixtures, clamping methods, and machining parameters, then connect production validation with inspection. External processes such as forging and heat treatment are coordinated under the same manufacturing plan and control standards.",
       },
       ja: {
         title: "図面検討から量産供給まで、ソウル産業の一貫精密加工体制",
@@ -126,7 +126,7 @@ export const curatedNoticePosts: NoticePost[] = [
         body: "서울산업은 CNC 선반과 머시닝 센터, 기어·스플라인 가공, 연삭과 표면 마무리 공정을 제품 요구 사항에 맞춰 구성합니다.\n\n전용 라인에서는 갠트리와 로봇 핸들링이 로딩·언로딩 및 공정 간 이송을 담당합니다. 공정 내 검사 데이터를 선행 공정에 피드백하고 보정에 활용해 반복 정밀도와 공정 안정성을 관리합니다.",
       },
       en: {
-        title: "Precision production lines with gantry and robotic automation",
+        title: "Precision-machining production lines with gantry and robotic automation",
         summary: "Dedicated production lines connect loading, unloading, inter-process transfer, and cell inspection to support both productivity and process stability.",
         body: "Seoul Industry configures CNC lathes and machining centers, gear and spline machining, grinding, and surface-finishing processes according to each product's requirements.\n\nWithin dedicated lines, gantry and robotic handling systems perform loading, unloading, and inter-process transfer. In-process inspection data is fed back to preceding operations and used for compensation to maintain repeatability and process stability.",
       },
@@ -147,12 +147,12 @@ export const curatedNoticePosts: NoticePost[] = [
     translations: {
       ko: {
         title: "자동검사 데이터로 완성하는 출하 품질과 추적성",
-        summary: "공정 내 셀 검사와 최종 검사를 연결해 치수·형상·공정 누락을 확인하고, 측정 기록과 LOT 추적성을 관리합니다.",
+        summary: "공정 내 셀 검사와 최종 검사를 연결해 치수와 형상, 공정 누락 여부를 확인하고, 측정 기록과 LOT 추적성을 관리합니다.",
         body: "공정 내 셀 검사에서는 에어 게이지 등을 활용해 측정 데이터를 수집하고 선행 공정에 피드백합니다. 필요한 경우 자동 보정과 SPC 관리에도 활용합니다.\n\n최종 검사에서는 GD&T 측정, 균열과 공정 누락 확인, 데이터 기록, LOT 마킹을 통해 출하 전 품질을 확인합니다. CMM, 기어 측정, 경도·금속 조직 검사도 중요 특성 검증에 활용합니다.",
       },
       en: {
         title: "Using automated inspection data to ensure outgoing quality and traceability",
-        summary: "In-process cell inspection and final inspection work together to verify dimensions, geometry, and missed operations while maintaining measurement records and lot traceability.",
+        summary: "In-process cell inspection and final inspection work together to verify dimensions and geometry and to catch missed operations while maintaining measurement records and lot traceability.",
         body: "During in-process cell inspection, measurement data is collected using air gauges and related systems, then fed back to preceding operations. Where required, the data supports automatic compensation and SPC control.\n\nFinal inspection verifies outgoing quality through GD&T measurement, detection of cracks and omitted process steps, data recording, and lot marking. CMM, gear measurement, hardness testing, and metallurgical examination also support validation of critical characteristics.",
       },
       ja: {

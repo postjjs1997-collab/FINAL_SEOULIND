@@ -46,7 +46,7 @@ const shellCopy: Record<
     mainNav: "Primary navigation",
     backToTop: "Back to top",
     footerNav: "Footer navigation",
-    office: "Head Office · Factory",
+    office: "Head Office & Factory",
     address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Republic of Korea",
     copyright: "© SEOUL INDUSTRY CO., LTD.",
   },
@@ -226,7 +226,7 @@ export function RenewalSiteFooter({ language }: { language: RenewalLanguage }) {
       <div className="renewal-footer__top">
         <div>
           <BrainallLogo markOnly />
-          <strong>Precision Automotive Components OEM</strong>
+          <strong>OEM Supplier of Precision Automotive Components</strong>
         </div>
         <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={copy.backToTop}>
           <Icon name="up" />
