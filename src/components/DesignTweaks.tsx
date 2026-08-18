@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { parseLocation, subscribeToLocation } from "../utils/siteRouter";
 
 type TweakValues = {
   fontFamily: string;
@@ -94,7 +95,7 @@ function loadTweaks(): TweakValues {
 
 function getRouteKey() {
   if (typeof window === "undefined") return "home";
-  return window.location.hash.replace(/^#\/?/, "") || "home";
+  return parseLocation().route || "home";
 }
 
 function loadTextTweaks(): Record<string, string> {
@@ -221,8 +222,7 @@ export default function DesignTweaks() {
 
     const sync = () => window.setTimeout(() => bindTextEditing(textEdit), 80);
     sync();
-    window.addEventListener("hashchange", sync);
-    return () => window.removeEventListener("hashchange", sync);
+    return subscribeToLocation(sync);
   }, [enabled, textEdit]);
 
   useEffect(() => {

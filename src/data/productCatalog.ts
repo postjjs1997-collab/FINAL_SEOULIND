@@ -71,6 +71,17 @@ export type ProductQualityStory = {
   sourceSlides: number[];
 };
 
+/** One row of the "capability range" table shown on a product page. */
+export type ProductSpecItem = {
+  label: ProductLocalizedText;
+  value: ProductLocalizedText;
+};
+
+export type ProductSpecEntry = {
+  label: string;
+  value: string;
+};
+
 export type ProductPartCatalog = {
   eyebrow: string;
   detailTitle: ProductLocalizedText;
@@ -85,9 +96,59 @@ export type ProductPartCatalog = {
   parts: ProductPart[];
   qualityStory?: ProductQualityStory;
   qualityControls: ProductQualityControl[];
+  /** Capability-range rows; only figures already published elsewhere on the site. Omitted when no supportable figures exist. */
+  specs?: ProductSpecItem[];
 };
 
 const localized = (ko: string, en: string, ja: string): ProductLocalizedText => ({ ko, en, ja });
+
+export const productSpecSectionCopy: Record<ProductCatalogLanguage, { eyebrow: string; title: string; note: string }> = {
+  ko: {
+    eyebrow: "CAPABILITY RANGE",
+    title: "가공·검증 대응 범위",
+    note: "사내 설비와 측정 기준을 바탕으로 정리한 대응 범위이며, 제품별 세부 사양은 도면 검토 후 확정합니다.",
+  },
+  en: {
+    eyebrow: "CAPABILITY RANGE",
+    title: "Machining and verification capability",
+    note: "Ranges reflect in-house equipment and metrology capacity; product-specific details are confirmed after drawing review.",
+  },
+  ja: {
+    eyebrow: "CAPABILITY RANGE",
+    title: "加工・検証の対応範囲",
+    note: "社内設備と測定基準に基づく対応範囲であり、製品ごとの詳細仕様は図面検討後に確定します。",
+  },
+};
+
+/** Resolves a catalog entry's spec rows for one language. Returns [] when the product has no specs. */
+export function getProductSpecs(
+  catalog: Pick<ProductPartCatalog, "specs"> | undefined,
+  language: ProductCatalogLanguage,
+): ProductSpecEntry[] {
+  return (catalog?.specs ?? []).map((spec) => ({ label: spec.label[language], value: spec.value[language] }));
+}
+
+// Shared spec rows (facts already published on the manufacturing / quality pages).
+const specTurning: ProductSpecItem = {
+  label: localized("선삭 기준", "Turning", "旋削"),
+  value: localized("CNC 선반 6 / 8인치 척", "CNC lathes with 6 / 8-inch chucks", "CNC旋盤 6 / 8インチチャック"),
+};
+const specGearMetrology: ProductSpecItem = {
+  label: localized("기어 측정", "Gear metrology", "ギヤ測定"),
+  value: localized(
+    "치형·리드·피치 · Ø300 · 모듈 0.2–12 · 길이 500 mm",
+    "Profile, lead, and pitch · Ø300 · module 0.2–12 · length 500 mm",
+    "歯形・歯すじ・ピッチ · Ø300 · モジュール 0.2–12 · 長さ 500 mm",
+  ),
+};
+const specCmm: ProductSpecItem = {
+  label: localized("3차원 측정", "CMM measurement", "三次元測定"),
+  value: localized(
+    "CMM · GD&T · 최대 1,000 × 1,200 × 600 mm",
+    "CMM · GD&T · up to 1,000 × 1,200 × 600 mm",
+    "CMM · GD&T · 最大 1,000 × 1,200 × 600 mm",
+  ),
+};
 
 export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   "products/balance-shaft-module": {
@@ -155,12 +216,39 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         "BSMアルミ部品は、鋳造品の供給から社内加工まで段階ごとに管理します",
       ),
       copy: localized(
-        "알루미늄 다이캐스팅 공급 단계에서는 유동·충전·가스 혼입·응고 해석, T5 열처리 및 금형 보전 항목을 관리하고, 이후 서울산업이 사내 정밀가공을 수행합니다. 세부 관리 항목과 판정 기준은 고객 승인 도면에 따릅니다.",
-        "The die-casting supply stage manages flow, filling, gas-entrapment, and solidification simulation, T5 heat treatment, and die maintenance; Seoul Industry then performs precision machining in-house. Detailed control items and acceptance criteria follow customer-approved drawings.",
-        "アルミダイカストの供給段階では、湯流れ・充填・ガス巻込み・凝固解析、T5熱処理、金型保全を管理し、その後、ソウル産業が社内で精密加工を行います。詳細な管理項目と判定基準は顧客承認図面に従います。",
+        "주조 공급 단계에서는 유동·충전·가스 혼입·응고 항목별 주조 해석 결과와 T5 열처리 조건, 금형 보전 이력을 검토합니다. 사내 가공 단계에서는 승인 도면의 치수·기하공차를 CMM과 자동 검사 설비로 검증하며, 세부 관리 항목과 판정 기준은 고객 승인 도면에 따릅니다.",
+        "At the casting-supply stage, casting-simulation results for metal flow, filling, gas entrapment, and solidification are reviewed together with T5 heat-treatment conditions and die-maintenance records. In-house machining is verified against the dimensional and geometric requirements on approved drawings using CMM and automated inspection equipment; detailed control items and acceptance criteria follow customer-approved drawings.",
+        "鋳造品の供給段階では、湯流れ・充填・ガス巻込み・凝固の各項目の鋳造解析結果とT5熱処理条件、金型保全履歴を確認します。社内加工段階では、承認図面の寸法・幾何公差をCMMと自動検査設備で検証し、詳細な管理項目と判定基準は顧客承認図面に従います。",
       ),
       sourceSlides: [5, 20, 21, 22],
     },
+    specs: [
+      {
+        label: localized("소재", "Material", "素材"),
+        value: localized("ADC12 알루미늄 다이캐스팅 공급품 · T5 열처리", "ADC12 die-cast aluminum supply · T5 heat treatment", "ADC12アルミダイカスト供給品 · T5熱処理"),
+      },
+      {
+        label: localized("주조 해석", "Casting simulation", "鋳造解析"),
+        value: localized(
+          "AnyCasting 주조 해석 · 유동·충전·가스 혼입·응고",
+          "AnyCasting casting simulation · metal flow, filling, gas entrapment, solidification",
+          "AnyCasting鋳造解析 · 湯流れ・充填・ガス巻込み・凝固",
+        ),
+      },
+      {
+        label: localized("사내 가공", "In-house machining", "社内加工"),
+        value: localized(
+          "수직형 MCT · 전용 치공구 · 베어링 보어·오일 유로·조립면",
+          "Vertical machining centers · dedicated fixtures · bearing bores, oil passages, and assembly faces",
+          "立形マシニングセンタ · 専用治具 · ベアリングボア・オイル通路・組立面",
+        ),
+      },
+      specCmm,
+      {
+        label: localized("자동 검사", "Automated inspection", "自動検査"),
+        value: localized("승인 도면 기준 치수·기하공차 자동 검사", "Automated dimensional and GD&T inspection to approved drawings", "承認図面基準の寸法・幾何公差自動検査"),
+      },
+    ],
     qualityControls: [
       {
         feature: localized("BSM 하우징·오일 펌프용 알루미늄 부품", "BSM housings and aluminum components for oil pumps", "BSMハウジング・オイルポンプ用アルミ部品"),
@@ -277,12 +365,36 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         "量産部品と開発試作品を異なる基準で管理します",
       ),
       copy: localized(
-        "EV 감속기용 오일 펌프 하우징·커버는 양산 기준으로 정밀가공하고, 전동화 파워트레인용 샤프트는 설계 검증을 위한 시제품으로 제작합니다. 샤프트 시제품은 기어 정밀도, 스플라인 형상, 런아웃 및 표면 상태를 중심으로 검증합니다.",
-        "EV reduction-gear oil-pump housings and covers are precision-machined to series-production standards, while electrified-powertrain shafts are produced as prototypes for design validation. Prototype shafts are evaluated for gear accuracy, spline geometry, runout, and surface condition.",
-        "EV減速機用オイルポンプのハウジング・カバーは量産基準で精密加工し、電動化パワートレイン向けシャフトは設計検証用の試作品として製作します。シャフト試作品はギヤ精度、スプライン形状、振れ、表面状態を中心に検証します。",
+        "샤프트 시제품은 도면·가공성 검토 후 전용 장비로 기어 정밀도, 스플라인 형상, 런아웃, 표면 상태를 검증합니다. 양산 하우징·커버는 승인 도면의 치수·기하공차를 CMM과 자동 검사 설비로 확인하며, 양산 부품과 시제품의 승인 단계는 제품 성격에 맞춰 별도로 운영합니다.",
+        "Prototype shafts are evaluated after drawing and manufacturability review for gear accuracy, spline geometry, runout, and surface condition using dedicated equipment. Series-production housings and covers are verified against the dimensional and geometric requirements on approved drawings with CMM and automated inspection equipment, and approval stages for production parts and prototypes are managed separately according to product type.",
+        "シャフト試作品は、図面・加工性の検討後に専用設備でギヤ精度、スプライン形状、振れ、表面状態を検証します。量産のハウジング・カバーは承認図面の寸法・幾何公差をCMMと自動検査設備で確認し、量産部品と試作品の承認段階は製品特性に応じて個別に運用します。",
       ),
       sourceSlides: [5, 10, 11, 12, 14, 19, 20, 22],
     },
+    specs: [
+      {
+        label: localized("양산 부품", "Series-production parts", "量産部品"),
+        value: localized("EV 오일 펌프 하우징·커버 · 알루미늄 정밀가공", "EV oil-pump housings and covers · precision-machined aluminum", "EVオイルポンプのハウジング・カバー · アルミ精密加工"),
+      },
+      {
+        label: localized("개발 시제품", "Development prototypes", "開発試作品"),
+        value: localized("HEV 기어 샤프트 · 코액시얼 샤프트 · 링크 샤프트", "HEV gear shafts · coaxial shafts · link shafts", "HEVギヤシャフト · コアキシャルシャフト · リンクシャフト"),
+      },
+      {
+        label: localized("하우징 가공", "Housing machining", "ハウジング加工"),
+        value: localized(
+          "수직형 MCT · 전용 치공구 · 홀·장착면·유로 가공",
+          "Vertical machining centers · dedicated fixtures · holes, mounting faces, and passages",
+          "立形マシニングセンタ · 専用治具 · 穴・取付面・流路加工",
+        ),
+      },
+      {
+        label: localized("샤프트 검증", "Shaft verification", "シャフト検証"),
+        value: localized("기어 정밀도 · 스플라인 형상 · 런아웃 · 표면 상태", "Gear accuracy · spline geometry · runout · surface condition", "ギヤ精度 · スプライン形状 · 振れ · 表面状態"),
+      },
+      specGearMetrology,
+      specCmm,
+    ],
     qualityControls: [
       {
         feature: localized(
@@ -341,11 +453,11 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       "ヘリカルピニオンシャフトから広がったステアリング部品",
     ),
     detailCopy: localized(
-      "서울산업은 조향 부품 사업 초기부터 헬리컬 피니언 샤프트의 호빙 가공 경험을 축적해 왔습니다. 치형·스플라인 가공 결과는 고객 승인 도면을 기준으로 기어 측정기, CMM, 공정 내 검사 및 최종 자동 검사로 검증합니다.",
-      "Seoul Industry has accumulated hobbing expertise in helical-gear pinion shafts since the early days of its steering-component business. Gear and spline machining results are verified against customer-approved drawings using gear-measuring equipment, CMM, in-process inspection, and final automated inspection.",
-      "ソウル産業はステアリング部品事業の初期から、ヘリカルギヤを備えたピニオンシャフトのホブ加工経験を蓄積してきました。歯形・スプラインの加工結果は、顧客承認図面に基づき、ギヤ測定機、CMM、工程内検査、最終自動検査で検証します。",
+      "서울산업 조향 부품의 출발점은 헬리컬 피니언 샤프트입니다. 1990년 조향 부품 사업 진출 이후 축적한 호빙·하드 호빙 데이터로 헬리컬 치형을 가공하고, 스플라인은 전조·브로칭으로, 공구 간섭이 있는 형상은 기어 셰이핑으로 대응합니다. 열처리 후에는 자동 교정으로 런아웃을 관리하며, 같은 공정 기준을 피스톤, 랙 부시, 토션 바까지 확장해 적용합니다.",
+      "Seoul Industry's steering business began with the helical pinion shaft. Helical tooth profiles are hobbed—including hard hobbing—using process data built up since the company entered the steering-component sector in 1990; splines are produced by rolling and broaching, and geometries with tool interference are gear-shaped. After heat treatment, automatic straightening controls runout, and the same process standards extend to pistons, rack bushes, and torsion bars.",
+      "ソウル産業のステアリング部品は、ヘリカルピニオンシャフトから始まりました。1990年のステアリング部品事業への参入以来蓄積してきたホブ加工・ハードホブ加工のデータでヘリカル歯形を加工し、スプラインは転造・ブローチ加工で、工具干渉のある形状はギヤシェーピングで対応します。熱処理後は自動矯正で振れを管理し、同じ工程基準をピストン、ラックブッシュ、トーションバーにも展開しています。",
     ),
-    detailTags: ["HOBBING EXPERIENCE", "GEAR MEASUREMENT", "CMM / AUTOMATED INSPECTION"],
+    detailTags: ["HOBBING / HARD HOBBING", "ROLLING / BROACHING", "AUTOMATIC STRAIGHTENING"],
     lineupTitle: localized(
       "조향 장치용 부품 5종",
       "Five component types for steering assemblies",
@@ -388,19 +500,44 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       },
     ],
     qualityStory: {
-      eyebrow: "STEERING PROCESS HERITAGE",
+      eyebrow: "STEERING GEAR VERIFICATION",
       title: localized(
-        "서울산업 조향 부품 사업의 출발점, 헬리컬 피니언 샤프트",
-        "Helical pinion shafts: the foundation of Seoul Industry's steering-component business",
-        "ソウル産業のステアリング部品事業の原点、ヘリカルピニオンシャフト",
+        "치형·스플라인 가공 결과는 측정과 검사 데이터로 증명합니다",
+        "Gear and spline results are proven by measurement and inspection data",
+        "歯形・スプラインの加工結果は測定と検査データで裏付けます",
       ),
       copy: localized(
-        "조향 부품 사업 초기 헬리컬 피니언 샤프트의 호빙 가공에서 출발한 경험은 피스톤, 랙 부시, 토션 바 등 조향 부품 전반으로 확장되었습니다. 치형·스플라인 가공 품질은 고객 승인 도면을 기준으로 기어 측정기, CMM, 공정 내 검사, 최종 자동 검사로 이어지는 다단계 검증으로 관리합니다.",
-        "Seoul Industry has accumulated hobbing expertise in helical-gear pinion shafts since the early days of its steering-component business. Gear and spline machining results are verified against customer-approved drawings using gear-measuring equipment, CMM, in-process inspection, and final automated inspection.",
-        "ソウル産業はステアリング部品事業の初期から、ヘリカルギヤを備えたピニオンシャフトのホブ加工経験を蓄積してきました。歯形・スプラインの加工結果は、顧客承認図面に基づき、ギヤ測定機、CMM、工程内検査、最終自動検査で検証します。",
+        "치형과 리드는 기어 측정기로, 관련 치수와 기하공차는 CMM으로 고객 승인 도면 기준에 맞춰 측정합니다. 공정 내 검사와 제품별 전용 검사기의 최종 자동 검사로 주요 치수와 런아웃을 확인하고, 검사 데이터와 LOT 식별정보를 기록해 공정 누락 여부까지 추적합니다.",
+        "Tooth profile and lead are measured on gear-measuring equipment and related dimensions and geometric tolerances on CMM, all against customer-approved drawings. In-process inspection and final automated inspection on product-specific machines confirm critical dimensions and runout, and recorded inspection data and lot identification make even skipped operations traceable.",
+        "歯形と歯すじはギヤ測定機で、関連寸法と幾何公差はCMMで、顧客承認図面を基準に測定します。工程内検査と製品別専用検査機による最終自動検査で主要寸法と振れを確認し、検査データとロット識別情報を記録して工程抜けまで追跡します。",
       ),
       sourceSlides: [3, 5, 7, 11, 12, 13, 22],
     },
+    specs: [
+      {
+        label: localized("기어 가공", "Gear machining", "ギヤ加工"),
+        value: localized(
+          "헬리컬·스퍼 기어 호빙 · 하드 호빙 · 기어 셰이핑",
+          "Helical and spur gear hobbing · hard hobbing · gear shaping",
+          "ヘリカル・スパーギヤのホブ加工 · ハードホブ加工 · ギヤシェーピング",
+        ),
+      },
+      {
+        label: localized("스플라인 가공", "Spline machining", "スプライン加工"),
+        value: localized("전조(랙·TR 롤링) · 브로칭 · 셰이핑", "Rolling (rack / TR rolling) · broaching · shaping", "転造（ラック・TR転造） · ブローチ加工 · シェーピング"),
+      },
+      specTurning,
+      {
+        label: localized("열처리·교정", "Heat treatment & straightening", "熱処理・矯正"),
+        value: localized(
+          "고주파 경화·저온 템퍼링(사내, CQI-9) · 침탄 열처리(협력사) · 서보 프레스 자동 교정",
+          "Induction hardening with low-temperature tempering (in-house, CQI-9) · carburizing (qualified partner) · servo-press automatic straightening",
+          "高周波焼入れ・低温焼戻し（社内、CQI-9） · 浸炭処理（認定パートナー） · サーボプレス自動矯正",
+        ),
+      },
+      specGearMetrology,
+      specCmm,
+    ],
     qualityControls: [
       {
         feature: localized(
@@ -518,6 +655,47 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       ),
       sourceSlides: [7, 8, 9, 10, 11, 12, 15, 16, 22],
     },
+    specs: [
+      {
+        label: localized("샤프트 형상", "Shaft configurations", "シャフト形状"),
+        value: localized(
+          "장축·중공 샤프트(심공 가공) · 기어 일체형 · 단품 구성",
+          "Long and hollow shafts (deep-hole drilling) · integral-gear · single-piece",
+          "長尺・中空シャフト（深穴加工） · ギヤ一体型 · 単品構成",
+        ),
+      },
+      {
+        label: localized("소재 대응", "Material options", "素材対応"),
+        value: localized(
+          "봉재·튜브 소재 · 봉재→튜브 전환 VA/VE 검토",
+          "Bar and tube stock · VA/VE review of bar-to-tube conversion",
+          "棒材・チューブ材 · 棒材からチューブ材への変更（VA/VE）検討",
+        ),
+      },
+      specTurning,
+      {
+        label: localized("열처리", "Heat treatment", "熱処理"),
+        value: localized(
+          "고주파 경화 + 저온 템퍼링(사내, CQI-9) · 라인 자동화",
+          "Induction hardening with low-temperature tempering (in-house, CQI-9) · line automation",
+          "高周波焼入れ＋低温焼戻し（社内、CQI-9） · ライン自動化",
+        ),
+      },
+      {
+        label: localized("마무리 가공", "Finishing", "仕上げ加工"),
+        value: localized("원통·앵귤러·센터리스 연삭 · 폴리싱", "Cylindrical, angular, and centerless grinding · polishing", "円筒・アンギュラ・センタレス研削 · ポリッシング"),
+      },
+      specGearMetrology,
+      specCmm,
+      {
+        label: localized("재질·열처리 검증", "Material & heat-treatment verification", "材質・熱処理検証"),
+        value: localized(
+          "자분탐상검사(MPI) · 경도 측정 · 금속조직 검사(현미경 50–500×)",
+          "Magnetic-particle inspection (MPI) · hardness testing · metallurgical examination (50–500× microscopy)",
+          "磁粉探傷検査（MPI） · 硬さ測定 · 金属組織検査（顕微鏡50–500×）",
+        ),
+      },
+    ],
     qualityControls: [
       {
         feature: localized(
@@ -589,9 +767,9 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       "形状に応じて選定する工程ルート",
     ),
     detailCopy: localized(
-      "ETM과 트랜스퍼 케이스 부품에는 형상에 따라 호빙, 내경 스플라인 브로칭, 랙 전조, 레이저 용접·조립을 적용합니다. EMCD 허브의 내경 스플라인 단조와 액추에이터 샤프트의 블록 치형 전조는 제품별 승인 사양에 따릅니다.",
-      "ETM and transfer-case parts use hobbing, internal-spline broaching, rack rolling, laser welding, and assembly according to component geometry. Forged internal splines for EMCD hubs and rolled block teeth for actuator shafts are applied according to product-specific approved specifications.",
-      "ETM・トランスファーケース部品には、形状に応じてホブ加工、内スプラインのブローチ加工、ラック転造、レーザー溶接・組立を適用します。EMCDハブの内スプライン鍛造とアクチュエーターシャフトのブロック歯形転造は、製品別の承認仕様に基づいて適用します。",
+      "ETM용 디스크 캐리어·허브와 트랜스퍼 케이스 액추에이터 샤프트, EMCD 허브에는 형상에 따라 호빙, 내경 스플라인 브로칭, 랙 전조, 사내 레이저 용접·조립을 적용합니다. EMCD 허브의 내경 스플라인 단조와 액추에이터 샤프트의 블록 치형 전조는 제품별 승인 사양에 따라 적용합니다.",
+      "Disc carriers and hubs for ETM systems, transfer-case actuator shafts, and EMCD hubs are produced with hobbing, internal-spline broaching, rack rolling, and in-house laser welding and assembly as each geometry requires. Forged internal splines for EMCD hubs and rolled block teeth for actuator shafts are applied according to product-specific approved specifications.",
+      "ETM用ディスクキャリア・ハブ、トランスファーケースのアクチュエーターシャフト、EMCDハブには、形状に応じてホブ加工、内スプラインのブローチ加工、ラック転造、社内でのレーザー溶接・組立を適用します。EMCDハブの内スプライン鍛造とアクチュエーターシャフトのブロック歯形転造は、製品別の承認仕様に基づいて適用します。",
     ),
     detailTags: ["HOBBING", "INTERNAL-SPLINE BROACHING", "RACK ROLLING", "LASER WELDING"],
     lineupTitle: localized(
@@ -634,19 +812,52 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       },
     ],
     qualityStory: {
-      eyebrow: "ETM & TRANSFER CASE PROCESS",
+      eyebrow: "ETM & TRANSFER CASE VERIFICATION",
       title: localized(
-        "ETM·트랜스퍼 케이스 부품은 형상에 따라 공정 경로를 구분합니다",
-        "Feature-specific process routes for ETM and transfer-case parts",
-        "ETM・トランスファーケース部品は形状別の工程で管理します",
+        "치형, 스플라인, 용접부까지 형상별 검증 기준으로 판정합니다",
+        "Teeth, splines, and welds are each judged against feature-specific verification criteria",
+        "歯形、スプライン、溶接部を形状別の検証基準で判定します",
       ),
       copy: localized(
-        "호빙과 랙 전조, 내경 스플라인 브로칭, 레이저 용접·조립까지 부품 형상에 맞는 공정 경로를 사내에서 운영합니다. EMCD 허브의 내경 스플라인 단조와 액추에이터 샤프트의 블록 치형 전조 같은 특수 공정은 제품별 승인 사양에 따라 적용하고, 그 결과는 승인 도면 기준으로 검증합니다.",
-        "ETM and transfer-case parts use hobbing, internal-spline broaching, rack rolling, laser welding, and assembly according to part geometry. Forged internal splines for EMCD hubs and rolled block teeth for actuator shafts are applied according to product-specific approved specifications.",
-        "ETM・トランスファーケース部品には、形状に応じてホブ加工、内スプラインのブローチ加工、ラック転造、レーザー溶接・組立を適用します。EMCDハブの内スプライン鍛造とアクチュエーターシャフトのブロック歯形転造は、製品別の承認仕様に基づいて適用します。",
+        "외치·스플라인의 치형과 리드는 기어 측정기로, 관련 치수와 기하공차는 CMM으로 검증하고, 슬리브 내경 스플라인은 전용 게이지로 조립 적합성을 판정합니다. 레이저 용접 조립부는 CQI-15 기준으로 공정 조건·교정·기록을 관리하고 용접부 단면과 용입 깊이를 확인하며, 최종 자동 검사 데이터를 기록해 승인 도면 기준의 판정 근거로 남깁니다.",
+        "Tooth profile and lead on external teeth and splines are verified with gear-measuring equipment and related dimensions and geometric tolerances with CMM, while internal splines in sleeve components are checked for assembly fit with dedicated gauges. Laser-welded assemblies are controlled to CQI-15—process parameters, calibration, and records—with weld cross-sections and penetration depth examined, and final automated inspection data is recorded as the basis for release against approved drawings.",
+        "外歯・スプラインの歯形と歯すじはギヤ測定機で、関連寸法と幾何公差はCMMで検証し、スリーブの内スプラインは専用ゲージで嵌合性を判定します。レーザー溶接組立部はCQI-15に基づいて工程条件・校正・記録を管理し、溶接部の断面と溶込み深さを確認したうえで、最終自動検査データを記録し、承認図面を基準とした判定の根拠として残します。",
       ),
       sourceSlides: [7, 8, 11, 12, 17, 18, 22],
     },
+    specs: [
+      {
+        label: localized("치형·스플라인", "Teeth & splines", "歯形・スプライン"),
+        value: localized(
+          "호빙 · 내경 스플라인 브로칭 · 랙 전조(블록 치형)",
+          "Hobbing · internal-spline broaching · rack rolling (block teeth)",
+          "ホブ加工 · 内スプラインのブローチ加工 · ラック転造（ブロック歯形）",
+        ),
+      },
+      {
+        label: localized("용접·조립", "Welding & assembly", "溶接・組立"),
+        value: localized("사내 레이저 용접(CQI-15) · 디스크 캐리어 조립", "In-house laser welding (CQI-15) · disc-carrier assembly", "社内レーザー溶接（CQI-15） · ディスクキャリア組立"),
+      },
+      {
+        label: localized("소재·단조 연계", "Forging supply", "素材・鍛造連携"),
+        value: localized(
+          "열간·온간·냉간 단조 협력사 연계 · 내경 스플라인 단조(승인 사양)",
+          "Hot, warm, and cold forging through qualified partners · forged internal splines (approved specifications)",
+          "熱間・温間・冷間鍛造の認定パートナー連携 · 内スプライン鍛造（承認仕様）",
+        ),
+      },
+      specTurning,
+      specGearMetrology,
+      specCmm,
+      {
+        label: localized("용접부 검증", "Weld verification", "溶接部検証"),
+        value: localized(
+          "용접선·단면 용입 깊이 확인 · 최종 자동 검사 데이터 기록",
+          "Weld-seam and cross-section penetration checks · final automated inspection records",
+          "溶接線・断面の溶込み深さ確認 · 最終自動検査データ記録",
+        ),
+      },
+    ],
     qualityControls: [
       {
         feature: localized(

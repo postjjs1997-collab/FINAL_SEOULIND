@@ -1,4 +1,5 @@
 import { type ChangeEvent, type FormEvent, type SyntheticEvent, useEffect, useMemo, useState } from "react";
+import { setSiteLanguage } from "../utils/siteRouter";
 import { defaultLanguage, isLanguageCode, type LanguageCode } from "../data/brainall";
 import {
   checkNoticeAdminSession,
@@ -406,8 +407,7 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
   const formTranslation = translationFor(draft, formLanguage);
 
   useEffect(() => {
-    document.documentElement.lang = language;
-    window.localStorage.setItem("seoulind-language", language);
+    setSiteLanguage(language);
   }, [language]);
 
   useEffect(() => {
@@ -709,7 +709,7 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
           <p className="notice-masthead__eyebrow">{copy.eyebrow}</p>
           <h1>{copy.title}</h1>
           <p>{copy.description}</p>
-          <a className="notice-masthead__manage" href="#/company/notices/admin">
+          <a className="notice-masthead__manage" href="/company/notices/admin">
             {copy.manage}
             <span aria-hidden="true">→</span>
           </a>
@@ -731,7 +731,7 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
               return (
                 <a
                   className="notice-card"
-                  href={`#/company/notices/${post.id}`}
+                  href={`/company/notices/${post.id}`}
                   key={post.id}
                 >
                   <div className="notice-card__media">
@@ -767,8 +767,8 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
   const detailContent = selectedPost ? (
     <article className="notice-detail">
       <div className="notice-detail__topbar">
-        <a href="#/company/notices">← {copy.backToList}</a>
-        <a href={`#/company/notices/admin`}>{copy.manage}</a>
+        <a href="/company/notices">← {copy.backToList}</a>
+        <a href="/company/notices/admin">{copy.manage}</a>
       </div>
       <header className="notice-detail__header">
         <div>
@@ -796,7 +796,7 @@ export default function RenewalNoticePage({ route }: RenewalNoticePageProps) {
       <p>{copy.eyebrow}</p>
       <h1>{copy.notFound}</h1>
       <span>{copy.notFoundDescription}</span>
-      <a href="#/company/notices">{copy.backToList}</a>
+      <a href="/company/notices">{copy.backToList}</a>
     </section>
   );
 

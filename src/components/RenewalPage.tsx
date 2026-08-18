@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import balanceModuleImage from "../../assets/product-application/machined-aluminum-precise.webp";
 import drivelineImage from "../../assets/product-application/driveline-precise.webp";
 import electricVehicleImage from "../../assets/product-application/electric-vehicle-precise.webp";
@@ -31,8 +31,9 @@ import spartanLogo from "../../assets/partner-spartan.svg";
 import trwLogo from "../../assets/partner-trw.svg";
 import Icon from "./Icons";
 import { RenewalSiteFooter, RenewalSiteHeader } from "./RenewalShell";
+import ViewportLoopVideo from "./ViewportLoopVideo";
+import useNoticePosts from "../hooks/useNoticePosts";
 import { useLenisScroll } from "../motion/useLenisScroll";
-import { jumpToPageTop } from "../utils/pageScroll";
 import { usePrefersReducedMotion } from "../motion/usePrefersReducedMotion";
 import {
   companyOverviewCopy,
@@ -41,10 +42,18 @@ import {
   manufacturingProcesses,
   qualityEvidenceCopy,
 } from "../data/companyProfile";
+import { noticeCategoryKickers, type NoticePost } from "../data/notices";
 import { productPartCatalogByRoute } from "../data/productCatalog";
+import {
+  LANGUAGE_STORAGE_KEY,
+  buildHref,
+  parseLocation,
+  setSiteLanguage,
+  type SiteLanguage,
+} from "../utils/siteRouter";
 import "../styles/renewal.css";
 
-type RenewalLanguage = "ko" | "en" | "ja";
+type RenewalLanguage = SiteLanguage;
 
 type RenewalCopy = {
   nav: Array<{ label: string; target: string; children: Array<{ label: string; target: string }> }>;
@@ -52,8 +61,16 @@ type RenewalCopy = {
   menuLabel: string;
   closeLabel: string;
   hero: Array<{ eyebrow: string; title: string[]; copy: string }>;
+  heroLabel: string;
   prev: string;
   next: string;
+  pause: string;
+  play: string;
+  slide: string;
+  proof: {
+    label: string;
+    items: Array<{ label: string; value?: string; badges?: string[] }>;
+  };
   process: {
     eyebrow: string;
     title: string[];
@@ -91,7 +108,7 @@ type RenewalCopy = {
     eyebrow: string;
     title: string;
     link: string;
-    items: Array<{ category: string; title: string; date: string }>;
+    read: string;
   };
   closing: {
     eyebrow: string;
@@ -164,8 +181,22 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         copy: "가공 조건과 검사 데이터를 연결해 반복 생산에서도 같은 품질을 지킵니다.",
       },
     ],
+    heroLabel: "서울산업 주요 소개",
     prev: "이전 장면",
     next: "다음 장면",
+    pause: "자동 전환 일시정지",
+    play: "자동 전환 재생",
+    slide: "장면",
+    proof: {
+      label: "서울산업 핵심 지표",
+      items: [
+        { value: "SINCE 1985", label: "40년 이상의 자동차 부품 제조 경험" },
+        { value: "185명", label: "임직원" },
+        { value: "300,000+", label: "월 부품 양산" },
+        { label: "품질·환경 인증", badges: ["IATF 16949", "ISO 14001", "MSQ"] },
+        { value: "글로벌 공급", label: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN" },
+      ],
+    },
     process: {
       eyebrow: "MANUFACTURING FLOW",
       title: ["자동차 부품의 완성도를", "만드는 다섯 개의 장면"],
@@ -256,12 +287,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       eyebrow: "SEOUL INDUSTRY NEWS",
       title: "제조 현장의 새로운 소식",
       link: "전체 소식 보기",
-      items: [
-        { category: "ENTERPRISE", title: "서울산업, 글로벌 웹사이트 리뉴얼 프로젝트 진행", date: "2026.07.30" },
-        { category: "QUALITY", title: "가공 데이터 기반 품질관리 프로세스 고도화", date: "2026.06.18" },
-        { category: "PRODUCT", title: "3대 핵심 제품군과 전동화·알루미늄 가공 역량 소개", date: "2026.05.24" },
-        { category: "MANUFACTURING", title: "개발 대응부터 양산 공급까지 이어지는 제조 흐름", date: "2026.05.09" },
-      ],
+      read: "자세히 보기",
     },
     closing: {
       eyebrow: "READY TO BUILD TOGETHER",
@@ -332,8 +358,22 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         copy: "Process conditions and inspection data stay connected, keeping repeat production consistent.",
       },
     ],
+    heroLabel: "Seoul Industry highlights",
     prev: "Previous scene",
     next: "Next scene",
+    pause: "Pause automatic rotation",
+    play: "Resume automatic rotation",
+    slide: "Scene",
+    proof: {
+      label: "Seoul Industry at a glance",
+      items: [
+        { value: "SINCE 1985", label: "40+ years of automotive component manufacturing" },
+        { value: "185", label: "Employees" },
+        { value: "300,000+", label: "Parts produced per month" },
+        { label: "Quality & environmental certifications", badges: ["IATF 16949", "ISO 14001", "MSQ"] },
+        { value: "Global supply", label: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN" },
+      ],
+    },
     process: {
       eyebrow: "MANUFACTURING FLOW",
       title: ["Five scenes behind", "every finished component"],
@@ -424,12 +464,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       eyebrow: "SEOUL INDUSTRY NEWS",
       title: "Latest from the manufacturing floor",
       link: "View all news",
-      items: [
-        { category: "ENTERPRISE", title: "Seoul Industry launches its global website redesign project", date: "2026.07.30" },
-        { category: "QUALITY", title: "Advancing data-driven quality management", date: "2026.06.18" },
-        { category: "PRODUCT", title: "Three core families with electrified and aluminum capabilities", date: "2026.05.24" },
-        { category: "MANUFACTURING", title: "A connected flow from development to volume supply", date: "2026.05.09" },
-      ],
+      read: "Read more",
     },
     closing: {
       eyebrow: "READY TO BUILD TOGETHER",
@@ -500,8 +535,22 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         copy: "加工条件と検査データをつなぎ、繰り返し生産でも同じ品質を守ります。",
       },
     ],
+    heroLabel: "ソウル産業の主なご紹介",
     prev: "前のシーン",
     next: "次のシーン",
+    pause: "自動切り替えを一時停止",
+    play: "自動切り替えを再開",
+    slide: "シーン",
+    proof: {
+      label: "ソウル産業の主要指標",
+      items: [
+        { value: "SINCE 1985", label: "40年以上にわたる自動車部品の製造経験" },
+        { value: "185名", label: "従業員数" },
+        { value: "300,000+", label: "月間部品量産数" },
+        { label: "品質・環境認証", badges: ["IATF 16949", "ISO 14001", "MSQ"] },
+        { value: "グローバル供給", label: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN" },
+      ],
+    },
     process: {
       eyebrow: "MANUFACTURING FLOW",
       title: ["自動車部品の完成度を高める", "五つの製造シーン"],
@@ -592,12 +641,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       eyebrow: "SEOUL INDUSTRY NEWS",
       title: "製造現場からの最新情報",
       link: "ニュース一覧",
-      items: [
-        { category: "ENTERPRISE", title: "ソウル産業、グローバルウェブサイト刷新プロジェクトを開始", date: "2026.07.30" },
-        { category: "QUALITY", title: "加工データに基づく品質管理プロセスを高度化", date: "2026.06.18" },
-        { category: "PRODUCT", title: "3大中核製品群と電動化・アルミ加工対応のご紹介", date: "2026.05.24" },
-        { category: "MANUFACTURING", title: "開発対応から量産供給までつながる製造フロー", date: "2026.05.09" },
-      ],
+      read: "詳しく見る",
     },
     closing: {
       eyebrow: "READY TO BUILD TOGETHER",
@@ -625,13 +669,6 @@ const heroMedia: Array<
 ];
 
 const productImages = [steeringImage, powertrainImage, drivelineImage, electricVehicleImage, balanceModuleImage];
-const productRoutes = [
-  "#/products/steering",
-  "#/products/powertrain",
-  "#/products/driveline",
-  "#/products/electric-vehicle",
-  "#/products/balance-shaft-module",
-];
 const productRouteKeys = [
   "products/steering",
   "products/powertrain",
@@ -773,7 +810,6 @@ function scrollToSection(target: string) {
 
 function useRevealObserver() {
   useEffect(() => {
-    const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-renewal-reveal]"));
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -785,40 +821,73 @@ function useRevealObserver() {
       },
       { rootMargin: "0px 0px -10% 0px", threshold: 0.08 },
     );
+    const observeWithin = (root: ParentNode) => {
+      root.querySelectorAll<HTMLElement>("[data-renewal-reveal]:not(.is-visible)").forEach((node) => observer.observe(node));
+    };
 
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
+    observeWithin(document);
+
+    // Sections that mount after first paint (e.g. notices fetched later) still need to be revealed.
+    const mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (!(node instanceof HTMLElement)) return;
+          if (node.matches("[data-renewal-reveal]")) observer.observe(node);
+          observeWithin(node);
+        });
+      });
+    });
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      mutationObserver.disconnect();
+      observer.disconnect();
+    };
   }, []);
 }
 
 function RenewalHero({ copy, reducedMotion }: { copy: RenewalCopy; reducedMotion: boolean }) {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const slideCount = copy.hero.length;
   const activeMedia = heroMedia[active];
+  const rotating = !reducedMotion && !paused;
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (!rotating) return;
     const timeout = window.setTimeout(
       () => setActive((current) => (current + 1) % slideCount),
       heroMedia[active].duration,
     );
     return () => window.clearTimeout(timeout);
-  }, [active, reducedMotion, slideCount]);
+  }, [active, rotating, slideCount]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (rotating) {
+      void video.play().catch(() => undefined);
+    } else {
+      video.pause();
+    }
+  }, [active, rotating]);
 
   const go = (direction: number) => {
     setActive((current) => (current + direction + slideCount) % slideCount);
   };
 
   return (
-    <section className="renewal-hero" aria-label="Seoul Industry">
+    <section className="renewal-hero" role="group" aria-roledescription="carousel" aria-label={copy.heroLabel}>
       <div className="renewal-hero__media" key={`media-${active}`}>
         {"image" in activeMedia ? (
           <img src={activeMedia.image} alt="Seoul Industry" />
         ) : (
           <video
+            ref={videoRef}
             src={activeMedia.video}
             poster={activeMedia.poster}
-            autoPlay={!reducedMotion}
+            autoPlay={rotating}
             muted
             loop
             playsInline
@@ -830,14 +899,23 @@ function RenewalHero({ copy, reducedMotion }: { copy: RenewalCopy; reducedMotion
         )}
       </div>
       <div className="renewal-hero__shade" />
-      <div className="renewal-hero__content" key={`copy-${active}`}>
-        <span>{copy.hero[active].eyebrow}</span>
-        <h1>
-          {copy.hero[active].title.map((line) => (
-            <span key={line}>{line}</span>
-          ))}
-        </h1>
-        <p>{copy.hero[active].copy}</p>
+      {/* Live announcements only while rotation is stopped, per the WAI-ARIA carousel pattern. */}
+      <div aria-live={rotating ? "off" : "polite"} aria-atomic="true">
+        <div
+          className="renewal-hero__content"
+          key={`copy-${active}`}
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`${copy.slide} ${active + 1} / ${slideCount}`}
+        >
+          <span>{copy.hero[active].eyebrow}</span>
+          <h1>
+            {copy.hero[active].title.map((line) => (
+              <span key={line}>{line}</span>
+            ))}
+          </h1>
+          <p>{copy.hero[active].copy}</p>
+        </div>
       </div>
 
       <div className="renewal-hero__controls">
@@ -845,21 +923,67 @@ function RenewalHero({ copy, reducedMotion }: { copy: RenewalCopy; reducedMotion
           <Icon name="arrow" className="is-reversed" />
           <span>PREV</span>
         </button>
-        <div aria-hidden="true">
+        <div className="renewal-hero__dots">
           {copy.hero.map((slide, index) => (
-            <i className={active === index ? "is-active" : ""} key={slide.eyebrow} />
+            <button
+              type="button"
+              className={active === index ? "is-active" : ""}
+              onClick={() => setActive(index)}
+              aria-label={`${copy.slide} ${index + 1}`}
+              aria-current={active === index ? "true" : undefined}
+              key={slide.eyebrow}
+            >
+              <i />
+            </button>
           ))}
         </div>
+        {!reducedMotion && (
+          <button
+            type="button"
+            className="renewal-hero__pause"
+            onClick={() => setPaused((current) => !current)}
+            aria-label={paused ? copy.play : copy.pause}
+            aria-pressed={paused}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+              {paused ? <path d="M8 5.5v13l10-6.5-10-6.5Z" /> : <path d="M7 5h3.5v14H7V5Zm6.5 0H17v14h-3.5V5Z" />}
+            </svg>
+          </button>
+        )}
         <button type="button" onClick={() => go(1)} aria-label={copy.next}>
           <span>NEXT</span>
           <Icon name="arrow" />
         </button>
       </div>
 
-      <button className="renewal-scroll-cue" type="button" onClick={() => scrollToSection("renewal-company")}>
+      <button className="renewal-scroll-cue" type="button" onClick={() => scrollToSection("renewal-proof")}>
         <span>SCROLL</span>
         <i />
       </button>
+    </section>
+  );
+}
+
+function ProofBand({ copy }: { copy: RenewalCopy }) {
+  return (
+    <section className="renewal-proof" id="renewal-proof" aria-label={copy.proof.label}>
+      <dl className="renewal-proof__grid">
+        {copy.proof.items.map((item) => (
+          <div className="renewal-proof__item" data-renewal-reveal key={item.label}>
+            <dt>{item.label}</dt>
+            <dd>
+              {item.value && <strong>{item.value}</strong>}
+              {item.badges && (
+                <span className="renewal-proof__badges">
+                  {item.badges.map((badge) => (
+                    <span key={badge}>{badge}</span>
+                  ))}
+                </span>
+              )}
+            </dd>
+          </div>
+        ))}
+      </dl>
     </section>
   );
 }
@@ -895,7 +1019,7 @@ function CompanySection({ language }: { language: RenewalLanguage }) {
               <span key={system}>{system}</span>
             ))}
           </div>
-          <a href="#/company/overview" className="renewal-arrow-link" data-renewal-reveal>
+          <a href="/company/overview" className="renewal-arrow-link" data-renewal-reveal>
             <span>{ui.companyLink}</span>
             <Icon name="arrow" />
           </a>
@@ -917,7 +1041,7 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
           <h2>{copy.products.title}</h2>
           <p className="renewal-section-heading__summary">{copy.products.summary}</p>
         </div>
-        <a href="#/products/steering" className="renewal-arrow-link">
+        <a href="/products/steering" className="renewal-arrow-link">
           <span>{copy.products.link}</span>
           <Icon name="arrow" />
         </a>
@@ -932,7 +1056,7 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
 
           return (
             <a
-              href={productRoutes[index]}
+              href={buildHref(productRouteKeys[index], language)}
               className={`renewal-product-card renewal-product-card--${item.group}${detailIsActive ? " is-detail-active" : ""}`}
               data-product-group={item.group}
               key={item.title}
@@ -957,17 +1081,8 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
                     {featuredParts.map((part) => (
                       <figure className="renewal-product-card__detail-part" key={part.title.en}>
                         <div className="renewal-product-card__detail-media">
-                          {part.video ? (
-                            <video
-                              key={detailIsActive ? "active" : "idle"}
-                              src={part.video}
-                              poster={part.poster}
-                              autoPlay={detailIsActive}
-                              loop
-                              muted
-                              playsInline
-                              preload={detailIsActive ? "auto" : "metadata"}
-                            />
+                          {part.video && detailIsActive ? (
+                            <ViewportLoopVideo src={part.video} poster={part.poster} />
                           ) : (
                             <img src={part.poster} alt="" loading="lazy" decoding="async" />
                           )}
@@ -987,16 +1102,7 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
                   {featuredParts.map((part) => (
                     <figure key={part.title.en}>
                       {part.video ? (
-                        <video
-                          src={part.video}
-                          poster={part.poster}
-                          aria-label={part.title[language]}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          preload="metadata"
-                        />
+                        <ViewportLoopVideo src={part.video} poster={part.poster} aria-label={part.title[language]} />
                       ) : (
                         <img
                           src={part.poster}
@@ -1035,7 +1141,7 @@ function ManufacturingSection({ language }: { language: RenewalLanguage }) {
           <h2>{copy.title}</h2>
           <p>{copy.copy}</p>
         </div>
-        <a href="#/manufacturing/process" className="renewal-arrow-link">
+        <a href="/manufacturing/process" className="renewal-arrow-link">
           <span>{ui.manufacturingLink}</span>
           <Icon name="arrow" />
         </a>
@@ -1048,16 +1154,7 @@ function ManufacturingSection({ language }: { language: RenewalLanguage }) {
             key={process.id}
           >
             <figure>
-              <video
-                src={process.homeVideo}
-                poster={process.homePoster}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-                aria-hidden="true"
-              />
+              <ViewportLoopVideo src={process.homeVideo} poster={process.homePoster} />
               <figcaption>{String(index + 1).padStart(2, "0")}</figcaption>
             </figure>
             <div>
@@ -1088,7 +1185,7 @@ function PartnersSection({ copy }: { copy: RenewalCopy }) {
         </h2>
         <p>{copy.partners.copy}</p>
         <strong>{copy.partners.regions}</strong>
-        <a href="#/company/history" className="renewal-arrow-link">
+        <a href="/company/history" className="renewal-arrow-link">
           <span>{copy.partners.link}</span>
           <Icon name="arrow" />
         </a>
@@ -1121,7 +1218,7 @@ function PartnersSection({ copy }: { copy: RenewalCopy }) {
   );
 }
 
-function QualitySection({ language, reducedMotion }: { language: RenewalLanguage; reducedMotion: boolean }) {
+function QualitySection({ language }: { language: RenewalLanguage }) {
   const evidence = qualityEvidenceCopy[language];
   const ui = homeUiCopy[language];
 
@@ -1133,22 +1230,14 @@ function QualitySection({ language, reducedMotion }: { language: RenewalLanguage
           <h2>{evidence.title}</h2>
           <p>{evidence.copy}</p>
         </div>
-        <a href="#/quality/system" className="renewal-arrow-link">
+        <a href="/quality/system" className="renewal-arrow-link">
           <span>{ui.qualityLink}</span>
           <Icon name="arrow" />
         </a>
       </div>
       <div className="renewal-quality__body">
         <figure className="renewal-quality__inspection" data-renewal-reveal>
-          <video
-            src={qualitySectionVideo}
-            poster={qualitySectionPoster}
-            autoPlay={!reducedMotion}
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          />
+          <ViewportLoopVideo src={qualitySectionVideo} poster={qualitySectionPoster} />
           <figcaption>
             <span>01</span>
             <strong>PRECISION INSPECTION</strong>
@@ -1225,10 +1314,64 @@ function SustainabilityBridge({ language }: { language: RenewalLanguage }) {
       <span>{copy.eyebrow}</span>
       <h2>{copy.title}</h2>
       <p>{copy.text}</p>
-      <a href="#/sustainability/policy" className="renewal-arrow-link">
+      <a href="/sustainability/policy" className="renewal-arrow-link">
         <span>{copy.link}</span>
         <Icon name="arrow" />
       </a>
+    </section>
+  );
+}
+
+function formatNoticeDate(date: string, language: RenewalLanguage) {
+  const parsed = new Date(`${date}T00:00:00`);
+  if (Number.isNaN(parsed.valueOf())) return date;
+  return new Intl.DateTimeFormat(language === "ko" ? "ko-KR" : language === "ja" ? "ja-JP" : "en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(parsed);
+}
+
+function noticeTitle(post: NoticePost, language: RenewalLanguage) {
+  const translation = post.translations[language];
+  return translation?.title?.trim() || post.translations.ko?.title?.trim() || post.translations.en?.title?.trim() || "";
+}
+
+function NewsSection({ copy, language }: { copy: RenewalCopy; language: RenewalLanguage }) {
+  const posts = useNoticePosts(3);
+  const visiblePosts = posts.filter((post) => noticeTitle(post, language).length > 0);
+
+  if (visiblePosts.length === 0) return null;
+
+  return (
+    <section className="renewal-news" id="renewal-news">
+      <div className="renewal-section-heading" data-renewal-reveal>
+        <div>
+          <span>{copy.news.eyebrow}</span>
+          <h2>{copy.news.title}</h2>
+        </div>
+        <a href={buildHref("company/notices", language)} className="renewal-arrow-link">
+          <span>{copy.news.link}</span>
+          <Icon name="arrow" />
+        </a>
+      </div>
+      <ol className="renewal-news__list" data-renewal-reveal>
+        {visiblePosts.map((post) => (
+          <li key={post.id}>
+            <a className="renewal-news__item" href={buildHref(`company/notices/${post.id}`, language)}>
+              <span className="renewal-news__meta">
+                <span>{noticeCategoryKickers[post.category]}</span>
+                <time dateTime={post.date}>{formatNoticeDate(post.date, language)}</time>
+              </span>
+              <h3>{noticeTitle(post, language)}</h3>
+              <span className="renewal-news__read">
+                <span>{copy.news.read}</span>
+                <Icon name="arrow" />
+              </span>
+            </a>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }
@@ -1253,7 +1396,7 @@ function ContactSection({ copy, language }: { copy: RenewalCopy; language: Renew
           ))}
         </h2>
         <p>{copy.closing.copy}</p>
-        <a href="#/company/location">
+        <a href="/company/location">
           <span>{copy.closing.link}</span>
           <Icon name="arrow" />
         </a>
@@ -1264,11 +1407,8 @@ function ContactSection({ copy, language }: { copy: RenewalCopy; language: Renew
 
 export default function RenewalPage() {
   const reducedMotion = usePrefersReducedMotion();
-  const [language, setLanguage] = useState<RenewalLanguage>(() => {
-    if (typeof window === "undefined") return "ko";
-    const saved = window.localStorage.getItem("seoulind-language");
-    return saved === "en" || saved === "ja" ? saved : "ko";
-  });
+  // The URL language prefix is the source of truth; parseLocation falls back to the stored preference.
+  const [language, setLanguage] = useState<RenewalLanguage>(() => parseLocation().language);
   const copy = useMemo(() => renewalCopy[language], [language]);
 
   useLenisScroll(!reducedMotion);
@@ -1276,26 +1416,35 @@ export default function RenewalPage() {
 
   useEffect(() => {
     document.body.classList.add("renewal-active");
-    document.documentElement.lang = language === "ko" ? "ko-KR" : language === "ja" ? "ja-JP" : "en";
-    window.localStorage.setItem("seoulind-language", language);
-    jumpToPageTop();
+    try {
+      window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+    } catch {
+      /* storage unavailable */
+    }
 
     return () => {
       document.body.classList.remove("renewal-active");
     };
   }, [language]);
 
+  const handleLanguageChange = (nextLanguage: RenewalLanguage) => {
+    setSiteLanguage(nextLanguage);
+    setLanguage(nextLanguage);
+  };
+
   return (
     <div className="renewal-page" data-language={language}>
-      <RenewalSiteHeader language={language} onLanguageChange={setLanguage} />
+      <RenewalSiteHeader language={language} onLanguageChange={handleLanguageChange} />
       <main>
         <RenewalHero copy={copy} reducedMotion={reducedMotion} />
+        <ProofBand copy={copy} />
         <CompanySection language={language} />
         <ProductsSection copy={copy} language={language} />
         <ManufacturingSection language={language} />
-        <QualitySection language={language} reducedMotion={reducedMotion} />
+        <QualitySection language={language} />
         <PartnersSection copy={copy} />
         <SustainabilityBridge language={language} />
+        <NewsSection copy={copy} language={language} />
         <ContactSection copy={copy} language={language} />
       </main>
       <RenewalSiteFooter language={language} />

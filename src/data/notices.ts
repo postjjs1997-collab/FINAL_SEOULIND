@@ -3,6 +3,8 @@ import { upload } from "@vercel/blob/client";
 import companyFactoryImage from "../../assets/company-profile/factory.webp";
 import automationGantryImage from "../../assets/company-deck/automation-gantry-line.webp";
 import automaticInspectionImage from "../../assets/company-deck/automatic-inspection-cell.jpg";
+import inductionHardeningImage from "../../assets/company-profile/process/induction-hardening.webp";
+import electrifiedLinkShaftImage from "../../assets/product-catalog/electrified/link-shaft.jpg";
 
 export type NoticeCategory = "notice" | "products" | "quality" | "manufacturing" | "resources";
 
@@ -86,79 +88,107 @@ const noticeFallbackImages: Record<NoticeCategory, string> = {
   resources: companyFactoryImage,
 };
 
+// Bundled default posts. Every statement below is drawn from facts already published on the
+// site (history eras, quality credentials, product catalog); the dates are publish dates and
+// follow the existing pattern — they do not claim event dates.
 export const curatedNoticePosts: NoticePost[] = [
   {
-    id: "integrated-manufacturing-2026",
-    category: "notice",
+    id: "quality-certifications-2026",
+    category: "quality",
     date: "2026-08-14",
-    image: companyFactoryImage,
+    image: automaticInspectionImage,
     pinned: true,
     published: true,
     translations: {
       ko: {
-        title: "도면 검토부터 양산 공급까지, 서울산업의 통합 정밀가공 체계",
-        summary: "경기도 화성 생산 거점을 중심으로 개발 타당성 검토, 공정 설계, 정밀가공, 검사, 양산 공급을 하나의 흐름으로 연결합니다.",
-        body: "서울산업은 1985년 설립 이후 샤프트, 허브, 디스크 캐리어와 알루미늄 주조 가공 부품을 중심으로 자동차용 정밀 부품을 생산해 왔습니다.\n\n고객 도면과 제품 요구 사항을 바탕으로 가공 순서, 가공 기준면, 지그·고정구와 클램핑 방식, 가공 조건을 설계하고 생산 검증과 검사까지 연결합니다. 단조와 열처리 등 외부 공정도 동일한 생산 계획과 관리 기준 안에서 조율합니다.",
+        title: "IATF 16949·ISO 14001·MSQ — 서울산업 품질·환경 인증 체계 안내",
+        summary: "자동차 품질경영시스템 IATF 16949, 환경경영시스템 ISO 14001, 현대모비스 협력사 품질인증 MSQ를 기반으로 양산 품질과 특수공정을 관리합니다.",
+        body: "서울산업은 2004년 ISO/TS 16949와 ISO 14001 인증을 취득한 이후 자동차 부품 양산을 위한 품질·환경 경영 체계를 유지해 왔습니다. 현재는 IATF 16949 자동차 품질경영시스템과 ISO 14001 환경경영시스템, 현대모비스 협력사 품질인증(MSQ, 가공 분야 G등급)을 운영하고 있으며, INNOBIZ(기술혁신형 중소기업) 인증도 보유하고 있습니다.\n\n고주파 열처리·템퍼링과 레이저 용접 등 특수공정은 CQI-9·CQI-15 기준에 따라 공정 조건, 교정, 검증 결과를 기록으로 관리하고, VDA 6.3 관점의 공정 감사로 리스크와 공정 성숙도를 점검합니다. 고객별 요구사항과 APQP/PPAP, 변경 관리도 같은 품질 체계 안에서 운영합니다.",
       },
       en: {
-        title: "From drawing review to volume supply: Seoul Industry’s integrated precision-machining system",
-        summary: "From our manufacturing base in Hwaseong, Korea, we connect feasibility review, process design, precision machining, inspection, and volume supply in one continuous flow.",
-        body: "Since 1985, Seoul Industry has produced precision automotive components including shafts, hubs, disc carriers, and machined aluminum castings.\n\nBased on customer drawings and product requirements, we define process sequences, machining datums, fixtures, clamping methods, and machining parameters, then connect production validation with inspection. External processes such as forging and heat treatment are coordinated under the same manufacturing plan and control standards.",
+        title: "IATF 16949, ISO 14001, and MSQ: Seoul Industry’s quality and environmental certifications",
+        summary: "Volume production and special processes are managed under the IATF 16949 automotive QMS, the ISO 14001 environmental management system, and Hyundai Mobis MSQ supplier-quality certification.",
+        body: "Seoul Industry earned ISO/TS 16949 and ISO 14001 certification in 2004 and has maintained quality and environmental management systems for automotive volume production ever since. Today the company operates under IATF 16949, ISO 14001, and Hyundai Mobis MSQ supplier-quality certification (machining grade G), and also holds INNOBIZ certification as a technology-innovative SME.\n\nSpecial processes such as induction hardening, tempering, and laser welding are controlled to CQI-9 and CQI-15, with process parameters, calibration, and validation results kept on record. VDA 6.3-based process audits check risks and process maturity, and customer-specific requirements, APQP/PPAP, and change control are run within the same quality system.",
       },
       ja: {
-        title: "図面検討から量産供給まで、ソウル産業の一貫精密加工体制",
-        summary: "京畿道華城市の生産拠点を中心に、実現可能性の検討、工程設計、精密加工、検査、量産供給を一つの流れでつなぎます。",
-        body: "ソウル産業は1985年の創業以来、シャフト、ハブ、ディスクキャリア、アルミダイカスト加工部品を中心に、自動車用精密部品を生産してきました。\n\nお客様の図面と製品要件をもとに、加工順序、加工基準面、治具・クランプ方法、加工条件を設計し、生産検証から検査まで一貫して対応します。鍛造・熱処理などの外部工程も同じ生産計画と管理基準のもとで調整します。",
+        title: "IATF 16949・ISO 14001・MSQ — ソウル産業の品質・環境認証体制のご案内",
+        summary: "自動車品質マネジメントシステムIATF 16949、環境マネジメントシステムISO 14001、現代モービスのサプライヤー品質認証MSQを基盤に、量産品質と特殊工程を管理しています。",
+        body: "ソウル産業は2004年にISO/TS 16949とISO 14001の認証を取得して以来、自動車部品量産のための品質・環境マネジメント体制を維持してきました。現在はIATF 16949自動車品質マネジメントシステム、ISO 14001環境マネジメントシステム、現代モービスのサプライヤー品質認証（MSQ、加工分野G等級）を運用し、INNOBIZ（技術革新型中小企業）認証も保有しています。\n\n高周波焼入れ・焼戻しやレーザー溶接などの特殊工程は、CQI-9・CQI-15に基づいて工程条件、校正、検証結果を記録として管理し、VDA 6.3の視点による工程監査でリスクと工程成熟度を点検しています。顧客固有要求事項、APQP/PPAP、変更管理も同じ品質体制のもとで運用します。",
       },
     },
   },
   {
-    id: "automation-production-line-2026",
-    category: "manufacturing",
+    id: "phev-link-shaft-electrified-2026",
+    category: "products",
     date: "2026-08-11",
-    image: automationGantryImage,
+    image: electrifiedLinkShaftImage,
     pinned: false,
     published: true,
     translations: {
       ko: {
-        title: "갠트리·로봇 자동화를 적용한 정밀가공 양산 라인",
-        summary: "로딩과 언로딩, 공정 간 이송, 셀 검사를 전용 생산 라인에 연결해 생산성과 공정 안정성을 함께 관리합니다.",
-        body: "서울산업은 CNC 선반과 머시닝 센터, 기어·스플라인 가공, 연삭과 표면 마무리 공정을 제품 요구 사항에 맞춰 구성합니다.\n\n전용 라인에서는 갠트리와 로봇 핸들링이 로딩·언로딩 및 공정 간 이송을 담당합니다. 공정 내 검사 데이터를 선행 공정에 피드백하고 보정에 활용해 반복 정밀도와 공정 안정성을 관리합니다.",
+        title: "PHEV 기어박스용 링크 샤프트 양산과 전동화 파워트레인 부품 대응",
+        summary: "2022년 PHEV 기어박스용 링크 샤프트 양산을 시작한 이후, EV 감속기용 오일 펌프 하우징·커버와 전동화 파워트레인용 샤프트로 대응 범위를 넓히고 있습니다.",
+        body: "서울산업은 2022년 PHEV 기어박스용 링크 샤프트 양산을 시작하며 전동화 파워트레인 부품 공급을 본격화했습니다. 2025년부터는 ICE·HEV·PHEV·BEV 프로그램 전반에서 신규 고객 개발을 진행하고 있습니다.\n\n현재 EV 감속기용 오일 펌프 하우징·커버는 양산 공정으로 가공하고, 전동화 파워트레인용 기어 샤프트·코액시얼 샤프트는 설계 검토와 시제품 제작·검증에 대응하고 있습니다. 시제품은 기어 정밀도, 스플라인 형상, 런아웃, 표면 상태를 중심으로 검증하며, 양산 부품과 시제품의 승인 단계는 제품 성격에 맞춰 별도로 운영합니다.",
       },
       en: {
-        title: "Precision-machining production lines with gantry and robotic automation",
-        summary: "Dedicated production lines connect loading, unloading, inter-process transfer, and cell inspection to support both productivity and process stability.",
-        body: "Seoul Industry configures CNC lathes and machining centers, gear and spline machining, grinding, and surface-finishing processes according to each product's requirements.\n\nWithin dedicated lines, gantry and robotic handling systems perform loading, unloading, and inter-process transfer. In-process inspection data is fed back to preceding operations and used for compensation to maintain repeatability and process stability.",
+        title: "PHEV gearbox link-shaft production and electrified-powertrain components",
+        summary: "Since launching PHEV gearbox link-shaft production in 2022, Seoul Industry has extended its scope to EV reduction-gear oil-pump housings and covers and electrified-powertrain shafts.",
+        body: "Seoul Industry launched volume production of link shafts for PHEV gearboxes in 2022, marking a full step into electrified-powertrain components. From 2025 the company has been developing new customers across ICE, HEV, PHEV, and BEV programs.\n\nToday, oil-pump housings and covers for EV reduction gears are machined on series-production processes, while electrified-powertrain gear shafts and coaxial shafts are supported through design review, prototype production, and validation. Prototypes are evaluated for gear accuracy, spline geometry, runout, and surface condition, and approval stages for production parts and prototypes are managed separately according to product type.",
       },
       ja: {
-        title: "ガントリー・ロボット自動化を導入した精密加工量産ライン",
-        summary: "ローディング、アンローディング、工程間搬送、セル検査を専用ラインでつなぎ、生産性と工程安定性を管理します。",
-        body: "ソウル産業は、CNC旋盤・マシニングセンタ、ギヤ・スプライン加工、研削・表面仕上げなどの工程を製品要件に合わせて構成します。\n\n専用ラインでは、ガントリーおよびロボットハンドリングがローディング、アンローディング、工程間搬送を担います。工程内検査データを前工程へフィードバックし、補正に活用することで、繰り返し精度と工程安定性を確保します。",
+        title: "PHEVギヤボックス用リンクシャフトの量産と電動化パワートレイン部品への対応",
+        summary: "2022年にPHEVギヤボックス用リンクシャフトの量産を開始して以来、EV減速機用オイルポンプのハウジング・カバーや電動化パワートレイン向けシャフトへ対応範囲を広げています。",
+        body: "ソウル産業は2022年にPHEVギヤボックス用リンクシャフトの量産を開始し、電動化パワートレイン部品の供給を本格化しました。2025年からはICE・HEV・PHEV・BEVの各プログラムで新規顧客の開拓を進めています。\n\n現在、EV減速機用オイルポンプのハウジング・カバーは量産工程で加工し、電動化パワートレイン向けのギヤシャフト・コアキシャルシャフトは設計検討と試作・検証に対応しています。試作品はギヤ精度、スプライン形状、振れ、表面状態を中心に検証し、量産部品と試作品の承認段階は製品特性に応じて個別に運用しています。",
       },
     },
   },
   {
-    id: "inspection-traceability-2026",
-    category: "quality",
+    id: "special-process-in-house-2026",
+    category: "manufacturing",
     date: "2026-08-07",
-    image: automaticInspectionImage,
+    image: inductionHardeningImage,
     pinned: false,
     published: true,
     translations: {
       ko: {
-        title: "자동검사 데이터로 완성하는 출하 품질과 추적성",
-        summary: "공정 내 셀 검사와 최종 검사를 연결해 치수와 형상, 공정 누락 여부를 확인하고, 측정 기록과 LOT 추적성을 관리합니다.",
-        body: "공정 내 셀 검사에서는 에어 게이지 등을 활용해 측정 데이터를 수집하고 선행 공정에 피드백합니다. 필요한 경우 자동 보정과 SPC 관리에도 활용합니다.\n\n최종 검사에서는 GD&T 측정, 균열과 공정 누락 확인, 데이터 기록, LOT 마킹을 통해 출하 전 품질을 확인합니다. CMM, 기어 측정, 경도·금속 조직 검사도 중요 특성 검증에 활용합니다.",
+        title: "CQI-9 사내 고주파 열처리와 CQI-15 레이저 용접 — 특수공정 사내 운영 체계",
+        summary: "고주파 경화·저온 템퍼링과 레이저 용접·조립을 사내 공정으로 운영하고, 자동 교정과 전용 자동 검사까지 하나의 생산 흐름으로 연결합니다.",
+        body: "서울산업은 필요한 부위만 선택적으로 경화하는 고주파 열처리와 저온 템퍼링을 CQI-9 기준에 따라 사내에서 운영합니다. 공정 조건, 설비 교정, 검증 결과를 추적 가능한 기록으로 관리하고, 제품 요구에 따라 자분탐상검사(MPI), 경도 측정, 금속조직 검사로 열처리 결과를 확인합니다.\n\n드라이브라인 디스크 캐리어 조립체에는 CQI-15 기준의 사내 레이저 용접·조립 공정을 적용하며, 용접부 단면과 용입 깊이를 확인합니다. 열처리 후 샤프트는 서보 프레스와 자동 측정을 반복하는 자동 교정으로 런아웃을 관리하고, 제품별 전용 검사기의 최종 자동 검사 데이터를 생산 이력과 연결합니다.",
       },
       en: {
-        title: "Using automated inspection data to ensure outgoing quality and traceability",
-        summary: "In-process cell inspection and final inspection work together to verify dimensions and geometry and to catch missed operations while maintaining measurement records and lot traceability.",
-        body: "During in-process cell inspection, measurement data is collected using air gauges and related systems, then fed back to preceding operations. Where required, the data supports automatic compensation and SPC control.\n\nFinal inspection verifies outgoing quality through GD&T measurement, detection of cracks and omitted process steps, data recording, and lot marking. CMM, gear measurement, hardness testing, and metallurgical examination also support validation of critical characteristics.",
+        title: "In-house induction hardening to CQI-9 and laser welding to CQI-15: how special processes are run",
+        summary: "Induction hardening with low-temperature tempering and laser welding and assembly are run in-house, linked with automatic straightening and dedicated automated inspection in a single production flow.",
+        body: "Seoul Industry runs induction hardening—selectively hardening only the required areas—and low-temperature tempering in-house to CQI-9. Process parameters, equipment calibration, and validation results are kept as traceable records, and heat-treatment results are confirmed by magnetic-particle inspection (MPI), hardness testing, and metallurgical examination as each product requires.\n\nDriveline disc-carrier assemblies are laser-welded and assembled in-house to CQI-15, with weld cross-sections and penetration depth examined. After heat treatment, shafts pass through automatic straightening that alternates servo-press correction with measurement to control runout, and final automated inspection data from product-specific machines is linked to production history.",
       },
       ja: {
-        title: "自動検査データで確保する出荷品質とトレーサビリティ",
-        summary: "工程内セル検査と最終検査を連携し、寸法・幾何特性・工程抜けを確認するとともに、測定記録とロットトレーサビリティを管理します。",
-        body: "工程内セル検査では、エアゲージなどで測定データを収集し、前工程へフィードバックします。必要に応じて自動補正およびSPC管理に活用します。\n\n最終検査では、GD&T測定、亀裂・工程抜けの検出、データ記録、ロットマーキングにより出荷前品質を確認します。CMM、ギヤ測定、硬度・金属組織検査も重要特性の検証に活用します。",
+        title: "CQI-9に基づく社内高周波焼入れとCQI-15レーザー溶接 — 特殊工程の社内運用体制",
+        summary: "高周波焼入れ・低温焼戻しとレーザー溶接・組立を社内工程として運用し、自動矯正と専用自動検査まで一つの生産フローでつなぎます。",
+        body: "ソウル産業は、必要な部位だけを選択的に硬化させる高周波焼入れと低温焼戻しを、CQI-9に基づいて社内で運用しています。工程条件、設備校正、検証結果を追跡可能な記録として管理し、製品要求に応じて磁粉探傷検査（MPI）、硬さ測定、金属組織検査で熱処理結果を確認します。\n\nドライブラインのディスクキャリア組立品にはCQI-15に基づく社内レーザー溶接・組立工程を適用し、溶接部の断面と溶込み深さを確認します。熱処理後のシャフトは、サーボプレスと自動測定を繰り返す自動矯正で振れを管理し、製品別専用検査機の最終自動検査データを生産履歴と結び付けています。",
+      },
+    },
+  },
+  {
+    id: "global-supplier-registrations-2026",
+    category: "notice",
+    date: "2026-08-04",
+    image: companyFactoryImage,
+    pinned: false,
+    published: true,
+    translations: {
+      ko: {
+        title: "1985년 설립 이후 이어 온 글로벌 협력업체 등록 이력",
+        summary: "1987년 TRW Korea 협력업체 등록을 시작으로 북미·아시아·유럽 고객 프로그램으로 공급 범위를 넓혀 온 서울산업의 글로벌 대응 이력을 소개합니다.",
+        body: "서울산업은 1985년 설립 이후 1987년 TRW Korea 협력업체 등록, 1990년 조향 부품 사업 진출을 거쳐 2003년 TRW 미국·일본·말레이시아, 2004년 Metaldyne 미국·한국, 2007년 Nexteer·ThyssenKrupp Presta·Magna Powertrain 협력업체로 등록되며 글로벌 OEM 대응 기반을 구축했습니다.\n\n2012년 GKN Driveline 유럽·미국, 2014년 Spartan LTM 미국, 2021년 AAM 미국·한국 협력업체 등록으로 드라이브라인과 전동화 프로그램까지 영역을 넓혔습니다. 현재는 화성 제조 거점을 중심으로 북미·아시아·유럽 세 지역의 고객 프로그램에 대해 도면 검토부터 양산 공급까지 하나의 흐름으로 대응하고 있습니다.",
+      },
+      en: {
+        title: "Global supplier registrations since our founding in 1985",
+        summary: "From registration with TRW Korea in 1987 to programs across North America, Asia, and Europe: how Seoul Industry’s global supply footprint has grown.",
+        body: "Founded in 1985, Seoul Industry registered as a supplier to TRW Korea in 1987 and entered the steering-component sector in 1990. Registrations with TRW in the United States, Japan, and Malaysia (2003), Metaldyne in the United States and Korea (2004), and Nexteer, ThyssenKrupp Presta, and Magna Powertrain (2007) established its base for global OEM programs.\n\nRegistrations with GKN Driveline in Europe and the United States (2012), Spartan LTM in the United States (2014), and AAM in the United States and Korea (2021) extended the company’s scope into driveline and electrified programs. Today, from the Hwaseong manufacturing base, customer programs in North America, Asia, and Europe are supported in one continuous flow from drawing review to volume supply.",
+      },
+      ja: {
+        title: "1985年の設立以来続く、グローバルサプライヤー登録の歩み",
+        summary: "1987年のTRW Koreaサプライヤー登録を起点に、北米・アジア・欧州の顧客プログラムへ供給範囲を広げてきたソウル産業のグローバル対応の歩みをご紹介します。",
+        body: "ソウル産業は1985年の設立後、1987年にTRW Koreaのサプライヤーとして登録され、1990年にステアリング部品事業へ参入しました。2003年のTRW米国・日本・マレーシア、2004年のMetaldyne米国・韓国、2007年のNexteer・ThyssenKrupp Presta・Magna Powertrainへの登録を通じて、グローバルOEM対応の基盤を築きました。\n\n2012年のGKN Driveline欧州・米国、2014年のSpartan LTM米国、2021年のAAM米国・韓国への登録により、ドライブラインと電動化プログラムへ領域を広げました。現在は華城の生産拠点を中心に、北米・アジア・欧州の3地域の顧客プログラムに対し、図面検討から量産供給までを一つの流れで対応しています。",
       },
     },
   },

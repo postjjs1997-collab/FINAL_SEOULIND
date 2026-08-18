@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /company/notices/admin
+
+Sitemap: https://www.seoulind.co.kr/sitemap.xml

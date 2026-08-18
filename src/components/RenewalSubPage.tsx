@@ -29,7 +29,7 @@ import gearMeasuringEquipmentImage from "../../assets/equipment-inventory/actual
 import cmmEquipmentImage from "../../assets/equipment-inventory/actual/cmm.webp";
 import sustainabilityPolicyDocument from "../../assets/documents/sustainability-management-policy-seoul-industry.docx?url";
 import Icon from "./Icons";
-import { getPageConfig } from "./MenuPage";
+import { getPageConfig, type PageConfig } from "../data/pageConfig";
 import { RenewalSiteFooter, RenewalSiteHeader, toRenewalHref, type RenewalLanguage } from "./RenewalShell";
 import ViewportLoopVideo from "./ViewportLoopVideo";
 import { defaultLanguage, isLanguageCode, siteContent, type SiteContent } from "../data/siteContent";
@@ -57,9 +57,10 @@ import {
   type ManufacturingFilmGroupId,
 } from "../data/manufacturingFilms";
 import { qualityCapabilityCopy, type QualityCapabilityContent } from "../data/qualityCapability";
-import { productPartCatalogByRoute } from "../data/productCatalog";
+import { getProductSpecs, productPartCatalogByRoute, productSpecSectionCopy } from "../data/productCatalog";
 import { useLenisScroll } from "../motion/useLenisScroll";
 import { jumpToPageTop } from "../utils/pageScroll";
+import { getStoredLanguage, parseLocation, setSiteLanguage } from "../utils/siteRouter";
 import { usePrefersReducedMotion } from "../motion/usePrefersReducedMotion";
 import "../styles/renewal.css";
 import "../styles/renewal-subpage.css";
@@ -520,7 +521,28 @@ const recruitCopy: Record<
   {
     values: Array<{ title: string; copy: string }>;
     steps: string[];
-    jobs: Array<{ title: string; field: string; status: string; copy: string }>;
+    jobs: Array<{
+      title: string;
+      field: string;
+      status: string;
+      copy: string;
+      duties: string[];
+      requirements: string[];
+      preferred: string[];
+    }>;
+    posting: {
+      duties: string;
+      requirements: string;
+      preferred: string;
+      location: string;
+      locationValue: string;
+      employment: string;
+      employmentValue: string;
+      apply: string;
+      applyValue: string;
+      subjectFormat: string;
+      subjectPrefix: string;
+    };
     benefits: string[];
   }
 > = {
@@ -532,10 +554,47 @@ const recruitCopy: Record<
     ],
     steps: ["지원서 접수", "서류 전형", "실무 면접", "처우 협의·입사"],
     jobs: [
-      { title: "정밀 가공·생산 기술", field: "생산·기술", status: "상시 채용", copy: "공정 조건, 설비 세팅, 생산성 개선" },
-      { title: "자동차 부품 품질 관리", field: "품질", status: "상시 채용", copy: "수입·공정·출하 검사, 고객 품질 대응" },
-      { title: "생산 관리·자재", field: "생산 관리", status: "인재풀 등록", copy: "생산 계획, 자재 흐름, 납기 관리" },
+      {
+        title: "정밀 가공·생산 기술",
+        field: "생산·기술",
+        status: "상시 채용",
+        copy: "공정 조건, 설비 세팅, 생산성 개선",
+        duties: ["공정 조건 설정과 설비 세팅", "가공 품질 안정화와 생산성 개선", "신규 부품 양산 준비 지원"],
+        requirements: ["기계·생산 관련 전공 또는 동등한 실무 경력"],
+        preferred: ["자동차 부품 양산 경험", "CNC 선반·머시닝센터·호빙 등 절삭 설비 운용 경험"],
+      },
+      {
+        title: "자동차 부품 품질 관리",
+        field: "품질",
+        status: "상시 채용",
+        copy: "수입·공정·출하 검사, 고객 품질 대응",
+        duties: ["수입·공정·출하 검사 운영", "고객 품질 이슈 대응과 시정 조치", "측정 데이터 관리와 검사 기준 정비"],
+        requirements: ["품질·기계 관련 전공 또는 동등한 실무 경력"],
+        preferred: ["자동차 부품 품질 업무 경험", "IATF 16949 체계 운영, CMM·기어 측정기 사용 경험"],
+      },
+      {
+        title: "생산 관리·자재",
+        field: "생산 관리",
+        status: "인재풀 등록",
+        copy: "생산 계획, 자재 흐름, 납기 관리",
+        duties: ["생산 계획 수립과 진도 관리", "자재 입출고와 재고 흐름 관리", "납기 관리와 고객 출하 대응"],
+        requirements: ["산업공학·경영 관련 전공 또는 동등한 실무 경력"],
+        preferred: ["자동차 부품 생산 관리 경험", "생산 관리 시스템 운용 경험"],
+      },
     ],
+    posting: {
+      duties: "담당 업무",
+      requirements: "자격 요건",
+      preferred: "우대 사항",
+      location: "근무지",
+      locationValue: "경기도 화성시 본사·공장",
+      employment: "고용 형태",
+      employmentValue: "정규직",
+      apply: "지원 방법",
+      applyValue: "이메일 admin@seoulind.co.kr",
+      subjectFormat: "제목 형식: [지원] 직무명_성명",
+      subjectPrefix: "[지원]",
+    },
     benefits: ["직무·품질 교육", "건강검진", "경조사 지원", "통근·식사 지원", "장기근속 포상", "자격증 지원"],
   },
   en: {
@@ -546,10 +605,47 @@ const recruitCopy: Record<
     ],
     steps: ["Apply", "Document Screening", "Interview", "Offer & Onboarding"],
     jobs: [
-      { title: "Precision Machining Engineer", field: "Production · Engineering", status: "Open year-round", copy: "Process conditions, equipment setup, and productivity improvement" },
-      { title: "Automotive Quality Engineer", field: "Quality", status: "Open year-round", copy: "Incoming, in-process, and final inspection, plus customer quality support" },
-      { title: "Production & Materials Management", field: "Production Control", status: "Talent Pool", copy: "Production planning, material flow, and delivery management" },
+      {
+        title: "Precision Machining Engineer",
+        field: "Production · Engineering",
+        status: "Open year-round",
+        copy: "Process conditions, equipment setup, and productivity improvement",
+        duties: ["Set process conditions and machine setups", "Stabilize machining quality and improve productivity", "Support production readiness for new parts"],
+        requirements: ["Degree in mechanical or production engineering, or equivalent hands-on experience"],
+        preferred: ["Series-production experience with automotive components", "Experience operating CNC lathes, machining centers, or hobbing machines"],
+      },
+      {
+        title: "Automotive Quality Engineer",
+        field: "Quality",
+        status: "Open year-round",
+        copy: "Incoming, in-process, and final inspection, plus customer quality support",
+        duties: ["Run incoming, in-process, and outgoing inspection", "Handle customer quality issues and corrective actions", "Manage measurement data and maintain inspection standards"],
+        requirements: ["Degree in quality or mechanical engineering, or equivalent hands-on experience"],
+        preferred: ["Quality experience with automotive components", "Experience with IATF 16949 systems and CMM or gear-measuring equipment"],
+      },
+      {
+        title: "Production & Materials Management",
+        field: "Production Control",
+        status: "Talent Pool",
+        copy: "Production planning, material flow, and delivery management",
+        duties: ["Build production plans and track progress", "Manage material receipt, issue, and inventory flow", "Manage delivery schedules and customer shipments"],
+        requirements: ["Degree in industrial engineering or business, or equivalent hands-on experience"],
+        preferred: ["Production-control experience with automotive components", "Experience with production management systems"],
+      },
     ],
+    posting: {
+      duties: "Responsibilities",
+      requirements: "Requirements",
+      preferred: "Preferred",
+      location: "Location",
+      locationValue: "Head office and plant, Hwaseong, Gyeonggi-do",
+      employment: "Employment type",
+      employmentValue: "Full-time, permanent",
+      apply: "How to apply",
+      applyValue: "E-mail admin@seoulind.co.kr",
+      subjectFormat: "Subject line: [Application] Position_Name",
+      subjectPrefix: "[Application]",
+    },
     benefits: ["Job and quality training", "Health checks", "Family event and bereavement support", "Transportation and meal support", "Long-service awards", "Professional certification support"],
   },
   ja: {
@@ -560,10 +656,47 @@ const recruitCopy: Record<
     ],
     steps: ["応募受付", "書類選考", "実務面接", "条件面談・内定"],
     jobs: [
-      { title: "精密加工・生産技術", field: "生産・技術", status: "随時募集中", copy: "工程条件、設備セットアップ、生産性改善" },
-      { title: "自動車部品の品質管理", field: "品質", status: "随時募集中", copy: "受入・工程・出荷検査、顧客品質対応" },
-      { title: "生産管理・資材", field: "生産管理", status: "キャリア登録", copy: "生産計画、資材フロー、納期管理" },
+      {
+        title: "精密加工・生産技術",
+        field: "生産・技術",
+        status: "随時募集中",
+        copy: "工程条件、設備セットアップ、生産性改善",
+        duties: ["工程条件の設定と設備セットアップ", "加工品質の安定化と生産性改善", "新規部品の量産準備支援"],
+        requirements: ["機械・生産系の専攻、または同等の実務経験"],
+        preferred: ["自動車部品の量産経験", "CNC旋盤・マシニングセンタ・ホブ盤などの切削設備の運用経験"],
+      },
+      {
+        title: "自動車部品の品質管理",
+        field: "品質",
+        status: "随時募集中",
+        copy: "受入・工程・出荷検査、顧客品質対応",
+        duties: ["受入・工程・出荷検査の運営", "顧客品質問題への対応と是正処置", "測定データの管理と検査基準の整備"],
+        requirements: ["品質・機械系の専攻、または同等の実務経験"],
+        preferred: ["自動車部品の品質業務経験", "IATF 16949体系の運用、CMM・歯車測定機の使用経験"],
+      },
+      {
+        title: "生産管理・資材",
+        field: "生産管理",
+        status: "キャリア登録",
+        copy: "生産計画、資材フロー、納期管理",
+        duties: ["生産計画の立案と進捗管理", "資材の入出庫と在庫フローの管理", "納期管理と顧客への出荷対応"],
+        requirements: ["経営工学・経営系の専攻、または同等の実務経験"],
+        preferred: ["自動車部品の生産管理経験", "生産管理システムの運用経験"],
+      },
     ],
+    posting: {
+      duties: "担当業務",
+      requirements: "応募資格",
+      preferred: "歓迎要件",
+      location: "勤務地",
+      locationValue: "京畿道華城市 本社・工場",
+      employment: "雇用形態",
+      employmentValue: "正社員",
+      apply: "応募方法",
+      applyValue: "メール admin@seoulind.co.kr",
+      subjectFormat: "件名形式：[応募] 職種名_氏名",
+      subjectPrefix: "[応募]",
+    },
     benefits: ["職務・品質教育", "健康診断", "慶弔見舞金・休暇", "通勤・食事補助", "長期勤続表彰", "資格取得支援"],
   },
 };
@@ -1024,21 +1157,54 @@ const developmentRoadmapCopy: Record<RenewalLanguage, { eyebrow: string; title: 
   },
 };
 
-const locationCopy: Record<RenewalLanguage, { address: string; visit: string; email: string }> = {
+type LocationCopy = {
+  address: string;
+  visit: string;
+  email: string;
+  transportTitle: string;
+  transport: string[];
+  parking: string;
+  procedureTitle: string;
+  procedureNote: string;
+  procedure: string[];
+};
+
+const locationCopy: Record<RenewalLanguage, LocationCopy> = {
   ko: {
     address: "경기도 화성시 양감면 요당길320번길 51 서울산업(주)",
     visit: "공장 방문은 사전 협의가 필요합니다. 도착 전 담당자에게 연락해 주십시오.",
     email: "admin@seoulind.co.kr",
+    transportTitle: "교통 안내",
+    transport: ["서해안고속도로 발안IC 또는 평택제천고속도로 청북IC 이용", "인천국제공항에서 차량으로 약 1시간 30분 내외"],
+    parking: "방문객 주차: 정문 안내실 앞",
+    procedureTitle: "방문 절차",
+    procedureNote: "방문 당일 원활한 출입을 위해 아래 순서로 진행됩니다.",
+    procedure: ["담당자와 방문 일정 협의", "정문 안내실에서 출입 등록", "안전 수칙 안내 후 입장"],
   },
   en: {
     address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Republic of Korea",
     visit: "Factory visits require advance coordination. Please contact your Seoul Industry representative before arriving.",
     email: "admin@seoulind.co.kr",
+    transportTitle: "Getting here",
+    transport: [
+      "Exit at Balan IC on the Seohaean Expressway or Cheongbuk IC on the Pyeongtaek–Jecheon Expressway",
+      "About 1 hour 30 minutes by car from Incheon International Airport",
+    ],
+    parking: "Visitor parking: in front of the main-gate reception",
+    procedureTitle: "Visit procedure",
+    procedureNote: "On the day of your visit, access to the plant follows these three steps.",
+    procedure: ["Arrange the visit date with your Seoul Industry contact", "Register at the main-gate reception", "Enter after a short safety briefing"],
   },
   ja: {
     address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Republic of Korea",
     visit: "工場訪問は事前調整が必要です。到着前に担当者へご連絡ください。",
     email: "admin@seoulind.co.kr",
+    transportTitle: "交通案内",
+    transport: ["西海岸高速道路 発安（パラン）IC、または平沢済川高速道路 青北（チョンブク）ICをご利用ください", "仁川国際空港から車で約1時間30分"],
+    parking: "来客用駐車場：正門受付前",
+    procedureTitle: "訪問手順",
+    procedureNote: "訪問当日は、次の手順で入構いただきます。",
+    procedure: ["担当者と訪問日程を調整", "正門受付で入構登録", "安全上の注意事項の説明後に入場"],
   },
 };
 
@@ -1330,6 +1496,29 @@ function LocationBody({ language }: { language: RenewalLanguage }) {
         <article data-sub-reveal>
           <span>04 · {labels.directions}</span>
           <p>{copy.visit}</p>
+        </article>
+      </div>
+      <div className="renewal-sub-location-visit">
+        <article data-sub-reveal>
+          <span>05 · {copy.transportTitle}</span>
+          <ul>
+            {copy.transport.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+            <li>{copy.parking}</li>
+          </ul>
+        </article>
+        <article data-sub-reveal>
+          <span>06 · {copy.procedureTitle}</span>
+          <p>{copy.procedureNote}</p>
+          <ol>
+            {copy.procedure.map((step, index) => (
+              <li key={step}>
+                <small>{String(index + 1).padStart(2, "0")}</small>
+                <strong>{step}</strong>
+              </li>
+            ))}
+          </ol>
         </article>
       </div>
     </section>
@@ -1694,6 +1883,9 @@ function ProductDetailBody({
   const displayIndex = productRouteDisplayIndex[route] ?? productIndex + 1;
   const labels = bodyLabels[language];
   const catalog = productPartCatalogByRoute[route];
+  const specs = getProductSpecs(catalog, language);
+  const specCopy = productSpecSectionCopy[language];
+  const qualityStory = catalog?.qualityStory;
   const standards = catalog?.detailTags ?? [];
   const displayTitle = catalog?.detailTitle[language] ?? product.title;
   const displayCopy = catalog?.detailCopy[language] ?? product.copy;
@@ -1756,6 +1948,30 @@ function ProductDetailBody({
         </div>
       </section>
       <ActualProductLineup route={route} language={language} />
+      {specs.length > 0 ? (
+        <section className="renewal-sub-spec-range">
+          <header data-sub-reveal>
+            <span>{specCopy.eyebrow}</span>
+            <h2>{specCopy.title}</h2>
+            <p>{specCopy.note}</p>
+          </header>
+          <dl data-sub-reveal>
+            {specs.map((spec) => (
+              <div key={spec.label}>
+                <dt>{spec.label}</dt>
+                <dd>{spec.value}</dd>
+              </div>
+            ))}
+          </dl>
+          {qualityStory ? (
+            <aside className="renewal-sub-spec-range__story" data-sub-reveal>
+              <span>{qualityStory.eyebrow}</span>
+              <h3>{qualityStory.title[language]}</h3>
+              <p>{qualityStory.copy[language]}</p>
+            </aside>
+          ) : null}
+        </section>
+      ) : null}
     </>
   );
 }
@@ -2603,7 +2819,7 @@ function EnvironmentalBody({ content, language }: { content: SiteContent; langua
           </article>
         ))}
       </section>
-      <a className="renewal-sub-esg-policy-link" href="#/sustainability/policy" data-sub-reveal>
+      <a className="renewal-sub-esg-policy-link" href="/sustainability/policy" data-sub-reveal>
         <span>{policy.statement.eyebrow}</span>
         <div>
           <strong>{policy.statement.title}</strong>
@@ -2805,53 +3021,346 @@ function NewsBody({ language, content }: { language: RenewalLanguage; content: S
   );
 }
 
+type ContactCopy = {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  attachNote: string;
+  directLabel: string;
+  fields: {
+    company: string;
+    name: string;
+    email: string;
+    phone: string;
+    type: string;
+    product: string;
+    message: string;
+  };
+  types: string[];
+  products: string[];
+  select: string;
+  consent: string;
+  privacyLink: string;
+  submit: string;
+  submitNote: string;
+  opened: string;
+  subjectPrefix: string;
+};
+
+const contactCopy: Record<RenewalLanguage, ContactCopy> = {
+  ko: {
+    eyebrow: "RFQ · TECHNICAL REVIEW",
+    title: "견적·기술 검토 문의",
+    intro: "도면(STEP·PDF), 연간 예상 수량, 목표 SOP 시점을 함께 보내주시면 검토 후 회신드립니다.",
+    attachNote: "도면·사양서 등 첨부 파일은 이메일(admin@seoulind.co.kr)로 보내주십시오.",
+    directLabel: "직접 연락",
+    fields: {
+      company: "회사명",
+      name: "담당자 / 직함",
+      email: "이메일",
+      phone: "연락처",
+      type: "문의 유형",
+      product: "제품군",
+      message: "문의 내용",
+    },
+    types: ["견적", "기술 검토", "품질 문서", "기타"],
+    products: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM COMPONENTS", "기타"],
+    select: "선택",
+    consent: "문의 응대 및 견적 검토를 위한 개인정보 수집·이용에 동의합니다.",
+    privacyLink: "개인정보처리방침",
+    submit: "메일로 보내기",
+    submitNote: "‘메일로 보내기’를 누르면 입력하신 내용이 담긴 메일 작성 창이 열립니다. 도면 파일은 그 메일에 첨부해 주십시오.",
+    opened: "메일 작성 창이 열리지 않으면 admin@seoulind.co.kr로 직접 보내주십시오.",
+    subjectPrefix: "[문의]",
+  },
+  en: {
+    eyebrow: "RFQ · TECHNICAL REVIEW",
+    title: "Quotation and engineering review",
+    intro: "Send us your drawings (STEP/PDF), estimated annual volume and target SOP timing, and we will review them and reply.",
+    attachNote: "Please e-mail drawings and specifications to admin@seoulind.co.kr.",
+    directLabel: "Direct contact",
+    fields: {
+      company: "Company",
+      name: "Name / Title",
+      email: "E-mail",
+      phone: "Phone",
+      type: "Inquiry type",
+      product: "Product group",
+      message: "Message",
+    },
+    types: ["Quotation", "Engineering review", "Quality documents", "Other"],
+    products: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM COMPONENTS", "Other"],
+    select: "Select",
+    consent: "I agree to the collection and use of my personal information for responding to this inquiry and reviewing the request.",
+    privacyLink: "Privacy Policy",
+    submit: "Send by e-mail",
+    submitNote: "“Send by e-mail” opens your mail client with the details you entered. Please attach drawing files to that message.",
+    opened: "If your mail client does not open, please write to admin@seoulind.co.kr directly.",
+    subjectPrefix: "[Inquiry]",
+  },
+  ja: {
+    eyebrow: "RFQ · TECHNICAL REVIEW",
+    title: "見積り・技術検討のお問い合わせ",
+    intro: "図面（STEP・PDF）、年間予定数量、目標SOP時期を併せてお送りいただければ、検討のうえご返信いたします。",
+    attachNote: "図面・仕様書などの添付ファイルはメール（admin@seoulind.co.kr）でお送りください。",
+    directLabel: "直接のご連絡",
+    fields: {
+      company: "会社名",
+      name: "ご担当者名 / 役職",
+      email: "メールアドレス",
+      phone: "電話番号",
+      type: "お問い合わせ種別",
+      product: "製品群",
+      message: "お問い合わせ内容",
+    },
+    types: ["見積り", "技術検討", "品質書類", "その他"],
+    products: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM COMPONENTS", "その他"],
+    select: "選択してください",
+    consent: "お問い合わせ対応および見積り検討のための個人情報の収集・利用に同意します。",
+    privacyLink: "個人情報保護方針",
+    submit: "メールで送信",
+    submitNote: "「メールで送信」を押すと、入力内容が入ったメール作成画面が開きます。図面ファイルはそのメールに添付してください。",
+    opened: "メール作成画面が開かない場合は、admin@seoulind.co.kr へ直接お送りください。",
+    subjectPrefix: "[お問い合わせ]",
+  },
+};
+
+const contactEmail = "admin@seoulind.co.kr";
+
 function ContactBody({ language }: { language: RenewalLanguage }) {
-  const [sent, setSent] = useState(false);
-  const copy = uiCopy[language];
+  const [opened, setOpened] = useState(false);
+  const copy = contactCopy[language];
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSent(true);
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const value = (key: string) => String(data.get(key) ?? "").trim();
+    const company = value("company");
+    const type = value("type");
+    const subject = `${copy.subjectPrefix} ${[type, company].filter(Boolean).join(" · ")}`;
+    const lines = [
+      `${copy.fields.company}: ${company}`,
+      `${copy.fields.name}: ${value("name")}`,
+      `${copy.fields.email}: ${value("email")}`,
+      `${copy.fields.phone}: ${value("phone")}`,
+      `${copy.fields.type}: ${type}`,
+      `${copy.fields.product}: ${value("product")}`,
+      "",
+      `${copy.fields.message}:`,
+      value("message"),
+    ];
+    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+    setOpened(true);
   };
 
   return (
     <section className="renewal-sub-contact">
       <aside data-sub-reveal>
-        <span>SEOUL INDUSTRY</span>
-        <h2>{copy.contact}</h2>
-        <a href="tel:+82313661141">+82 31 366 1141</a>
+        <span>{copy.eyebrow}</span>
+        <h2>{copy.title}</h2>
+        <p className="renewal-sub-contact__intro">{copy.intro}</p>
+        <p>{copy.attachNote}</p>
+        <div className="renewal-sub-contact__direct">
+          <small>{copy.directLabel}</small>
+          <a href="tel:+82313661141">TEL +82 31 366 1141</a>
+          <p>FAX +82 31 366 1150</p>
+          <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+        </div>
       </aside>
       <form onSubmit={submit} data-sub-reveal>
         <label>
           <span>{copy.fields.company}</span>
-          <input name="company" required />
+          <input name="company" autoComplete="organization" required />
         </label>
         <label>
           <span>{copy.fields.name}</span>
-          <input name="name" required />
+          <input name="name" autoComplete="name" required />
         </label>
         <label>
           <span>{copy.fields.email}</span>
-          <input name="email" type="email" required />
+          <input name="email" type="email" autoComplete="email" required />
         </label>
         <label>
           <span>{copy.fields.phone}</span>
-          <input name="phone" />
+          <input name="phone" type="tel" autoComplete="tel" />
         </label>
-        <label className="is-wide">
-          <span>{copy.fields.subject}</span>
-          <input name="subject" required />
+        <label>
+          <span>{copy.fields.type}</span>
+          <select name="type" defaultValue="" required>
+            <option value="" disabled>
+              {copy.select}
+            </option>
+            {copy.types.map((type) => (
+              <option value={type} key={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span>{copy.fields.product}</span>
+          <select name="product" defaultValue="">
+            <option value="">{copy.select}</option>
+            {copy.products.map((product) => (
+              <option value={product} key={product}>
+                {product}
+              </option>
+            ))}
+          </select>
         </label>
         <label className="is-wide">
           <span>{copy.fields.message}</span>
           <textarea name="message" rows={6} required />
         </label>
+        <label className="is-wide renewal-sub-contact__consent">
+          <input name="consent" type="checkbox" required />
+          <span>
+            {copy.consent} <a href="/legal/privacy">{copy.privacyLink}</a>
+          </span>
+        </label>
+        <p className="renewal-sub-contact__note">{copy.submitNote}</p>
         <button type="submit">
           <span>{copy.submit}</span>
           <Icon name="arrow" />
         </button>
-        {sent && <p className="renewal-sub-contact__success">{copy.sent}</p>}
+        {opened && <p className="renewal-sub-contact__success">{copy.opened}</p>}
       </form>
+    </section>
+  );
+}
+
+type PrivacySection = { title: string; items: string[] };
+
+type PrivacyCopy = {
+  intro: string;
+  sections: PrivacySection[];
+  effectiveLabel: string;
+  effectiveDate: string;
+};
+
+const privacyCopy: Record<RenewalLanguage, PrivacyCopy> = {
+  ko: {
+    intro:
+      "서울산업(주)(이하 ‘회사’)는 「개인정보 보호법」 등 관련 법령을 준수하며, 홈페이지 문의 과정에서 수집되는 개인정보를 다음과 같이 처리합니다.",
+    sections: [
+      {
+        title: "1. 수집하는 개인정보 항목",
+        items: ["회사명, 담당자명(직함), 이메일, 연락처, 문의 내용", "문의 양식의 내용은 이용자의 메일 프로그램을 통해 회사 대표 이메일로 전달됩니다."],
+      },
+      {
+        title: "2. 개인정보의 수집·이용 목적",
+        items: ["문의 응대 및 견적·기술 검토", "문의 처리 결과 안내와 관련 연락"],
+      },
+      {
+        title: "3. 보유 및 이용 기간",
+        items: ["수집·이용 목적이 달성된 후 지체 없이 파기합니다.", "다만 관련 법령에 따라 보관이 필요한 경우에는 해당 기간 동안 보관합니다."],
+      },
+      {
+        title: "4. 개인정보의 제3자 제공",
+        items: ["회사는 이용자의 개인정보를 제3자에게 제공하지 않습니다.", "법령에 특별한 규정이 있는 경우는 예외로 합니다."],
+      },
+      {
+        title: "5. 정보주체의 권리",
+        items: ["이용자는 언제든지 개인정보의 열람, 정정, 삭제, 처리 정지를 요청할 수 있습니다.", "요청은 아래 개인정보 보호책임 부서로 연락해 주시면 지체 없이 처리합니다."],
+      },
+      {
+        title: "6. 개인정보 보호책임 부서",
+        items: ["부서: 경영지원팀", "이메일: admin@seoulind.co.kr", "전화: +82-31-366-1141"],
+      },
+    ],
+    effectiveLabel: "시행일",
+    effectiveDate: "2026년 8월 18일",
+  },
+  en: {
+    intro:
+      "Seoul Industry Co., Ltd. (the “Company”) complies with the Personal Information Protection Act of Korea and related laws, and handles personal information collected through website inquiries as follows.",
+    sections: [
+      {
+        title: "1. Personal information collected",
+        items: ["Company name, contact person (title), e-mail address, phone number and the content of the inquiry", "Inquiry-form content is delivered to the Company’s e-mail address through the user’s own mail client."],
+      },
+      {
+        title: "2. Purpose of collection and use",
+        items: ["Responding to inquiries and reviewing quotation and engineering requests", "Notifying the outcome of an inquiry and related follow-up contact"],
+      },
+      {
+        title: "3. Retention period",
+        items: ["Personal information is destroyed without delay once the purpose of collection has been fulfilled.", "Where retention is required by applicable law, it is kept for the period prescribed by that law."],
+      },
+      {
+        title: "4. Provision to third parties",
+        items: ["The Company does not provide personal information to third parties.", "Exceptions apply only where specifically required by law."],
+      },
+      {
+        title: "5. Rights of data subjects",
+        items: ["Users may request access to, correction or deletion of, or suspension of processing of their personal information at any time.", "Requests sent to the department below are handled without delay."],
+      },
+      {
+        title: "6. Department responsible for personal information",
+        items: ["Department: Management Support Team", "E-mail: admin@seoulind.co.kr", "Tel: +82-31-366-1141"],
+      },
+    ],
+    effectiveLabel: "Effective date",
+    effectiveDate: "18 August 2026",
+  },
+  ja: {
+    intro:
+      "ソウル産業株式会社（以下「当社」）は、韓国の「個人情報保護法」など関連法令を遵守し、ウェブサイトのお問い合わせを通じて取得する個人情報を次のとおり取り扱います。",
+    sections: [
+      {
+        title: "1. 取得する個人情報の項目",
+        items: ["会社名、ご担当者名（役職）、メールアドレス、電話番号、お問い合わせ内容", "お問い合わせフォームの内容は、利用者ご自身のメールソフトを通じて当社の代表メールアドレスに送信されます。"],
+      },
+      {
+        title: "2. 取得・利用の目的",
+        items: ["お問い合わせへの対応および見積り・技術検討", "お問い合わせの処理結果のご案内と関連するご連絡"],
+      },
+      {
+        title: "3. 保有および利用期間",
+        items: ["取得・利用目的を達成した後、遅滞なく破棄します。", "ただし、関連法令により保存が必要な場合は、当該期間保存します。"],
+      },
+      {
+        title: "4. 第三者への提供",
+        items: ["当社は利用者の個人情報を第三者に提供しません。", "法令に特別な定めがある場合を除きます。"],
+      },
+      {
+        title: "5. 情報主体の権利",
+        items: ["利用者はいつでも、個人情報の閲覧、訂正、削除、処理停止を求めることができます。", "下記の個人情報保護責任部署にご連絡いただければ、遅滞なく対応します。"],
+      },
+      {
+        title: "6. 個人情報保護責任部署",
+        items: ["部署：経営支援チーム", "メール：admin@seoulind.co.kr", "電話：+82-31-366-1141"],
+      },
+    ],
+    effectiveLabel: "施行日",
+    effectiveDate: "2026年8月18日",
+  },
+};
+
+function PrivacyBody({ language }: { language: RenewalLanguage }) {
+  const copy = privacyCopy[language];
+  return (
+    <section className="renewal-sub-privacy">
+      <p className="renewal-sub-privacy__intro" data-sub-reveal>
+        {copy.intro}
+      </p>
+      <div className="renewal-sub-privacy__sections">
+        {copy.sections.map((section) => (
+          <article data-sub-reveal key={section.title}>
+            <h3>{section.title}</h3>
+            <ul>
+              {section.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+      <p className="renewal-sub-privacy__effective" data-sub-reveal>
+        <span>{copy.effectiveLabel}</span>
+        <strong>{copy.effectiveDate}</strong>
+      </p>
     </section>
   );
 }
@@ -2890,22 +3399,83 @@ function RecruitGuideBody({ language }: { language: RenewalLanguage }) {
 
 function JobsBody({ language }: { language: RenewalLanguage }) {
   const copy = recruitCopy[language];
+  const posting = copy.posting;
   return (
-    <section className="renewal-sub-jobs">
-      {copy.jobs.map((job, index) => (
-        <article data-sub-reveal key={job.title}>
-          <span>{String(index + 1).padStart(2, "0")}</span>
-          <div>
-            <small>{job.field}</small>
-            <h3>{job.title}</h3>
-            <p>{job.copy}</p>
-          </div>
-          <strong>{job.status}</strong>
-          <a href="mailto:admin@seoulind.co.kr">
-            <Icon name="arrow" />
-          </a>
-        </article>
-      ))}
+    <section className="renewal-sub-postings">
+      {copy.jobs.map((job, index) => {
+        const mailSubject = `${posting.subjectPrefix} ${job.title}_`;
+        const mailHref = `mailto:${contactEmail}?subject=${encodeURIComponent(mailSubject)}`;
+        return (
+          <article data-sub-reveal key={job.title}>
+            <header>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <small>{job.field}</small>
+                <h3>{job.title}</h3>
+                <p>{job.copy}</p>
+              </div>
+              <strong>{job.status}</strong>
+            </header>
+            <div className="renewal-sub-postings__body">
+              <dl>
+                <div>
+                  <dt>{posting.duties}</dt>
+                  <dd>
+                    <ul>
+                      {job.duties.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+                <div>
+                  <dt>{posting.requirements}</dt>
+                  <dd>
+                    <ul>
+                      {job.requirements.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+                <div>
+                  <dt>{posting.preferred}</dt>
+                  <dd>
+                    <ul>
+                      {job.preferred.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              </dl>
+              <aside>
+                <dl>
+                <div>
+                  <dt>{posting.location}</dt>
+                  <dd>{posting.locationValue}</dd>
+                </div>
+                <div>
+                  <dt>{posting.employment}</dt>
+                  <dd>{posting.employmentValue}</dd>
+                </div>
+                <div>
+                  <dt>{posting.apply}</dt>
+                  <dd>
+                    {posting.applyValue}
+                    <small>{posting.subjectFormat}</small>
+                  </dd>
+                </div>
+                </dl>
+                <a href={mailHref}>
+                  <span>{posting.apply}</span>
+                  <Icon name="arrow" />
+                </a>
+              </aside>
+            </div>
+          </article>
+        );
+      })}
     </section>
   );
 }
@@ -2965,6 +3535,8 @@ function RouteBody({
   if (route === "company/history") return <HistoryBody content={content} />;
   if (route === "company/location") return <LocationBody language={language} />;
   if (route === "company/notices") return <NewsBody language={language} content={content} />;
+  if (route === "support/contact") return <ContactBody language={language} />;
+  if (route === "legal/privacy") return <PrivacyBody language={language} />;
   if (route in productRouteIndex) return <ProductDetailBody route={route} content={content} language={language} />;
   if (route.startsWith("manufacturing/")) return <ManufacturingBody route={route} language={language} />;
   if (route === "quality/policy") return <QualityPolicyBody language={language} />;
@@ -2981,6 +3553,7 @@ function RouteBody({
 function RenewalSubNavigation({ route, language }: { route: string; language: RenewalLanguage }) {
   const { group, child } = findMenuByRoute(route, language);
   const directGroup = group.children.length === 1 && group.children[0].href === group.href;
+  const listed = group.children.some((item) => resolveMenuRoute(item.href) === route);
   const activeItemRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
@@ -2993,7 +3566,7 @@ function RenewalSubNavigation({ route, language }: { route: string; language: Re
     });
   }, [route, language]);
 
-  if (directGroup) return null;
+  if (directGroup || !listed) return null;
 
   return (
     <div className="renewal-sub-navigation">
@@ -3005,7 +3578,7 @@ function RenewalSubNavigation({ route, language }: { route: string; language: Re
         {group.children.map((item) => (
           <a
             className={`${item.label === child.label ? "is-active" : ""}${item.href.includes("products/defense") ? " is-defense" : item.href.includes("products/electric-vehicle") ? " is-electrified" : item.href.includes("products/balance-shaft-module") ? " is-aluminum" : item.href.includes("products/") ? " is-core-product" : ""}`.trim()}
-            href={toRenewalHref(item.href)}
+            href={toRenewalHref(item.href, language)}
             ref={item.label === child.label ? activeItemRef : undefined}
             key={item.label}
           >
@@ -3023,7 +3596,7 @@ function NextPage({ route, language }: { route: string; language: RenewalLanguag
   const next = flat[(currentIndex + 1 + flat.length) % flat.length];
 
   return (
-    <a className="renewal-sub-next" href={toRenewalHref(next.child.href)}>
+    <a className="renewal-sub-next" href={toRenewalHref(next.child.href, language)}>
       <span>{uiCopy[language].next}</span>
       <div>
         <small>{next.group}</small>
@@ -3034,34 +3607,84 @@ function NextPage({ route, language }: { route: string; language: RenewalLanguag
   );
 }
 
+/** Page configs for routes that pageConfig.ts does not know about (footer / legal pages). */
+const localPageConfigs: Record<string, Record<RenewalLanguage, PageConfig>> = {
+  "legal/privacy": {
+    ko: {
+      route: "legal/privacy",
+      category: "LEGAL",
+      groupTitle: "법적 고지",
+      eyebrow: "Privacy Policy",
+      title: "개인정보처리방침",
+      lead: "서울산업(주)는 홈페이지 문의 과정에서 수집되는 개인정보를 관련 법령에 따라 안전하게 처리합니다.",
+      heroCopy: "수집 항목, 이용 목적, 보유 기간, 제3자 제공 여부와 개인정보 보호책임 부서를 안내합니다.",
+      image: seoulIndustryFacadeImage,
+      imagePosition: "center 55%",
+    },
+    en: {
+      route: "legal/privacy",
+      category: "LEGAL",
+      groupTitle: "Legal",
+      eyebrow: "Privacy Policy",
+      title: "Privacy Policy",
+      lead: "Seoul Industry handles the personal information collected through website inquiries in accordance with applicable law.",
+      heroCopy: "This page describes what we collect, why, how long we keep it, whether it is shared, and whom to contact.",
+      image: seoulIndustryFacadeImage,
+      imagePosition: "center 55%",
+    },
+    ja: {
+      route: "legal/privacy",
+      category: "LEGAL",
+      groupTitle: "法的事項",
+      eyebrow: "Privacy Policy",
+      title: "個人情報保護方針",
+      lead: "ソウル産業は、ウェブサイトのお問い合わせを通じて取得する個人情報を関連法令に基づき適切に取り扱います。",
+      heroCopy: "取得項目、利用目的、保有期間、第三者提供の有無、個人情報保護責任部署についてご案内します。",
+      image: seoulIndustryFacadeImage,
+      imagePosition: "center 55%",
+    },
+  },
+};
+
+function resolvePageConfig(route: string, language: RenewalLanguage): PageConfig {
+  return localPageConfigs[route]?.[language] ?? getPageConfig(route, language);
+}
+
+function readInitialLanguage(): RenewalLanguage {
+  if (typeof window === "undefined") return defaultLanguage;
+  const current = parseLocation().language;
+  if (isLanguageCode(current)) return current;
+  const stored = getStoredLanguage();
+  return isLanguageCode(stored) ? stored : defaultLanguage;
+}
+
 export default function RenewalSubPage({ route }: RenewalSubPageProps) {
   const cleanRoute = resolveMenuRoute(route) || "company/ceo";
   const reducedMotion = usePrefersReducedMotion();
-  const [language, setLanguage] = useState<RenewalLanguage>(() => {
-    if (typeof window === "undefined") return defaultLanguage;
-    const saved = window.localStorage.getItem("seoulind-language");
-    return isLanguageCode(saved) ? saved : defaultLanguage;
-  });
+  const [language, setLanguage] = useState<RenewalLanguage>(readInitialLanguage);
   const content = siteContent[language];
   const config = useMemo(() => {
-    return getPageConfig(cleanRoute, language);
+    return resolvePageConfig(cleanRoute, language);
   }, [cleanRoute, language]);
   const rootRef = useRef<HTMLDivElement>(null);
+
+  const changeLanguage = (next: RenewalLanguage) => {
+    setLanguage(next);
+    setSiteLanguage(next);
+  };
 
   useLenisScroll(!reducedMotion);
   useSubpageReveal(cleanRoute, language);
 
   useEffect(() => {
     document.body.classList.add("renewal-active");
-    document.documentElement.lang = language === "ko" ? "ko-KR" : language === "ja" ? "ja-JP" : "en";
-    window.localStorage.setItem("seoulind-language", language);
     jumpToPageTop();
     return () => document.body.classList.remove("renewal-active");
   }, [cleanRoute, language]);
 
   return (
     <div className="renewal-page renewal-subpage" data-language={language} ref={rootRef}>
-      <RenewalSiteHeader language={language} onLanguageChange={setLanguage} currentRoute={cleanRoute} />
+      <RenewalSiteHeader language={language} onLanguageChange={changeLanguage} currentRoute={cleanRoute} />
       <main key={`${cleanRoute}-${language}`}>
         <section
           className={`renewal-sub-hero${cleanRoute.startsWith("products/") ? " renewal-sub-hero--product" : ""}`}

@@ -7252,3 +7252,629 @@
     height: auto;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Contact (RFQ) page
+--------------------------------------------------------------------------- */
+
+.renewal-sub-contact aside h2 {
+  margin: 56px 0 22px;
+  font-size: clamp(2.2rem, 3vw, 3.2rem);
+  line-height: 1.15;
+  word-break: keep-all;
+}
+
+.renewal-sub-contact aside p {
+  line-height: 1.7;
+}
+
+.renewal-sub-contact aside .renewal-sub-contact__intro {
+  color: #fff;
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.renewal-sub-contact__direct {
+  display: grid;
+  gap: 4px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.renewal-sub-contact aside .renewal-sub-contact__direct small {
+  margin-bottom: 8px;
+  color: var(--renewal-orange);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.renewal-sub-contact aside .renewal-sub-contact__direct a,
+.renewal-sub-contact aside .renewal-sub-contact__direct p {
+  margin: 0;
+  color: #fff;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.renewal-sub-contact select {
+  width: 100%;
+  height: 52px;
+  padding: 0 28px 0 0;
+  border: 0;
+  border-bottom: 1px solid #bdb6ae;
+  border-radius: 0;
+  outline: 0;
+  background: transparent
+    url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23171717' stroke-width='1.6'/%3E%3C/svg%3E")
+    no-repeat right 4px center;
+  color: #171717;
+  font: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.renewal-sub-contact select:focus {
+  border-color: var(--renewal-orange);
+}
+
+.renewal-sub-contact label.renewal-sub-contact__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.renewal-sub-contact .renewal-sub-contact__consent input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  border: 0;
+  accent-color: var(--renewal-orange);
+}
+
+.renewal-sub-contact .renewal-sub-contact__consent span {
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: #4d4843;
+}
+
+.renewal-sub-contact__consent a {
+  color: #171717;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.renewal-sub-contact__note {
+  grid-column: 1 / -1;
+  margin: -6px 0 0;
+  color: #6c6660;
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+/* ---------------------------------------------------------------------------
+   Privacy policy page
+--------------------------------------------------------------------------- */
+
+.renewal-sub-privacy {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 clamp(28px, 4vw, 68px) 140px;
+}
+
+.renewal-sub-privacy__intro {
+  margin: 0 0 56px;
+  color: #171717;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  font-weight: 600;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+
+.renewal-sub-privacy__sections {
+  display: grid;
+  border-top: 1px solid #d2ccc4;
+}
+
+.renewal-sub-privacy__sections article {
+  display: grid;
+  grid-template-columns: minmax(200px, 0.38fr) minmax(0, 1fr);
+  gap: 24px 48px;
+  padding: 34px 0;
+  border-bottom: 1px solid #d2ccc4;
+}
+
+.renewal-sub-privacy__sections h3 {
+  margin: 0;
+  color: #171717;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.renewal-sub-privacy__sections ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.renewal-sub-privacy__sections li {
+  position: relative;
+  padding-left: 18px;
+  color: #4d4843;
+  line-height: 1.75;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.renewal-sub-privacy__sections li::before {
+  content: "";
+  position: absolute;
+  top: 0.78em;
+  left: 0;
+  width: 6px;
+  height: 1px;
+  background: var(--renewal-orange);
+}
+
+.renewal-sub-privacy__effective {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin: 40px 0 0;
+}
+
+.renewal-sub-privacy__effective span {
+  color: var(--renewal-orange);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.renewal-sub-privacy__effective strong {
+  color: #171717;
+  font-size: 1rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Product capability-range table
+--------------------------------------------------------------------------- */
+
+.renewal-sub-spec-range {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.36fr) minmax(0, 1fr);
+  gap: 48px 72px;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 110px 5vw 130px;
+  border-top: 1px solid #d2ccc4;
+}
+
+.renewal-sub-spec-range > header {
+  align-self: start;
+  position: sticky;
+  top: 120px;
+}
+
+.renewal-sub-spec-range > header span {
+  color: var(--renewal-orange);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.renewal-sub-spec-range > header h2 {
+  margin: 18px 0 20px;
+  font-size: clamp(1.9rem, 2.6vw, 2.8rem);
+  line-height: 1.15;
+  word-break: keep-all;
+}
+
+.renewal-sub-spec-range > header p {
+  max-width: 380px;
+  margin: 0;
+  color: #6c6660;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.renewal-sub-spec-range > dl {
+  margin: 0;
+  border-top: 1px solid #171717;
+}
+
+.renewal-sub-spec-range > dl > div {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.32fr) minmax(0, 1fr);
+  gap: 12px 32px;
+  padding: 22px 0;
+  border-bottom: 1px solid #d2ccc4;
+}
+
+.renewal-sub-spec-range dt {
+  margin: 0;
+  color: #171717;
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.renewal-sub-spec-range dd {
+  margin: 0;
+  color: #4d4843;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.renewal-sub-spec-range__story {
+  grid-column: 2;
+  padding: 36px 40px;
+  background: #171717;
+  color: #fff;
+}
+
+.renewal-sub-spec-range__story span {
+  color: var(--renewal-orange);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.renewal-sub-spec-range__story h3 {
+  margin: 16px 0 14px;
+  font-size: clamp(1.25rem, 1.7vw, 1.6rem);
+  line-height: 1.35;
+  word-break: keep-all;
+}
+
+.renewal-sub-spec-range__story p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.75;
+  word-break: keep-all;
+}
+
+/* ---------------------------------------------------------------------------
+   Location: directions + visit procedure
+--------------------------------------------------------------------------- */
+
+.renewal-sub-location-visit {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-bottom: 1px solid #d2ccc4;
+}
+
+.renewal-sub-location-visit article {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  padding: 44px 54px;
+  border-right: 1px solid #d2ccc4;
+}
+
+.renewal-sub-location-visit article:last-child {
+  border-right: 0;
+}
+
+.renewal-sub-location-visit span {
+  color: var(--renewal-orange);
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.renewal-sub-location-visit p {
+  max-width: 560px;
+  margin: 0;
+  color: #6b6660;
+  line-height: 1.75;
+}
+
+.renewal-sub-location-visit ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.renewal-sub-location-visit ul li {
+  position: relative;
+  max-width: 560px;
+  padding-left: 18px;
+  color: #171717;
+  font-weight: 700;
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+.renewal-sub-location-visit ul li::before {
+  content: "";
+  position: absolute;
+  top: 0.75em;
+  left: 0;
+  width: 6px;
+  height: 1px;
+  background: var(--renewal-orange);
+}
+
+.renewal-sub-location-visit ol {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #d2ccc4;
+}
+
+.renewal-sub-location-visit ol li {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #d2ccc4;
+}
+
+.renewal-sub-location-visit ol small {
+  color: var(--renewal-orange);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.renewal-sub-location-visit ol strong {
+  color: #171717;
+  font-size: 1rem;
+  line-height: 1.55;
+  word-break: keep-all;
+}
+
+/* ---------------------------------------------------------------------------
+   Recruit: job postings
+--------------------------------------------------------------------------- */
+
+.renewal-sub-postings {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 60px 5vw 140px;
+}
+
+.renewal-sub-postings article {
+  border-top: 1px solid #171717;
+  padding: 40px 0 56px;
+}
+
+.renewal-sub-postings article:last-child {
+  border-bottom: 1px solid #d2ccc4;
+}
+
+.renewal-sub-postings header {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 26px;
+}
+
+.renewal-sub-postings header > span,
+.renewal-sub-postings header small {
+  color: var(--renewal-orange);
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.renewal-sub-postings header h3 {
+  margin: 8px 0;
+  font-size: clamp(1.6rem, 2.2vw, 2rem);
+  line-height: 1.2;
+  word-break: keep-all;
+}
+
+.renewal-sub-postings header p {
+  margin: 0;
+  color: #6c6660;
+}
+
+.renewal-sub-postings header > strong {
+  padding: 8px 14px;
+  border: 1px solid #cfc8c0;
+  border-radius: 999px;
+  color: #171717;
+  font-size: 0.74rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.renewal-sub-postings__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.7fr);
+  gap: 32px 64px;
+  margin: 34px 0 0 96px;
+}
+
+.renewal-sub-postings__body dl {
+  display: grid;
+  gap: 22px;
+  margin: 0;
+}
+
+.renewal-sub-postings__body dl > div {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.26fr) minmax(0, 1fr);
+  gap: 8px 24px;
+}
+
+.renewal-sub-postings__body dt {
+  color: #171717;
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.7;
+}
+
+.renewal-sub-postings__body dd {
+  margin: 0;
+  color: #4d4843;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.renewal-sub-postings__body dd ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.renewal-sub-postings__body dd li {
+  position: relative;
+  padding-left: 16px;
+}
+
+.renewal-sub-postings__body dd li::before {
+  content: "";
+  position: absolute;
+  top: 0.8em;
+  left: 0;
+  width: 6px;
+  height: 1px;
+  background: var(--renewal-orange);
+}
+
+.renewal-sub-postings__body dd small {
+  display: block;
+  margin-top: 4px;
+  color: #6c6660;
+  font-size: 0.8rem;
+}
+
+.renewal-sub-postings__body aside {
+  display: grid;
+  align-content: start;
+  gap: 24px;
+  padding: 28px 30px;
+  background: #f5f3f0;
+}
+
+.renewal-sub-postings__body aside dl {
+  gap: 16px;
+}
+
+.renewal-sub-postings__body aside dl > div {
+  grid-template-columns: 1fr;
+  gap: 4px;
+}
+
+.renewal-sub-postings__body aside a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+  padding: 0 20px;
+  border-radius: 3px;
+  background: #171717;
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.renewal-sub-postings__body aside a svg {
+  width: 18px;
+}
+
+@media (max-width: 1100px) {
+  .renewal-sub-spec-range {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .renewal-sub-spec-range > header {
+    position: static;
+  }
+
+  .renewal-sub-spec-range__story {
+    grid-column: 1;
+  }
+
+  .renewal-sub-postings__body {
+    grid-template-columns: 1fr;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 860px) {
+  .renewal-sub-location-visit {
+    grid-template-columns: 1fr;
+    border-right: 1px solid #d2ccc4;
+    border-left: 1px solid #d2ccc4;
+  }
+
+  .renewal-sub-location-visit article {
+    padding: 32px 28px;
+    border-right: 0;
+    border-bottom: 1px solid #d2ccc4;
+  }
+
+  .renewal-sub-location-visit article:last-child {
+    border-bottom: 0;
+  }
+
+  .renewal-sub-privacy {
+    padding: 0 24px 100px;
+  }
+
+  .renewal-sub-privacy__sections article {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .renewal-sub-spec-range {
+    padding: 80px 24px 100px;
+  }
+
+  .renewal-sub-spec-range > dl > div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 18px 0;
+  }
+
+  .renewal-sub-spec-range__story {
+    padding: 28px 24px;
+  }
+
+  .renewal-sub-postings {
+    padding: 40px 24px 100px;
+  }
+
+  .renewal-sub-postings header {
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+  }
+
+  .renewal-sub-postings header > strong {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .renewal-sub-postings__body dl > div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .renewal-sub-contact__consent,
+  .renewal-sub-contact__note {
+    grid-column: 1;
+  }
+}

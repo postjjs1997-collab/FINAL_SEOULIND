@@ -1,7 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import BrainallLogo from "./BrainallLogo";
 import Icon from "./Icons";
 import { getSiteMenuGroups, resolveMenuRoute, type NavigationLanguage, type SiteMenuGroup } from "../data/navigation";
+import { buildHref, setSiteLanguage } from "../utils/siteRouter";
+import "../styles/renewal-shell.css";
 
 export type RenewalLanguage = NavigationLanguage;
 
@@ -11,6 +13,14 @@ type RenewalShellProps = {
   currentRoute?: string;
 };
 
+const MAIN_CONTENT_ID = "main-content";
+const CONTACT_ROUTE = "support/contact";
+const PRIVACY_ROUTE = "legal/privacy";
+const COMPANY_TEL = { display: "+82-31-366-1141", href: "tel:+82313661141" };
+const COMPANY_FAX = { display: "+82-31-366-1150" };
+const COMPANY_EMAIL = "admin@seoulind.co.kr";
+const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
 const shellCopy: Record<
   RenewalLanguage,
   {
@@ -19,11 +29,18 @@ const shellCopy: Record<
     languageLabel: string;
     home: string;
     mainNav: string;
+    skipToContent: string;
+    contact: string;
     backToTop: string;
     footerNav: string;
     office: string;
+    company: string;
     address: string;
-    copyright: string;
+    tel: string;
+    fax: string;
+    email: string;
+    privacy: string;
+    legalNav: string;
   }
 > = {
   ko: {
@@ -32,11 +49,18 @@ const shellCopy: Record<
     languageLabel: "언어 선택",
     home: "서울산업 홈페이지",
     mainNav: "주요 메뉴",
+    skipToContent: "본문으로 건너뛰기",
+    contact: "문의하기",
     backToTop: "맨 위로 이동",
     footerNav: "하단 메뉴",
     office: "본사·공장",
+    company: "서울산업(주) · 대표이사 김을식",
     address: "경기도 화성시 양감면 요당길320번길 51",
-    copyright: "© SEOUL INDUSTRY CO., LTD.",
+    tel: "TEL",
+    fax: "FAX",
+    email: "E-MAIL",
+    privacy: "개인정보처리방침",
+    legalNav: "법적 고지",
   },
   en: {
     menuLabel: "Open menu",
@@ -44,11 +68,18 @@ const shellCopy: Record<
     languageLabel: "Language",
     home: "Seoul Industry home",
     mainNav: "Primary navigation",
+    skipToContent: "Skip to content",
+    contact: "Contact",
     backToTop: "Back to top",
     footerNav: "Footer navigation",
     office: "Head Office & Factory",
+    company: "Seoul Industry Co., Ltd. · CEO Eul-Sik Kim",
     address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Republic of Korea",
-    copyright: "© SEOUL INDUSTRY CO., LTD.",
+    tel: "TEL",
+    fax: "FAX",
+    email: "E-MAIL",
+    privacy: "Privacy Policy",
+    legalNav: "Legal",
   },
   ja: {
     menuLabel: "メニューを開く",
@@ -56,24 +87,32 @@ const shellCopy: Record<
     languageLabel: "言語選択",
     home: "ソウル産業ホーム",
     mainNav: "メインメニュー",
+    skipToContent: "本文へスキップ",
+    contact: "お問い合わせ",
     backToTop: "ページ上部へ戻る",
     footerNav: "フッターメニュー",
     office: "本社・工場",
+    company: "ソウル産業株式会社 · 代表取締役 金乙植",
     address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Republic of Korea",
-    copyright: "© SEOUL INDUSTRY CO., LTD.",
+    tel: "TEL",
+    fax: "FAX",
+    email: "E-MAIL",
+    privacy: "個人情報保護方針",
+    legalNav: "法的情報",
   },
 };
 
-export function toRenewalHref(href: string) {
-  const route = href.replace(/^#\/?/, "");
-  return `#/${route}`;
+/** Converts a navigation href ("#/products/steering" or "/products/steering") to a root-relative link for the current language. */
+export function toRenewalHref(href: string, language?: RenewalLanguage) {
+  const route = href.replace(/^#\/?/, "").replace(/^\/+/, "");
+  return buildHref(route, language);
 }
 
 export function getRenewalMenuGroups(language: RenewalLanguage) {
   return getSiteMenuGroups(language).map((group) => ({
     ...group,
-    href: toRenewalHref(group.href),
-    children: group.children.map((child) => ({ ...child, href: toRenewalHref(child.href) })),
+    href: toRenewalHref(group.href, language),
+    children: group.children.map((child) => ({ ...child, href: toRenewalHref(child.href, language) })),
   }));
 }
 
@@ -90,12 +129,40 @@ function productGroupClass(href: string) {
   return "";
 }
 
+function findMainContent() {
+  return document.getElementById(MAIN_CONTENT_ID) ?? document.querySelector<HTMLElement>("main");
+}
+
 export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "" }: RenewalShellProps) {
   const [solid, setSolid] = useState(currentRoute.length > 0);
   const [open, setOpen] = useState(false);
   const copy = shellCopy[language];
   const menuGroups = useMemo(() => getRenewalMenuGroups(language), [language]);
   const sourceGroups = useMemo(() => getSiteMenuGroups(language), [language]);
+  const homeHref = buildHref("", language);
+  const contactHref = buildHref(CONTACT_ROUTE, language);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
+  const wasOpenRef = useRef(false);
+
+  const handleLanguageChange = useCallback(
+    (code: RenewalLanguage) => {
+      if (code === language) return;
+      setSiteLanguage(code);
+      onLanguageChange(code);
+    },
+    [language, onLanguageChange],
+  );
+
+  const handleSkipToContent = useCallback((event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    const target = findMainContent();
+    if (!target) return;
+    if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({ block: "start" });
+  }, []);
 
   useEffect(() => {
     const update = () => setSolid(currentRoute.length > 0 || window.scrollY > 24);
@@ -108,10 +175,40 @@ export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "
     setOpen(false);
   }, [currentRoute]);
 
+  // The page <main> is rendered by each page component; the shell tags it so the skip link has a stable target.
+  useEffect(() => {
+    const main = document.querySelector<HTMLElement>("main");
+    if (main && !main.id) main.id = MAIN_CONTENT_ID;
+  }, [currentRoute, language]);
+
   useEffect(() => {
     document.documentElement.classList.toggle("is-renewal-menu-open", open);
+    if (!open) {
+      return () => document.documentElement.classList.remove("is-renewal-menu-open");
+    }
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setOpen(false);
+        return;
+      }
+      // Keep keyboard focus inside the drawer while it is open.
+      if (event.key !== "Tab" || !drawerRef.current) return;
+      const drawer = drawerRef.current;
+      const focusable = Array.from(drawer.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter(
+        (element) => element.offsetParent !== null || element === document.activeElement,
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      if (event.shiftKey && (active === first || !drawer.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (active === last || !drawer.contains(active))) {
+        event.preventDefault();
+        first.focus();
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => {
@@ -120,10 +217,27 @@ export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "
     };
   }, [open]);
 
+  // Move focus into the drawer when it opens and return it to the toggle when it closes.
+  useEffect(() => {
+    if (open) {
+      wasOpenRef.current = true;
+      closeButtonRef.current?.focus({ preventScroll: true });
+      return;
+    }
+    if (wasOpenRef.current) {
+      wasOpenRef.current = false;
+      menuButtonRef.current?.focus({ preventScroll: true });
+    }
+  }, [open]);
+
   return (
     <>
+      <a className="renewal-skip-link" href={`#${MAIN_CONTENT_ID}`} onClick={handleSkipToContent}>
+        {copy.skipToContent}
+      </a>
+
       <header className={`renewal-header ${solid ? "is-solid" : ""}`}>
-        <a className="renewal-header__brand" href="#/" aria-label={copy.home}>
+        <a className="renewal-header__brand" href={homeHref} aria-label={copy.home}>
           <span className="renewal-header__brand-symbol" aria-hidden="true">
             <BrainallLogo markOnly />
           </span>
@@ -152,26 +266,52 @@ export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "
         </nav>
 
         <div className="renewal-header__actions">
+          <a className="renewal-header__contact" href={contactHref} aria-label={copy.contact}>
+            <Icon name="chat" className="renewal-header__contact-glyph" />
+            <span>{copy.contact}</span>
+            <Icon name="arrow" className="renewal-header__contact-arrow" />
+          </a>
           <div className="renewal-language" role="group" aria-label={copy.languageLabel}>
             {(["ko", "en", "ja"] as RenewalLanguage[]).map((code) => (
-              <button type="button" className={language === code ? "is-active" : ""} onClick={() => onLanguageChange(code)} key={code}>
+              <button
+                type="button"
+                className={language === code ? "is-active" : ""}
+                aria-pressed={language === code}
+                onClick={() => handleLanguageChange(code)}
+                key={code}
+              >
                 {code === "ko" ? "KR" : code === "ja" ? "JP" : "EN"}
               </button>
             ))}
           </div>
-          <button className="renewal-menu-button" type="button" onClick={() => setOpen(true)} aria-label={copy.menuLabel}>
+          <button
+            className="renewal-menu-button"
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-label={copy.menuLabel}
+            aria-expanded={open}
+            aria-controls="renewal-drawer"
+            ref={menuButtonRef}
+          >
             <Icon name="menu" />
             <span className="renewal-menu-button__label">MENU</span>
           </button>
         </div>
       </header>
 
-      <aside className={`renewal-drawer ${open ? "is-open" : ""}`} aria-hidden={!open}>
+      <aside
+        id="renewal-drawer"
+        className={`renewal-drawer ${open ? "is-open" : ""}`}
+        aria-hidden={!open}
+        aria-label={copy.mainNav}
+        inert={!open}
+        ref={drawerRef}
+      >
         <div className="renewal-drawer__top">
-          <a href="#/" onClick={() => setOpen(false)} aria-label={copy.home}>
+          <a href={homeHref} onClick={() => setOpen(false)} aria-label={copy.home}>
             <BrainallLogo markOnly />
           </a>
-          <button type="button" onClick={() => setOpen(false)} aria-label={copy.closeLabel}>
+          <button type="button" onClick={() => setOpen(false)} aria-label={copy.closeLabel} ref={closeButtonRef}>
             <Icon name="close" />
           </button>
         </div>
@@ -197,13 +337,18 @@ export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "
             );
           })}
         </nav>
-        <div className="renewal-drawer__languages">
+        <a className="renewal-drawer__contact" href={contactHref} onClick={() => setOpen(false)}>
+          <span>{copy.contact}</span>
+          <Icon name="arrow" />
+        </a>
+        <div className="renewal-drawer__languages" role="group" aria-label={copy.languageLabel}>
           {(["ko", "en", "ja"] as RenewalLanguage[]).map((code) => (
             <button
               type="button"
               className={language === code ? "is-active" : ""}
+              aria-pressed={language === code}
               onClick={() => {
-                onLanguageChange(code);
+                handleLanguageChange(code);
                 setOpen(false);
               }}
               key={code}
@@ -220,6 +365,7 @@ export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "
 export function RenewalSiteFooter({ language }: { language: RenewalLanguage }) {
   const copy = shellCopy[language];
   const menuGroups = getRenewalMenuGroups(language);
+  const year = new Date().getFullYear();
 
   return (
     <footer className="renewal-footer">
@@ -233,10 +379,24 @@ export function RenewalSiteFooter({ language }: { language: RenewalLanguage }) {
         </button>
       </div>
       <div className="renewal-footer__bottom">
-        <div>
+        <div className="renewal-footer__contact">
           <span>{copy.office}</span>
-          <p>{copy.address}</p>
-          <a href="tel:+82313661141">+82 31 366 1141</a>
+          <p className="renewal-footer__company">{copy.company}</p>
+          <p className="renewal-footer__address">{copy.address}</p>
+          <ul className="renewal-footer__lines">
+            <li>
+              <span>{copy.tel}</span>
+              <a href={COMPANY_TEL.href}>{COMPANY_TEL.display}</a>
+            </li>
+            <li>
+              <span>{copy.fax}</span>
+              <span>{COMPANY_FAX.display}</span>
+            </li>
+            <li>
+              <span>{copy.email}</span>
+              <a href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</a>
+            </li>
+          </ul>
         </div>
         <nav aria-label={copy.footerNav}>
           {menuGroups.map((group) => (
@@ -245,7 +405,13 @@ export function RenewalSiteFooter({ language }: { language: RenewalLanguage }) {
             </a>
           ))}
         </nav>
-        <small>{copy.copyright}</small>
+        <div className="renewal-footer__legal">
+          <nav aria-label={copy.legalNav}>
+            <a href={buildHref(PRIVACY_ROUTE, language)}>{copy.privacy}</a>
+            <a href={buildHref(CONTACT_ROUTE, language)}>{copy.contact}</a>
+          </nav>
+          <small>© {year} SEOUL INDUSTRY CO., LTD.</small>
+        </div>
       </div>
     </footer>
   );

@@ -1,0 +1,255 @@
+/* Shell-level layers shared by every renewal page: skip link, header contact CTA, drawer accessibility, footer legal/contact block. */
+
+/* Skip link: visually hidden until it receives keyboard focus. */
+.renewal-skip-link {
+  position: fixed;
+  z-index: 200;
+  top: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 20px;
+  border: 1px solid #f47a20;
+  border-radius: 4px;
+  background: #111;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  outline-offset: 3px;
+}
+
+.renewal-skip-link:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* The skip link focuses <main> programmatically; hide the ring that would otherwise wrap the whole page. */
+#main-content:focus {
+  outline: none;
+}
+
+/* Header contact CTA (desktop). */
+.renewal-header__contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 38px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 20px;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  white-space: nowrap;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.renewal-header__contact svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+  transition: transform 0.25s ease;
+}
+
+.renewal-header__contact-glyph {
+  display: none;
+}
+
+.renewal-header__contact:hover,
+.renewal-header__contact:focus-visible {
+  border-color: #f47a20;
+  background: #f47a20;
+  color: #111;
+}
+
+.renewal-header__contact:hover .renewal-header__contact-arrow {
+  transform: translateX(3px);
+}
+
+/* Drawer: lock page scroll while open and keep focus rings visible on the dark surface. */
+html.is-renewal-menu-open {
+  overflow: hidden;
+}
+
+.renewal-drawer a:focus-visible,
+.renewal-drawer button:focus-visible,
+.renewal-header a:focus-visible,
+.renewal-header button:focus-visible {
+  outline: 2px solid #f47a20;
+  outline-offset: 3px;
+}
+
+.renewal-drawer__contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 56px;
+  margin-top: 28px;
+  padding: 0 20px;
+  border: 1px solid #f47a20;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.renewal-drawer__contact svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.8;
+}
+
+.renewal-drawer__contact:hover,
+.renewal-drawer__contact:focus-visible {
+  background: #f47a20;
+  color: #111;
+}
+
+/* Footer: company / contact / legal block. */
+.renewal-footer__bottom .renewal-footer__company {
+  margin: 14px 0 4px;
+  color: #e6e6e6;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.renewal-footer__bottom .renewal-footer__address {
+  margin: 0;
+  color: #8f8f8f;
+  font-size: 0.82rem;
+}
+
+.renewal-footer__lines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.renewal-footer__lines li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  color: #cfcfcf;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.renewal-footer__bottom .renewal-footer__lines li > :first-child {
+  color: #6f6f6f;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.renewal-footer__bottom .renewal-footer__lines a {
+  color: #cfcfcf;
+  transition: color 0.2s ease;
+}
+
+.renewal-footer__bottom .renewal-footer__lines a:hover {
+  color: #fff;
+}
+
+.renewal-footer__legal {
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+  text-align: right;
+}
+
+.renewal-footer__legal nav {
+  display: flex;
+  gap: 22px;
+}
+
+.renewal-footer__bottom .renewal-footer__legal a {
+  color: #8f8f8f;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.renewal-footer__bottom .renewal-footer__legal a:hover {
+  color: #fff;
+}
+
+.renewal-footer__legal small {
+  color: #5f5f5f;
+  font-size: 0.65rem;
+}
+
+/* Between 1241px and 1400px the desktop nav is still visible but the header is tight: collapse the CTA to an icon. */
+@media (max-width: 1400px) {
+  .renewal-header__actions {
+    gap: 12px;
+  }
+
+  .renewal-header__contact {
+    width: 38px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .renewal-header__contact span,
+  .renewal-header__contact-arrow {
+    display: none;
+  }
+
+  .renewal-header__contact-glyph {
+    display: block;
+    width: 17px;
+    height: 17px;
+    stroke-width: 1.8;
+  }
+}
+
+@media (max-width: 1240px) {
+  .renewal-header__contact {
+    display: none;
+  }
+}
+
+@media (max-width: 920px) {
+  .renewal-drawer__contact {
+    margin-top: 24px;
+  }
+
+  .renewal-footer__legal {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .renewal-footer__lines {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .renewal-header__contact,
+  .renewal-header__contact svg,
+  .renewal-drawer__contact {
+    transition: none;
+  }
+}

@@ -29,6 +29,7 @@ await build({
   },
   define: {
     "import.meta.env.BASE_URL": '"../assets/"',
+    "import.meta.env.DEV": "false",
   },
   jsx: "automatic",
   minify: true,
