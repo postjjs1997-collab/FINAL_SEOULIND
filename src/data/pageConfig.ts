@@ -391,7 +391,7 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     lead: "전동화 구동계의 윤활 계통과 동력 전달 계통에 들어가는 알루미늄 가공 부품과 개발 단계의 샤프트에 대응합니다.",
     heroCopy: "제품별 승인 단계에 따라 하우징·커버의 오일 유로와 베어링 보어, 샤프트의 기어·스플라인 형상, 런아웃 및 표면 상태를 관리합니다.",
     introTitle: "전동화 구동계 대응 영역",
-    introCopy: "전동 구동 모듈은 모터의 회전을 기어열을 거쳐 구동축으로 전달합니다. 서울산업은 이 동력 전달 경로에 쓰이는 샤프트 시제품과 감속기 윤활 시스템용 펌프 부품을 제품 단계에 맞춰 가공합니다.",
+    introCopy: "전동 구동 모듈은 모터의 회전을 기어열을 거쳐 구동축으로 전달합니다. 서울산업은 이 동력 전달 경로에 쓰이는 샤프트를 시제품 개발부터 양산까지 대응하고, 감속기 윤활 시스템용 펌프 부품을 양산 공급합니다.",
     image: electrifiedProductHeroImage,
     imagePosition: "center",
   },
@@ -595,7 +595,7 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
       lead: "We supply machined-aluminum parts and development-stage shafts used in lubrication and power-transfer systems for electrified drivetrains.",
       heroCopy: "At each product approval stage, we control oil passages and bearing bores in housings and covers, along with gear and spline geometry, runout, and surface condition on shafts.",
       introTitle: "Scope for electrified drivetrains",
-      introCopy: "An electric drive module transmits motor rotation through a gear train to the drive shafts. Seoul Industry machines prototype shafts for this power path and pump components for reduction-gear lubrication systems according to each product stage.",
+      introCopy: "An electric drive module transmits motor rotation through a gear train to the drive shafts. Seoul Industry supports the shafts in this power path from prototype development through series production, and supplies pump components for reduction-gear lubrication systems in volume.",
     },
     "products/powertrain": {
       groupTitle: "Products",
@@ -659,7 +659,7 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
       lead: "電動化ドライブトレインの潤滑系と動力伝達系に用いるアルミ加工部品および開発段階のシャフトに対応します。",
       heroCopy: "製品ごとの承認段階に応じて、ハウジング／カバーのオイル流路・ベアリングボアと、シャフトのギヤ・スプライン形状、振れ、表面状態を管理します。",
       introTitle: "電動化ドライブトレインへの対応領域",
-      introCopy: "電動ドライブモジュールは、モーターの回転をギヤ列からドライブシャフトへ伝えます。ソウル産業は、この動力伝達経路に用いるシャフト試作品と、減速機潤滑システム向けポンプ部品を製品段階に応じて加工します。",
+      introCopy: "電動ドライブモジュールは、モーターの回転をギヤ列からドライブシャフトへ伝えます。ソウル産業は、この動力伝達経路に用いるシャフトを試作開発から量産まで対応し、減速機潤滑システム向けポンプ部品を量産供給します。",
     },
     "products/powertrain": {
       groupTitle: "製品情報",

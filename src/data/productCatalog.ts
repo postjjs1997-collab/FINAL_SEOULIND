@@ -307,16 +307,16 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
   "products/electric-vehicle": {
     eyebrow: "ELECTRIFIED POWERTRAIN",
     detailTitle: localized(
-      "양산 부품과 개발 시제품을 구분한 대응 체계",
-      "Separate paths for production parts and development prototypes",
-      "量産部品と開発試作品を区分して対応",
+      "시제품 개발부터 양산까지 이어지는 대응 체계",
+      "One capability from development prototypes to series production",
+      "試作開発から量産までつながる対応体制",
     ),
     detailCopy: localized(
-      "EV 감속기용 오일 펌프 하우징·커버는 양산 공정으로, 전동화 파워트레인용 샤프트는 설계 검증용 시제품으로 구분해 제작합니다. 도면 검토와 승인 단계도 제품 성격에 맞춰 별도로 운영합니다.",
-      "Oil-pump housings and covers for EV reduction gears are manufactured on series-production processes, while electrified-powertrain shafts are built as design-validation prototypes. Drawing reviews and approval stages are managed separately for each product type.",
-      "EV減速機用オイルポンプのハウジング・カバーは量産工程で、電動化パワートレイン向けシャフトは設計検証用試作品として区分して製作します。図面検討と承認の段階も、製品特性に応じて個別に運用します。",
+      "EV 감속기용 오일 펌프 하우징·커버는 양산 공정으로 공급하고, 전동화 파워트레인용 샤프트는 설계 검증 시제품 단계부터 참여해 양산까지 이어갑니다. 시제품에서 확보한 공정 조건과 검사 기준을 그대로 양산에 반영하며, 도면 검토와 승인 단계는 제품 성격에 맞춰 운영합니다.",
+      "Oil-pump housings and covers for EV reduction gears are supplied from series-production processes, and electrified-powertrain shafts are supported from design-validation prototypes through to volume production. Process conditions and inspection criteria proven at the prototype stage carry straight into series production, with drawing reviews and approval stages tailored to each product.",
+      "EV減速機用オイルポンプのハウジング・カバーは量産工程で供給し、電動化パワートレイン向けシャフトは設計検証用の試作段階から参画して量産までつなげます。試作で確立した工程条件と検査基準をそのまま量産に反映し、図面検討と承認の段階は製品特性に合わせて運用します。",
     ),
-    detailTags: ["SERIES PRODUCTION", "DEVELOPMENT PROTOTYPE", "CUSTOMER APPROVAL STAGE"],
+    detailTags: ["PROTOTYPE TO PRODUCTION", "DESIGN VALIDATION", "CUSTOMER APPROVAL STAGE"],
     lineupTitle: localized(
       "하우징·커버와 전동화 샤프트",
       "Housings, covers, and electrified-powertrain shafts",
