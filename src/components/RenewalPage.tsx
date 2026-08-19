@@ -659,7 +659,7 @@ const heroMedia: Array<
   | { video: string; poster: string; duration: number; playbackRate?: number }
 > = [
   { video: mainHeroVideo, poster: mainHeroPoster, duration: 7000 },
-  { video: oemProductionVideo, poster: oemProductionPoster, duration: 6250, playbackRate: 0.8 },
+  { video: oemProductionVideo, poster: oemProductionPoster, duration: 7800, playbackRate: 0.64 },
   { video: qualityVideo, poster: qualityPoster, duration: 3000 },
 ];
 
