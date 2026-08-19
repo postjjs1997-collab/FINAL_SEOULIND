@@ -81,7 +81,7 @@
   font-size: clamp(1.0rem, 1.3vw, 1.25rem);
   line-height: 1.65;
   margin: 26px 0 34px;
-  max-width: 650px;
+  max-width: 40em;
   word-break: keep-all;
 }
 
