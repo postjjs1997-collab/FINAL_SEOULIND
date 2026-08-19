@@ -52,6 +52,8 @@ export type ProductLocalizedText = Record<ProductCatalogLanguage, string>;
 
 export type ProductPart = {
   title: ProductLocalizedText;
+  /** Short label for compact placements (home product-card thumbnails). Falls back to title. */
+  shortTitle?: ProductLocalizedText;
   application: ProductLocalizedText;
   poster: string;
   video?: string;
@@ -794,6 +796,7 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       },
       {
         title: localized("트랜스퍼 케이스 액추에이터 샤프트", "Transfer Case Actuator Shaft", "トランスファーケース・アクチュエーターシャフト"),
+        shortTitle: localized("액추에이터 샤프트", "Actuator Shaft", "アクチュエーターシャフト"),
         application: localized("트랜스퍼 케이스 모드 전환 구동부", "Drive component for transfer-case mode selection", "トランスファーケースのモード切替駆動部品"),
         poster: transferCaseActuatorPoster,
         video: transferCaseActuatorVideo,

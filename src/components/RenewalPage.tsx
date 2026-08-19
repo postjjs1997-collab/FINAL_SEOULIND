@@ -1101,7 +1101,7 @@ function ProductsSection({ copy, language }: { copy: RenewalCopy; language: Rene
                           decoding="async"
                         />
                       )}
-                      <figcaption>{part.title[language]}</figcaption>
+                      <figcaption>{(part.shortTitle ?? part.title)[language]}</figcaption>
                     </figure>
                   ))}
                 </div>
