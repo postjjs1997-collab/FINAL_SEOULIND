@@ -340,7 +340,7 @@ const expandedPageConfigs: Record<string, PageConfig> = {
     groupTitle: "기업정보",
     eyebrow: "Company Overview",
     title: "회사개요",
-    lead: "서울산업은 엔진과 모터의 동력을 전달하는 샤프트, 기어, 스플라인, 하우징을 생산하는 자동차 부품 정밀가공 기업입니다.",
+    lead: "서울산업은 엔진과 모터의 동력을 전달하는 기어&샤프트 스플라인, 하우징을 생산하는 자동차 부품 정밀가공 기업입니다.",
     heroCopy: "1985년부터 개발 검토, 정밀가공, 열처리, 자동 검사와 양산 공급을 하나의 제조 흐름으로 연결해 왔습니다.",
     image: seoulIndustryCampusOverviewImage,
     imagePosition: "center bottom",
@@ -583,7 +583,7 @@ const expandedPageConfigs: Record<string, PageConfig> = {
 
 const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record<string, Partial<PageConfig>>> = {
   en: {
-    "company/overview": { groupTitle: "Company", title: "Company Overview", lead: "Seoul Industry precision-machines automotive shafts, gears, splines, and housings that transfer power from engines and motors.", heroCopy: "Since 1985, Seoul Industry has connected feasibility review, precision machining, heat treatment, automated inspection, and volume production in one manufacturing flow." },
+    "company/overview": { groupTitle: "Company", title: "Company Overview", lead: "Seoul Industry precision-machines automotive gear & shaft splines and housings that transfer power from engines and motors.", heroCopy: "Since 1985, Seoul Industry has connected feasibility review, precision machining, heat treatment, automated inspection, and volume production in one manufacturing flow." },
     "company/ceo": { groupTitle: "Company", title: "CEO Message", lead: "We pursue sustainable growth based on our customers' trust.", heroCopy: "Guided by our philosophy of creating through harmony, we strive to deliver the highest quality and contribute to society as a global leader." },
     "company/history": { groupTitle: "Company" },
     "company/location": { groupTitle: "Company", title: "Location", lead: "Seoul Industry's head office and precision-machining plant are located in Yanggam-myeon, Hwaseong.", heroCopy: "Please coordinate your visit in advance so we can arrange site access and meetings smoothly." },
@@ -647,7 +647,7 @@ const expandedPageConfigTranslations: Record<Exclude<LanguageCode, "ko">, Record
     "sustainability/policy": { groupTitle: "Sustainability Policy", title: "Sustainability Policy", lead: "Environmental, social, governance, and SAQ 5.0 requirements are integrated across our operations and supply chain.", heroCopy: "The policy applies to every employee, business site, operation, and supplier and is strengthened through continuous improvement." },
   },
   ja: {
-    "company/overview": { groupTitle: "企業情報", title: "会社概要", lead: "ソウル産業は、エンジンとモーターの動力を伝えるシャフト、ギヤ、スプライン、ハウジングを精密加工する自動車部品メーカーです。", heroCopy: "1985年から、製造性検討、精密加工、熱処理、自動検査、量産供給を一つの製造フローにつなげています。" },
+    "company/overview": { groupTitle: "企業情報", title: "会社概要", lead: "ソウル産業は、エンジンとモーターの動力を伝えるギヤ＆シャフト・スプライン、ハウジングを精密加工する自動車部品メーカーです。", heroCopy: "1985年から、製造性検討、精密加工、熱処理、自動検査、量産供給を一つの製造フローにつなげています。" },
     "company/ceo": { groupTitle: "企業情報", title: "CEOメッセージ", lead: "お客様の信頼を基盤に、持続可能な成長を追求します。", heroCopy: "「和をもって創造する企業」という経営理念のもと、最高の品質で社会に貢献するグローバルリーダーを目指します。" },
     "company/history": { groupTitle: "企業情報" },
     "company/location": { groupTitle: "企業情報", title: "アクセス", lead: "ソウル産業の本社と精密加工工場は京畿道華城市楊甘面にあります。", heroCopy: "ご訪問前に担当者と日程をご調整いただくと、入場手続きとお打ち合わせを円滑にご案内できます。" },
