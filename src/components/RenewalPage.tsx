@@ -659,7 +659,8 @@ const heroMedia: Array<
   | { video: string; poster: string; duration: number; playbackRate?: number }
 > = [
   { video: mainHeroVideo, poster: mainHeroPoster, duration: 7000 },
-  { video: oemProductionVideo, poster: oemProductionPoster, duration: 7100, playbackRate: 0.7 },
+  // Clip is pre-slowed to 0.7x with 60fps frame blending, so it plays at native speed without judder.
+  { video: oemProductionVideo, poster: oemProductionPoster, duration: 7100 },
   { video: qualityVideo, poster: qualityPoster, duration: 3000 },
 ];
 

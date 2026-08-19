@@ -2752,10 +2752,11 @@
 .renewal-sub-preventive-visual {
   position: relative;
   display: grid;
-  max-width: 1480px;
+  width: 100vw;
+  max-width: none;
   min-height: 600px;
   place-items: center;
-  margin: 0 auto;
+  margin: 0 calc(50% - 50vw);
   overflow: hidden;
   background: #171717;
   isolation: isolate;
