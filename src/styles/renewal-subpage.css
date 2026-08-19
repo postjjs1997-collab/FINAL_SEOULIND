@@ -7885,3 +7885,9 @@
   word-break: keep-all;
   overflow-wrap: normal;
 }
+
+.renewal-sub-location__details a.renewal-sub-location__address span {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import preventiveQualityImage from "../../assets/company-profile/process/crack-inspection.webp";
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
@@ -3726,7 +3726,14 @@ export default function RenewalSubPage({ route }: RenewalSubPageProps) {
               <h2>{config.introTitle ?? config.title}</h2>
             </div>
             <div className="renewal-sub-intro__copy" data-sub-reveal>
-              <strong>{config.lead}</strong>
+              <strong>
+                {config.lead.split("\n").map((line, index) => (
+                  <Fragment key={line}>
+                    {index > 0 ? <br /> : null}
+                    {line}
+                  </Fragment>
+                ))}
+              </strong>
               <p>{config.introCopy ?? config.heroCopy}</p>
             </div>
           </section>
