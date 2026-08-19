@@ -207,6 +207,8 @@ body.renewal-active {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background: transparent;
   color: #bdbdbd;
+  /* Follows the top-menu scale (not the site type scale), a step smaller than the menu itself */
+  font-size: clamp(13px, 0.94vw + 0.9px, 19.8px);
   text-align: left;
   transition:
     color 0.2s ease,
