@@ -145,7 +145,7 @@ export const globalProgramNetwork = {
         tags: ["GD&T / CMM", "TRACEABILITY", "CHANGE CONTROL"],
       },
     ],
-    frameworkTitle: "도면 검토에서 양산 공급까지, 하나의 책임 체계로 연결합니다.",
+    frameworkTitle: "도면 검토부터 양산 공급까지, 처음부터 끝까지 서울산업이 책임집니다.",
     stages: [
       {
         title: "도면·CTQ 검토",
@@ -235,7 +235,7 @@ export const globalProgramNetwork = {
         tags: ["GD&T / CMM", "TRACEABILITY", "CHANGE CONTROL"],
       },
     ],
-    frameworkTitle: "図面検討から量産供給まで、一つの責任体制でつなぎます。",
+    frameworkTitle: "図面検討から量産供給まで、最初から最後までソウル産業が責任を持ちます。",
     stages: [
       {
         title: "図面・CTQ検討",
