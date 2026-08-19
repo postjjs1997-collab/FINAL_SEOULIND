@@ -565,9 +565,9 @@
   position: relative;
   display: grid;
   place-items: center;
-  min-height: clamp(520px, 40vw, 720px);
+  min-height: clamp(400px, 30vw, 560px);
   margin: 0;
-  padding: clamp(22px, 3vw, 46px);
+  padding: clamp(18px, 2.4vw, 36px);
   overflow: hidden;
   background: #e6e2dc;
 }
@@ -610,25 +610,31 @@
 }
 
 .renewal-sub-certificates article > a > div {
-  padding: 38px 40px 42px;
+  padding: 30px 28px 34px;
 }
 
 .renewal-sub-certificates small {
+  display: block;
   color: var(--renewal-orange);
-  font-size: 0.7rem;
+  font-size: 0.56rem;
   font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
 }
 
 .renewal-sub-certificates h3 {
-  margin: 18px 0 16px;
-  font-size: clamp(1.9rem, 2.6vw, 3rem);
+  margin: 14px 0 12px;
+  font-size: clamp(1.15rem, 1.35vw, 1.6rem);
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .renewal-sub-certificates p {
   max-width: 38.75rem;
   margin: 0;
   color: #69645f;
-  line-height: 1.75;
+  font-size: 0.78rem;
+  line-height: 1.7;
   word-break: keep-all;
 }
 
@@ -642,11 +648,11 @@
 }
 
 .renewal-sub-certificates li {
-  padding: 8px 12px;
+  padding: 6px 10px;
   border: 1px solid #d8d2ca;
   border-radius: 3px;
   color: #58534e;
-  font-size: 0.72rem;
+  font-size: 0.6rem;
   font-weight: 800;
 }
 

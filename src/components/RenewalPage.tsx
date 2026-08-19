@@ -20,14 +20,14 @@ import iso14001CertificateImage from "../../assets/certificates/iso-14001-seoul-
 import iso14001CertificatePdf from "../../assets/certificates/iso-14001-seoul-industry.pdf";
 import vdaAuditorCertificateImage from "../../assets/certificates/vda-6-3-process-auditor.webp";
 import dauchLogo from "../../assets/partner-dauch.svg";
-import gknLogo from "../../assets/partner-gkn.svg";
-import hanseaLogo from "../../assets/partner-kdac.svg";
+import bocarLogo from "../../assets/partner-bocar.png";
 import magnaLogo from "../../assets/partner-magna.svg";
 import mobisLogo from "../../assets/partner-mobis.svg";
 import muncieLogo from "../../assets/partner-mpt.svg";
 import nexteerLogo from "../../assets/partner-nexteer.png";
 import spartanLogo from "../../assets/partner-spartan.svg";
-import trwLogo from "../../assets/partner-trw.svg";
+import sntMotivLogo from "../../assets/partner-snt-motiv.png";
+import thyssenkruppLogo from "../../assets/partner-thyssenkrupp.png";
 import Icon from "./Icons";
 import { RenewalSiteFooter, RenewalSiteHeader } from "./RenewalShell";
 import ViewportLoopVideo from "./ViewportLoopVideo";
@@ -784,16 +784,11 @@ const homeUiCopy = {
 const renewalPartners = [
   { name: "Dauch Corporation (AAM)", market: "USA", logo: dauchLogo, href: "https://www.aam.com/" },
   { name: "Spartan Light Metal Products", market: "USA", logo: spartanLogo, href: "https://spartanlmp.com/" },
-  {
-    name: "ZF TRW",
-    market: "KOREA / GLOBAL",
-    logo: trwLogo,
-    href: "https://aftermarket.zf.com/en/aftermarket-portal/our-brands/trw/",
-  },
+  { name: "thyssenkrupp", market: "GLOBAL", logo: thyssenkruppLogo, href: "https://www.thyssenkrupp.com/" },
   { name: "Hyundai Mobis", market: "KOREA", logo: mobisLogo, href: "https://www.mobis.com/" },
   { name: "Nexteer Automotive", market: "GLOBAL", logo: nexteerLogo, href: "https://www.nexteer.com/" },
-  { name: "Hansae Mobility", market: "KOREA", logo: hanseaLogo, href: "https://www.hansaemobility.com/" },
-  { name: "GKN Automotive", market: "GLOBAL", logo: gknLogo, href: "https://www.gknautomotive.com/" },
+  { name: "BOCAR Group", market: "MEXICO", logo: bocarLogo, href: "https://www.bocar.com/" },
+  { name: "S&T Motiv", market: "KOREA", logo: sntMotivLogo, href: "https://www.sntmotiv.com/" },
   { name: "Muncie Power Products", market: "USA", logo: muncieLogo, href: "https://www.munciepower.com/" },
   { name: "Magna Powertrain", market: "GLOBAL", logo: magnaLogo, href: "https://www.magna.com/" },
 ];
