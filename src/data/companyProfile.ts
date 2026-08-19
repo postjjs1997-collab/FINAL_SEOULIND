@@ -61,7 +61,7 @@ export const companyOverviewCopy = {
   ko: {
     eyebrow: "INTEGRATED PRECISION MACHINING SUPPLIER",
     title: "동력을 전달하는 핵심 부품을 정밀가공합니다.",
-    copy: "서울산업은 1985년부터 엔진과 모터의 토크를 전달하는 샤프트, 기어, 스플라인, 하우징 부품을 개발 검토부터 양산 검사까지 일관 공정으로 생산해 왔습니다.",
+    copy: "서울산업은 1985년부터 엔진과 모터의 토크를 전달하는 기어&샤프트 스플라인, 하우징 부품을 개발 검토부터 양산 검사까지 일관 공정으로 생산해 왔습니다.",
     facts: [
       { label: "설립", value: "1985" },
       { label: "월 생산량", value: "300,000+ PARTS" },
@@ -76,7 +76,7 @@ export const companyOverviewCopy = {
   en: {
     eyebrow: "INTEGRATED PRECISION MACHINING SUPPLIER",
     title: "Precision-machining the parts that carry power.",
-    copy: "Since 1985, Seoul Industry has produced shafts, gears, splines, and housings that transfer torque from engines and motors, connecting feasibility review, mass production, and inspection in one manufacturing flow.",
+    copy: "Since 1985, Seoul Industry has produced gear & shaft splines and housings that transfer torque from engines and motors, connecting feasibility review, mass production, and inspection in one manufacturing flow.",
     facts: [
       { label: "Founded", value: "1985" },
       { label: "Monthly Output", value: "300,000+ PARTS" },
@@ -91,7 +91,7 @@ export const companyOverviewCopy = {
   ja: {
     eyebrow: "INTEGRATED PRECISION MACHINING SUPPLIER",
     title: "動力を伝える主要部品を精密加工します。",
-    copy: "ソウル産業は1985年から、エンジンとモーターのトルクを伝えるシャフト、ギヤ、スプライン、ハウジングを、製造可能性の検討から量産検査まで一貫した工程で生産しています。",
+    copy: "ソウル産業は1985年から、エンジンとモーターのトルクを伝えるギヤ＆シャフト・スプライン、ハウジングを、製造可能性の検討から量産検査まで一貫した工程で生産しています。",
     facts: [
       { label: "設立", value: "1985" },
       { label: "月間生産数", value: "300,000+ PARTS" },
