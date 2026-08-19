@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { parseLocation, subscribeToLocation } from "../utils/siteRouter";
 
-// Keep in sync with --tweak-font-size in src/styles/globals.css (site type scale: 16px x 1.35).
-const BASE_FONT_PX = 21.6;
+// Keep in sync with --tweak-font-size in src/styles/globals.css (site type scale: 16px x 1.485).
+const BASE_FONT_PX = 23.76;
 
 type TweakValues = {
   fontFamily: string;
