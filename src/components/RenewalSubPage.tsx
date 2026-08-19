@@ -540,8 +540,8 @@ const recruitCopy: Record<
       employmentValue: string;
       apply: string;
       applyValue: string;
-      subjectFormat: string;
-      subjectPrefix: string;
+      applyLinkLabel: string;
+      applyLink: string;
     };
     benefits: string[];
   }
@@ -552,7 +552,7 @@ const recruitCopy: Record<
       { title: "개선을 이어가는 사람", copy: "현장의 작은 불편과 품질 흔들림을 발견하고 더 나은 방법을 제안합니다." },
       { title: "함께 완성하는 사람", copy: "생산, 품질, 개발, 관리가 하나의 흐름으로 움직이도록 소통합니다." },
     ],
-    steps: ["지원서 접수", "서류 전형", "실무 면접", "처우 협의·입사"],
+    steps: ["지원서 접수", "서류 전형", "실무 면접", "입사"],
     jobs: [
       {
         title: "정밀 가공·생산 기술",
@@ -591,9 +591,9 @@ const recruitCopy: Record<
       employment: "고용 형태",
       employmentValue: "정규직",
       apply: "지원 방법",
-      applyValue: "이메일 sales@seoulind.co.kr",
-      subjectFormat: "제목 형식: [지원] 직무명_성명",
-      subjectPrefix: "[지원]",
+      applyValue: "채용 플랫폼(잡코리아)에서 지원",
+      applyLinkLabel: "리크루팅 플랫폼 링크 바로가기",
+      applyLink: "https://www.jobkorea.co.kr/",
     },
     benefits: ["직무·품질 교육", "건강검진", "경조사 지원", "통근·식사 지원", "장기근속 포상", "자격증 지원"],
   },
@@ -603,7 +603,7 @@ const recruitCopy: Record<
       { title: "Continue Improving", copy: "Identify minor shop-floor issues and quality variation, then suggest better methods." },
       { title: "Build Together", copy: "Connect production, quality, development, and administration through clear communication." },
     ],
-    steps: ["Apply", "Document Screening", "Interview", "Offer & Onboarding"],
+    steps: ["Apply", "Document Screening", "Interview", "Onboarding"],
     jobs: [
       {
         title: "Precision Machining Engineer",
@@ -642,9 +642,9 @@ const recruitCopy: Record<
       employment: "Employment type",
       employmentValue: "Full-time, permanent",
       apply: "How to apply",
-      applyValue: "E-mail sales@seoulind.co.kr",
-      subjectFormat: "Subject line: [Application] Position_Name",
-      subjectPrefix: "[Application]",
+      applyValue: "Apply through our recruiting platform (JobKorea)",
+      applyLinkLabel: "Go to recruiting platform",
+      applyLink: "https://www.jobkorea.co.kr/",
     },
     benefits: ["Job and quality training", "Health checks", "Family event and bereavement support", "Transportation and meal support", "Long-service awards", "Professional certification support"],
   },
@@ -654,7 +654,7 @@ const recruitCopy: Record<
       { title: "改善を続ける人", copy: "現場の小さな不便や品質変動を見つけ、より良い方法を提案します。" },
       { title: "協働して成果を生み出す人", copy: "生産・品質・開発・管理が一体となって進められるよう連携します。" },
     ],
-    steps: ["応募受付", "書類選考", "実務面接", "条件面談・内定"],
+    steps: ["応募受付", "書類選考", "実務面接", "入社"],
     jobs: [
       {
         title: "精密加工・生産技術",
@@ -693,9 +693,9 @@ const recruitCopy: Record<
       employment: "雇用形態",
       employmentValue: "正社員",
       apply: "応募方法",
-      applyValue: "メール sales@seoulind.co.kr",
-      subjectFormat: "件名形式：[応募] 職種名_氏名",
-      subjectPrefix: "[応募]",
+      applyValue: "採用プラットフォーム（JobKorea）から応募",
+      applyLinkLabel: "採用プラットフォームへ",
+      applyLink: "https://www.jobkorea.co.kr/",
     },
     benefits: ["職務・品質教育", "健康診断", "慶弔見舞金・休暇", "通勤・食事補助", "長期勤続表彰", "資格取得支援"],
   },
@@ -2009,6 +2009,7 @@ function ManufacturingFilmLibrary({ language }: { language: RenewalLanguage }) {
   const [cycleRevision, setCycleRevision] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
+  const [autoRotationStopped, setAutoRotationStopped] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
   const tabsRef = useRef<HTMLDivElement>(null);
   const copy = manufacturingFilmLibraryCopy[language];
@@ -2032,7 +2033,7 @@ function ManufacturingFilmLibrary({ language }: { language: RenewalLanguage }) {
   }, []);
 
   useEffect(() => {
-    if (!isVisible || isInteracting || reducedMotion) return;
+    if (!isVisible || isInteracting || reducedMotion || autoRotationStopped) return;
 
     let timer = 0;
     const scheduleNextGroup = () => {
@@ -2043,7 +2044,7 @@ function ManufacturingFilmLibrary({ language }: { language: RenewalLanguage }) {
           const currentIndex = manufacturingFilmGroupIds.indexOf(currentGroup);
           return manufacturingFilmGroupIds[(currentIndex + 1) % manufacturingFilmGroupIds.length];
         });
-      }, 3000);
+      }, 4000);
     };
     const handleVisibilityChange = () => scheduleNextGroup();
 
@@ -2053,10 +2054,12 @@ function ManufacturingFilmLibrary({ language }: { language: RenewalLanguage }) {
       window.clearTimeout(timer);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [activeGroup, cycleRevision, isInteracting, isVisible, reducedMotion]);
+  }, [activeGroup, autoRotationStopped, cycleRevision, isInteracting, isVisible, reducedMotion]);
 
+  // A deliberate tab selection hands control to the visitor: no more auto-rotation afterwards.
   const selectGroup = (groupId: ManufacturingFilmGroupId) => {
     setActiveGroup(groupId);
+    setAutoRotationStopped(true);
     setCycleRevision((revision) => revision + 1);
   };
 
@@ -3411,8 +3414,6 @@ function JobsBody({ language }: { language: RenewalLanguage }) {
   return (
     <section className="renewal-sub-postings">
       {copy.jobs.map((job, index) => {
-        const mailSubject = `${posting.subjectPrefix} ${job.title}_`;
-        const mailHref = `mailto:${contactEmail}?subject=${encodeURIComponent(mailSubject)}`;
         return (
           <article data-sub-reveal key={job.title}>
             <header>
@@ -3469,14 +3470,11 @@ function JobsBody({ language }: { language: RenewalLanguage }) {
                 </div>
                 <div>
                   <dt>{posting.apply}</dt>
-                  <dd>
-                    {posting.applyValue}
-                    <small>{posting.subjectFormat}</small>
-                  </dd>
+                  <dd>{posting.applyValue}</dd>
                 </div>
                 </dl>
-                <a href={mailHref}>
-                  <span>{posting.apply}</span>
+                <a href={posting.applyLink} target="_blank" rel="noopener noreferrer">
+                  <span>{posting.applyLinkLabel}</span>
                   <Icon name="arrow" />
                 </a>
               </aside>
