@@ -56,7 +56,7 @@
 .notice-not-found > p,
 .notice-editor__heading p {
   color: #ff7a19;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0;
   margin: 0 0 18px;
@@ -68,7 +68,7 @@
 .notice-admin__header h1,
 .notice-admin-login h1,
 .notice-not-found h1 {
-  font-size: clamp(38px, 5.4vw, 82px);
+  font-size: clamp(2.375rem, 5.4vw, 5.125rem);
   letter-spacing: 0;
   line-height: 1.03;
   margin: 0;
@@ -78,7 +78,7 @@
 
 .notice-masthead__inner > p:not(.notice-masthead__eyebrow) {
   color: rgba(255, 255, 255, 0.72);
-  font-size: clamp(16px, 1.3vw, 20px);
+  font-size: clamp(1.0rem, 1.3vw, 1.25rem);
   line-height: 1.65;
   margin: 26px 0 34px;
   max-width: 650px;
@@ -91,7 +91,7 @@
   align-items: center;
   color: inherit;
   display: inline-flex;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 800;
   gap: 22px;
   text-decoration: none;
@@ -284,7 +284,7 @@
   align-items: center;
   color: #73706b;
   display: flex;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 800;
   justify-content: space-between;
   margin-bottom: clamp(30px, 4vw, 62px);
@@ -296,7 +296,7 @@
 }
 
 .notice-card h2 {
-  font-size: clamp(25px, 2.35vw, 42px);
+  font-size: clamp(1.5625rem, 2.35vw, 2.625rem);
   letter-spacing: 0;
   line-height: 1.14;
   margin: 0;
@@ -306,7 +306,7 @@
 
 .notice-card p {
   color: #67635e;
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.65;
   margin: 18px 0 24px;
   overflow-wrap: break-word;
@@ -356,7 +356,7 @@
 .notice-empty,
 .notice-feedback,
 .notice-admin-loading {
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.6;
   margin: 0;
 }
@@ -388,7 +388,7 @@
 
 .notice-detail__topbar a {
   color: #35332f;
-  font-size: 13px;
+  font-size: 0.8125rem;
   gap: 10px;
 }
 
@@ -409,7 +409,7 @@
 
 .notice-detail__header time {
   color: #77716a;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 700;
 }
 
@@ -420,7 +420,7 @@
 
 .notice-detail__header > p {
   color: #5f5b55;
-  font-size: clamp(17px, 1.6vw, 24px);
+  font-size: clamp(1.0625rem, 1.6vw, 1.5rem);
   line-height: 1.6;
   margin: 30px 0 0;
   max-width: 840px;
@@ -443,7 +443,7 @@
 
 .notice-detail__body {
   color: #393632;
-  font-size: clamp(16px, 1.3vw, 19px);
+  font-size: clamp(1.0rem, 1.3vw, 1.1875rem);
   line-height: 1.9;
   margin-left: auto;
   margin-right: auto;
@@ -466,7 +466,7 @@
 .notice-not-found span {
   color: #69645d;
   display: block;
-  font-size: 17px;
+  font-size: 1.0625rem;
   margin-top: 26px;
 }
 
@@ -493,7 +493,7 @@
 }
 
 .notice-admin__header h1 {
-  font-size: clamp(34px, 4vw, 58px);
+  font-size: clamp(2.125rem, 4vw, 3.625rem);
 }
 
 .notice-admin__header p {
@@ -518,7 +518,7 @@
   color: #fff;
   cursor: pointer;
   font: inherit;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 800;
   letter-spacing: 0;
   min-height: 43px;
@@ -582,7 +582,7 @@
 
 .notice-admin__list h2,
 .notice-editor h2 {
-  font-size: 19px;
+  font-size: 1.1875rem;
   letter-spacing: 0;
   margin: 0;
 }
@@ -590,7 +590,7 @@
 .notice-icon-button {
   align-items: center;
   display: inline-flex;
-  font-size: 26px;
+  font-size: 1.625rem;
   height: 38px;
   justify-content: center;
   min-height: 38px;
@@ -624,7 +624,7 @@
 .notice-admin-post span,
 .notice-admin-post time {
   color: #b5b0a8;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 800;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -657,7 +657,7 @@
 }
 
 .notice-admin-post strong {
-  font-size: 16px;
+  font-size: 1.0rem;
   line-height: 1.35;
   overflow-wrap: break-word;
   word-break: keep-all;
@@ -680,7 +680,7 @@
 
 .notice-editor__heading p {
   color: #77716a;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 700;
   margin-bottom: 9px;
   text-transform: none;
@@ -699,7 +699,7 @@
 
 .notice-editor__publish-hint {
   color: #6f6962;
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 1.55;
   margin: 12px 0 0;
 }
@@ -713,7 +713,7 @@
 .notice-editor label > span,
 .notice-editor__image > div > span {
   color: #57524d;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 800;
 }
 
@@ -725,7 +725,7 @@
   border-radius: 3px;
   color: #181818;
   font: inherit;
-  font-size: 15px;
+  font-size: 0.9375rem;
   min-height: 44px;
   padding: 10px 12px;
   width: 100%;
@@ -785,7 +785,7 @@
   align-items: center;
   color: rgba(255, 255, 255, 0.55);
   display: flex;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 800;
   justify-content: center;
 }
@@ -859,13 +859,13 @@
 }
 
 .notice-admin-login h1 {
-  font-size: clamp(38px, 4.5vw, 68px);
+  font-size: clamp(2.375rem, 4.5vw, 4.25rem);
 }
 
 .notice-admin-login > div > span {
   color: #605b55;
   display: block;
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.65;
   margin-top: 24px;
   max-width: 560px;
@@ -888,7 +888,7 @@
 
 .notice-admin-login label span {
   color: #ded9d2;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 800;
 }
 
@@ -916,7 +916,7 @@
   cursor: pointer;
   display: inline-flex;
   font: inherit;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 900;
   gap: 28px;
   justify-content: center;

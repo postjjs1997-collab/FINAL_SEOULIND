@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { parseLocation, subscribeToLocation } from "../utils/siteRouter";
 
+// Keep in sync with --tweak-font-size in src/styles/globals.css (site type scale: 16px x 1.35).
+const BASE_FONT_PX = 21.6;
+
 type TweakValues = {
   fontFamily: string;
   fontScale: number;
@@ -118,7 +121,7 @@ function applyTweaks(values: TweakValues) {
   const root = document.documentElement;
   root.style.setProperty("--tweak-font-family", values.fontFamily);
   root.style.setProperty("--tweak-font-scale", String(values.fontScale));
-  root.style.setProperty("--tweak-font-size", `${16 * values.fontScale}px`);
+  root.style.setProperty("--tweak-font-size", `${BASE_FONT_PX * values.fontScale}px`);
   root.style.setProperty("--tweak-heading-scale", String(values.headingScale));
   root.style.setProperty("--tweak-menu-hero-height-scale", String(values.menuHeroHeight));
   root.style.setProperty("--tweak-section-spacing-scale", String(values.sectionSpacing));

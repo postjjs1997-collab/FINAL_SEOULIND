@@ -48,7 +48,7 @@
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 20px;
   color: #fff;
-  font-size: 0.72rem;
+  font-size: 11.5px; /* pinned */
   font-weight: 800;
   letter-spacing: 0;
   white-space: nowrap;

@@ -16,7 +16,7 @@
   --color-paper: #fffaf4;
   --tweak-font-family: "Pretendard", sans-serif;
   --tweak-font-scale: 1;
-  --tweak-font-size: 16px;
+  --tweak-font-size: 21.6px; /* site-wide type scale: 16px x 1.35 */
   --tweak-heading-scale: 1;
   --tweak-menu-hero-height-scale: 1;
   --tweak-section-spacing-scale: 1;
@@ -32,7 +32,7 @@
 html {
   min-height: 100%;
   background: var(--color-paper);
-  font-size: 16px;
+  font-size: 21.6px;
   font-size: var(--tweak-font-size);
   scroll-padding-top: 80px;
   scroll-behavior: smooth;
