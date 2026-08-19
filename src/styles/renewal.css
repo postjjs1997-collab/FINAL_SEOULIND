@@ -146,7 +146,8 @@ body.renewal-active {
   padding: 0 4px;
   background: transparent;
   color: #fff;
-  font-size: clamp(14.4px, 0.72vw + 5.6px, 16.3px); /* pinned */
+  /* Grows with the viewport: ~16px on a 1440px laptop, ~21px on a 1920px monitor, 22px cap */
+  font-size: clamp(14.5px, 1.04vw + 1px, 22px);
   font-weight: 700;
 }
 
@@ -296,7 +297,7 @@ body.renewal-active {
   border-radius: 16px;
   background: transparent;
   color: rgba(255, 255, 255, 0.56);
-  font-size: 10.7px; /* pinned */
+  font-size: clamp(10.7px, 0.55vw + 2.8px, 13.5px);
   font-weight: 800;
 }
 
