@@ -241,7 +241,7 @@ export function RenewalSiteHeader({ language, onLanguageChange, currentRoute = "
           <span className="renewal-header__brand-symbol" aria-hidden="true">
             <BrainallLogo markOnly />
           </span>
-          <span className="renewal-header__wordmark">Seoul Industry Co., Ltd.</span>
+          <span className="renewal-header__wordmark">SEOUL INDUSTRY</span>
         </a>
 
         <nav className="renewal-nav" aria-label={copy.mainNav}>

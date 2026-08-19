@@ -82,11 +82,14 @@ body.renewal-active {
   place-items: center;
 }
 
+/* Wordmark mirrors the facade signage: orange, heavy, uppercase */
 .renewal-header__wordmark {
-  color: #fff;
-  font-size: 0.92rem;
-  font-weight: 750;
+  color: var(--renewal-orange);
+  font-size: 1.28rem;
+  font-weight: 900;
+  letter-spacing: 0.01em;
   line-height: 1;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
@@ -118,6 +121,21 @@ body.renewal-active {
   align-items: center;
 }
 
+/* Desktop nav is still shown down to 1241px; tighten spacing so the larger wordmark and menu type fit */
+@media (max-width: 1400px) {
+  .renewal-header {
+    padding: 0 28px;
+  }
+
+  .renewal-header__wordmark {
+    font-size: 1.12rem;
+  }
+
+  .renewal-nav {
+    gap: clamp(12px, 1.4vw, 24px);
+  }
+}
+
 .renewal-nav__group > button,
 .renewal-nav__group > a {
   position: relative;
@@ -127,7 +145,7 @@ body.renewal-active {
   padding: 0 4px;
   background: transparent;
   color: #fff;
-  font-size: 0.84rem;
+  font-size: clamp(0.9rem, 0.72vw + 0.35rem, 1.02rem);
   font-weight: 700;
 }
 
@@ -2052,7 +2070,7 @@ body.renewal-active {
   }
 
   .renewal-header__wordmark {
-    font-size: 0.78rem;
+    font-size: 1.05rem;
   }
 
   .renewal-nav,
