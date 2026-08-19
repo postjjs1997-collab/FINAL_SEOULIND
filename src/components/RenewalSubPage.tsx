@@ -6,6 +6,7 @@ import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-indus
 import msqCertificateImage from "../../assets/certificates/msq-seoul-industry-2025.png";
 import iso14001CertificateImage from "../../assets/certificates/iso-14001-seoul-industry.webp";
 import iso14001CertificatePdf from "../../assets/certificates/iso-14001-seoul-industry.pdf";
+import vdaAuditorCertificateImage from "../../assets/certificates/vda-6-3-process-auditor.webp";
 import balanceModuleImage from "../../assets/product-application/machined-aluminum-application.webp";
 import automotiveImage from "../../assets/product-application/electric-vehicle-precise.webp";
 import steeringImage from "../../assets/product-application/steering-precise.webp";
@@ -172,6 +173,13 @@ const certificateShowcaseCopy: Record<RenewalLanguage, CertificateShowcaseCopy> 
         metadata: ["인증번호 JEK-2330", "유효기간 2027.05.06"],
         alt: "서울산업 ISO 14001:2015 환경경영시스템 인증서",
       },
+      {
+        eyebrow: "PROCESS AUDIT CREDENTIAL",
+        title: "VDA 6.3 프로세스 감사원",
+        copy: "VDA QMC와 한국품질재단(KFQ)이 발급한 VDA 6.3:2023 프로세스 감사원 자격으로, 독일 자동차 산업 표준에 따른 공정 감사 역량을 갖추고 있습니다.",
+        metadata: ["인증번호 63-23-R-2407-107226", "유효기간 2029.07.22"],
+        alt: "VDA 6.3 프로세스 감사원 자격 인증서",
+      },
     ],
   },
   en: {
@@ -199,6 +207,13 @@ const certificateShowcaseCopy: Record<RenewalLanguage, CertificateShowcaseCopy> 
         copy: "Seoul Industry's environmental management system is certified for the manufacture and service of automotive steering parts.",
         metadata: ["Certificate JEK-2330", "Valid through 6 May 2027"],
         alt: "Seoul Industry ISO 14001:2015 environmental management system certificate",
+      },
+      {
+        eyebrow: "PROCESS AUDIT CREDENTIAL",
+        title: "VDA 6.3 Process Auditor",
+        copy: "VDA 6.3:2023 process-auditor qualification issued by VDA QMC and the Korean Foundation for Quality (KFQ), covering process audits to the German automotive industry standard.",
+        metadata: ["Certificate 63-23-R-2407-107226", "Valid through 22 July 2029"],
+        alt: "VDA 6.3 Process Auditor certificate",
       },
     ],
   },
@@ -228,6 +243,13 @@ const certificateShowcaseCopy: Record<RenewalLanguage, CertificateShowcaseCopy> 
         metadata: ["認証番号 JEK-2330", "有効期限 2027.05.06"],
         alt: "ソウル産業 ISO 14001:2015環境マネジメントシステム認証書",
       },
+      {
+        eyebrow: "PROCESS AUDIT CREDENTIAL",
+        title: "VDA 6.3 プロセス監査員",
+        copy: "VDA QMCと韓国品質財団（KFQ）が発行したVDA 6.3:2023プロセス監査員資格で、ドイツ自動車業界規格に基づく工程監査に対応します。",
+        metadata: ["認証番号 63-23-R-2407-107226", "有効期限 2029.07.22"],
+        alt: "VDA 6.3 プロセス監査員 認定証",
+      },
     ],
   },
 };
@@ -236,6 +258,7 @@ const certificateAssets = [
   { image: iatfCertificateImage, href: iatfCertificatePdf },
   { image: msqCertificateImage, href: msqCertificateImage },
   { image: iso14001CertificateImage, href: iso14001CertificatePdf },
+  { image: vdaAuditorCertificateImage, href: vdaAuditorCertificateImage },
 ];
 
 type SustainabilityPolicyCopy = {

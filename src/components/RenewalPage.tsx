@@ -18,6 +18,7 @@ import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-indus
 import msqCertificateImage from "../../assets/certificates/msq-seoul-industry-2025.png";
 import iso14001CertificateImage from "../../assets/certificates/iso-14001-seoul-industry.webp";
 import iso14001CertificatePdf from "../../assets/certificates/iso-14001-seoul-industry.pdf";
+import vdaAuditorCertificateImage from "../../assets/certificates/vda-6-3-process-auditor.webp";
 import dauchLogo from "../../assets/partner-dauch.svg";
 import gknLogo from "../../assets/partner-gkn.svg";
 import hanseaLogo from "../../assets/partner-kdac.svg";
@@ -740,6 +741,7 @@ const homeUiCopy = {
     iatf: "IATF 16949 품질경영시스템",
     msq: "현대모비스 MSQ 협력사 품질 인증",
     iso14001: "ISO 14001 환경경영시스템",
+    vdaAuditor: "VDA 6.3 프로세스 감사원",
   },
   en: {
     companyLink: "View company profile",
@@ -757,6 +759,7 @@ const homeUiCopy = {
     iatf: "IATF 16949 Quality Management System",
     msq: "Hyundai Mobis MSQ Supplier Quality",
     iso14001: "ISO 14001 Environmental Management System",
+    vdaAuditor: "VDA 6.3 Process Auditor",
   },
   ja: {
     companyLink: "会社情報を見る",
@@ -774,6 +777,7 @@ const homeUiCopy = {
     iatf: "IATF 16949 品質マネジメントシステム",
     msq: "現代モービスMSQサプライヤー品質認証",
     iso14001: "ISO 14001 環境マネジメントシステム",
+    vdaAuditor: "VDA 6.3 プロセス監査員",
   },
 } satisfies Record<RenewalLanguage, Record<string, string>>;
 
@@ -1266,6 +1270,16 @@ function QualitySection({ language }: { language: RenewalLanguage }) {
               </figure>
               <span>
                 <strong>{ui.iso14001}</strong>
+                <small>{ui.certificateView}</small>
+              </span>
+              <Icon name="arrow" />
+            </a>
+            <a href={vdaAuditorCertificateImage} target="_blank" rel="noreferrer" data-renewal-reveal>
+              <figure>
+                <img src={vdaAuditorCertificateImage} alt={ui.vdaAuditor} loading="lazy" />
+              </figure>
+              <span>
+                <strong>{ui.vdaAuditor}</strong>
                 <small>{ui.certificateView}</small>
               </span>
               <Icon name="arrow" />
