@@ -786,13 +786,13 @@ export const productEvidenceByRoute: Record<string, ProductEvidence> = {
       ja: "EVオイルポンプ部品と電動化パワートレイン向けギヤ・シャフト",
     },
     copy: {
-      ko: "EV 감속기용 오일 펌프 하우징·커버를 가공하고, 전동화 파워트레인용 기어 샤프트·코액시얼 샤프트·링크 샤프트의 설계 검토와 시제품 제작·검증에 대응합니다.",
-      en: "We machine oil-pump housings and covers for EV reduction gearboxes and support design reviews, prototype production, and validation for electrified-powertrain gear shafts, coaxial shafts, and link shafts.",
+      ko: "EV 감속기용 오일 펌프 하우징·커버를 가공하고, 전동화 파워트레인용 기어 샤프트·코-액슬 샤프트·링크 샤프트의 설계 검토와 시제품 제작·검증에 대응합니다.",
+      en: "We machine oil-pump housings and covers for EV reduction gearboxes and support design reviews, prototype production, and validation for electrified-powertrain gear shafts, co-axial shafts, and link shafts.",
       ja: "EV減速機向けオイルポンプハウジング・カバーを加工し、電動化パワートレイン向けギヤシャフト、コアキシャルシャフト、リンクシャフトの設計検討および試作・検証に対応します。",
     },
     items: {
-      ko: ["EV Oil Pump Housing / Cover", "HEV Gear Shaft", "Coaxial / Link Shaft"],
-      en: ["EV oil-pump housing / cover", "HEV gear shaft", "Coaxial / link shaft"],
+      ko: ["EV Oil Pump Housing / Cover", "HEV Gear Shaft", "Co-axial / Link Shaft"],
+      en: ["EV oil-pump housing / cover", "HEV gear shaft", "Co-axial / link shaft"],
       ja: ["EVオイルポンプハウジング／カバー", "HEVギヤシャフト", "コアキシャルシャフト／リンクシャフト"],
     },
     image: electrifiedPowertrainImage,

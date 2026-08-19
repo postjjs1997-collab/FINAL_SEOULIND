@@ -1481,6 +1481,11 @@ body.renewal-active {
   background: #151515;
 }
 
+/* Partner cards are informational (no outbound link) but keep the hover motion */
+.renewal-partner {
+  cursor: default;
+}
+
 .renewal-partner__meta {
   display: flex;
   min-width: 0;

@@ -21,9 +21,9 @@ import iso14001CertificatePdf from "../../assets/certificates/iso-14001-seoul-in
 import vdaAuditorCertificateImage from "../../assets/certificates/vda-6-3-process-auditor.webp";
 import dauchLogo from "../../assets/partner-dauch.svg";
 import bocarLogo from "../../assets/partner-bocar.png";
+import myunghwaLogo from "../../assets/partner-myunghwa.png";
 import magnaLogo from "../../assets/partner-magna.svg";
 import mobisLogo from "../../assets/partner-mobis.svg";
-import muncieLogo from "../../assets/partner-mpt.svg";
 import nexteerLogo from "../../assets/partner-nexteer.png";
 import spartanLogo from "../../assets/partner-spartan.svg";
 import sntMotivLogo from "../../assets/partner-snt-motiv.png";
@@ -246,7 +246,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         { title: "Steering", category: "CORE 01", group: "core", copy: "피니언, 피니언 샤프트, 피스톤, 랙 부시, 토션 바 등 조향 어셈블리 부품" },
         { title: "Powertrain", category: "CORE 02", group: "core", copy: "변속기용 샤프트와 엔진용 캠샤프트 노즈 피스·밸런스 샤프트" },
         { title: "Driveline", category: "CORE 03", group: "core", copy: "트랜스퍼 케이스·ETM용 디스크 캐리어, 샤프트, 허브 부품" },
-        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV 오일 펌프 하우징·커버와 전동화용 기어 샤프트·코액시얼 샤프트·링크 샤프트" },
+        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV 오일 펌프 하우징·커버와 전동화용 기어 샤프트·코-액슬 샤프트·링크 샤프트" },
         { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "BSM 하우징·오일 펌프용 알루미늄 정밀가공 부품" },
       ],
     },
@@ -422,7 +422,7 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
         { title: "Steering", category: "CORE 01", group: "core", copy: "Pinions, pinion shafts, pistons, rack bushings, and torsion bars for steering assemblies." },
         { title: "Powertrain", category: "CORE 02", group: "core", copy: "Transmission shafts and engine components, including camshaft nose pieces and balance shafts." },
         { title: "Driveline", category: "CORE 03", group: "core", copy: "Disc carriers, shafts, and hubs for transfer-case and ETM systems." },
-        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV oil-pump housings and covers plus electrified-powertrain gear shafts, coaxial shafts, and link shafts." },
+        { title: "Electrified Powertrain", category: "EV · HEV · PHEV · BEV", group: "electrified", copy: "EV oil-pump housings and covers plus electrified-powertrain gear shafts, co-axial shafts, and link shafts." },
         { title: "Machined Aluminum Components", category: "ALUMINUM", group: "aluminum", copy: "Precision-machined aluminum BSM housings and oil-pump components." },
       ],
     },
@@ -782,15 +782,15 @@ const homeUiCopy = {
 } satisfies Record<RenewalLanguage, Record<string, string>>;
 
 const renewalPartners = [
-  { name: "Dauch Corporation (AAM)", market: "USA", logo: dauchLogo, href: "https://www.aam.com/" },
-  { name: "Spartan Light Metal Products", market: "USA", logo: spartanLogo, href: "https://spartanlmp.com/" },
-  { name: "thyssenkrupp", market: "GLOBAL", logo: thyssenkruppLogo, href: "https://www.thyssenkrupp.com/" },
-  { name: "Hyundai Mobis", market: "KOREA", logo: mobisLogo, href: "https://www.mobis.com/" },
-  { name: "Nexteer Automotive", market: "GLOBAL", logo: nexteerLogo, href: "https://www.nexteer.com/" },
-  { name: "BOCAR Group", market: "MEXICO", logo: bocarLogo, href: "https://www.bocar.com/" },
-  { name: "S&T Motiv", market: "KOREA", logo: sntMotivLogo, href: "https://www.sntmotiv.com/" },
-  { name: "Muncie Power Products", market: "USA", logo: muncieLogo, href: "https://www.munciepower.com/" },
-  { name: "Magna Powertrain", market: "GLOBAL", logo: magnaLogo, href: "https://www.magna.com/" },
+  { name: "Dauch Corporation (AAM)", market: "USA", logo: dauchLogo },
+  { name: "Spartan Light Metal Products", market: "USA", logo: spartanLogo },
+  { name: "thyssenkrupp", market: "GLOBAL", logo: thyssenkruppLogo },
+  { name: "Hyundai Mobis", market: "KOREA", logo: mobisLogo },
+  { name: "Nexteer Automotive", market: "GLOBAL", logo: nexteerLogo },
+  { name: "BOCAR Group", market: "MEXICO", logo: bocarLogo },
+  { name: "S&T Motiv", market: "KOREA", logo: sntMotivLogo },
+  { name: "Myunghwa Industry", market: "KOREA", logo: myunghwaLogo },
+  { name: "Magna Powertrain", market: "GLOBAL", logo: magnaLogo },
 ];
 
 function scrollToSection(target: string) {
@@ -1181,15 +1181,7 @@ function PartnersSection({ copy }: { copy: RenewalCopy }) {
       </div>
       <div className="renewal-partners__grid">
         {renewalPartners.map((partner) => (
-          <a
-            className="renewal-partner"
-            data-renewal-reveal
-            href={partner.href}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={`${partner.name} ${copy.partners.officialSite}`}
-            key={partner.name}
-          >
+          <div className="renewal-partner" data-renewal-reveal key={partner.name}>
             <span className="renewal-partner__logo">
               <img src={partner.logo} alt={partner.name} loading="lazy" />
             </span>
@@ -1200,7 +1192,7 @@ function PartnersSection({ copy }: { copy: RenewalCopy }) {
               </span>
               <Icon name="arrow" />
             </span>
-          </a>
+          </div>
         ))}
       </div>
     </section>

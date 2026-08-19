@@ -128,12 +128,12 @@ export const curatedNoticePosts: NoticePost[] = [
       ko: {
         title: "PHEV 기어박스용 링크 샤프트 양산과 전동화 파워트레인 부품 대응",
         summary: "2022년 PHEV 기어박스용 링크 샤프트 양산을 시작한 이후, EV 감속기용 오일 펌프 하우징·커버와 전동화 파워트레인용 샤프트로 대응 범위를 넓히고 있습니다.",
-        body: "서울산업은 2022년 PHEV 기어박스용 링크 샤프트 양산을 시작하며 전동화 파워트레인 부품 공급을 본격화했습니다. 2025년부터는 ICE·HEV·PHEV·BEV 프로그램 전반에서 신규 고객 개발을 진행하고 있습니다.\n\n현재 EV 감속기용 오일 펌프 하우징·커버는 양산 공정으로 가공하고, 전동화 파워트레인용 기어 샤프트·코액시얼 샤프트는 설계 검토와 시제품 제작·검증에 대응하고 있습니다. 시제품은 기어 정밀도, 스플라인 형상, 런아웃, 표면 상태를 중심으로 검증하며, 양산 부품과 시제품의 승인 단계는 제품 성격에 맞춰 별도로 운영합니다.",
+        body: "서울산업은 2022년 PHEV 기어박스용 링크 샤프트 양산을 시작하며 전동화 파워트레인 부품 공급을 본격화했습니다. 2025년부터는 ICE·HEV·PHEV·BEV 프로그램 전반에서 신규 고객 개발을 진행하고 있습니다.\n\n현재 EV 감속기용 오일 펌프 하우징·커버는 양산 공정으로 가공하고, 전동화 파워트레인용 기어 샤프트·코-액슬 샤프트는 설계 검토와 시제품 제작·검증에 대응하고 있습니다. 시제품은 기어 정밀도, 스플라인 형상, 런아웃, 표면 상태를 중심으로 검증하며, 양산 부품과 시제품의 승인 단계는 제품 성격에 맞춰 별도로 운영합니다.",
       },
       en: {
         title: "PHEV gearbox link-shaft production and electrified-powertrain components",
         summary: "Since launching PHEV gearbox link-shaft production in 2022, Seoul Industry has extended its scope to EV reduction-gear oil-pump housings and covers and electrified-powertrain shafts.",
-        body: "Seoul Industry launched volume production of link shafts for PHEV gearboxes in 2022, marking a full step into electrified-powertrain components. From 2025 the company has been developing new customers across ICE, HEV, PHEV, and BEV programs.\n\nToday, oil-pump housings and covers for EV reduction gears are machined on series-production processes, while electrified-powertrain gear shafts and coaxial shafts are supported through design review, prototype production, and validation. Prototypes are evaluated for gear accuracy, spline geometry, runout, and surface condition, and approval stages for production parts and prototypes are managed separately according to product type.",
+        body: "Seoul Industry launched volume production of link shafts for PHEV gearboxes in 2022, marking a full step into electrified-powertrain components. From 2025 the company has been developing new customers across ICE, HEV, PHEV, and BEV programs.\n\nToday, oil-pump housings and covers for EV reduction gears are machined on series-production processes, while electrified-powertrain gear shafts and co-axial shafts are supported through design review, prototype production, and validation. Prototypes are evaluated for gear accuracy, spline geometry, runout, and surface condition, and approval stages for production parts and prototypes are managed separately according to product type.",
       },
       ja: {
         title: "PHEVギヤボックス用リンクシャフトの量産と電動化パワートレイン部品への対応",

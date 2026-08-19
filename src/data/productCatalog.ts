@@ -330,7 +330,7 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       "アルミハウジング系と回転シャフト系に分け、実際の形状と製品別の開発区分を画像・動画で紹介します。",
     ),
     overviewImage: electrifiedLineupImage,
-    families: ["EV OIL PUMP HOUSING / COVER", "HEV GEAR SHAFT", "COAXIAL / LINK SHAFT"],
+    families: ["EV OIL PUMP HOUSING / COVER", "HEV GEAR SHAFT", "CO-AXIAL / LINK SHAFT"],
     // The source deck presents the oil-pump housing/cover in its machined-aluminum chapter.
     // The website intentionally groups them here by their EV reducer application.
     parts: [
@@ -353,8 +353,8 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         video: electrifiedLinkShaftVideo,
       },
       {
-        title: localized("코액시얼 샤프트", "Coaxial Shaft", "コアキシャルシャフト"),
-        application: localized("전동화 구동 모듈용 동축 샤프트", "Coaxial shaft for electrified drive modules", "電動化駆動モジュール用同軸シャフト"),
+        title: localized("코-액슬 샤프트", "Co-axial Shaft", "コアキシャルシャフト"),
+        application: localized("전동화 구동 모듈용 동축 샤프트", "Co-axial shaft for electrified drive modules", "電動化駆動モジュール用同軸シャフト"),
         poster: electrifiedCoaxialShaftPoster,
         video: electrifiedCoaxialShaftVideo,
       },
@@ -380,7 +380,7 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
       },
       {
         label: localized("개발 시제품", "Development prototypes", "開発試作品"),
-        value: localized("HEV 기어 샤프트 · 코액시얼 샤프트 · 링크 샤프트", "HEV gear shafts · coaxial shafts · link shafts", "HEVギヤシャフト · コアキシャルシャフト · リンクシャフト"),
+        value: localized("HEV 기어 샤프트 · 코-액슬 샤프트 · 링크 샤프트", "HEV gear shafts · co-axial shafts · link shafts", "HEVギヤシャフト · コアキシャルシャフト · リンクシャフト"),
       },
       {
         label: localized("하우징 가공", "Housing machining", "ハウジング加工"),
@@ -416,10 +416,10 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         ),
       },
       {
-        feature: localized("코액시얼·링크 샤프트", "Coaxial and link shafts", "コアキシャルシャフト・リンクシャフト"),
+        feature: localized("코-액슬·링크 샤프트", "Co-axial and link shafts", "コアキシャルシャフト・リンクシャフト"),
         characteristic: localized(
           "E-드라이브 기어박스 안에서 동력 전달을 담당하는 회전 부품",
-          "Coaxial and link shafts for power transmission in E-drive gearboxes",
+          "Co-axial and link shafts for power transmission in E-drive gearboxes",
           "Eドライブギヤボックスで動力を伝達するコアキシャルシャフト・リンクシャフト",
         ),
         verification: localized(

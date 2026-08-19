@@ -105,14 +105,14 @@ function applyKoreanCopy(content: SiteContent) {
   });
   const productCopies = [
     "BSM 하우징·오일 펌프용 알루미늄 가공 부품",
-    "EV 오일 펌프 하우징·커버와 전동화용 기어 샤프트·코액시얼 샤프트·링크 샤프트",
+    "EV 오일 펌프 하우징·커버와 전동화용 기어 샤프트·코-액슬 샤프트·링크 샤프트",
     "조향 장치용 피니언, 피니언 샤프트, 피스톤, 랙 부시, 토션 바",
     "변속기용 샤프트와 엔진용 캠샤프트 노즈 피스, 밸런스 샤프트",
     "트랜스퍼 케이스·ETM용 디스크 캐리어, 허브, 액추에이터 샤프트",
   ];
   const latestCopies = [
     "BSM 하우징·오일 펌프용 알루미늄 가공 부품",
-    "EV 오일 펌프 하우징·커버와 전동화용 기어 샤프트·코액시얼 샤프트·링크 샤프트",
+    "EV 오일 펌프 하우징·커버와 전동화용 기어 샤프트·코-액슬 샤프트·링크 샤프트",
     "조향 장치용 피니언, 피니언 샤프트, 피스톤, 랙 부시, 토션 바",
     "캠샤프트 선단 구동계 연결 부품과 변속기용 샤프트",
     "트랜스퍼 케이스와 ETM용 디스크 캐리어, 허브, 액추에이터 샤프트",
@@ -232,14 +232,14 @@ function applyEnglishCopy(content: SiteContent) {
   });
   const productCopies = [
     "Machined-aluminum BSM housings and oil-pump components.",
-    "EV oil-pump housings and covers plus electrified-powertrain gear shafts, coaxial shafts, and link shafts.",
+    "EV oil-pump housings and covers plus electrified-powertrain gear shafts, co-axial shafts, and link shafts.",
     "Pinions, pinion shafts, pistons, rack bushings, and torsion bars.",
     "Transmission shafts plus camshaft nose pieces and balance shafts for powertrain systems.",
     "Disc carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
   ];
   const latestCopies = [
     "Machined-aluminum BSM housings and oil-pump components.",
-    "EV oil-pump housings and covers plus electrified-powertrain gear shafts, coaxial shafts, and link shafts.",
+    "EV oil-pump housings and covers plus electrified-powertrain gear shafts, co-axial shafts, and link shafts.",
     "Pinions, pinion shafts, pistons, rack bushings, and torsion bars for steering systems.",
     "Camshaft-end drive-interface components and transmission shafts.",
     "Disc carriers, hubs, and actuator shafts for transfer-case and ETM systems.",
