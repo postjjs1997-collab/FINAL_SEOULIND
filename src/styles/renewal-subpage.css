@@ -7880,3 +7880,8 @@
     grid-column: 1;
   }
 }
+
+.renewal-sub-location__details a.renewal-sub-location__address {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}

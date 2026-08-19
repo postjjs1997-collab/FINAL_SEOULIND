@@ -1159,6 +1159,7 @@ const developmentRoadmapCopy: Record<RenewalLanguage, { eyebrow: string; title: 
 
 type LocationCopy = {
   address: string;
+  addressLines: string[];
   visit: string;
   email: string;
   transportTitle: string;
@@ -1172,6 +1173,7 @@ type LocationCopy = {
 const locationCopy: Record<RenewalLanguage, LocationCopy> = {
   ko: {
     address: "경기도 화성시 양감면 요당길320번길 51 서울산업(주)",
+    addressLines: ["경기도 화성시 양감면", "요당길320번길 51 서울산업(주)"],
     visit: "공장 방문은 사전 협의가 필요합니다. 도착 전 담당자에게 연락해 주십시오.",
     email: "sales@seoulind.co.kr",
     transportTitle: "교통 안내",
@@ -1183,6 +1185,7 @@ const locationCopy: Record<RenewalLanguage, LocationCopy> = {
   },
   en: {
     address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Republic of Korea",
+    addressLines: ["51, Yodang-gil 320beon-gil,", "Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Republic of Korea"],
     visit: "Factory visits require advance coordination. Please contact your Seoul Industry representative before arriving.",
     email: "sales@seoulind.co.kr",
     transportTitle: "Getting here",
@@ -1197,6 +1200,7 @@ const locationCopy: Record<RenewalLanguage, LocationCopy> = {
   },
   ja: {
     address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Republic of Korea",
+    addressLines: ["51, Yodang-gil 320beon-gil,", "Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Republic of Korea"],
     visit: "工場訪問は事前調整が必要です。到着前に担当者へご連絡ください。",
     email: "sales@seoulind.co.kr",
     transportTitle: "交通案内",
@@ -1437,7 +1441,6 @@ function CompanyOverviewBody({ language }: { language: RenewalLanguage }) {
               <span>ONE CONNECTED VALUE STREAM</span>
               <h3>{network.frameworkTitle}</h3>
             </div>
-            <p>{network.frameworkCopy}</p>
           </div>
           <ol className="profile-network__stages">
             {network.stages.map((stage, index) => (
@@ -1480,7 +1483,14 @@ function LocationBody({ language }: { language: RenewalLanguage }) {
       <div className="renewal-sub-location__details">
         <article data-sub-reveal>
           <span>01 · {labels.office}</span>
-          <a href={mapUrl} target="_blank" rel="noreferrer">{copy.address}</a>
+          <a href={mapUrl} target="_blank" rel="noreferrer" className="renewal-sub-location__address">
+            {copy.addressLines.map((line, index) => (
+              <span key={line}>
+                {index > 0 ? <br /> : null}
+                {line}
+              </span>
+            ))}
+          </a>
         </article>
         <article data-sub-reveal>
           <span>02 · TEL / FAX</span>

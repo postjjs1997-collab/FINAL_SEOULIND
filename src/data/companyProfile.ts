@@ -120,7 +120,6 @@ type GlobalProgramStage = {
 type GlobalProgramNetwork = {
   regions: GlobalProgramRegion[];
   frameworkTitle: string;
-  frameworkCopy: string;
   stages: GlobalProgramStage[];
 };
 
@@ -147,7 +146,6 @@ export const globalProgramNetwork = {
       },
     ],
     frameworkTitle: "도면 검토에서 양산 공급까지, 하나의 책임 체계로 연결합니다.",
-    frameworkCopy: "모든 지역 프로그램에는 화성 제조 거점을 중심으로 한 동일한 개발–양산 공급 흐름을 적용합니다.",
     stages: [
       {
         title: "도면·CTQ 검토",
@@ -193,7 +191,6 @@ export const globalProgramNetwork = {
       },
     ],
     frameworkTitle: "A single line of responsibility from drawing review to volume supply.",
-    frameworkCopy: "All regional programs follow the same development-to-volume-supply framework from the Hwaseong manufacturing base.",
     stages: [
       {
         title: "Drawing & CTQ Review",
@@ -239,7 +236,6 @@ export const globalProgramNetwork = {
       },
     ],
     frameworkTitle: "図面検討から量産供給まで、一つの責任体制でつなぎます。",
-    frameworkCopy: "すべての地域プログラムに、華城の生産拠点を中心とした、開発から量産供給までの共通フローを適用します。",
     stages: [
       {
         title: "図面・CTQ検討",
