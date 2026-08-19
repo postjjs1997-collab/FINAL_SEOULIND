@@ -138,9 +138,9 @@ const specTurning: ProductSpecItem = {
 const specGearMetrology: ProductSpecItem = {
   label: localized("기어 측정", "Gear metrology", "ギヤ測定"),
   value: localized(
-    "치형·리드·피치 · Ø300 · 모듈 0.2–12 · 길이 500 mm",
-    "Profile, lead, and pitch · Ø300 · module 0.2–12 · length 500 mm",
-    "歯形・歯すじ・ピッチ · Ø300 · モジュール 0.2–12 · 長さ 500 mm",
+    "치형·리드·피치 · Ø300 · 모듈 0.2–12 · 길이 500 mm",
+    "Profile, lead, and pitch · Ø300 · module 0.2–12 · length 500 mm",
+    "歯形・歯すじ・ピッチ · Ø300 · モジュール 0.2–12 · 長さ 500 mm",
   ),
 };
 const specCmm: ProductSpecItem = {
@@ -180,7 +180,7 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     families: ["BSM HOUSING", "BSM OIL PUMP COMPONENT", "DIE-CAST ALUMINUM", "PRECISION MACHINING"],
     parts: [
       {
-        title: localized("BSM 하우징 01", "BSM Housing 01", "BSMハウジング 01"),
+        title: localized("BSM 하우징 01", "BSM Housing 01", "BSMハウジング 01"),
         application: localized("밸런스 샤프트 모듈 하우징", "Balance shaft module housing", "バランスシャフトモジュール・ハウジング"),
         poster: housingPoster1,
         video: housingVideo1,
@@ -204,7 +204,7 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
         video: housingVideo4,
       },
       {
-        title: localized("BSM 하우징 05", "BSM Housing 05", "BSMハウジング 05"),
+        title: localized("BSM 하우징 05", "BSM Housing 05", "BSMハウジング 05"),
         application: localized("밸런스 샤프트 어셈블리 하우징", "Balance shaft assembly housing", "バランスシャフト・アセンブリハウジング"),
         poster: housingPoster5,
         video: housingVideo5,

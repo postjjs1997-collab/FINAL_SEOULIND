@@ -1698,7 +1698,6 @@ function ActualProductLineup({
               </figcaption>
             </figure>
             <div>
-              <span>{lineupLabels.item}</span>
               <h3>{part.title[language]}</h3>
               <p>{part.application[language]}</p>
             </div>
