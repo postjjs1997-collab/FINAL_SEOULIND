@@ -5540,28 +5540,10 @@
     box-shadow 0.28s var(--ease-out);
 }
 
-.notice-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(120deg, transparent 0%, rgba(233, 99, 26, 0.09) 48%, transparent 100%);
-  opacity: 0;
-  transform: translateX(-24%);
-  transition:
-    opacity 0.28s var(--ease-out),
-    transform 0.68s var(--ease-out);
-}
-
 .notice-card:hover {
   border-color: rgba(233, 99, 26, 0.34);
   box-shadow: 0 24px 72px rgba(49, 36, 26, 0.1);
   transform: translateY(-4px);
-}
-
-.notice-card:hover::before {
-  opacity: 1;
-  transform: translateX(18%);
 }
 
 .notice-card__meta,
