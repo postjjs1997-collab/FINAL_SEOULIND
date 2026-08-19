@@ -591,7 +591,7 @@ const recruitCopy: Record<
       employment: "고용 형태",
       employmentValue: "정규직",
       apply: "지원 방법",
-      applyValue: "이메일 admin@seoulind.co.kr",
+      applyValue: "이메일 sales@seoulind.co.kr",
       subjectFormat: "제목 형식: [지원] 직무명_성명",
       subjectPrefix: "[지원]",
     },
@@ -642,7 +642,7 @@ const recruitCopy: Record<
       employment: "Employment type",
       employmentValue: "Full-time, permanent",
       apply: "How to apply",
-      applyValue: "E-mail admin@seoulind.co.kr",
+      applyValue: "E-mail sales@seoulind.co.kr",
       subjectFormat: "Subject line: [Application] Position_Name",
       subjectPrefix: "[Application]",
     },
@@ -693,7 +693,7 @@ const recruitCopy: Record<
       employment: "雇用形態",
       employmentValue: "正社員",
       apply: "応募方法",
-      applyValue: "メール admin@seoulind.co.kr",
+      applyValue: "メール sales@seoulind.co.kr",
       subjectFormat: "件名形式：[応募] 職種名_氏名",
       subjectPrefix: "[応募]",
     },
@@ -1173,7 +1173,7 @@ const locationCopy: Record<RenewalLanguage, LocationCopy> = {
   ko: {
     address: "경기도 화성시 양감면 요당길320번길 51 서울산업(주)",
     visit: "공장 방문은 사전 협의가 필요합니다. 도착 전 담당자에게 연락해 주십시오.",
-    email: "admin@seoulind.co.kr",
+    email: "sales@seoulind.co.kr",
     transportTitle: "교통 안내",
     transport: ["서해안고속도로 발안IC 또는 평택제천고속도로 청북IC 이용", "인천국제공항에서 차량으로 약 1시간 30분 내외"],
     parking: "방문객 주차: 정문 안내실 앞",
@@ -1184,7 +1184,7 @@ const locationCopy: Record<RenewalLanguage, LocationCopy> = {
   en: {
     address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Republic of Korea",
     visit: "Factory visits require advance coordination. Please contact your Seoul Industry representative before arriving.",
-    email: "admin@seoulind.co.kr",
+    email: "sales@seoulind.co.kr",
     transportTitle: "Getting here",
     transport: [
       "Exit at Balan IC on the Seohaean Expressway or Cheongbuk IC on the Pyeongtaek–Jecheon Expressway",
@@ -1198,7 +1198,7 @@ const locationCopy: Record<RenewalLanguage, LocationCopy> = {
   ja: {
     address: "51, Yodang-gil 320beon-gil, Yanggam-myeon, Hwaseong-si, Gyeonggi-do, Republic of Korea",
     visit: "工場訪問は事前調整が必要です。到着前に担当者へご連絡ください。",
-    email: "admin@seoulind.co.kr",
+    email: "sales@seoulind.co.kr",
     transportTitle: "交通案内",
     transport: ["西海岸高速道路 発安（パラン）IC、または平沢済川高速道路 青北（チョンブク）ICをご利用ください", "仁川国際空港から車で約1時間30分"],
     parking: "来客用駐車場：正門受付前",
@@ -1420,10 +1420,8 @@ function CompanyOverviewBody({ language }: { language: RenewalLanguage }) {
             <article data-sub-reveal key={region.region}>
               <div className="profile-network__region-meta">
                 <span>{String(index + 1).padStart(2, "0")}</span>
-                <small>{region.coverage}</small>
               </div>
-              <h3>{region.region}</h3>
-              <strong>{region.title}</strong>
+              <h3>{region.title}</h3>
               <p>{region.copy}</p>
               <div className="profile-network__tags" aria-label={`${region.region} program scope`}>
                 {region.tags.map((tag) => (
@@ -3052,7 +3050,7 @@ const contactCopy: Record<RenewalLanguage, ContactCopy> = {
     eyebrow: "RFQ · TECHNICAL REVIEW",
     title: "견적·기술 검토 문의",
     intro: "도면(STEP·PDF), 연간 예상 수량, 목표 SOP 시점을 함께 보내주시면 검토 후 회신드립니다.",
-    attachNote: "도면·사양서 등 첨부 파일은 이메일(admin@seoulind.co.kr)로 보내주십시오.",
+    attachNote: "도면·사양서 등 첨부 파일은 이메일(sales@seoulind.co.kr)로 보내주십시오.",
     directLabel: "직접 연락",
     fields: {
       company: "회사명",
@@ -3070,14 +3068,14 @@ const contactCopy: Record<RenewalLanguage, ContactCopy> = {
     privacyLink: "개인정보처리방침",
     submit: "메일로 보내기",
     submitNote: "‘메일로 보내기’를 누르면 입력하신 내용이 담긴 메일 작성 창이 열립니다. 도면 파일은 그 메일에 첨부해 주십시오.",
-    opened: "메일 작성 창이 열리지 않으면 admin@seoulind.co.kr로 직접 보내주십시오.",
+    opened: "메일 작성 창이 열리지 않으면 sales@seoulind.co.kr로 직접 보내주십시오.",
     subjectPrefix: "[문의]",
   },
   en: {
     eyebrow: "RFQ · TECHNICAL REVIEW",
     title: "Quotation and engineering review",
     intro: "Send us your drawings (STEP/PDF), estimated annual volume and target SOP timing, and we will review them and reply.",
-    attachNote: "Please e-mail drawings and specifications to admin@seoulind.co.kr.",
+    attachNote: "Please e-mail drawings and specifications to sales@seoulind.co.kr.",
     directLabel: "Direct contact",
     fields: {
       company: "Company",
@@ -3095,14 +3093,14 @@ const contactCopy: Record<RenewalLanguage, ContactCopy> = {
     privacyLink: "Privacy Policy",
     submit: "Send by e-mail",
     submitNote: "“Send by e-mail” opens your mail client with the details you entered. Please attach drawing files to that message.",
-    opened: "If your mail client does not open, please write to admin@seoulind.co.kr directly.",
+    opened: "If your mail client does not open, please write to sales@seoulind.co.kr directly.",
     subjectPrefix: "[Inquiry]",
   },
   ja: {
     eyebrow: "RFQ · TECHNICAL REVIEW",
     title: "見積り・技術検討のお問い合わせ",
     intro: "図面（STEP・PDF）、年間予定数量、目標SOP時期を併せてお送りいただければ、検討のうえご返信いたします。",
-    attachNote: "図面・仕様書などの添付ファイルはメール（admin@seoulind.co.kr）でお送りください。",
+    attachNote: "図面・仕様書などの添付ファイルはメール（sales@seoulind.co.kr）でお送りください。",
     directLabel: "直接のご連絡",
     fields: {
       company: "会社名",
@@ -3120,12 +3118,12 @@ const contactCopy: Record<RenewalLanguage, ContactCopy> = {
     privacyLink: "個人情報保護方針",
     submit: "メールで送信",
     submitNote: "「メールで送信」を押すと、入力内容が入ったメール作成画面が開きます。図面ファイルはそのメールに添付してください。",
-    opened: "メール作成画面が開かない場合は、admin@seoulind.co.kr へ直接お送りください。",
+    opened: "メール作成画面が開かない場合は、sales@seoulind.co.kr へ直接お送りください。",
     subjectPrefix: "[お問い合わせ]",
   },
 };
 
-const contactEmail = "admin@seoulind.co.kr";
+const contactEmail = "sales@seoulind.co.kr";
 
 function ContactBody({ language }: { language: RenewalLanguage }) {
   const [opened, setOpened] = useState(false);
@@ -3266,7 +3264,7 @@ const privacyCopy: Record<RenewalLanguage, PrivacyCopy> = {
       },
       {
         title: "6. 개인정보 보호책임 부서",
-        items: ["부서: 경영지원팀", "이메일: admin@seoulind.co.kr", "전화: +82-31-366-1141"],
+        items: ["부서: 경영지원팀", "이메일: sales@seoulind.co.kr", "전화: +82-31-366-1141"],
       },
     ],
     effectiveLabel: "시행일",
@@ -3298,7 +3296,7 @@ const privacyCopy: Record<RenewalLanguage, PrivacyCopy> = {
       },
       {
         title: "6. Department responsible for personal information",
-        items: ["Department: Management Support Team", "E-mail: admin@seoulind.co.kr", "Tel: +82-31-366-1141"],
+        items: ["Department: Management Support Team", "E-mail: sales@seoulind.co.kr", "Tel: +82-31-366-1141"],
       },
     ],
     effectiveLabel: "Effective date",
@@ -3330,7 +3328,7 @@ const privacyCopy: Record<RenewalLanguage, PrivacyCopy> = {
       },
       {
         title: "6. 個人情報保護責任部署",
-        items: ["部署：経営支援チーム", "メール：admin@seoulind.co.kr", "電話：+82-31-366-1141"],
+        items: ["部署：経営支援チーム", "メール：sales@seoulind.co.kr", "電話：+82-31-366-1141"],
       },
     ],
     effectiveLabel: "施行日",

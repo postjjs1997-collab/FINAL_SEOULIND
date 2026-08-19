@@ -64,14 +64,13 @@ export const companyOverviewCopy = {
     copy: "서울산업은 1985년부터 엔진과 모터의 토크를 전달하는 샤프트, 기어, 스플라인, 하우징 부품을 개발 검토부터 양산 검사까지 일관 공정으로 생산해 왔습니다.",
     facts: [
       { label: "설립", value: "1985" },
-      { label: "임직원", value: "185명" },
       { label: "월 생산량", value: "300,000+ PARTS" },
       { label: "핵심 역량", value: "PRECISION MACHINING" },
       { label: "인증", value: "IATF 16949 · ISO 14001 · MSQ" },
-      { label: "공급 범위", value: "DEVELOPMENT TO SOP" },
+      { label: "공급 범위", value: "DEVELOPMENT TO LAUNCHING" },
     ],
     systems: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM"],
-    networkTitle: "한국의 제조 거점에서 세 지역의 고객 프로그램을 지원합니다.",
+    networkTitle: "한국의 제조 거점에서 글로벌 고객 프로그램을 지원합니다.",
     networkCopy: "화성 제조 거점을 중심으로 북미·아시아·유럽 프로그램의 도면 검토, 공정 설계, 생산 검증, 양산 안정화와 품질 기록을 하나의 흐름으로 관리합니다.",
   },
   en: {
@@ -80,14 +79,13 @@ export const companyOverviewCopy = {
     copy: "Since 1985, Seoul Industry has produced shafts, gears, splines, and housings that transfer torque from engines and motors, connecting feasibility review, mass production, and inspection in one manufacturing flow.",
     facts: [
       { label: "Founded", value: "1985" },
-      { label: "Employees", value: "185" },
       { label: "Monthly Output", value: "300,000+ PARTS" },
       { label: "Core Capability", value: "PRECISION MACHINING" },
       { label: "Certifications", value: "IATF 16949 · ISO 14001 · MSQ" },
-      { label: "Program Coverage", value: "DEVELOPMENT TO SOP" },
+      { label: "Program Coverage", value: "DEVELOPMENT TO LAUNCHING" },
     ],
     systems: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM"],
-    networkTitle: "One manufacturing base. Program support across three regions.",
+    networkTitle: "One manufacturing base in Korea, supporting global customer programs.",
     networkCopy: "From Hwaseong, Korea, Seoul Industry supports programs across North America, Asia, and Europe through one connected flow—from drawing review and process engineering to production validation, launch stabilization, and quality records.",
   },
   ja: {
@@ -96,21 +94,19 @@ export const companyOverviewCopy = {
     copy: "ソウル産業は1985年から、エンジンとモーターのトルクを伝えるシャフト、ギヤ、スプライン、ハウジングを、製造可能性の検討から量産検査まで一貫した工程で生産しています。",
     facts: [
       { label: "設立", value: "1985" },
-      { label: "従業員数", value: "185名" },
       { label: "月間生産数", value: "300,000+ PARTS" },
       { label: "中核技術", value: "PRECISION MACHINING" },
       { label: "認証", value: "IATF 16949 · ISO 14001 · MSQ" },
-      { label: "対応範囲", value: "DEVELOPMENT TO SOP" },
+      { label: "対応範囲", value: "DEVELOPMENT TO LAUNCHING" },
     ],
     systems: ["STEERING", "POWERTRAIN", "DRIVELINE", "ELECTRIFIED POWERTRAIN", "MACHINED ALUMINUM"],
-    networkTitle: "韓国の生産拠点から、3地域の顧客プログラムを支えます。",
+    networkTitle: "韓国の生産拠点から、グローバルな顧客プログラムを支えます。",
     networkCopy: "華城の生産拠点を中心に、北米・アジア・欧州のプログラムに対し、図面検討、工程設計、生産検証、量産立上げ・安定化、品質記録までを一つの流れで管理します。",
   },
 } satisfies Record<CompanyProfileLanguage, object>;
 
 type GlobalProgramRegion = {
   region: string;
-  coverage: string;
   title: string;
   copy: string;
   tags: string[];
@@ -133,21 +129,18 @@ export const globalProgramNetwork = {
     regions: [
       {
         region: "NORTH AMERICA",
-        coverage: "UNITED STATES · MEXICO",
         title: "개발·양산 준비",
         copy: "고객 도면과 CTQ를 공정 순서, 치공구, 검사 로직으로 구체화하고, 생산 검증부터 초기 양산 안정화까지 책임집니다.",
         tags: ["FEASIBILITY", "VALIDATION", "SOP"],
       },
       {
         region: "ASIA",
-        coverage: "KOREA · JAPAN · CHINA",
         title: "통합 제조 운영",
         copy: "화성 제조 거점에서 정밀가공, 기어·스플라인 가공, 연삭, 열처리 연계 공정, 자동화, 최종 검사를 하나의 생산 계획으로 운영합니다.",
         tags: ["MACHINING", "PROCESS CONTROL", "INSPECTION"],
       },
       {
         region: "EUROPE",
-        coverage: "EUROPEAN PROGRAMS",
         title: "품질 문서·변경 관리",
         copy: "GD&T·CMM 측정, 기어 형상 검사, 자동검사와 추적성 데이터를 기반으로 승인 단계별 품질 자료와 프로그램 변경 사항을 관리합니다.",
         tags: ["GD&T / CMM", "TRACEABILITY", "CHANGE CONTROL"],
@@ -182,21 +175,18 @@ export const globalProgramNetwork = {
     regions: [
       {
         region: "NORTH AMERICA",
-        coverage: "UNITED STATES · MEXICO",
         title: "Launch & Volume Readiness",
         copy: "Customer drawings and CTQs are translated into process sequences, fixture concepts, and inspection logic, connecting production validation with early-volume stabilization.",
         tags: ["FEASIBILITY", "VALIDATION", "SOP"],
       },
       {
         region: "ASIA",
-        coverage: "KOREA · JAPAN · CHINA",
         title: "Integrated Manufacturing Hub",
         copy: "At Hwaseong, precision machining, gear and spline operations, grinding, coordinated heat treatment, automation, and final inspection are managed under one production plan.",
         tags: ["MACHINING", "PROCESS CONTROL", "INSPECTION"],
       },
       {
         region: "EUROPE",
-        coverage: "EUROPEAN PROGRAMS",
         title: "Quality Documentation & Change Control",
         copy: "GD&T and CMM measurement, gear-profile inspection, automated inspection, and traceability data underpin approval-stage quality documentation and program change control.",
         tags: ["GD&T / CMM", "TRACEABILITY", "CHANGE CONTROL"],
@@ -231,21 +221,18 @@ export const globalProgramNetwork = {
     regions: [
       {
         region: "NORTH AMERICA",
-        coverage: "UNITED STATES · MEXICO",
         title: "立上げ・量産準備",
         copy: "顧客図面とCTQを工程順序、治具、検査ロジックへ落とし込み、生産検証から初期量産の工程安定化までつなげます。",
         tags: ["FEASIBILITY", "VALIDATION", "SOP"],
       },
       {
         region: "ASIA",
-        coverage: "KOREA · JAPAN · CHINA",
         title: "統合生産ハブ",
         copy: "華城の生産拠点で、精密加工、ギヤ・スプライン加工、研削、熱処理との連携、自動化、最終検査を一つの生産計画で運用します。",
         tags: ["MACHINING", "PROCESS CONTROL", "INSPECTION"],
       },
       {
         region: "EUROPE",
-        coverage: "EUROPEAN PROGRAMS",
         title: "品質文書・変更管理",
         copy: "GD&T・CMM測定、ギヤ形状検査、自動検査、トレーサビリティデータを基に、承認段階ごとの品質資料とプログラム変更を管理します。",
         tags: ["GD&T / CMM", "TRACEABILITY", "CHANGE CONTROL"],

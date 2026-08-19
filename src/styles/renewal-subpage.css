@@ -6145,8 +6145,10 @@
 }
 
 .profile-network__regions h3 {
-  margin: 52px 0 16px;
+  margin: 52px 0 0;
   font-size: clamp(1.35rem, 1.7vw, 1.9rem);
+  line-height: 1.3;
+  word-break: keep-all;
 }
 
 .profile-network__regions article > strong {

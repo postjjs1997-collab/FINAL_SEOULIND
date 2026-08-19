@@ -18,7 +18,7 @@ const CONTACT_ROUTE = "support/contact";
 const PRIVACY_ROUTE = "legal/privacy";
 const COMPANY_TEL = { display: "+82-31-366-1141", href: "tel:+82313661141" };
 const COMPANY_FAX = { display: "+82-31-366-1150" };
-const COMPANY_EMAIL = "admin@seoulind.co.kr";
+const COMPANY_EMAIL = "sales@seoulind.co.kr";
 const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 const shellCopy: Record<

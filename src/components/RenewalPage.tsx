@@ -13,8 +13,6 @@ import oemProductionPoster from "../../assets/process-videos/oem-production-gant
 import mainHeroVideo from "../../assets/process-videos/home-main-final.mp4";
 import mainHeroPoster from "../../assets/process-videos/home-main-final.jpg";
 import facadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
-import homeCncLatheVideo from "../../assets/company-profile/video/cnc-lathe-line-automation.mp4";
-import homeCncLathePoster from "../../assets/company-profile/process/cnc-lathe-line-automation.webp";
 import iatfCertificateImage from "../../assets/certificates/iatf-16949-seoul-industry.png";
 import iatfCertificatePdf from "../../assets/certificates/iatf-16949-seoul-industry.pdf";
 import msqCertificateImage from "../../assets/certificates/msq-seoul-industry-2025.png";
@@ -191,7 +189,6 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       label: "서울산업 핵심 지표",
       items: [
         { value: "SINCE 1985", label: "40년 이상의 자동차 부품 제조 경험" },
-        { value: "185명", label: "임직원" },
         { value: "300,000+", label: "월 부품 양산" },
         { label: "품질·환경 인증", badges: ["IATF 16949", "ISO 14001", "MSQ"] },
         { value: "글로벌 공급", label: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN" },
@@ -368,7 +365,6 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       label: "Seoul Industry at a glance",
       items: [
         { value: "SINCE 1985", label: "40+ years of automotive component manufacturing" },
-        { value: "185", label: "Employees" },
         { value: "300,000+", label: "Parts produced per month" },
         { label: "Quality & environmental certifications", badges: ["IATF 16949", "ISO 14001", "MSQ"] },
         { value: "Global supply", label: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN" },
@@ -545,7 +541,6 @@ const renewalCopy: Record<RenewalLanguage, RenewalCopy> = {
       label: "ソウル産業の主要指標",
       items: [
         { value: "SINCE 1985", label: "40年以上にわたる自動車部品の製造経験" },
-        { value: "185名", label: "従業員数" },
         { value: "300,000+", label: "月間部品量産数" },
         { label: "品質・環境認証", badges: ["IATF 16949", "ISO 14001", "MSQ"] },
         { value: "グローバル供給", label: "KOREA · NORTH AMERICA · EUROPE · CHINA · JAPAN" },
@@ -721,17 +716,11 @@ const featuredProcesses = featuredProcessIds.flatMap((id) => {
   return [
     {
       ...process,
-      homeVideo: id === "cnc-lathe" ? homeCncLatheVideo : manufacturingFlowVideos[id],
-      homePoster: id === "cnc-lathe" ? homeCncLathePoster : process.image,
+      homeVideo: manufacturingFlowVideos[id],
+      homePoster: process.image,
     },
   ];
 });
-
-const homeCncLatheCopy = {
-  ko: "자동 이송·로딩이 연계된 CNC 선반 라인으로 장축 샤프트 가공의 반복성과 공정 흐름을 안정적으로 관리합니다.",
-  en: "Automated transfer and loading are integrated with the CNC lathe line to support repeatable long-shaft machining and stable process flow.",
-  ja: "自動搬送・ローディングをCNC旋盤ラインと連携し、長尺シャフト加工の再現性と安定した工程フローを管理します。",
-} as const;
 
 const homeUiCopy = {
   ko: {
@@ -1160,7 +1149,7 @@ function ManufacturingSection({ language }: { language: RenewalLanguage }) {
             <div>
               <span>{ui.processStep}</span>
               <h3>{process.title}</h3>
-              <p>{process.id === "cnc-lathe" ? homeCncLatheCopy[language] : process.copy[language]}</p>
+              <p>{process.copy[language]}</p>
               <strong>{process.capability[language]}</strong>
             </div>
           </article>
