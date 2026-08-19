@@ -165,14 +165,14 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     ),
     detailTags: ["CASTING SUPPLY", "IN-HOUSE MACHINING", "CMM / AUTOMATED INSPECTION"],
     lineupTitle: localized(
-      "BSM 하우징 5종 가공 사례",
-      "Machining examples from five BSM housings",
-      "BSMハウジング5種の加工事例",
+      "BSM 하우징·오일 펌프 부품 대표 라인업",
+      "Representative BSM housing and oil-pump components",
+      "BSMハウジング・オイルポンプ部品の代表ラインアップ",
     ),
     lineupCopy: localized(
-      "크기와 기준면 구성이 다른 하우징 5종을 실제 형상과 가공 장면 중심으로 소개합니다.",
-      "Five housings of different sizes and datum arrangements, shown through real part geometry and in-process machining footage.",
-      "サイズと基準面構成が異なる5種類のハウジングを、実際の形状と加工シーンを中心に紹介します。",
+      "크기와 기준면 구성이 서로 다른 하우징과 오일 펌프 부품을 실제 형상과 가공 장면 중심으로 소개합니다.",
+      "Housings and oil-pump components of varying sizes and datum arrangements, shown through real part geometry and in-process machining footage.",
+      "サイズと基準面構成が異なるハウジングやオイルポンプ部品を、実際の形状と加工シーンを中心に紹介します。",
     ),
     overviewImage: machinedAluminumLineupImage,
     families: ["BSM HOUSING", "BSM OIL PUMP COMPONENT", "DIE-CAST ALUMINUM", "PRECISION MACHINING"],
@@ -459,9 +459,9 @@ export const productPartCatalogByRoute: Record<string, ProductPartCatalog> = {
     ),
     detailTags: ["HOBBING / HARD HOBBING", "ROLLING / BROACHING", "AUTOMATIC STRAIGHTENING"],
     lineupTitle: localized(
-      "조향 장치용 부품 5종",
-      "Five component types for steering assemblies",
-      "ステアリング装置向け部品5種",
+      "조향 장치용 대표 부품",
+      "Representative components for steering assemblies",
+      "ステアリング装置向けの代表部品",
     ),
     lineupCopy: localized(
       "회전 부품, 작동 부품, 지지 부품으로 구분되는 형상 차이와 각 품목의 용도를 이미지와 영상으로 확인할 수 있습니다.",
