@@ -14,6 +14,7 @@ import drivelineImage from "../../assets/product-application/driveline-precise.w
 import powertrainImage from "../../assets/product-application/powertrain-precise.webp";
 import precisionImage from "../../precision-inside-mobility.jpg";
 import seoulIndustryFacadeImage from "../../assets/company-profile/seoul-industry-facade-sign.webp";
+import seoulIndustryFacadeTightImage from "../../assets/company-profile/seoul-industry-facade-sign-tight.webp";
 import ceoGreetingIllustration from "../../assets/company-profile/ceo-greeting-illustration.webp";
 import defenseSpecialProjectsImage from "../../assets/product-catalog/etc/defense-special-projects.png";
 import cncLatheEquipmentImage from "../../assets/equipment-inventory/actual/cnc-lathe.webp";
@@ -1405,7 +1406,13 @@ function CompanyOverviewBody({ language }: { language: RenewalLanguage }) {
     <>
       <section className="profile-overview">
         <figure className="profile-overview__factory" data-sub-reveal>
-          <img src={seoulIndustryFacadeImage} alt="Seoul Industry logo signage on the head office facade" />
+          <img
+            className="profile-overview__factory-backdrop"
+            src={seoulIndustryFacadeTightImage}
+            alt=""
+            aria-hidden="true"
+          />
+          <img src={seoulIndustryFacadeTightImage} alt="Seoul Industry logo signage on the head office facade" />
           <figcaption>HEAD OFFICE · PRODUCTION FACILITY · HWASEONG, KOREA</figcaption>
         </figure>
         <div className="profile-overview__content">

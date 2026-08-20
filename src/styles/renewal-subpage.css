@@ -5953,7 +5953,9 @@
 
 .profile-overview__factory {
   position: relative;
+  display: flex;
   min-height: 560px;
+  align-items: center;
   margin: 0;
   overflow: hidden;
   background: #191919;
@@ -5966,12 +5968,27 @@
   content: "";
 }
 
+/* The signage must stay fully readable at every panel aspect: the sharp photo is shown
+   whole, centred over a blurred cover copy that fills the frame. */
 .profile-overview__factory img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 1.1s var(--ease-out);
+}
+
+.profile-overview__factory .profile-overview__factory-backdrop {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left center;
-  transition: transform 1.1s var(--ease-out);
+  filter: blur(26px) brightness(0.4) saturate(0.85);
+  transform: scale(1.12);
 }
 
 .profile-overview__factory:hover img {
@@ -5983,7 +6000,7 @@
   right: 30px;
   bottom: 28px;
   left: 30px;
-  z-index: 1;
+  z-index: 2;
   color: rgba(255, 255, 255, 0.76);
   font-size: 0.69rem;
   font-weight: 900;

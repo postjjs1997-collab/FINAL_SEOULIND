@@ -86,7 +86,7 @@ body.renewal-active {
 /* Wordmark mirrors the facade signage: orange, heavy, uppercase */
 .renewal-header__wordmark {
   color: var(--renewal-orange);
-  font-size: 26.5px; /* pinned: header chrome does not follow the site type scale */
+  font-size: 24px; /* pinned: header chrome does not follow the site type scale */
   font-weight: 900;
   letter-spacing: 0.01em;
   line-height: 1;
@@ -129,7 +129,7 @@ body.renewal-active {
   }
 
   .renewal-header__wordmark {
-    font-size: 23px;
+    font-size: 20.7px;
   }
 
   .renewal-nav {
@@ -146,8 +146,8 @@ body.renewal-active {
   padding: 0 4px;
   background: transparent;
   color: #fff;
-  /* Grows with the viewport: ~16px on a 1440px laptop, ~21px on a 1920px monitor, 22px cap */
-  font-size: clamp(14.5px, 1.04vw + 1px, 22px);
+  /* Grows with the viewport: ~14.4px on a 1440px laptop, ~19px on a 1920px monitor, 19.8px cap */
+  font-size: clamp(13px, 0.94vw + 0.9px, 19.8px);
   font-weight: 700;
 }
 
@@ -208,7 +208,7 @@ body.renewal-active {
   background: transparent;
   color: #bdbdbd;
   /* Follows the top-menu scale (not the site type scale), a step smaller than the menu itself */
-  font-size: clamp(13px, 0.94vw + 0.9px, 19.8px);
+  font-size: clamp(11.7px, 0.85vw + 0.8px, 17.8px);
   text-align: left;
   transition:
     color 0.2s ease,
@@ -299,7 +299,7 @@ body.renewal-active {
   border-radius: 16px;
   background: transparent;
   color: rgba(255, 255, 255, 0.56);
-  font-size: clamp(10.7px, 0.55vw + 2.8px, 13.5px);
+  font-size: clamp(9.6px, 0.5vw + 2.5px, 12.2px);
   font-weight: 800;
 }
 
